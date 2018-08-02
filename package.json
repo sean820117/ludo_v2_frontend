@@ -4,6 +4,9 @@
   "description": "Nuxt.js project",
   "author": "SeanGo,Ruilong,Waisliaw",
   "private": true,
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
