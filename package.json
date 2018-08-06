@@ -17,6 +17,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
     "nuxt": "^1.0.0",
     "vue-scrollto": "^2.11.0"
   },
