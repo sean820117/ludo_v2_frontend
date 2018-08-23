@@ -32,7 +32,7 @@
         
         <no-ssr>
             <div>
-                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/fc/result/iamsean" class="fb-xfbml-parse-ignore">分享</a></div>
+                <div class="fb-share-button" data-href="http://www.ludonow.com/fc/result/iamsean" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/fc/result/iamsean" class="fb-xfbml-parse-ignore">分享</a></div>
                 <div id="fb-root"></div>
                 <script>
                     (function(d, s, id) {
