@@ -54,6 +54,17 @@
 import axios from 'axios';
 
 export default {
+    head: {
+        title: "自介評分",
+        titleTemplate: '%s - 讓狂人飛',
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { hid: 'description', name: 'description', content: 'Meta description' },
+            { property: 'og:title', content: '自介評分'},
+            { property: 'og:image', content: '/fc-logo.png'}
+        ],
+    },
     data:() => {
         return {
             base_url: "http://www.ludonow.com",
