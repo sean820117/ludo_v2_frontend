@@ -60,7 +60,7 @@ export default {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'Meta description' },
+            { hid: 'description', name: 'description', content: '各種社交場合都需要自我介紹\n於是你看了教學、模擬練習但還是不知道自己的自介是好是壞？\n來看看你是在自介，還是自嗨A_A' },
             { property: 'og:title', content: '自介評分'},
             { property: 'og:image', content: 'http://www.ludonow.com/fc-logo.png'},
             { property: 'og:description', content: '各種社交場合都需要自我介紹\n於是你看了教學、模擬練習但還是不知道自己的自介是好是壞？\n來看看你是在自介，還是自嗨A_A'},
