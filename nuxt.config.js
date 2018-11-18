@@ -1,5 +1,13 @@
 module.exports = {
   /*
+    ** Single Page Application mode
+    ** Means no SSR
+    */
+  mode: 'spa',
+  /*
+  ** Headers of the page (works with SPA!)
+  */
+  /*
   ** Headers of the page
   */
   head: {

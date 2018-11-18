@@ -8,8 +8,10 @@
 <script>
 export default {
     data:() => ({
-        placeholder: "",
     }),
+    props: {
+        placeholder: String,
+    },
 }
 </script>
 
@@ -30,10 +32,14 @@ export default {
     /* margin-top: 2.8px;  */
 }
 .search_input {
+    margin-left: 3px;
     border: none;
     background: transparent;
     outline: none;
     display: inline-flex;
     width: 95%;
+}
+.search_input::placeholder {
+    color: #959595;
 }
 </style>

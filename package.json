@@ -17,9 +17,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "ajv": "^6.0.0",
+    "ajv-keywords": "^3.2.0",
     "axios": "^0.18.0",
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "nuxt": "^1.0.0",
+    "papaparse": "^4.6.2",
+    "vue-input-tag": "^2.0.1",
     "vue-scrollto": "^2.11.0"
   },
   "devDependencies": {
