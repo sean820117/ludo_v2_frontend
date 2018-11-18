@@ -1,49 +1,51 @@
 <template>
     <div class="ai-upload-container">
-        <ludo-header/>
-        <h1 class="ai-upload-title">請上傳文字資料</h1>
-        <div class="ai-upload-alert"></div>
-        <div class="ai-upload-ranks-container">
-        	<div 
-                class="ai-single-upload"
-                v-for="single in editingRanks"
-                :key="single.rank"
-            >
-                <img class="delete-image" :src="removeIcon">
-        		<div class="ai-single-upload-alert"></div>
-        		<div class="ai-single-upload-rank">{{ single.rank }}</div>
-        		<label class="ai-single-upload-button">
-        			<img class="image" :src="uploadButton"/>
-        			<div class="ai-single-upload-button-text" >
-                        <input class="ai-single-upload-file-input" type="file" id="file" :ref="'file'+single.Rank" accept=".xlsx, .xls, .csv" @change="handleFileUpload(single,$event)"/>
-                        <p v-if="single.examples != undefined">
-                            繼續上傳
-                        </p>
-                        <p v-else>
-                            上傳文字資料
-                        </p>
+        <div class="ai-upload-settings-container">
+            <ludo-header/>
+            <h1 class="ai-upload-title">請上傳文字資料</h1>
+            <div class="ai-upload-alert"></div>
+            <div class="ai-upload-ranks-container">
+                <div 
+                    class="ai-single-upload"
+                    v-for="single in editingRanks"
+                    :key="single.rank"
+                >
+                    <img class="delete-image" :src="removeIcon">
+                    <div class="ai-single-upload-alert"></div>
+                    <div class="ai-single-upload-rank">{{ single.rank }}</div>
+                    <label class="ai-single-upload-button" :class="{ grey : (single.examples != undefined)}">
+                        <img class="image" :src="uploadButton"/>
+                        <div class="ai-single-upload-button-text" >
+                            <input class="ai-single-upload-file-input" type="file" id="file" :ref="'file'+single.Rank" accept=".xlsx, .xls, .csv" @change="handleFileUpload(single,$event)"/>
+                            <p v-if="single.examples != undefined">
+                                繼續上傳
+                            </p>
+                            <p v-else>
+                                上傳文字資料
+                            </p>
+                        </div>
+                    </label>
+                    <div class="ai-single-upload-keyword">
+                        <input-tag v-model="single.keywords"></input-tag>
                     </div>
-        		</label>
-        		<div class="ai-single-upload-keyword">
-                    <input-tag v-model="single.keywords"></input-tag>
                 </div>
-        	</div>
-            <div class="ai-single-upload ai-single-add-new-block" v-if="nextRank">
-                <div class="ai-single-upload-rank">{{ nextRank }}</div>
-                <button class="ai-single-add-new-button" @click="handleAddRank">
-                    <img :src="addRankButton"/>
-                </button>
+                <div class="ai-single-upload ai-single-add-new-block" v-if="nextRank">
+                    <div class="ai-single-upload-rank">{{ nextRank }}</div>
+                    <button class="ai-single-add-new-button" @click="handleAddRank">
+                        <img :src="addRankButton"/>
+                    </button>
+                </div>
+            </div>
+            <div class="down-button">
+                <div class="down-button-modify">
+                    <div class="down-button-modify-text" v-scroll-to="'#over-container'">修改關鍵字</div>
+                </div>
+                <div class="down-button-confirm" v-scroll-to="'#over-container'" @click="/*makeAssistant()*/">
+                    <div class="down-button-confirm-text">開始運算</div>
+                </div>
             </div>
         </div>
-        <div class="down-button">
-			<div class="down-button-modify">
-	        	<div class="down-button-modify-text">修改關鍵字</div>
-	        </div>
-	        <div class="down-button-confirm">
-	        	<div class="down-button-confirm-text" @click="makeAssistant()">開始運算</div>
-	        </div>
-	    </div>
-        <div class="over-container">
+        <div class="over-container" id="over-container">
             <div class="over-container-title">請選擇準確率</div>
             <div class="predict">
                 <div class="predict-time">第一次</div>
@@ -66,6 +68,21 @@ import { mapMutations, mapGetters } from 'vuex';
 import papa from 'papaparse';
 import Vue from 'vue';
 import InputTag from 'vue-input-tag'
+import VueScrollTo from 'vue-scrollto';
+
+Vue.use(VueScrollTo, {
+     container: "body",
+     duration: 500,
+     easing: "ease",
+     offset: 0,
+     force: true,
+     cancelable: true,
+     onStart: false,
+     onDone: false,
+     onCancel: false,
+     x: false,
+     y: true
+ });
 
 export default {
     middleware: ['checkLogin','checkAuthority'],
@@ -191,6 +208,9 @@ export default {
 body {
     background: #FDFCF7;
 }
+.ai-upload-settings-container {
+    height: 100vh;
+}
 .ai-upload-title{
 	margin-top: 58.2px;
 	display: flex;
@@ -211,7 +231,7 @@ body {
 	color: #5115d9;
 }
 .ai-upload-ranks-container{
-	margin-top: 110px;
+	margin-top: 30px;
 	display: flex;
 	justify-content: center;
 }
@@ -277,7 +297,7 @@ body {
     display: none;
 }
 .ai-single-upload-keyword{
-	margin-top: 46px;
+	margin-top: 15px;
     font-family: HelveticaNeue;
     font-size: 18px;
     font-weight: 500;
@@ -316,6 +336,7 @@ body {
     height: 60px;
     border-radius: 15px;
     background-color: #5115d9;
+    cursor: pointer;
 }
 .down-button-confirm-text{
 	font-family: HelveticaNeue;
@@ -399,5 +420,19 @@ body {
 }
 .ai-single-add-new-button img{
     width:48px;
+}
+/* input-tag css*/
+.input-tag {
+    background: transparent !important;
+    border-color: black !important;
+    color: black !important;
+
+}
+.remove {
+    color: black !important;
+}
+.vue-input-tag-wrapper {
+    background: transparent !important;
+    border: none !important;
 }
 </style>
