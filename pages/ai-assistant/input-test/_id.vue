@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <textarea v-model="content" placeholder="add multiple lines"></textarea>
+    <div class="input-test-container">
+        <textarea v-model="content" placeholder="input your practice" rows="10" cols="10"></textarea>
+        <br>
         <button @click="sendTest">測試</button>
         <div>rank: {{ rank }}</div>
     </div>
@@ -40,5 +41,17 @@ export default {
 </script>
 
 <style scoped>
-
+.input-test-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.input-test-container textarea{
+    width: 30%;
+    height: 30%;
+    font-size: 15px;
+}
+.input-test-container button {
+    width:10%;
+}
 </style>
