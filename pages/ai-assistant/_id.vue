@@ -12,7 +12,7 @@
                     v-for="single in editingRanks"
                     :key="single.rank"
                 >
-                    <img class="delete-image" :src="removeIcon" @click="handleRemoveRank(single.rank)">
+                    <img class="delete-image" :src="removeIcon">
                     <div class="ai-single-upload-alert"></div>
                     <div class="ai-single-upload-rank">{{ single.rank }}</div>
                     <label class="ai-single-upload-button" :class="{ grey : (single.examples != undefined)}">
@@ -42,18 +42,18 @@
                 <!-- <div class="down-button-modify">
                     <div class="down-button-modify-text" v-scroll-to="'#over-container'">修改關鍵字</div>
                 </div> -->
-                <div class="down-button-confirm"  @click="makeAssistant()">
+                <div class="down-button-confirm"  @click="updateAssistant()">
                     <div class="down-button-confirm-text">開始運算</div>
                 </div>
             </div>
         </div>
-        <div class="over-container" id="over-container">
+        <div class="over-container" id="over-container" v-if="accuracy > 0">
             <div class="over-container-title">請選擇準確率</div>
             <div class="predict">
                 <div class="predict-time">第一次</div>
                 <div class="predict-number">{{ accuracy }}%</div>
-                <div @click="toInputTest" class="predict-button">
-                    <div class="predict-button-text" >選擇，測試助教</div>
+                <div class="predict-button">
+                    <div class="predict-button-text">選擇，完成助教</div>
                 </div>
             </div>
         </div>
@@ -66,8 +66,7 @@ import addRankButton from 'static/grey-plus.svg'
 import removeIcon from 'static/remove-icon.svg'
 import LudoHeader from '~/components/desktop/LudoHeader.vue'
 import axios from '~/config/axios-config';
-import { mapMutations, mapGetters } from 'vuex';
-import Vuex from 'vuex';
+import { mapMutations, mapGetters , mapActions } from 'vuex';
 import papa from 'papaparse';
 import Vue from 'vue';
 import InputTag from 'vue-input-tag'
@@ -87,8 +86,6 @@ Vue.use(VueScrollTo, {
      y: true
  });
 
-Vue.use(Vuex);
-
 export default {
     middleware: ['checkLogin','checkAuthority'],
     components: {
@@ -98,8 +95,10 @@ export default {
     computed: mapGetters({
         user : 'user/getData',
         ranks : 'assistant/getRanks', 
+        getName : 'assistant/getName',
         nextRank: 'assistant/getNextRank',
         getAllData: 'assistant/getAllData',  
+        getBasicInfo: 'assistant/getBasicInfo',
     }),
     methods: {
         handleFileUpload(single,event) {
@@ -135,19 +134,17 @@ export default {
                 // single.buttonText = "上傳文字資料"
             }
         },
-        async makeAssistant() {
+        async updateAssistant() {
             this.setRanks(this.editingRanks);
             this.setCreator(this.user.user_id);
             const assistant_data = this.getAllData;
+            const assistant_id = assistant_data.assistant_id
             console.log(assistant_data);
             try {
-                let assistant_id = await this.createAssistant(assistant_data);
-                assistant_id = assistant_id.data.assistant_id
-                this.setId(assistant_id);
+                let res = await axios.put('/apis/ai-assistant/'+assistant_id,assistant_data);
                 VueScrollTo.scrollTo("#over-container");
-                let accuracy = await this.trainAssistant(assistant_id);
-                this.accuracy = accuracy.data.accuracy;    
-                this.$forceUpdate();            
+                let accuracy = await axios.get('/apis/ai-assistant/train/'+assistant_id);
+                this.accuracy = accuracy.data.accuracy;                
             } catch (error) {
                 console.log(error)
             }
@@ -164,19 +161,6 @@ export default {
                 // .catch((error) => {
                 // })
         },
-        trainAssistant(assistant_id) {
-            return axios.get('/apis/ai-assistant/train/'+assistant_id)
-                // .then((response) => {
-                //     if (response.data.status === '200') {
-                //         console.log("train success")
-                //         return response.data.accuracy
-                //     } else {
-                //     }
-                // })
-                // .catch((error) => {
-                //     console.log(error)
-                // })
-        },
         handleAddKeyword(e) {
             console.log("add keyword")
             addKeyword({rank:single.rank,keyword:e.value})
@@ -184,13 +168,6 @@ export default {
         handleAddRank() {
             this.addRank(this.nextRank);
             this.refreshRanks();
-        },
-        handleRemoveRank(rank) {
-            this.removeRank(rank);
-            this.refreshRanks();
-        },
-        toInputTest() {
-            this.$router.push('/ai-assistant/input-test/'+this.getAllData.assistant_id)
         },
         refreshRanks() {
             this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
@@ -203,8 +180,9 @@ export default {
             setRanks: 'assistant/setRanks',
             setCreator: 'assistant/setCreator',
             setName: 'assistant/setName',
-            setId: 'assistant/setId',
-            removeRank: 'assistant/removeRank',
+        }),
+        ...mapActions({
+            // getAssistantFromId: 'assistant/getAssistantFromId'
         })
     },
     data:() => ({
@@ -215,28 +193,28 @@ export default {
         editingRanks:[],
         name,
     }),
-    created: function () {
-        this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
-        // this.ranks.forEach(function(value,index){
-        //     editingRanks.push(value);
-        // })
+    created: async function () {
+        console.log("created")
     },
-    // asyncData({ store, params }) {
-    // // We can return a Promise instead of calling the callback
-    //     return axios.get('/apis/user')
-    //     .then((res) => {
-    //         if (res.data.status == 200) {
-    //             console.log("user : " + JSON.stringify(res.data.user));
-    //             store.commit('user/updateLocalUserData',res.data.user);
-    //         } else {
-    //             console.log("status : " + res.data.status)
-    //         }
-    //         return { data: res.data.user }
-    //     }).catch((e) => {
-    //         console.log("call api error : \n" + e);
-    //         return { data: new Object() }
-    //     })
-    // },
+    mounted: function () {
+        this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
+        this.name = this.getName;
+    },
+    asyncData({ store, params }) {
+    // We can return a Promise instead of calling the callback
+        return axios.get('/apis/ai-assistant/'+params.id)
+        .then((res) => {
+            if (res.data.status == 200) {
+                store.commit('assistant/setAll',res.data.assistant);
+            } else {
+                console.log("status : " + res.data.status)
+            }
+            return true
+        }).catch((e) => {
+            console.log("call api error : \n" + e);
+            return { data: new Object() }
+        })
+    },
     
 }
 </script>
@@ -450,7 +428,6 @@ body {
     height: 60px;
     border-radius: 15px;
     background-color: #f5ad1f;
-    cursor: pointer;
 }
 .predict-button-text{
     display: flex;
