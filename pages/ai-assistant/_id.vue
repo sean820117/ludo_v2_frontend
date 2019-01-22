@@ -12,7 +12,7 @@
                     v-for="single in editingRanks"
                     :key="single.rank"
                 >
-                    <img class="delete-image" :src="removeIcon">
+                    <img class="delete-image" :src="removeIcon" @click="handleRemoveRank(single.rank)">
                     <div class="ai-single-upload-alert"></div>
                     <div class="ai-single-upload-rank">{{ single.rank }}</div>
                     <label class="ai-single-upload-button" :class="{ grey : (single.examples != undefined)}">
@@ -52,8 +52,8 @@
             <div class="predict">
                 <div class="predict-time">第一次</div>
                 <div class="predict-number">{{ accuracy }}%</div>
-                <div class="predict-button">
-                    <div class="predict-button-text">選擇，完成助教</div>
+                <div @click="toInputTest" class="predict-button">
+                    <div class="predict-button-text" >選擇，測試助教</div>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@ Vue.use(VueScrollTo, {
  });
 
 export default {
-    middleware: ['checkLogin','checkAuthority'],
+    middleware: ['checkAuthority'],
     components: {
         LudoHeader,
         InputTag,
@@ -106,6 +106,7 @@ export default {
             const examples = [];
             const addExamples = this.addExamples;
             const checkSingleExamples = this.checkSingleExamples;
+            const uploadExamples = this.uploadExamples;
             // const json = papa.parse(file);
             
             papa.parse(file, {
@@ -120,25 +121,54 @@ export default {
                 },
                 complete: function(results) {
                     // console.log(examples);
-                    addExamples({rank:single.rank,examples:examples});
+                    // addExamples({rank:single.rank,examples:examples});
                     single.examples=examples;
+                    uploadExamples(examples,single.rank);
                     checkSingleExamples(single);
                 }
             });
         },
+        uploadExamples(examples,rank) {
+            axios.post('/apis/ai-assistant/database/text/upload',{examples:examples,rank:rank,assistant_id:this.getBasicInfo.assistant_id})
+                .then((response) => {
+                    if (response.data.status == '200') {
+                        console.log("upload examples success")
+                        return response.data.status
+                    } else {
+                        console.log(response)
+                    }
+                })
+                .catch((error) => {
+                })
+        },
         checkSingleExamples(single) {
-            if (single.examples != undefined) {
-                // single.buttonText = "重新上傳"
-                this.$forceUpdate();
-            } else {
-                // single.buttonText = "上傳文字資料"
-            }
+            const thisObj = this;
+            axios.post('/apis/ai-assistant/database/text/get-examples-by-rank',{rank:single.rank,assistant_id:this.getBasicInfo.assistant_id})
+                .then((res) => {
+                    if (res.data.status == 200) {
+                        console.log("data : " + res.data)
+                        single.examples = res.data.Items;
+                        thisObj.$forceUpdate();
+                    } else {
+                        console.log("status : " + res.data.status)
+                    }
+                    return true
+                }).catch((e) => {
+                    console.log("call api error : \n" + e);
+                    return { data: new Object() }
+                })
+            // if (single.examples != undefined) {
+            //     // single.buttonText = "重新上傳"
+            //     this.$forceUpdate();
+            // } else {
+            //     // single.buttonText = "上傳文字資料"
+            // }
         },
         async updateAssistant() {
             this.setRanks(this.editingRanks);
             this.setCreator(this.user.user_id);
             const assistant_data = this.getAllData;
-            const assistant_id = assistant_data.assistant_id
+            const assistant_id = assistant_data.assistant_id;
             console.log(assistant_data);
             try {
                 let res = await axios.put('/apis/ai-assistant/'+assistant_id,assistant_data);
@@ -169,6 +199,13 @@ export default {
             this.addRank(this.nextRank);
             this.refreshRanks();
         },
+        handleRemoveRank(rank) {
+            this.removeRank(rank);
+            this.refreshRanks();
+        },
+        toInputTest() {
+            this.$router.push('/ai-assistant/input-test/'+this.getAllData.assistant_id)
+        },
         refreshRanks() {
             this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
             this.$forceUpdate();
@@ -180,6 +217,8 @@ export default {
             setRanks: 'assistant/setRanks',
             setCreator: 'assistant/setCreator',
             setName: 'assistant/setName',
+            setId: 'assistant/setId',
+            removeRank: 'assistant/removeRank',
         }),
         ...mapActions({
             // getAssistantFromId: 'assistant/getAssistantFromId'
@@ -198,6 +237,9 @@ export default {
     },
     mounted: function () {
         this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
+        this.editingRanks.forEach(element => {
+            this.checkSingleExamples(element);
+        })
         this.name = this.getName;
     },
     asyncData({ store, params }) {

@@ -20,6 +20,7 @@ export default {
         sendTest() {
             let setRank = this.setRank;
             console.log("send" + this.$route.params.id)
+            console.log("content: " + this.content)
             axios.post('/apis/ai-assistant/evaluate/'+this.$route.params.id,{content:this.content})
                 .then((response) => {
                     if (response.status == '200') {

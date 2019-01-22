@@ -116,7 +116,7 @@ export default {
                         if (column.trim()) {
                             examples.push(column);
                         }
-                        // console.log(column);
+                        console.log(column.trim());
                     });
                 },
                 complete: function(results) {

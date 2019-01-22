@@ -2,8 +2,8 @@
 export const state = () => ({
     data: {
         assistant_id:"",
-        name:"",
-        creator:"",
+        name:"test",
+        creator:"123",
         type:"word",
         description:"nothing",
         accuracy: 0,
@@ -79,10 +79,11 @@ export const mutations = {
         targetRank.keywords.push(payload.keyword);
         console.log("keywords:" + targetRank.keywords);
     },
+    /* duplicated */
     addExamples (state,payload) {
         const targetRank = state.data.ranks.find(rankData => rankData.rank == payload.rank);
         targetRank.examples = payload.examples;
-        console.log("examples: " + targetRank.examples);
+        console.log("examples: " + targetRank.examples.length);
     }
 }
 
@@ -97,6 +98,7 @@ export const getters = {
             creator:state.data.creator,
             type:state.data.type,
             description:state.data.description,
+            accuracy: state.data.accuracy,
         };
     },
     getName(state) {
