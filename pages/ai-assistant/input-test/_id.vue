@@ -25,6 +25,7 @@ export default {
                 .then((response) => {
                     if (response.status == '200') {
                         console.log("evaluate success")
+                        console.log(response.data.score)
                         setRank(response.data.score);
                     } else {
                         console.log(response)

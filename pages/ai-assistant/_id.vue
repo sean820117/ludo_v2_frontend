@@ -122,7 +122,7 @@ export default {
                 complete: function(results) {
                     // console.log(examples);
                     // addExamples({rank:single.rank,examples:examples});
-                    single.examples=examples;
+                    // single.examples=examples;
                     uploadExamples(examples,single.rank);
                     checkSingleExamples(single);
                 }
@@ -145,8 +145,8 @@ export default {
             const thisObj = this;
             axios.post('/apis/ai-assistant/database/text/get-examples-by-rank',{rank:single.rank,assistant_id:this.getBasicInfo.assistant_id})
                 .then((res) => {
-                    if (res.data.status == 200) {
-                        console.log("data : " + res.data)
+                    if (res.data.status == 200 && res.data.Items.length > 0) {
+                        console.log(res.data)
                         single.examples = res.data.Items;
                         thisObj.$forceUpdate();
                     } else {
@@ -166,15 +166,15 @@ export default {
         },
         async updateAssistant() {
             this.setRanks(this.editingRanks);
-            this.setCreator(this.user.user_id);
+            this.setCreator(this.user.user_id ? this.user.user_id:"123");
             const assistant_data = this.getAllData;
             const assistant_id = assistant_data.assistant_id;
             console.log(assistant_data);
             try {
                 let res = await axios.put('/apis/ai-assistant/'+assistant_id,assistant_data);
-                VueScrollTo.scrollTo("#over-container");
                 let accuracy = await axios.get('/apis/ai-assistant/train/'+assistant_id);
-                this.accuracy = accuracy.data.accuracy;                
+                this.accuracy = accuracy.data.accuracy; 
+                VueScrollTo.scrollTo("#over-container");               
             } catch (error) {
                 console.log(error)
             }
@@ -208,6 +208,9 @@ export default {
         },
         refreshRanks() {
             this.editingRanks = JSON.parse(JSON.stringify(this.ranks.filter(activeRank => activeRank.active)));
+            this.editingRanks.forEach(element => {
+                this.checkSingleExamples(element);
+            })
             this.$forceUpdate();
         },
         ...mapMutations({
