@@ -5,11 +5,15 @@
         <div class="course-video">
             <div class="course-video-contaniner">
                 <div class="box1">讓備審飛 > 醫學學群</div>
-                <div class="box2">讓備審飛-課程標題</div>
+                <div class="box2">
+                    有效的簡歷撰寫
+                    <br>
+                    <div class="box2-second-title">醫學科系申請生該如何寫經歷，才有說服力</div>
+                </div>
+                
                 <div class="box1 box1-small"></div>
             </div>
             <div class="course-video-area"></div>
-            <div class="course-video-items">單元一覽 ></div>
         </div>
         <!-- 看課下方欄 -->
         <div class="course-status">
@@ -26,11 +30,11 @@
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
                     <img :src="InfiniteSymbol" class="course-status-svg" alt="">
-                    <div class="course-status-box-text">3個練習服務</div>
+                    <div class="course-status-box-text">5個練習服務</div>
                 </div>
                 <div class="course-status-devider-sm"></div>
                 <div class="course-status-pricetag">課程售價</div>
-                <div class="course-status-price">1200元</div>
+                <div class="course-status-price">499元</div>
                 <a href="confirm.html" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
                 <!-- </div> -->
             </div>
@@ -73,14 +77,15 @@ export default {
 </script>
 
 <style>
-/* *{
+*{
 	position: relative;
 }
 html, body{
 	padding: 0;
 	margin: 0;
-	height: 100%;
-} */
+    height: 100%;
+    font-family: arial, "Microsoft JhengHei", "微軟正黑體";
+}
 /*看課區段*/
 .course-video{
 	display: flex;
@@ -106,7 +111,7 @@ html, body{
 	width: 100vw;
 	/*height: 50px;*/
 	/*overflow: auto;*/
-
+    margin-top: 20px;
 	animation: 
 	coverphotoin 1s 0.5s both;
 }
@@ -132,6 +137,10 @@ html, body{
   	font-size: 40px;
   	font-weight: 50;
   	color: white;
+}
+.box2-second-title{
+	/*background-color: white;*/
+  	font-size: 25px;
 }
 .course-video-area{
 	width: 80vw;
