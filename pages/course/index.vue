@@ -13,7 +13,12 @@
                 
                 <div class="box1 box1-small"></div>
             </div>
-            <div class="course-video-area"></div>
+            <div class="course-video-area">
+                <video src="https://dl.dropboxusercontent.com/s/4amhr9wxu9btcq1/2-0.mp4" controls></video>
+                <div class="course-video-list">
+                    <img :src="TempList" alt="">
+                </div>
+            </div>
         </div>
         <!-- 看課下方欄 -->
         <div class="course-status">
@@ -51,6 +56,7 @@ import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
+import TempList from 'static/temp-list.png'
 export default {
     head () {
         return {
@@ -72,6 +78,7 @@ export default {
         HiveFive: HiveFive,
         Hourglass:Hourglass,
         InfiniteSymbol:InfiniteSymbol,
+        TempList,
     }),
 }
 </script>
@@ -143,9 +150,20 @@ html, body{
   	font-size: 25px;
 }
 .course-video-area{
-	width: 80vw;
-	height: 70%;
-	background-color: rgb(255,255,255,0.5);
+	/* width: 80vw; */
+	height: 480px;
+    background-color: rgb(255,255,255,0.5);
+    display: flex;
+}
+.course-video-area video {
+    width: 480px;
+    height: 480px;
+}
+.course-video-list {
+    height: 100%;
+}
+.course-video-list img {
+    height: inherit;
 }
 /*看課下方欄*/
 .course-status{
