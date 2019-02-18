@@ -1,6 +1,6 @@
 <template>
     <div>
-        <teacher-header/>
+        <course-header/>
         <!-- 看課區段 -->
         <div class="course-video">
             <div class="course-video-contaniner">
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import TeacherHeader from '~/components/LudoTeacherHeader.vue'
+import CourseHeader from '~/components/CourseHeader.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
@@ -68,7 +68,7 @@ export default {
         } 
     },
     components: {
-        TeacherHeader,
+        CourseHeader,
         PracticeInputBox,
 		PracticeRecordBox,
 		CourseFooter,
