@@ -45,6 +45,7 @@
             </div>
             <practice-input-box assistantId="03db9c50-f211-11e8-93e5-7514b94dfe78" />
         </div>
+		<course-footer/>
         <!-- 看課下方欄課程簡介結束 -->
     </div>
 </template>
@@ -53,6 +54,7 @@
 import TeacherHeader from '~/components/LudoTeacherHeader.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
+import CourseFooter from '~/components/CourseFooter.vue'
 import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
@@ -68,7 +70,8 @@ export default {
     components: {
         TeacherHeader,
         PracticeInputBox,
-        PracticeRecordBox,
+		PracticeRecordBox,
+		CourseFooter,
     },
     data:() => ({
         HiveFive: HiveFive,
