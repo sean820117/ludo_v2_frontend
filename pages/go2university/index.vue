@@ -42,7 +42,12 @@ export default {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-
+        { property : 'og:title' , content:"讓備審飛 - 教你做出讓教授滿意的備審資料"},
+        { property : 'og:type' , content:"education tech."},
+        { property : 'og:url' , content:"https://www.ludonow.com/go2university"},
+        { property : 'og:image' , content:""},
+        { property : 'og:description' , content:"台灣第一堂教你做備審資料的線上課程,讓所有人都能無負擔的考上理想大學"},
+        { property : 'og:site_name' , content:"www.ludonow.com"},
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         { hid: 'description', name: 'description', content: '台灣第一堂教你做備審資料的線上課程,讓所有人都能無負擔的考上理想大學' }
       ]
