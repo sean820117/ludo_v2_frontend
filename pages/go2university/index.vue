@@ -38,13 +38,13 @@ Vue.use(VueMq, {
 
 export default {
     head: {
-      titleTemplate: '讓備審飛 - 上線倒數',
+      titleTemplate: '讓備審飛 - 教你做出讓教授滿意的備審資料',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
 
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'description', name: 'description', content: '讓備審飛 - 上線倒數' }
+        { hid: 'description', name: 'description', content: '台灣第一堂教你做備審資料的線上課程,讓所有人都能無負擔的考上理想大學' }
       ]
     },
     data:() => ({
