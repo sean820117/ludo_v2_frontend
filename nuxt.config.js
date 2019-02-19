@@ -3,7 +3,7 @@ module.exports = {
     ** Single Page Application mode
     ** Means no SSR
     */
-  mode: 'spa',
+  // mode: 'spa',
   /*
   ** Headers of the page (works with SPA!)
   */
@@ -11,11 +11,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'ludo_v2_frontend',
+    title: 'Ludo',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Ludo is a life style' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
