@@ -74,6 +74,18 @@ export default {
         },
         ]
     }),
+    mounted: function () {
+      if (!process.server) {
+        console.log("middleware from client side");
+        window.location.href = "https://www.ludonow.com/go2university"
+      }
+    },
+    created: async function () {
+      if (!process.server) {
+        console.log("middleware from client side");
+        window.location.href = "https://www.ludonow.com/go2university"
+      }
+    },
 }
 </script>
 
