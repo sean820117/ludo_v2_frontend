@@ -121,6 +121,9 @@ export default {
         },
       ]
   }),
+  mounted: function () {
+    window.location.href = "https://www.ludonow.com/go2university"
+  },
 }
 </script>
 
