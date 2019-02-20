@@ -84,7 +84,7 @@ export default {
           
         },
         countdown() {
-          const end = Date.parse(new Date('2019-02-25 12:00:00'))
+          const end = Date.parse(new Date('2019-02-25T12:00:00'.concat('.000+08:00')))
           const now = Date.parse(new Date())
           const msec = end - now
           let day = parseInt(msec / 1000 / 60 / 60 / 24)
