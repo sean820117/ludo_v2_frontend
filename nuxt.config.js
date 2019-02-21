@@ -28,6 +28,9 @@ module.exports = {
   /*
   ** Build configuration
   */
+  plugins: [
+    { src: '~/plugins/gtm.js', ssr: false }
+  ],
   build: {
     /*
     ** Run ESLint on save
