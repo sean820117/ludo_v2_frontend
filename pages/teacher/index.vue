@@ -7,6 +7,7 @@
           <h3>你聽過安麗嗎？</h3>
           <div class="actions">
             <flat-button size="big" text="課程介紹"/>
+            <flat-button size="big" bgColor="#FFD72E" color="#324D5B" text="體驗練習"/>
           </div>
         </section>
         <section class="teacher col-lg-6 col-sm-12">
@@ -32,6 +33,7 @@
       </div>
     </div>
   </section>
+  <input id="read-more" type="checkbox" />
   <section class="course-intro">
     <div class="container">
       <h2 class="title">課程簡介</h2>
@@ -50,7 +52,9 @@
         <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
       </article>
     </div>
-    <div class="read-more">閱讀更多</div>
+    <div class="read-more">
+      <label for="read-more">閱讀更多</label>
+    </div>
   </section>
 </body>
 </template>
@@ -134,6 +138,9 @@ h2.title {
   font-weight: 200;
   font-size: 50px;
 }
+.actions button {
+  margin: 5px;
+}
 .teacher .profile {
   width: 150px;
   height: 150px;
@@ -157,7 +164,7 @@ h2.title {
   width: 100%;
   background-color: #f0f0f0;
   padding: 20px;
-  max-height: 80vh;
+  height: 80vh;
   overflow: hidden;
 }
 .read-more {
@@ -169,8 +176,24 @@ h2.title {
   display: flex;
   justify-content: center;
   align-items: center;
-  line-height: 50px;
   background-image: linear-gradient(-180deg,rgba(255,255,255,0) 0%,#fff 70%);
+}
+.read-more label {
+  padding: 5px;
+  border-width: 3px;
+  border-style: solid;
+  cursor: pointer;
+  font-size: 20px;
+}
+#read-more {
+  display: none;
+}
+#read-more:checked ~ .course-intro .read-more {
+  display: none;
+}
+#read-more:checked ~ .course-intro {
+  overflow: visible !important;
+  height: auto !important;
 }
 .course-content {
   color: darkgrey;

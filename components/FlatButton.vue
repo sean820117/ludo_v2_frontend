@@ -1,5 +1,8 @@
 <template>
-  <button :class="'flat-button btn-' + size" :style="{background: bgColor, color}">
+  <button
+    :class="'flat-button btn-' + size"
+    :style="{background: bgColor, borderColor: bgColor, color}"
+  >
     <div class="text">{{text}}</div>
   </button>
 </template>
