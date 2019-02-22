@@ -56,12 +56,14 @@
       <label for="read-more">閱讀更多</label>
     </div>
   </section>
+  <page-footer></page-footer>
 </body>
 </template>
 
 <script>
 import FlatButton from "~/components/FlatButton.vue";
 import CourseItem from "~/components/teacher/CourseItem.vue";
+import PageFooter from "~/components/Footer.vue";
 export default {
   head() {
     return {
@@ -95,7 +97,8 @@ export default {
   },
   components: {
     FlatButton,
-    CourseItem
+    CourseItem,
+    PageFooter,
   }
 };
 </script>
