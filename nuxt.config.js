@@ -10,6 +10,10 @@ module.exports = {
   /*
   ** Headers of the page
   */
+ env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.NODE_ENV == "production" ? "https://api.ludonow.com" : "'http://localhost:8000'"
+  },
   head: {
     title: 'Ludo',
     meta: [
@@ -29,7 +33,8 @@ module.exports = {
   ** Build configuration
   */
   plugins: [
-    { src: '~/plugins/gtm.js', ssr: false }
+    { src: '~/plugins/gtm.js', ssr: false },
+    { src: '~/plugins/checkLogin.js', ssr: false },
   ],
   build: {
     /*

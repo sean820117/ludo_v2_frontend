@@ -59,6 +59,7 @@ import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
 import TempList from 'static/temp-list.png'
+
 export default {
     head () {
         return {
@@ -66,7 +67,11 @@ export default {
                 { rel: 'stylesheet', href: '/bootstrap.css' }
             ]
         } 
-    },
+	},
+	mounted(){
+		let store = this.$store;
+    	// this.$checkLogin(store);
+  	},
     components: {
         CourseHeader,
         PracticeInputBox,
