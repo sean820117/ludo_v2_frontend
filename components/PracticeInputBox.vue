@@ -14,14 +14,13 @@
                 
                 <div class="upload-result">
                     <div class="upload-result-label"> 等級認證： </div>
-                    <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" >
-                    <div class="upload-result-rank" v-else-if="rank">{{ rank }}</div>
+                    <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>
                     <div class="upload-result-advise" v-if="rank">{{ advise }}</div>
                 </div>
-                <div class="upload-send" @click="sendToEvaluation" >送出</div>
+                <div class="upload-send" @click="sendToEvaluation(content)" >送出</div>
                 <!-- <practice-record-box :rank="rank" /> -->
             </div>
-            <div class="upload-send-sm">送出</div>
+            <div class="upload-send-sm" @click="sendToEvaluation(content)" >送出</div>
         </div>
     </div>
     <!-- 課程練習區段結束 -->
@@ -50,30 +49,33 @@ export default {
         PracticeRecordBox,
     },
     methods: {
-        sendToEvaluation() {
+        sendToEvaluation(content) {
             let setRank = this.setRank;
             let setAdvise = this.setAdvise;
             let setIsLoading = this.setIsLoading;
-            console.log("send" + this.assistantId)
-            console.log("content: " + this.content)
-
-            setIsLoading(true);
-            setRank("");
-            axios.post('/apis/ai-assistant/evaluate/'+this.assistantId,{content:this.content})
-                .then((response) => {
-                    if (response.status == '200') {
-                        console.log("evaluate success")
-                        setIsLoading(false);
-                        console.log(response.data.score)
-                        setRank(response.data.score);
-                        setAdvise(response.data.score);
-                    } else {
-                        console.log(response)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+            // console.log("send" + this.assistantId)
+            console.log("content: " + content)
+            if(content.length < 5) {
+                window.alert("請輸入更多內容！")
+            } else {
+                setIsLoading(true);
+                setRank("");
+                axios.post('/apis/ai-assistant/evaluate/'+this.assistantId,{content:content})
+                    .then((response) => {
+                        if (response.status == '200') {
+                            console.log("evaluate success")
+                            setIsLoading(false);
+                            console.log(response.data.score)
+                            setRank(response.data.score);
+                            setAdvise(response.data.score);
+                        } else {
+                            console.log(response)
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
         },
         setRank(rank) {
             this.rank = rank;
@@ -359,5 +361,52 @@ export default {
 		transform: translate(0,0);
 		opacity: 1;
 	}
+}
+
+@media (max-width: 899px){
+	.upload-send-sm{
+        cursor: pointer;
+        float: right;
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        line-height: 33px;
+        /*background-color: white;*/
+
+        margin-left: 3px;
+        margin-right: 3px;
+
+        width: 130px;
+        height: 50px;
+        font-size: 18px;
+        line-height: 50px;
+        color: white;
+        background-color: orange;
+        /*border: 2px solid grey;*/
+        border-radius: 10px;
+
+        transition: all 0.2s;
+        transition-timing-function: ease;
+    }
+    .upload-send{
+        display: none;
+    }
+    .upload-result {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .upload-result-advise {
+        text-align: center;
+        margin-left: 0px;
+        width: 80%;
+    }
+    .upload-result-rank {
+        font-size: 100px;
+        width: 60px;
+    }
+    .upload-loading {
+        width: 60px;
+        height: 60px;
+    }
 }
 </style>

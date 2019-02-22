@@ -59,101 +59,203 @@ export default {
 </script>
 
 <style>
-/*footer*/
-.footer{
-	position: relative;
-	/*display: inline-block;*/
-	width: 100vw;
-	/*height: 300px;*/
-	background-color: white;
-	align-items: center;
-	
-	/*垂直*/
-	display: inline-flex;
-	justify-content: center;
-    flex-direction: column;
-    align-items: left;
-	/*垂直*/
+@media (min-width:900px) {
+	/*footer*/
+	.footer{
+		position: relative;
+		/*display: inline-block;*/
+		width: 100vw;
+		/*height: 300px;*/
+		background-color: white;
+		align-items: center;
+		
+		/*垂直*/
+		display: inline-flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
 
+	}
+	.footer-wrapper{
+		position: relative;
+		display: block;
+		margin-bottom: 30px;
+	}
+	.footer-container{
+		position: relative;
+		/*display: inline-block;*/
+		width: 200px;
+		/*align-items: top;*/
+		/*background-color: lightgrey;*/
+		margin:20px;
+
+		/*垂直*/
+		display: inline-flex;
+		/*justify-content: center;*/
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
+
+		vertical-align: top;
+	}
+	.footer-container-title{
+		position: relative;
+		display: inline-block;
+		font-size: 15px;
+		color: black;
+
+		margin-bottom: 20px;
+	}
+	.footer-container-item{
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		color: grey;
+
+		margin-bottom: 16px;
+	}
+	.footer-container-content{
+		position: relative;
+		display: inline-block;
+		font-size: 12px;
+		color: grey;
+		text-align: justify;
+		text-decoration: none;
+
+		margin-bottom: 18px;
+
+		transition: all 0.2s;
+		transition-timing-function: ease;
+	}
+	.footer-container-content:hover{
+		color: orange;
+	}
+	.footer-container-detail{
+		position: relative;
+		display: inline-block;
+		font-size: 12px;
+		color: grey;
+		text-align: justify;
+
+		margin-bottom: 14px;
+	}
+	.footer-container-info{
+		position: relative;
+		display: inline-block;
+		width: 200px;
+		align-items: top;
+		/*background-color: lightgrey;*/
+		margin:20px;
+
+		/*垂直*/
+		display: inline-flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
+
+		vertical-align: top;
+	}
 }
-.footer-wrapper{
-	position: relative;
-	display: block;
-	margin-bottom: 30px;
-}
-.footer-container{
-	position: relative;
-	/*display: inline-block;*/
-	width: 200px;
-	/*align-items: top;*/
-	/*background-color: lightgrey;*/
-	margin:20px;
+@media (max-width:899px) {
+	/*footer*/
+	.footer{
+		position: relative;
+		/*display: inline-block;*/
+		width: 100vw;
+		/*height: 300px;*/
+		background-color: white;
+		align-items: center;
+		
+		/*垂直*/
+		display: inline-flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
 
-	/*垂直*/
-	display: inline-flex;
-	/*justify-content: center;*/
-    flex-direction: column;
-    align-items: left;
-	/*垂直*/
+	}
+	.footer-wrapper{
+		position: relative;
+		display: block;
+		width: 90%;
+		margin-bottom: 30px;
+	}
+	.footer-container{
+		position: relative;
+		/*display: inline-block;*/
+		width: 200px;
+		/*align-items: top;*/
+		/*background-color: lightgrey;*/
+		margin:20px;
 
-	 vertical-align: top;
-}
-.footer-container-title{
-	position: relative;
-	display: inline-block;
-	font-size: 15px;
-	color: black;
+		/*垂直*/
+		display: inline-flex;
+		/*justify-content: center;*/
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
 
-	margin-bottom: 20px;
-}
-.footer-container-item{
-	position: relative;
-	display: inline-block;
-	font-size: 16px;
-	color: grey;
+		vertical-align: top;
+	}
+	.footer-container-title{
+		position: relative;
+		display: inline-block;
+		font-size: 15px;
+		color: black;
 
-	margin-bottom: 16px;
-}
-.footer-container-content{
-	position: relative;
-	display: inline-block;
-	font-size: 12px;
-	color: grey;
-	text-align: justify;
-	text-decoration: none;
+		margin-bottom: 20px;
+	}
+	.footer-container-item{
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		color: grey;
 
-	margin-bottom: 18px;
+		margin-bottom: 16px;
+	}
+	.footer-container-content{
+		position: relative;
+		display: inline-block;
+		font-size: 12px;
+		color: grey;
+		text-align: justify;
+		text-decoration: none;
 
-	transition: all 0.2s;
-	transition-timing-function: ease;
-}
-.footer-container-content:hover{
-	color: orange;
-}
-.footer-container-detail{
-	position: relative;
-	display: inline-block;
-	font-size: 12px;
-	color: grey;
-	text-align: justify;
+		margin-bottom: 18px;
 
-	margin-bottom: 14px;
-}
-.footer-container-info{
-	position: relative;
-	display: inline-block;
-	width: 200px;
-	align-items: top;
-	/*background-color: lightgrey;*/
-	margin:20px;
+		transition: all 0.2s;
+		transition-timing-function: ease;
+	}
+	.footer-container-content:hover{
+		color: orange;
+	}
+	.footer-container-detail{
+		position: relative;
+		display: inline-block;
+		font-size: 12px;
+		color: grey;
+		text-align: justify;
 
-	/*垂直*/
-	display: inline-flex;
-	justify-content: center;
-    flex-direction: column;
-    align-items: left;
-	/*垂直*/
+		margin-bottom: 14px;
+	}
+	.footer-container-info{
+		position: relative;
+		display: inline-block;
+		width: 200px;
+		align-items: top;
+		/*background-color: lightgrey;*/
+		margin:20px;
 
-	 vertical-align: top;
+		/*垂直*/
+		display: inline-flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: left;
+		/*垂直*/
+
+		vertical-align: top;
+	}
 }
 </style>
