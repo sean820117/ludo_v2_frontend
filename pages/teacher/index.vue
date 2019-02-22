@@ -10,8 +10,10 @@
             <flat-button size="big" bgColor="#FFD72E" color="#324D5B" text="體驗練習"/>
           </div>
         </section>
-        <section class="teacher col-lg-6 col-sm-12">
-          <div class="profile"/>
+        <section class="teacher col-lg-6 d-none d-lg-block d-xl-block">
+          <div class="profile">
+            <div class="profile-image" />
+          </div>
           <div class="name">您老師</div>
           <div
             class="description"
@@ -20,16 +22,28 @@
       </div>
     </div>
   </section>
-  <section class="all-courses container">
-    <h2 class="title">所有課程</h2>
-    <div class="row">
-      <div class="course-item col-lg-6 col-sm-12" v-for="course in courses" :key="course.id">
-        <course-item
-          :name="course.name"
-          :description="course.description"
-          :imageUrl="course.imageUrl"
-          :tag="course.tag"
-        ></course-item>
+  <section class="teacher row d-lg-none d-xl-none">
+    <h2 class="title">老師簡介</h2>
+    <div class="profile">
+      <div class="profile-image" />
+    </div>
+    <div class="name">您老師</div>
+    <div
+      class="description"
+    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis totam sapiente mollitia esse voluptatem, aliquid ea eius alias cum! Culpa numquam consequuntur dolore, velit accusamus porro ut modi doloribus aliquid praesentium laudantium corporis voluptate eos, doloremque iure, iusto mollitia quidem quae corrupti assumenda cum eveniet eligendi deserunt sed nemo.</div>
+  </section>
+  <section class="all-courses">
+    <div class="container">
+      <h2 class="title">所有課程</h2>
+      <div class="row">
+        <div class="course-item col-lg-6 col-sm-12" v-for="course in courses" :key="course.id">
+          <course-item
+            :name="course.name"
+            :description="course.description"
+            :imageUrl="course.imageUrl"
+            :tag="course.tag"
+          ></course-item>
+        </div>
       </div>
     </div>
   </section>
@@ -114,6 +128,8 @@ body {
   height: 100%;
 }
 h2.title {
+  display: block;
+  width: 100%;
   margin-bottom: 20px;
   font-weight: 200;
   font-size: 35px;
@@ -144,7 +160,17 @@ h2.title {
 .actions button {
   margin: 5px;
 }
+.teacher {
+  padding: 35px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.3);
+}
 .teacher .profile {
+  width: 100%;
+  text-align: center;
+}
+.teacher .profile-image {
+  display: inline-block;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -152,11 +178,14 @@ h2.title {
   background-position: center;
 }
 .teacher .name {
+  width: 100%;
+  margin: 15px;
+  text-align: center;
   font-size: 25px;
 }
 .all-courses {
   width: 100%;
-  background-color: white;
+  background-color: #F7F7F7;
   padding: 20px;
 }
 .course-item {
