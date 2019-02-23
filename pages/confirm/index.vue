@@ -12,11 +12,13 @@
           <radio-button text="$4999 全部買起來挑科系" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
-          <label for="customer">購買人</label><input id="customer" v-model="customer" type="text" />
-          <label for="phone">聯絡電話</label><input id="phone" v-model="phone" type="text" />
-          <label for="email">電子信箱</label><input id="email" v-model="email" type="email" />
-          <div class="error">{{errors}}</div>
-          <div @click="onSubmit" role="button" class="forwarding">前往付款</div>
+          <div class="purchase-content">
+            <label for="customer">購買人</label><input id="customer" v-model="customer" type="text" />
+            <label for="phone">聯絡電話</label><input id="phone" v-model="phone" type="text" />
+            <label for="email">電子信箱</label><input id="email" v-model="email" type="email" />
+            <div class="error">{{errors}}</div>
+            <div @click="onSubmit" role="button" class="forwarding">前往付款</div>
+          </div>
         </section>
       </div>
     </main>
@@ -97,6 +99,24 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center; 
+}
+.purchase-content {
+  width: 80%;
+}
+.purchase label, .purchase input {
+  width: 100%;
+}
+.purchase label {
+  text-align: left;
+  color: grey;
+  font-size: 14px;
+  font-weight: 400;
+}
+.purchase input {
+  margin-bottom: 5px;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid grey;
 }
 .forwarding {
   position: fixed;
