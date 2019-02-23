@@ -1,5 +1,6 @@
 <template>
   <body>
+    <page-header></page-header>
     <main class="container">
       <section class="title">
         <h1>《讓備審飛》線上課程付款頁面</h1>
@@ -18,9 +19,11 @@
         </section>
       </div>
     </main>
+    <div id="push" />
   </body>
 </template>
 <script>
+import PageHeader from "~/components/confirm/Header.vue";
 import RadioButton from "~/components/confirm/RadioButton.vue";
 export default {
   head() {
@@ -29,6 +32,7 @@ export default {
     };
   },
   components: {
+    PageHeader,
     RadioButton,
   }
 };
@@ -79,6 +83,9 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
+#push {
+  height: 80px;
+}
 @media (min-width: 900px) {
   h1 {
     font-size: 60px;
@@ -91,6 +98,9 @@ h1 {
   }
   .forwarding:hover {
     transform: translate(0, -5%);
+  }
+  #push {
+    height: 0;
   }
 }
 </style>
