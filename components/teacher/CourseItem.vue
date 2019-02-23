@@ -6,7 +6,7 @@
     <div class="content">
       <div class="name">{{name}}</div>
       <div class="description">{{description}}</div>
-      <flat-button size="small" text="more" color="grey"></flat-button>
+      <flat-button size="small" text="了解詳情" color="grey" borderColor="grey" :link="link"></flat-button>
     </div>
   </div>
 </template>
@@ -37,6 +37,9 @@ export default {
       required: true,
     },
     tag: {
+      type: String,
+    },
+    link: {
       type: String,
     },
   },
