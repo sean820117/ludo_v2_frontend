@@ -12,10 +12,11 @@
           <radio-button text="$4999 全部買起來挑科系" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
-          <label for="customer">購買人</label><input id="customer" type="text" />
-          <label for="phone">聯絡電話</label><input id="phone" type="text" />
-          <label for="email">電子信箱</label><input id="email" type="text" />
-          <div role="button" class="forwarding">前往付款</div>
+          <label for="customer">購買人</label><input id="customer" v-model="customer" type="text" />
+          <label for="phone">聯絡電話</label><input id="phone" v-model="phone" type="text" />
+          <label for="email">電子信箱</label><input id="email" v-model="email" type="email" />
+          <div class="error">{{errors}}</div>
+          <div @click="onSubmit" role="button" class="forwarding">前往付款</div>
         </section>
       </div>
     </main>
@@ -25,7 +26,31 @@
 <script>
 import PageHeader from "~/components/confirm/Header.vue";
 import RadioButton from "~/components/confirm/RadioButton.vue";
+const EMAIL_REGEX = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export default {
+  data() {
+    return {
+      errors: null,
+      customer: '',
+      phone: '',
+      email: '',
+    }
+  },
+  methods: {
+    onSubmit() {
+      if (this.customer.length === 0 || this.phone.length === 0 || this.email.length === 0) {
+        this.errors = '抱歉，所有欄位都要填寫！'
+        return
+      }
+      if (!EMAIL_REGEX.test(this.email)) {
+        this.errors = '電子信箱格式錯誤'
+        return
+      }
+      this.errors = null
+      // @TODO
+      alert('forwaring to payment page')
+    },
+  },
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/bootstrap.css" }]
