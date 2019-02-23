@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import campaignBg from 'static/campaign-bg.png'
-import campaignBgMobile from 'static/campaign-bg-m.png'
+import campaignBg from 'static/campaign-bg.jpg'
+import campaignBgMobile from 'static/campaign-bg-m.jpg'
 import msgButton from 'static/msg-button.png'
 import go2uOgImage from 'static/go2u-og-image.png'
 import axios from '~/config/axios-config';
