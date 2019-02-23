@@ -12,21 +12,88 @@
             <div class="box1 box1-small"></div>
         </div>
         <div class="course-video-area">
-            <video src="https://dl.dropboxusercontent.com/s/4amhr9wxu9btcq1/2-0.mp4" controls></video>
-            <div class="course-video-list">
-                <img :src="TempList" alt="">
+            <video v-if="currentVideo" :src="currentVideo" controls></video>
+            <div class="course-video-list" v-if="course_id">
+                <div 
+                    v-for="item in courseDataSet[course_id].sub_course" 
+                    :key="item.title"
+                    @click="changeCurrentVideo(item.link)">
+                    <course-video-list-item :title="item.title"/>
+                </div>
             </div>
         </div>
-        <div class="course-video-items">單元一覽 ></div>
+        <div class="course-video-list-light-box" v-if="lightBoxShowed">
+            <div class="course-video-list-m" v-if="course_id">
+                <div 
+                    v-for="item in courseDataSet[course_id].sub_course" 
+                    :key="item.title"
+                    @click="changeCurrentVideo(item.link);hideLightBox()">
+                    <course-video-list-item :title="item.title"/>
+                </div>
+            </div>
+            <div class="course-video-list-m-back">
+                <button class="course-video-list-m-back-btn" @click="hideLightBox()">返回</button>
+            </div>
+        </div>
+        <div class="course-video-items" @click="showLightBox()">單元一覽 ></div>
     </div>
 </template>
 
 <script>
-import TempList from 'static/temp-list.png'
+import CourseVideoListItem from '~/components/CourseVideoListItem.vue'
+
+import CourseData01 from 'static/data/course/01.js'
+import CourseData02 from 'static/data/course/02.js'
+import CourseData03 from 'static/data/course/03.js'
+import CourseData04 from 'static/data/course/04.js'
+import CourseData05 from 'static/data/course/05.js'
+import CourseData06 from 'static/data/course/06.js'
+import CourseData07 from 'static/data/course/07.js'
+import CourseData08 from 'static/data/course/08.js'
+import CourseData09 from 'static/data/course/09.js'
+import CourseData10 from 'static/data/course/10.js'
+import CourseData11 from 'static/data/course/11.js'
+
 export default {
     data:() => ({
-        TempList,
+        courseDataSet: {
+            "01": CourseData01,
+            "02": CourseData02,
+            "03": CourseData03,
+            "04": CourseData04,
+            "05": CourseData05,
+            "06": CourseData06,
+            "07": CourseData07,
+            "08": CourseData08,
+            "09": CourseData09,
+            "10": CourseData10,
+            "11": CourseData11,
+        },
+        currentVideo: "",
+        lightBoxShowed:false,
     }),
+    components: {
+		CourseVideoListItem,
+    },
+    props: {
+        course_id: String,
+    },
+    methods: {
+        changeCurrentVideo(link) {
+            this.currentVideo = null;
+            this.currentVideo = link;
+            console.log(this.currentVideo);
+        },
+        showLightBox() {
+            this.lightBoxShowed = true;
+        },
+        hideLightBox() {
+            this.lightBoxShowed = false;
+        }
+    },
+    mounted: function () {
+        this.currentVideo = this.courseDataSet[this.course_id].sub_course[0].link;
+    },
 }
 </script>
 
@@ -99,10 +166,13 @@ export default {
         height: 480px;
     }
     .course-video-list {
-        height: 100%;
+        /* display: flex;
+        flex-direction: column; */
+        overflow: scroll;
+        width:300px;
     }
-    .course-video-list img {
-        height: inherit;
+    .course-video-list-m {
+        display: none;
     }
 }
 @media (max-width:899px) {
@@ -198,9 +268,40 @@ export default {
 
         padding: 8px;
         color: white;
+        margin-top: -7px;
     }
     .course-video-list {
         display: none;
+    }
+    .course-video-list-light-box {
+        position: fixed;
+        height: 100vh;
+        top: 60px;
+        width: 100vw;
+        background: #324D5B;
+        z-index: 2;
+    }
+    .course-video-list-m {
+        height: 70vh;
+        /* padding-bottom: 20vh; */
+        
+        width: 100vw;
+        overflow: scroll;
+    }
+    .course-video-list-m-back {
+        width: 100vw;
+        height: 20vh;
+        background: #324D5B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .course-video-list-m-back-btn {
+        font-size: 16px;
+        width: 135px;
+        height: 38px;
+        border-radius: 23px;
+        background: #FFD72E;
     }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="ground_container">
-        <ludo-header class="ludo-header"/>
+        <!-- <ludo-header class="ludo-header"/>
         <div class="ground_menubar">
             <category-button-medium
                 v-for="button in categoryButtonList"
@@ -9,7 +9,7 @@
                 :bgColor="button.bgColor"
                 :fontSize="button.fontSize"
             />
-        </div>
+        </div> -->
     </div>
 </template>
 

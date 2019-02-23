@@ -13,7 +13,7 @@
                 
                 
                 <div class="upload-result">
-                    <div class="upload-result-label"> 等級認證： </div>
+                    <div class="upload-result-label" v-if="rank"> 等級認證： </div>
                     <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>
                     <div class="upload-result-advise" v-if="rank">{{ advise }}</div>
                 </div>
@@ -21,6 +21,10 @@
                 <!-- <practice-record-box :rank="rank" /> -->
             </div>
             <div class="upload-send-sm" @click="sendToEvaluation(content)" >送出</div>
+        </div>
+        <div class="example" v-if="rank">
+            <div class="example-title">進步範例</div>
+            <div class="example-content">{{ getExample(rank) }}</div>
         </div>
     </div>
     <!-- 課程練習區段結束 -->
@@ -33,6 +37,18 @@ import axios from '~/config/axios-config';
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import loadingGIF from 'static/loading.gif'
 
+import CourseData01 from 'static/data/course/01.js'
+import CourseData02 from 'static/data/course/02.js'
+import CourseData03 from 'static/data/course/03.js'
+import CourseData04 from 'static/data/course/04.js'
+import CourseData05 from 'static/data/course/05.js'
+import CourseData06 from 'static/data/course/06.js'
+import CourseData07 from 'static/data/course/07.js'
+import CourseData08 from 'static/data/course/08.js'
+import CourseData09 from 'static/data/course/09.js'
+import CourseData10 from 'static/data/course/10.js'
+import CourseData11 from 'static/data/course/11.js'
+
 Vue.use(VueTextareaAutosize)
 export default {
     data:() => ({
@@ -41,9 +57,22 @@ export default {
         loadingGIF,
         isLoading:false,
         advise:"",
+        courseDataSet: {
+            "01": CourseData01,
+            "02": CourseData02,
+            "03": CourseData03,
+            "04": CourseData04,
+            "05": CourseData05,
+            "06": CourseData06,
+            "07": CourseData07,
+            "08": CourseData08,
+            "09": CourseData09,
+            "10": CourseData10,
+            "11": CourseData11,
+        },
     }),
     props: {
-        assistantId: String,
+        course_id: String,
     },
     components: {
         PracticeRecordBox,
@@ -53,14 +82,15 @@ export default {
             let setRank = this.setRank;
             let setAdvise = this.setAdvise;
             let setIsLoading = this.setIsLoading;
-            // console.log("send" + this.assistantId)
+            let assistant_id = this.courseDataSet[this.course_id].assistant_id;
+            // console.log("send" + this.assistant_id)
             console.log("content: " + content)
             if(content.length < 5) {
                 window.alert("請輸入更多內容！")
             } else {
                 setIsLoading(true);
                 setRank("");
-                axios.post('/apis/ai-assistant/evaluate/'+this.assistantId,{content:content})
+                axios.post('/apis/ai-assistant/evaluate/'+ assistant_id,{content:content})
                     .then((response) => {
                         if (response.status == '200') {
                             console.log("evaluate success")
@@ -90,6 +120,17 @@ export default {
                 this.advise = "寫得還不錯，你有領略到概要了！但除了相關之外，還需要寫得更具體一些，包含到實際獎項或是數字佐證等等的，才能寫出A級描述喔！";
             } else if(rank == "C") {
                 this.advise = "除了純粹寫出經歷外，請記得也要寫上與醫學相關科系有效的描述喔！";
+            }
+        },
+        getExample(rank) {
+            const courseData = this.courseDataSet[this.course_id];
+            if (courseData) {
+                let example_list = courseData.examples.filter(example => example.rank == rank);
+                let rand = Math.floor((Math.random() * example_list.length));
+                console.log(example_list[rand].content);
+                return example_list[rand].content
+            } else {
+                return ""
             }
         }
     }
@@ -362,7 +403,31 @@ export default {
 		opacity: 1;
 	}
 }
-
+.example {
+    background: #324D5B;
+    border-radius: 20px;
+    width: 80%;
+    margin-top: 30px;
+    /* display: flex;
+    justify-content: center; */
+}
+.example-title {
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.example-content {
+    font-size: 14px;
+    margin-top: 10px;
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    /* display: flex; */
+    text-align: center;
+    padding-bottom: 10px;
+}
 @media (max-width: 899px){
 	.upload-send-sm{
         cursor: pointer;

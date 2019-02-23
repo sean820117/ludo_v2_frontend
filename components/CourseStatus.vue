@@ -26,7 +26,7 @@
         </div>
         <!-- 看課下方欄課程簡介結束 -->
         <!-- 購課資訊 -->
-        <div class="buy-info-section-sm">課程售價 1,200元</div>
+        <div class="buy-info-section-sm">課程售價 499元</div>
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
@@ -242,7 +242,7 @@ export default {
         align-items: center;
         /*垂直置中*/
 
-
+        flex: 1;
         text-align: center;
     }
     .course-status-svg{
@@ -271,7 +271,7 @@ export default {
         background-color: #324D5B;
         border-radius: 50px;
         margin: 8px;
-
+        display: none;
     }
     .course-status-pricetag{
         float: left;
