@@ -14,7 +14,7 @@
           <label for="customer">購買人</label><input id="customer" type="text" />
           <label for="phone">聯絡電話</label><input id="phone" type="text" />
           <label for="email">電子信箱</label><input id="email" type="text" />
-          <button>前往付款</button>
+          <div role="button" class="forwarding">前往付款</div>
         </section>
       </div>
     </main>
@@ -69,9 +69,28 @@ h1 {
   justify-content: center;
   align-items: center; 
 }
+.forwarding {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #E0185D;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
 @media (min-width: 900px) {
   h1 {
     font-size: 60px;
+  }
+  .forwarding {
+    position: inherit;
+    max-width: 150px;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+  .forwarding:hover {
+    transform: translate(0, -5%);
   }
 }
 </style>
