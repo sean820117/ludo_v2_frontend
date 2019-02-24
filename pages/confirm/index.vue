@@ -28,7 +28,7 @@
 <script>
 import PageHeader from "~/components/confirm/Header.vue";
 import RadioButton from "~/components/confirm/RadioButton.vue";
-const EMAIL_REGEX = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+import { EMAIL_REGEX } from '~/components/regex.js'
 export default {
   data() {
     return {
