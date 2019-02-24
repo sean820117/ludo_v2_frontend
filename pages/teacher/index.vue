@@ -81,7 +81,7 @@
     <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
+        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="#all-course">
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
@@ -253,7 +253,6 @@ export default {
   data:() => ({
     go2uDesktop:[
       go2u04,
-      go2u05,
       go2u05,
       go2u06,
       go2u07,

@@ -174,7 +174,7 @@ export default {
           console.log("check-is-payed success")
           if(response.data.result == 1 || response2.data.result == 1) {
             window.alert("您已購買過此課程囉～");
-            // window.location.href = process.env.baseUrl + "/go2university"
+            window.location.href = process.env.baseUrl + "/go2university"
           }
       } else {
           console.log(response)

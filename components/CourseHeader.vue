@@ -22,7 +22,7 @@
 		</div>
                 
             <!-- login -->
-            <a href="/signin" class="login-btn">註冊/登入</a>
+            <a href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
     </div>
 </template>
 
