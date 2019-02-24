@@ -106,6 +106,7 @@ export default {
     },
     mounted: function () {
       this.countdown()
+      console.log(go2uOgImage);
     },
 }
 </script>

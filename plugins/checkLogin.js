@@ -14,14 +14,14 @@ async function checkLogin (store) {
                     store.commit('user/updateLocalUserData',data.user);
                     // return data.user;
                 } else {
-                    console.log("status : " + res.data.status)
+                    console.log("status : " + data.status)
                     window.alert("login failed!");
-                    window.location.href = process.env.baseUrl + "/login";
+                    window.location.href = "https://beta.ludonow.com/login?redirect=www";
                 }
             } catch(e) {
                 console.log("call api error : \n" + e);
                 window.alert("login failed!");
-                window.location.href = process.env.baseUrl + "/login";
+                // window.location.href = process.env.baseUrl + "/login";
                 return { data: new Object() }
             }       
         }

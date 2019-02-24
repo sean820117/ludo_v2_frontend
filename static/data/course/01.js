@@ -1,6 +1,7 @@
 export default {
     assistant_id: "03db9c50-f211-11e8-93e5-7514b94dfe78",
     subject: "醫學",
+    product_name: "讓備審飛 - 醫學學群",
     sub_course: [
         {
             title:"1. 簡短的精準自介｜開頭7秒讓教授產留下印象！",

@@ -6,8 +6,7 @@
 import axios from '../config/axios-config'
 export default {
     mounted(){
-        // this.logout();
-        
+        this.login("000@ggg.com","0000gggg");
     },
     methods: {
         signup(email,password,repeated_password) {
@@ -24,10 +23,11 @@ export default {
                 })
         },
         login(email,password) {
-            axios.post('/signup',{email:email,password:password})
+            axios.post('/login',{email:email,password:password})
                 .then((response) => {
                     if (response.status == '200') {
                         console.log("login success")
+                        console.log(response)
                     } else {
                         console.log(response)
                     }
