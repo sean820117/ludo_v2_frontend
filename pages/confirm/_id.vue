@@ -194,11 +194,11 @@ export default {
     },
     showDialog() {
       this.$modal.show('dialog', {
-        title: '您的分享網址',
-        text: process.env.baseUrl + "/go2university/share?id=" + this.user.user_id,
+        title: '分享優惠活動',
+        text: '歡迎挑戰 $399 分享價，只要把以下訊息含網址貼給6個以上朋友，並且至少有6個朋友點入看完課程網頁，你就可以馬上以$399購買課程。而你的朋友從你給的網址點入的話，他們也可以馬上折$50喔！<br><br>※朋友點入進度請看(0/6)<br>​​※網址是連到備審課程的，沒有毒<br>​​※分享內文文字可以改，但請不要改網址<br><br>「安安，做備審做到懷疑人生了嗎？我發現這裏有個蠻棒的備審資料教學，你從我這個連結來買的話可以現折$50元喔！來看吧 ' + process.env.baseUrl + "/go2university/share?id=" + this.user.user_id + '」',
         buttons: [
           {
-            title: '關閉',
+            title: '分享',
             handler: () => { this.hideDialog() }
           },
         ]

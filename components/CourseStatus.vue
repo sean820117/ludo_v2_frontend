@@ -20,7 +20,7 @@
                 <div class="course-status-devider-sm"></div>
                 <div class="course-status-pricetag">課程售價</div>
                 <div class="course-status-price">499元</div>
-                <a href="confirm.html" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
+                <a :href=" baseUrl + '/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
                 <!-- </div> -->
             </div>
         </div>
@@ -30,7 +30,7 @@
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <a href="confirm.html" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
+        <a :href=" baseUrl + '/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
         <!-- 手機購買結束 -->
     </div>
 </template>
@@ -45,7 +45,14 @@ export default {
         HiveFive: HiveFive,
         Hourglass:Hourglass,
         InfiniteSymbol:InfiniteSymbol,
+        baseUrl:'',
     }),
+    mounted() {
+        this.baseUrl = process.env.baseUrl;
+    },
+    props: {
+        course_id: String,
+    },
 }
 </script>
 

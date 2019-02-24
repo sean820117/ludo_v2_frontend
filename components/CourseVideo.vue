@@ -15,7 +15,7 @@
         <div class="course-video-area">
             <!-- <video v-if="currentVideo" :src="currentVideo" controls></video> -->
             <iframe :src="currentVideo" width="480" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            <div class="course-video-list" v-if="course_id">
+            <div class="course-video-list" v-if="course_id" :class="is_payed ? '':'no-drop'">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.title"
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="course-video-list-light-box" v-if="lightBoxShowed">
+        <div class="course-video-list-light-box" v-if="lightBoxShowed" :class="is_payed ? '':'no-drop'">
             <div class="course-video-list-m" v-if="course_id">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
@@ -79,12 +79,15 @@ export default {
     },
     props: {
         course_id: String,
+        is_payed:Boolean,
     },
     methods: {
         changeCurrentVideo(link) {
-            this.currentVideo = null;
-            this.currentVideo = link;
-            console.log(this.currentVideo);
+            if (this.is_payed) {
+                this.currentVideo = link;
+            } else {
+                window.alert("購買後即可觀看");
+            }
         },
         showLightBox() {
             this.lightBoxShowed = true;
@@ -100,6 +103,9 @@ export default {
 </script>
 
 <style>
+.no-drop {
+    cursor: no-drop;
+}
 @media (min-width:900px) {
     /*看課區段*/
     .course-video{

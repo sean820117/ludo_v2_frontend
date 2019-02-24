@@ -1,8 +1,8 @@
 <template>
     <div>
         <course-header/>
-        <course-video v-if="course_id" :course_id="course_id"/>
-        <course-status/>
+        <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed"/>
+        <course-status v-if="is_payed == false" :course_id="course_id"/>
 		<practice-input-box v-if="course_id" :course_id="course_id" />
 		<course-footer/>
         
@@ -28,6 +28,9 @@ import CourseData09 from 'static/data/course/09.js'
 import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
+import axios from '~/config/axios-config';
+import { mapMutations, mapGetters } from 'vuex';
+import Vuex from 'vuex';
 
 export default {
     head () {
@@ -36,13 +39,16 @@ export default {
                 { rel: 'stylesheet', href: '/bootstrap.css' }
             ]
         } 
-	},
-	mounted(){
+    },
+    computed: mapGetters({
+        user : 'user/getData',
+    }),
+	async mounted(){
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
-        // this.$checkLogin(store);
-        
+        await this.$checkLogin(store);
+        await this.checkIsPayed();
   	},
     components: {
 		CourseHeader,
@@ -54,6 +60,7 @@ export default {
     },
     data:() => ({
         course_id:"",
+        is_payed:true,
         courseDataSet: {
             "01": CourseData01,
             "02": CourseData02,
@@ -68,6 +75,26 @@ export default {
             "11": CourseData11,
         },
     }),
+    methods: {
+        async checkIsPayed() {  
+            const user_id = this.user.user_id;
+            const product_id = this.course_id;
+
+            console.log(this.user.user_id)
+            let response = await axios.post('/apis/check-is-payed',{product_id:product_id,user_id:user_id})
+            let response2 = await axios.post('/apis/check-is-payed',{product_id:"12",user_id:user_id})
+            if (response.data.status == '200' && response2.data.status == '200') {
+                console.log("check-is-payed success")
+                if(response.data.result == 1 || response2.data.result == 1) {
+                    this.is_payed = true;
+                } else {
+                    this.is_payed = false;
+                }
+            } else {
+                console.log(response)
+            }
+        },
+    }
 }
 </script>
 
