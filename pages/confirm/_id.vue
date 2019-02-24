@@ -5,31 +5,29 @@
       <section class="title">
         <h1>《讓備審飛》線上課程付款頁面</h1>
       </section>
-      <div class="row">
-        <form @submit="onSubmit" :action="payment_url" method="post">
-          <section class="choices col-lg-6 col-sm-12">
-            <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" text="$499 一次一堂剛剛好" />
-            <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
-            <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部買起來挑科系" />
-          </section>
-          <section class="purchase col-lg-6 col-sm-12">
-            <div class="purchase-content">
-              <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
-              <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
-              <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
-              <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
-              <label for="coupon">兌換序號</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
-              <input type="hidden" name="price" v-model="selected_price">
-              <input type="hidden" name="product_name" v-model="product_name">
-              <input type="hidden" name="user_id" v-model="user.user_id">
-              <input type="hidden" name="product_id" v-model="course_id">
-              <input type="hidden" name="payment_type" v-model="payment_type.value">
-              <div class="error">{{errors}}</div>
-              <button type="submit" role="button" class="forwarding">前往付款</button>
-            </div>
-          </section>
-        </form>
-      </div>
+      <form class="row" @submit="onSubmit" :action="payment_url" method="post">
+        <section class="choices col-lg-6 col-sm-12">
+          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" text="$499 一次一堂剛剛好" />
+          <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
+          <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部買起來挑科系" />
+        </section>
+        <section class="purchase col-lg-6 col-sm-12">
+          <div class="purchase-content">
+            <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
+            <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
+            <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
+            <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
+            <label for="coupon">兌換序號</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
+            <input type="hidden" name="price" v-model="selected_price">
+            <input type="hidden" name="product_name" v-model="product_name">
+            <input type="hidden" name="user_id" v-model="user.user_id">
+            <input type="hidden" name="product_id" v-model="course_id">
+            <input type="hidden" name="payment_type" v-model="payment_type.value">
+            <div class="error">{{errors}}</div>
+            <button type="submit" role="button" class="forwarding">前往付款</button>
+          </div>
+        </section>
+      </form>
     </main>
     <div id="push" />
     <v-dialog/>

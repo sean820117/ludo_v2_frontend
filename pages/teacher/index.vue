@@ -9,12 +9,12 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <flat-button size="big" text="課程介紹"/>
-              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習"/>
+              <flat-button size="big" text="課程介紹" link="#intro"/>
+              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="https://www.ludonow.com/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <flat-button size="medium" text="課程介紹"/>
-              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習"/>
+              <flat-button size="medium" text="課程介紹" link="#intro"/>
+              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="https://www.ludonow.com/course/01"/>
             </div>
           </section>
           <!-- <section class="teacher col-lg-6 d-none d-lg-block d-xl-block">
@@ -78,7 +78,7 @@
         <label for="read-more">閱讀更多</label>
       </div>
     </section> -->
-    <div v-if=" $mq == 'desktop' ">
+    <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <img :src="img" alt="">
         <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
@@ -88,7 +88,7 @@
         </button>
       </div>
     </div>
-    <div v-else-if=" $mq == 'mobile' ">
+    <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uMobile" :key="img">
         <img :src="img" alt="">
         <button v-if="img == go2uMobile[6]" class="buy-now-btn" >

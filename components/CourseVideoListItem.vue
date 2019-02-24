@@ -15,7 +15,7 @@ export default {
 
 <style>
 .video-list-item {
-    height: 50px;
+    height: 60px;
     width: 100%;
     font-size: 14px;
     padding-left: 20px;
@@ -25,5 +25,6 @@ export default {
     border: #324D5B 1px solid;
     font-weight: bold;
     cursor: pointer;
+    overflow-wrap: break-word;
 }
 </style>

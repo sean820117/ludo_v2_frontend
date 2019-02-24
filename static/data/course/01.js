@@ -9,7 +9,7 @@ export default {
         },
         {
             title:"2. 有效的簡歷撰寫｜如何寫經歷，才有說服力",
-            link:""
+            link:"https://vimeo.com/319273700/cf18b7d547"
         },
         {
             title:"3. 有感的申請動機｜申請動機整體架構",
