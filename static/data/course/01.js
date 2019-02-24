@@ -5,11 +5,11 @@ export default {
     sub_course: [
         {
             title:"1. 簡短的精準自介｜開頭7秒讓教授產留下印象！",
-            link:"https://dl.dropboxusercontent.com/s/4amhr9wxu9btcq1/2-0.mp4"
+            link:"https://player.vimeo.com/video/319273700"
         },
         {
             title:"2. 有效的簡歷撰寫｜如何寫經歷，才有說服力",
-            link:"https://vimeo.com/319273700/cf18b7d547"
+            link:"https://player.vimeo.com/video/319274167"
         },
         {
             title:"3. 有感的申請動機｜申請動機整體架構",

@@ -11,8 +11,10 @@
             
             <div class="box1 box1-small"></div>
         </div>
+        
         <div class="course-video-area">
-            <video v-if="currentVideo" :src="currentVideo" controls></video>
+            <!-- <video v-if="currentVideo" :src="currentVideo" controls></video> -->
+            <iframe :src="currentVideo" width="480" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div class="course-video-list" v-if="course_id">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
