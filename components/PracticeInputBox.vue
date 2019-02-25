@@ -1,10 +1,9 @@
 <template>
     <!-- 課程練習區段 -->
-    <div class="course-practice">
+    <div class="course-practice" v-if="currentSubCourse.assistant_id">
         <div class="courses-session-title">開始練習</div>
         <div class="course-practice-area">
-            <textarea-autosize v-model="content" class="start-type" placeholder="假設今天你是一個醫學科系申請生，請輸入你的經歷，以及嘗試簡短但具體的描述你的經歷。
-(例如：我曾擔任班長，在開學短短7天內讓全班35人完成了420項老師的代辦工作)。"></textarea-autosize>
+            <textarea-autosize v-model="content" class="start-type" :placeholder="currentSubCourse.placeholder"></textarea-autosize>
             <!-- <div class="start-devider"></div> -->
             <div class="start-btns">
                 <!-- <div class="upload-img">上傳圖片</div>
@@ -73,6 +72,7 @@ export default {
     }),
     props: {
         course_id: String,
+        currentSubCourse: Object,
     },
     components: {
         PracticeRecordBox,
@@ -82,7 +82,7 @@ export default {
             let setRank = this.setRank;
             let setAdvise = this.setAdvise;
             let setIsLoading = this.setIsLoading;
-            let assistant_id = this.courseDataSet[this.course_id].assistant_ids[0];
+            let assistant_id = this.currentSubCourse.assistant_id;
             // console.log("send" + this.assistant_id)
             console.log("content: " + content)
             if(content.length < 5) {
@@ -90,7 +90,7 @@ export default {
             } else {
                 setIsLoading(true);
                 setRank("");
-                axios.post('/apis/ai-assistant/evaluate/'+ assistant_id,{content:content})
+                axios.post('/apis/ai-assistant/evaluate/'+ assistant_id + '?course_id=' + this.course_id,{content:content})
                     .then((response) => {
                         if (response.status == '200') {
                             console.log("evaluate success")
@@ -114,22 +114,23 @@ export default {
             this.isLoading = boolean;
         },
         setAdvise(rank) {
-            if(rank == "A") {
-                this.advise = "灣得佛！你這次寫得有描述而且夠具體喔！未來你從備審到求職，應該都會有巨大加分了:D";
-            } else if(rank == "B") {
-                this.advise = "寫得還不錯，你有領略到概要了！但除了相關之外，還需要寫得更具體一些，包含到實際獎項或是數字佐證等等的，才能寫出A級描述喔！";
-            } else if(rank == "C") {
-                this.advise = "除了純粹寫出經歷外，請記得也要寫上與醫學相關科系有效的描述喔！";
-            }
+            // if(rank == "A") {
+            //     this.advise = "灣得佛！你這次寫得有描述而且夠具體喔！未來你從備審到求職，應該都會有巨大加分了:D";
+            // } else if(rank == "B") {
+            //     this.advise = "寫得還不錯，你有領略到概要了！但除了相關之外，還需要寫得更具體一些，包含到實際獎項或是數字佐證等等的，才能寫出A級描述喔！";
+            // } else if(rank == "C") {
+            //     this.advise = "除了純粹寫出經歷外，請記得也要寫上與相關科系有效的描述喔！";
+            // }
+            this.advise = this.currentSubCourse.comments[rank];
         },
         getExample(rank) {
             const courseData = this.courseDataSet[this.course_id];
             if (courseData) {
-                let example_list = courseData.examples.filter(example => example.rank == rank);
+                let example_list = this.currentSubCourse[rank];
                 if (example_list.length >= 1 ) {
                     let rand = Math.floor((Math.random() * example_list.length));
                     console.log(rand);
-                    return example_list[rand].content
+                    return example_list[parseInt(rand)]
                 } else {
                     return ""
                 }

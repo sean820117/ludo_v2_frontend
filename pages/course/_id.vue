@@ -1,9 +1,9 @@
 <template>
     <div>
         <course-header/>
-        <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed"/>
+        <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :is_payed="is_payed" :course_id="course_id"/>
-		<practice-input-box v-if="course_id" :course_id="course_id" />
+		<practice-input-box v-if="course_id" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
 		<course-footer/>
         
     </div>
@@ -49,6 +49,7 @@ export default {
         let store = this.$store;
         await this.$checkLogin(store);
         await this.checkIsPayed();
+        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[0];
   	},
     components: {
 		CourseHeader,
@@ -61,6 +62,7 @@ export default {
     data:() => ({
         course_id:"",
         is_payed:true,
+        currentSubCourse:Object,
         courseDataSet: {
             "01": CourseData01,
             "02": CourseData02,

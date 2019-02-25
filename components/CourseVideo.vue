@@ -4,9 +4,9 @@
         <div class="course-video-contaniner">
             <div class="box1">讓備審飛 > {{ course_name }}</div>
             <div class="box2">
-                {{ sub_course_title }}
+                {{ currentSubCourse.title }}
                 <br>
-                <div class="box2-second-title"> {{ sub_course_title2 }} </div>
+                <div class="box2-second-title"> {{ currentSubCourse.title2 }} </div>
             </div>
             
             <div class="box1 box1-small"></div>
@@ -14,12 +14,12 @@
         
         <div class="course-video-area">
             <!-- <video v-if="currentVideo" :src="currentVideo" controls></video> -->
-            <iframe class="course-video-iframe" :src="currentVideo" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe class="course-video-iframe" :src="currentSubCourse.link" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div class="course-video-list" v-if="course_id" :class="is_payed ? '':'no-drop'">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
-                    :key="item.title"
-                    @click="changeCurrentVideo(item.link)">
+                    :key="item.id"
+                    @click="changeCurrentSubCourse(item)">
                     <course-video-list-item :title="item.title" :title2="item.title2" />
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.title"
-                    @click="changeCurrentVideo(item.link);hideLightBox()">
+                    @click="changeCurrentSubCourse(item);hideLightBox()">
                     <course-video-list-item :title="item.title"/>
                 </div>
             </div>
@@ -71,11 +71,8 @@ export default {
             "10": CourseData10,
             "11": CourseData11,
         },
-        currentVideo: "",
         lightBoxShowed:false,
         course_name:"",
-        sub_course_title:"",
-        sub_course_title2:"",
     }),
     components: {
 		CourseVideoListItem,
@@ -83,11 +80,13 @@ export default {
     props: {
         course_id: String,
         is_payed:Boolean,
+        currentSubCourse:Object,
     },
     methods: {
-        changeCurrentVideo(link) {
+        changeCurrentSubCourse(item) {
             if (this.is_payed) {
-                this.currentVideo = link;
+                this.currentSubCourse = item;
+                this.$emit('update:currentSubCourse', this.currentSubCourse);
             } else {
                 window.alert("購買後即可觀看");
             }
@@ -100,10 +99,7 @@ export default {
         }
     },
     mounted: function () {
-        this.currentVideo = this.courseDataSet[this.course_id].sub_course[0].link;
         this.course_name = this.courseDataSet[this.course_id].course_name;
-        this.sub_course_title = this.courseDataSet[this.course_id].sub_course[0].title;
-        this.sub_course_title2 = this.courseDataSet[this.course_id].sub_course[0].title2;
     },
 }
 </script>
@@ -189,46 +185,8 @@ export default {
     .course-video-list-m {
         display: none;
     }
-    /* width */
-    ::-webkit-scrollbar {
-    width: 5px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-    background: #888; 
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-    }
 }
 @media (max-width:899px) {
-    /* width */
-    ::-webkit-scrollbar {
-    width: 5px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-    background: #888; 
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-    }
     /*看課區段*/
     .course-video{
         display: flex;
