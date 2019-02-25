@@ -30,7 +30,7 @@
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.title"
                     @click="changeCurrentSubCourse(item);hideLightBox()">
-                    <course-video-list-item :title="item.title"/>
+                    <course-video-list-item :title="item.title" :title2="item.title2"/>
                 </div>
             </div>
             <div class="course-video-list-m-back">

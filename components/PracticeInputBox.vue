@@ -11,19 +11,21 @@
                 <div class="upload-voice">上傳聲音</div> -->
                 
                 
-                <div class="upload-result">
-                    <div class="upload-result-label" v-if="rank"> 等級認證： </div>
-                    <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>
-                    <div class="upload-result-advise" v-if="rank">{{ advise }}</div>
-                </div>
+                
                 <div class="upload-send" @click="sendToEvaluation(content)" >送出</div>
                 <!-- <practice-record-box :rank="rank" /> -->
             </div>
             <div class="upload-send-sm" @click="sendToEvaluation(content)" >送出</div>
         </div>
-        <div class="example" v-if="rank">
-            <div class="example-title">進步範例</div>
-            <div class="example-content">{{ getExample(rank) }}</div>
+        <div class="upload-result">
+            <div class="upload-result-label" v-if="rank"> 批改結果 </div>
+            <div class="upload-result-label2" v-if="rank"> 你的等級 </div>
+            <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>
+            <div class="upload-result-advise" v-if="rank">{{ advise }}</div>
+            <div class="example-title" v-if="rank">進步範例</div>
+            <div class="example" v-if="rank">
+                <div class="example-content">{{ getExample(rank) }}</div>
+            </div>
         </div>
     </div>
     <!-- 課程練習區段結束 -->
@@ -79,6 +81,10 @@ export default {
     },
     methods: {
         sendToEvaluation(content) {
+            if (localStorage.try_time >= 3) {
+                window.alert("免費體驗已達上限，如果想繼續練習請先購買課程呦")
+                return;
+            }
             let setRank = this.setRank;
             let setAdvise = this.setAdvise;
             let setIsLoading = this.setIsLoading;
@@ -86,11 +92,11 @@ export default {
             // console.log("send" + this.assistant_id)
             console.log("content: " + content)
             if(content.length < 1) {
-                window.alert("請輸入更多內容！")
+                window.alert("請輸入內容！")
             } else {
                 setIsLoading(true);
                 setRank("");
-                axios.post('/apis/ai-assistant/evaluate/'+ assistant_id + '?course_id=' + this.course_id,{content:content})
+                axios.post('/apis/ai-assistant/evaluate/'+ assistant_id + '?course_id=' + this.course_id,{content:content,course_id:this.course_id})
                     .then((response) => {
                         if (response.status == '200') {
                             console.log("evaluate success")
@@ -98,6 +104,11 @@ export default {
                             console.log(response.data.score)
                             setRank(response.data.score);
                             setAdvise(response.data.score);
+                            if (!localStorage.try_time) {
+                                localStorage.try_time = 0
+                            }
+                            console.log(localStorage.try_time);
+                            localStorage.try_time = parseInt(localStorage.try_time) + 1;
                         } else {
                             console.log(response)
                         }
@@ -155,7 +166,6 @@ export default {
     align-items: center;
 
     padding-top: 50px;
-    padding-bottom: 35px;
 }
 .course-practice-area{
 	display: flex;
@@ -247,7 +257,7 @@ export default {
     /* padding-top: 25px; */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 90%;
     margin-bottom: 25px;
 }
@@ -325,29 +335,45 @@ export default {
     animation: titlein 0.5s 0s both;
 }
 .upload-result {
-    color: #324D5B;
-    font-size: 25px;
     display: flex;
-    /* margin-top: -20px; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: coverphotoin 1s 0.5s both;
+    width: 100vw;
+    background-color: #FCFCFC;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    margin-top: 50px;
 }
 .upload-result-label {
+    font-weight: 200;
+    font-size: 35px;
+    color: grey;
+    animation: titlein 1s both;
+}
+.upload-result-label2 {
     /* width: 200px; */
+    margin-top: 50px;
+    font-weight: 200;
+    font-size: 25px;
+    color: darkgrey;
+    animation: titlein 1s both;
 }
 .upload-result-rank {
-    /* width: 60px; */
-    font-size: 60px;
-    color: #324D5B;
+    margin-top: -50px;
+    font-weight: 50;
     font-size: 200px;
-    line-height: 0.8;
-    animation: titlein 1s 0s both;
-    margin-top: -20px;
-    display: inline-flex;
+    color: #324D5B;
+    animation: titlein 1s both;
 }
 .upload-result-advise {
-    font-size: 20px;
-    margin-left: 50px;
-    width: 50%;
-    margin-top: 20px;
+    width: 80%;
+    text-align: justify;
+    /* font-weight: 200; */
+    font-size: 18px;
+    color: darkgrey;
+    animation: titlein 1s both;
 }
 .upload-send{
     cursor: pointer;
@@ -414,25 +440,31 @@ export default {
     border-radius: 20px;
     width: 80%;
     margin-top: 30px;
-    /* display: flex;
-    justify-content: center; */
+    display: flex;
+    justify-content: center;
 }
 .example-title {
-    font-size: 20px;
-    color: white;
-    margin-top: 10px;
-    width: 100%;
+    width: 150px;
+    height: 40px;
+    color: #324D5B;
     text-align: center;
+    font-size: 20px;
+    font-weight: 50;
+    line-height: 35px;
+    margin-top: 60px;
+    animation: titlein 1s 1.8s both;
 }
 .example-content {
-    font-size: 14px;
-    margin-top: 10px;
-    color: white;
-    width: 80%;
-    margin-left: 10%;
-    /* display: flex; */
-    text-align: center;
-    padding-bottom: 10px;
+    margin-top: 20px;
+    padding: 18px;
+    background-color: #324D5B;
+    border-radius: 20px;
+    text-align: left;
+    /* font-weight: 200; */
+    font-size: 18px;
+    color: lightgrey;
+    width: 95%;
+    animation: titlein 1s 1.8s both;
 }
 @media (max-width: 899px){
 	.upload-send-sm{
@@ -467,13 +499,14 @@ export default {
         justify-content: center;
     }
     .upload-result-advise {
-        text-align: center;
+        text-align: left;
         margin-left: 0px;
         width: 80%;
     }
     .upload-result-rank {
         font-size: 100px;
         width: 60px;
+        margin-top: 0px;
     }
     .upload-loading {
         width: 60px;

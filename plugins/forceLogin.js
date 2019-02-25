@@ -15,7 +15,7 @@ async function forceLogin (store) {
                     // return data.user;
                 } else {
                     console.log("status : " + data.status)
-                    window.alert("login failed!");
+                    window.alert("請先登入再進行操作");
                     window.location.href = "https://beta.ludonow.com/login?redirect=www";
                 }
             } catch(e) {
