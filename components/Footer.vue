@@ -1,6 +1,6 @@
 <template>
   <footer class="nav">
-    <span>contacts@ludonow.com</span>
+    <span>go2universitynow@flyingcrazyer.com</span>
   </footer>
 </template>
 <style scoped>

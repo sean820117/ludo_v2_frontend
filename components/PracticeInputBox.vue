@@ -126,9 +126,13 @@ export default {
             const courseData = this.courseDataSet[this.course_id];
             if (courseData) {
                 let example_list = courseData.examples.filter(example => example.rank == rank);
-                let rand = Math.floor((Math.random() * example_list.length));
-                console.log(example_list[rand].content);
-                return example_list[rand].content
+                if (example_list.length >= 1 ) {
+                    let rand = Math.floor((Math.random() * example_list.length));
+                    console.log(rand);
+                    return example_list[rand].content
+                } else {
+                    return ""
+                }
             } else {
                 return ""
             }

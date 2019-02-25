@@ -15,7 +15,7 @@ module.exports = {
     apiUrl: process.env.NODE_ENV == "production" ? "https://api.ludonow.com" : "http://localhost:8000"
   },
   head: {
-    title: 'Ludo',
+    title: '讓備審飛 - 教你做出讓教授滿意的備審資料',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

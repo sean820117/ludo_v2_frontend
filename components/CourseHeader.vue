@@ -22,16 +22,23 @@
 		</div>
                 
             <!-- login -->
-            <a href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
+            <a v-if="!user" href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
+			<a v-else href="https://beta.ludonow.com/logout" class="login-btn">登出</a>
     </div>
 </template>
 
 <script>
 import HeaderLogo from 'static/header-logo.png'
+import { mapMutations, mapGetters } from 'vuex';
+import Vuex from 'vuex';
+
 export default {
     data:() => ({
         HeaderLogo: HeaderLogo,
-    }),
+	}),
+	computed: mapGetters({
+      user : 'user/getData',
+	}),	
 }
 </script>
 

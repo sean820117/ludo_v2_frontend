@@ -89,7 +89,7 @@
       </div>
     </div>
     <div v-else-if=" $mq == 'mobile' " id="intro">
-      <div class="go2u-desktop"  v-for="img in go2uMobile" :key="img">
+      <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
         <img :src="img" alt="">
         <button v-if="img == go2uMobile[6]" class="buy-now-btn" >
           <a href="#all-course">  
@@ -425,6 +425,9 @@ h2.title {
   max-width: 100%;
 }
 .go2u-desktop {
+  width: 80%
+}
+.go2u-mobile {
   width: 100%
 }
 .go2u-desktop img {

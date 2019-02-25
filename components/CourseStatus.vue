@@ -341,9 +341,11 @@ export default {
     /*手機購買*/
     .buy-btn-section-sm{
         position: relative;
-        width: 100vw;
+        width: 80vw;
+        margin-left: 10vw;
         height: 50px;
         background-color: #E0185D;
+        border-radius: 20px;
 
         display: inline-block;
         text-decoration: none;

@@ -14,7 +14,7 @@
         
         <div class="course-video-area">
             <!-- <video v-if="currentVideo" :src="currentVideo" controls></video> -->
-            <iframe :src="currentVideo" width="480" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe class="course-video-iframe" :src="currentVideo" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div class="course-video-list" v-if="course_id" :class="is_payed ? '':'no-drop'">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
@@ -169,7 +169,7 @@ export default {
         background-color: rgb(255,255,255,0.5);
         display: flex;
     }
-    .course-video-area video {
+    .course-video-area .course-video {
         width: 480px;
         height: 480px;
     }
@@ -260,8 +260,9 @@ export default {
         /* margin: 100px; */
         background-color: rgb(255,255,255,0.5);
     }
-    .course-video-area video {
-        width: 100%;
+    .course-video-iframe {
+        width: 100vw;
+        height: 100vw;
     }
     .course-video-items{
         display: flex;
