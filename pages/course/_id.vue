@@ -74,7 +74,7 @@ export default {
     },
     data:() => ({
         course_id:"",
-        is_payed:true,
+        is_payed:false,
         currentSubCourse:Object,
         courseDataSet: {
             "01": CourseData01,

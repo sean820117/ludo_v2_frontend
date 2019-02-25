@@ -429,7 +429,10 @@ h2.title {
   margin-left: 10%;
 }
 .go2u-mobile {
-  width: 100%
+  width: 100vw;
+}
+.go2u-mobile img {
+  width: 100vw;
 }
 .go2u-desktop img {
   width: 100%
