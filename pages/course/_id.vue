@@ -44,7 +44,6 @@ export default {
         user : 'user/getData',
     }),
 	async mounted(){
-        await this.checkIsPayed();
     },
     async created(){
         /* init params */
@@ -59,7 +58,7 @@ export default {
         } else {
           this.product_name = this.courseDataSet[this.course_id].product_name;
         }  
-        
+        await this.checkIsPayed();
       },
     components: {
 		CourseHeader,
