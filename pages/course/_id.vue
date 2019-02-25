@@ -2,7 +2,7 @@
     <div>
         <course-header/>
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
-        <course-status :is_payed="is_payed" :course_id="course_id"/>
+        <course-status :is_payed.sync="is_payed" :course_id="course_id"/>
 		<practice-input-box v-if="course_id" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
 		<course-footer/>
         
@@ -44,12 +44,13 @@ export default {
         user : 'user/getData',
     }),
 	async mounted(){
+        await this.checkIsPayed();
     },
     async created(){
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
-        // await this.$checkLogin(store);
+        await this.$checkLogin(store);
         
         this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[0];
         if (!this.courseDataSet[this.course_id]) {
@@ -58,7 +59,7 @@ export default {
         } else {
           this.product_name = this.courseDataSet[this.course_id].product_name;
         }  
-        await this.checkIsPayed();
+        
       },
     components: {
 		CourseHeader,

@@ -127,7 +127,7 @@ export default {
             const courseData = this.courseDataSet[this.course_id];
             if (courseData) {
                 let example_list = this.currentSubCourse[rank];
-                if (example_list.length >= 1 ) {
+                if (example_list && example_list.length >= 1 ) {
                     let rand = Math.floor((Math.random() * example_list.length));
                     console.log(rand);
                     return example_list[parseInt(rand)]
