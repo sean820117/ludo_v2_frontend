@@ -85,7 +85,7 @@ export default {
             let assistant_id = this.currentSubCourse.assistant_id;
             // console.log("send" + this.assistant_id)
             console.log("content: " + content)
-            if(content.length < 5) {
+            if(content.length < 1) {
                 window.alert("請輸入更多內容！")
             } else {
                 setIsLoading(true);

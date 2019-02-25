@@ -49,7 +49,7 @@ export default {
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
-        await this.$checkLogin(store);
+        let login_status = await this.$checkLogin(store);
         
         this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[0];
         if (!this.courseDataSet[this.course_id]) {
@@ -58,7 +58,11 @@ export default {
         } else {
           this.product_name = this.courseDataSet[this.course_id].product_name;
         }  
-        await this.checkIsPayed();
+        if(login_status) {
+            await this.checkIsPayed();
+        } else {
+            is_payed = false;
+        }
       },
     components: {
 		CourseHeader,
@@ -102,6 +106,7 @@ export default {
                     }
                 } else {
                     console.log(response)
+                    this.is_payed = false;
                 }
             }
         },
