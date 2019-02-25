@@ -247,6 +247,7 @@ export default {
         font-weight: 50;
         line-height: 10px;
         color: white;
+        line-height: 1em;
     }
     .box2-second-title {
         margin-top: 50px;

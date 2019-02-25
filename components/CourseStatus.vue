@@ -49,7 +49,7 @@ export default {
         baseUrl:'',
         payed_user_number:0,
     }),
-    async created() {
+    async mounted() {
         this.baseUrl = process.env.baseUrl;
         this.course_id = this.$route.params.id;
         let res = await axios.get('/apis/get-payed-user-number?course_id='+ this.course_id);
