@@ -98,6 +98,19 @@
         </button>
       </div>
     </div>
+    <div class="QA-section" :class="$mq">
+      <div class="QA-title">課程相關問題 Q＆A</div>
+      <div class="QA-question">01.請問備審課程在哪上課？上課時間為？</div>
+      <div class="QA-answer">讓備審飛系列課程為『線上課程』喔！<br><br>當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。所以，在此平台上看課程影片，完全沒有時間和地點的問題！</div>
+      <div class="QA-question">02.我可以在哪裡獲得備審建議？</div>
+      <div class="QA-answer">備審的所有修改建議，都可以透過臉書私訊或網站進行，只要啟動 Messenger 聊天機器人或網站練習區，並輸入你的備審資料，就能得到修改建議。<br><br>我們結合了備審專家與AI應用，讓你隨時隨地都能得到切中通點的建議。</div>
+      <div class="QA-question">03.課程可以看幾次？</div>
+      <div class="QA-answer">讓備審飛的課程可以一直看一直看！<br>看到你的備審資料不想做為止！</div>
+      <div class="QA-question">04.「備審建議機器人」一天可以用幾次？</div>
+      <div class="QA-answer">我們期待你能在每一次修改備審資料時都能夠認真的思考修改的內容。</div>
+      <div class="QA-question">05.還有其他問題怎麼辦？</div>
+      <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
+    </div>
     <course-footer></course-footer>
   </div>
 </template>
@@ -450,5 +463,32 @@ h2.title {
 .buy-now-btn img {
   &.desktop { width: 40%; margin-top: -11%;}
   &.mobile { width: 80%; margin-top: -16%; }
+}
+.QA-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.QA-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 50px;
+  color: grey;
+}
+.QA-question {
+  font-size: 24px;
+  border-bottom: lightgrey 2px solid;
+  width: 70%;
+  color: grey;
+}
+.QA-answer{
+  font-size: 20px;
+  color: lightgrey;
+  width: 65%;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 </style>
