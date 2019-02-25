@@ -44,13 +44,22 @@ export default {
         user : 'user/getData',
     }),
 	async mounted(){
+        await this.checkIsPayed();
+    },
+    async created(){
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
-        await this.$checkLogin(store);
-        await this.checkIsPayed();
+        // await this.$checkLogin(store);
+        
         this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[0];
-  	},
+        if (!this.courseDataSet[this.course_id]) {
+          window.alert('網址錯誤');
+          this.$router.go(-1);
+        } else {
+          this.product_name = this.courseDataSet[this.course_id].product_name;
+        }  
+      },
     components: {
 		CourseHeader,
 		CourseVideo,
@@ -81,19 +90,19 @@ export default {
         async checkIsPayed() {  
             const user_id = this.user.user_id;
             const product_id = this.course_id;
-
-            console.log(this.user.user_id)
-            let response = await axios.post('/apis/check-is-payed',{product_id:product_id,user_id:user_id})
-            let response2 = await axios.post('/apis/check-is-payed',{product_id:"12",user_id:user_id})
-            if (response.data.status == '200' && response2.data.status == '200') {
-                console.log("check-is-payed success")
-                if(response.data.result == 1 || response2.data.result == 1) {
-                    this.is_payed = true;
+            if(user_id) {
+                let response = await axios.post('/apis/check-is-payed',{product_id:product_id,user_id:user_id})
+                let response2 = await axios.post('/apis/check-is-payed',{product_id:"12",user_id:user_id})
+                if (response.data.status == '200' && response2.data.status == '200') {
+                    console.log("check-is-payed success")
+                    if(response.data.result == 1 || response2.data.result == 1) {
+                        this.is_payed = true;
+                    } else {
+                        this.is_payed = false;
+                    }
                 } else {
-                    this.is_payed = false;
+                    console.log(response)
                 }
-            } else {
-                console.log(response)
             }
         },
     }

@@ -246,21 +246,25 @@ export default {
   async mounted(){
       /* init params */
       if (!process.server) {
-        this.course_id = this.$route.params.id;
-        let store = this.$store;
-        await this.$checkLogin(store);
-        await this.checkIsPayed();
         this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
+      }
+  },
+  async created(){
+      /* init params */
+      if (!process.server) {
+        this.course_id = this.$route.params.id;
+        let store = this.$store;
+        await this.$forceLogin(store);
         if (!this.courseDataSet[this.course_id]) {
           window.alert('網址錯誤');
           this.$router.go(-1);
         } else {
           this.product_name = this.courseDataSet[this.course_id].product_name;
         }
+        await this.checkIsPayed();
         await this.getSharedTime();
-        
       }
   },
 };
@@ -305,9 +309,11 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center; 
+  background: white;
 }
 .purchase-content {
   width: 80%;
+  margin-bottom: 30px;
 }
 .purchase label, .purchase input {
   width: 100%;

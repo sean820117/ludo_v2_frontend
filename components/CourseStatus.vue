@@ -5,7 +5,7 @@
             <div class="course-status-wrapper">
                 <div class="course-status-box">
                     <img :src="HiveFive" class="course-status-svg" alt="">
-                    <div class="course-status-box-text">1200位同學</div>
+                    <div class="course-status-box-text"> {{ payed_user_number }} 位同學</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
@@ -39,6 +39,7 @@
 import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
+import axios from '~/config/axios-config';
 
 export default {
     data:() => ({
@@ -46,9 +47,19 @@ export default {
         Hourglass:Hourglass,
         InfiniteSymbol:InfiniteSymbol,
         baseUrl:'',
+        payed_user_number:0,
     }),
-    mounted() {
+    async created() {
         this.baseUrl = process.env.baseUrl;
+        this.course_id = this.$route.params.id;
+        let res = await axios.get('/apis/get-payed-user-number?course_id='+ this.course_id);
+        let res2 = await axios.get('/apis/get-payed-user-number?course_id=12');
+        console.log(res);
+        console.log(res2);
+        if (res.data.status == 200 && res.data.status == 200) {
+            this.payed_user_number = res.data.result + res2.data.result ;
+        }
+
     },
     props: {
         course_id: String,

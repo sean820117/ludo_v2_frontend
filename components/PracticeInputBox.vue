@@ -154,6 +154,7 @@ export default {
     flex-direction: column;
     align-items: center;
 
+    padding-top: 50px;
     padding-bottom: 35px;
 }
 .course-practice-area{

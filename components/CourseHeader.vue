@@ -39,9 +39,8 @@ export default {
 	computed: mapGetters({
       user : 'user/getData',
 	}),	
-	mounted() {
-		console.log("header")
-		console.log(!this.user.user_id)
+	created() {
+        this.$checkLogin(this.$store);
 	}
 }
 </script>

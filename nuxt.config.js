@@ -41,6 +41,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/gtm.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
+    { src: '~/plugins/forceLogin.js', ssr: false },
   ],
   build: {
     /*
