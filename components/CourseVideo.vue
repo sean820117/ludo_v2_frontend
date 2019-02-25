@@ -182,14 +182,53 @@ export default {
     .course-video-list {
         /* display: flex;
         flex-direction: column; */
-        overflow: scroll;
+        overflow-y: scroll;
         width:300px;
+        
     }
     .course-video-list-m {
         display: none;
     }
+    /* width */
+    ::-webkit-scrollbar {
+    width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    }
 }
 @media (max-width:899px) {
+    /* width */
+    ::-webkit-scrollbar {
+    width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    }
     /*看課區段*/
     .course-video{
         display: flex;
@@ -301,7 +340,7 @@ export default {
         /* padding-bottom: 20vh; */
         
         width: 100vw;
-        overflow: scroll;
+        overflow-y: scroll;
     }
     .course-video-list-m-back {
         width: 100vw;

@@ -33,7 +33,6 @@ header {
     flex-direction: column;
 }
 .title {
-  font-family: "HelveticaNeue-Medium", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: block;
   font-weight: bold;
   font-size: 20px;
