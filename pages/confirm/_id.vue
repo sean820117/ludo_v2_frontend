@@ -17,14 +17,14 @@
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
-            <label for="coupon">兌換序號</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
+            <label for="coupon">免費序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
             <input type="hidden" name="price" v-model="selected_price">
             <input type="hidden" name="product_name" v-model="product_name">
             <input type="hidden" name="user_id" v-model="user.user_id">
             <input type="hidden" name="product_id" v-model="course_id">
             <input type="hidden" name="payment_type" v-model="payment_type.value">
             <div class="error">{{errors}}</div>
-            <button type="submit" role="button" class="forwarding">前往付款</button>
+            <button type="submit" role="button" class="forwarding">{{ !coupon ? "前往付款" : "前往兌換" }}</button>
           </div>
         </section>
       </form>
@@ -42,7 +42,9 @@ import RadioButton from "~/components/confirm/RadioButton.vue";
 import vSelect from 'vue-select';
 import Vue from 'vue'
 import VModal from 'vue-js-modal'
- 
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
 Vue.use(VModal, { dialog: true })
 Vue.component('v-select', vSelect);
 
@@ -72,6 +74,7 @@ export default {
       payment_type:'',
       product_name:"",
       shared_time:0,
+      share_url:"",
       prices:[
         {
           active: true,
@@ -143,6 +146,15 @@ export default {
       alert('確認付款？')
       // window.location.href = process.env.apiUrl + payment_url + "?customer=" + customer + "&phone=" + phone + "&price=" + selected_price 
     },
+    doCopy: function () {
+      this.$copyText(this.share_url).then(function (e) {
+        alert('複製成功')
+        console.log(e)
+      }, function (e) {
+        alert('複製失敗')
+        console.log(e)
+      })
+    },
     async checkCoupon() {
       const coupon = this.coupon;
       let response = await axios.post('/apis/use-coupon',{coupon_id:coupon,activity_id:"1"})
@@ -195,11 +207,11 @@ export default {
     showDialog() {
       this.$modal.show('dialog', {
         title: '分享優惠活動',
-        text: '歡迎挑戰 $399 分享價，只要把以下訊息含網址貼給6個以上朋友，並且至少有6個朋友點入看完課程網頁，你就可以馬上以$399購買課程。而你的朋友從你給的網址點入的話，他們也可以馬上折$50喔！<br><br>※朋友點入進度請看(0/6)<br>​​※網址是連到備審課程的，沒有毒<br>​​※分享內文文字可以改，但請不要改網址<br><br>「安安，做備審做到懷疑人生了嗎？我發現這裏有個蠻棒的備審資料教學，你從我這個連結來買的話可以現折$50元喔！來看吧 ' + process.env.baseUrl + "/go2university/share?id=" + this.user.user_id + '」',
+        text: '歡迎挑戰 $399 分享價，只要把以下訊息含網址貼給6個以上朋友，並且至少有6個朋友點入看完課程網頁，你就可以馬上以$399購買課程。而你的朋友從你給的網址點入的話，他們也可以馬上折$50喔！<br><br>※朋友點入進度請看(0/6)<br>​​※網址是連到備審課程的，沒有毒<br>​​※分享內文文字可以改，但請不要改網址<br><br><span style="background:grey;color:white;">「安安，做備審做到懷疑人生了嗎？我發現這裏有個蠻棒的備審資料教學，你從我這個連結來買的話可以現折$50元喔！來看吧 ' + this.share_url+ '」</span>',
         buttons: [
           {
-            title: '分享',
-            handler: () => { this.hideDialog() }
+            title: '一鍵複製',
+            handler: () => { this.doCopy() }
           },
         ]
       },
@@ -238,6 +250,7 @@ export default {
         let store = this.$store;
         await this.$checkLogin(store);
         await this.checkIsPayed();
+        this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
         if (!this.courseDataSet[this.course_id]) {
@@ -247,11 +260,17 @@ export default {
           this.product_name = this.courseDataSet[this.course_id].product_name;
         }
         await this.getSharedTime();
+        
       }
   },
 };
 </script>
 <style scoped>
+.share-url-label {
+  display: inline;
+  background: grey;
+  color: white;
+}
 .body {
   box-sizing: border-box;
   height: 100vh;

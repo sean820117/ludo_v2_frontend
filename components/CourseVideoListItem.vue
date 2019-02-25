@@ -1,6 +1,7 @@
 <template>
     <div class="video-list-item">
-        {{ title }}
+        <div class="title">{{ title }}</div>
+        <div class="title2">{{ title2 }}</div>
     </div>
 </template>
 
@@ -9,11 +10,12 @@ export default {
     props: {
         course_id: String,
         title:String,
+        title2:String,
     },
 }
 </script>
 
-<style>
+<style scoped>
 .video-list-item {
     height: 60px;
     width: 100%;
@@ -23,8 +25,12 @@ export default {
     color: #324D5B;
     background: #EDEDED;
     border: #324D5B 1px solid;
-    font-weight: bold;
+    /* font-weight: bold; */
     cursor: pointer;
-    overflow-wrap: break-word;
+    overflow: hidden;
+}
+.title {
+    font-weight: bold;
+    font-size: 16px;
 }
 </style>

@@ -2,7 +2,7 @@
     <div>
         <course-header/>
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed"/>
-        <course-status v-if="is_payed == false" :course_id="course_id"/>
+        <course-status :is_payed="is_payed" :course_id="course_id"/>
 		<practice-input-box v-if="course_id" :course_id="course_id" />
 		<course-footer/>
         

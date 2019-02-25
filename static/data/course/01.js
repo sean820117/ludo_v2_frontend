@@ -1,55 +1,71 @@
 export default {
-    assistant_id: "03db9c50-f211-11e8-93e5-7514b94dfe78",
     subject: "醫學",
-    product_name: "讓備審飛 - 醫學學群",
+    course_name: "醫學學群",
     sub_course: [
         {
-            title:"1. 簡短的精準自介｜開頭7秒讓教授產留下印象！",
-            link:"https://player.vimeo.com/video/319273700"
+            title:"簡短的精準自介",
+            title2 : "開頭7秒讓教授產留下印象！",
+            link:"https://player.vimeo.com/video/319273700",
+            assistant_id:"03db9c50-f211-11e8-93e5-7514b94dfe78",
         },
         {
-            title:"2. 有效的簡歷撰寫｜如何寫經歷，才有說服力",
-            link:"https://player.vimeo.com/video/319274167"
+            title:"有效的簡歷撰寫",
+            title2 : "如何寫經歷，才有說服力",
+            link:"https://player.vimeo.com/video/319273700",
+            assistant_id:"03db9c50-f211-11e8-93e5-7514b94dfe78",
         },
         {
-            title:"3. 有感的申請動機｜申請動機整體架構",
+            title:"有感的申請動機",
+            title2 : "申請動機整體架構",
+            link:"https://player.vimeo.com/video/319273928"
+        },
+        {
+            title:"有感的申請動機",
+            title2 : "家庭背景寫法",
             link:""
         },
         {
-            title:"4. 有感的申請動機｜家庭背景寫法",
+            title:"有感的申請動機",
+            title2 : "各科系關鍵字置入、學術路線置入、如何讓學校網頁資訊成為你最大的幫助",
+            link:"",
+            assistant_id:"03db9c50-f211-11e8-93e5-7514b94dfe78",
+        },
+        {
+            title:"有效的自傳寫法",
+            title2 : "整體架構(分析寫法)",
+            link:"https://player.vimeo.com/video/319273069"
+        },
+        {
+            title:"有效的自傳寫法",
+            title2 : "學科等知識性相關經歷描述，需要具體事例佐證與關鍵細節（形容詞或行為舉止）",
             link:""
         },
         {
-            title:"5. 有感的申請動機｜各科系關鍵字置入、學術路線置入、如何讓學校網頁資訊成為你最大的幫助",
+            title:"有效的自傳寫法",
+            title2 : "社團、競賽經驗寫法(xx系搭配xx社團的寫法教學，包裝公式)、人際關係/溝通能力",
+            link:"",
+            assistant_id:"03db9c50-f211-11e8-93e5-7514b94dfe78",
+        },
+        {
+            title:"不唬的讀書計畫",
+            title2 : "整體架構(分析短中長or五大類寫法",
+            link:"https://player.vimeo.com/video/319273231"
+        },
+        {
+            title:"不唬的讀書計畫",
+            title2 : "專業知識、研究所OR進入職場、語言培植的寫法",
             link:""
         },
         {
-            title:"6. 有效的自傳寫法｜整體架構(分析寫法)",
-            link:""
+            title:"不唬的讀書計畫",
+            title2 : "人際關係、自我成長、休閒怡情的寫法",
+            link:"",
+            assistant_id:"03db9c50-f211-11e8-93e5-7514b94dfe78",
         },
         {
-            title:"7. 有效的自傳寫法｜學科等知識性相關經歷描述，需要具體事例佐證與關鍵細節（形容詞或行為舉止）",
-            link:""
-        },
-        {
-            title:"8. 有效的自傳寫法｜社團、競賽經驗寫法(xx系搭配xx社團的寫法教學，包裝公式)、人際關係/溝通能力",
-            link:""
-        },
-        {
-            title:"9. 不唬的讀書計畫｜整體架構(分析短中長or五大類寫法",
-            link:""
-        },
-        {
-            title:"10. 不唬的讀書計畫｜專業知識、研究所OR進入職場、語言培植的寫法",
-            link:""
-        },
-        {
-            title:"11. 不唬的讀書計畫｜人際關係、自我成長、休閒怡情的寫法",
-            link:""
-        },
-        {
-            title:"12. 最後提醒｜最終重點強調，並強調延續性。",
-            link:""
+            title:"最後提醒",
+            title2 : "最終重點強調，並強調延續性。",
+            link:"https://player.vimeo.com/video/319273548"
         },
     ],
     examples:[

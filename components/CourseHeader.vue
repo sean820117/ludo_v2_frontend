@@ -22,8 +22,8 @@
 		</div>
                 
             <!-- login -->
-            <a v-if="!user" href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
-			<a v-else href="https://beta.ludonow.com/logout" class="login-btn">登出</a>
+            <a v-if="!user.user_id" href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
+			<a v-else href="/logout" class="login-btn">登出</a>
     </div>
 </template>
 
@@ -39,6 +39,10 @@ export default {
 	computed: mapGetters({
       user : 'user/getData',
 	}),	
+	mounted() {
+		console.log("header")
+		console.log(!this.user.user_id)
+	}
 }
 </script>
 

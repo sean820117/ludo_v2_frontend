@@ -17,20 +17,20 @@
                     <img :src="InfiniteSymbol" class="course-status-svg" alt="">
                     <div class="course-status-box-text">5個練習服務</div>
                 </div>
-                <div class="course-status-devider-sm"></div>
-                <div class="course-status-pricetag">課程售價</div>
-                <div class="course-status-price">499元</div>
-                <a :href=" baseUrl + '/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
+                <div v-if="!is_payed" class="course-status-devider-sm"></div>
+                <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
+                <div v-if="!is_payed" class="course-status-price">499元</div>
+                <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
                 <!-- </div> -->
             </div>
         </div>
         <!-- 看課下方欄課程簡介結束 -->
         <!-- 購課資訊 -->
-        <div class="buy-info-section-sm">課程售價 499元</div>
+        <div v-if="!is_payed" class="buy-info-section-sm">課程售價 499元</div>
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <a :href=" baseUrl + '/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
+        <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
         <!-- 手機購買結束 -->
     </div>
 </template>
@@ -52,6 +52,7 @@ export default {
     },
     props: {
         course_id: String,
+        is_payed:Boolean,
     },
 }
 </script>
@@ -62,6 +63,7 @@ export default {
     .course-status{
         position: relative;
         width: 100vw;
+        background: white;
         /*height: 200px;*/
         /*background-color: #F0F0F0;*/
 

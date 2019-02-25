@@ -2,11 +2,11 @@
     <!-- 看課區段 -->
     <div class="course-video">
         <div class="course-video-contaniner">
-            <div class="box1">讓備審飛 > 醫學學群</div>
+            <div class="box1">讓備審飛 > {{ course_name }}</div>
             <div class="box2">
-                有效的簡歷撰寫
+                {{ sub_course_title }}
                 <br>
-                <div class="box2-second-title">醫學科系申請生該如何寫經歷，才有說服力</div>
+                <div class="box2-second-title"> {{ sub_course_title2 }} </div>
             </div>
             
             <div class="box1 box1-small"></div>
@@ -20,7 +20,7 @@
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.title"
                     @click="changeCurrentVideo(item.link)">
-                    <course-video-list-item :title="item.title"/>
+                    <course-video-list-item :title="item.title" :title2="item.title2" />
                 </div>
             </div>
         </div>
@@ -73,6 +73,9 @@ export default {
         },
         currentVideo: "",
         lightBoxShowed:false,
+        course_name:"",
+        sub_course_title:"",
+        sub_course_title2:"",
     }),
     components: {
 		CourseVideoListItem,
@@ -98,6 +101,9 @@ export default {
     },
     mounted: function () {
         this.currentVideo = this.courseDataSet[this.course_id].sub_course[0].link;
+        this.course_name = this.courseDataSet[this.course_id].course_name;
+        this.sub_course_title = this.courseDataSet[this.course_id].sub_course[0].title;
+        this.sub_course_title2 = this.courseDataSet[this.course_id].sub_course[0].title2;
     },
 }
 </script>
@@ -169,7 +175,7 @@ export default {
         background-color: rgb(255,255,255,0.5);
         display: flex;
     }
-    .course-video-area .course-video {
+    .course-video-area .course-video-iframe {
         width: 480px;
         height: 480px;
     }

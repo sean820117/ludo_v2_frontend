@@ -425,7 +425,8 @@ h2.title {
   max-width: 100%;
 }
 .go2u-desktop {
-  width: 80%
+  width: 80%;
+  margin-left: 10%;
 }
 .go2u-mobile {
   width: 100%

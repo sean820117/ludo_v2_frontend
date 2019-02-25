@@ -6,7 +6,7 @@
 import axios from '../config/axios-config'
 export default {
     mounted(){
-        this.login("000@ggg.com","0000gggg");
+        // this.login("000@ggg.com","0000gggg");
     },
     methods: {
         signup(email,password,repeated_password) {

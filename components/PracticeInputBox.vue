@@ -82,7 +82,7 @@ export default {
             let setRank = this.setRank;
             let setAdvise = this.setAdvise;
             let setIsLoading = this.setIsLoading;
-            let assistant_id = this.courseDataSet[this.course_id].assistant_id;
+            let assistant_id = this.courseDataSet[this.course_id].assistant_ids[0];
             // console.log("send" + this.assistant_id)
             console.log("content: " + content)
             if(content.length < 5) {
