@@ -82,7 +82,7 @@
     <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="#all-course">
+        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
@@ -92,7 +92,7 @@
     <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
         <img :src="img" alt="">
-        <button v-if="img == go2uMobile[6]" class="buy-now-btn" >
+        <button v-if="img == go2uMobile[7]" class="buy-now-btn" >
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
@@ -131,6 +131,7 @@ import go2u04 from 'static/go2u-desktop/04.jpg';
 import go2u05 from 'static/go2u-desktop/05.jpg';
 import go2u06 from 'static/go2u-desktop/06.jpg';
 import go2u07 from 'static/go2u-desktop/07.jpg';
+import go2u07b from 'static/go2u-desktop/07-5.jpg';
 import go2u08 from 'static/go2u-desktop/08.jpg';
 import go2u09 from 'static/go2u-desktop/09.jpg'; 
 import go2u10 from 'static/go2u-desktop/10.jpg';
@@ -142,6 +143,7 @@ import go2u24 from 'static/go2u-mobile/24.jpg';
 import go2u25 from 'static/go2u-mobile/25.jpg';
 import go2u26 from 'static/go2u-mobile/26.jpg';
 import go2u27 from 'static/go2u-mobile/27.jpg';
+import go2u27b from 'static/go2u-mobile/27-5.jpg';
 import go2u28 from 'static/go2u-mobile/28.jpg';
 import go2u29 from 'static/go2u-mobile/29.jpg';
 import go2u30 from 'static/go2u-mobile/30.jpg';
@@ -270,6 +272,7 @@ export default {
       go2u05,
       go2u06,
       go2u07,
+      go2u07b,
       go2u08,
       go2u09,
       go2u10,
@@ -281,6 +284,7 @@ export default {
       go2u25,
       go2u26,
       go2u27,
+      go2u27b,
       go2u28,
       go2u29,
       go2u30,

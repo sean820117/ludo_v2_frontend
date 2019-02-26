@@ -10,7 +10,7 @@
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
                     <img :src="Hourglass" class="course-status-svg-2" alt="">
-                    <div class="course-status-box-text">總長度60分鐘</div>
+                    <div class="course-status-box-text">總長60分鐘</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">

@@ -147,7 +147,7 @@ export default {
       // window.location.href = process.env.apiUrl + payment_url + "?customer=" + customer + "&phone=" + phone + "&price=" + selected_price 
     },
     doCopy: function () {
-      this.$copyText(this.share_url).then(function (e) {
+      this.$copyText('「安安，做備審做到懷疑人生了嗎？我發現這裏有個蠻棒的備審資料教學，你從我這個連結來買的話可以現折$50元喔！來看吧 ' + this.share_url+ '」').then(function (e) {
         alert('複製成功')
         console.log(e)
       }, function (e) {
@@ -246,7 +246,7 @@ export default {
   async mounted(){
       /* init params */
       if (!process.server) {
-        this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
+        
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
       }
@@ -265,6 +265,7 @@ export default {
         }
         await this.checkIsPayed();
         await this.getSharedTime();
+        this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
       }
   },
 };
@@ -313,7 +314,7 @@ h1 {
 }
 .purchase-content {
   width: 80%;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 .purchase label, .purchase input {
   width: 100%;
