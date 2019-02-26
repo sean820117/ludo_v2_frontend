@@ -107,7 +107,7 @@
       <div class="QA-question">03.課程可以看幾次？</div>
       <div class="QA-answer">讓備審飛的課程可以一直看一直看！<br>看到你的備審資料不想做為止！</div>
       <div class="QA-question">04.「備審建議機器人」一天可以用幾次？</div>
-      <div class="QA-answer">我們期待你能在每一次修改備審資料時都能夠認真的思考修改的內容。</div>
+      <div class="QA-answer">只要付費之後，你所購買的學群機器人將可以體驗無限多次！我們期待你能大量有效的真實練習！</div>
       <div class="QA-question">05.還有其他問題怎麼辦？</div>
       <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
     </div>
@@ -487,7 +487,7 @@ h2.title {
 }
 .QA-answer{
   font-size: 20px;
-  color: lightgrey;
+  color: grey;
   width: 65%;
   margin-top: 20px;
   margin-bottom: 40px;

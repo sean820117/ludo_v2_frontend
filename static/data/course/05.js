@@ -1,6 +1,7 @@
 export default {
     subject: "電機資訊",
     course_name: "電機資訊學群",
+    base_people:338,
     sub_course: [
         {
             id:1,
@@ -138,7 +139,7 @@ export default {
             title:"有效的自傳寫法(各科不同)",
             title2 : "第三步：撰寫人際、溝通、競賽、社團環節",
             link:"https://player.vimeo.com/video/319395344",
-            assistant_id:"04d9d550-ffad-11e8-a151-cfe41479ab3b",
+            assistant_id:"03d0ed70-01f5-11e9-a7e9-21bf6b6391c0",
             placeholder:"假設你今天是一個"+'電機資訊學群'+"的申請生，以下請寫上你完整的自傳內容。",
             comments: {
                 A : "你寫出了一個很棒的A級自傳，在內容條列以及關鍵字詞都相對的到位，接下來請注意：面試之前請務必認真看清楚你所寫的自傳，因為認真的教授也會從這裡問起你 。" ,

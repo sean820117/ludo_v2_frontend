@@ -5,7 +5,7 @@
             <div class="course-status-wrapper">
                 <div class="course-status-box">
                     <img :src="HiveFive" class="course-status-svg" alt="">
-                    <div class="course-status-box-text"> {{ payed_user_number }} 位同學</div>
+                    <div class="course-status-box-text"> {{ base_people + payed_user_number }} 位同學</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
@@ -64,6 +64,7 @@ export default {
     props: {
         course_id: String,
         is_payed:Boolean,
+        base_people:Number,
     },
 }
 </script>

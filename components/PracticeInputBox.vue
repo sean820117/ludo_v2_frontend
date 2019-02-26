@@ -21,10 +21,10 @@
             <div class="upload-result-label" v-if="rank"> 批改結果 </div>
             <div class="upload-result-label2" v-if="rank"> 你的等級 </div>
             <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>
-            <div class="upload-result-advise" v-if="rank">{{ advise }}</div>
+            <div class="upload-result-advise" v-if="rank" v-html="advise"></div>
             <div class="example-title" v-if="rank">進步範例</div>
             <div class="example" v-if="rank">
-                <div class="example-content">{{ getExample(rank) }}</div>
+                <div class="example-content" v-html="getExample(rank)"></div>
             </div>
         </div>
     </div>
@@ -75,13 +75,14 @@ export default {
     props: {
         course_id: String,
         currentSubCourse: Object,
+        is_payed:Boolean,
     },
     components: {
         PracticeRecordBox,
     },
     methods: {
         sendToEvaluation(content) {
-            if (localStorage.try_time >= 3) {
+            if (localStorage.try_time >= 3 && !this.is_payed) {
                 window.alert("免費體驗已達上限，如果想繼續練習請先購買課程呦")
                 return;
             }

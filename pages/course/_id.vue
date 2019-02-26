@@ -2,8 +2,8 @@
     <div>
         <course-header/>
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
-        <course-status :is_payed.sync="is_payed" :course_id="course_id"/>
-		<practice-input-box v-if="course_id" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
+        <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id"/>
+		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
 		<course-footer/>
         
     </div>
@@ -61,8 +61,10 @@ export default {
         if(login_status) {
             await this.checkIsPayed();
         } else {
-            is_payed = false;
+            this.is_payed = false;
         }
+        this.base_people = this.courseDataSet[this.course_id].base_people;
+        console.log(this.base_people);
       },
     components: {
 		CourseHeader,
@@ -76,6 +78,7 @@ export default {
         course_id:"",
         is_payed:false,
         currentSubCourse:Object,
+        base_people:0,
         courseDataSet: {
             "01": CourseData01,
             "02": CourseData02,
