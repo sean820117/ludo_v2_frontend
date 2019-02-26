@@ -7,7 +7,7 @@
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" text="$499 一次一堂剛剛好" />
+          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 一次一堂剛剛好'" />
           <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
           <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部買起來挑科系" />
         </section>
@@ -249,6 +249,10 @@ export default {
         
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
+        console.log(localStorage.activity_id);
+        if(localStorage.activity_id == 1) {
+          this.prices[0].price = 449
+        }
       }
   },
   async created(){
