@@ -483,6 +483,7 @@ h2.title {
   border-bottom: lightgrey 2px solid;
   width: 70%;
   color: grey;
+  word-wrap: break-word;
 }
 .QA-answer{
   font-size: 20px;
@@ -490,5 +491,6 @@ h2.title {
   width: 65%;
   margin-top: 20px;
   margin-bottom: 40px;
+  word-wrap: break-word;
 }
 </style>
