@@ -21,6 +21,7 @@
                     :key="item.id"
                     @click="changeCurrentSubCourse(item)">
                     <course-video-list-item :title="item.title" :title2="item.title2" :background="currentSubCourse.id == item.id ? '#a2a2a2':''"/>
+                    <div v-if="item.id == 2 || item.id == 8" class="free-course">試看</div>
                 </div>
             </div>
         </div>
@@ -31,6 +32,7 @@
                     :key="item.title"
                     @click="changeCurrentSubCourse(item);hideLightBox()">
                     <course-video-list-item :title="item.title" :title2="item.title2"/>
+                    <div v-if="item.id == 2 || item.id == 8" class="free-course">試看</div>
                 </div>
             </div>
             <div class="course-video-list-m-back">
@@ -84,7 +86,7 @@ export default {
     },
     methods: {
         changeCurrentSubCourse(item) {
-            if (this.is_payed) {
+            if (this.is_payed || item.id == 2 || item.id == 8) {
                 this.currentSubCourse = item;
                 this.$emit('update:currentSubCourse', this.currentSubCourse);
             } else {
@@ -191,6 +193,17 @@ export default {
     .course-video-list-m {
         display: none;
     }
+}
+.free-course {
+    position: absolute;
+    display: inline;
+    z-index: 0;
+    background: #ffc107;
+    border-radius: 50px;
+    padding: 3px 9px 3px 9px;
+    right: 7px;
+    bottom: 25px;
+    font-size: 10px;
 }
 @media (max-width:899px) {
     /*看課區段*/
