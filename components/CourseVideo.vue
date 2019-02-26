@@ -20,7 +20,7 @@
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.id"
                     @click="changeCurrentSubCourse(item)">
-                    <course-video-list-item :title="item.title" :title2="item.title2" />
+                    <course-video-list-item :title="item.title" :title2="item.title2" :background="currentSubCourse.id == item.id ? '#a2a2a2':''"/>
                 </div>
             </div>
         </div>
@@ -175,6 +175,7 @@ export default {
         height: 480px;
         background-color: rgb(255,255,255,0.5);
         display: flex;
+        margin-bottom: 30px;
     }
     .course-video-area .course-video-iframe {
         width: 480px;
@@ -185,7 +186,7 @@ export default {
         flex-direction: column; */
         overflow-y: scroll;
         width:300px;
-        
+        height: 480px;
     }
     .course-video-list-m {
         display: none;

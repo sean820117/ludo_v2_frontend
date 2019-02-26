@@ -123,6 +123,8 @@ import CourseFooter from "~/components/CourseFooter.vue";
 import CourseHeader from "~/components/CourseHeader.vue";
 import Vue from 'vue'
 import VueMq from 'vue-mq'
+import axios from '~/config/axios-config';
+import { mapMutations, mapGetters } from 'vuex';
 
 import go2uBuy from 'static/go2u-desktop/buy.png';
 /* desktop img */
@@ -180,77 +182,77 @@ export default {
     courses: {
       type: Array,
       default: () => ([{
-        id: 1,
+        id: "01",
         name: '醫學學群',
         description: '適用科系：醫學系',
         imageUrl: go2uCourse01,
         tag: 'try-now',
         link: "/course/01",
       }, {
-        id: 2,
+        id: "02",
         name: '社會科學學群',
         description: '適用科系：心理系、社會系、經濟系',
         imageUrl: go2uCourse02,
         tag: 'try-now',
         link: "/course/02",
       }, {
-        id: 3,
+        id: "03",
         name: '法政學群',
         description: '適用科系：法律系、政治系',
         imageUrl: go2uCourse03,
         tag: 'try-now',
         link: "/course/03",
       }, {
-        id: 4,
+        id: "04",
         name: '生命科學學群',
         description: '適用科系：生科系、生技系',
         imageUrl: go2uCourse04,
         tag: 'try-now',
         link: "/course/04",
       }, {
-        id: 5,
+        id: "05",
         name: '電機資訊學群',
         description: '適用科系：資工系、電機系',
         imageUrl: go2uCourse05,
         tag: 'try-now',
         link: "/course/05",
       }, {
-        id: 6,
+        id: "06",
         name: '建築與設計學群',
         description: '適用科系：建築系、設計系',
         imageUrl: go2uCourse06,
         tag: 'try-now',
         link: "/course/06",
       }, {
-        id: 7,
+        id: "07",
         name: '數理化學學群',
         description: '適用科系：數學、化學、物理、地質、地科',
         imageUrl: go2uCourse07,
         tag: 'try-now',
         link: "/course/07",
       }, {
-        id: 8,
+        id: "08",
         name: '工程學群',
         description: '適用科系：材料系、化工系、土木系、機械系',
         imageUrl: go2uCourse08,
         tag: 'try-now',
         link: "/course/08",
       }, {
-        id: 9,
+        id: "09",
         name: '教育學群',
         description: '適用科系：教育系',
         imageUrl: go2uCourse09,
         tag: 'try-now',
         link: "/course/09",
       }, {
-        id: 10,
+        id: "10",
         name: '文史哲學群',
         description: '適用科系：哲學系、外文系、歷史系',
         imageUrl: go2uCourse10,
         tag: 'try-now',
         link: "/course/10",
       }, {
-        id: 11,
+        id: "11",
         name: '管理學群',
         description: '適用科系：企管系、財經系、會計系',
         imageUrl: go2uCourse11,
@@ -293,8 +295,23 @@ export default {
     go2u21, // mobile banner
     go2uBuy,
   }),
-  mounted() {
-    console.log(this.$mq);
+  computed: mapGetters({
+      user : 'user/getData',
+  }),
+  async mounted() {
+    let isLogin = await this.$checkLogin(this.$store)
+    if (this.user.user_id) {
+      let res = await axios.post('/apis/get-payed-courses',{user_id:this.user.user_id});
+      
+      res.data.Items.forEach((item) => {
+        this.courses.forEach((course) => {
+          if(item.product_id == course.id) {
+            console.log(item.product_id + " matched");
+            course.tag = "start-course"
+          }
+        })
+      });
+    }
   },
 };
 </script>

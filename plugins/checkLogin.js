@@ -5,7 +5,6 @@ import Vue from 'vue'
 async function checkLogin (store) {
     console.log("checkLogin");
     if (!process.server) {
-        console.log("middleware from client side");
         if (!store.state.user.data.user_id.trim()) {
             try {
                 const { data } = await axios.get('/apis/user')
@@ -23,6 +22,9 @@ async function checkLogin (store) {
                 // window.location.href = process.env.baseUrl + "/login";
                 return { data: new Object() }
             }       
+        } else {
+            console.log("has user store");
+            return true;
         }
     }   
 }

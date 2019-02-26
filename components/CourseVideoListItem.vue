@@ -1,5 +1,5 @@
 <template>
-    <div class="video-list-item">
+    <div class="video-list-item" :style="{background: background}">
         <div class="title">{{ title }}</div>
         <div class="title2">{{ title2 }}</div>
     </div>
@@ -11,6 +11,7 @@ export default {
         course_id: String,
         title:String,
         title2:String,
+        background:String,
     },
 }
 </script>

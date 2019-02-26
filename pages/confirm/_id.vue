@@ -3,7 +3,7 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>《讓備審飛》線上課程付款頁面</h1>
+        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}</h1>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
@@ -13,7 +13,7 @@
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
@@ -71,7 +71,7 @@ export default {
       coupon:'',
       course_id:"",
       payment_url:"",
-      payment_type:'',
+      payment_type:{label:'信用卡',value:'credit-card'},
       product_name:"",
       shared_time:0,
       share_url:"",
@@ -158,14 +158,16 @@ export default {
     async checkCoupon() {
       const coupon = this.coupon;
       let response = await axios.post('/apis/use-coupon',{coupon_id:coupon,activity_id:"1"})
+      this.handlePriceSelecet(0);
+
       if (response.data.status == '200') {
           console.log(response.data.result);
           if(response.data.result == "1") {
             console.log("coupon check success")
-            let res2 = await axios.post('/apis/coupon-pay',{coupon_id:coupon,product_id:this.course_id,cash_flow:"coupon",user_id:this.user.user_id,price:0})
+            let res2 = await axios.post('/apis/coupon-pay',{coupon_id:coupon,product_id:this.course_id,cash_flow:"coupon",user_id:this.user.user_id,price:0,customer:this.customer,phone:this.phone,email:this.email})
             if (res2.status == 200) {
               console.log("coupon pay success")
-              window.alert("兌換成功！");
+              window.alert("兌換" + this.product_name + "成功！");
               // this.$route.go(-1);
               window.location.href = process.env.baseUrl +  "/go2university";
             } else {
@@ -200,8 +202,11 @@ export default {
 
         selected_price_item.active = true;
         this.selected_price = selected_price_item.price;
+        
         if(this.selected_price == 4999) {
           this.course_id = "12";
+        } else {
+          this.course_id = this.$route.params.id;
         }
     },
     showDialog() {
@@ -253,6 +258,8 @@ export default {
         if(localStorage.activity_id == 1) {
           this.prices[0].price = 449
         }
+        this.product_name = this.courseDataSet[this.course_id].course_name;
+        console.log(this.product_name);
       }
   },
   async created(){
@@ -265,7 +272,7 @@ export default {
           window.alert('網址錯誤');
           this.$router.go(-1);
         } else {
-          this.product_name = this.courseDataSet[this.course_id].product_name;
+
         }
         await this.checkIsPayed();
         await this.getSharedTime();
@@ -354,7 +361,7 @@ h1 {
 }
 @media (min-width: 899px) {
   h1 {
-    font-size: 60px;
+    font-size: 30px;
   }
   .forwarding {
     position: inherit;

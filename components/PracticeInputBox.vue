@@ -12,10 +12,10 @@
                 
                 
                 
-                <div class="upload-send" @click="sendToEvaluation(content)" >送出</div>
+                <button class="upload-send" :disabled="!content || isLoading" @click="sendToEvaluation(content)" >送出</button>
                 <!-- <practice-record-box :rank="rank" /> -->
             </div>
-            <div class="upload-send-sm" @click="sendToEvaluation(content)" >送出</div>
+            <button class="upload-send-sm" :disabled="!content || isLoading" @click="sendToEvaluation(content)" >送出</button>
         </div>
         <div v-if="rank" class="upload-result">
             <div class="upload-result-label" v-if="rank"> 批改結果 </div>
@@ -136,9 +136,22 @@ export default {
             this.advise = this.currentSubCourse.comments[rank];
         },
         getExample(rank) {
+            let next_rank = '';
+            if(rank=="A") {
+                next_rank = "A"
+            } else if (rank == "B") {
+                next_rank = "A"
+            } else if (rank == "C") {
+                next_rank = "B"
+            } else if (rank == "D") {
+                next_rank = "C"
+            } else if (rank == "E") {
+                next_rank = "C"
+            }
+
             const courseData = this.courseDataSet[this.course_id];
             if (courseData) {
-                let example_list = this.currentSubCourse[rank];
+                let example_list = this.currentSubCourse[next_rank];
                 if (example_list && example_list.length >= 1 ) {
                     let rand = Math.floor((Math.random() * example_list.length));
                     console.log(rand);
@@ -167,6 +180,7 @@ export default {
     align-items: center;
 
     padding-top: 50px;
+    padding-bottom: 50px;
 }
 .course-practice-area{
 	display: flex;
@@ -190,9 +204,9 @@ export default {
     margin-bottom: 25px;
     min-height: 200px;
     background: transparent;
-    width: 90%;
+    width: 72vw;
     resize: none;
-    border: none;
+    border: lightgrey 1px solid;
 }
 .start-type:focus {
     outline: none !important;
@@ -391,7 +405,8 @@ export default {
 	width: 130px;
 	height: 50px;
 	font-size: 18px;
-	line-height: 50px;
+    line-height: 50px;
+    border: none;
 	color: white;
 	background-color: orange;
 	/*border: 2px solid grey;*/
@@ -468,6 +483,9 @@ export default {
     animation: titlein 1s 1.8s both;
 }
 @media (max-width: 899px){
+    .course-practice {
+        padding-top: 0px;
+    }
 	.upload-send-sm{
         cursor: pointer;
         float: right;
@@ -486,6 +504,7 @@ export default {
         line-height: 50px;
         color: white;
         background-color: orange;
+        border: none;
         /*border: 2px solid grey;*/
         border-radius: 10px;
 
