@@ -2,7 +2,7 @@
     <!-- 看課區段 -->
     <div class="course-video">
         <div class="course-video-contaniner">
-            <div class="box1">讓備審飛 > {{ course_name }}</div>
+            <div class="box1"> <a class="box1_link" href="/go2university"> 讓備審飛 </a>> {{ course_name }}</div>
             <div class="box2">
                 {{ currentSubCourse.title }}
                 <br>
@@ -147,6 +147,11 @@ export default {
         padding-left: 120px;
 
         color: white;
+    }
+    .box1_link {
+        color: white;
+        line-height: 1.2em;
+        /* text-decoration: underline; */
     }
     .box2{
         /*background-color: white;*/

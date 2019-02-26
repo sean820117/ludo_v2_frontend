@@ -17,7 +17,7 @@
             </div>
             <div class="upload-send-sm" @click="sendToEvaluation(content)" >送出</div>
         </div>
-        <div class="upload-result">
+        <div v-if="rank" class="upload-result">
             <div class="upload-result-label" v-if="rank"> 批改結果 </div>
             <div class="upload-result-label2" v-if="rank"> 你的等級 </div>
             <div class="upload-result-rank">{{ rank }} <img class="upload-loading" v-if="isLoading == true" :src="loadingGIF" alt="loading" ></div>

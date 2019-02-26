@@ -4,8 +4,8 @@
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id"/>
 		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
-		<course-footer/>
-        
+		<div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
+        <course-footer/>
     </div>
 </template>
 
@@ -16,6 +16,9 @@ import CourseStatus from '~/components/CourseStatus.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
+
+import medicalAd from 'static/go2u-desktop/medical-ad.jpg'
+
 import CourseData01 from 'static/data/course/01.js'
 import CourseData02 from 'static/data/course/02.js'
 import CourseData03 from 'static/data/course/03.js'
@@ -79,6 +82,7 @@ export default {
         is_payed:false,
         currentSubCourse:Object,
         base_people:0,
+        medicalAd,
         courseDataSet: {
             "01": CourseData01,
             "02": CourseData02,
@@ -126,5 +130,15 @@ html, body{
 	margin: 0;
     height: 100%;
     font-family: arial, "Microsoft JhengHei", "微軟正黑體";
+}
+.medical-ad {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.medical-ad img {
+    width: 50vw;
+    height: 14vw;
 }
 </style>
