@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "生命科學",
     course_name: "生命科學學群",
     base_people:114,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-V5B1GsX9A",
+                B:"module-vqeAAN3dc9",
+                C:"module-jpeRGJmxWo",
+                D:"module-m0CFTibfAQ",
+                E:"module-evSAhChtyk",
             },
             A:[
                 "我是OOO，因為家裡有在經營水產企業，旗下有3個品牌，我期望可以更加瞭解動物科學後，為家族企業帶來更大的成長。",
@@ -54,9 +54,9 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-_tyPJfrSw",
+                B:"module-B68WTho9H",
+                C:"module-PZTJgQ4-_b",
                 D:"",
                 E:"",
             },

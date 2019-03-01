@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "管理",
     course_name: "管理學群",
     base_people:354,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-Upb8uz1tc",
+                B:"module-7dLaxTrk-",
+                C:"module-3Aylf9jOyD",
+                D:"module-Bkioz-lQ_",
+                E:"module-8xDz188_uE",
             },
             A:[
                 "我是OOO，小時候父母帶我到鐵路博物館參觀，看著覆蓋全台灣的鐵道，讓我對鐵路運輸感到很有興趣。高中時參加過2次軌道經營與創意競賽，在準備的過程中，讓我對運輸管理更加喜愛。希望進入運輸管理學系後能夠學到更專業的知識，並運用在未來職場上。",
@@ -68,9 +68,9 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-3VkeicbRX",
+                B:"module-dhxMW3Hecb",
+                C:"module-M6J1c1RaOT",
                 D:"",
                 E:"",
             },

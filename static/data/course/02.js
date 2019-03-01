@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "社會科學",
     course_name: "社會科學學群",
     base_people:156,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-pQVD0e-YJ",
+                B:"module-7LkJpJy60",
+                C:"module-YQB2odKnj",
+                D:"module-24YZJygCy",
+                E:"module-DjHb7Eg9G",
             },
             A:[
                 "我是OOO，國高中時參與了五次學校及教會帶小朋友的營隊，這樣的經驗讓我了解自己非常喜歡小朋友，高中時更參加了長庚科技大學幼兒營，讓我更加確定自己對幼兒保育的熱情。希望進入幼兒保育學系後可以學習更多知識，能運用在未來職場上。",
@@ -62,9 +62,9 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-h9JXzMFr6",
+                B:"module-vKeSpf84A",
+                C:"module-dgsnK-YvM",
                 D:"",
                 E:"",
             },

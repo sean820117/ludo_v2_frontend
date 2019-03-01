@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "教育",
     course_name: "教育學群",
     base_people:109,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-1lMjqNIYH",
+                B:"module-da2BAOQOXA",
+                C:"module-jm-7d-VHnH",
+                D:"module-Eym7-UO-i6",
+                E:"module-hA-7WiGCE3w",
             },
             A:[
                 "我是OOO，我的爸爸是外國人，為了能夠與外公外婆溝通，他很努力的在學習中文，這讓我對華語文教學開始有了興趣。在高中參加銘傳大學華語文教育營後，讓我對華語文教育更加感興趣，希望能夠進入華語文教育學系學習更多知識，並在未來職場上學以致用。",
@@ -55,9 +55,9 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-_HfvgrAVV",
+                B:"module-c5QKssZMFl",
+                C:"module-naWRVe7yUg",
                 D:"",
                 E:"",
             },

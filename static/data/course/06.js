@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "建築與設計",
     course_name: "建築與設計學群",
     base_people:234,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-gT0mD_GTy",
+                B:"module-e7q1x7xR5D",
+                C:"module-zNthF5I_u",
+                D:"module-xHHkw4rj0h",
+                E:"module-1WhAIuuN2s",
             },
             A:[
                 "我是OOO，國中時我們家屬於較新型的社區，因此興建很多大樓，當時我開始對建築很有興趣，開始會找建築相關書籍來研讀。高中時參加過兩場建築設計創意比賽，平時我也喜歡自己畫一些建築設計草圖。希望進入建築學系後可以學到更專業的知識，並運用在未來職場上。",
@@ -55,9 +55,9 @@ export default {
                 E : "你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-yetsNjbsv",
+                B:"module-rePwZYwxbA",
+                C:"module-AlUAZtPjPO",
                 D:"",
                 E:"",
             },

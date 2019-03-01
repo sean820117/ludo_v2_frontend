@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     subject: "數理化學",
     course_name: "數理化學學群",
     base_people:103,
@@ -18,11 +18,11 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多介紹一些自己，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
-                D:"",
-                E:"",
+                A:"module-pPFA33cDx",
+                B:"module-gZg1aX2F4Z",
+                C:"module-20ouPvTA_I",
+                D:"module-4OtCMVfDLW",
+                E:"module-fqyFz3HAdoI",
             },
             A:[
                 "我是OOO，國中物理課時，對物理課本中的實驗深深著迷，甚至會拜託父母讓我做一些實驗，漸漸地對物理有更多的熱情。高中時，參加過一場自然科學科實驗競賽以及一場物理探究實作競賽。希望進入物理學系後可以學習更多專業知識，並運用在未來職場或學術上。",
@@ -57,9 +57,9 @@ export default {
                 E : "你跨出了第一步XD 你寫了些東西，但明顯地寫的不是備審的內容所以拿到了E等級評分。認真寫，多擠些文字，嘗試多描述一些自己的經歷，讓人能對你印象深刻一點。這樣就可以拿下D或更高的等級喔！" ,
             },
             bonnie_mids:{
-                A:"",
-                B:"",
-                C:"",
+                A:"module-n2HJgUJ-a",
+                B:"module-BI-KsYllCp",
+                C:"module-hh-fN08o2r",
                 D:"",
                 E:"",
             },
