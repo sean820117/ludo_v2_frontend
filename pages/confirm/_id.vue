@@ -13,7 +13,7 @@
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
