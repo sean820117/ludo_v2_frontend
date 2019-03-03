@@ -43,6 +43,7 @@ import vSelect from 'vue-select';
 import Vue from 'vue'
 import VModal from 'vue-js-modal'
 import VueClipboard from 'vue-clipboard2'
+import { EMAIL_REGEX } from '~/components/regex.js'
 
 Vue.use(VueClipboard)
 Vue.use(VModal, { dialog: true })
@@ -60,7 +61,6 @@ import CourseData09 from 'static/data/course/09.js'
 import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
-const EMAIL_REGEX = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export default {
   data() {
     return {
@@ -176,6 +176,7 @@ export default {
           }
       } else {
           console.log(response)
+          window.alert("兌換失敗！ 請檢察登入狀態或聯絡我們");
       }
     },
     async checkIsPayed() {  
