@@ -8,7 +8,7 @@
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
           <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 購買' + product_name + '全課堂'" />
-          <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
+          <!-- <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" /> -->
           <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部科系一次買起來" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
@@ -169,7 +169,7 @@ export default {
               console.log("coupon pay success")
               window.alert("兌換" + this.product_name + "成功！");
               // this.$route.go(-1);
-              window.location.href = process.env.baseUrl +  "/go2university";
+              this.$router.push('/go2university');
             } else {
               window.alert("此組序號已經使用過囉～");
             }
@@ -189,7 +189,7 @@ export default {
           console.log("check-is-payed success")
           if(response.data.result == 1 || response2.data.result == 1) {
             window.alert("您已購買過此課程囉～");
-            window.location.href = process.env.baseUrl + "/go2university"
+            this.$router.push('/go2university');
           }
       } else {
           console.log(response)
@@ -256,9 +256,9 @@ export default {
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
         console.log(localStorage.activity_id);
-        if(localStorage.activity_id == 1) {
-          this.prices[0].price = 449
-        }
+        // if(localStorage.activity_id == 1) {
+        //   this.prices[0].price = 449
+        // }
         this.product_name = this.courseDataSet[this.course_id].course_name;
         console.log(this.product_name);
       }

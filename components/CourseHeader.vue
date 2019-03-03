@@ -2,10 +2,10 @@
     <!-- header -->
     <div class="header">
         <div class="header-wrapper">
-			<a href="/go2university">
+			<router-link to="/go2university">
 				<!-- logo -->
 				<img class="header-logo" :src="HeaderLogo" alt="ludo-header-logo">
-			</a>
+			</router-link>
 			<div class="troggle" >
 				<div class="line"></div>
 				<div class="line"></div>
@@ -22,8 +22,8 @@
 		</div>
                 
             <!-- login -->
-            <a v-if="!user.user_id" href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
-			<a v-else href="/logout" class="login-btn">登出</a>
+            <router-link v-if="!user.user_id" to="/login" class="login-btn">註冊/登入</router-link>
+			<router-link v-else to="/logout" class="login-btn">登出</router-link>
     </div>
 </template>
 

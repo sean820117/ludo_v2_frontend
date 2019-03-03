@@ -74,10 +74,10 @@ export default {
         },
         ]
     }),
-    mounted: function () {
+    created: function () {
       if (!process.server) {
         console.log(process.env.baseUrl + "/go2university");
-        window.location.href = process.env.baseUrl + "/go2university"
+        this.$router.push("/go2university");
       }
     },
 }

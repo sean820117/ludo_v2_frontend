@@ -16,7 +16,7 @@ async function forceLogin (store) {
                 } else {
                     console.log("status : " + data.status)
                     window.alert("請先登入再進行操作");
-                    window.location.href = "https://beta.ludonow.com/login?redirect=www";
+                    this.$router.push("/login");
                 }
             } catch(e) {
                 console.log("call api error : \n" + e);
@@ -24,6 +24,8 @@ async function forceLogin (store) {
                 // window.location.href = process.env.baseUrl + "/login";
                 return { data: new Object() }
             }       
+        } else {
+            console.log("has store");
         }
     }   
 }

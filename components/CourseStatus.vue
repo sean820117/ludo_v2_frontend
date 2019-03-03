@@ -20,7 +20,7 @@
                 <div v-if="!is_payed" class="course-status-devider-sm"></div>
                 <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
                 <div v-if="!is_payed" class="course-status-price">499元</div>
-                <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
+                <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</router-link>
                 <!-- </div> -->
             </div>
         </div>
@@ -30,7 +30,7 @@
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
+        <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</router-link>
         <!-- 手機購買結束 -->
     </div>
 </template>

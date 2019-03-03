@@ -5,7 +5,8 @@ import Vue from 'vue'
 async function checkLogin (store) {
     console.log("checkLogin");
     if (!process.server) {
-        if (!store.state.user.data.user_id.trim()) {
+        // console.log(store.getters['user/getData']);
+        if (!store.state.user.data.user_id) {
             try {
                 const { data } = await axios.get('/apis/user')
                 if (data.status == 200) {

@@ -3,9 +3,9 @@
     :class="'flat-button btn-' + size"
     :style="{background: bgColor, borderColor: borderColor, color:color}"
   >
-    <a :href="link">
+    <router-link :to="link">
       <div class="text">{{text}}</div>
-    </a>
+    </router-link>
   </button>
 </template>
 

@@ -15,7 +15,7 @@ export default {
                         if (response.status == '200') {
                             console.log("add-shared-time success")
                             localStorage.activity_id = 1
-                            window.location.href = "https://www.ludonow.com/go2university"
+                            this.$router.push("https://www.ludonow.com/go2university");
                             console.log(response.result);
                         } else {
                             console.log(response)
@@ -26,7 +26,7 @@ export default {
                     })
         } else {
             window.alert("您已參加過此活動囉！")
-            window.location.href = "https://www.ludonow.com/go2university"
+            this.$router.push("https://www.ludonow.com/go2university");
         }
     },
     methods: {
