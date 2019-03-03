@@ -276,7 +276,7 @@ export default {
 
         }
         await this.checkIsPayed();
-        await this.getSharedTime();
+        // await this.getSharedTime();
         this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
       }
   },
