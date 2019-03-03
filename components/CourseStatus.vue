@@ -5,32 +5,32 @@
             <div class="course-status-wrapper">
                 <div class="course-status-box">
                     <img :src="HiveFive" class="course-status-svg" alt="">
-                    <div class="course-status-box-text">1200位同學</div>
+                    <div class="course-status-box-text"> {{ base_people + payed_user_number }} 位同學</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
                     <img :src="Hourglass" class="course-status-svg-2" alt="">
-                    <div class="course-status-box-text">總長度60分鐘</div>
+                    <div class="course-status-box-text">總長60分鐘</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
                     <img :src="InfiniteSymbol" class="course-status-svg" alt="">
                     <div class="course-status-box-text">5個練習服務</div>
                 </div>
-                <div class="course-status-devider-sm"></div>
-                <div class="course-status-pricetag">課程售價</div>
-                <div class="course-status-price">499元</div>
-                <a href="confirm.html" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
+                <div v-if="!is_payed" class="course-status-devider-sm"></div>
+                <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
+                <div v-if="!is_payed" class="course-status-price">499元</div>
+                <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</a>
                 <!-- </div> -->
             </div>
         </div>
         <!-- 看課下方欄課程簡介結束 -->
         <!-- 購課資訊 -->
-        <div class="buy-info-section-sm">課程售價 499元</div>
+        <div v-if="!is_payed" class="buy-info-section-sm">課程售價 499元</div>
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <a href="confirm.html" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
+        <a v-if="!is_payed" :href=" baseUrl + '/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</a>
         <!-- 手機購買結束 -->
     </div>
 </template>
@@ -39,13 +39,33 @@
 import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
+import axios from '~/config/axios-config';
 
 export default {
     data:() => ({
         HiveFive: HiveFive,
         Hourglass:Hourglass,
         InfiniteSymbol:InfiniteSymbol,
+        baseUrl:'',
+        payed_user_number:0,
     }),
+    async mounted() {
+        this.baseUrl = process.env.baseUrl;
+        this.course_id = this.$route.params.id;
+        let res = await axios.get('/apis/get-payed-user-number?course_id='+ this.course_id);
+        let res2 = await axios.get('/apis/get-payed-user-number?course_id=12');
+        console.log(res);
+        console.log(res2);
+        if (res.data.status == 200 && res.data.status == 200) {
+            this.payed_user_number = res.data.result + res2.data.result ;
+        }
+
+    },
+    props: {
+        course_id: String,
+        is_payed:Boolean,
+        base_people:Number,
+    },
 }
 </script>
 
@@ -55,6 +75,7 @@ export default {
     .course-status{
         position: relative;
         width: 100vw;
+        background: white;
         /*height: 200px;*/
         /*background-color: #F0F0F0;*/
 
@@ -334,9 +355,11 @@ export default {
     /*手機購買*/
     .buy-btn-section-sm{
         position: relative;
-        width: 100vw;
+        width: 80vw;
+        margin-left: 10vw;
         height: 50px;
         background-color: #E0185D;
+        border-radius: 20px;
 
         display: inline-block;
         text-decoration: none;

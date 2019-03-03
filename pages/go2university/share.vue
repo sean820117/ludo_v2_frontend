@@ -8,15 +8,15 @@ import { getData, setData } from 'nuxt-storage/local-storage';
 
 export default {
     mounted() {
-        // console.log("data : " + localStorage.activity_id);
-        if (localStorage.activity_id == 1) {
+        console.log("data : " + localStorage.activity_id);
+        if (localStorage.activity_id != 1) {
             axios.post('/apis/add-shared-time',{activity_id:"1",user_id:this.$route.query.id})
                     .then((response) => {
                         if (response.status == '200') {
                             console.log("add-shared-time success")
                             localStorage.activity_id = 1
-                            // window.location.href = "https://www.ludonow.com/course"
-                            // console.log(response.result);
+                            window.location.href = "https://www.ludonow.com/go2university"
+                            console.log(response.result);
                         } else {
                             console.log(response)
                         }
@@ -24,6 +24,9 @@ export default {
                     .catch((error) => {
                         console.log(error)
                     })
+        } else {
+            window.alert("您已參加過此活動囉！")
+            window.location.href = "https://www.ludonow.com/go2university"
         }
     },
     methods: {

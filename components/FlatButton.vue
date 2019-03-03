@@ -45,8 +45,16 @@ export default {
   text-decoration: none;
   color: inherit;
 }
+
+.flat-button a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 .flat-button:focus {
   outline: 0;
+  text-decoration: none;
+  color: inherit;
 }
 .flat-button:hover {
   text-decoration: underline;
@@ -74,7 +82,7 @@ export default {
   height: 35px;
   border: 2px solid white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 30px;
   font-weight: bold;
 }

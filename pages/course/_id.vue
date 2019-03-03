@@ -1,11 +1,11 @@
 <template>
     <div>
         <course-header/>
-        <course-video v-if="course_id" :course_id="course_id"/>
-        <course-status/>
-		<practice-input-box v-if="course_id" :course_id="course_id" />
-		<course-footer/>
-        
+        <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
+        <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id"/>
+		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
+		<div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
+        <course-footer/>
     </div>
 </template>
 
@@ -16,6 +16,9 @@ import CourseStatus from '~/components/CourseStatus.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
+
+import medicalAd from 'static/go2u-desktop/medical-ad.jpg'
+
 import CourseData01 from 'static/data/course/01.js'
 import CourseData02 from 'static/data/course/02.js'
 import CourseData03 from 'static/data/course/03.js'
@@ -28,6 +31,9 @@ import CourseData09 from 'static/data/course/09.js'
 import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
+import axios from '~/config/axios-config';
+import { mapMutations, mapGetters } from 'vuex';
+import Vuex from 'vuex';
 
 export default {
     head () {
@@ -36,14 +42,33 @@ export default {
                 { rel: 'stylesheet', href: '/bootstrap.css' }
             ]
         } 
-	},
-	mounted(){
+    },
+    computed: mapGetters({
+        user : 'user/getData',
+    }),
+	async mounted(){
+    },
+    async created(){
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
-        // this.$checkLogin(store);
+        let login_status = await this.$checkLogin(store);
         
-  	},
+        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[1];
+        if (!this.courseDataSet[this.course_id]) {
+          window.alert('網址錯誤');
+          this.$router.go(-1);
+        } else {
+          this.product_name = this.courseDataSet[this.course_id].product_name;
+        }  
+        if(login_status) {
+            await this.checkIsPayed();
+        } else {
+            this.is_payed = false;
+        }
+        this.base_people = this.courseDataSet[this.course_id].base_people;
+        console.log(this.base_people);
+      },
     components: {
 		CourseHeader,
 		CourseVideo,
@@ -54,6 +79,10 @@ export default {
     },
     data:() => ({
         course_id:"",
+        is_payed:false,
+        currentSubCourse:Object,
+        base_people:0,
+        medicalAd,
         courseDataSet: {
             "01": CourseData01,
             "02": CourseData02,
@@ -68,6 +97,27 @@ export default {
             "11": CourseData11,
         },
     }),
+    methods: {
+        async checkIsPayed() {  
+            const user_id = this.user.user_id;
+            const product_id = this.course_id;
+            if(user_id) {
+                let response = await axios.post('/apis/check-is-payed',{product_id:product_id,user_id:user_id})
+                let response2 = await axios.post('/apis/check-is-payed',{product_id:"12",user_id:user_id})
+                if (response.data.status == '200' && response2.data.status == '200') {
+                    console.log("check-is-payed success")
+                    if(response.data.result == 1 || response2.data.result == 1) {
+                        this.is_payed = true;
+                    } else {
+                        this.is_payed = false;
+                    }
+                } else {
+                    console.log(response)
+                    this.is_payed = false;
+                }
+            }
+        },
+    }
 }
 </script>
 
@@ -80,5 +130,15 @@ html, body{
 	margin: 0;
     height: 100%;
     font-family: arial, "Microsoft JhengHei", "微軟正黑體";
+}
+.medical-ad {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.medical-ad img {
+    width: 50vw;
+    height: 14vw;
 }
 </style>

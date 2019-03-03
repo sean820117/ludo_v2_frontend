@@ -2,33 +2,37 @@
     <!-- 看課區段 -->
     <div class="course-video">
         <div class="course-video-contaniner">
-            <div class="box1">讓備審飛 > 醫學學群</div>
+            <div class="box1"> <a class="box1_link" href="/go2university"> 讓備審飛 </a>> {{ course_name }}</div>
             <div class="box2">
-                有效的簡歷撰寫
+                {{ currentSubCourse.title }}
                 <br>
-                <div class="box2-second-title">醫學科系申請生該如何寫經歷，才有說服力</div>
+                <div class="box2-second-title"> {{ currentSubCourse.title2 }} </div>
             </div>
             
             <div class="box1 box1-small"></div>
         </div>
+        
         <div class="course-video-area">
-            <video v-if="currentVideo" :src="currentVideo" controls></video>
-            <div class="course-video-list" v-if="course_id">
+            <!-- <video v-if="currentVideo" :src="currentVideo" controls></video> -->
+            <iframe class="course-video-iframe" :src="currentSubCourse.link" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="course-video-list" v-if="course_id" :class="is_payed ? '':'no-drop'">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
-                    :key="item.title"
-                    @click="changeCurrentVideo(item.link)">
-                    <course-video-list-item :title="item.title"/>
+                    :key="item.id"
+                    @click="changeCurrentSubCourse(item)">
+                    <course-video-list-item :title="item.title" :title2="item.title2" :background="currentSubCourse.id == item.id ? '#a2a2a2':''"/>
+                    <div v-if="item.id == 2 || item.id == 8" class="free-course">試看</div>
                 </div>
             </div>
         </div>
-        <div class="course-video-list-light-box" v-if="lightBoxShowed">
+        <div class="course-video-list-light-box" v-if="lightBoxShowed" :class="is_payed ? '':'no-drop'">
             <div class="course-video-list-m" v-if="course_id">
                 <div 
                     v-for="item in courseDataSet[course_id].sub_course" 
                     :key="item.title"
-                    @click="changeCurrentVideo(item.link);hideLightBox()">
-                    <course-video-list-item :title="item.title"/>
+                    @click="changeCurrentSubCourse(item);hideLightBox()">
+                    <course-video-list-item :title="item.title" :title2="item.title2"/>
+                    <div v-if="item.id == 2 || item.id == 8" class="free-course">試看</div>
                 </div>
             </div>
             <div class="course-video-list-m-back">
@@ -69,20 +73,25 @@ export default {
             "10": CourseData10,
             "11": CourseData11,
         },
-        currentVideo: "",
         lightBoxShowed:false,
+        course_name:"",
     }),
     components: {
 		CourseVideoListItem,
     },
     props: {
         course_id: String,
+        is_payed:Boolean,
+        currentSubCourse:Object,
     },
     methods: {
-        changeCurrentVideo(link) {
-            this.currentVideo = null;
-            this.currentVideo = link;
-            console.log(this.currentVideo);
+        changeCurrentSubCourse(item) {
+            if (this.is_payed || item.id == 2 || item.id == 8) {
+                this.currentSubCourse = item;
+                this.$emit('update:currentSubCourse', this.currentSubCourse);
+            } else {
+                window.alert("購買後即可觀看");
+            }
         },
         showLightBox() {
             this.lightBoxShowed = true;
@@ -92,12 +101,15 @@ export default {
         }
     },
     mounted: function () {
-        this.currentVideo = this.courseDataSet[this.course_id].sub_course[0].link;
+        this.course_name = this.courseDataSet[this.course_id].course_name;
     },
 }
 </script>
 
 <style>
+.no-drop {
+    cursor: no-drop;
+}
 @media (min-width:900px) {
     /*看課區段*/
     .course-video{
@@ -138,6 +150,11 @@ export default {
 
         color: white;
     }
+    .box1_link {
+        color: white;
+        line-height: 1.2em;
+        /* text-decoration: underline; */
+    }
     .box2{
         /*background-color: white;*/
         float: left;
@@ -160,20 +177,33 @@ export default {
         height: 480px;
         background-color: rgb(255,255,255,0.5);
         display: flex;
+        margin-bottom: 30px;
     }
-    .course-video-area video {
+    .course-video-area .course-video-iframe {
         width: 480px;
         height: 480px;
     }
     .course-video-list {
         /* display: flex;
         flex-direction: column; */
-        overflow: scroll;
+        overflow-y: scroll;
         width:300px;
+        height: 480px;
     }
     .course-video-list-m {
         display: none;
     }
+}
+.free-course {
+    position: absolute;
+    display: inline;
+    z-index: 0;
+    background: #ffc107;
+    border-radius: 50px;
+    padding: 3px 9px 3px 9px;
+    right: 7px;
+    bottom: 25px;
+    font-size: 10px;
 }
 @media (max-width:899px) {
     /*看課區段*/
@@ -236,6 +266,7 @@ export default {
         font-weight: 50;
         line-height: 10px;
         color: white;
+        line-height: 1em;
     }
     .box2-second-title {
         margin-top: 50px;
@@ -252,8 +283,9 @@ export default {
         /* margin: 100px; */
         background-color: rgb(255,255,255,0.5);
     }
-    .course-video-area video {
-        width: 100%;
+    .course-video-iframe {
+        width: 100vw;
+        height: 100vw;
     }
     .course-video-items{
         display: flex;
@@ -286,7 +318,7 @@ export default {
         /* padding-bottom: 20vh; */
         
         width: 100vw;
-        overflow: scroll;
+        overflow-y: scroll;
     }
     .course-video-list-m-back {
         width: 100vw;

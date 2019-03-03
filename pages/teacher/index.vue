@@ -9,12 +9,12 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <flat-button size="big" text="課程介紹"/>
-              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習"/>
+              <flat-button size="big" text="課程介紹" link="#intro"/>
+              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <flat-button size="medium" text="課程介紹"/>
-              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習"/>
+              <flat-button size="medium" text="課程介紹" link="#intro"/>
+              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
           </section>
           <!-- <section class="teacher col-lg-6 d-none d-lg-block d-xl-block">
@@ -78,18 +78,19 @@
         <label for="read-more">閱讀更多</label>
       </div>
     </section> -->
-    <div v-if=" $mq == 'desktop' ">
+    <iframe class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
+        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="#all-course">
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
         </button>
       </div>
     </div>
-    <div v-else-if=" $mq == 'mobile' ">
-      <div class="go2u-desktop"  v-for="img in go2uMobile" :key="img">
+    <div v-else-if=" $mq == 'mobile' " id="intro">
+      <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
         <img :src="img" alt="">
         <button v-if="img == go2uMobile[6]" class="buy-now-btn" >
           <a href="#all-course">  
@@ -97,6 +98,19 @@
           </a>
         </button>
       </div>
+    </div>
+    <div class="QA-section" :class="$mq">
+      <div class="QA-title">課程相關問題 Q＆A</div>
+      <div class="QA-question">01.請問備審課程在哪上課？上課時間為？</div>
+      <div class="QA-answer">讓備審飛系列課程為『線上課程』喔！<br>當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。所以，在此平台上看課程影片，完全沒有時間和地點的問題！</div>
+      <div class="QA-question">02.我可以在哪裡獲得備審建議？</div>
+      <div class="QA-answer">備審的所有修改建議，都可以透過臉書私訊或網站進行，只要啟動 Messenger 聊天機器人或網站練習區，並輸入你的備審資料，就能得到修改建議。<br>我們結合了備審專家與AI應用，讓你隨時隨地都能得到切中通點的建議。</div>
+      <div class="QA-question">03.課程可以看幾次？</div>
+      <div class="QA-answer">讓備審飛的課程可以一直看一直看！<br>看到你的備審資料不想做為止！</div>
+      <div class="QA-question">04.「備審建議機器人」一天可以用幾次？</div>
+      <div class="QA-answer">只要付費之後，你所購買的學群機器人將可以體驗無限多次！我們期待你能大量有效的真實練習！</div>
+      <div class="QA-question">05.還有其他問題怎麼辦？</div>
+      <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
     </div>
     <course-footer></course-footer>
   </div>
@@ -253,7 +267,6 @@ export default {
   data:() => ({
     go2uDesktop:[
       go2u04,
-      go2u05,
       go2u05,
       go2u06,
       go2u07,
@@ -425,8 +438,22 @@ h2.title {
 .course-content img {
   max-width: 100%;
 }
+.go2u-ad {
+  margin-top: 50px;
+  width: 60vw;
+  height: 36vw;
+  margin-left: 20vw;
+}
+
 .go2u-desktop {
-  width: 100%
+  width: 80%;
+  margin-left: 10%;
+}
+.go2u-mobile {
+  width: 100vw;
+}
+.go2u-mobile img {
+  width: 100vw;
 }
 .go2u-desktop img {
   width: 100%
@@ -444,5 +471,34 @@ h2.title {
 .buy-now-btn img {
   &.desktop { width: 40%; margin-top: -11%;}
   &.mobile { width: 80%; margin-top: -16%; }
+}
+.QA-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.QA-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 50px;
+  color: grey;
+}
+.QA-question {
+  font-size: 24px;
+  border-bottom: lightgrey 2px solid;
+  width: 70%;
+  color: grey;
+  word-wrap: break-word;
+}
+.QA-answer{
+  font-size: 20px;
+  color: grey;
+  width: 65%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  word-wrap: break-word;
 }
 </style>

@@ -2,7 +2,7 @@
     <!-- footer -->
     <div class="footer">
         <div class="footer-wrapper">
-            <div class="footer-container">
+            <!-- <div class="footer-container">
                 <div class="footer-container-title">PRODUCT</div>
                 <a href=""  class="footer-container-content">Templates</a>
                 <a href=""  class="footer-container-content">Explore</a>
@@ -13,8 +13,8 @@
                 <a href=""  class="footer-container-content">Premium Plans</a>
                 <a href=""  class="footer-container-content">AI Store</a>
                 <a href=""  class="footer-container-content">Developers</a>
-            </div>
-            <div class="footer-container">
+            </div> -->
+            <!-- <div class="footer-container">
                 <div class="footer-container-title">COMPANY</div>
                 <a href=""  class="footer-container-content">About LUDO</a>
                 <a href=""  class="footer-container-content">Investor Relations</a>
@@ -25,8 +25,8 @@
                 <a href=""  class="footer-container-content">App Market Terms</a>
                 <a href=""  class="footer-container-content">Contact Us</a>
                 <a href=""  class="footer-container-content">Updates & Releases</a>
-            </div>
-            <div class="footer-container">
+            </div> -->
+            <!-- <div class="footer-container">
                 <div class="footer-container-title">COMMUNITY</div>
                 <a href=""  class="footer-container-content">LUDO Blog</a>
                 <a href=""  class="footer-container-content">LUDO Stories</a>
@@ -37,16 +37,27 @@
                 <a href=""  class="footer-container-content">Youtube</a>
                 <a href=""  class="footer-container-content">Linkedin</a>
                 <a href=""  class="footer-container-content">Instagram</a>
+            </div> -->
+			<div class="footer-container">
+                <div class="footer-container-title">COMPANY</div>
+                <a href="https://www.flyingcrazyer.com" class="footer-container-content">​​讓狂人飛教育股份有限公司</a>
             </div>
-            <div class="footer-container">
-                <div class="footer-container-title">SUPPORT</div>
-                <a href=""  class="footer-container-content">Support Center</a>
+			<div class="footer-container">
+                <div class="footer-container-title">SOCIAL</div>
+                <a href="https://www.facebook.com/Go2UniversityNow/"  class="footer-container-content">讓備審飛</a>
+				<a href="https://www.flyingcrazyer.com"  class="footer-container-content">讓狂人飛</a>
             </div>
             <div class="footer-container-info">
                 <div class="footer-container-title">INFORMATION</div>
+				<div class="footer-container-item">FlyingCrazyer.Inc</div>
+				<div class="footer-container-content">go2universitynow@flyingcrazyer.com</div>
                 <div class="footer-container-item">LUDO Inc.</div>
-                <div class="footer-container-content">5th Floor, No. 297, Section 3, Roosevelt Road, University of Daan District, Taipei City, TAIWAN</div>
-                <div class="footer-container-content">contacts@ludonow.com</div>
+                <!-- <div class="footer-container-content">5th Floor, No. 297, Section 3, Roosevelt Road, University of Daan District, Taipei City, TAIWAN</div> -->
+				<div class="footer-container-content">contacts@ludonow.com</div>
+            </div>
+			<div class="footer-container">
+                <div class="footer-container-title">SUPPORT</div>
+                <a href="https://m.me/2018930911516278?ref=9aB25EjxH"  class="footer-container-content">Support Center</a>
             </div>
         </div>
     </div>

@@ -90,7 +90,7 @@ Vue.use(VueScrollTo, {
 Vue.use(Vuex);
 
 export default {
-    middleware: ['checkLogin','checkAuthority'],
+    // middleware: ['checkLogin','checkAuthority'],
     components: {
         LudoHeader,
         InputTag,

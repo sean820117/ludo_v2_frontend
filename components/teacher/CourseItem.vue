@@ -6,7 +6,8 @@
     <div class="content">
       <div class="name">{{name}}</div>
       <div class="description">{{description}}</div>
-      <flat-button size="small" text="了解詳情" color="grey" borderColor="grey" :link="link"></flat-button>
+      <flat-button v-if="tag == 'start-course'" size="small" text="開始上課" color="grey" borderColor="grey" :link="link"></flat-button>
+      <flat-button v-else size="small" text="了解詳情" color="grey" borderColor="grey" :link="link"></flat-button>
     </div>
   </div>
 </template>
@@ -17,6 +18,8 @@ const TAG_NAMES = {
   'try-now': '立即體驗',
   preorder: '限時預購',
   'unlock-now': '立即解鎖',
+  'start-course': '上課囉～',
+
 }
 
 export default {
@@ -58,7 +61,7 @@ export default {
   padding: 10px;
   text-align: center;
 }
-.image{
+.image {
   position: relative;
   max-width: 400px;
   height: 200px;
@@ -88,6 +91,10 @@ export default {
 }
 .tag-unlock-now{
   background-color: #3E18E0;
+  color: white;
+}
+.tag-start-course {
+  background-color: #aa0018;
   color: white;
 }
 .content{

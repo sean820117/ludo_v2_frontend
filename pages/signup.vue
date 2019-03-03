@@ -50,8 +50,7 @@ export default {
         }
     },
     mounted(){
-        // this.logout();
-        
+        // this.login("000@ggg.com","0000gggg");
     },
     methods: {
         onSubmit() {
@@ -88,10 +87,11 @@ export default {
                 })
         },
         login(email,password) {
-            axios.post('/signup',{email:email,password:password})
+            axios.post('/login',{email:email,password:password})
                 .then((response) => {
                     if (response.status == '200') {
                         console.log("login success")
+                        console.log(response)
                     } else {
                         console.log(response)
                     }

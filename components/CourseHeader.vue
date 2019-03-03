@@ -2,7 +2,7 @@
     <!-- header -->
     <div class="header">
         <div class="header-wrapper">
-			<a href="/">
+			<a href="/go2university">
 				<!-- logo -->
 				<img class="header-logo" :src="HeaderLogo" alt="ludo-header-logo">
 			</a>
@@ -13,25 +13,35 @@
 			</div>
 
 			<!-- menu -->
-			<a href="" class="header-menu-item">Features</a>
+			<!-- <a href="" class="header-menu-item">Features</a>
 			<a href="" class="header-menu-item">Explore</a>
 			<a href="" class="header-menu-item">Templates</a>
 			<a href="" class="header-menu-item">Price</a>
-			<a href="" class="header-menu-item">Support</a>
-			<a href="" class="header-menu-item-contact">Contact us</a>
+			<a href="" class="header-menu-item">Support</a> -->
+			<a href="https://m.me/2018930911516278?ref=9aB25EjxH" class="header-menu-item">Contact us</a>
 		</div>
                 
             <!-- login -->
-            <a href="/signin" class="login-btn">註冊/登入</a>
+            <a v-if="!user.user_id" href="https://beta.ludonow.com/login?redirect=www" class="login-btn">註冊/登入</a>
+			<a v-else href="/logout" class="login-btn">登出</a>
     </div>
 </template>
 
 <script>
 import HeaderLogo from 'static/header-logo.png'
+import { mapMutations, mapGetters } from 'vuex';
+import Vuex from 'vuex';
+
 export default {
     data:() => ({
         HeaderLogo: HeaderLogo,
-    }),
+	}),
+	computed: mapGetters({
+      user : 'user/getData',
+	}),	
+	created() {
+        this.$checkLogin(this.$store);
+	}
 }
 </script>
 

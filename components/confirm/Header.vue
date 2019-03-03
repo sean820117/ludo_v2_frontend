@@ -1,9 +1,9 @@
 <template>
   <header class="header">
     <div class="logo-wrapper">
-      <div class="logo" />
+      <a href="/go2university"><div class="logo"/></a>
     </div>
-    <div class="back"><span role="button" class="back-button">&lt; 返回</span></div>
+    <div class="back"><span role="button" class="back-button" @click="$router.go(-1)">&lt; 返回</span></div>
   </header>
 </template>
 <style scoped>
@@ -33,6 +33,7 @@
   flex: 1;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .back-button {
   padding: 5px;
