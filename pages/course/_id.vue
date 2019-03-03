@@ -54,7 +54,7 @@ export default {
         let store = this.$store;
         let login_status = await this.$checkLogin(store);
         
-        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[1];
+        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[7];
         if (!this.courseDataSet[this.course_id]) {
           window.alert('網址錯誤');
           this.$router.go(-1);
