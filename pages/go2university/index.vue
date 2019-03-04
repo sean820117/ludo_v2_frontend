@@ -9,11 +9,11 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <flat-button size="big" text="課程介紹" link="#intro"/>
+              <flat-button size="big" text="課程介紹" link="#intro" hover="hover-fill-white"/>
               <flat-button size="big" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <flat-button size="medium" text="課程介紹" link="#intro"/>
+              <flat-button size="medium" text="課程介紹" link="#intro" hover="hover-fill-white"/>
               <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
           </section>

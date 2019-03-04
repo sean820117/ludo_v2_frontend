@@ -1,9 +1,9 @@
 <template>
   <button
-    :class="'flat-button btn-' + size"
+    :class=" hover + ' flat-button btn-' + size"
     :style="{background: bgColor, borderColor: borderColor, color:color}"
   >
-    <a :href="link">
+    <a :href="link" :class="hover">
       <div class="text">{{text}}</div>
     </a>
   </button>
@@ -17,6 +17,7 @@ export default {
     color: String,
     borderColor:String,
     link:String,
+    hover:String,
     size: {
       default: 'medium',
       validator: function(value) {
@@ -46,9 +47,9 @@ export default {
   color: inherit;
 }
 
-.flat-button a:active {
+.flat-button a:hover {
   text-decoration: none;
-  color: inherit;
+  /* color: initial; */
 }
 
 .flat-button:focus {
@@ -56,9 +57,10 @@ export default {
   text-decoration: none;
   color: inherit;
 }
-.flat-button:hover {
-  text-decoration: underline;
-}
+/* .flat-button:hover {
+  text-decoration: none;
+  color: initial;
+} */
 .btn-big {
   width: 200px;
   height: 50px;
@@ -85,5 +87,9 @@ export default {
   font-size: 14px;
   line-height: 30px;
   font-weight: bold;
+}
+.hover-fill-white:hover {
+  background-color: white;
+  color: #324D5B !important;
 }
 </style>
