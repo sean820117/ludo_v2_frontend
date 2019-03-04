@@ -9,9 +9,9 @@
             <img :src="img" alt="" v-if="img == go2uDesktop[2] && $mq == 'desktop'">
             <img :src="img" alt="" v-if="img == go2uDesktop[3] && $mq == 'mobile'">
             <button v-if="(img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile')" class="buy-now-btn" href="#all-course">
-                <a href="#all-course">  
+                <router-link :to="`/confirm/${course_id}`"> 
                     <img :class="$mq" :src="go2uBuy" alt="">
-                </a>
+                </router-link>
             </button>
         </div>
         <div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
