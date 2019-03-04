@@ -4,7 +4,7 @@
     <main class="container">
       <section class="title">
         <h1>Sign Up</h1>
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Already have an account? <router-link to="/login">Login</router-link></p>
       </section>
       <div class="row">
         <section class="form col-lg-6 col-sm-12">
@@ -55,7 +55,7 @@ export default {
     methods: {
         onSubmit() {
             if (this.email.length === 0 || this.password.length === 0 || this.confirmPassword.length === 0) {
-                this.errors = '抱歉，所有欄位都要填寫！'
+                this.errors = '請填寫所有欄位！'
                 return
             }
             if (!EMAIL_REGEX.test(this.email)) {
@@ -67,41 +67,32 @@ export default {
                 return
             }
             if (this.password !== this.confirmPassword) {
-                this.errors = '兩次密碼輸入不相符'
+                this.errors = '密碼需大於八個字'
                 return
             }
             this.errors = null
             this.signup(this.email, this.password, this.confirmPassword)
         },
-        signup(email,password,repeated_password) {
-            axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
-                .then((response) => {
-                    if (response.status == '200') {
-                        console.log("signup success")
-                    } else {
-                        console.log(response)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+        async signup(email,password,repeated_password) {
+            try {
+              let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
+              if (response.data.status == '200') {
+                  console.log("signup success")
+                  let login_result = await this.$checkLogin(this.$store);
+                  this.$router.push('/')
+              } else {
+                  this.errors = '註冊失敗 - ' + response.data.message;
+                  console.log(response)
+              }
+            } catch (error) {
+              this.errors = '註冊失敗'
+              console.log(error)
+            }
         },
-        login(email,password) {
-            axios.post('/login',{email:email,password:password})
-                .then((response) => {
-                    if (response.status == '200') {
-                        console.log("login success")
-                        console.log(response)
-                    } else {
-                        console.log(response)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        logout() {
-            window.location.href = "https://api.ludonow.com/logout"
+        goBack () {
+            window.history.length > 1
+                ? this.$router.go(-1)
+                : this.$router.push('/')
         },
     },
 }

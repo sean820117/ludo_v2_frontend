@@ -144,9 +144,9 @@ export default {
             } else if (rank == "C") {
                 next_rank = "B"
             } else if (rank == "D") {
-                next_rank = "C"
+                next_rank = "B"
             } else if (rank == "E") {
-                next_rank = "C"
+                next_rank = "B"
             }
 
             const courseData = this.courseDataSet[this.course_id];

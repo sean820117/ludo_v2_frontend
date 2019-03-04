@@ -4,7 +4,7 @@
     <main class="container">
       <section class="title">
         <h1>Log In</h1>
-        <p>New to Ludo? <a href="/signup">Sign Up</a></p>
+        <p>New to Ludo? <router-link to="/signup">Sign Up</router-link></p>
       </section>
       <div class="row">
         <section class="form col-lg-6 col-sm-12">
@@ -25,9 +25,12 @@
   </div>
 </template>
 <script>
+import axios from '../../config/axios-config'
 import PageHeader from '~/components/confirm/Header.vue'
 import TextInput from '~/components/TextInput.vue'
 import ThirdPartyButton from '~/components/ThirdPartyButton.vue'
+import { EMAIL_REGEX } from '~/components/regex.js'
+
 export default {
   data() {
     return {
@@ -39,6 +42,43 @@ export default {
   methods: {
     onSubmit() {
       // @TODO
+      if (this.email.length === 0 || this.password.length === 0) {
+          this.errors = '請填寫所有欄位！'
+          return
+      }
+      if (!EMAIL_REGEX.test(this.email)) {
+          this.errors = '電子信箱格式錯誤'
+          return
+      }
+      if (this.password.length < 8) {
+          this.errors = '密碼需大於八個字'
+          return
+      }
+      this.errors = null
+      this.login(this.email, this.password)
+    },
+    async login(email,password) {
+        try {
+          let response = await axios.post('/login',{email:email,password:password})
+          if (response.data.status == '200') {
+              console.log("login success")
+              console.log(response)
+              let login_result = await this.$checkLogin(this.$store);
+              this.goBack();
+          } else {
+              console.log(response)
+              this.errors = response.data.message;
+          }
+        } 
+        catch (error) {
+          console.log(error)
+          this.errors = "傳送失敗，請重新嘗試"
+        }
+    },
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
     },
   },
   head() {

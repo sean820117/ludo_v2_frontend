@@ -3,13 +3,14 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}</h1>
+        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}全課堂</h1>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 購買' + product_name + '全課堂'" />
-          <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
-          <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部科系一次買起來" />
+          <radio-button :disabled="true" :active="prices[0].active" @click.native="window.alert('此優惠已結束～')" :text="'$ ' + prices[0].price + '/全課堂(超早鳥已經售罄)'" />
+          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/全課堂(3/20前早鳥搶購中)'" />
+          <radio-button :disabled="true" :active="prices[2].active" @click.native="window.alert('此方案尚未開啟～')" :text="'$ ' + prices[2].price + '/全課堂(原價)'" />
+          <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="$4999 全部科系一次買起來" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
@@ -77,12 +78,16 @@ export default {
       share_url:"",
       prices:[
         {
-          active: true,
+          active: false,
           price:499,
         },
         {
+          active: true,
+          price:1200,
+        },
+        {
           active: false,
-          price:399,
+          price:2200,
         },
         {
           active: false,
@@ -169,7 +174,7 @@ export default {
               console.log("coupon pay success")
               window.alert("兌換" + this.product_name + "成功！");
               // this.$route.go(-1);
-              window.location.href = process.env.baseUrl +  "/go2university";
+              this.$router.push('/go2university');
             } else {
               window.alert("此組序號已經使用過囉～");
             }
@@ -189,7 +194,7 @@ export default {
           console.log("check-is-payed success")
           if(response.data.result == 1 || response2.data.result == 1) {
             window.alert("您已購買過此課程囉～");
-            window.location.href = process.env.baseUrl + "/go2university"
+            this.$router.push('/go2university');
           }
       } else {
           console.log(response)
@@ -256,9 +261,9 @@ export default {
         this.selected_price = this.prices[0].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
         console.log(localStorage.activity_id);
-        if(localStorage.activity_id == 1) {
-          this.prices[0].price = 449
-        }
+        // if(localStorage.activity_id == 1) {
+        //   this.prices[0].price = 449
+        // }
         this.product_name = this.courseDataSet[this.course_id].course_name;
         console.log(this.product_name);
       }
@@ -276,7 +281,7 @@ export default {
 
         }
         await this.checkIsPayed();
-        await this.getSharedTime();
+        // await this.getSharedTime();
         this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
       }
   },
@@ -315,7 +320,7 @@ h1 {
 }
 .choices .radio-button {
   margin: 10px;
-  max-width: 300px;
+  max-width: 500px;
 }
 .purchase {
   display: flex;

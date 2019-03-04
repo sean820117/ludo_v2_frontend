@@ -2,7 +2,7 @@
     <!-- 看課區段 -->
     <div class="course-video">
         <div class="course-video-contaniner">
-            <div class="box1"> <a class="box1_link" href="/go2university"> 讓備審飛 </a>> {{ course_name }}</div>
+            <div class="box1"> <router-link class="box1_link" to="/go2university"> 讓備審飛 </router-link>> {{ course_name }}</div>
             <div class="box2">
                 {{ currentSubCourse.title }}
                 <br>

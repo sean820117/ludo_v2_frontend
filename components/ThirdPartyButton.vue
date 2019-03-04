@@ -1,8 +1,8 @@
 <template>
-  <div :class="`third-party-button media-${platform}`" role="button">
+  <a href="https://api.ludonow.com/auth/facebook?redirect=www" :class="`third-party-button media-${platform}`" role="button">
     <div class="logo"></div>
     <div class="text">Continue with {{socialMedia}}</div>
-  </div>
+  </a>
 </template>
 <script>
 const SOCIAL_MEDIAS = {

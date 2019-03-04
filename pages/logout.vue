@@ -8,7 +8,7 @@
 export default {
     methods: {
         logout() {
-            window.location.href = "https://api.ludonow.com/logout"
+            window.location.href = "https://api.ludonow.com/logout";
         },
     },
     mounted() {

@@ -4,7 +4,17 @@
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id"/>
 		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
-		<div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
+        <div class="go2u-desktop" :class="$mq" v-for="img in go2uDesktop" :key="img">
+            <img :src="img" alt="" v-if="img == go2uDesktop[0] || img == go2uDesktop[1]">
+            <img :src="img" alt="" v-if="img == go2uDesktop[2] && $mq == 'desktop'">
+            <img :src="img" alt="" v-if="img == go2uDesktop[3] && $mq == 'mobile'">
+            <button v-if="!is_payed && ((img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile'))" class="buy-now-btn" href="#all-course">
+                <router-link :to="`/confirm/${course_id}`"> 
+                    <img :class="$mq" :src="go2uBuy" alt="">
+                </router-link>
+            </button>
+        </div>
+        <div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
         <course-footer/>
     </div>
 </template>
@@ -19,6 +29,11 @@ import CourseFooter from '~/components/CourseFooter.vue'
 
 import medicalAd from 'static/go2u-desktop/medical-ad.jpg'
 
+import go2u05 from 'static/go2u-desktop/05.jpg';
+import go2u07b from 'static/go2u-desktop/07-5.jpg';
+import go2u08 from 'static/go2u-desktop/08.jpg';
+import go2u28 from 'static/go2u-mobile/28.jpg';
+import go2uBuy from 'static/go2u-desktop/buy.png';
 import CourseData01 from 'static/data/course/01.js'
 import CourseData02 from 'static/data/course/02.js'
 import CourseData03 from 'static/data/course/03.js'
@@ -31,9 +46,19 @@ import CourseData09 from 'static/data/course/09.js'
 import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
+
 import axios from '~/config/axios-config';
 import { mapMutations, mapGetters } from 'vuex';
 import Vuex from 'vuex';
+import Vue from 'vue'
+import VueMq from 'vue-mq'
+Vue.use(VueMq, {
+  breakpoints: {
+    // small: 400,
+    mobile: 992,
+    desktop: Infinity,
+  }
+});
 
 export default {
     head () {
@@ -46,15 +71,15 @@ export default {
     computed: mapGetters({
         user : 'user/getData',
     }),
-	async mounted(){
+	async created(){
     },
-    async created(){
+    async mounted(){
         /* init params */
         this.course_id = this.$route.params.id;
         let store = this.$store;
         let login_status = await this.$checkLogin(store);
         
-        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[1];
+        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[7];
         if (!this.courseDataSet[this.course_id]) {
           window.alert('網址錯誤');
           this.$router.go(-1);
@@ -96,6 +121,13 @@ export default {
             "10": CourseData10,
             "11": CourseData11,
         },
+        go2uDesktop:[
+            go2u05,
+            go2u07b,
+            go2u08,
+            go2u28,
+        ],
+        go2uBuy,
     }),
     methods: {
         async checkIsPayed() {  
@@ -121,7 +153,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 *{
 	position: relative;
 }
@@ -140,5 +172,29 @@ html, body{
 .medical-ad img {
     width: 50vw;
     height: 14vw;
+}
+.go2u-desktop {
+  width: 80vw;
+  margin-left: 10vw;
+  margin-bottom: 5%;
+
+  &.mobile { width: 90vw; margin-left: 5vw; }
+}
+.go2u-desktop img {
+  width: 100%;
+}
+.buy-now-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}
+.buy-now-btn a {
+  width: 100%;
+}
+.buy-now-btn img {
+  &.desktop { width: 40%; margin-top: -11%;}
+  &.mobile { width: 80%; margin-top: -16%; }
 }
 </style>

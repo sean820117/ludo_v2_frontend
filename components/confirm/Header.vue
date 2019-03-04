@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo-wrapper">
-      <a href="/go2university"><div class="logo"/></a>
+      <router-link to="/go2university"><div class="logo"/></router-link>
     </div>
     <div class="back"><span role="button" class="back-button" @click="$router.go(-1)">&lt; 返回</span></div>
   </header>
