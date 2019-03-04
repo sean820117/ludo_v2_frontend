@@ -155,6 +155,10 @@ export default {
         line-height: 1.2em;
         /* text-decoration: underline; */
     }
+    .box1_link:hover {
+        color: #FFD72E;
+        text-decoration: none;
+    }
     .box2{
         /*background-color: white;*/
         float: left;

@@ -19,7 +19,7 @@
                 </div>
                 <div v-if="!is_payed" class="course-status-devider-sm"></div>
                 <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
-                <div v-if="!is_payed" class="course-status-price">499元</div>
+                <div v-if="!is_payed" class="course-status-price">1200元</div>
                 <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</router-link>
                 <!-- </div> -->
             </div>
@@ -189,6 +189,9 @@ export default {
 
         transition: all 0.2s;
         transition-timing-function: ease;
+    }
+    .course-status-buy-btn:hover {
+        background: #D10048;
     }
     .course-but-group-sm{
         display: flex;

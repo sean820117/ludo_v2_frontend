@@ -415,6 +415,9 @@ export default {
 	transition: all 0.2s;
 	transition-timing-function: ease;
 }
+.upload-send:hover {
+    background: #F7A103;
+}
 @media (min-width: 900px){
 	.upload-send-sm{
 		display: none;
@@ -485,6 +488,9 @@ export default {
 @media (max-width: 899px){
     .course-practice {
         padding-top: 0px;
+    }
+    .upload-send-sm:hover {
+        background: #F7A103;
     }
 	.upload-send-sm{
         cursor: pointer;
