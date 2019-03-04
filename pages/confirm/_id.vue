@@ -3,13 +3,14 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}</h1>
+        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}全課堂</h1>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 購買' + product_name + '全課堂'" />
-          <!-- <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" /> -->
-          <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部科系一次買起來" />
+          <radio-button :disabled="true" :active="prices[0].active" @click.native="window.alert('此優惠已結束～')" :text="'$ ' + prices[0].price + '/全課堂(超早鳥已經售罄)'" />
+          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/全課堂(3/20前早鳥搶購中)'" />
+          <radio-button :disabled="true" :active="prices[2].active" @click.native="window.alert('此方案尚未開啟～')" :text="'$ ' + prices[2].price + '/全課堂(原價)'" />
+          <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="$4999 全部科系一次買起來" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
@@ -77,12 +78,16 @@ export default {
       share_url:"",
       prices:[
         {
-          active: true,
+          active: false,
           price:499,
         },
         {
+          active: true,
+          price:1200,
+        },
+        {
           active: false,
-          price:399,
+          price:2200,
         },
         {
           active: false,
@@ -315,7 +320,7 @@ h1 {
 }
 .choices .radio-button {
   margin: 10px;
-  max-width: 300px;
+  max-width: 500px;
 }
 .purchase {
   display: flex;
