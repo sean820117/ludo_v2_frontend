@@ -7,13 +7,13 @@
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 一次一堂剛剛好'" />
+          <radio-button :active="prices[0].active" @click.native="handlePriceSelecet(0)" :text="'$ ' + prices[0].price + ' 購買' + product_name + '全課堂'" />
           <radio-button :active="prices[1].active" @click.native="shared_time >= 6 ? handlePriceSelecet(1) : showDialog()" :text="'$399 分享價('+shared_time+'/6)'" />
-          <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部買起來挑科系" />
+          <radio-button :active="prices[2].active" @click.native="handlePriceSelecet(2)" text="$4999 全部科系一次買起來" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
@@ -43,6 +43,7 @@ import vSelect from 'vue-select';
 import Vue from 'vue'
 import VModal from 'vue-js-modal'
 import VueClipboard from 'vue-clipboard2'
+import { EMAIL_REGEX } from '~/components/regex.js'
 
 Vue.use(VueClipboard)
 Vue.use(VModal, { dialog: true })
@@ -60,7 +61,6 @@ import CourseData09 from 'static/data/course/09.js'
 import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
-const EMAIL_REGEX = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export default {
   data() {
     return {
@@ -176,6 +176,7 @@ export default {
           }
       } else {
           console.log(response)
+          window.alert("兌換失敗！ 請檢察登入狀態或聯絡我們");
       }
     },
     async checkIsPayed() {  
