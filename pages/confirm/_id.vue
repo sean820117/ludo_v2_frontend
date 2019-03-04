@@ -359,6 +359,9 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
+.forwarding:hover {
+  background-color: #D10048;
+}
 #push {
   height: 80px;
 }
