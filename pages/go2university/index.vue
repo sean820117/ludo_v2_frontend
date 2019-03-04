@@ -477,8 +477,8 @@ h2.title {
 }
 
 .go2u-desktop {
-  width: 80%;
-  margin-left: 10%;
+  width: 80vw;
+  margin-left: 10vw;
 }
 .go2u-mobile {
   width: 100vw;
@@ -487,7 +487,7 @@ h2.title {
   width: 100vw;
 }
 .go2u-desktop img {
-  width: 100vw;
+  width: 100%;
 }
 .buy-now-btn {
   width: 100%;
