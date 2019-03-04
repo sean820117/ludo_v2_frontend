@@ -81,7 +81,7 @@
     
     <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
-        <iframe v-if="img == go2uDesktop[1]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe v-if="img == go2uDesktop[2]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
         <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="#all-course">
           <a href="#all-course">  
@@ -92,7 +92,7 @@
     </div>
     <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
-        <iframe v-if="img == go2uMobile[1]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe v-if="img == go2uMobile[2]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
         <button v-if="img == go2uMobile[6]" class="buy-now-btn" >
           <a href="#all-course">  
@@ -113,6 +113,12 @@
       <div class="QA-answer">只要付費之後，你所購買的學群機器人將可以體驗無限多次！我們期待你能大量有效的真實練習！</div>
       <div class="QA-question">05.還有其他問題怎麼辦？</div>
       <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
+      <div class="QA-question">06.請問支援什麼付款方式？</div>
+      <div class="QA-answer">信用卡與金融卡線上刷卡、超商代碼繳費。<br><br>信用卡線上刷卡<br>於付款頁面按下「購買」鍵後，即會轉往「紅陽科技」支付平台。海外用戶請記得先開啟「跨境付款」功能，不然會無法交易。另紅陽科技頁面之「手機號碼」欄位，請於開頭加上「國際電話區域碼」。目前可支援的卡別有：VISA、MasterCard、JCB、銀聯卡（中國以及海外地區可能會有系統延遲的狀況，交易成功後需要 12 至 15 分鐘後才會在讓備審飛平台收到交易成功之訊息以及通知信件）<br><br>超商代碼繳費<br>於付款頁面點選「超商付款」，取得該課程的付款代碼後，在期限內至以下超商進行代碼繳費即可。超商付款需手續費 26 元。一般來說 30 分鐘內，就會在你的「驗證信箱」收到購買成功的通知信件，超商付款詳細流程，可參考此篇文章。<br><br>可繳費超商：7-11、全家、萊爾富、OK 超商</div>
+      <div class="QA-question">07.我未在繳費期限完成繳費怎麼辦？</div>
+      <div class="QA-answer">超過繳費期限後，原本的「超商繳費代碼」會自動失效。只要重新進行購買程序，將會產生新的訂單，於新的繳費期限內繳費即可。</div>
+      <div class="QA-question">08.我要如何確定付款成功？</div>
+      <div class="QA-answer">當系統收到你的款項時，會寄送「付款成功通知信件」至你的「驗證信箱」，收件匣未看到的話，可以至垃圾信件匣查看。</div>
     </div>
     <course-footer></course-footer>
   </div>
@@ -481,7 +487,7 @@ h2.title {
   width: 100vw;
 }
 .go2u-desktop img {
-  width: 100%
+  width: 100vw;
 }
 .buy-now-btn {
   width: 100%;
