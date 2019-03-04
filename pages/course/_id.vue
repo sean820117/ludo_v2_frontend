@@ -8,7 +8,7 @@
             <img :src="img" alt="" v-if="img == go2uDesktop[0] || img == go2uDesktop[1]">
             <img :src="img" alt="" v-if="img == go2uDesktop[2] && $mq == 'desktop'">
             <img :src="img" alt="" v-if="img == go2uDesktop[3] && $mq == 'mobile'">
-            <button v-if="(img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile')" class="buy-now-btn" href="#all-course">
+            <button v-if="!is_payed && ((img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile'))" class="buy-now-btn" href="#all-course">
                 <router-link :to="`/confirm/${course_id}`"> 
                     <img :class="$mq" :src="go2uBuy" alt="">
                 </router-link>
