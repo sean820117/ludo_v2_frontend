@@ -6,8 +6,8 @@
     <div class="content">
       <div class="name">{{name}}</div>
       <div class="description">{{description}}</div>
-      <flat-button v-if="tag == 'start-course'" size="small" text="開始上課" color="grey" borderColor="grey" :link="link"></flat-button>
-      <flat-button v-else size="small" text="了解詳情" color="grey" borderColor="grey" :link="link"></flat-button>
+      <flat-button v-if="tag == 'start-course'" size="small" text="開始上課" color="grey" borderColor="grey" :link="link" hover="hover-fill-red"></flat-button>
+      <flat-button v-else size="small" text="了解詳情" color="grey" borderColor="grey" :link="link" hover="hover-fill-yellow"></flat-button>
     </div>
   </div>
 </template>

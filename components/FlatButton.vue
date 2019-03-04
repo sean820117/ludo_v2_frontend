@@ -89,7 +89,19 @@ export default {
   font-weight: bold;
 }
 .hover-fill-white:hover {
-  background-color: white;
+  background-color: white !important;
+  border-color:white !important;
   color: #324D5B !important;
+}
+
+.hover-fill-yellow:hover {
+  background-color: #FACB03 !important;
+  border-color: #FACB03 !important;
+  color: #324D5B !important;
+}
+.hover-fill-red:hover {
+  background-color: #AA0018 !important;
+  border-color: #AA0018 !important;
+  color: white !important;
 }
 </style>
