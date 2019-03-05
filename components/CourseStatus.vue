@@ -26,7 +26,7 @@
         </div>
         <!-- 看課下方欄課程簡介結束 -->
         <!-- 購課資訊 -->
-        <div v-if="!is_payed" class="buy-info-section-sm">課程售價 499元</div>
+        <div v-if="!is_payed" class="buy-info-section-sm">課程售價1200元</div>
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
