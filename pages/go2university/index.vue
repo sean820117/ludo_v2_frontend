@@ -9,11 +9,11 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <flat-button size="big" text="課程介紹" link="#intro" hover="hover-fill-white"/>
+              <!-- <flat-button size="big" text="課程介紹" link="#intro" hover="hover-fill-white"/> -->
               <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <flat-button size="medium" text="課程介紹" link="#intro" hover="hover-fill-white"/>
+              <!-- <flat-button size="medium" text="課程介紹" link="#intro" hover="hover-fill-white"/> -->
               <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
           </section>
@@ -39,22 +39,7 @@
         class="description"
       >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis totam sapiente mollitia esse voluptatem, aliquid ea eius alias cum! Culpa numquam consequuntur dolore, velit accusamus porro ut modi doloribus aliquid praesentium laudantium corporis voluptate eos, doloremque iure, iusto mollitia quidem quae corrupti assumenda cum eveniet eligendi deserunt sed nemo.</div>
     </section> -->
-    <section class="all-courses" id="all-course">
-      <div class="container">
-        <h2 class="title">所有課程</h2>
-        <div class="row">
-          <div class="course-item col-lg-6 col-sm-12" v-for="course in courses" :key="course.id">
-            <course-item
-              :name="course.name"
-              :description="course.description"
-              :imageUrl="course.imageUrl"
-              :tag="course.tag"
-              :link="course.link"
-            ></course-item>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- <input id="read-more" type="checkbox" />
     <section class="course-intro">
       <div class="container">
@@ -101,6 +86,22 @@
         </button>
       </div>
     </div>
+    <section class="all-courses" id="all-course">
+      <div class="container">
+        <h2 class="title">所有課程</h2>
+        <div class="row">
+          <div class="course-item col-lg-6 col-sm-12" v-for="course in courses" :key="course.id">
+            <course-item
+              :name="course.name"
+              :description="course.description"
+              :imageUrl="course.imageUrl"
+              :tag="course.tag"
+              :link="course.link"
+            ></course-item>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="QA-section" :class="$mq">
       <div class="QA-title">課程相關問題 Q＆A</div>
       <div class="QA-question">01.請問備審課程在哪上課？上課時間為？</div>
@@ -111,14 +112,14 @@
       <div class="QA-answer">讓備審飛的課程可以一直看一直看！<br>看到你的備審資料不想做為止！</div>
       <div class="QA-question">04.「備審建議機器人」一天可以用幾次？</div>
       <div class="QA-answer">只要付費之後，你所購買的學群機器人將可以體驗無限多次！我們期待你能大量有效的真實練習！</div>
-      <div class="QA-question">05.還有其他問題怎麼辦？</div>
-      <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
-      <div class="QA-question">06.請問支援什麼付款方式？</div>
+      <div class="QA-question">05.請問支援什麼付款方式？</div>
       <div class="QA-answer">信用卡與金融卡線上刷卡、超商代碼繳費。<br><br>信用卡線上刷卡<br>於付款頁面按下「購買」鍵後，即會轉往「紅陽科技」支付平台。海外用戶請記得先開啟「跨境付款」功能，不然會無法交易。另紅陽科技頁面之「手機號碼」欄位，請於開頭加上「國際電話區域碼」。目前可支援的卡別有：VISA、MasterCard、JCB、銀聯卡（中國以及海外地區可能會有系統延遲的狀況，交易成功後需要 12 至 15 分鐘後才會在讓備審飛平台收到交易成功之訊息以及通知信件）<br><br>超商代碼繳費<br>於付款頁面點選「超商付款」，取得該課程的付款代碼後，在期限內至以下超商進行代碼繳費即可。超商付款需手續費 26 元。一般來說 30 分鐘內，就會在你的「驗證信箱」收到購買成功的通知信件，超商付款詳細流程，可參考此篇文章。<br><br>可繳費超商：7-11、全家、萊爾富、OK 超商</div>
-      <div class="QA-question">07.我未在繳費期限完成繳費怎麼辦？</div>
+      <div class="QA-question">06.我未在繳費期限完成繳費怎麼辦？</div>
       <div class="QA-answer">超過繳費期限後，原本的「超商繳費代碼」會自動失效。只要重新進行購買程序，將會產生新的訂單，於新的繳費期限內繳費即可。</div>
-      <div class="QA-question">08.我要如何確定付款成功？</div>
+      <div class="QA-question">07.我要如何確定付款成功？</div>
       <div class="QA-answer">當系統收到你的款項時，會寄送「付款成功通知信件」至你的「驗證信箱」，收件匣未看到的話，可以至垃圾信件匣查看。</div>
+      <div class="QA-question">08.還有其他問題怎麼辦？</div>
+      <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
     </div>
     <course-footer></course-footer>
   </div>

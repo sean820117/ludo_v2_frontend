@@ -30,7 +30,7 @@
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">馬上購買</router-link>
+        <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">立即兌換</router-link>
         <!-- 手機購買結束 -->
     </div>
 </template>

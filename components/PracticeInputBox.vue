@@ -184,7 +184,7 @@ export default {
 }
 .course-practice-area{
 	display: flex;
-	width: 80vw;
+	width: 100vw;
 	min-height: 300px;
 	background-color: #F5F5F5;
 
@@ -193,8 +193,9 @@ export default {
     flex-direction: column;
     align-items: center;
 
-    padding: 10px;
-    margin-top: 15px;
+    /* padding: 10px; */
+    margin-top: 30px;
+    margin-bottom: 0px;
 }
 .start-type{
 	color: black;
@@ -207,6 +208,7 @@ export default {
     width: 72vw;
     resize: none;
     border: lightgrey 1px solid;
+    border-radius: 10px;
 }
 .start-type:focus {
     outline: none !important;
@@ -425,7 +427,7 @@ export default {
 }
 .courses-session-title{
 	display: flex;
-	margin-top: 20px;
+	margin-top: 56px;
 	font-weight: 200;
 	font-size: 35px;
 	color: grey;
@@ -516,6 +518,7 @@ export default {
 
         transition: all 0.2s;
         transition-timing-function: ease;
+        margin-bottom: 15px;
     }
     .upload-send{
         display: none;

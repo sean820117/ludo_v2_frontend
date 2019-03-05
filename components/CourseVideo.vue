@@ -8,8 +8,7 @@
                 <br>
                 <div class="box2-second-title"> {{ currentSubCourse.title2 }} </div>
             </div>
-            
-            <div class="box1 box1-small"></div>
+            <!-- <div class="box1 box1-small"></div> -->
         </div>
         
         <div class="course-video-area">
@@ -215,7 +214,8 @@ export default {
         display: flex;
         width: 100vw;
         /* height: 70vh; */
-        background-color: #324D5B;
+        /* background-color: #324D5B; */
+        background: black;
 
         overflow: auto;
 
@@ -251,7 +251,7 @@ export default {
         float: left;
         width: 100%;
         /*height: 20%;*/
-        padding-top: 100px;
+        padding-top: 50px;
         text-align: center;
         /*padding-left: 120px;*/
 
@@ -262,19 +262,20 @@ export default {
         float: left;
         width: 90%;
         /*height: 20%;*/
-        padding-top: 50px;
+        padding-top: 17px;
         /*padding-bottom: 20px;*/
 
         text-align: center;
-        font-size: 35px;
+        font-size: 25px;
         font-weight: 50;
         line-height: 10px;
         color: white;
         line-height: 1em;
     }
     .box2-second-title {
-        margin-top: 50px;
-        font-size: 25px;
+        margin-top: 23px;
+        margin-bottom: 23px;
+        font-size: 17px;
         line-height: 1.2em;
     }
     .course-video .box1.small{

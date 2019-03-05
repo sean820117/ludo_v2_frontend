@@ -1,8 +1,10 @@
 <template>
   <div class="course-item">
-    <div class="image" :style="{ backgroundImage: `url(${imageUrl})` }">
-      <div :class="`tag tag-${tag}`">{{tagName}}</div>
-    </div>
+    <router-link :to="link">
+      <div class="image" :style="{ backgroundImage: `url(${imageUrl})` }">
+        <div :class="`tag tag-${tag}`">{{tagName}}</div>
+      </div>
+    </router-link>
     <div class="content">
       <div class="name">{{name}}</div>
       <div class="description">{{description}}</div>

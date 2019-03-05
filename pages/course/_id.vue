@@ -8,9 +8,9 @@
             <img :src="img" alt="" v-if="img == go2uDesktop[0] || img == go2uDesktop[1]">
             <img :src="img" alt="" v-if="img == go2uDesktop[2] && $mq == 'desktop'">
             <img :src="img" alt="" v-if="img == go2uDesktop[3] && $mq == 'mobile'">
-            <button v-if="!is_payed && ((img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile'))" class="buy-now-btn" href="#all-course">
-                <router-link :to="`/confirm/${course_id}`"> 
-                    <img :class="$mq" :src="go2uBuy" alt="">
+            <button v-if="!is_payed && ((img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile'))" class="buy-now-btn">
+                <router-link :to="`/confirm/${course_id}`" class="btn-coupon"> 
+                    立即兌換
                 </router-link>
             </button>
         </div>
@@ -163,6 +163,22 @@ html, body{
     height: 100%;
     font-family: arial, "Microsoft JhengHei", "微軟正黑體";
 }
+.btn-coupon {
+    width: 300px;
+    /* margin-left: 10vw; */
+    height: 50px;
+    background-color: #E0185D;
+    border-radius: 20px;
+
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+}
 .medical-ad {
     display: flex;
     justify-content: center;
@@ -189,12 +205,5 @@ html, body{
   justify-content: center;
   background: transparent;
   border: none;
-}
-.buy-now-btn a {
-  width: 100%;
-}
-.buy-now-btn img {
-  &.desktop { width: 40%; margin-top: -11%;}
-  &.mobile { width: 80%; margin-top: -16%; }
 }
 </style>

@@ -18,7 +18,7 @@
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
-            <label for="coupon">免費序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
+            <label for="coupon">序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
             <input type="hidden" name="price" v-model="selected_price">
             <input type="hidden" name="product_name" v-model="product_name">
             <input type="hidden" name="user_id" v-model="user.user_id">
