@@ -9,11 +9,11 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <!-- <flat-button size="big" text="課程介紹" link="#intro" hover="hover-fill-white"/> -->
+              <flat-button size="big" text="懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
               <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <!-- <flat-button size="medium" text="課程介紹" link="#intro" hover="hover-fill-white"/> -->
+              <flat-button size="medium" text="懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
               <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
           </section>
@@ -135,6 +135,7 @@ import VueMq from 'vue-mq'
 import axios from '~/config/axios-config';
 import { mapMutations, mapGetters } from 'vuex';
 
+// import lazypack from 'static/lazypack.pdf';
 import go2uBuy from 'static/go2u-desktop/buy.png';
 /* desktop img */
 import go2u01 from 'static/go2u-desktop/01.jpg';
@@ -305,6 +306,7 @@ export default {
     go2u01, // desktop banner
     go2u21, // mobile banner
     go2uBuy,
+    lazypack:"",
   }),
   computed: mapGetters({
       user : 'user/getData',

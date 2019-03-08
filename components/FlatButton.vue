@@ -2,6 +2,7 @@
   <button
     :class=" hover + ' flat-button btn-' + size"
     :style="{background: bgColor, borderColor: borderColor, color:color}"
+    :download="dl"
   >
     <router-link :to="link" :class="hover">
       <div class="text">{{text}}</div>
@@ -18,6 +19,7 @@ export default {
     borderColor:String,
     link:String,
     hover:String,
+    dl:Boolean,
     size: {
       default: 'medium',
       validator: function(value) {

@@ -21,7 +21,7 @@ async function forceLogin (store) {
                 }
             } catch(e) {
                 console.log("call api error : \n" + e);
-                window.alert("login failed!");
+                // window.alert("login failed!");
                 // window.location.href = process.env.baseUrl + "/login";
                 return false;
             }       
