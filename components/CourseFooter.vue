@@ -50,7 +50,7 @@
             <div class="footer-container-info">
                 <div class="footer-container-title">INFORMATION</div>
 				<div class="footer-container-item">FlyingCrazyer.Inc</div>
-				<div class="footer-container-content">go2universitynow@flyingcrazyer.com</div>
+				<div class="footer-container-content">contact@flyingcrazyer.com</div>
                 <div class="footer-container-item">LUDO Inc.</div>
                 <!-- <div class="footer-container-content">5th Floor, No. 297, Section 3, Roosevelt Road, University of Daan District, Taipei City, TAIWAN</div> -->
 				<div class="footer-container-content">contacts@ludonow.com</div>

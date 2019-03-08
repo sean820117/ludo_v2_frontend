@@ -2,9 +2,7 @@
     <div>
         <course-header/>
         <div class="redirect-body">
-            <h1 class="redirect-title">
-                {{ result }}
-            </h1>
+            <h1 class="redirect-title">{{ result }}</h1>
             <router-link to="/go2university" class="redirect-button">返回首頁</router-link>
         </div>
         <course-footer/>
@@ -20,8 +18,8 @@ export default {
         result:"",
         result_list:[
             "付款失敗，請重新嘗試",
-            "付款成功！",
-            "生成代碼成功！\n\n請至信箱收取超商繳費代碼（發信時間約1~10分鐘）",
+            "付款成功！\n提醒您，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱",
+            "生成代碼成功！\n請至信箱收取超商繳費代碼（發信時間約1~10分鐘）",
         ]
     }),
     components: {
@@ -48,10 +46,12 @@ export default {
     flex-direction: column;
 }
 .redirect-title {
-    font-size: 60px;
+    font-size: 40px;
     margin: 0 0 50px 0;
     width: 70vw;
     text-align: center;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 .redirect-button {
   box-sizing: border-box;

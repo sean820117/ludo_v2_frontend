@@ -15,10 +15,13 @@
 			<!-- menu -->
 			<!-- <a href="" class="header-menu-item">Features</a>
 			<a href="" class="header-menu-item">Explore</a>
-			<a href="" class="header-menu-item">Templates</a>
-			<a href="" class="header-menu-item">Price</a>
-			<a href="" class="header-menu-item">Support</a> -->
-			<a href="https://m.me/2018930911516278?ref=9aB25EjxH" class="header-menu-item">Contact us</a>
+			<a href="" class="header-menu-item">Templates</a> -->
+			<router-link to="/confirm" class="header-menu-item">購買序號</router-link>
+			
+			<a v-if="$route.path == '/go2university' " href="#all-course" class="header-menu-item">序號兌換</a>
+			<router-link v-else to="/go2university#all-course"  class="header-menu-item">序號兌換</router-link>
+			
+			<a href="https://m.me/2018930911516278?ref=9aB25EjxH" class="header-menu-item">聯絡我們</a>
 		</div>
                 
             <!-- login -->

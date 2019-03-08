@@ -3,14 +3,17 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>《讓備審飛》線上課程付款頁面 - {{ product_name }}全課堂</h1>
+        <h1>《讓備審飛》線上課程付款頁面</h1>
+        <h2>四步驟馬上開始學習</h2>
+        <h3>購買兌換序號 → 信箱收取序號 → 註冊課程帳號 →  以序號兌換課程</h3>
+        <h3>* 溫馨提醒，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱</h3>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :disabled="true" :active="prices[0].active" @click.native="window.alert('此優惠已結束～')" :text="'$ ' + prices[0].price + '/全課堂(超早鳥已經售罄)'" />
-          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/全課堂(3/20前早鳥搶購中)'" />
-          <radio-button :disabled="true" :active="prices[2].active" @click.native="window.alert('此方案尚未開啟～')" :text="'$ ' + prices[2].price + '/全課堂(原價)'" />
-          <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="$4999 全部科系一次買起來" />
+          <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～')" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" />
+          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'早鳥 $'+prices[1].price + '/學群(12節完整課程)'" />
+          <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～')" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" />
+          <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="組合價 $4999 /全學群(72堂完整課程)" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
@@ -18,7 +21,7 @@
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
-            <label for="coupon">序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/>
+            <!-- <label for="coupon">序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/> -->
             <input type="hidden" name="price" v-model="selected_price">
             <input type="hidden" name="product_name" v-model="product_name">
             <input type="hidden" name="user_id" v-model="user.user_id">
@@ -31,7 +34,7 @@
       </form>
     </main>
     <div id="push" />
-    <v-dialog/>
+    <v-dialog name="share"/>
   </div>
 </template>
 <script>
@@ -114,6 +117,9 @@ export default {
       user : 'user/getData',
   }),
   methods: {
+    alert(text) {
+      window.alert(text);
+    },
     onSubmit(e) {
       if (this.customer.length === 0 || this.phone.length === 0 || this.email.length === 0) {
         this.errors = '請填寫所有欄位'
@@ -130,11 +136,11 @@ export default {
         e.preventDefault();
         return
       }
-      if (!this.user.user_id) {
-        this.errors = '請先登入'
-        e.preventDefault();
-        return
-      }
+      // if (!this.user.user_id) {
+      //   this.errors = '請先登入'
+      //   e.preventDefault();
+      //   return
+      // }
       
       if(this.coupon) {
         e.preventDefault();
@@ -212,7 +218,8 @@ export default {
         if(this.selected_price == 4999) {
           this.course_id = "12";
         } else {
-          this.course_id = this.$route.params.id;
+          // this.course_id = this.$route.params.id;
+          this.course_id = "00";
         }
     },
     showDialog() {
@@ -258,29 +265,30 @@ export default {
       /* init params */
       if (!process.server) {
         
-        this.selected_price = this.prices[0].price;
+        this.selected_price = this.prices[1].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
-        console.log(localStorage.activity_id);
+        this.product_name = "讓備審飛單一學群";
+        // console.log(localStorage.activity_id);
         // if(localStorage.activity_id == 1) {
         //   this.prices[0].price = 449
         // }
-        this.product_name = this.courseDataSet[this.course_id].course_name;
-        console.log(this.product_name);
+        // this.product_name = this.courseDataSet[this.course_id].course_name;
+        // console.log(this.product_name);
       }
   },
   async created(){
       /* init params */
       if (!process.server) {
-        this.course_id = this.$route.params.id;
+        // this.course_id = this.$route.params.id;
         let store = this.$store;
-        await this.$forceLogin(store);
-        if (!this.courseDataSet[this.course_id]) {
-          window.alert('網址錯誤');
-          this.$router.go(-1);
-        } else {
+        // await this.$forceLogin(store);
+        // if (!this.courseDataSet[this.course_id]) {
+        //   window.alert('網址錯誤');
+        //   this.$router.go(-1);
+        // } else {
 
-        }
-        await this.checkIsPayed();
+        // }
+        // await this.checkIsPayed();
         // await this.getSharedTime();
         this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
       }
@@ -305,17 +313,32 @@ main {
 }
 .title {
   margin-bottom: 5%;
+  margin-top: 10px;
+  z-index: 1;
 }
 h1 {
   color: grey;
   text-align: center;
   font-size: 30px;
   font-weight: normal;
+  margin-bottom: 20px;
+}
+h2 {
+  color: grey;
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+}
+h3 {
+  color: grey;
+  text-align: center;
+  font-size: 15px;
+  font-weight: normal;
 }
 .choices {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .choices .radio-button {
@@ -383,6 +406,9 @@ h1 {
   }
   #push {
     height: 0;
+  }
+  .title {
+    margin-top: 100px !important; 
   }
 }
 </style>

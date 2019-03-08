@@ -119,7 +119,7 @@
       <div class="QA-question">07.我要如何確定付款成功？</div>
       <div class="QA-answer">當系統收到你的款項時，會寄送「付款成功通知信件」至你的「驗證信箱」，收件匣未看到的話，可以至垃圾信件匣查看。</div>
       <div class="QA-question">08.還有其他問題怎麼辦？</div>
-      <div class="QA-answer">歡迎寫信與我們聊聊：<br>go2universitynow@flyingcrazyer.com</div>
+      <div class="QA-answer">歡迎寫信與我們聊聊：<br>contact@flyingcrazyer.com</div>
     </div>
     <course-footer></course-footer>
   </div>
@@ -197,7 +197,23 @@ export default {
         imageUrl: go2uCourse01,
         tag: 'try-now',
         link: "/course/01",
-      }, {
+      },{
+        id: "05",
+        name: '電機資訊學群',
+        description: '適用科系：資工系、電機系',
+        imageUrl: go2uCourse05,
+        tag: 'try-now',
+        link: "/course/05",
+      },
+      {
+        id: "11",
+        name: '管理學群',
+        description: '適用科系：企管系、財經系、會計系',
+        imageUrl: go2uCourse11,
+        tag: 'try-now',
+        link: "/course/11",
+      }, 
+      {
         id: "02",
         name: '社會科學學群',
         description: '適用科系：心理系、社會系、經濟系',
@@ -218,13 +234,6 @@ export default {
         imageUrl: go2uCourse04,
         tag: 'try-now',
         link: "/course/04",
-      }, {
-        id: "05",
-        name: '電機資訊學群',
-        description: '適用科系：資工系、電機系',
-        imageUrl: go2uCourse05,
-        tag: 'try-now',
-        link: "/course/05",
       }, {
         id: "06",
         name: '建築與設計學群',
@@ -260,14 +269,7 @@ export default {
         imageUrl: go2uCourse10,
         tag: 'try-now',
         link: "/course/10",
-      }, {
-        id: "11",
-        name: '管理學群',
-        description: '適用科系：企管系、財經系、會計系',
-        imageUrl: go2uCourse11,
-        tag: 'try-now',
-        link: "/course/11",
-      },
+      }, 
       ]),
     },
   },
@@ -472,14 +474,14 @@ h2.title {
   margin-top: 50px;
   width: 60vw;
   height: 36vw;
-  margin-left: 10vw;
+  /* margin-left: 10vw; */
 
   &.mobile { margin-left: 10vw; width: 80vw;height: 48vw;}
 }
 
 .go2u-desktop {
-  width: 80vw;
-  margin-left: 10vw;
+  width: 60vw;
+  margin-left: 20vw;
 }
 .go2u-mobile {
   width: 100vw;

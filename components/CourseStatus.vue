@@ -20,7 +20,8 @@
                 <div v-if="!is_payed" class="course-status-devider-sm"></div>
                 <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
                 <div v-if="!is_payed" class="course-status-price">1200元</div>
-                <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</router-link>
+                <!-- <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="course-status-buy-btn" style="text-decoration: none; color:white">馬上購買</router-link> -->
+                <a v-if="!is_payed" @click="$emit('openModal','coupon-input')" class="course-status-buy-btn" style="text-decoration: none; color:white">兌換課程</a>
                 <!-- </div> -->
             </div>
         </div>
@@ -30,7 +31,7 @@
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <router-link v-if="!is_payed" :to="'/confirm/' + course_id" class="buy-btn-section-sm" style="text-decoration: none; color:white">立即兌換</router-link>
+        <a v-if="!is_payed" @click="$emit('openModal','coupon-input')" class="buy-btn-section-sm" style="text-decoration: none; color:white">立即兌換</a>
         <!-- 手機購買結束 -->
     </div>
 </template>
@@ -178,6 +179,7 @@ export default {
         text-decoration: none;
         text-align: center;
         line-height: 33px;
+        cursor: pointer;
 
         width: 180px;
         height: 50px; 

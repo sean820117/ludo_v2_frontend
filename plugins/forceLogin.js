@@ -12,20 +12,22 @@ async function forceLogin (store) {
                 if (data.status == 200) {
                     console.log("user : " + JSON.stringify(data.user));
                     store.commit('user/updateLocalUserData',data.user);
-                    // return data.user;
+                    return true;
                 } else {
                     console.log("status : " + data.status)
                     window.alert("請先登入再進行操作");
                     this.$router.push("/login");
+                    return false;
                 }
             } catch(e) {
                 console.log("call api error : \n" + e);
                 window.alert("login failed!");
                 // window.location.href = process.env.baseUrl + "/login";
-                return { data: new Object() }
+                return false;
             }       
         } else {
             console.log("has store");
+            return true;
         }
     }   
 }
