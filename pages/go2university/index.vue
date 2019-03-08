@@ -121,6 +121,9 @@
       <div class="QA-question">08.還有其他問題怎麼辦？</div>
       <div class="QA-answer">歡迎寫信與我們聊聊：<br>contact@flyingcrazyer.com</div>
     </div>
+    <router-link class="go-buy" to="/confirm">
+      <span class="go-buy-cart glyphicon glyphicon-shopping-cart" ></span>
+    </router-link>
     <course-footer></course-footer>
   </div>
 </template>
@@ -184,7 +187,8 @@ Vue.use(VueMq, {
 export default {
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/bootstrap.css" }]
+      link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
+      link: [{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" }],
     };
   },
   props: {
@@ -306,7 +310,7 @@ export default {
     go2u01, // desktop banner
     go2u21, // mobile banner
     go2uBuy,
-    lazypack:"",
+    lazypack:"/lazypack.pdf",
   }),
   computed: mapGetters({
       user : 'user/getData',
@@ -536,5 +540,24 @@ h2.title {
   margin-top: 20px;
   margin-bottom: 40px;
   word-wrap: break-word;
+}
+.go-buy {
+  position: fixed;
+  right: 1vw;
+  top: 50vh;
+  width: 60px;
+  height: 60px;
+  background: rgb(255, 215, 46);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+.go-buy:hover {
+  color: white;
+}
+.go-buy-cart::before {
+  font-size: 30px;
+  color: white;
 }
 </style>
