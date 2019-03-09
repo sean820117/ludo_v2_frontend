@@ -300,8 +300,8 @@ html, body{
     height: 14vw;
 }
 .go2u-teachers {
-  width: 80vw;
-  margin-left: 10vw;
+  /* width: 80vw;
+  margin-left: 10vw; */
   margin-bottom: 2%;
 
   &.desktop { 
