@@ -68,10 +68,10 @@
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <iframe v-if="img == go2uDesktop[2]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
-          <a href="#all-course">  
+        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="/confirm">
+          <router-link to="/confirm">  
             <img :class="$mq" :src="go2uBuy" alt="">
-          </a>
+          </router-link>
         </button>
       </div>
     </div>
@@ -80,9 +80,9 @@
         <iframe v-if="img == go2uMobile[2]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
         <button v-if="img == go2uMobile[7]" class="buy-now-btn" >
-          <a href="#all-course">  
+          <router-link to="/confirm">  
             <img :class="$mq" :src="go2uBuy" alt="">
-          </a>
+          </router-link>
         </button>
       </div>
     </div>
