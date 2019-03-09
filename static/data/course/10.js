@@ -2,6 +2,7 @@ module.exports = {
     subject: "文史哲",
     course_name: "文史哲學群",
     base_people:189,
+    teachers:["01","03"],
     sub_course: [
         {
             id:1,

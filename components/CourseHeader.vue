@@ -52,7 +52,7 @@ export default {
 @media (min-width:900px) {
 	/*header*/
 	.header{
-		position: fixed;
+		position: fixed !important;
 		width: 100vw;
 		height: 80px;
 		background-color: white;

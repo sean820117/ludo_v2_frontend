@@ -2,6 +2,7 @@ module.exports = {
     subject: "生命科學",
     course_name: "生命科學學群",
     base_people:114,
+    teachers:["01"],
     sub_course: [
         {
             id:1,

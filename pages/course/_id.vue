@@ -4,6 +4,9 @@
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal"/>
 		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
+        <div class="go2u-teachers" :class="$mq">
+            <img :class="$mq" :src="`/teacher${teacher}.jpg`" alt="" v-for="teacher in courseDataSet[course_id].teachers" :key="teacher">
+        </div>
         <div class="go2u-desktop" :class="$mq" v-for="img in go2uDesktop" :key="img">
             <img :src="img" alt="" v-if="img == go2uDesktop[0] || img == go2uDesktop[1]">
             <img :src="img" alt="" v-if="img == go2uDesktop[2] && $mq == 'desktop'">
@@ -46,6 +49,10 @@ import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
 
 import medicalAd from 'static/go2u-desktop/medical-ad.jpg'
+
+// import teacher01 from 'static/teacher01.jpg';
+// import teacher01 from 'static/teacher02.jpg';
+// import teacher01 from 'static/teacher03.jpg';
 
 import go2u05 from 'static/go2u-desktop/05.jpg';
 import go2u07b from 'static/go2u-desktop/07-5.jpg';
@@ -291,6 +298,25 @@ html, body{
 .medical-ad img {
     width: 50vw;
     height: 14vw;
+}
+.go2u-teachers {
+  width: 80vw;
+  margin-left: 10vw;
+  margin-bottom: 2%;
+
+  &.desktop { 
+      display: flex;
+      justify-content: center;
+   }
+  &.mobile { width: 90vw; margin-left: 5vw; }
+}
+.go2u-teachers img {
+    &.desktop {
+        width: 50vw;
+        height: 20vw;
+    }
+  /* max-width: 60vw; */
+  &.mobile { width: 100%;}
 }
 .go2u-desktop {
   width: 80vw;

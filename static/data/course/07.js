@@ -2,6 +2,7 @@ module.exports = {
     subject: "數理化學",
     course_name: "數理化學學群",
     base_people:103,
+    teachers:["01","02"],
     sub_course: [
         {
             id:1,

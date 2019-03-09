@@ -9,11 +9,11 @@
           <section class="course col-lg-6 col-sm-12 align-self-center">
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
-              <flat-button size="big" text="懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
+              <flat-button size="big" text="備審懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
               <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
-              <flat-button size="medium" text="懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
+              <flat-button size="medium" text="備審懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
               <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
             </div>
           </section>
@@ -68,7 +68,7 @@
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <iframe v-if="img == go2uDesktop[2]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="#all-course">
+        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="#all-course">
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
@@ -79,7 +79,7 @@
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
         <iframe v-if="img == go2uMobile[2]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img :src="img" alt="">
-        <button v-if="img == go2uMobile[6]" class="buy-now-btn" >
+        <button v-if="img == go2uMobile[7]" class="buy-now-btn" >
           <a href="#all-course">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </a>
@@ -145,6 +145,7 @@ import go2u01 from 'static/go2u-desktop/01.jpg';
 import go2u04 from 'static/go2u-desktop/04.jpg';
 import go2u05 from 'static/go2u-desktop/05.jpg';
 // import go2u06 from 'static/go2u-desktop/06.jpg';
+import go2u06b from 'static/go2u-desktop/06-5.jpg';
 import go2u07 from 'static/go2u-desktop/07.jpg';
 import go2u07b from 'static/go2u-desktop/07-5.jpg';
 import go2u08 from 'static/go2u-desktop/08.jpg';
@@ -155,6 +156,7 @@ import go2u21 from 'static/go2u-mobile/21.jpg';
 import go2u22 from 'static/go2u-mobile/22.jpg';
 // import go2u23 from 'static/go2u-mobile/23.jpg';
 import go2u24 from 'static/go2u-mobile/24.jpg';
+import go2u24b from 'static/go2u-mobile/24-5.jpg';
 import go2u25 from 'static/go2u-mobile/25.jpg';
 import go2u26 from 'static/go2u-mobile/26.jpg';
 import go2u27 from 'static/go2u-mobile/27.jpg';
@@ -288,7 +290,7 @@ export default {
     go2uDesktop:[
       go2u04,
       go2u05,
-      // go2u06,
+      go2u06b,
       go2u07,
       go2u07b,
       go2u08,
@@ -299,6 +301,7 @@ export default {
       go2u22,
       // go2u23,
       go2u24,
+      go2u24b,
       go2u25,
       go2u26,
       go2u27,
@@ -543,8 +546,8 @@ h2.title {
 }
 .go-buy {
   position: fixed;
-  right: 1vw;
-  top: 50vh;
+  right: 7vw;
+  top: 85vh;
   width: 60px;
   height: 60px;
   background: rgb(255, 215, 46);
