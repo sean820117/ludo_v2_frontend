@@ -5,7 +5,7 @@
 </template>
 
 <style>
-html {
+body {
   font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;
   font-size: 16px;
   word-spacing: 1px;

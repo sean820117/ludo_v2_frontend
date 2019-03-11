@@ -190,7 +190,7 @@ export default {
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
-      link: [{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" }],
+      // link: [{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" }],
     };
   },
   props: {
@@ -562,5 +562,26 @@ h2.title {
 .go-buy-cart::before {
   font-size: 30px;
   color: white;
+}
+
+@font-face{
+  font-family:"Glyphicons Halflings";
+  src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.eot);
+  src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.eot?#iefix) format("embedded-opentype"),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.woff2) format("woff2"),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.woff) format("woff"),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.ttf) format("truetype"),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format("svg")
+}
+
+.glyphicon-shopping-cart:before{
+  content:"\e116"
+}
+.glyphicon {
+  position:relative;
+  top:1px;
+  display:inline-block;
+  font-family:"Glyphicons Halflings";
+  font-style:normal;
+  font-weight:400;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 </style>
