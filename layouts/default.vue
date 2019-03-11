@@ -6,7 +6,7 @@
 
 <style>
 html {
-  font-family: arial, "Microsoft JhengHei", "微軟正黑體";
+  font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
