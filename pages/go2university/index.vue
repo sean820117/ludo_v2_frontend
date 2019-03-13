@@ -66,9 +66,9 @@
     
     <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
-        <iframe v-if="img == go2uDesktop[2]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe v-if="img == go2uDesktop[0]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe>
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[5]" class="buy-now-btn" href="/confirm">
+        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="/confirm">
           <router-link to="/confirm">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </router-link>
@@ -77,13 +77,25 @@
     </div>
     <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
-        <iframe v-if="img == go2uMobile[2]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign">免費試看課程</div>
+        <iframe v-if="img == go2uMobile[3]" class="go2u-ad" :class="$mq" src="https://player.vimeo.com/video/319273700" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen autoplay></iframe>
+        <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign-sub"><span>淺談醫學群申請生</span><br>如何撰寫人際、溝通、競賽、社團經歷</div>
         <img :src="img" alt="">
-        <button v-if="img == go2uMobile[7]" class="buy-now-btn" >
+        <!-- <button v-if="img == go2uMobile[4]" class="buy-now-btn" >
           <router-link to="/confirm">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </router-link>
-        </button>
+        </button> -->
+      </div>
+      <div class="intro-buttons">
+        <div class="actions" v-if="$mq == 'desktop'">
+          <flat-button size="big" text="馬上購買" bgColor="#E0185D" link="/confirm" :dl="true"/>
+          <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
+        </div>
+        <div class="actions" v-if="$mq == 'mobile'">
+          <flat-button size="medium" text="馬上購買" bgColor="#E0185D" link="/confirm" :dl="true"/>
+          <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
+        </div>
       </div>
     </div>
     <section class="all-courses" id="all-course">
@@ -112,13 +124,15 @@
       <div class="QA-answer">讓備審飛的課程可以一直看一直看！<br>看到你的備審資料不想做為止！</div>
       <div class="QA-question">04.「備審建議機器人」一天可以用幾次？</div>
       <div class="QA-answer">只要付費之後，你所購買的學群機器人將可以體驗無限多次！我們期待你能大量有效的真實練習！</div>
-      <div class="QA-question">05.請問支援什麼付款方式？</div>
+      <div class="QA-question">​​05.會有真人幫我把我的備審資料改到好嗎？</div>
+      <div class="QA-answer">不會的，讓備審飛系列課程完全都是透過 AI 人工智能為您檢測。</div>
+      <div class="QA-question">06.請問支援什麼付款方式？</div>
       <div class="QA-answer">信用卡與金融卡線上刷卡、超商代碼繳費。<br><br>信用卡線上刷卡<br>於付款頁面按下「購買」鍵後，即會轉往「紅陽科技」支付平台。海外用戶請記得先開啟「跨境付款」功能，不然會無法交易。另紅陽科技頁面之「手機號碼」欄位，請於開頭加上「國際電話區域碼」。目前可支援的卡別有：VISA、MasterCard、JCB、銀聯卡（中國以及海外地區可能會有系統延遲的狀況，交易成功後需要 12 至 15 分鐘後才會在讓備審飛平台收到交易成功之訊息以及通知信件）<br><br>超商代碼繳費<br>於付款頁面點選「超商付款」，取得該課程的付款代碼後，在期限內至以下超商進行代碼繳費即可。超商付款需手續費 26 元。一般來說 30 分鐘內，就會在你的「驗證信箱」收到購買成功的通知信件，超商付款詳細流程，可參考此篇文章。<br><br>可繳費超商：7-11、全家、萊爾富、OK 超商</div>
-      <div class="QA-question">06.我未在繳費期限完成繳費怎麼辦？</div>
+      <div class="QA-question">07.我未在繳費期限完成繳費怎麼辦？</div>
       <div class="QA-answer">超過繳費期限後，原本的「超商繳費代碼」會自動失效。只要重新進行購買程序，將會產生新的訂單，於新的繳費期限內繳費即可。</div>
-      <div class="QA-question">07.我要如何確定付款成功？</div>
+      <div class="QA-question">08.我要如何確定付款成功？</div>
       <div class="QA-answer">當系統收到你的款項時，會寄送「付款成功通知信件」至你的「驗證信箱」，收件匣未看到的話，可以至垃圾信件匣查看。</div>
-      <div class="QA-question">08.還有其他問題怎麼辦？</div>
+      <div class="QA-question">09.還有其他問題怎麼辦？</div>
       <div class="QA-answer">歡迎寫信與我們聊聊：<br>contact@flyingcrazyer.com</div>
     </div>
     <router-link class="go-buy" to="/confirm">
@@ -154,7 +168,7 @@ import go2u10 from 'static/go2u-desktop/10.jpg';
 /* mobile img */
 import go2u21 from 'static/go2u-mobile/21.jpg';
 import go2u22 from 'static/go2u-mobile/22.jpg';
-// import go2u23 from 'static/go2u-mobile/23.jpg';
+import go2u23 from 'static/go2u-mobile/23.jpg';
 import go2u24 from 'static/go2u-mobile/24.jpg';
 import go2u24b from 'static/go2u-mobile/24-5.jpg';
 import go2u25 from 'static/go2u-mobile/25.jpg';
@@ -291,7 +305,7 @@ export default {
       go2u04,
       go2u05,
       go2u06b,
-      go2u07,
+      // go2u07,
       go2u07b,
       go2u08,
       go2u09,
@@ -299,13 +313,13 @@ export default {
     ],
     go2uMobile:[
       go2u22,
-      // go2u23,
+      go2u23,
       go2u24,
-      go2u24b,
-      go2u25,
-      go2u26,
-      go2u27,
-      go2u27b,
+      // go2u24b,
+      // go2u25,
+      // go2u26,
+      // go2u27,
+      // go2u27b,
       go2u28,
       go2u29,
       go2u30,
@@ -480,12 +494,32 @@ h2.title {
   max-width: 100%;
 }
 .go2u-ad {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   width: 60vw;
-  height: 36vw;
+  height: 60vw;
   /* margin-left: 10vw; */
 
-  &.mobile { margin-left: 10vw; width: 80vw;height: 48vw;}
+  &.mobile { width: 100vw;height: 100vw;}
+}
+.go2u-ad-campaign {
+  background: black;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.go2u-ad-campaign-sub {
+  background: black;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  margin-top: -7px;
+}
+.go2u-ad-campaign-sub span {
+  font-weight: bold;
 }
 
 .go2u-desktop {
@@ -500,6 +534,12 @@ h2.title {
 }
 .go2u-desktop img {
   width: 100%;
+}
+.intro-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: -50vw;
+  margin-bottom: 33vw;
 }
 .buy-now-btn {
   width: 100%;

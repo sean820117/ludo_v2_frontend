@@ -10,9 +10,9 @@
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～')" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" />
+          <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" />
           <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'早鳥 $'+prices[1].price + '/學群(12節完整課程)'" />
-          <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～')" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" />
+          <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" />
           <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="組合價 $4999 /全學群(72堂完整課程)" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
@@ -48,6 +48,8 @@ import Vue from 'vue'
 import VModal from 'vue-js-modal'
 import VueClipboard from 'vue-clipboard2'
 import { EMAIL_REGEX } from '~/components/regex.js'
+import { sha256 } from 'js-sha256';
+import { Base64 } from 'js-base64';
 
 Vue.use(VueClipboard)
 Vue.use(VModal, { dialog: true })
@@ -66,6 +68,14 @@ import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
 export default {
+  head() {
+    return {
+      link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
+      script: [
+        { src: 'https://ct-auth.np-pay.com/v1/aftee.js' }
+      ],
+    };
+  },
   data() {
     return {
       errors: null,
@@ -111,6 +121,28 @@ export default {
           "10": CourseData10,
           "11": CourseData11,
       },
+      aftee_data : {
+          amount:1200,
+          customer:{
+            address:'台北市松山區',
+            customer_name:"Sean Chen",
+            email:'sean820117@gmail.com',
+            phone_number:'0909999981',
+          },
+          items:[
+            {
+              item_count:1,
+              item_name:'讓備審飛單一課堂',
+              item_price:1200,
+              shop_item_id:'01',
+            }
+          ],
+          sales_settled:true,
+          shop_transaction_no:'A1234567',
+          user_no:'1111',
+      },
+      aftee_pub_key: 'xk7OoSikOjV_e2F9Hg77Fw',
+      aftee_secret_key: 'm5J5Z_jv5Cm7M0WgPPy7uA',
     }
   },
   computed: mapGetters({
@@ -250,12 +282,72 @@ export default {
         window.alert("發生錯誤請重新進入");
       }
       
+    }, 
+    setAfteeConfig() {
+      this.aftee_data = this.sortObject(this.aftee_data);
+      let checksum = this.getCheckSum(this.aftee_data);
+      this.aftee_data.checksum = checksum;
+      Aftee.config({
+        // pre_token:'xk7OoSikOjV_e2F9Hg77Fw',
+        pub_key: this.aftee_pub_key,
+        payment: this.aftee_data,
+        authenticated: function(token,user_no) {
+          console.log("token : " + token)
+        },
+        cancelled: function(token,user_no) {
+          console.log("cancelled : " + user_no)
+        },
+        failed: function(response) {
+          console.log(response);
+        },
+        succeeded: function(response) {
+          console.log("aftee payed succeed")
+          console.log(response)
+        },
+        error: function(name,message,errors) {
+          console.log(errors);
+        },
+      });
+    },
+    getCheckSum(obj) {
+      let all_value = '';
+      Object.keys(obj).forEach(key => {
+          console.log(key); 
+          if (key == "items") {
+            obj[key].forEach(item => {
+              item = this.sortObject(item);
+              Object.values(item).forEach(value => {
+                all_value += value.toString();
+              });
+            });
+          } else if(key == 'customer') {
+            obj[key] = this.sortObject(obj[key]);
+            Object.values(obj[key]).forEach(value => {
+              all_value += value.toString();
+            });
+          } else if (key == 'shop_transaction_no' || key == "checksum"){
+
+          } else {
+            all_value += obj[key].toString();  
+          }
+      });
+      all_value = this.aftee_secret_key + "," + all_value
+      console.log(all_value);
+      all_value = sha256(all_value);
+      console.log(all_value);
+      all_value = Base64.encode(all_value);
+      console.log(all_value);
+      return all_value;
+    },
+    sortObject(obj) {
+        return Object.keys(obj).sort().reduce(function (result, key) {
+            result[key] = obj[key];
+            return result;
+        }, {});
+    },
+    startAftee() {
+      Aftee.start();
     }
-  },
-  head() {
-    return {
-      link: [{ rel: "stylesheet", href: "/bootstrap.css" }]
-    };
   },
   components: {
     PageHeader,

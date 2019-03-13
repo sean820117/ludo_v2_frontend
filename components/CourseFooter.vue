@@ -58,6 +58,7 @@
 			<div class="footer-container">
                 <div class="footer-container-title">SUPPORT</div>
                 <a href="https://m.me/2018930911516278?ref=9aB25EjxH"  class="footer-container-content">Support Center</a>
+				<router-link to="/privacy"  class="footer-container-content">privacy</router-link>
             </div>
         </div>
     </div>
