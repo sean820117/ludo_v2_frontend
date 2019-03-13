@@ -88,10 +88,10 @@
         </button> -->
       </div>
       <div class="intro-buttons">
-        <div class="actions" v-if="$mq == 'desktop'">
+        <!-- <div class="actions" v-if="$mq == 'desktop'">
           <flat-button size="big" text="馬上購買" bgColor="#E0185D" link="/confirm" :dl="true"/>
           <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
-        </div>
+        </div> -->
         <div class="actions" v-if="$mq == 'mobile'">
           <flat-button size="medium" text="馬上購買" bgColor="#E0185D" link="/confirm" :dl="true"/>
           <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
