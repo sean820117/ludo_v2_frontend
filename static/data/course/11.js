@@ -114,13 +114,13 @@ module.exports = {
             id:4,
             title:"有感的申請動機(各科不同)",
             title2 : "第二步：將動機與家庭背景連結",
-            link:"https://player.vimeo.com/video/319274914"
+            link:"https://player.vimeo.com/video/319276215"
         },
         {
             id:5,
             title:"有感的申請動機(各科不同)",
             title2 : "第三步：有效寫入各科系關鍵字詞",
-            link:"https://player.vimeo.com/video/319276798",
+            link:"https://player.vimeo.com/video/319272901",
             assistant_id:"0bd383a0-01cf-11e9-a7e9-21bf6b6391c0",
             placeholder:"假設你今天是一個"+'管理學群'+"的申請生，以下請寫上你完整的申請動機內容。",
             comments: {
@@ -172,13 +172,13 @@ module.exports = {
             id:7,
             title:"有效的自傳寫法(各科不同)",
             title2 : "第二步：如何加入學科的知識性描述",
-            link:"https://player.vimeo.com/video/319280826"
+            link:"https://player.vimeo.com/video/319395219"
         },
         {
             id:8,
             title:"有效的自傳寫法(各科不同)",
             title2 : "第三步：撰寫人際、溝通、競賽、社團環節",
-            link:"https://player.vimeo.com/video/319395333",
+            link:"https://player.vimeo.com/video/319395414",
             assistant_id:"03d0ed70-01f5-11e9-a7e9-21bf6b6391c0",
             placeholder:"假設你今天是一個"+'管理學群'+"的申請生，以下請寫上你完整的自傳內容。",
             comments: {
@@ -232,13 +232,13 @@ module.exports = {
             id:10,
             title:"不唬人的讀書計畫(各科不同)",
             title2 : "第二步：寫好專業、語言、職場、研究所等內容",
-            link:"https://player.vimeo.com/video/319395903"
+            link:"https://player.vimeo.com/video/319395813"
         },
         {
             id:11,
             title:"不唬人的讀書計畫(各科不同)",
             title2 : "第三步：寫好人際關係、自我成長、休閒等內容",
-            link:"https://player.vimeo.com/video/319395757",
+            link:"https://player.vimeo.com/video/319395650",
             assistant_id:"03d0ed70-01f5-11e9-a7e9-21bf6b6391c0",
             placeholder:"假設你今天是一個"+'管理學群'+"的申請生，以下請寫上你完整的讀書計畫內容。",
             comments: {
