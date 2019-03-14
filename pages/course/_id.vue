@@ -13,7 +13,7 @@
             <img :src="img" alt="" v-if="img == go2uDesktop[3] && $mq == 'mobile'">
             <button v-if="!is_payed && ((img == go2uDesktop[2] && $mq == 'desktop') || (img == go2uDesktop[3] && $mq == 'mobile'))" class="buy-now-btn">
                 <button class="btn-coupon" @click="openModal('coupon-input')"> 
-                    立即兌換
+                    購買/兌換
                 </button>
             </button>
         </div>
@@ -21,10 +21,11 @@
         <course-footer/>
         <modal name="coupon-input" :width.sync="modal_width">
             <div class="coupon-input-container">
+                <h5>若已經購買，請輸入您收到的課程序號</h5>
                 <div class="coupon-input-form">
                     <input type="text" name="" id="" v-model="coupon_id">
                     <button class="coupon-input-form-send" @click="checkCoupon"> 
-                        兌換
+                        馬上購買
                     </button>
                 </div>
                 <div class="coupon-input-buy">
@@ -107,7 +108,7 @@ export default {
             this.modal_width = "100%";
             console.log("mobile")
         } else {
-            this.modal_width = 600;
+            this.modal_width = "100%";
         }
     },
     async mounted(){
@@ -169,7 +170,7 @@ export default {
             go2u28,
         ],
         go2uBuy,
-        modal_width:600,
+        modal_width:'100%',
     }),
     methods: {
         async checkIsPayed() {  
@@ -342,6 +343,10 @@ html, body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.coupon-input-container h5 {
+    padding: 0 5vw 0 5vw;
+    text-align: center;
 }
 .coupon-input-form{
     margin-bottom: 10px;

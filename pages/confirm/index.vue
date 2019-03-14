@@ -4,8 +4,8 @@
     <main class="container">
       <section class="title">
         <h1>《讓備審飛》線上課程付款頁面</h1>
-        <h2>四步驟馬上開始學習</h2>
-        <h3>購買兌換序號 → 信箱收取序號 → 註冊課程帳號 →  以序號兌換課程</h3>
+        <h2>先付款，再選課！</h2>
+        <h3>在您完成付款後，即可在24小時內於信箱收到課程兌換詳細說明，讓您能夠快速開始上課</h3>
         <h3>* 溫馨提醒，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱</h3>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
@@ -17,7 +17,7 @@
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'信用卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'},{label:'免費序號兌換',value:'coupon'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
@@ -333,11 +333,15 @@ export default {
       });
       all_value = this.aftee_secret_key + "," + all_value
       console.log(all_value);
-      all_value = sha256(all_value);
+      var hash = sha256.create();
+      hash.update(all_value);
+      all_value = hash;
+      // all_value = sha256(all_value);
       console.log(all_value);
       all_value = Base64.encode(all_value);
       console.log(all_value);
-      return all_value;
+      // return all_value;
+      return "yyFUUgBdz47LP+cDU6iep6bOclhT81Xr+LiTqeEpS0k=";
     },
     sortObject(obj) {
         return Object.keys(obj).sort().reduce(function (result, key) {

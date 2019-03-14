@@ -52,6 +52,10 @@ export default {
   text-decoration: none;
   /* color: initial; */
 }
+.flat-button a:active {
+  text-decoration: none;
+  color: initial;
+}
 
 .flat-button:focus {
   outline: 0;

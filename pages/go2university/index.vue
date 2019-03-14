@@ -77,9 +77,9 @@
     </div>
     <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
-        <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign">免費試看課程</div>
-        <iframe v-if="img == go2uMobile[3]" class="go2u-ad" :class="$mq" src="https://player.vimeo.com/video/319273700" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen autoplay></iframe>
-        <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign-sub"><span>淺談醫學群申請生</span><br>如何撰寫人際、溝通、競賽、社團經歷</div>
+        <!-- <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign">免費試看課程</div> -->
+        <iframe v-if="img == go2uMobile[3]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe>
+        <!-- <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign-sub"><span>淺談醫學群申請生</span><br>如何撰寫人際、溝通、競賽、社團經歷</div> -->
         <img :src="img" alt="">
         <!-- <button v-if="img == go2uMobile[4]" class="buy-now-btn" >
           <router-link to="/confirm">  
@@ -229,7 +229,7 @@ export default {
       {
         id: "11",
         name: '管理學群',
-        description: '適用科系：企管系、財經系、會計系',
+        description: '適用科系：企管系、財金系、會計系',
         imageUrl: go2uCourse11,
         tag: 'try-now',
         link: "/course/11",
