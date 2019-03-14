@@ -3,7 +3,7 @@
         <course-header/>
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal"/>
-		<practice-input-box v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
+		<practice-input-box id="practice" v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
         <div class="go2u-teachers" :class="$mq">
             <img :class="$mq" :src="`/teacher${teacher}.jpg`" alt="" v-for="teacher in courseDataSet[course_id].teachers" :key="teacher">
         </div>

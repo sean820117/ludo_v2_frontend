@@ -14,8 +14,10 @@
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
-                    <img :src="InfiniteSymbol" class="course-status-svg" alt="">
-                    <div class="course-status-box-text">5個練習服務</div>
+                    <a class="course-status-box-link" href="#practice">
+                        <img :src="InfiniteSymbol" class="course-status-svg" alt="">
+                        <div class="course-status-box-text"> 5個練習服務</div>
+                    </a>
                 </div>
                 <div v-if="!is_payed" class="course-status-devider-sm"></div>
                 <div v-if="!is_payed" class="course-status-pricetag">課程售價</div>
@@ -71,6 +73,21 @@ export default {
 </script>
 
 <style>
+.course-status-box-link {
+    text-decoration: none;
+    color: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.course-status-box-link:hover {
+    text-decoration: none;
+    color: initial;
+}
+.course-status-box-link:active {
+    text-decoration: none;
+    color: initial;
+}
 @media (min-width:900px) {
     /*看課下方欄*/
     .course-status{
