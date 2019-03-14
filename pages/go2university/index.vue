@@ -587,7 +587,7 @@ h2.title {
 .go-buy {
   position: fixed;
   right: 7vw;
-  top: 85vh;
+  top: 75vh;
   width: 60px;
   height: 60px;
   background: rgb(255, 215, 46);
