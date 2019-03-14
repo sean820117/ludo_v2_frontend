@@ -25,7 +25,7 @@
                 <div class="coupon-input-form">
                     <input type="text" name="" id="" v-model="coupon_id">
                     <button class="coupon-input-form-send" @click="checkCoupon"> 
-                        馬上購買
+                        購買/兌換
                     </button>
                 </div>
                 <div class="coupon-input-buy">
