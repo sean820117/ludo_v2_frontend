@@ -3,8 +3,8 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>Log In</h1>
-        <p>New to Ludo? <router-link to="/signup">Sign Up</router-link></p>
+        <h1>登入</h1>
+        <p>初次使用？<router-link to="/signup">點此登入</router-link></p>
       </section>
       <div class="row">
         <section class="form col-lg-6 col-sm-12">
@@ -12,8 +12,8 @@
             <text-input name="email" text="Email" v-model="email" />
             <text-input name="password" text="Password" type="password" v-model="password" />
             <div class="error">{{errors}}</div>
-            <div>Forget Password?</div>
-            <div @click="onSubmit" role="button" class="action-button">Login</div>
+            <div>忘記密碼?</div>
+            <div @click="onSubmit" role="button" class="action-button">登入</div>
           </div>
         </section>
         <section class="third-party col-lg-6 col-sm-12">

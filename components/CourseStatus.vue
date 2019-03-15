@@ -42,6 +42,7 @@
 import HiveFive from 'static/high-five.svg'
 import Hourglass from 'static/hourglass.svg'
 import InfiniteSymbol from 'static/infinite-symbol.svg'
+import CourseVideoListLightBox from '~/components/CourseVideoListLightBox.vue'
 import axios from '~/config/axios-config';
 
 export default {

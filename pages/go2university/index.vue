@@ -78,7 +78,7 @@
     <div v-else-if=" $mq == 'mobile' " id="intro">
       <div class="go2u-mobile"  v-for="img in go2uMobile" :key="img">
         <!-- <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign">免費試看課程</div> -->
-        <iframe v-if="img == go2uMobile[3]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe>
+        <iframe v-if="img == go2uMobile[0]" class="go2u-ad" :class="$mq" src="https://www.youtube.com/embed/0PW1eBjfREk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe>
         <!-- <div v-if="img == go2uMobile[3]" class="go2u-ad-campaign-sub"><span>淺談醫學群申請生</span><br>如何撰寫人際、溝通、競賽、社團經歷</div> -->
         <img :src="img" alt="">
         <!-- <button v-if="img == go2uMobile[4]" class="buy-now-btn" >
@@ -135,9 +135,14 @@
       <div class="QA-question">09.還有其他問題怎麼辦？</div>
       <div class="QA-answer">歡迎寫信與我們聊聊：<br>contact@flyingcrazyer.com</div>
     </div>
-    <router-link class="go-buy" to="/confirm">
+    <!-- <router-link class="go-buy" to="/confirm">
       <span class="go-buy-cart glyphicon glyphicon-shopping-cart" ></span>
-    </router-link>
+    </router-link> -->
+    <div class="fixed-buy-button-container">
+        <router-link class="fixed-buy-button" to="/confirm">
+            前往購買
+        </router-link>
+    </div>
     <course-footer></course-footer>
   </div>
 </template>
@@ -623,5 +628,31 @@ h2.title {
   line-height:1;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+}
+.fixed-buy-button-container {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 70px;
+    background: white;
+    box-shadow: -1px 0px 20px 1px lightgrey;
+    justify-content: center;
+    align-items: center;
+}
+.fixed-buy-button {
+    border: none;
+    background: #E0185D;
+    color: white;
+    font-size: 20px;
+    border-radius: 20px;
+    padding: 5px 50px;
+    text-decoration: none;
+}
+.fixed-buy-button:active {
+    color: white;
+}
+.fixed-buy-button:hover {
+    color: white;
 }
 </style>

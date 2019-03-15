@@ -25,8 +25,8 @@
 		</div>
                 
             <!-- login -->
-            <router-link v-if="!user.user_id" to="/login" class="login-btn">註冊/登入</router-link>
-			<router-link v-else to="/logout" class="login-btn">登出</router-link>
+            <!-- <router-link v-if="!user.user_id" to="/login" class="login-btn">註冊/登入</router-link>
+			<router-link v-else to="/logout" class="login-btn">登出</router-link> -->
     </div>
 </template>
 

@@ -18,6 +18,15 @@
             </button>
         </div>
         <div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
+        <div class="fixed-buy-button-container">
+            <button v-if="!is_payed" class="fixed-buy-button" @click="openModal('coupon-input')">
+                立即購買
+            </button>
+            <button v-else class="fixed-buy-button" @click="showLightBox()">
+                開始上課
+            </button>
+        </div>
+        <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" ></course-video-list-light-box>
         <course-footer/>
         <modal name="coupon-input" :width.sync="modal_width">
             <div class="coupon-input-container">
@@ -33,7 +42,6 @@
                 </div>
             </div>
         </modal>
-
     </div>
     <loading 
         :active="!is_data_fetched" 
@@ -47,6 +55,7 @@ import CourseVideo from '~/components/CourseVideo.vue'
 import CourseStatus from '~/components/CourseStatus.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
+import CourseVideoListLightBox from '~/components/CourseVideoListLightBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
 
 import medicalAd from 'static/go2u-desktop/medical-ad.jpg'
@@ -138,7 +147,8 @@ export default {
 		CourseVideo,
 		CourseStatus,
         PracticeInputBox,
-		PracticeRecordBox,
+        PracticeRecordBox,
+        CourseVideoListLightBox,
         CourseFooter,
         Loading,
     },
@@ -171,6 +181,7 @@ export default {
         ],
         go2uBuy,
         modal_width:'100%',
+        lightBoxShowed:false,
     }),
     methods: {
         async checkIsPayed() {  
@@ -259,6 +270,12 @@ export default {
                 console.log(error)
                 this.is_data_fetched = true;
             }
+        },
+        showLightBox() {
+            this.lightBoxShowed = true;
+        },
+        hideLightBox() {
+            this.lightBoxShowed = false;
         },
     }
 }
@@ -385,5 +402,31 @@ html, body{
 }
 .coupon-input-buy a {
     color: #E0185D;
+}
+.fixed-buy-button-container {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 70px;
+    background: white;
+    box-shadow: -1px 0px 20px 1px lightgrey;
+    justify-content: center;
+    align-items: center;
+}
+.fixed-buy-button {
+    border: none;
+    background: #E0185D;
+    color: white;
+    font-size: 20px;
+    border-radius: 20px;
+    padding: 5px 50px;
+    text-decoration: none;
+}
+.fixed-buy-button:active {
+    color: white;
+}
+.fixed-buy-button:hover {
+    color: white;
 }
 </style>

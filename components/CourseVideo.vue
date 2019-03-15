@@ -24,26 +24,14 @@
                 </div>
             </div>
         </div>
-        <div class="course-video-list-light-box" v-if="lightBoxShowed" :class="is_payed ? '':'no-drop'">
-            <div class="course-video-list-m" v-if="course_id">
-                <div 
-                    v-for="item in courseDataSet[course_id].sub_course" 
-                    :key="item.title"
-                    @click="changeCurrentSubCourse(item);hideLightBox()">
-                    <course-video-list-item :title="item.title" :title2="item.title2"/>
-                    <div v-if="item.id == 2 || item.id == 8" class="free-course">試看</div>
-                </div>
-            </div>
-            <div class="course-video-list-m-back">
-                <button class="course-video-list-m-back-btn" @click="hideLightBox()">返回</button>
-            </div>
-        </div>
+        <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" ></course-video-list-light-box>
         <div class="course-video-items" @click="showLightBox()">單元一覽 ></div>
     </div>
 </template>
 
 <script>
 import CourseVideoListItem from '~/components/CourseVideoListItem.vue'
+import CourseVideoListLightBox from '~/components/CourseVideoListLightBox.vue'
 
 import CourseData01 from 'static/data/course/01.js'
 import CourseData02 from 'static/data/course/02.js'
@@ -76,7 +64,8 @@ export default {
         course_name:"",
     }),
     components: {
-		CourseVideoListItem,
+        CourseVideoListItem,
+        CourseVideoListLightBox,
     },
     props: {
         course_id: String,
@@ -106,9 +95,6 @@ export default {
 </script>
 
 <style>
-.no-drop {
-    cursor: no-drop;
-}
 @media (min-width:900px) {
     /*看課區段*/
     .course-video{
@@ -156,6 +142,10 @@ export default {
     }
     .box1_link:hover {
         color: #FFD72E;
+        text-decoration: none;
+    }
+    .box1_link:active {
+        color: white;
         text-decoration: none;
     }
     .box2{
@@ -257,6 +247,19 @@ export default {
 
         color: white;
     }
+    .box1_link {
+        color: white;
+        line-height: 1.2em;
+        /* text-decoration: underline; */
+    }
+    .box1_link:hover {
+        color: #FFD72E;
+        text-decoration: none;
+    }
+    .box1_link:active {
+        color: white;
+        text-decoration: none;
+    }
     .box2{
         /*background-color: white;*/
         float: left;
@@ -309,36 +312,6 @@ export default {
     }
     .course-video-list {
         display: none;
-    }
-    .course-video-list-light-box {
-        position: fixed;
-        height: 100vh;
-        top: 60px;
-        width: 100vw;
-        background: #324D5B;
-        z-index: 2;
-    }
-    .course-video-list-m {
-        height: 70vh;
-        /* padding-bottom: 20vh; */
-        
-        width: 100vw;
-        overflow-y: scroll;
-    }
-    .course-video-list-m-back {
-        width: 100vw;
-        height: 20vh;
-        background: #324D5B;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .course-video-list-m-back-btn {
-        font-size: 16px;
-        width: 135px;
-        height: 38px;
-        border-radius: 23px;
-        background: #FFD72E;
     }
 }
 </style>

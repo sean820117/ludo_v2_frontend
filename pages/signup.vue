@@ -3,8 +3,8 @@
     <page-header></page-header>
     <main class="container">
       <section class="title">
-        <h1>Sign Up</h1>
-        <p>Already have an account? <router-link to="/login">Login</router-link></p>
+        <h1>註冊</h1>
+        <p>已經擁有帳號? <router-link to="/login">點此登入</router-link></p>
       </section>
       <div class="row">
         <section class="form col-lg-6 col-sm-12">
@@ -13,7 +13,7 @@
             <text-input name="password" text="Password" type="password" v-model="password" />
             <text-input name="confirmPassword" text="Confirm Password" type="password" v-model="confirmPassword" />
             <div class="error">{{errors}}</div>
-            <div @click="onSubmit" role="button" class="action-button">Sign Up</div>
+            <div @click="onSubmit" role="button" class="action-button">註冊</div>
           </div>
         </section>
         <section class="third-party col-lg-6 col-sm-12">
