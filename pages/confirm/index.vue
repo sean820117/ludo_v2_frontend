@@ -169,7 +169,7 @@ export default {
         e.preventDefault();
         return
       }
-      if (!EMAIL_REGEX.test(this.email)) {
+      if (!EMAIL_REGEX.test(this.email) && this.payment_type.value == 'store-pay') {
         this.errors = '電子信箱格式錯誤'
         e.preventDefault();
         return
