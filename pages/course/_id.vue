@@ -18,7 +18,7 @@
             </button>
         </div>
         <div v-if="course_id == '01'" class="medical-ad"><a href="https://lihi.cc/Fif8z"><img :src="medicalAd" alt="https://lihi.cc/Fif8z"></a></div>
-        <div class="fixed-buy-button-container">
+        <div v-if="$mq == 'mobile'" class="fixed-buy-button-container">
             <button v-if="!is_payed" class="fixed-buy-button" @click="openModal('coupon-input')">
                 立即購買
             </button>
