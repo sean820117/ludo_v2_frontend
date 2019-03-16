@@ -4,23 +4,24 @@
     <main class="container">
       <section class="title">
         <h1>《讓備審飛》線上課程付款頁面</h1>
-        <h2>先付款，再選課！</h2>
-        <h3>在您完成付款後，即可在24小時內於信箱收到課程兌換詳細說明，讓您能夠快速開始上課</h3>
-        <h3>* 溫馨提醒，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱</h3>
+        <h2>匯款資訊</h2>
+        <h3>中國信託重陽分行</h3>
+        <h3>匯款帳號 822-495540657696</h3>
+        <h3>戶名：如荼科技股份有限公司</h3>
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" />
-          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'早鳥 $'+prices[1].price + '/學群(12節完整課程)'" />
-          <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" />
+          <!-- <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" /> -->
+          <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/學群(12節完整課程)'" />
+          <!-- <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" /> -->
           <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="組合價 $4999 /全學群(72堂完整課程)" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'匯款',value:'atm'},{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
-            <label for="email">電子信箱</label><input id="email" name="email" v-model="email" type="email" />
+            <label for="email">電子信箱{{ payment_type.value == 'store-pay' ? '(必填)' : '(選填)' }}</label><input id="email" name="email" v-model="email" type="email" />
             <!-- <label for="coupon">序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/> -->
             <input type="hidden" name="price" v-model="selected_price">
             <input type="hidden" name="product_name" v-model="product_name">
@@ -33,6 +34,11 @@
         </section>
       </form>
     </main>
+    <section class="title">
+      <h2>先付款，再選課！</h2>
+      <h3>在您完成付款後，即可在24小時內於信箱收到課程兌換詳細說明，讓您能夠快速開始上課</h3>
+      <h3>* 溫馨提醒，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱</h3>
+    </section>
     <div id="push" />
     <v-dialog name="share"/>
   </div>
@@ -85,7 +91,7 @@ export default {
       coupon:'',
       course_id:"",
       payment_url:"",
-      payment_type:{label:'信用卡',value:'credit-card'},
+      payment_type:{label:'匯款',value:'atm'},
       product_name:"",
       shared_time:0,
       share_url:"",
@@ -153,8 +159,13 @@ export default {
       window.alert(text);
     },
     onSubmit(e) {
-      if (this.customer.length === 0 || this.phone.length === 0 || this.email.length === 0) {
-        this.errors = '請填寫所有欄位'
+      if (this.customer.length === 0 || this.phone.length === 0) {
+        this.errors = '請填寫姓名及電話欄位'
+        e.preventDefault();
+        return
+      }
+      if (this.payment_type.value == 'store-pay' && this.email.length === 0) {
+        this.errors = '請填寫email欄位'
         e.preventDefault();
         return
       }
@@ -173,7 +184,7 @@ export default {
       //   e.preventDefault();
       //   return
       // }
-      
+
       if(this.coupon) {
         e.preventDefault();
         this.checkCoupon();
@@ -402,7 +413,7 @@ export default {
   height: 100vh;
 }
 main {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -411,6 +422,11 @@ main {
   margin-bottom: 5%;
   margin-top: 10px;
   z-index: 1;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   color: grey;
@@ -430,6 +446,7 @@ h3 {
   text-align: center;
   font-size: 15px;
   font-weight: normal;
+  max-width: 80vw;
 }
 .choices {
   display: flex;
@@ -450,7 +467,7 @@ h3 {
 }
 .purchase-content {
   width: 80%;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 .purchase label, .purchase input {
   width: 100%;

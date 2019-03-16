@@ -20,6 +20,7 @@ export default {
             "付款失敗，請重新嘗試",
             "付款成功！\n提醒您，您的課程序號將會於付款後一個工作天內寄送至您購買時填寫之電子信箱",
             "生成代碼成功！\n請至信箱收取超商繳費代碼（發信時間約1~10分鐘）",
+            "匯款資訊:\n中國信託重陽分行\n匯款帳號:\n822-495540657696\n戶名：\n如荼科技股份有限公司\n\n*匯款完成後會在一天內將課程序號傳送至您的手機或電子信箱",
         ]
     }),
     components: {
@@ -28,7 +29,7 @@ export default {
     },
     created() {
         const query_result = this.$route.query.result;
-        if (query_result && query_result == 1 || query_result == 2 || query_result == 0) {
+        if (query_result && query_result == 1 || query_result == 2 || query_result == 0 || query_result == 3) {
             this.result = this.result_list[parseInt(query_result)]
         } else {
             this.result = '載入錯誤';
@@ -46,7 +47,7 @@ export default {
     flex-direction: column;
 }
 .redirect-title {
-    font-size: 40px;
+    font-size: 25px;
     margin: 0 0 50px 0;
     width: 70vw;
     text-align: center;
