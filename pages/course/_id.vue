@@ -26,7 +26,7 @@
                 開始上課
             </button>
         </div>
-        <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" ></course-video-list-light-box>
+        <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" v-on:changeCurrentSubCourse="changeCurrentSubCourse"></course-video-list-light-box>
         <course-footer/>
         <modal name="coupon-input" :width.sync="modal_width">
             <div class="coupon-input-container">
@@ -269,6 +269,14 @@ export default {
             } catch (error) {
                 console.log(error)
                 this.is_data_fetched = true;
+            }
+        },
+        changeCurrentSubCourse(item) {
+            if (this.is_payed || item.id == 2 || item.id == 8) {
+                this.currentSubCourse = item;
+                console.log("change current sub")
+            } else {
+                window.alert("購買後即可觀看");
             }
         },
         showLightBox() {
