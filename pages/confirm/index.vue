@@ -21,6 +21,7 @@
             <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'匯款',value:'atm'},{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
+            <label for="email" v-if="payment_type.value == 'atm'">帳號末五碼</label><input v-if="payment_type.value == 'atm'" id="last-5-code" name="last-5-code" v-model="last_5_code" type="number" />
             <label for="email">電子信箱{{ payment_type.value == 'store-pay' ? '(必填)' : '(選填)' }}</label><input id="email" name="email" v-model="email" type="email" />
             <!-- <label for="coupon">序號兌換</label><input id="coupon" name="coupon" v-model="coupon" type="text" placeholder="選填"/> -->
             <input type="hidden" name="price" v-model="selected_price">
@@ -95,6 +96,7 @@ export default {
       product_name:"",
       shared_time:0,
       share_url:"",
+      last_5_code:'',
       prices:[
         {
           active: false,
