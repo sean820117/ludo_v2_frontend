@@ -42,6 +42,12 @@
                 </div>
             </div>
         </modal>
+        <modal name="feedback" :width.sync="modal_width">
+            <div class="coupon-input-container">
+                <h5>3/31 前填寫【讓備審飛】課程體驗滿意度回饋問卷，直接領 100 元獎學金</h5>
+                <h5> <a href="https://www.surveycake.com/s/Pv2NG"> {{ "點此給我們回饋" }}</a></h5>
+            </div>
+        </modal>
     </div>
     <loading 
         :active="!is_data_fetched" 
@@ -141,6 +147,15 @@ export default {
         this.base_people = this.courseDataSet[this.course_id].base_people;
         console.log(this.base_people);
         this.is_data_fetched = true;
+        
+        if (this.is_payed && this.is_data_fetched) {
+            const openModal = this.openModal;
+            var feedback_timeout = setTimeout(function (){
+                openModal('feedback')
+            }
+            ,3000);
+            console.log('feedback');
+        }
       },
     components: {
 		CourseHeader,

@@ -11,9 +11,9 @@
       </section>
       <form class="row" @submit="onSubmit" :action="payment_url" method="post">
         <section class="choices col-lg-6 col-sm-12">
-          <!-- <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" /> -->
+          <!-- <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');setAfteeConfig();" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" /> -->
           <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/學群(12節完整課程)'" />
-          <!-- <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" /> -->
+          <!-- <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');startAftee()" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" /> -->
           <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="組合價 $4999 /全學群(72堂完整課程)" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
@@ -146,7 +146,7 @@ export default {
             }
           ],
           sales_settled:true,
-          shop_transaction_no:'A1234567',
+          shop_transaction_no:'A123456777',
           user_no:'1111',
       },
       aftee_pub_key: 'xk7OoSikOjV_e2F9Hg77Fw',
