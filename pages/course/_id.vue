@@ -44,8 +44,8 @@
         </modal>
         <modal name="feedback" :width.sync="modal_width">
             <div class="coupon-input-container">
-                <h5>3/31 前填寫【讓備審飛】課程體驗滿意度回饋問卷，直接領 100 元獎學金</h5>
-                <h5> <a href="https://www.surveycake.com/s/Pv2NG"> {{ "點此給我們回饋" }}</a></h5>
+                <h5>為了不斷提升課程品質，邀請您填寫課程體驗滿意度回饋問卷</h5>
+                <h5> <a href="https://www.surveycake.com/s/BLM8a"> {{ "點此給我們回饋" }}</a></h5>
             </div>
         </modal>
     </div>
