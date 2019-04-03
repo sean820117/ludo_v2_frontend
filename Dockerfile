@@ -5,6 +5,8 @@ ENV NODE_ENV production
 RUN mkdir -p /var/www/app
 WORKDIR /var/www/app
 
+RUN apk add ncurses
+
 COPY ./package.json ./package-lock.json /var/www/app/
 RUN npm install
 
