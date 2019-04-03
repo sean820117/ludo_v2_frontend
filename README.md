@@ -2,22 +2,16 @@
 
 > Nuxt.js project
 
-## Build Setup
+## Development Guide
 
-``` bash
-# install dependencies
-$ npm install # Or yarn install
+### Prerequisites
+- install [Docker](https://www.docker.com/) on your computer
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+### How to
+- `cd` to project root directory. Run `docker-compose up`
+- Open http://localhost
+- Start coding :)
 
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
-
+## Production
+- `cd` to project root directory
+- docker build -t IMAGE_NAME .
