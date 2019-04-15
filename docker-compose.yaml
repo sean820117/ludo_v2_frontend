@@ -8,9 +8,9 @@ services:
       dockerfile: Dockerfile.dev
     ports:
         - "127.0.0.1:3000:3000"
-    # in future, we might use it
-    # env_file:
-    #     - ./.env.dev
+    environment:
+      - BASE_URL=https://www.ludonow.com
+      - API_URL=https://api.ludonow.com
     volumes:
         - ./:/var/www/app
         - node_modules:/var/www/app/node_modules
