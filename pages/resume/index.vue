@@ -33,16 +33,18 @@
             </div>
             <img src="Mask Group 4.png" style="margin-top:10px"/>
             <div class="third-block">
-                <div class="tb-title">在找工作的你<br>是否正遇到以下問題</div>
-                <div class="tb-content">
-                        每多花一天準備履歷<br>
-                        你將更可能失去最理想的工作！<br><br>
-                        
-                        網路上免費資源很多<br>
-                        但無形的時間成本正讓你失去先機。<br><br>
-                        
-                        因為履歷不夠好或學的不夠快<br>
-                        就輸給比你還差的人，你甘心嗎？<br><br>
+                <div class="tb-container">
+                    <div class="tb-title">在找工作的你<br>是否正遇到以下問題</div>
+                    <div class="tb-content">
+                            每多花一天準備履歷<br>
+                            你將更可能失去最理想的工作！<br><br>
+                            
+                            網路上免費資源很多<br>
+                            但無形的時間成本正讓你失去先機。<br><br>
+                            
+                            因為履歷不夠好或學的不夠快<br>
+                            就輸給比你還差的人，你甘心嗎？<br><br>
+                    </div>
                 </div>
             </div>
 
@@ -80,9 +82,23 @@
             <div class="seven-block">
                 <div class="sevenblock-1">學完即做完</div>
                 <div class="sevenblock-2">帶你實戰的線上課程+即時評測</div>
-                <div class="videoplay"></div>
-                <div class="fbshare">
-                    <div class="clickshare">點擊分享</div>
+                <div class="videoplay">
+                    <iframe id="demovideo" src="https://player.vimeo.com/video/319395957" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </div>
+                <div id="democourses">
+                    <div class="course">
+                        <div class="c-img"><img src="Group 54.png"/></div>
+                        <div class="c-title">超同標場</div>
+                        <div class="c-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+                    </div>
+                    <div class="course">
+                        <div class="c-img"><img src="Group 54.png"/></div>
+                        <div class="c-title">爭先基看媽多月</div>
+                        <div class="c-context">常致來對，車長去設科勢地我度母物一和！存師了者，較自快日音行他給覺方主家目，以生在得算化山，種夠是種，看下優味？</div>
+                    </div>
+                </div>
+                <div class="fbshare" id="fbshare">
+                    <div class="clickshare" id="clickshare">點擊分享</div>
                     <div>分享到Facebook就能解鎖第二課</div>  
                 </div>
             </div>
@@ -152,7 +168,7 @@
 
             <div class="blank-block"></div>
             <footer class="paynow">
-                立即付款
+                <a href="paynow.html">立即付款</a>
             </footer>
         </div>
     </div>
