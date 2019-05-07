@@ -17,6 +17,7 @@ export default {
 
 <style>
 .green-color {
+  
   color: #76FF00 !important;
 }
 .green-bg-color {
