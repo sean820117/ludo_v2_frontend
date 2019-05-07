@@ -22,7 +22,7 @@
       </div>
     </section>
     <teacher-intro></teacher-intro>
-    <course-intro></course-intro>
+    <new-course-intro></new-course-intro>
     <!-- <div class="QA-section" :class="$mq">
       <div class="QA-title">課程相關問題 Q＆A</div>
       <div class="QA-question">01.請問備審課程在哪上課？上課時間為？</div>
@@ -59,7 +59,7 @@ import CourseItem from "~/components/teacher/CourseItem.vue";
 import CourseFooter from "~/components/CourseFooter.vue";
 import CourseHeader from "~/components/CourseHeader.vue";
 import TeacherIntro from "~/components/fitness/TeacherIntro.vue";
-import CourseIntro from "~/components/fitness/CourseIntro.vue";
+import NewCourseIntro from "~/components/fitness/NewCourseIntro.vue";
 
 import Vue from 'vue'
 import VueMq from 'vue-mq'
