@@ -3,7 +3,8 @@
         <course-header bgColor="transparent" color="#76FF00" />
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal" bg_color="black" color="white" svg_color="76FF00"/>
-		<practice-input-box id="practice" v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse" type="video" />
+		<!-- <practice-input-box id="practice" v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse" type="video" /> -->
+        <practice-area></practice-area> 
         <div v-if="$mq == 'mobile'" class="fixed-buy-button-container">
             <button v-if="!is_payed" class="fixed-buy-button" @click="openModal('coupon-input')">
                 立即購買
@@ -46,6 +47,7 @@ import CourseHeader from '~/components/CourseHeader.vue'
 import CourseVideo from '~/components/CourseVideo.vue'
 import CourseStatus from '~/components/CourseStatus.vue'
 import PracticeInputBox from '~/components/PracticeInputBox.vue'
+import PracticeArea from '~/components/fitness/PracticeArea.vue'
 import PracticeRecordBox from '~/components/PracticeRecordBox.vue'
 import CourseVideoListLightBox from '~/components/CourseVideoListLightBox.vue'
 import CourseFooter from '~/components/CourseFooter.vue'
@@ -144,6 +146,7 @@ export default {
         CourseVideoListLightBox,
         CourseFooter,
         Loading,
+        PracticeArea,
     },
     methods: {
         async checkIsPayed() {  

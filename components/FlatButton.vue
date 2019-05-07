@@ -3,9 +3,11 @@
     :class=" hover + ' flat-button btn-' + size"
     :style="{background: bgColor, borderColor: borderColor, color:color}"
   >
-    <router-link :to="link" :class="hover" :target="dl ? '_blank':''">
+    <label v-if="type == 'file'" ><input :class="hover" type="file" style="display:none;">{{text}}</label>
+    <router-link v-else-if="link" :to="link" :class="hover" :target="dl ? '_blank':''">
       <div class="text">{{text}}</div>
     </router-link>
+    <a v-else :class="hover">{{text}}</a>
   </button>
 </template>
 
@@ -19,6 +21,8 @@ export default {
     link:String,
     hover:String,
     dl:Boolean,
+    type:String,
+    format:String,
     size: {
       default: 'medium',
       validator: function(value) {
