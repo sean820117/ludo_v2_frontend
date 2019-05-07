@@ -2,8 +2,8 @@
     <!-- 看課區段 -->
     <div class="course-video">
         <div class="course-video-contaniner">
-            <div class="box1"> <router-link class="box1_link" to="/go2university#all-course"> 讓備審飛 </router-link>> {{ course_name }}</div>
-            <div class="box2">
+            <div class="box1"> <router-link class="box1_link" to="/go2university#all-course">{{ null }}</router-link>{{ null }}</div>
+            <div class="box2" :style="{color:currentCourse.color}">
                 {{ currentSubCourse.title }}
                 <br>
                 <div class="box2-second-title"> {{ currentSubCourse.title2 }} </div>
@@ -16,7 +16,7 @@
             <iframe class="course-video-iframe" :src="currentSubCourse.link" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div class="course-video-list" v-if="course_id" :class="is_payed ? '':'no-drop'">
                 <div 
-                    v-for="item in courseDataSet[course_id].sub_course" 
+                    v-for="item in currentCourse.sub_course" 
                     :key="item.id"
                     @click="changeCurrentSubCourse(item)">
                     <course-video-list-item :title="item.title" :title2="item.title2" :background="currentSubCourse.id == item.id ? '#a2a2a2':''"/>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" ></course-video-list-light-box>
+        <course-video-list-light-box :is_payed="is_payed" :course="currentCourse" :lightBoxShowed.sync="lightBoxShowed" ></course-video-list-light-box>
         <div class="course-video-items" @click="showLightBox()">單元一覽 ></div>
     </div>
 </template>
@@ -33,35 +33,11 @@
 import CourseVideoListItem from '~/components/CourseVideoListItem.vue'
 import CourseVideoListLightBox from '~/components/CourseVideoListLightBox.vue'
 
-import CourseData01 from 'static/data/course/01.js'
-import CourseData02 from 'static/data/course/02.js'
-import CourseData03 from 'static/data/course/03.js'
-import CourseData04 from 'static/data/course/04.js'
-import CourseData05 from 'static/data/course/05.js'
-import CourseData06 from 'static/data/course/06.js'
-import CourseData07 from 'static/data/course/07.js'
-import CourseData08 from 'static/data/course/08.js'
-import CourseData09 from 'static/data/course/09.js'
-import CourseData10 from 'static/data/course/10.js'
-import CourseData11 from 'static/data/course/11.js'
-
 export default {
     data:() => ({
-        courseDataSet: {
-            "01": CourseData01,
-            "02": CourseData02,
-            "03": CourseData03,
-            "04": CourseData04,
-            "05": CourseData05,
-            "06": CourseData06,
-            "07": CourseData07,
-            "08": CourseData08,
-            "09": CourseData09,
-            "10": CourseData10,
-            "11": CourseData11,
-        },
         lightBoxShowed:false,
         course_name:"",
+        currentCourse:Object,
     }),
     components: {
         CourseVideoListItem,
@@ -73,6 +49,7 @@ export default {
         currentSubCourse:Object,
     },
     methods: {
+
         changeCurrentSubCourse(item) {
             if (this.is_payed || item.id == 2 || item.id == 8) {
                 this.currentSubCourse = item;
@@ -88,8 +65,9 @@ export default {
             this.lightBoxShowed = false;
         }
     },
-    mounted: function () {
-        this.course_name = this.courseDataSet[this.course_id].course_name;
+    async mounted() {
+        this.currentCourse  = await import('~/static/data/course/' + this.course_id + '.js');
+        this.course_name = this.currentCourse.course_name;
     },
 }
 </script>
@@ -300,7 +278,7 @@ export default {
         justify-content: center;
         width: 100vw;
         height: 35px;
-        background-color: #2E2D2D;
+        background-color: #A7A6A6;
 
         text-align: center;
         font-size: 20px;

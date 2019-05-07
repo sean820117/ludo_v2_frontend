@@ -1,6 +1,6 @@
 <template>
   <div>
-    <course-header/>
+    <course-header bgColor="white" color="gray" />
     <section class="intro" :class="$mq">
       <img class="bg-img" v-if="$mq == 'desktop'" :src="go2u01" alt="">
       <img class="bg-img" v-else-if="$mq == 'mobile'" :src="go2u21" alt="">
@@ -10,65 +10,22 @@
             <!-- <h3>你聽過安麗嗎？</h3> -->
             <div class="actions" v-if="$mq == 'desktop'">
               <flat-button size="big" text="備審懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
-              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
+              <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/go2university/course/01"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
               <flat-button size="medium" text="備審懶人包" :link="lazypack" hover="hover-fill-white" :dl="true"/>
-              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
+              <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/go2university/course/01"/>
             </div>
           </section>
-          <!-- <section class="teacher col-lg-6 d-none d-lg-block d-xl-block">
-            <div class="profile">
-              <div class="profile-image" />
-            </div>
-            <div class="name">您老師</div>
-            <div
-              class="description"
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis totam sapiente mollitia esse voluptatem, aliquid ea eius alias cum! Culpa numquam consequuntur dolore, velit accusamus porro ut modi doloribus aliquid praesentium laudantium corporis voluptate eos, doloremque iure, iusto mollitia quidem quae corrupti assumenda cum eveniet eligendi deserunt sed nemo.</div>
-          </section> -->
         </div>
       </div>
     </section>
-    <!-- <section class="teacher row d-lg-none d-xl-none">
-      <h2 class="title">老師簡介</h2>
-      <div class="profile">
-        <div class="profile-image" />
-      </div>
-      <div class="name">您老師</div>
-      <div
-        class="description"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis totam sapiente mollitia esse voluptatem, aliquid ea eius alias cum! Culpa numquam consequuntur dolore, velit accusamus porro ut modi doloribus aliquid praesentium laudantium corporis voluptate eos, doloremque iure, iusto mollitia quidem quae corrupti assumenda cum eveniet eligendi deserunt sed nemo.</div>
-    </section> -->
-    
-    <!-- <input id="read-more" type="checkbox" />
-    <section class="course-intro">
-      <div class="container">
-        <h2 class="title">課程簡介</h2>
-        <article class="course-content">
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <img src="https://via.placeholder.com/1920x1080.png" />
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <img src="https://via.placeholder.com/2000x500.png" />
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-          <p>Lorem ipsum dolor sit amet, consectet ur adipisicing elit. Qui consequatur voluptatem incidunt, illum earum velit dolore in mollitia impedit id, dolorem atque ea, repellendus ullam natus perferendis laborum accusantium est, aut quisquam nisi quae! Rerum laboriosam sapiente amet libero quo.</p>
-        </article>
-      </div>
-      <div class="read-more">
-        <label for="read-more">閱讀更多</label>
-      </div>
-    </section> -->
     
     <div v-if=" $mq == 'desktop' " id="intro">
       <div class="go2u-desktop"  v-for="img in go2uDesktop" :key="img">
         <iframe v-if="img == go2uDesktop[0]" class="go2u-ad" src="https://www.youtube.com/embed/0PW1eBjfREk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe>
         <img :src="img" alt="">
-        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="/confirm">
+        <button v-if="img == go2uDesktop[4]" class="buy-now-btn" href="/go2university/confirm">
           <router-link to="/confirm">  
             <img :class="$mq" :src="go2uBuy" alt="">
           </router-link>
@@ -93,8 +50,8 @@
           <flat-button size="big" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
         </div> -->
         <div class="actions" v-if="$mq == 'mobile'">
-          <flat-button size="medium" text="馬上購買" bgColor="#E0185D" link="/confirm" :dl="true"/>
-          <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/course/01"/>
+          <flat-button size="medium" text="馬上購買" bgColor="#E0185D" link="/go2university/confirm" :dl="true"/>
+          <flat-button size="medium" bgColor="#FFD72E" color="#324D5B" hover="hover-fill-yellow" borderColor="#FFD72E" text="體驗練習" link="/go2university/course/01"/>
         </div>
       </div>
     </div>
@@ -139,7 +96,7 @@
       <span class="go-buy-cart glyphicon glyphicon-shopping-cart" ></span>
     </router-link> -->
     <div class="fixed-buy-button-container">
-        <router-link class="fixed-buy-button" to="/confirm">
+        <router-link class="fixed-buy-button" to="/go2university/confirm">
             前往購買
         </router-link>
     </div>
@@ -222,14 +179,14 @@ export default {
         description: '適用科系：醫學系',
         imageUrl: go2uCourse01,
         tag: 'try-now',
-        link: "/course/01",
+        link: "/go2university/course/01",
       },{
         id: "05",
         name: '電機資訊學群',
         description: '適用科系：資工系、電機系',
         imageUrl: go2uCourse05,
         tag: 'try-now',
-        link: "/course/05",
+        link: "/go2university/course/05",
       },
       {
         id: "11",
@@ -237,7 +194,7 @@ export default {
         description: '適用科系：企管系、財金系、會計系',
         imageUrl: go2uCourse11,
         tag: 'try-now',
-        link: "/course/11",
+        link: "/go2university/course/11",
       }, 
       {
         id: "02",
@@ -245,56 +202,56 @@ export default {
         description: '適用科系：心理系、社會系、經濟系',
         imageUrl: go2uCourse02,
         tag: 'try-now',
-        link: "/course/02",
+        link: "/go2university/course/02",
       }, {
         id: "03",
         name: '法政學群',
         description: '適用科系：法律系、政治系',
         imageUrl: go2uCourse03,
         tag: 'try-now',
-        link: "/course/03",
+        link: "/go2university/course/03",
       }, {
         id: "04",
         name: '生命科學學群',
         description: '適用科系：生科系、生技系',
         imageUrl: go2uCourse04,
         tag: 'try-now',
-        link: "/course/04",
+        link: "/go2university/course/04",
       }, {
         id: "06",
         name: '建築與設計學群',
         description: '適用科系：建築系、設計系',
         imageUrl: go2uCourse06,
         tag: 'try-now',
-        link: "/course/06",
+        link: "/go2university/course/06",
       }, {
         id: "07",
         name: '數理化學學群',
         description: '適用科系：數學、化學、物理、地質、地科',
         imageUrl: go2uCourse07,
         tag: 'try-now',
-        link: "/course/07",
+        link: "/go2university/course/07",
       }, {
         id: "08",
         name: '工程學群',
         description: '適用科系：材料系、化工系、土木系、機械系',
         imageUrl: go2uCourse08,
         tag: 'try-now',
-        link: "/course/08",
+        link: "/go2university/course/08",
       }, {
         id: "09",
         name: '教育學群',
         description: '適用科系：教育系',
         imageUrl: go2uCourse09,
         tag: 'try-now',
-        link: "/course/09",
+        link: "/go2university/course/09",
       }, {
         id: "10",
         name: '文史哲學群',
         description: '適用科系：哲學系、外文系、歷史系',
         imageUrl: go2uCourse10,
         tag: 'try-now',
-        link: "/course/10",
+        link: "/go2university/course/10",
       }, 
       ]),
     },

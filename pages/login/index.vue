@@ -13,7 +13,7 @@
             <text-input name="password" text="Password" type="password" v-model="password" />
             <div class="error">{{errors}}</div>
             <div>忘記密碼?</div>
-            <div @click="onSubmit" role="button" class="action-button">登入</div>
+            <div @click="smsLogin()" role="button" class="action-button">登入</div>
           </div>
         </section>
         <section class="third-party col-lg-6 col-sm-12">
@@ -32,12 +32,23 @@ import ThirdPartyButton from '~/components/ThirdPartyButton.vue'
 import { EMAIL_REGEX } from '~/components/regex.js'
 
 export default {
+  head() {
+    return {
+      link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
+      script: [
+        { src: 'https://sdk.accountkit.com/en_US/sdk.js' }
+      ],
+    };
+  },
   data() {
     return {
       errors: null,
       email: '',
       password: '',
     }
+  },
+  mounted() {
+    this.smsInit();
   },
   methods: {
     onSubmit() {
@@ -80,11 +91,57 @@ export default {
         ? this.$router.go(-1)
         : this.$router.push('/')
     },
-  },
-  head() {
-    return {
-      link: [{ rel: "stylesheet", href: "/bootstrap.css" }]
-    };
+    smsInit() {
+      // initialize Account Kit with CSRF protection
+      // AccountKit_OnInteractive = function(){
+        AccountKit.init(
+          {
+            appId:"1075325352502513", 
+            state:"test1075325352502513", 
+            version:"v1.0",
+            fbAppEventsEnabled:true,
+            redirect:"https://www.ludonow.com/login?akittest=true"
+          }
+        );
+      // };
+    },
+    loginCallback(response) {
+        if (response.status === "PARTIALLY_AUTHENTICATED") {
+          var code = response.code;
+          var csrf = response.state;
+          // Send code to server to exchange for access token
+          console.log("login success: " + code);
+        }
+        else if (response.status === "NOT_AUTHENTICATED") {
+          // handle authentication failure
+          console.log("login fail");
+          console.log(response);
+        }
+        else if (response.status === "BAD_PARAMS") {
+          // handle bad parameters
+          console.log("login wrong");
+          console.log(response);
+        }
+    },
+    smsLogin() {
+        // var countryCode = document.getElementById("country_code").value;
+        // var phoneNumber = document.getElementById("phone_number").value;
+        var loginCallback = this.loginCallback;
+
+        AccountKit.login(
+          'PHONE', 
+          {countryCode: '+886', phoneNumber: '0958007503'}, // will use default values if not specified
+          loginCallback
+        );
+    },
+    emailLogin() {
+        var emailAddress = document.getElementById("email").value;
+        AccountKit.login(
+          'EMAIL',
+          {emailAddress: emailAddress},
+          loginCallback
+        );
+    },
   },
   components: {
     PageHeader,

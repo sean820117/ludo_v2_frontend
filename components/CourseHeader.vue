@@ -1,22 +1,22 @@
 <template>
     <!-- header -->
-    <div class="header">
-        <div class="header-wrapper">
+    <div class="header" :style="{background: bgColor}">
+        <div class="header-wrapper" :style="{background: bgColor}">
 			<router-link to="/go2university">
 				<!-- logo -->
 				<img class="header-logo" :src="HeaderLogo" alt="ludo-header-logo">
 			</router-link>
 			<div class="troggle" >
-				<div class="line"></div>
-				<div class="line"></div>
-				<div class="line"></div>	
+				<div class="line" :style="{background: color}"></div>
+				<div class="line" :style="{background: color}"></div>
+				<div class="line" :style="{background: color}"></div>	
 			</div>
 
 			<!-- menu -->
 			<!-- <a href="" class="header-menu-item">Features</a>
 			<a href="" class="header-menu-item">Explore</a>
 			<a href="" class="header-menu-item">Templates</a> -->
-			<router-link to="/confirm" class="header-menu-item">購買序號</router-link>
+			<!-- <router-link to="/confirm" class="header-menu-item">購買序號</router-link> -->
 			
 			<a v-if="$route.path == '/go2university' " href="#all-course" class="header-menu-item">課程兌換</a>
 			<router-link v-else to="/go2university#all-course"  class="header-menu-item">課程兌換</router-link>
@@ -25,8 +25,8 @@
 		</div>
                 
             <!-- login -->
-            <router-link v-if="!user.user_id" to="/login" class="login-btn">註冊/登入</router-link>
-			<router-link v-else to="/logout" class="login-btn">登出</router-link>
+            <router-link v-if="!user.user_id" to="/login" class="login-btn" :style="{color: color,borderColor:color}">註冊/登入</router-link>
+			<router-link v-else to="/logout" class="login-btn" :style="{color: color,borderColor:color}">登出</router-link>
     </div>
 </template>
 
@@ -44,7 +44,11 @@ export default {
 	}),	
 	created() {
         this.$checkLogin(this.$store);
-	}
+	},
+	props: {
+		bgColor:String,
+		color:String,
+    },
 }
 </script>
 
@@ -171,7 +175,7 @@ export default {
 		text-decoration: none;
 		text-align: center;
 		line-height: 33px;
-		background-color: white;
+		background-color: transparent;
 		width: 100px;
 		height: 35px; 
 		font-size: 15px;
@@ -278,12 +282,13 @@ export default {
 
 	/*登入按鈕*/
 	.login-btn{
+		/* display: none; */
 		position: relative;
 		display: inline-block;
 		text-decoration: none;
 		text-align: center;
 		line-height: 33px;
-		background-color: white;
+		background-color: transparent;
 		width: 100px;
 		height: 35px; 
 		font-size: 15px;

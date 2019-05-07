@@ -1,21 +1,21 @@
 <template>
     <!-- 看課下方欄 -->
-    <div>
-        <div class="course-status">
+    <div :style="{background:bg_color,color:color}">
+        <div class="course-status" >
             <div class="course-status-wrapper">
                 <div class="course-status-box">
-                    <img :src="HiveFive" class="course-status-svg" alt="">
+                    <img :src="'/high-five' + svg_color + '.svg'" class="course-status-svg" alt="">
                     <div class="course-status-box-text"> {{ base_people + payed_user_number }} 位同學</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
-                    <img :src="Hourglass" class="course-status-svg-2" alt="">
+                    <img :src="'/hourglass' + svg_color + '.svg'" class="course-status-svg-2" alt="">
                     <div class="course-status-box-text">總長60分鐘</div>
                 </div>
                 <div class="course-status-devider"></div>
                 <div class="course-status-box">
                     <a class="course-status-box-link" href="#practice">
-                        <img :src="InfiniteSymbol" class="course-status-svg" alt="">
+                        <img :src="'/infinite-symbol' + svg_color + '.svg'" class="course-status-svg" alt="">
                         <div class="course-status-box-text"> 5個練習服務</div>
                     </a>
                 </div>
@@ -33,7 +33,7 @@
         <!-- 購課資訊結束 -->
         
         <!-- 手機購買 -->
-        <a v-if="!is_payed" @click="$emit('openModal','coupon-input')" class="buy-btn-section-sm" style="text-decoration: none; color:white">購買/兌換</a>
+        <!-- <a v-if="!is_payed" @click="$emit('openModal','coupon-input')" class="buy-btn-section-sm" style="text-decoration: none; color:white">購買/兌換</a> -->
         <!-- 手機購買結束 -->
     </div>
 </template>
@@ -69,6 +69,9 @@ export default {
         course_id: String,
         is_payed:Boolean,
         base_people:Number,
+        bg_color:String,
+        color:String,
+        svg_color:String,
     },
 }
 </script>
@@ -76,18 +79,18 @@ export default {
 <style>
 .course-status-box-link {
     text-decoration: none;
-    color: initial;
+    color: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .course-status-box-link:hover {
     text-decoration: none;
-    color: initial;
+    color: inherit;
 }
 .course-status-box-link:active {
     text-decoration: none;
-    color: initial;
+    color: inherit;
 }
 @media (min-width:900px) {
     /*看課下方欄*/
@@ -149,14 +152,14 @@ export default {
     .course-status-box-text{
         position: relative;
         display: flex;
-        color: #324D5B;
+        /* color: ; */
         font-size: 20px;
     }
     .course-status-devider{
         float: left;
         width: 1px;
         height: 60%;
-        background-color: #324D5B;
+        /* background-color: #324D5B; */
         border-radius: 50px;
         padding: 1px;
 
@@ -165,7 +168,7 @@ export default {
         float: left;
         width: 1px;
         height: 60%;
-        background-color: #324D5B;
+        /* background-color: #324D5B; */
         border-radius: 50px;
         padding: 1px;
     }
@@ -175,7 +178,7 @@ export default {
         /*height: 100px;*/
 
         /*padding: 5px;*/
-        color: #324D5B;
+        /* color: #324D5B; */
 
         text-align: center;
     }
@@ -184,7 +187,7 @@ export default {
         /*width: 20%;*/
         /*height: 100px;*/
 
-        color: #324D5B;
+        /* color: #324D5B; */
 
         text-align: center;
         font-size: 40px;
@@ -304,7 +307,7 @@ export default {
     .course-status-box-text{
         position: relative;
         display: flex;
-        color: #324D5B;
+        /* color: #324D5B; */
         font-size: 15px;
         margin-top: 5px;
     }
@@ -312,7 +315,7 @@ export default {
         float: left;
         width: 1px;
         height: 50px;
-        background-color: #324D5B;
+        /* background-color: #324D5B; */
         border-radius: 50px;
         margin: 8px;
         display: none;
@@ -323,7 +326,7 @@ export default {
         /*height: 100px;*/
 
         /*padding: 5px;*/
-        color: #324D5B;
+        /* color: #324D5B; */
         text-align: center;
     }
     .course-status-price{
@@ -331,7 +334,7 @@ export default {
         /*width: 20%;*/
         /*height: 100px;*/
 
-        color: #324D5B;
+        /* color: #324D5B; */
 
         text-align: center;
         font-size: 40px;
@@ -371,7 +374,7 @@ export default {
         font-size: 20px;
         line-height: 50px;
         text-align: center;
-        color: #324D5B;
+        /* color: #324D5B; */
 
     }
 
