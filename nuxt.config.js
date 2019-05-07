@@ -11,8 +11,8 @@ module.exports = {
   ** Headers of the page
   */
  env: {
-    baseUrl: process.env.NODE_ENV == "production" ? "https://www.ludonow.com" : 'http://localhost:3000',
-    apiUrl: process.env.NODE_ENV == "production" ? "https://api.ludonow.com" : "http://localhost:8000"
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL || 'http://localhost:8000',
   },
   head: {
     title: '讓備審飛 - 教你做出讓教授滿意的備審資料',
