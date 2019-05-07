@@ -1,11 +1,11 @@
 <template>
     <div v-if="is_data_fetched">
         <course-header bgColor="transparent" color="#76FF00" />
-        <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
-        <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal" bg_color="black" color="white" svg_color="76FF00"/>
+        <!-- <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
+        <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal" bg_color="black" color="white" svg_color="76FF00"/> -->
 		<!-- <practice-input-box id="practice" v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse" type="video" /> -->
         <practice-area></practice-area> 
-        <div v-if="$mq == 'mobile'" class="fixed-buy-button-container">
+        <!-- <div v-if="$mq == 'mobile'" class="fixed-buy-button-container">
             <button v-if="!is_payed" class="fixed-buy-button" @click="openModal('coupon-input')">
                 立即購買
             </button>
@@ -34,7 +34,7 @@
                 <h5>為了不斷提升課程品質，邀請您填寫課程體驗滿意度回饋問卷</h5>
                 <h5> <a href="https://www.surveycake.com/s/BLM8a"> {{ "點此給我們回饋" }}</a></h5>
             </div>
-        </modal>
+        </modal> -->
     </div>
     <loading 
         :active="!is_data_fetched" 

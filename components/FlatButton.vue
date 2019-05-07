@@ -3,7 +3,7 @@
     :class=" hover + ' flat-button btn-' + size"
     :style="{background: bgColor, borderColor: borderColor, color:color}"
   >
-    <label v-if="type == 'file'" ><input :class="hover" type="file" style="display:none;">{{text}}</label>
+    <label v-if="type == 'file'" ><input :class="hover" type="file" style="display:none;" @change="handleVideoUpload">{{text}}</label>
     <router-link v-else-if="link" :to="link" :class="hover" :target="dl ? '_blank':''">
       <div class="text">{{text}}</div>
     </router-link>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import axios from '~/config/axios-config';
+
 export default {
   props: {
     text: String,
@@ -29,7 +31,18 @@ export default {
         return ['small', 'medium', 'big'].indexOf(value) !== -1;
       }
     }
-  }
+  },
+  methods: {
+        async handleVideoUpload(e) {
+            // let form = new FormData();
+            // form.append('file',e.target.files[0])
+            // form.append('pose_type','squat')
+            // let res = await axios.post('/apis/video-upload',form)
+            // console.log(res)
+            // window.alert('done');
+            this.$emit('update:video_url', "123");
+        },
+    },
 };
 </script>
 
