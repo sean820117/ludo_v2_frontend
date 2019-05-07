@@ -60,6 +60,7 @@ import CourseFooter from "~/components/CourseFooter.vue";
 import CourseHeader from "~/components/CourseHeader.vue";
 import TeacherIntro from "~/components/fitness/TeacherIntro.vue";
 import CourseIntro from "~/components/fitness/CourseIntro.vue";
+
 import Vue from 'vue'
 import VueMq from 'vue-mq'
 import axios from '~/config/axios-config';
