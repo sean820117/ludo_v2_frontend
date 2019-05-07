@@ -171,15 +171,17 @@ html, body, #__nuxt, #__layout, #__layout > div{
     font-weight: 500;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
 }
+.tb-container{
+    width: 303px;
+    margin: auto;
+}
 .tb-title{
     padding-top: 63px;
-    padding-right: 22px;
     text-align: right;
     font-size: 27px;
 }
 .tb-content{
     width:280px;
-    margin-left: 21px;
     font-size: 16px;
     margin-top: 95px;
     line-height: 21px;
@@ -287,6 +289,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     width:100%;
     text-align: center;
     background: #F9F9F9;
+    padding-bottom: 24px;
 }
 .sevenblock-1, .sevenblock-2{
     color: black;
@@ -299,16 +302,41 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 .videoplay{
     margin: auto;
-    width:340px;
-    height: 405px;
-    background: black;
+    width:calc(100% - 36px);
+}
+.course{
+    text-align: left;
+    margin: auto;
+    margin-top: 22px;
+    width: 313px;
+    display: grid;
+    grid-template-columns: 128px auto;
+    grid-template-rows: 15px auto;
+    grid-gap: 5px;
+    align-content: center;
+}
+.c-img{
+    grid-row: 1 / 3;
+}
+.c-img img{
+    width:100%;
+    height: auto;
+}
+.c-title{
+    color: #007CDC;
+    font-size: 13px;
+    font-weight: 500;
+}
+.c-context{
+    font-size: 9px;
+    color: #8F8F8F
 }
 .fbshare{
     width: 300px;
     font-size: 15px;
     margin: auto;
     margin-top: 27px;
-    padding-bottom: 24px;
+    display: none;
 }
 .clickshare{
     color: #0090FF;
@@ -424,8 +452,13 @@ html, body, #__nuxt, #__layout, #__layout > div{
     width: 100%;
     height: 71px;
     line-height: 71px;
-    color: white;
     font-size: 22px;
     font-weight: 500;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+a{
+    text-decoration: none;
+}
+.paynow a{
+    color: white;
 }
