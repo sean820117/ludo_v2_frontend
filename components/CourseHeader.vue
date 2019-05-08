@@ -25,7 +25,7 @@
 		</div>
                 
             <!-- login -->
-            <router-link v-if="!user.user_id" to="/login" class="login-btn" :style="{color: color,borderColor:color}">註冊/登入</router-link>
+            <router-link v-if="!user.user_id" to="/login" class="login-btn" :style="{color: color,borderColor:color}">Login</router-link>
 			<router-link v-else to="/logout" class="login-btn" :style="{color: color,borderColor:color}">登出</router-link>
     </div>
 </template>
@@ -179,7 +179,7 @@ export default {
 		width: 100px;
 		height: 35px; 
 		font-size: 15px;
-		font-weight: 50;
+		/* font-weight: 50; */
 		color: grey;
 		/* border: 2px solid grey; */
 		border-radius: 50px;

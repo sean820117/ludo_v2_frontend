@@ -1,18 +1,18 @@
 <template>
     <div class="practice-area-bg-container">
         <div class="practice-area-container">
-            <h1 class="title green-color">馬上練習</h1>
-            <p class="practice-area-content">正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的深蹲影片體驗。</p>
+            <h1 class="title green-color">Try now</h1>
+            <!-- <p class="practice-area-content">正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的深蹲影片體驗。</p> -->
             <!-- <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="上傳影片" type="file" change="handleVideoUpload"/> -->
             <button
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-                <label ><input type="file" style="display:none;" @change="handleVideoUpload">上傳影片</label>
+                <label ><input type="file" style="display:none;" @change="handleVideoUpload">Upload</label>
             </button>
         </div>
         <div class="result-container">
-            <h1 class="title green-color">分析結果</h1>
+            <h1 class="title green-color">Result</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
@@ -44,7 +44,7 @@ export default {
             let res = await axios.post('/apis/video-upload',form)
             this.video_url = res.data.output_video_url;
             console.log(res)
-            window.alert('done');
+            window.alert('Done');
         },
     },
     data:() => ({
@@ -117,7 +117,7 @@ h1.title {
   color: white;
   text-align: center;
   font-size: 20px;
-  font-weight: 50;
+  font-weight: bold;
   line-height: 36px;
   cursor: pointer;
 }

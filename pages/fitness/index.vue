@@ -91,7 +91,7 @@ export default {
     CourseFooter,
     CourseHeader,
     TeacherIntro,
-    CourseIntro,
+    NewCourseIntro,
   },
   data:() => ({
   }),
