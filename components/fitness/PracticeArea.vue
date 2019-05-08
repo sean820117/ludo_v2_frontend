@@ -1,14 +1,15 @@
 <template>
     <div class="practice-area-bg-container">
         <div class="practice-area-container">
-            <h1 class="title green-color">Try now</h1>
-            <!-- <p class="practice-area-content">正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的深蹲影片體驗。</p> -->
+            <h1 class="title green-color">やってみよう！</h1>
+            <p class="practice-area-content">正しい姿勢は、
+半分の努力で2倍結果を叶えます。<br>優秀なAIコーチと一緒にあなたの姿勢を改善しよう！<br><br>今すぐあなたのスクワットビデオをアップロード</p>
             <!-- <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="上傳影片" type="file" change="handleVideoUpload"/> -->
             <button
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-                <label ><input type="file" style="display:none;" @change="handleVideoUpload">Upload</label>
+                <label ><input type="file" style="display:none;" @change="handleVideoUpload">アップロード</label>
             </button>
         </div>
         <div class="result-container">
@@ -86,7 +87,7 @@ h1.title {
     color: white;
     text-align: center;
     width:80vw;
-    margin-top: 30vh;
+    margin-top: 20vh;
     margin-bottom: 15vh;
 }
 .result-container {
