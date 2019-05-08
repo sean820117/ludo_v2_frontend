@@ -13,7 +13,7 @@
             </button>
         </div>
         <div class="result-container">
-            <h1 class="title green-color">Result</h1>
+            <h1 class="title green-color">分析結果</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
@@ -101,7 +101,7 @@ h1.title {
     /* height: 10vh; */
 }
 .btn-medium {
-  width: 150px;
+  width: 180px;
   height: 37px;
   border: 2px solid white;
   text-decoration: none;
