@@ -1,7 +1,7 @@
 <template>
     <div class="question-bar" v-if="toggled">
         {{question}} 
-        <img class="cross" src="~/static/resume/path.png" @click="toggled = !toggled" />
+        <img class="cross" src="~/static/resume/path.png" @click="toggleCross" />
     </div>
 </template>
 <script>
@@ -12,6 +12,14 @@ export default{
     data:() => ({
         toggled: true,
     }),
+    methods:{
+        toggleCross(){
+            this.toggled = !this.toggled;
+            if(this.$parent.handleToggleCross){
+                this.$parent.handleToggleCross();
+            }
+        }
+    }
 }
 </script>
 <style>
