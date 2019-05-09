@@ -1,21 +1,36 @@
 <template>
     <div style="text-align:center">
-        <iframe class="videoplay" ref="player"
+        <iframe :id="playerID" class="videoplay" ref="player"
         :src="videourl" 
         frameborder="0" 
         allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
 </template>
 <script>
+import Player from '@vimeo/player';
 export default{
     props:{
-        videourl: String
+        videourl: String,
+        playerID: String
     },
-    // mounted: function() {
+    mounted: function() {
+        var iframe = document.getElementById(this.playerID);
+        this.player = new Player(iframe);
+        this.getTotalTime().then(function(duration){
+            console.log("duration: "+duration);
+        });
     //     var player = this.$refs.player;
     //     player.style.width = this.playerWidth;
     //     player.style.height = this.playerHeight;
-    // }
+    },
+    methods: {
+        getTotalTime(){ //return promise
+            return this.player.getDuration();
+        },
+        getCurrentTime(){ // return promise
+            return this.player.getCurrentTime();
+        }
+    }
 }
 </script>
 <style>
