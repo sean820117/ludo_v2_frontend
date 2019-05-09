@@ -3,18 +3,18 @@
         <div class="upper-block">
             <Titlebar/>
             <div class="c-title">
-                <course-title
-                    :numberTitle="'第一堂課'"
-                    :courseTitle="'能代東預上大'"
-                />
+                <course-title :numberTitle="'第一堂課'" :courseTitle="'能代東預上大'" />
             </div>
             <div class="q-container">
                 <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
             </div>
-            <video-play :videourl="'https://player.vimeo.com/video/319395957'" />
+            <video-play :playerID="'cp1'" :videourl="'https://player.vimeo.com/video/319395957'" />
         </div>
         <div>
-            <course-container :labelName="'whatever-you-want'"/>
+            <course-container ref="courseContainer" :labelName="'whatever-you-want'">
+                <video-list slot="first-content" />
+                <ai-judgment slot="second-content" />
+            </course-container>
         </div>
     </div>
 </template>
@@ -24,6 +24,8 @@ import CourseTitle from "~/components/resume/CourseTitle"
 import QuestionBar from "~/components/resume/QuestionBar"
 import VideoPlay from "~/components/resume/VideoPlay"
 import CourseContainer from "~/components/resume/CourseContainer"
+import VideoList from "~/components/resume/VideoList"
+import AiJudgment from "~/components/resume/AiJudgment"
 export default {
     head () {
         return {
@@ -42,6 +44,13 @@ export default {
         QuestionBar,
         VideoPlay,
         CourseContainer,
+        VideoList,
+        AiJudgment,
+    },
+    methods: {
+        handleToggleCross(){
+            setTimeout(this.$refs.courseContainer.resetSize,100);
+        }
     }
 }
 </script>

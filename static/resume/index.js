@@ -1,4 +1,4 @@
-(function(){
+window.onload = function(){
     var dv = document.getElementById("demovideo");
     var size = Math.min(640,window.innerWidth,window.innerHeight);
     dv.style.height = size-36+"px";
@@ -11,4 +11,4 @@
     document.getElementById("clickshare").onclick = function(){
         window.open(sharelink,"share","width=1000,height=600")
     }
-})();
+}

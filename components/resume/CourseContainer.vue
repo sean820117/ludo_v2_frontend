@@ -11,7 +11,7 @@
                 <label class="third-label" :for="labelName+'-third'">下載資源</label>
             </div>
 
-            <div>
+            <div class="label-content" :id="labelName+'-content'">
                 <div class="first-content">
                     <slot name="first-content"></slot>
                 </div>
@@ -30,6 +30,20 @@ export default{
     props:{
         labelName: String,
     },
+    mounted: function() {
+        this.resetSize();
+    //     var player = this.$refs.player;
+    //     player.style.width = this.playerWidth;
+    //     player.style.height = this.playerHeight;
+    },
+    methods: {
+        resetSize(){
+            var content = document.getElementById(this.labelName+'-content');
+            for(let e of Array.from(content.children)){
+                e.style.height = content.clientHeight - 35 + "px";
+            }
+        },
+    }
 }
 </script>
 <style>
@@ -45,7 +59,7 @@ export default{
 }
 .course-menu{
     display: grid;
-    grid-template-rows: 20px auto;
+    grid-template-rows: 30px auto;
     height: 100%;
     color: white;
     font-size: 12px;
@@ -62,9 +76,23 @@ export default{
     margin-top: -1px;
     padding-top: 5px;
 }
+.label-content{
+    padding-top: 10px;
+}
+.label-content > div{
+    height: 10px;
+    overflow-y: auto;
+    display: none;
+}
 .first-radio:checked ~ .course-menu .first-label,
 .second-radio:checked ~ .course-menu .second-label,
 .third-radio:checked ~ .course-menu .third-label{
     border-top: solid white 4px;
+}
+
+.first-radio:checked ~ .course-menu .first-content,
+.second-radio:checked ~ .course-menu .second-content,
+.third-radio:checked ~ .course-menu .third-content{
+    display: block;
 }
 </style>
