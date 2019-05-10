@@ -30,17 +30,13 @@ export default{
     props:{
         labelName: String,
     },
-    mounted: function() {
-        this.resetSize();
-    //     var player = this.$refs.player;
-    //     player.style.width = this.playerWidth;
-    //     player.style.height = this.playerHeight;
-    },
     methods: {
         resetSize(){
             var content = document.getElementById(this.labelName+'-content');
-            for(let e of Array.from(content.children)){
-                e.style.height = content.clientHeight - 35 + "px";
+            content.children[0].style.height = content.offsetHeight - 12 + "px";
+            content.children[0].style.overflowY = "hidden";
+            for(let i=1; i<content.children.length;i++){
+                content.children[i].style.height = "unset";
             }
         },
     }
@@ -59,7 +55,7 @@ export default{
 }
 .course-menu{
     display: grid;
-    grid-template-rows: 30px auto;
+    grid-template-rows: 25px auto;
     height: 100%;
     color: white;
     font-size: 12px;
@@ -81,7 +77,6 @@ export default{
 }
 .label-content > div{
     height: 10px;
-    overflow-y: auto;
     display: none;
 }
 .first-radio:checked ~ .course-menu .first-label,

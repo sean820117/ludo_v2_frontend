@@ -1,46 +1,125 @@
 <template>
-    <div class="vlist">
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+    <div class="vlist" ref="vlist">
+        <div ref="listContent">
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
+            <div class="video-cell">
+                <div class="v-img"><img src="Group 54.png"/></div>
+                <div class="v-title">超同標場</div>
+                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+            </div>
         </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
-        <div class="video-cell">
-            <div class="v-img"><img src="Group 54.png"/></div>
-            <div class="v-title">超同標場</div>
-            <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-        </div>
+        <div class="scroll-button up-button" ref="upButton"><img src="Path 84.png"/></div>
+        <div class="scroll-button down-button" ref="downButton"><img src="Symbol 114 – 2.png"/></div>
     </div>
 </template>
+<script>
+export default{
+    mounted: function() {
+        this.downTimer = null;
+        this.upTimer = null;
+        this.$refs.downButton.onmousedown = () =>{
+            this.downTimer = setInterval(this.scrollDown.bind(this), 17);
+        }
+        this.$refs.downButton.onmouseup = () => {
+            clearInterval(this.downTimer);
+        }
+        this.$refs.upButton.onmousedown = () =>{
+            this.upTimer = setInterval(this.scrollUp.bind(this), 17);
+        }
+        this.$refs.upButton.onmouseup = () => {
+            clearInterval(this.upTimer);
+        }
+        this.$refs.downButton.ontouchstart  = () =>{
+            this.downTimer = setInterval(this.scrollDown.bind(this), 17);
+        }
+        this.$refs.downButton.ontouchend = () => {
+            clearInterval(this.downTimer);
+        }
+        this.$refs.upButton.ontouchstart = () =>{
+            this.upTimer = setInterval(this.scrollUp.bind(this), 17);
+        }
+        this.$refs.upButton.ontouchend = () => {
+            clearInterval(this.upTimer);
+        }
+    },
+    methods:{
+        adjustHeight(){
+            var list = this.$refs.vlist;
+            if(list.scrollHeight>list.offsetHeight){
+                list.children[0].style.height = "calc(100% - 50px)";
+                list.children[0].style.marginTop = "20px";
+                list.children[0].style.overflowY = "hidden";
+                this.$refs.downButton.style.display = "block"
+            }
+        },
+        scrollUp(){
+            this.$refs.listContent.scrollTop = this.$refs.listContent.scrollTop - 5;
+            if(this.$refs.listContent.scrollTop == 0){
+                this.$refs.upButton.style.display = "none";
+                clearInterval(this.upTimer);
+            }else{
+                this.$refs.downButton.style.display = "block"
+            }
+        },
+        scrollDown(){
+            this.$refs.listContent.scrollTop = this.$refs.listContent.scrollTop + 5;
+            if(this.$refs.listContent.scrollTop+this.$refs.listContent.offsetHeight >= this.$refs.listContent.scrollHeight){
+                this.$refs.downButton.style.display = "none";
+                clearInterval(this.downTimer);
+            }else{
+                this.$refs.upButton.style.display = "block"
+            }
+        }
+    }
+}
+</script>
 <style>
 .vlist{
-    padding-bottom: 10px;
+    position: relative;
+    height: 100%;
+    overflow-y: hidden;
     grid-row: 1 / 3;
+}
+.scroll-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+.up-button{
+    top: 0px;
+}
+.down-button{
+    bottom: 5px;
 }
 .video-cell{
     display: grid;
