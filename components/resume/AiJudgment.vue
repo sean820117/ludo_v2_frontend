@@ -3,11 +3,23 @@
         <div class="load-history">載入歷史</div>
         <div class="answer-for-ai">
             <br>
-            <textarea placeholder="請填入你的練習回答"></textarea>
+            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea"></textarea>
             <div class="send-answer">送出答案</div>
         </div>
     </div>
 </template>
+<script>
+export default{
+    mounted: function() {
+        this.$refs.autoSizeTextarea.oninput = (function(){
+            if(this.offsetHeight > 68){
+                this.style.height = "fit-content";
+            }
+            this.style.height = this.scrollHeight+"px";
+        }).bind(this.$refs.autoSizeTextarea);
+    }
+}
+</script>
 <style>
 .ai-judgment{
     height: 100%;
@@ -31,15 +43,17 @@
     background: white;
     color: black;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 .answer-for-ai textarea{
     color: black;
     width: calc(100% - 20px);
-    height: calc(100% - 70px);
+    height: 66px;
     margin: auto;
     display: block;
     font-size: 14px;
     border-style: none; 
+    margin-bottom: 65px;
 }
 .send-answer{
     position:absolute;
