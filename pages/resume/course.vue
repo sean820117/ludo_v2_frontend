@@ -12,7 +12,7 @@
         </div>
         <div>
             <course-container ref="courseContainer" :labelName="'whatever-you-want'">
-                <video-list slot="first-content" />
+                <video-list slot="first-content" ref="vlist"/>
                 <ai-judgment slot="second-content" />
             </course-container>
         </div>
@@ -51,7 +51,13 @@ export default {
         handleToggleCross(){
             setTimeout(this.$refs.courseContainer.resetSize,100);
         }
-    }
+    },
+    mounted: function() {
+        window.onload = (function(){
+            this.$refs.courseContainer.resetSize();
+            this.$refs.vlist.adjustHeight();
+        }).bind(this);
+    },
 }
 </script>
 
