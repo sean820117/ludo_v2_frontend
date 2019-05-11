@@ -1,17 +1,17 @@
 <template>
     <div class="vlist" ref="vlist">
         <div ref="listContent" class="list-content">
-            <div class="video-cell">
+            <div class="video-cell" @click="function(){updatVideoSrc('319395957')}">
                 <div class="v-img"><img src="Group 54.png"/></div>
                 <div class="v-title">超同標場</div>
                 <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
             </div>
-            <div class="video-cell">
+            <div class="video-cell" @click="function(){updatVideoSrc('319395956')}">
                 <div class="v-img"><img src="Group 54.png"/></div>
                 <div class="v-title">超同標場</div>
                 <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
             </div>
-            <div class="video-cell">
+            <div class="video-cell" @click="function(){updatVideoSrc('319395955')}">
                 <div class="v-img"><img src="Group 54.png"/></div>
                 <div class="v-title">超同標場</div>
                 <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
@@ -114,6 +114,9 @@ export default{
             }else{
                 this.$refs.upButton.style.display = "block"
             }
+        },
+        updatVideoSrc(id){
+            this.$emit("videoSrcChanged",id);
         }
     }
 }

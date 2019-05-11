@@ -8,11 +8,11 @@
             <div class="q-container">
                 <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
             </div>
-            <video-play :playerID="'cp1'" :videourl="'https://player.vimeo.com/video/319395957'" />
+            <video-play :playerID="'cp1'" :videourl="videoUrl" />
         </div>
         <div>
             <course-container ref="courseContainer" :labelName="'whatever-you-want'">
-                <video-list slot="first-content" ref="vlist"/>
+                <video-list @videoSrcChanged="updateVideoSrc" slot="first-content" ref="vlist"/>
                 <ai-judgment slot="second-content" />
             </course-container>
         </div>
@@ -50,8 +50,14 @@ export default {
     methods: {
         handleToggleCross(){
             setTimeout(this.$refs.courseContainer.resetSize,100);
+        },
+        updateVideoSrc(id){
+            this.videoUrl = 'https://player.vimeo.com/video/'+id;
         }
     },
+    data:() => ({
+        videoUrl: 'https://player.vimeo.com/video/319395957',
+    }),
     mounted: function() {
         window.onload = (function(){
             this.$refs.courseContainer.resetSize();
