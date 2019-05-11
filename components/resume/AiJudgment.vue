@@ -1,15 +1,20 @@
 <template>
     <div class="ai-judgment">
-        <div class="load-history">載入歷史</div>
+        <div class="load-history">載入歷史<img src="triangle.jpg" /></div>
         <div class="answer-for-ai">
             <br>
             <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea"></textarea>
             <div class="send-answer">送出答案</div>
         </div>
+        <ai-feed-back/>
     </div>
 </template>
 <script>
+import AiFeedBack from "~/components/resume/AiFeedBack"
 export default{
+    components: {
+        AiFeedBack,
+    },
     mounted: function() {
         this.$refs.autoSizeTextarea.oninput = (function(){
             if(this.offsetHeight > 68){
