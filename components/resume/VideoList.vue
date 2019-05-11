@@ -1,6 +1,6 @@
 <template>
     <div class="vlist" ref="vlist">
-        <div ref="listContent">
+        <div ref="listContent" class="list-content">
             <div class="video-cell">
                 <div class="v-img"><img src="Group 54.png"/></div>
                 <div class="v-title">超同標場</div>
@@ -46,29 +46,45 @@ export default{
     mounted: function() {
         this.downTimer = null;
         this.upTimer = null;
+        this.$refs.listContent.onscroll = () =>{
+            if(this.$refs.listContent.scrollTop+this.$refs.listContent.offsetHeight >= this.$refs.listContent.scrollHeight){
+                this.$refs.downButton.style.display = "none";
+            }else{
+                this.$refs.upButton.style.display = "block"
+            }
+            if(this.$refs.listContent.scrollTop == 0){
+                this.$refs.upButton.style.display = "none";
+            }else{
+                this.$refs.downButton.style.display = "block"
+            }
+        }
         this.$refs.downButton.onmousedown = () =>{
-            this.downTimer = setInterval(this.scrollDown.bind(this), 17);
+            if(!this.downTimer)this.downTimer = setInterval(this.scrollDown.bind(this), 17);
         }
         this.$refs.downButton.onmouseup = () => {
             clearInterval(this.downTimer);
+            this.downTimer = null;
         }
         this.$refs.upButton.onmousedown = () =>{
-            this.upTimer = setInterval(this.scrollUp.bind(this), 17);
+            if(!this.upTimer)this.upTimer = setInterval(this.scrollUp.bind(this), 17);
         }
         this.$refs.upButton.onmouseup = () => {
             clearInterval(this.upTimer);
+            this.upTimer = null;
         }
         this.$refs.downButton.ontouchstart  = () =>{
-            this.downTimer = setInterval(this.scrollDown.bind(this), 17);
+            if(!this.downTimer)this.downTimer = setInterval(this.scrollDown.bind(this), 17);
         }
         this.$refs.downButton.ontouchend = () => {
             clearInterval(this.downTimer);
+            this.downTimer = null;
         }
         this.$refs.upButton.ontouchstart = () =>{
-            this.upTimer = setInterval(this.scrollUp.bind(this), 17);
+            if(!this.upTimer)this.upTimer = setInterval(this.scrollUp.bind(this), 17);
         }
         this.$refs.upButton.ontouchend = () => {
             clearInterval(this.upTimer);
+            this.upTimer = null;
         }
     },
     methods:{
@@ -77,7 +93,7 @@ export default{
             if(list.scrollHeight>list.offsetHeight){
                 list.children[0].style.height = "calc(100% - 50px)";
                 list.children[0].style.marginTop = "20px";
-                list.children[0].style.overflowY = "hidden";
+                list.children[0].style.overflowY = "auto";
                 this.$refs.downButton.style.display = "block"
             }
         },
@@ -108,6 +124,9 @@ export default{
     height: 100%;
     overflow-y: hidden;
     grid-row: 1 / 3;
+}
+.list-content::-webkit-scrollbar{
+    width: 0px;
 }
 .scroll-button {
     position: absolute;
