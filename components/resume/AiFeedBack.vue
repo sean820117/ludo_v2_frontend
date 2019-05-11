@@ -1,6 +1,6 @@
 <template>
-    <div class="feed-back">
-        <img class="close-feed-back" src="Rectangle 235.png"/>
+    <div ref="feedBackContainer" class="feed-back">
+        <img class="close-feed-back" @click="hide" src="Rectangle 235.png"/>
         <div class="feedback-title">第1次經歷描述練習成果</div>
         <div class="feedback-level">B級</div>
         <div>
@@ -30,6 +30,18 @@
         </div>
     </div>
 </template>
+<script>
+export default{
+    methods: {
+        show(){
+            this.$refs.feedBackContainer.style.display = "block";
+        },
+        hide(){
+            this.$refs.feedBackContainer.style.display = "none";
+        }
+    }
+}
+</script>
 <style>
 .feed-back{
     position: fixed;
@@ -42,6 +54,7 @@
     padding: 45px;
     color: #0090FF;
     background: white;
+    display: none;
 }
 .close-feed-back{
     position: fixed;

@@ -1,12 +1,16 @@
 <template>
     <div class="ai-judgment">
-        <div class="load-history">載入歷史<img src="triangle.jpg" /></div>
+        <div class="load-history" @click="toggleHistory">載入歷史<img src="triangle.jpg" />
+            <div class="resume-history" ref="historyList">
+                <div>第一次</div>
+            </div>
+        </div>
         <div class="answer-for-ai">
             <br>
             <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea"></textarea>
-            <div class="send-answer">送出答案</div>
+            <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
-        <ai-feed-back/>
+        <ai-feed-back ref="feedBackBlock"/>
     </div>
 </template>
 <script>
@@ -22,7 +26,23 @@ export default{
             }
             this.style.height = this.scrollHeight+"px";
         }).bind(this.$refs.autoSizeTextarea);
-    }
+    },
+    methods: {
+        toggleHistory(){
+            this.isHistoryShow = !this.isHistoryShow;
+            if(this.isHistoryShow){
+                this.$refs.historyList.style.display = "block";
+            }else{
+                this.$refs.historyList.style.display = "none";
+            }
+        },
+        showFeedBack(){
+            this.$refs.feedBackBlock.show();
+        }
+    },
+    data:() => ({
+        isHistoryShow: false,
+    }),
 }
 </script>
 <style>
@@ -30,6 +50,7 @@ export default{
     height: 100%;
 }
 .load-history{
+    position:relative;
     width: fit-content;
     height: 21px;
     line-height: 21px;
@@ -40,6 +61,21 @@ export default{
     display: block;
     margin-left: auto;
     padding: 0px 10px;
+}
+.resume-history{
+    position: absolute;
+    display: grid;
+    width: 130px;
+    left: -47px;
+    top: 23px;
+    grid-gap: 1px;
+    background: #000;
+    z-index: 20;
+    padding: 1px;
+    display: none;
+}
+.resume-history > div{
+    background: white;
 }
 .answer-for-ai{
     margin-top:5px;
