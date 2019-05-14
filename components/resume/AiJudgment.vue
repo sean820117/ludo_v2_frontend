@@ -2,12 +2,11 @@
     <div class="ai-judgment">
         <div class="load-history" @click="toggleHistory">載入歷史<img src="triangle.jpg" />
             <div class="resume-history" ref="historyList">
-                <div>第一次</div>
             </div>
         </div>
         <div class="answer-for-ai">
             <br>
-            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea"></textarea>
+            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <ai-feed-back ref="feedBackBlock"/>
@@ -26,8 +25,33 @@ export default{
             }
             this.style.height = this.scrollHeight+"px";
         }).bind(this.$refs.autoSizeTextarea);
+        this.buildLabel();
     },
     methods: {
+        buildLabel(){
+            this.$refs.historyList.innerHTML="";
+            if(localStorage["resumePractice"]){
+                let rp = JSON.parse(localStorage["resumePractice"]);
+                this.rpArray = rp;
+                for(let i = 0; i < rp.length; i++){
+                    let nd = document.createElement("div");
+                    nd.innerHTML = "第 "+(i+1)+" 次";
+                    nd.onclick = (function(){
+                        return (function(){
+                            this.loadResumeText(i);
+                        }).bind(this);
+                    }).bind(this)();
+                    this.$refs.historyList.appendChild(nd);
+                }
+            }else{
+                this.$refs.historyList.innerHTML="<div>無紀錄</div>";
+            }
+        },
+        loadResumeText(i){
+            if(this.rpArray && this.rpArray[i]){
+                this.resumePractice = this.rpArray[i];
+            }
+        },
         toggleHistory(){
             this.isHistoryShow = !this.isHistoryShow;
             if(this.isHistoryShow){
@@ -37,11 +61,24 @@ export default{
             }
         },
         showFeedBack(){
+            if(this.rpArray){
+                if(this.rpArray.length >= 5){
+                    this.rpArray.shift();
+                }
+                this.rpArray.push(this.resumePractice);
+                localStorage["resumePractice"] = JSON.stringify(this.rpArray);
+            }else{
+                this.rpArray = [this.resumePractice];
+                localStorage["resumePractice"] = JSON.stringify(this.rpArray);
+            }
+            this.buildLabel();
             this.$refs.feedBackBlock.show();
         }
     },
     data:() => ({
         isHistoryShow: false,
+        resumePractice: "",
+        rpArray: null,
     }),
 }
 </script>
