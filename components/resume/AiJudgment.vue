@@ -19,15 +19,15 @@ export default{
         AiFeedBack,
     },
     mounted: function() {
-        this.$refs.autoSizeTextarea.oninput = (function(){
-            if(this.offsetHeight > 68){
-                this.style.height = "fit-content";
-            }
-            this.style.height = this.scrollHeight+"px";
-        }).bind(this.$refs.autoSizeTextarea);
+        this.$refs.autoSizeTextarea.oninput = this.adjustTextAreaHeight.bind(this);
+        this.$refs.autoSizeTextarea.onchange = this.adjustTextAreaHeight.bind(this);
         this.buildLabel();
     },
     methods: {
+        adjustTextAreaHeight(){
+            this.$refs.autoSizeTextarea.style.height = "66px";
+            this.$refs.autoSizeTextarea.style.height = this.$refs.autoSizeTextarea.scrollHeight+"px";
+        },
         buildLabel(){
             this.$refs.historyList.innerHTML="";
             if(localStorage["resumePractice"]){
@@ -36,11 +36,9 @@ export default{
                 for(let i = 0; i < rp.length; i++){
                     let nd = document.createElement("div");
                     nd.innerHTML = "第 "+(i+1)+" 次";
-                    nd.onclick = (function(){
-                        return (function(){
-                            this.loadResumeText(i);
-                        }).bind(this);
-                    }).bind(this)();
+                    nd.onclick = function(){
+                        this.loadResumeText(i);
+                    }.bind(this);
                     this.$refs.historyList.appendChild(nd);
                 }
             }else{
