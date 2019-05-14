@@ -6,6 +6,7 @@
 </template>
 <style>
 .banner{
+    text-align: left;
     z-index: 10;
     position:fixed;
     top:0px;
