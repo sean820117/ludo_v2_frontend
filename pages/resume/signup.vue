@@ -56,6 +56,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
     background: white;
 }
+textarea:focus, input:focus{
+    outline: none;
+}
 .signup-page{
     text-align: center;
     height: 100%;
@@ -89,6 +92,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 .signup-form{
     text-align: left;
+}
+.signup-form input[type=text]{
+    padding:0px 10px;
 }
 .login-column{
     margin: auto;

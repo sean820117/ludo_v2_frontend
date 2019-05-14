@@ -79,6 +79,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
     background: #0090FF;
 }
+textarea:focus, input:focus{
+    outline: none;
+}
 .course-container{
     height: 100%;
     display: grid;
