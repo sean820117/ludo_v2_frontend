@@ -14,6 +14,7 @@
             <course-container ref="courseContainer" :labelName="'whatever-you-want'">
                 <video-list @videoSrcChanged="updateVideoSrc" slot="first-content" ref="vlist"/>
                 <ai-judgment slot="second-content" />
+                <download-resource slot="third-content"/>
             </course-container>
         </div>
     </div>
@@ -26,6 +27,7 @@ import VideoPlay from "~/components/resume/VideoPlay"
 import CourseContainer from "~/components/resume/CourseContainer"
 import VideoList from "~/components/resume/VideoList"
 import AiJudgment from "~/components/resume/AiJudgment"
+import DownloadResource from "~/components/resume/DownloadResource"
 export default {
     head () {
         return {
@@ -46,6 +48,7 @@ export default {
         CourseContainer,
         VideoList,
         AiJudgment,
+        DownloadResource,
     },
     methods: {
         handleToggleCross(){
