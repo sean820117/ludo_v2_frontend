@@ -4,7 +4,7 @@
         <div class="banner">
             <img class="title" src="Group_168.png"/>
             <img class="title-blue" src="Group 153.png"/>
-            <div class="login">登入 / 註冊</div>
+            <div class="login">登入</div>
         </div>
         <div class="first-block">
             <img class="earphone" src="earphone.png" />

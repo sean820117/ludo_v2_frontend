@@ -1,6 +1,6 @@
 <template>
     <div class="signup-page">
-        <titlebar/>
+        <titlebar><div slot="right-component">登入帳號</div></titlebar>
         <div class="reg-text">註冊</div>
         <div class="reg-text2">付款前需先註冊成為會員</div>
         <div class="third-party">
