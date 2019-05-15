@@ -1,7 +1,7 @@
 <template>
     <div class="banner">
         <img class="title-blue" src="~/static/resume/Group 153.png"/>
-        <div class="login">登入 / 註冊</div>
+        <div class="login"><slot name="right-component"></slot></div>
     </div>
 </template>
 <style>

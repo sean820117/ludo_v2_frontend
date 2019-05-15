@@ -1,7 +1,7 @@
 <template>
     <div class="course-container">
         <div class="upper-block">
-            <Titlebar/>
+            <Titlebar><div slot="right-component">登出帳號</div></Titlebar>
             <div class="c-title">
                 <course-title :numberTitle="'第一堂課'" :courseTitle="'能代東預上大'" />
             </div>
