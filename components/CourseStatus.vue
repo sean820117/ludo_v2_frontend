@@ -54,16 +54,20 @@ export default {
         payed_user_number:0,
     }),
     async mounted() {
-        this.baseUrl = process.env.baseUrl;
-        this.course_id = this.$route.params.id;
-        let res = await axios.get('/apis/get-payed-user-number?course_id='+ this.course_id);
-        let res2 = await axios.get('/apis/get-payed-user-number?course_id=12');
-        console.log(res);
-        console.log(res2);
-        if (res.data.status == 200 && res.data.status == 200) {
-            this.payed_user_number = res.data.result + res2.data.result ;
+        if (!process.server) {
+            this.baseUrl = process.env.baseUrl;
+            this.course_id = this.$route.params.id;
+            let res = await axios.get('/apis/get-payed-user-number?course_id='+ this.course_id);
+            let res2 = await axios.get('/apis/get-payed-user-number?course_id=12');
+            console.log(res);
+            console.log(res2);
+            if (res.data.status == 200 && res.data.status == 200) {
+                this.payed_user_number = res.data.result + res2.data.result ;
+            }
+            if (!this.svg_color) {
+                this.svg_color = '';
+            }
         }
-
     },
     props: {
         course_id: String,

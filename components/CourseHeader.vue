@@ -43,7 +43,9 @@ export default {
       user : 'user/getData',
 	}),	
 	created() {
-        this.$checkLogin(this.$store);
+		if (!process.server) {
+			this.$checkLogin(this.$store);
+		}
 	},
 	props: {
 		bgColor:String,
