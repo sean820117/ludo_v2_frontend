@@ -1,6 +1,5 @@
 <template>
     <div v-if="is_data_fetched">
-        <course-header/>
         <course-video v-if="course_id" :course_id="course_id" :is_payed="is_payed" :currentSubCourse.sync="currentSubCourse"/>
         <course-status :base_people.sync="base_people" :is_payed.sync="is_payed" :course_id="course_id" v-on:openModal="openModal"/>
 		<practice-input-box id="practice" v-if="course_id" :is_payed="is_payed" :course_id="course_id" :currentSubCourse.sync="currentSubCourse"/>
@@ -27,7 +26,6 @@
             </button>
         </div>
         <course-video-list-light-box :is_payed="is_payed" :course="courseDataSet[course_id]" :lightBoxShowed.sync="lightBoxShowed" v-on:changeCurrentSubCourse="changeCurrentSubCourse"></course-video-list-light-box>
-        <course-footer/>
         <modal name="coupon-input" :width.sync="modal_width">
             <div class="coupon-input-container">
                 <h5>若已經購買，請輸入您收到的課程序號</h5>
@@ -108,6 +106,7 @@ Vue.use(VueMq, {
 });
 
 export default {
+    layout: 'go2university',
     head () {
         return {
             link: [
@@ -128,33 +127,35 @@ export default {
     },
     async mounted(){
         /* init params */
-        this.course_id = this.$route.params.id;
-        let store = this.$store;
-        let login_status = await this.$checkLogin(store);
-        
-        this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[7];
-        if (!this.courseDataSet[this.course_id]) {
-          window.alert('網址錯誤');
-          this.$router.go(-1);
-        } else {
-          this.product_name = this.courseDataSet[this.course_id].product_name;
-        }  
-        if(login_status) {
-            await this.checkIsPayed();
-        } else {
-            this.is_payed = false;
-        }
-        this.base_people = this.courseDataSet[this.course_id].base_people;
-        console.log(this.base_people);
-        this.is_data_fetched = true;
-        
-        if (this.is_payed && this.is_data_fetched) {
-            const openModal = this.openModal;
-            var feedback_timeout = setTimeout(function (){
-                openModal('feedback')
+        if (!process.server) {
+            this.course_id = this.$route.params.id;
+            let store = this.$store;
+            let login_status = await this.$checkLogin(store);
+            
+            this.currentSubCourse = this.courseDataSet[this.course_id].sub_course[7];
+            if (!this.courseDataSet[this.course_id]) {
+            window.alert('網址錯誤');
+            this.$router.go(-1);
+            } else {
+            this.product_name = this.courseDataSet[this.course_id].product_name;
+            }  
+            if(login_status) {
+                await this.checkIsPayed();
+            } else {
+                this.is_payed = false;
             }
-            ,3000);
-            console.log('feedback');
+            this.base_people = this.courseDataSet[this.course_id].base_people;
+            console.log(this.base_people);
+            this.is_data_fetched = true;
+            
+            if (this.is_payed && this.is_data_fetched) {
+                const openModal = this.openModal;
+                var feedback_timeout = setTimeout(function (){
+                    openModal('feedback')
+                }
+                ,3000);
+                console.log('feedback');
+            }
         }
       },
     components: {

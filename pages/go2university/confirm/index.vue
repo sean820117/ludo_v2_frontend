@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <page-header></page-header>
+    <!-- <page-header></page-header> -->
     <main class="container">
       <section class="title">
         <h1>《讓備審飛》線上課程付款頁面</h1>
@@ -18,7 +18,7 @@
         </section>
         <section class="purchase col-lg-6 col-sm-12">
           <div class="purchase-content">
-            <label for="coupon">付款方式</label><v-select :clearable="false" :options="[{label:'匯款',value:'atm'},{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select>
+            <label for="coupon">付款方式</label> <no-ssr placeholder="Loading..."><v-select v-if="!is_server" :clearable="false" :options="[{label:'匯款',value:'atm'},{label:'信用卡/visa金融卡',value:'credit-card'},{label:'網路銀行',value:'web-atm'},{label:'超商代收',value:'store-pay'}]" v-model="payment_type"></v-select></no-ssr>
             <label for="customer">購買人</label><input id="customer" name="customer" v-model="customer" type="text" />
             <label for="phone">聯絡電話</label><input id="phone" name="phone" v-model="phone" type="text" />
             <label for="email" v-if="payment_type.value == 'atm'">帳號末五碼</label><input v-if="payment_type.value == 'atm'" id="last-5-code" name="last-5-code" v-model="last_5_code" type="number" />
@@ -50,17 +50,13 @@ import { mapMutations, mapGetters } from 'vuex';
 import Vuex from 'vuex';
 import PageHeader from "~/components/confirm/Header.vue";
 import RadioButton from "~/components/confirm/RadioButton.vue";
-import vSelect from 'vue-select';
 import Vue from 'vue'
-import VModal from 'vue-js-modal'
+// import VModal from 'vue-js-modal'
 import VueClipboard from 'vue-clipboard2'
 import { EMAIL_REGEX } from '~/components/regex.js'
 import { sha256 } from 'js-sha256';
 import { Base64 } from 'js-base64';
 
-Vue.use(VueClipboard)
-Vue.use(VModal, { dialog: true })
-Vue.component('v-select', vSelect);
 
 import CourseData01 from 'static/data/course/01.js'
 import CourseData02 from 'static/data/course/02.js'
@@ -75,6 +71,7 @@ import CourseData10 from 'static/data/course/10.js'
 import CourseData11 from 'static/data/course/11.js'
 
 export default {
+  layout: 'go2university',
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
@@ -97,6 +94,7 @@ export default {
       shared_time:0,
       share_url:"",
       last_5_code:'',
+      is_server:true,
       prices:[
         {
           active: false,
@@ -158,7 +156,9 @@ export default {
   }),
   methods: {
     alert(text) {
-      window.alert(text);
+      if (!process.server) {
+        window.alert(text);
+      }
     },
     onSubmit(e) {
       if (this.customer.length === 0 || this.phone.length === 0) {
@@ -369,26 +369,24 @@ export default {
   components: {
     PageHeader,
     RadioButton,
+    'v-select': () => import('vue-select'),
   },
   async mounted(){
       /* init params */
-      if (!process.server) {
+      if (process.client) {
         
         this.selected_price = this.prices[1].price;
         this.payment_url = process.env.apiUrl + "/apis/suntech-pay";
         this.product_name = "讓備審飛單一學群";
-        // console.log(localStorage.activity_id);
-        // if(localStorage.activity_id == 1) {
-        //   this.prices[0].price = 449
-        // }
-        // this.product_name = this.courseDataSet[this.course_id].course_name;
-        // console.log(this.product_name);
+        // Vue.component('v-select', vSelect);
+        Vue.use(VueClipboard)
+        Vue.use(import('vue-js-modal'), { dialog: true })
+        this.is_server = false;
       }
   },
   async created(){
       /* init params */
-      if (!process.server) {
-        // this.course_id = this.$route.params.id;
+      if (process.client) {
         let store = this.$store;
         // await this.$forceLogin(store);
         // if (!this.courseDataSet[this.course_id]) {
@@ -399,6 +397,7 @@ export default {
         // }
         // await this.checkIsPayed();
         // await this.getSharedTime();
+        
         this.share_url = process.env.baseUrl + "/go2university/share?id=" + this.user.user_id ;
       }
   },
@@ -411,8 +410,10 @@ export default {
   color: white;
 }
 .body {
+  padding-top: 100px;
   box-sizing: border-box;
-  height: 100vh;
+  z-index: 0;
+  /* height: 100vh; */
 }
 main {
   /* height: 100%; */

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <course-header bgColor="white" color="gray" />
     <section class="intro" :class="$mq">
       <img class="bg-img" v-if="$mq == 'desktop'" :src="go2u01" alt="">
       <img class="bg-img" v-else-if="$mq == 'mobile'" :src="go2u21" alt="">
@@ -100,7 +99,6 @@
             前往購買
         </router-link>
     </div>
-    <course-footer></course-footer>
   </div>
 </template>
 
@@ -163,6 +161,7 @@ Vue.use(VueMq, {
 
 
 export default {
+  layout: 'go2university',
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/bootstrap.css" }],
@@ -295,19 +294,22 @@ export default {
       user : 'user/getData',
   }),
   async mounted() {
-    let isLogin = await this.$checkLogin(this.$store)
-    if (this.user.user_id) {
-      let res = await axios.post('/apis/get-payed-courses',{user_id:this.user.user_id});
-      
-      res.data.Items.forEach((item) => {
-        this.courses.forEach((course) => {
-          if(item.product_id == course.id) {
-            console.log(item.product_id + " matched");
-            course.tag = "start-course"
-          }
-        })
-      });
+    if (!process.server) {
+      let isLogin = await this.$checkLogin(this.$store)
+      if (this.user.user_id) {
+        let res = await axios.post('/apis/get-payed-courses',{user_id:this.user.user_id});
+        
+        res.data.Items.forEach((item) => {
+          this.courses.forEach((course) => {
+            if(item.product_id == course.id) {
+              console.log(item.product_id + " matched");
+              course.tag = "start-course"
+            }
+          })
+        });
+      }  
     }
+    
   },
 };
 </script>
