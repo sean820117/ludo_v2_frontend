@@ -2,20 +2,28 @@
     <div class="signup-pay-page">
         <titlebar/>
         <div class="sp-title">履歷課程與評測</div>
-        <div class="sp-subtitle">履歷課程與評測</div>
+        <div class="sp-subtitle">使用一個月 NT$99</div>
         <div class="main-block">
             <div class="reg-title">註冊</div>
             <div class="reg-subtitle">付款前需先註冊成為會員</div>
             <div class="third-party">
                 <third-party-icons/>
             </div>
-            <div class="reg-directly">直接註冊</div>
+            <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             <div>
-                <form>
+                <form id="basic-form" v-if="!directReg">
                     <div class="reg-block-title">基本資訊</div>
                     <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
                     <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
                     <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
+                </form>
+                <form id="directly-reg-form" v-if="directReg">
+                    <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
+                    <input name="password" class="reg-column-input" type="password" placeholder="密碼"/>
+                    <input name="password-check" class="reg-column-input" type="password" placeholder="確認密碼"/>
+                    <div class="reg-block-title">基本資訊</div>
+                    <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
+                    <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
                 </form>
             </div>
             <div class="reg-block-title">付款方式</div>
@@ -30,22 +38,8 @@
             </div>
             <input type="checkbox" id="agree-contract">
             <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
-            <div class="receipt-text">
-                我們使⽤電⼦發票, 將會於得獎時以簡訊與您聯繫
-                <br>或可按此選擇使⽤載具儲存 / 輸⼊統⼀編號等
-            </div>
-            <div class="receipt-method">
-                <input type="radio" id="e-receipt" name="receipt-carrier" value="e-receipt" checked>
-                <input type="radio" id="personal-carrier" name="receipt-carrier" value="personal-carrier">
-                <input type="radio" id="uid-receipt" name="receipt-carrier" value="uid-receipt">
-                <label for="e-receipt" class="e-receipt">電子發票</label>
-                <label for="personal-carrier" class="personal-carrier">個人載具</label>
-                <label for="uid-receipt" class="uid-receipt">統一編號</label>
-                <div class="receipt-number">
-                    <input class="personal-carrier" type="text" name="personal-carrier-number" placeholder="輸入個人載具代碼"/>
-                    <input class="uid-receipt" type="text" name="uid-receipt" placeholder="輸入統一編號"/>
-                </div>
-            </div>
+            
+            <receipt-type :wordDark="true"/>
             <div class="payment-container">
                 <div class="payment-info">
                     <div class="price">共計　新台幣　99 元</div>
@@ -58,6 +52,7 @@
 <script>
 import Titlebar from "~/components/resume/Titlebar"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
+import ReceiptType from "~/components/resume/ReceiptType"
 export default {
     head () {
         return {
@@ -73,6 +68,19 @@ export default {
     components: {
         Titlebar,
         ThirdPartyIcons,
+        ReceiptType,
+    },
+    data:() => ({
+        directReg: false,
+        displayReceipt: false,
+    }),
+    methods: {
+        toggleDriectReg(){
+            this.directReg = !this.directReg;
+        },
+        showReceipt(){
+            this.displayReceipt = true;
+        }
     },
 }
 </script>
@@ -114,7 +122,7 @@ textarea:focus, input:focus{
     margin: 43px auto;
     width: 82vw;
     padding: 22px 24px 48px 24px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 .reg-title{
     font-size: 21px;
@@ -153,7 +161,7 @@ textarea:focus, input:focus{
 }
 .payment-contract{
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 11px;
 }
 .agree-label{
@@ -166,6 +174,9 @@ textarea:focus, input:focus{
 #agree-contract{
     margin-left: 5px;
     transform: scale(1.8);
+}
+#agree-contract:checked ~ .agree-label{
+    color: #007CDC;
 }
 .payment-container{
     position: absolute;
@@ -189,49 +200,5 @@ textarea:focus, input:focus{
     background: #0090FF;
     color: white;
     font-size: 17px;
-}
-.receipt-text{
-    margin: 15px 0px;
-    font-size: 11px;
-    color: #D4D4D4;
-}
-.receipt-method{
-    display: grid;
-    grid-template-rows: 30px auto;
-    grid-template-columns: 33% 33% 34%;
-}
-.receipt-method label{
-    text-align: center;
-    line-height: 30px;
-    color: #8F8F8F;
-    font-size: 11px;
-    border-radius: 2px;
-}
-.receipt-method input{
-    display: none;
-}
-#e-receipt:checked ~ .e-receipt,
-#personal-carrier:checked ~ .personal-carrier,
-#uid-receipt:checked ~ .uid-receipt{
-    background: #DADADA;
-    color: black;
-}
-.receipt-number{
-    padding: 25px 0px 13px 0px;
-    grid-column: 1 / 4;
-}
-.receipt-number input{
-    background: white;
-    border: none;
-    border-bottom: 1px solid #DDD;
-    display: none;
-    padding: 0px 10px;
-    height: 27px;
-    width: 100%;
-    font-size: 11px;
-}
-#personal-carrier:checked ~ .receipt-number .personal-carrier,
-#uid-receipt:checked ~ .receipt-number .uid-receipt{
-    display: block;
 }
 </style>
