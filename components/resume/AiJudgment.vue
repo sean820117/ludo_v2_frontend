@@ -1,11 +1,10 @@
 <template>
     <div class="ai-judgment">
-        <div class="load-history" @click="toggleHistory">載入歷史<img src="triangle.jpg" />
-            <div class="resume-history" ref="historyList">
-            </div>
-        </div>
         <div class="answer-for-ai">
-            <br>
+            <div class="load-history" @click="toggleHistory">輸入紀錄
+                <div class="resume-history" ref="historyList">
+                </div>
+            </div>
             <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
@@ -48,6 +47,7 @@ export default{
         loadResumeText(i){
             if(this.rpArray && this.rpArray[i]){
                 this.resumePractice = this.rpArray[i];
+                setTimeout(() => this.adjustTextAreaHeight(),50);
             }
         },
         toggleHistory(){
@@ -82,35 +82,34 @@ export default{
 </script>
 <style>
 .ai-judgment{
+    position: relative;
     height: 100%;
 }
 .load-history{
-    position:relative;
-    width: fit-content;
-    height: 21px;
-    line-height: 21px;
-    text-align: center;
-    background: white;
-    color: #707070;
-    border-radius: 6px;
-    display: block;
-    margin-left: auto;
-    padding: 0px 10px;
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    color: #8F8F8F;
 }
 .resume-history{
     position: absolute;
     display: grid;
     width: 130px;
-    left: -47px;
+    right: -8px;
     top: 23px;
     grid-gap: 1px;
-    background: #000;
     z-index: 20;
     padding: 1px;
     display: none;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
 }
 .resume-history > div{
+    padding: 10px 24px;
+    font-size: 11px;
     background: white;
+}
+.resume-history > div:hover{
+    background: #EEEEEE;
 }
 .answer-for-ai{
     margin-top:5px;
@@ -118,7 +117,7 @@ export default{
     height: calc(95% - 21px);
     background: white;
     color: black;
-    border-radius: 10px;
+    border-radius: 2px;
     margin-bottom: 20px;
 }
 .answer-for-ai textarea{
@@ -130,6 +129,7 @@ export default{
     font-size: 14px;
     border-style: none; 
     margin-bottom: 65px;
+    padding-top: 8px;
 }
 .send-answer{
     position:absolute;
