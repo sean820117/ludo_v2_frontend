@@ -205,21 +205,29 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 .slide-show{
     position: relative;
-    height: 300px;
+    width: 100vw;
+    text-align: center;
+    overflow-y: hidden;
     margin-top: 49px;
 }
-.ss-pic{
+#ss-container img{
+    display: none;
+}
+#pre-img{
     position: absolute;
-    width: 306px;
-    height: 300px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0px 15px 30px rgba(0,0,0,0.3);
+    left: 5px;
+    top: 140px;
+}
+#next-img{
+    position: absolute;
+    right: 5px;
+    top: 140px;
+    transform: rotate(180deg);
 }
 .six-block{
     height: 859px;
     width:100%;
-    margin-top: 71px;
+    margin-top: 60px;
     padding-bottom: 50px;
     text-align: center;
     background: #0090FF;

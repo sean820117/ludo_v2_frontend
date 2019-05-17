@@ -54,7 +54,13 @@
             </div>
 
             <div class="slide-show">
-                <div class="ss-pic"></div>
+                <img id="pre-img" src="nsleft.png">
+                <img id="next-img" src="nsleft.png">
+                <div id="ss-container">
+                    <img src="Group 534.png">
+                    <img src="Group 535.png">
+                    <img src="Group 536.png">
+                </div>
             </div>
 
             <div class="six-block">
@@ -86,12 +92,12 @@
                     <iframe id="demovideo" src="https://player.vimeo.com/video/319395957" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
-                    <div class="course">
+                    <div id="dc-1" class="course">
                         <div class="c-img"><img src="Group 54.png"/></div>
                         <div class="c-title">超同標場</div>
                         <div class="c-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
                     </div>
-                    <div class="course">
+                    <div id="dc-2" class="course">
                         <div class="c-img"><img src="Group 54.png"/></div>
                         <div class="c-title">爭先基看媽多月</div>
                         <div class="c-context">常致來對，車長去設科勢地我度母物一和！存師了者，較自快日音行他給覺方主家目，以生在得算化山，種夠是種，看下優味？</div>
@@ -174,11 +180,13 @@
     </div>
 </template>
 <script>
+//import "~/static/resume/index.js"
 export default {
     head () {
         return {
             script: [
-                { src: "index.js"}
+                { src: "index.js"},
+                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
             ],
             link: [
                 { rel: 'stylesheet', href: 'index.css' },
