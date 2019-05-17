@@ -180,13 +180,13 @@
     </div>
 </template>
 <script>
-//import "~/static/resume/index.js"
 export default {
     head () {
         return {
             script: [
                 { src: "index.js"},
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
+                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+                { src: 'https://player.vimeo.com/api/player.js' }        
             ],
             link: [
                 { rel: 'stylesheet', href: 'index.css' },

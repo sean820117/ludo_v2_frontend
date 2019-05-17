@@ -1,5 +1,6 @@
 window.onload = function(){
     var dv = document.getElementById("demovideo");
+    var dcPlayer = new Vimeo.Player(dv);
     var size = Math.min(640,window.innerWidth,window.innerHeight);
     dv.style.height = size-36+"px";
     dv.style.width = size-36+"px";
@@ -20,6 +21,9 @@ window.onload = function(){
     }
     $("#dc-1").click(()=>switchCourse(319395956));
     $("#dc-2").click(()=>switchCourse(319395955));
+    dcPlayer.on('ended', function(){
+        document.getElementById("fbshare").style.display = "block";
+    });
 
     var imgContainer = document.getElementById("ss-container");
     var imgLength = imgContainer.children.length;
