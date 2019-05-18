@@ -13,7 +13,7 @@
 </template>
 <script>
 import AiFeedBack from "~/components/resume/AiFeedBack"
-export default{
+export default {
     components: {
         AiFeedBack,
     },

@@ -42,7 +42,7 @@
     </div>
 </template>
 <script>
-export default{
+export default {
     mounted: function() {
         this.downTimer = null;
         this.upTimer = null;

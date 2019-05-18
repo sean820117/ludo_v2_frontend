@@ -16,7 +16,7 @@
 </template>
 <script>
 import ResourceCell from "~/components/resume/ResourceCell"
-export default{
+export default {
     components:{
         ResourceCell,
     }

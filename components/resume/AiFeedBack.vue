@@ -31,7 +31,7 @@
     </div>
 </template>
 <script>
-export default{
+export default {
     methods: {
         show(){
             this.$refs.feedBackContainer.style.display = "block";
