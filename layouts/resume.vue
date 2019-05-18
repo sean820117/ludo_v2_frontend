@@ -40,7 +40,11 @@ export default {
     async mounted() {
         if (process.client) {
             this.ui_config = await import('~/config/resume-config')
-            console.log(this.ui_config.title);
+            // console.log(this.ui_config.title);
+            if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+                localStorage.redirect = this.$route.path;
+                console.log("save redirect : " + localStorage.redirect);
+            }
         }
     },
 }

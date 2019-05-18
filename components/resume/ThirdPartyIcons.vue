@@ -1,8 +1,8 @@
 <template>
     <div class="third-party-login">
-        <img v-if="login_method.FB" src="Group 173.png" />
-        <img v-if="login_method.google" src="Group 174.png" />
-        <img v-if="login_method.line" src="Group 176.png" />
+        <a :href="'https://api.ludonow.com/auth/facebook?redirect=' + project_name"><img v-if="login_method.FB" src="icon-fb.png" /></a>
+        <a :href="'https://api.ludonow.com/auth/facebook?redirect=' + project_name"><img v-if="login_method.google" src="icon-google.png" /></a>
+        <a :href="'https://api.ludonow.com/auth/facebook?redirect=' + project_name"><img v-if="login_method.line" src="icon-line.png" /></a>
     </div>
 </template>
 
@@ -10,6 +10,7 @@
 export default {
     props: {
         login_method:Object,
+        project_name:String,
     },
 }
 </script>

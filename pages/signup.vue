@@ -13,7 +13,7 @@
             <text-input name="password" text="Password" type="password" v-model="password" />
             <text-input name="confirmPassword" text="Confirm Password" type="password" v-model="confirmPassword" />
             <div class="error">{{errors}}</div>
-            <div @click="onSubmit" role="button" class="action-button">註冊</div>
+            <div @click.prevent="onSubmit" role="button" class="action-button">註冊</div>
           </div>
         </section>
         <section class="third-party col-lg-6 col-sm-12">
