@@ -71,12 +71,5 @@ background: #888;
 ::-webkit-scrollbar-thumb:hover {
 background: #555; 
 }
-.category_buttom {
-    border-radius: 15px;
-    background-color: #2f4b84; /* default bgcolor */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 </style>
 
