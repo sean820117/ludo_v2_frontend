@@ -30,6 +30,7 @@ import PageHeader from '~/components/confirm/Header.vue'
 import TextInput from '~/components/TextInput.vue'
 import ThirdPartyButton from '~/components/ThirdPartyButton.vue'
 import { EMAIL_REGEX } from '~/components/regex.js'
+
 export default {
     head() {
         return {

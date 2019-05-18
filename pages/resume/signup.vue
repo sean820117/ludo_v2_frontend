@@ -4,31 +4,36 @@
         <div class="reg-text">註冊</div>
         <div class="reg-text2">付款前需先註冊成為會員</div>
         <div class="third-party">
-            <third-party-icons/>
+            <third-party-icons :login_method="ui_config.view.signup_page.login_method"/>
         </div>
         <div class="hr"></div>
         <div class="text-or">or</div>
         <form class="signup-form">
             <div class="login-column">
                 <div class="login-column-label">電子信箱</div>
-                <input name="email" class="login-column-input" type="text" />
+                <input name="email" class="login-column-input" type="text" :model="email"/>
             </div>
             <div class="login-column">
                 <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="text" />
+                <input name="password" class="login-column-input" type="text" :model="password"/>
             </div>
             <div class="login-column">
                 <div class="login-column-label">確認密碼</div>
-                <input name="password-check" class="login-column-input" type="text" />
+                <input name="confirmPassword" class="login-column-input" type="text" :model="confirmPassword"/>
             </div>
             <input class="paynow" type="submit" value="立即付款">
         </form>
     </div>
 </template>
-<script>
+<script >
 import Titlebar from "~/components/resume/Titlebar"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
+import { EMAIL_REGEX } from '~/components/regex.js'
+
+import axios from '~/config/axios-config'
+
 export default {
+    layout: 'resume',
     head () {
         return {
             link: [
@@ -40,10 +45,51 @@ export default {
             ]
         } 
     },
+    data() {
+        return {
+            errors: null,
+            email: '',
+            password: '',
+            confirmPassword: '',
+            ui_config: Object,
+        }
+    },
+    props: {
+        // ui_config: Object,
+    },
+    async mounted() {
+        if (process.client) {
+            console.log(this.$route.path);
+            this.ui_config = await import('~/config/resume-config')
+            console.log(this.ui_config.view.signup_page.login_method.FB);
+        }
+    },
     components: {
         Titlebar,
         ThirdPartyIcons,
     },
+    methods: {
+        onSubmit() {
+            if (this.email.length === 0 || this.password.length === 0 || this.confirmPassword.length === 0) {
+                this.errors = '請填寫所有欄位！'
+                return
+            }
+            if (!EMAIL_REGEX.test(this.email)) {
+                this.errors = '電子信箱格式錯誤'
+                return
+            }
+            if (this.password.length < 8) {
+                this.errors = '密碼過短'
+                return
+            }
+            if (this.password !== this.confirmPassword) {
+                this.errors = '密碼需大於八個字'
+                return
+            }
+            this.errors = null
+            this.signup(this.email, this.password, this.confirmPassword)
+        },
+    }
 }
 </script>
 
