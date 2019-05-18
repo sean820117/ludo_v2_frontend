@@ -14,7 +14,7 @@
             </div>
             <div class="login-column">
                 <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="text" />
+                <input name="password" class="login-column-input" type="password" />
             </div>
             <input class="paynow" type="submit" value="登入">
         </form>

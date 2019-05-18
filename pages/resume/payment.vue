@@ -1,15 +1,6 @@
 <template>
     <div class="signup-pay-page">
-        <titlebar/>
-        <div class="sp-title">履歷課程與評測</div>
-        <div class="sp-subtitle">使用一個月 NT$99</div>
         <div class="main-block">
-            <div class="reg-title">註冊</div>
-            <div class="reg-subtitle">付款前需先註冊成為會員</div>
-            <div class="third-party">
-                <third-party-icons/>
-            </div>
-            <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             <div>
                 <form id="basic-form" v-if="!directReg">
                     <div class="reg-block-title">基本資訊</div>
@@ -50,7 +41,6 @@
     </div>
 </template>
 <script>
-import Titlebar from "~/components/resume/Titlebar"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
 import ReceiptType from "~/components/resume/ReceiptType"
 export default {
@@ -66,7 +56,6 @@ export default {
         } 
     },
     components: {
-        Titlebar,
         ThirdPartyIcons,
         ReceiptType,
     },
@@ -100,54 +89,20 @@ textarea:focus, input:focus{
     outline: none;
 }
 .signup-pay-page{
+    padding-top: 43px;
     text-align: center;
     height: 100%;
-}
-.sp-title{
-    color: #007CDC;
-    margin: auto;
-    padding-top: 66px;
-    font-size: 41px;
-    font-weight: 500;
-}
-.sp-subtitle{
-    color: #007CDC;
-    margin: auto;
-    font-size: 26px;
-    font-weight: 500;
 }
 .main-block{
     position: relative;
     text-align: left;
-    margin: 43px auto;
+    margin: auto;
+    margin-bottom: 30px;
     width: 82vw;
     padding: 22px 24px 48px 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
-.reg-title{
-    font-size: 21px;
-}
-.reg-subtitle{
-    font-size: 13px;
-    color: #8F8F8F;
-}
-.third-party{
-    margin: 42px auto;
-    text-align: center;
-}
-.reg-directly{
-    width: 90px;
-    height: 36px;
-    margin: auto;
-    line-height: 36px;
-    text-align: center;
-    background: #1785DB;
-    color: white;
-    border-radius: 2px;
-    font-size: 14px;
-}
 .reg-block-title{
-    margin-top: 30px;
     font-size: 21px;
 }
 .reg-column-input{
