@@ -20,6 +20,12 @@ module.exports = {
                     color: 'red',
                 },
             },
+            submit_button: {
+                background_color: '#1785db'
+            },
+            back_button: {
+                color: '#0090FF'
+            }
         },
     },
 }

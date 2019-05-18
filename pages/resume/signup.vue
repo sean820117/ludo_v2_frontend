@@ -1,10 +1,10 @@
 <template>
     <div class="signup-page">
-        <titlebar><div slot="right-component"></div></titlebar>
+        <titlebar><div slot="right-component" @click="$router.go(-1)" :style="{ color : is_ui_config_loaded ? ui_config.view.signup_page.back_button.color : '' }">返回</div></titlebar>
         <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
         <div class="reg-text2" :style="{color: hint_color}"> {{ hint }}</div>
         <div class="third-party">
-            <no-ssr><third-party-icons v-if="is_ui_config_loaded"  :project_name="ui_config.project_name" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
+            <no-ssr><third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
         </div>
         <div class="hr"></div>
         <div class="text-or">or</div>
@@ -23,7 +23,7 @@
             </div>
             <div class="btn-login-and-signup-container">
                 <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p>
-                <input class="btn-login-and-signup" type="submit" :value="login_or_signup === 'signup' ? '註冊' : '登入' " @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">
+                <input class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" :value="login_or_signup === 'signup' ? '註冊' : '登入' " @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">
             </div>
         </form>
     </div>
