@@ -105,7 +105,7 @@ export default {
         /* init params */
         if (!process.server) {
             this.course_id = this.$route.params.id;
-            let course = await import('~/static/data/course/' + this.course_id + '.js');
+            let course = await require('~/static/data/course/' + this.course_id + '.js');
             this.currentCourse = course;
             console.log(this.currentCourse);
 

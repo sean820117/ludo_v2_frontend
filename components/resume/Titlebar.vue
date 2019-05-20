@@ -29,6 +29,7 @@ export default {
     line-height: 55px;
     color:transparent;
     margin-right:20px;
+    cursor: pointer;
 }
 .header .title-blue{
     margin-left: 10px;

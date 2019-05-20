@@ -222,12 +222,21 @@ export default {
             ],
             link: [
                 { rel: 'stylesheet', href: '/resume/index.css' },
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
             ],
             meta: [
                 { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
+                { charset: "UTF-8"},
+                { hid: 'description', name: 'description', content: '' },
+                { property : 'og:title' , content:""},
+                { property : 'og:type' , content:"education tech."},
+                { property : 'og:url' , content:"https://www.ludonow.com/victor"},
+                { property : 'og:image' , content:""},
+                { property : 'og:description' , content:""},
+                { property : 'og:site_name' , content:"www.ludonow.com"},
+            ],
+            title: '學習歷程',
         } 
     },
     components: {
