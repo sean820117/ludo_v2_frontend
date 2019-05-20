@@ -88,7 +88,7 @@ export default {
         }
     },
     async asyncData (context) {
-        const ui_config = await import('~/config/victor-config')
+        const ui_config = await require('~/config/victor-config')
         const is_ui_config_loaded = true;
         const current_chapter = ui_config.chapters[0];
         return { ui_config: ui_config, is_ui_config_loaded:is_ui_config_loaded,current_chapter:current_chapter}

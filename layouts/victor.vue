@@ -46,8 +46,8 @@ export default {
     }),
     head() {
         return  {
-            title: this.ui_config ? this.ui_config.title : '',
-            titleTemplate: '%s - Yay!',
+            title: this.ui_config ? this.ui_config.title : '學習歷程',
+            titleTemplate: '%s',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -66,7 +66,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.ui_config = await import('~/config/victor-config')
+            this.ui_config = await require('~/config/victor-config')
             // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;

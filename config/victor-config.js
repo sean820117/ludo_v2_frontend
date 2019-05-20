@@ -1,6 +1,6 @@
 module.exports = {
     project_name:'victor',
-    title:'得勝者',
+    title:'學習歷程 - 得勝者文教',
     logo: "/logo-victor.svg",
     base_color: '#A42073',
     view: {
