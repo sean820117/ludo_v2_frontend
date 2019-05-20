@@ -123,6 +123,7 @@ export default {
     grid-template-columns: 128px auto;
     grid-template-rows: 15px auto;
     grid-gap: 5px;
+    cursor: pointer;
 }
 .v-img{
     grid-row: 1 / 3;
