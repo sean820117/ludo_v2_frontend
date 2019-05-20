@@ -192,7 +192,7 @@
                 <img :src="is_ui_config_loaded ? ui_config.logo : ''" alt="logo">
             </div>
             <footer class="paynow" style="background:#A42073;">
-                <router-link v-if="!$checkLogin" to="/victor/signup">免費註冊</router-link>
+                <router-link v-if="is_login" to="/victor/signup">免費註冊</router-link>
                 <router-link v-else to="/victor/course">開始上課</router-link>
             </footer>
         </div>
@@ -236,6 +236,7 @@ export default {
     data() {
         return {
             is_ui_config_loaded:false,
+            is_login:true,
             ui_config: Object,
             show_second_block: true,
             swiperOption: {
@@ -310,6 +311,7 @@ export default {
         if (process.client) {
             this.ui_config = await import('~/config/victor-config')
             this.is_ui_config_loaded = true;
+            this.is_login = await this.$checkLogin(this.$store);
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },
