@@ -106,7 +106,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="nineth-block" :class="$mq" v-if="$mq === 'desktop'">
+            <div class="nineth-block" :class="$mq" v-if="$mq === 'mobile'">
                 <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 325: (325 * 1)" :height="$mq === 'mobile' ? 139: (139 * 1)" viewBox="0 0 325 139">
                     <g id="Group_180" data-name="Group 180" transform="translate(-30 -2128)">
                         <text id="前1000人註冊藍天予教學網會員_即可免費觀看_全部_學習歷程錄播課" data-name="前1000人註冊藍天予教學網會員
@@ -168,15 +168,67 @@
             <div class="nineth-block" :class="$mq" v-else>
                 <svg xmlns="http://www.w3.org/2000/svg" :width="1360.072 * 0.5" :height="258.435 * 0.5" viewBox="0 0 1360.072 258.435">
                     <text id="前1000人註冊藍天予教學網會員_即可免費觀看_全部_學習歷程錄播課" data-name="前1000人註冊藍天予教學網會員
-                    即可免費觀看&quot;全部&quot;學習歷程錄播課" transform="translate(680.261 35)" fill="#707070" font-size="33" font-family="PingFangTC-Regular, PingFang TC"><tspan x="-234.706" y="0">前</tspan><tspan y="0" font-family="Helvetica">1000</tspan><tspan y="0">人註冊藍天予教學網會員</tspan><tspan y="0" font-family="Helvetica"></tspan><tspan x="-259.214" y="50">即可免費觀看</tspan><tspan y="50" font-family="Helvetica">&quot;</tspan><tspan y="50">全部</tspan><tspan y="50" font-family="Helvetica">&quot;</tspan><tspan y="50">學習歷程錄播課</tspan></text>
+                    即可免費觀看&quot;全部&quot;學習歷程錄播課" transform="translate(680.261 35)" fill="#707070" font-size="33" font-family=""><tspan x="-234.706" y="0">前</tspan><tspan y="0" font-family="">1000</tspan><tspan y="0">人註冊藍天予教學網會員</tspan><tspan y="0" font-family=""></tspan><tspan x="-259.214" y="50">即可免費觀看</tspan><tspan y="50" font-family="">&quot;</tspan><tspan y="50">全部</tspan><tspan y="50" font-family="">&quot;</tspan><tspan y="50">學習歷程錄播課</tspan></text>
                     <g id="Group_599" data-name="Group 599" transform="translate(0 170.435)">
-                        <text id="目前已經有679人完成課程" transform="translate(691.711 67)" fill="#707070" font-size="62" font-family="PingFangTC-Regular, PingFang TC"><tspan x="-361.722" y="0">目前已經有</tspan><tspan y="0" font-family="Helvetica">679</tspan><tspan y="0">人完成課程</tspan></text>
+                        <text id="目前已經有679人完成課程" transform="translate(691.711 67)" fill="#707070" font-size="62" font-family=""><tspan x="-361.722" y="0">目前已經有</tspan><tspan y="0" font-family="">679</tspan><tspan y="0">人完成課程</tspan></text>
                         <line id="Line_8" data-name="Line 8" x2="246.108" transform="translate(0 45.335)" fill="none" stroke="#707070" stroke-width="1"/>
                         <line id="Line_9" data-name="Line 9" x2="246.108" transform="translate(1113.964 45.335)" fill="none" stroke="#707070" stroke-width="1"/>
                     </g>
                 </svg>
                 <div class="two-options">
-
+                    <div class="single-option">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="183" height="55" viewBox="0 0 366 110">
+                            <text id="再送實體1v1顧問諮詢_會考落點分析" data-name="再送實體1v1顧問諮詢
+                        +會考落點分析" transform="translate(183 40)" fill="#707070" font-size="38" font-family=""><tspan x="-182.634" y="0">再送實體</tspan><tspan y="0" font-family="">1v1</tspan><tspan y="0">顧問諮詢</tspan><tspan y="0" font-family=""></tspan><tspan font-family=""><tspan x="-125.096" y="57">+</tspan><tspan y="57" font-family="">會考落點分析</tspan></tspan></text>
+                        </svg>
+                        <router-link to="/victor/signup">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
+                                <defs>
+                                    <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
+                                    <feOffset dy="8" input="SourceAlpha"/>
+                                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                                    <feFlood flood-opacity="0.239"/>
+                                    <feComposite operator="in" in2="blur"/>
+                                    <feComposite in="SourceGraphic"/>
+                                    </filter>
+                                </defs>
+                                <g id="Group_608" data-name="Group 608" transform="translate(-196 -353)">
+                                    <g transform="matrix(1, 0, 0, 1, 196, 353)" filter="url(#Rectangle_179)">
+                                    <rect id="Rectangle_179-2" data-name="Rectangle 179" width="216" height="36" rx="2" transform="translate(12 4)" fill="#9d1b5b"/>
+                                    </g>
+                                    <text id="Pressed" transform="translate(316 382)" fill="#fff" font-size="20" font-family=""><tspan x="-40" y="0">免費註冊</tspan></text>
+                                </g>
+                            </svg>
+                        </router-link>
+                    </div>
+                    <div class="single-option">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="190" height="55" viewBox="0 0 380 110">
+                            <text id="加入_Facebook_社團_搶先收看最新解題直播" data-name="加入 Facebook 社團
+                            搶先收看最新解題直播" transform="translate(190 40)" fill="#707070" font-size="38" font-family=""><tspan x="-169.998" y="0">加入</tspan><tspan y="0" xml:space="preserve" font-family=""> Facebook </tspan><tspan y="0">社團</tspan><tspan y="0" font-family=""></tspan><tspan x="-190" y="57">搶先收看最新解題直播</tspan></text>
+                        </svg>
+                        <a href="https://www.facebook.com/groups/350744379127084/">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
+                                <defs>
+                                    <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
+                                    <feOffset dy="8" input="SourceAlpha"/>
+                                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                                    <feFlood flood-opacity="0.239"/>
+                                    <feComposite operator="in" in2="blur"/>
+                                    <feComposite in="SourceGraphic"/>
+                                    </filter>
+                                </defs>
+                                <g id="Group_609" data-name="Group 609" transform="translate(-196 -353)">
+                                    <g transform="matrix(1, 0, 0, 1, 196, 353)" filter="url(#Rectangle_179)">
+                                    <g id="Rectangle_179-2" data-name="Rectangle 179" transform="translate(12 4)" fill="#fff" stroke="#a42073" stroke-width="2">
+                                        <rect width="216" height="36" rx="2" stroke="none"/>
+                                        <rect x="1" y="1" width="214" height="34" rx="1" fill="none"/>
+                                    </g>
+                                    </g>
+                                    <text id="Pressed" transform="translate(316 383)" fill="#a42073" font-size="20" font-family=""><tspan x="-40" y="0">加入社團</tspan></text>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="eight-block flex" :class="$mq">
@@ -187,7 +239,7 @@
                     <text id="Q_註冊後可以觀看幾次_A_無限次觀看無限次觀看無限次觀看" data-name="Q：註冊後可以觀看幾次？
                     A：無限次觀看無限次觀看無限次觀看" transform="translate(0 17)" fill="#707070" font-size="16" font-family=""><tspan x="0" y="0">Q</tspan><tspan y="0" font-family="">：註冊後可以觀看幾次？</tspan><tspan y="0"></tspan><tspan x="0" y="24">A</tspan><tspan y="24" font-family="">：無限次觀看無限次觀看無限次觀看</tspan></text>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 251: (251 * 1)" :height="$mq === 'mobile' ? 70: (70 * 1)" viewBox="0 0 251 70">
+                <svg style="margin-left: -16px;" xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 251: (251 * 1)" :height="$mq === 'mobile' ? 70: (70 * 1)" viewBox="0 0 251 70">
                     <text id="Q_為什麼願意提供免費課程_A_不希望有學生因為不懂升學規則_而成為台灣教育實驗的犧牲品" data-name="Q：為什麼願意提供免費課程
                     A：不希望有學生因為不懂升學規則
                     而成為台灣教育實驗的犧牲品" transform="translate(0 17)" fill="#707070" font-size="16" font-family=""><tspan x="0" y="0">Q</tspan><tspan y="0" font-family="">：為什麼願意提供免費課程</tspan><tspan y="0"></tspan><tspan x="0" y="24">A</tspan><tspan y="24" font-family="">：不希望有學生因為不懂升學規則</tspan><tspan y="24"></tspan><tspan font-family=""><tspan x="0" y="48">而成為台灣教育實驗的犧牲品</tspan></tspan></text>
@@ -245,15 +297,15 @@ export default {
             meta: [
                 { name: "viewport", content: "width=device-width, initial-scale=1.0"},
                 { charset: "UTF-8"},
-                { hid: 'description', name: 'description', content: '' },
-                { property : 'og:title' , content:""},
+                { hid: 'description', name: 'description', content: '得勝者文教，帶你秒懂108課綱—學習歷程' },
+                { property : 'og:title' , content:"學習歷程 - 得勝者文教"},
                 { property : 'og:type' , content:"education tech."},
                 { property : 'og:url' , content:"https://www.ludonow.com/victor"},
                 { property : 'og:image' , content:""},
-                { property : 'og:description' , content:""},
+                { property : 'og:description' , content:"得勝者文教，帶你秒懂108課綱—學習歷程"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
-            title: '學習歷程',
+            title: '學習歷程 - 得勝者文教',
         } 
     },
     components: {
@@ -503,6 +555,16 @@ p.content {
 .nineth-block svg{
     margin:10px 0 30px 0;
 }
+
+.two-options {
+    display: flex;
+}
+.single-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .flex {
     display: flex;
     justify-content: center;
@@ -534,7 +596,7 @@ p.content {
     justify-content: center;
 }
 .contact-us-block svg{
-    margin:10px 0 30px 0;
+    /* padding:10px 0 30px 0; */
 }
 .swiper {
     /* height: 300px; */

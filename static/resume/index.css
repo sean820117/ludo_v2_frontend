@@ -459,7 +459,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     bottom: 0px;
     text-align: center;
     background: #0090FF;
-    width: 100%;
+    width: 100vw;
     height: 71px;
     line-height: 71px;
     font-size: 22px;
