@@ -4,7 +4,10 @@
         <div class="first-block">
             <!-- <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" /> -->
-            <div class="cover-photo-container" :class="$mq"><img :style="{visibility: !show_second_block && $mq === 'desktop' ? 'visible':'visible'}" class="cover-photo"  src="/cover-victor.svg" /></div>
+            <div class="cover-photo-container" :class="$mq">
+                <h3 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">升學「備審」將被「學習歷程」取代</h3>
+                <h1 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">您，準備好了嗎？</h1>
+                <img :style="{visibility: !show_second_block && $mq === 'desktop' ? 'hidden':'visible'}" class="cover-photo"  src="/cover-victor.svg" /></div>
             <div class="slogan" :class="$mq" v-if="show_second_block">
                 <div class="line1" :class="$mq" >
                     學習歷程全解析
@@ -19,16 +22,16 @@
             </label>
         </div>
         <div class="scrolldown">
-            <div class="seconds-block" :class="$mq" >
-                <h3 class="title" :class="$mq">
+            <div class="seconds-block" :class="$mq">
+                <h3 class="title" :class="$mq" v-if="$mq === 'mobile'">
                     升學「備審」將被「學習歷程」取代
                 </h3>
-                <h1 class="title" :class="$mq">您，準備好了嗎？<br></h1>
+                <h1 class="title" :class="$mq" v-if="$mq === 'mobile'">您，準備好了嗎？<br></h1>
                 <p class="content" :class="$mq">從今年九月起上高一生的新生<br>申請大學都需要準備「學習歷程」<br>除了考試外更有多元素養、跨校選修</p>
                 <h2 class="title" :class="$mq">制度前所未有的複雜<br>讓學生家長都沒把握</h2>
             </div>
             <div class="four-block flex">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 296: (296 * 1.5)" :height="$mq === 'mobile' ? 80.174: 80.174 * 1.5" viewBox="0 0 296 80.174">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 296: (296 * 1)" :height="$mq === 'mobile' ? 80.174: 80.174 * 1" viewBox="0 0 296 80.174">
                     <g id="Group_142" data-name="Group 142" transform="translate(0 -4)">
                         <text id="學習歷程今年上路" transform="translate(148 43)" fill="#a42073" font-size="37" font-family="" font-weight="300"><tspan x="-148" y="0">學習歷程今年上路</tspan></text>
                         <text id="還沒高中的你都弄懂了嗎_" data-name="還沒高中的你都弄懂了嗎？" transform="translate(144.043 77.174)" fill="#a42073" font-size="20" font-family="" font-weight="600"><tspan x="-120" y="0">還沒高中的你都弄懂了嗎？</tspan></text>
@@ -41,14 +44,14 @@
                         <img v-for="banner in banners" :key="banner.id" :class="$mq" :src="banner.url">
                     </div>
                 </div>
-                <svg style="margin-top:0px;" xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 200: 200 * 1.5" :height="$mq === 'mobile' ? 58: 58 * 1.5" viewBox="0 0 200 58">
+                <svg style="margin-top:0px;" xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 200: 200 * 1" :height="$mq === 'mobile' ? 58: 58 * 1" viewBox="0 0 200 58">
                     <text id="全新規則是個挑戰_現在弄懂就能搶得先機" data-name="全新規則是個挑戰
                     現在弄懂就能搶得先機" transform="translate(100 21)" fill="#a42073" font-size="20" font-family="" font-weight="600"><tspan x="-80" y="0">全新規則是個挑戰</tspan><tspan y="0" font-family="" font-weight="700"></tspan><tspan x="-100" y="30">現在弄懂就能搶得先機</tspan></text>
                 </svg>
             </div>
             
             <div class="seven-block" :class="$mq">
-                <img src="/Group 581.jpg" style="width:100vw; max-width:811px;margin-bottom: -2px;" alt="">
+                <img src="/Group 581.jpg" style="width:100vw; max-width:600px;margin-bottom: -3px;" alt="">
             </div>
             <div class="slide-show" :class="$mq">
                 <!-- <img id="pre-img" src="/resume/nsleft.png">
@@ -58,10 +61,10 @@
                 </div>
             </div>
             <div class="eight-block flex">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 252: (252 * 1.5)" :height="$mq === 'mobile' ? 59: (59 * 1.5)" viewBox="0 0 252 59">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 252: (252 * 1)" :height="$mq === 'mobile' ? 59: (59 * 1)" viewBox="0 0 252 59">
                     <text id="錄播課程章節" transform="translate(126 45)" fill="#a42c67" font-size="42" font-family="" font-weight="600"><tspan x="-126" y="0">錄播課程章節</tspan></text>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1.5)" :height="$mq === 'mobile' ? 62: (62 * 1.5)" viewBox="0 0 152 62">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1)" :height="$mq === 'mobile' ? 62: (62 * 1)" viewBox="0 0 152 62">
                     <text id="_8堂課程_60分鐘_掌握未來60年" data-name="8堂課程   60分鐘
                     掌握未來60年" transform="translate(76 21)" fill="#707070" font-size="20" font-family="" font-weight="300"><tspan x="-75.02" y="0">8</tspan><tspan y="0" font-family="">堂課程</tspan><tspan y="0" xml:space="preserve">   60</tspan><tspan y="0" font-family="">分鐘</tspan><tspan y="0"></tspan><tspan font-family=""><tspan x="-61.12" y="34">掌握未來</tspan><tspan y="34" font-family="">60</tspan><tspan y="34">年</tspan></tspan></text>
                 </svg>
@@ -103,8 +106,8 @@
                     </g>
                 </svg>
             </div>
-            <div class="nineth-block">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 325: (325 * 1.5)" :height="$mq === 'mobile' ? 139: (139 * 1.5)" viewBox="0 0 325 139">
+            <div class="nineth-block" :class="$mq" v-if="$mq === 'desktop'">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 325: (325 * 1)" :height="$mq === 'mobile' ? 139: (139 * 1)" viewBox="0 0 325 139">
                     <g id="Group_180" data-name="Group 180" transform="translate(-30 -2128)">
                         <text id="前1000人註冊藍天予教學網會員_即可免費觀看_全部_學習歷程錄播課" data-name="前1000人註冊藍天予教學網會員
                     即可免費觀看&quot;全部&quot;學習歷程錄播課" transform="translate(188 2149)" fill="#707070" font-size="20" font-family=""><tspan x="-142.246" y="0">前</tspan><tspan y="0" font-family="">1000</tspan><tspan y="0">人註冊藍天予教學網會員</tspan><tspan y="0" font-family=""></tspan><tspan x="-157.1" y="30">即可免費觀看</tspan><tspan y="30" font-family="">&quot;</tspan><tspan y="30">全部</tspan><tspan y="30" font-family="">&quot;</tspan><tspan y="30">學習歷程錄播課</tspan></text>
@@ -117,7 +120,7 @@
                     </g>
                 </svg>
                 <router-link to="/victor/signup">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1.5)" :height="$mq === 'mobile' ? 60: (60 * 1.5)" viewBox="0 0 240 60">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
                         <defs>
                             <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
                             <feOffset dy="8" input="SourceAlpha"/>
@@ -135,12 +138,12 @@
                         </g>
                     </svg>
                 </router-link>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 200: (200 * 1.5)" :height="$mq === 'mobile' ? 58: (58 * 1.5)" viewBox="0 0 200 58">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 200: (200 * 1)" :height="$mq === 'mobile' ? 58: (58 * 1)" viewBox="0 0 200 58">
                     <text id="加入_Facebook_社團_搶先收看最新解題直播" data-name="加入 Facebook 社團
                     搶先收看最新解題直播" transform="translate(100 21)" fill="#707070" font-size="20" font-family=""><tspan x="-89.473" y="0">加入</tspan><tspan y="0" xml:space="preserve" font-family=""> Facebook </tspan><tspan y="0">社團</tspan><tspan y="0" font-family=""></tspan><tspan x="-100" y="30">搶先收看最新解題直播</tspan></text>
                 </svg>
                 <a href="https://www.facebook.com/groups/350744379127084/">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1.5)" :height="$mq === 'mobile' ? 60: (60 * 1.5)" viewBox="0 0 240 60">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
                         <defs>
                             <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
                             <feOffset dy="8" input="SourceAlpha"/>
@@ -162,15 +165,29 @@
                     </svg>
                 </a>
             </div>
-            <div class="eight-block flex">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 128: (128 * 1.5)" :height="$mq === 'mobile' ? 45: (45 * 1.5)" viewBox="0 0 128 45">
+            <div class="nineth-block" :class="$mq" v-else>
+                <svg xmlns="http://www.w3.org/2000/svg" :width="1360.072 * 0.5" :height="258.435 * 0.5" viewBox="0 0 1360.072 258.435">
+                    <text id="前1000人註冊藍天予教學網會員_即可免費觀看_全部_學習歷程錄播課" data-name="前1000人註冊藍天予教學網會員
+                    即可免費觀看&quot;全部&quot;學習歷程錄播課" transform="translate(680.261 35)" fill="#707070" font-size="33" font-family="PingFangTC-Regular, PingFang TC"><tspan x="-234.706" y="0">前</tspan><tspan y="0" font-family="Helvetica">1000</tspan><tspan y="0">人註冊藍天予教學網會員</tspan><tspan y="0" font-family="Helvetica"></tspan><tspan x="-259.214" y="50">即可免費觀看</tspan><tspan y="50" font-family="Helvetica">&quot;</tspan><tspan y="50">全部</tspan><tspan y="50" font-family="Helvetica">&quot;</tspan><tspan y="50">學習歷程錄播課</tspan></text>
+                    <g id="Group_599" data-name="Group 599" transform="translate(0 170.435)">
+                        <text id="目前已經有679人完成課程" transform="translate(691.711 67)" fill="#707070" font-size="62" font-family="PingFangTC-Regular, PingFang TC"><tspan x="-361.722" y="0">目前已經有</tspan><tspan y="0" font-family="Helvetica">679</tspan><tspan y="0">人完成課程</tspan></text>
+                        <line id="Line_8" data-name="Line 8" x2="246.108" transform="translate(0 45.335)" fill="none" stroke="#707070" stroke-width="1"/>
+                        <line id="Line_9" data-name="Line 9" x2="246.108" transform="translate(1113.964 45.335)" fill="none" stroke="#707070" stroke-width="1"/>
+                    </g>
+                </svg>
+                <div class="two-options">
+
+                </div>
+            </div>
+            <div class="eight-block flex" :class="$mq">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 128: (128 * 1)" :height="$mq === 'mobile' ? 45: (45 * 1)" viewBox="0 0 128 45">
                     <text id="常見問題" transform="translate(0 34)" fill="#a42073" font-size="32" font-family="" font-weight="600"><tspan x="0" y="0">常見問題</tspan></text>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 267: (267 * 1.5)" :height="$mq === 'mobile' ? 46: (46 * 1.5)" viewBox="0 0 267 46">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 267: (267 * 1)" :height="$mq === 'mobile' ? 46: (46 * 1)" viewBox="0 0 267 46">
                     <text id="Q_註冊後可以觀看幾次_A_無限次觀看無限次觀看無限次觀看" data-name="Q：註冊後可以觀看幾次？
                     A：無限次觀看無限次觀看無限次觀看" transform="translate(0 17)" fill="#707070" font-size="16" font-family=""><tspan x="0" y="0">Q</tspan><tspan y="0" font-family="">：註冊後可以觀看幾次？</tspan><tspan y="0"></tspan><tspan x="0" y="24">A</tspan><tspan y="24" font-family="">：無限次觀看無限次觀看無限次觀看</tspan></text>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 251: (251 * 1.5)" :height="$mq === 'mobile' ? 70: (70 * 1.5)" viewBox="0 0 251 70">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 251: (251 * 1)" :height="$mq === 'mobile' ? 70: (70 * 1)" viewBox="0 0 251 70">
                     <text id="Q_為什麼願意提供免費課程_A_不希望有學生因為不懂升學規則_而成為台灣教育實驗的犧牲品" data-name="Q：為什麼願意提供免費課程
                     A：不希望有學生因為不懂升學規則
                     而成為台灣教育實驗的犧牲品" transform="translate(0 17)" fill="#707070" font-size="16" font-family=""><tspan x="0" y="0">Q</tspan><tspan y="0" font-family="">：為什麼願意提供免費課程</tspan><tspan y="0"></tspan><tspan x="0" y="24">A</tspan><tspan y="24" font-family="">：不希望有學生因為不懂升學規則</tspan><tspan y="24"></tspan><tspan font-family=""><tspan x="0" y="48">而成為台灣教育實驗的犧牲品</tspan></tspan></text>
@@ -178,10 +195,10 @@
 
             </div>
             <div class="contact-us-block">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1.5)" :height="$mq === 'mobile' ? 53: (53 * 1.5)" viewBox="0 0 152 53">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1)" :height="$mq === 'mobile' ? 53: (53 * 1)" viewBox="0 0 152 53">
                     <text id="聯絡我們" transform="translate(76 40)" fill="#fff" font-size="38" font-family="" font-weight="600"><tspan x="-76" y="0">聯絡我們</tspan></text>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 142: (142 * 1.5)" :height="$mq === 'mobile' ? 96: (96 * 1.5)" viewBox="0 0 142 96.096">
+                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 142: (142 * 1)" :height="$mq === 'mobile' ? 96: (96 * 1)" viewBox="0 0 142 96.096">
                     <g id="Group_610" data-name="Group 610" transform="translate(-117 -2993.308)">
                         <text id="電話_02_2314-5818" data-name="電話
                     (02) 2314-5818" transform="translate(188 3005.308)" fill="#fff" font-size="11" font-family="" font-weight="600"><tspan x="-11" y="0">電話</tspan><tspan y="0" font-family="" font-weight="700"></tspan><tspan font-family="" font-weight="700"><tspan x="-37.611" y="20">(02) 2314-5818</tspan></tspan></text>
@@ -351,10 +368,10 @@ export default {
 }
 .line1 {
     line-height: 1.4em;
-    &.desktop { font-size:50px; width:100vw; text-align:center;}
+    &.desktop { text-align:center;}
 }
 .line2 {
-    &.desktop { font-size:60px; width:100vw; text-align:center;}
+    &.desktop { text-align:center;}
 }
 .first-block {
     background: #A42073 !important;
@@ -384,7 +401,7 @@ export default {
 }
 .seconds-block {
     margin-top:10px !important;
-    &.desktop { margin-top:100px !important;margin-bottom: 150px;}
+    &.desktop { margin-top:50px !important;margin-bottom: 50px;}
 }
 .third-block {
     margin-top: 0 !important;
@@ -410,32 +427,35 @@ export default {
     text-align: center;
     color: black;
     &.desktop {
-        color: black;
-        margin: 0px 10vw 50px 0;
+        /* margin: 0px 10vw 50px 0; */
     }
 }
 h1.title {
     font-size: 36px;
     &.desktop {
-        color: black;
-        font-size: 90px;
-        line-height:1.2em;
+        color: white;
+        font-size: 45px;
+        position: absolute;
+        top:180px;
     }
 }
 h3.title {
     font-size: 17px;
     &.desktop {
-        color: black;
-        font-size: 42px;
-        line-height:1.2em;
+        color: white;
+        font-size: 25px;
+        /* margin-top: 100px; */
+        position: absolute;
+        top:130px;
     }
 }
 h2.title {
     font-size: 26px;
     &.desktop {
-        color: black;
-        font-size: 64px;
-        line-height:1.5em;
+        font-size: 29px;
+        color:#A42073;
+        margin-top: 20px;
+        line-height: 1.5em;
     }
 }
 p.content {
@@ -445,12 +465,10 @@ p.content {
     color: black;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-weight: 100;
+    font-weight: 400;
     &.desktop {
-        line-height:1.5em;
-        font-size: 45px;
-        margin-bottom: 100px;
-        margin-top: 200px;
+        font-size: 20px;
+        color:#A42073;
     }
 }
 .four-block {
@@ -458,7 +476,7 @@ p.content {
     flex-direction: column;
     align-items: center;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
     height: fit-content !important;
 }
 .eight-block {
@@ -467,6 +485,7 @@ p.content {
     background: #F5F5F5 !important;
     flex-direction: column;
     align-items: center;
+    &.desktop { padding:50px 0 50px 0;}
 }
 .eight-block svg{
     margin:10px 0 30px 0;
@@ -479,6 +498,7 @@ p.content {
     align-items: center;
     display: flex;
     justify-content: center;
+    &.desktop { padding:50px 0 50px 0;}
 }
 .nineth-block svg{
     margin:10px 0 30px 0;
@@ -496,6 +516,8 @@ p.content {
 }
 
 .slide-show{
+    margin-top: 10px;
+    margin-bottom: 10px;
     &.desktop {
         height: 300px !important;
         display: flex;
