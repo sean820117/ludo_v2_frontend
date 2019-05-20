@@ -103,38 +103,40 @@ export default {
     },
     async mounted(){
         /* init params */
-        this.course_id = this.$route.params.id;
-        let course = await import('~/static/data/course/' + this.course_id + '.js');
-        this.currentCourse = course;
-        console.log(this.currentCourse);
+        if (!process.server) {
+            this.course_id = this.$route.params.id;
+            let course = await import('~/static/data/course/' + this.course_id + '.js');
+            this.currentCourse = course;
+            console.log(this.currentCourse);
 
-        let store = this.$store;
-        let login_status = await this.$checkLogin(store);
-        
-        
-        if (!this.currentCourse) {
-          window.alert('網址錯誤');
-          this.$router.go(-1);
-        } else {
-          this.product_name = this.currentCourse.product_name;
-        }  
-        if(login_status) {
-            await this.checkIsPayed();
-        } else {
-            this.is_payed = false;
-        }
-        this.currentSubCourse = this.currentCourse.sub_course[0];
-        this.base_people = this.currentCourse.base_people;
-        console.log(this.base_people);
-        this.is_data_fetched = true;
-        
-        if (this.is_payed && this.is_data_fetched) {
-            const openModal = this.openModal;
-            var feedback_timeout = setTimeout(function (){
-                openModal('feedback')
+            let store = this.$store;
+            let login_status = await this.$checkLogin(store);
+            
+            
+            if (!this.currentCourse) {
+            window.alert('網址錯誤');
+            this.$router.go(-1);
+            } else {
+            this.product_name = this.currentCourse.product_name;
+            }  
+            if(login_status) {
+                await this.checkIsPayed();
+            } else {
+                this.is_payed = false;
             }
-            ,3000);
-            console.log('feedback');
+            this.currentSubCourse = this.currentCourse.sub_course[0];
+            this.base_people = this.currentCourse.base_people;
+            console.log(this.base_people);
+            this.is_data_fetched = true;
+            
+            if (this.is_payed && this.is_data_fetched) {
+                const openModal = this.openModal;
+                var feedback_timeout = setTimeout(function (){
+                    openModal('feedback')
+                }
+                ,3000);
+                console.log('feedback');
+            }
         }
     },
     components: {
