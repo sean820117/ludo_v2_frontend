@@ -15,11 +15,11 @@ export default {
         rcName: String,
         rcInfo: String
     },
-    data:() => ({
-        imgUrl: "Group 497.png",
-        rcName: "Resource name",
-        rcInfo: "Resource info"
-    })
+    // data:() => ({
+    //     imgUrl: "Group 497.png",
+    //     rcName: "Resource name",
+    //     rcInfo: "Resource info"
+    // })
 }
 </script>
 <style>

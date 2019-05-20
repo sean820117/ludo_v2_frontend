@@ -1,6 +1,6 @@
 <template>
     <div class="signup-page">
-        <titlebar-new :logo_src="is_ui_config_loaded ? ui_config.logo : ''"><div slot="right-component" @click="$router.go(-1)" :style="{ color : is_ui_config_loaded ? ui_config.view.signup_page.back_button.color : '' }">返回</div></titlebar-new>
+        <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''"><div slot="right-component" @click="$router.go(-1)" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">返回</div></titlebar>
         <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
         <div class="reg-text2" :style="{color: hint_color}"> {{ hint }}</div>
         <div class="third-party">
@@ -23,20 +23,20 @@
             </div>
             <div class="btn-login-and-signup-container">
                 <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p>
-                <input class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" :value="login_or_signup === 'signup' ? '註冊' : '登入' " @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">
+                <button class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"  @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '註冊' : '登入'  }}</button>
             </div>
         </form>
     </div>
 </template>
 <script >
-import TitlebarNew from "~/components/resume/TitlebarNew"
+import Titlebar from "~/components/resume/Titlebar"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
 import { EMAIL_REGEX } from '~/components/regex.js'
 
 import axios from '~/config/axios-config'
 
 export default {
-    layout: 'resume',
+    layout: 'victor',
     head () {
         return {
             link: [
@@ -54,10 +54,10 @@ export default {
             email: '',
             password: '',
             confirmPassword: '',
+            is_ui_config_loaded:false,
             ui_config: Object,
             hint:'',
             hint_color:'',
-            is_ui_config_loaded:false,
             login_or_signup:'signup',
         }
     },
@@ -66,14 +66,14 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.ui_config = await import('~/config/resume-config')
+            this.ui_config = await import('~/config/victor-config')
             this.is_ui_config_loaded = true;
             this.hint = this.ui_config.view.signup_page.hint.default.text;
             this.hint_color = this.ui_config.view.signup_page.hint.default.color;
         }
     },
     components: {
-        TitlebarNew,
+        Titlebar,
         ThirdPartyIcons,
     },
     methods: {
@@ -110,6 +110,20 @@ export default {
         },
         async signup(email,password,repeated_password) {
             console.log("go sign up")
+
+            var url = 'https://www.ludonow.com/victor/signup';
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                    console.log('send gtag');
+                }
+            };
+
+            this.$gtag('event', 'conversion', {
+                'send_to': 'AW-744113367/bEHDCIvrzZ4BENeJ6eIC',
+                'event_callback': callback,
+            });
+
             try {
               let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
               if (response.data.status == '200') {
@@ -248,8 +262,8 @@ textarea:focus, input:focus{
     font-size: 14px;
     /* margin-left: 60%; */
     /* margin-top: 6vh; */
-    border: none;
-    border-radius: 3px;
+    border: none !important;
+    border-radius: 3px !important;
     padding: unset;
 }
 </style>

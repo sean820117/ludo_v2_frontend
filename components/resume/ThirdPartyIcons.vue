@@ -1,8 +1,8 @@
 <template>
     <div class="third-party-login">
-        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.FB" src="icon-fb.png" /></a>
-        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.google" src="icon-google.png" /></a>
-        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.line" src="icon-line.png" /></a>
+        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.FB" src="/icon-fb.svg" /></a>
+        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.google" src="/icon-google.png" /></a>
+        <a :href="'https://api.ludonow.com/auth/facebook'"><img v-if="login_method.line" src="/icon-line.png" /></a>
     </div>
 </template>
 

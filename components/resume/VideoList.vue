@@ -1,48 +1,23 @@
 <template>
     <div class="vlist" ref="vlist">
-        <div ref="listContent" class="list-content">
-            <div class="video-cell" @click="updatVideoSrc('319395957')">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell" @click="updatVideoSrc('319395956')">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell" @click="updatVideoSrc('319395955')">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
-            </div>
-            <div class="video-cell">
-                <div class="v-img"><img src="Group 54.png"/></div>
-                <div class="v-title">超同標場</div>
-                <div class="v-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
+        <div ref="listContent" class="list-content" >
+            <div v-for="chapter in chapters" :key="chapter.video_id" class="video-cell" @click="updateChapter(chapter)">
+                <div class="v-img"><img :src="chapter.thumbnail"/></div>
+                <div class="v-title">{{ chapter.title }}</div>
+                <div class="v-context" v-html="chapter.description"></div>
             </div>
         </div>
-        <div class="scroll-button up-button" ref="upButton"><img src="Path 84.png"/></div>
-        <div class="scroll-button down-button" ref="downButton"><img src="Symbol 114 – 2.png"/></div>
+        <div class="scroll-button up-button" ref="upButton"><img src="/btn-video-up.png"/></div>
+        <div class="scroll-button down-button" ref="downButton"><img src="/btn-video-down.png"/></div>
     </div>
 </template>
 <script>
 export default {
+    data:() => ({
+    }),
+    props:{
+        chapters: Array,
+    },
     mounted: function() {
         this.downTimer = null;
         this.upTimer = null;
@@ -115,8 +90,8 @@ export default {
                 this.$refs.upButton.style.display = "block"
             }
         },
-        updatVideoSrc(id){
-            this.$emit("videoSrcChanged",id);
+        updateChapter(chapter){
+            this.$emit("videoSrcChanged",chapter);
         }
     }
 }

@@ -1,6 +1,7 @@
 module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
+    logo: "/resume/Group 153.png",
     view: {
         signup_page: {
             login_method: {

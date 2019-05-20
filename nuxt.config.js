@@ -37,16 +37,23 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
+  css: [
+    // { src: "swiper/dist/css/swiper.css" }
+  ],
   loading: { color: '#3B8070' },
   /*
   ** Build configuration
   */
   plugins: [
     { src: '~/plugins/gtm.js', ssr: false },
+    // { src: '~/plugins/ga-victor.js', ssr: false },
     { src: '~/plugins/hotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
     { src: '~/plugins/forceLogin.js', ssr: false },
-
+    // { src: "~/plugins/vue-swiper.js", ssr: false }   
+  ],
+  modules: [
+    ['@nuxtjs/google-gtag', { id: 'AW-744113367' }],    
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],
   build: {

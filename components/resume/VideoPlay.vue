@@ -1,14 +1,14 @@
 <template>
-    <div style="text-align:center">
-        <iframe :id="playerID" class="videoplay" ref="player"
+    <div class="videoplayer-container" style="text-align:center">
+        <iframe :id="playerID"  ref="player"
         :src="videourl" 
         frameborder="0" 
-        allow="autoplay; fullscreen" allowfullscreen></iframe>
+        allow="autoplay; fullscreen" class="video-player" allowfullscreen></iframe>
     </div>
 </template>
 <script>
 import Player from '@vimeo/player';
-export default{
+export default {
     props:{
         videourl: String,
         playerID: String
@@ -34,9 +34,20 @@ export default{
 }
 </script>
 <style>
-.videoplay{
+.videoplayer-container {
     width: 100vw;
-    height: 222px;
-    background: black;
+    /* height: 222px; */
+    background: transparent;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}
+.video-player { 
+    width: 100vw;
+    height: 56.25vw;
+    max-width:640px;
+    max-height:360px;
+    background:black;
 }
 </style>

@@ -1,6 +1,6 @@
 *{
     margin:0px;
-    font-family: 'Noto Sans TC', sans-serif;
+    /* font-family: 'Noto Sans TC', sans-serif; */
 }
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%
@@ -145,12 +145,13 @@ html, body, #__nuxt, #__layout, #__layout > div{
     position:relative;
     color:#007CDC;
     width: 100%;
-    height: 102px;
+    /* height: 102px; */
     text-align: center;
     font-size: 27px;
     font-weight: 500;
     margin-top:105px;
     line-height: 36px;
+    margin-bottom: 20px;
 }
 .sb-addition{
     position: absolute;
@@ -209,8 +210,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
     text-align: center;
     overflow-y: hidden;
     margin-top: 49px;
+    margin-bottom: 49px;
 }
-#ss-container img{
+.slide-show img{
     display: none;
 }
 #pre-img{

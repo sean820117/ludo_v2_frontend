@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-        <router-link :to="'/' + project_name"><img class="title-blue" :src="logo_src"/></router-link>
+    <div class="banner">
+        <router-link :to="'/' +product_name"><img class="title-img" :src="logo_src"/></router-link>
         <div class="login"><slot name="right-component"></slot></div>
     </div>
 </template>
@@ -8,13 +8,13 @@
 export default {
     props: {
         logo_src:String,
-        project_name:String,
+        product_name:String,
     },
 }
 </script>
 
 <style>
-.header{
+.banner{
     text-align: left;
     z-index: 10;
     position:fixed;
@@ -23,14 +23,14 @@ export default {
     background: #FFF;
     height: 55px;
 }
-.header .login{
+.banner .login{
     float:right;
     font-size: 14px;
     line-height: 55px;
-    color:transparent;
+    color:#0090FF;
     margin-right:20px;
 }
-.header .title-blue{
+.banner .title-img{
     margin-left: 10px;
     height: 80%;
     margin-top: 10px;
