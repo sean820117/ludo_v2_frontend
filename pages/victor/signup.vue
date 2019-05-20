@@ -111,23 +111,17 @@ export default {
         async signup(email,password,repeated_password) {
             console.log("go sign up")
 
-            var url = 'https://www.ludonow.com/victor/signup';
-            var callback = function () {
-                if (typeof(url) != 'undefined') {
-                    window.location = url;
-                    console.log('send gtag');
-                }
-            };
-
-            this.$gtag('event', 'conversion', {
-                'send_to': 'AW-744113367/bEHDCIvrzZ4BENeJ6eIC',
-                'event_callback': callback,
-            });
-
+            
             try {
               let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
               if (response.data.status == '200') {
                   console.log("signup success")
+
+                  this.$gtag('event', 'conversion', {
+                        'send_to': 'AW-744113367/bEHDCIvrzZ4BENeJ6eIC',
+                        'event_callback': function () {},
+                  });
+
                   let login_result = await this.$checkLogin(this.$store);
                   this.$router.push('/login-redirect')
               } else {
