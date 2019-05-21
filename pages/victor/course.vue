@@ -78,6 +78,9 @@ export default {
     },
     mounted: async function() {
         if (process.client) {
+            this.ui_config = await require('~/config/victor-config')
+            this.is_ui_config_loaded = true;
+            this.current_chapter = this.ui_config.chapters[0];
             window.onload = (function(){
                 this.$refs.courseContainer.resetSize();
                 this.$refs.vlist.adjustHeight();
@@ -87,12 +90,10 @@ export default {
             } 
         }
     },
-    async asyncData (context) {
-        const ui_config = await require('~/config/victor-config')
-        const is_ui_config_loaded = true;
-        const current_chapter = ui_config.chapters[0];
-        return { ui_config: ui_config, is_ui_config_loaded:is_ui_config_loaded,current_chapter:current_chapter}
-    }
+    // async asyncData (context) {
+        
+    //     return { ui_config: ui_config, is_ui_config_loaded:is_ui_config_loaded,current_chapter:current_chapter}
+    // }
 }
 </script>
 

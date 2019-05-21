@@ -7,7 +7,7 @@
             <div class="cover-photo-container" :class="$mq">
                 <h3 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">升學「備審」將被「學習歷程」取代</h3>
                 <h1 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">您，準備好了嗎？</h1>
-                <img :style="{visibility: !show_second_block && $mq === 'desktop' ? 'hidden':'visible'}" class="cover-photo"  src="/cover-victor.svg" /></div>
+                <img :style="{display: !show_second_block && $mq === 'desktop' ? 'none':''}" class="cover-photo"  src="/cover-victor.svg" /></div>
             <div class="slogan" :class="$mq" v-if="show_second_block">
                 <div class="line1" :class="$mq" >
                     學習歷程全解析
@@ -281,14 +281,9 @@ Vue.use(VueMq, {
 });
 
 export default {
-    // layout:'victor',
+    layout:'victor',
     head () {
         return {
-            script: [
-                { src: "/resume/index.js"},
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
-                { src: 'https://player.vimeo.com/api/player.js' }        
-            ],
             link: [
                 { rel: 'stylesheet', href: '/resume/index.css' },
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -390,8 +385,12 @@ export default {
             this.ui_config = await require('~/config/victor-config')
             this.is_ui_config_loaded = true;
             this.is_login = await this.$checkLogin(this.$store);
-            this.$fb.enable();
-            this.$fb.track();
+            
+            this.arrangeLandingPage();
+            if (process.env.NODE_ENV === "production") {
+                this.$fb.enable();
+                this.$fb.track();
+            }
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },
@@ -403,7 +402,29 @@ export default {
         goFBGroup(url) {
             this.$fb.query('trackCustom', 'join_group')
             window.location.href = url;
-        }
+        },
+        arrangeLandingPage(){
+
+            var imgContainer = document.getElementById("ss-container");
+            var imgContainer2 = document.getElementById("ss-container2");
+            var slideTimer = null, imgIndex = 0, slideInterval = 3000;
+            var slideTimer2 = null,imgIndex2 = 0;
+            $(imgContainer.children[0]).show();
+            $(imgContainer2.children[0]).show();
+            slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
+            slideTimer2 = setTimeout(()=>switchImg(1,imgContainer2,slideTimer2,imgIndex2), slideInterval);
+            // $("#pre-img").click(()=>switchImg(-1));
+            // $("#next-img").click(()=>switchImg(1));
+            function switchImg(factor,element,stimer,theImgIndex){
+                clearTimeout(stimer);
+                $(element.children[theImgIndex]).fadeOut(500,function(){
+                    var imgLength = element.children.length;
+                    theImgIndex = (theImgIndex+imgLength+1*factor)%imgLength;
+                    $(element.children[theImgIndex]).fadeIn(500);
+                    stimer = setTimeout(()=>switchImg(1,element,stimer,theImgIndex), slideInterval);
+                });
+            }
+        },
     }
 }
 </script>
@@ -595,14 +616,14 @@ p.content {
 }
 
 .contact-us-block {
-    padding:10px 0 80px 0;
+    padding:10px 0 80px 0 !important;
     background: #535353;
     flex-direction: column;
     align-items: center;
     display: flex;
     justify-content: center;
 }
-.contact-us-block svg{
+.contact-us-block img{
     /* padding:10px 0 30px 0; */
 }
 .swiper {

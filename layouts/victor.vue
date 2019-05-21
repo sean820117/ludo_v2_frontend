@@ -1,11 +1,11 @@
 <template>
-  <div v-if="is_ui_config_loaded">
+  <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''">
         <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
         <div v-else slot="right-component" @click="$router.push('/victor/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
     </titlebar>
     <nuxt/>
-    <div class="contact-us-block" v-if="$route.path !== '/victor'">
+    <div class="contact-us-block" v-if="$route.path !== '/victor'" style="width:100vw;">
         <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1.5)" :height="$mq === 'mobile' ? 53: (53 * 1.5)" viewBox="0 0 152 53">
             <text id="聯絡我們" transform="translate(76 40)" fill="#fff" font-size="38" font-family="PingFangTC-Semibold, PingFang TC" font-weight="600"><tspan x="-76" y="0">聯絡我們</tspan></text>
         </svg>
@@ -19,10 +19,11 @@
         </svg>
         <img :src="is_ui_config_loaded ? ui_config.logo : ''" alt="logo">
     </div>
+    <loading 
+        :active="!is_ui_config_loaded" 
+    ></loading>
   </div>
-  <loading 
-    :active="!is_ui_config_loaded" 
-    v-else ></loading>
+  
 </template>
 
 <script>
@@ -132,8 +133,8 @@ background: #555;
     display: flex;
     justify-content: center;
 }
-.contact-us-block svg{
-    margin:10px 0 30px 0;
+.contact-us-block img{
+    margin:30px 0 10px 0;
 }
 
 </style>
