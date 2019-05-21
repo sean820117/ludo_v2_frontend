@@ -21,6 +21,9 @@
     </div>
     <loading 
         :active="!is_ui_config_loaded" 
+        color="#A42073"
+        loader="dots"
+        opacity="0.8"
     ></loading>
   </div>
   
