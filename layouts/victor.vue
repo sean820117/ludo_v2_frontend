@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="is_ui_config_loaded">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''">
         <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
         <div v-else slot="right-component" @click="$router.push('/victor/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
@@ -20,12 +20,17 @@
         <img :src="is_ui_config_loaded ? ui_config.logo : ''" alt="logo">
     </div>
   </div>
+  <loading 
+    :active="!is_ui_config_loaded" 
+    v-else ></loading>
 </template>
 
 <script>
 import Titlebar from "~/components/resume/Titlebar"
+import Loading from 'vue-loading-overlay';
 import VueMq from 'vue-mq'
 import Vue from 'vue'
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -38,6 +43,7 @@ Vue.use(VueMq, {
 export default {
     components: {
         Titlebar,
+        Loading,
     },
     data:() => ({
         ui_config:Object,

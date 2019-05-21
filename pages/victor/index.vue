@@ -69,40 +69,40 @@
                     掌握未來60年" transform="translate(76 21)" fill="#707070" font-size="20" font-family="" font-weight="300"><tspan x="-75.02" y="0">8</tspan><tspan y="0" font-family="">堂課程</tspan><tspan y="0" xml:space="preserve">   60</tspan><tspan y="0" font-family="">分鐘</tspan><tspan y="0"></tspan><tspan font-family=""><tspan x="-61.12" y="34">掌握未來</tspan><tspan y="34" font-family="">60</tspan><tspan y="34">年</tspan></tspan></text>
                 </svg>
                 <svg v-if="$mq === 'mobile'" xmlns="http://www.w3.org/2000/svg" width="211" height="276" viewBox="0 0 211 276">
-                    <text id="_01._學習歷程全解析_02._高中生涯如何規劃_03._全新課程題目差異_04._升高一暑假如何規劃_05._高一如何探索方向_06._高二如何累積課外經驗_07._高三如何準備考試_08._考完後選科系分析_" data-name="
+                    <text id="_01._學習歷程全解析_02._會考制度介紹_03._國高中志向確立_04._特色課程解說_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰_" data-name="
                     01. 學習歷程全解析
 
-                    02. 高中生涯如何規劃
+                    02. 會考制度介紹
 
-                    03. 全新課程題目差異
+                    03. 國高中志向確立
 
-                    04. 升高一暑假如何規劃
+                    04. 特色課程解說
 
-                    05. 高一如何探索方向
+                    05. 高中轉類組影響
 
-                    06. 高二如何累積課外經驗
+                    06. 大學學群分類與職涯關係
 
-                    07. 高三如何準備考試
+                    07. 校系課程地圖說明
 
-                    08. 考完後選科系分析
-                    " transform="translate(0 14)" fill="#a42c67" font-size="18" font-family="" font-weight="700"><tspan x="0" y="0"></tspan><tspan x="0" y="16">01. </tspan><tspan y="16" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="16"></tspan><tspan x="0" y="32"></tspan><tspan x="0" y="48">02. </tspan><tspan y="48" font-family="" font-weight="600">高中生涯如何規劃</tspan><tspan y="48"></tspan><tspan x="0" y="64"></tspan><tspan x="0" y="80">03. </tspan><tspan y="80" font-family="" font-weight="600">全新課程題目差異</tspan><tspan y="80"></tspan><tspan x="0" y="96"></tspan><tspan x="0" y="112">04. </tspan><tspan y="112" font-family="" font-weight="600">升高一暑假如何規劃</tspan><tspan y="112"></tspan><tspan x="0" y="128"></tspan><tspan x="0" y="144">05. </tspan><tspan y="144" font-family="" font-weight="600">高一如何探索方向</tspan><tspan y="144"></tspan><tspan x="0" y="160"></tspan><tspan x="0" y="176">06. </tspan><tspan y="176" font-family="" font-weight="600">高二如何累積課外經驗</tspan><tspan y="176"></tspan><tspan x="0" y="192"></tspan><tspan x="0" y="208">07. </tspan><tspan y="208" font-family="" font-weight="600">高三如何準備考試</tspan><tspan y="208"></tspan><tspan x="0" y="224"></tspan><tspan x="0" y="240">08. </tspan><tspan y="240" font-family="" font-weight="600">考完後選科系分析</tspan><tspan y="240"></tspan><tspan font-family=""><tspan x="0" y="256"></tspan></tspan></text>
+                    08. 升學制度變化與應對教戰
+                    " transform="translate(0 14)" fill="#a42c67" font-size="18" font-family="" font-weight="700"><tspan x="0" y="0"></tspan><tspan x="0" y="16">01. </tspan><tspan y="16" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="16"></tspan><tspan x="0" y="32"></tspan><tspan x="0" y="48">02. </tspan><tspan y="48" font-family="" font-weight="600">會考制度介紹</tspan><tspan y="48"></tspan><tspan x="0" y="64"></tspan><tspan x="0" y="80">03. </tspan><tspan y="80" font-family="" font-weight="600">國高中志向確立</tspan><tspan y="80"></tspan><tspan x="0" y="96"></tspan><tspan x="0" y="112">04. </tspan><tspan y="112" font-family="" font-weight="600">特色課程解說</tspan><tspan y="112"></tspan><tspan x="0" y="128"></tspan><tspan x="0" y="144">05. </tspan><tspan y="144" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="144"></tspan><tspan x="0" y="160"></tspan><tspan x="0" y="176">06. </tspan><tspan y="176" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="176"></tspan><tspan x="0" y="192"></tspan><tspan x="0" y="208">07. </tspan><tspan y="208" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="208"></tspan><tspan x="0" y="224"></tspan><tspan x="0" y="240">08. </tspan><tspan y="240" font-family="" font-weight="600">升學制度變化與應對教戰</tspan><tspan y="240"></tspan><tspan font-family=""><tspan x="0" y="256"></tspan></tspan></text>
                 </svg>
                 <svg v-if="$mq === 'desktop'" xmlns="http://www.w3.org/2000/svg" width="882.919" height="264" viewBox="0 0 882.919 264">
                     <g id="Group_589" data-name="Group 589" transform="translate(-538 -454.557)">
-                        <text id="_01._學習歷程全解析_02._高中生涯如何規劃_03._全新課程題目差異_04._升高一暑假如何規劃" data-name="01. 學習歷程全解析
+                        <text id="_01._學習歷程全解析_02._會考制度介紹_03._國高中志向確立_04._特色課程解說" data-name="01. 學習歷程全解析
 
-                    02. 高中生涯如何規劃
+                    02. 會考制度介紹
 
-                    03. 全新課程題目差異
+                    03. 國高中志向確立
 
-                    04. 升高一暑假如何規劃" transform="translate(538 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">01. </tspan><tspan y="0" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">02. </tspan><tspan y="72" font-family="" font-weight="600">高中生涯如何規劃</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">03. </tspan><tspan y="144" font-family="" font-weight="600">全新課程題目差異</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">04. </tspan><tspan y="216" font-family="" font-weight="600">升高一暑假如何規劃</tspan></text>
-                        <text id="_05._高一如何探索方向_06._高二如何累積課外經驗_07._高三如何準備考試_08._考完後選科系分析" data-name="05. 高一如何探索方向
+                    04. 特色課程解說" transform="translate(538 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">01. </tspan><tspan y="0" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">02. </tspan><tspan y="72" font-family="" font-weight="600">會考制度介紹</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">03. </tspan><tspan y="144" font-family="" font-weight="600">國高中志向確立</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">04. </tspan><tspan y="216" font-family="" font-weight="600">特色課程解說</tspan></text>
+                        <text id="_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰" data-name="05. 高中轉類組影響
 
-                    06. 高二如何累積課外經驗
+                    06. 大學學群分類與職涯關係
 
-                    07. 高三如何準備考試
+                    07. 校系課程地圖說明
 
-                    08. 考完後選科系分析" transform="translate(1023.92 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">05. </tspan><tspan y="0" font-family="" font-weight="600">高一如何探索方向</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">06. </tspan><tspan y="72" font-family="" font-weight="600">高二如何累積課外經驗</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">07. </tspan><tspan y="144" font-family="" font-weight="600">高三如何準備考試</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">08. </tspan><tspan y="216" font-family="" font-weight="600">考完後選科系分析</tspan></text>
+                    08. 升學制度變化與應對教戰" transform="translate(1023.92 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">05. </tspan><tspan y="0" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">06. </tspan><tspan y="72" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">07. </tspan><tspan y="144" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">08. </tspan><tspan y="216" font-family="" font-weight="600">升學制度變化與應對教戰</tspan></text>
                     </g>
                 </svg>
             </div>
@@ -206,7 +206,7 @@
                             <text id="加入_Facebook_社團_搶先收看最新解題直播" data-name="加入 Facebook 社團
                             搶先收看最新解題直播" transform="translate(190 40)" fill="#707070" font-size="38" font-family=""><tspan x="-169.998" y="0">加入</tspan><tspan y="0" xml:space="preserve" font-family=""> Facebook </tspan><tspan y="0">社團</tspan><tspan y="0" font-family=""></tspan><tspan x="-190" y="57">搶先收看最新解題直播</tspan></text>
                         </svg>
-                        <a href="https://www.facebook.com/groups/350744379127084/">
+                        <a @click.prevent="goFBGroup('https://www.facebook.com/groups/350744379127084/')">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
                                 <defs>
                                     <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
@@ -281,7 +281,7 @@ Vue.use(VueMq, {
 });
 
 export default {
-    layout:'victor',
+    // layout:'victor',
     head () {
         return {
             script: [
@@ -390,13 +390,20 @@ export default {
             this.ui_config = await require('~/config/victor-config')
             this.is_ui_config_loaded = true;
             this.is_login = await this.$checkLogin(this.$store);
+            this.$fb.enable();
+            this.$fb.track();
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },
     methods: {
         seeMore() {
             this.show_second_block = false;
-        },
+            this.$fb.track('ViewContent');
+        }, 
+        goFBGroup(url) {
+            this.$fb.query('trackCustom', 'join_group')
+            window.location.href = url;
+        }
     }
 }
 </script>

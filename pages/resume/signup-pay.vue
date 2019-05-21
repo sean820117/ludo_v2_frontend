@@ -7,7 +7,7 @@
             <div class="reg-title">註冊</div>
             <div class="reg-subtitle">付款前需先註冊成為會員</div>
             <div class="third-party">
-                <third-party-icons/>
+                <no-ssr><third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
             </div>
             <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             <div>

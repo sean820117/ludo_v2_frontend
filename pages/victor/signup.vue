@@ -70,6 +70,9 @@ export default {
             this.is_ui_config_loaded = true;
             this.hint = this.ui_config.view.signup_page.hint.default.text;
             this.hint_color = this.ui_config.view.signup_page.hint.default.color;
+            
+            this.$fb.enable();
+            this.$fb.track('Lead');
         }
     },
     components: {
@@ -121,6 +124,7 @@ export default {
                         'send_to': 'AW-744113367/bEHDCIvrzZ4BENeJ6eIC',
                         'event_callback': function () {},
                   });
+                  this.$fb.track('CompleteRegistration');
 
                   let login_result = await this.$checkLogin(this.$store);
                   this.$router.push('/login-redirect')

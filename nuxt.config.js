@@ -54,6 +54,11 @@ module.exports = {
   ],
   modules: [
     ['@nuxtjs/google-gtag', { id: 'AW-744113367' }],    
+    ['nuxt-facebook-pixel-module', {
+      /* module options */
+      pixelId: '2273854532873952',
+      disabled: true,
+    }],
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],
   build: {

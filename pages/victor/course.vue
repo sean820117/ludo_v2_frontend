@@ -78,10 +78,10 @@ export default {
     },
     mounted: async function() {
         if (process.client) {
-            // window.onload = (function(){
+            window.onload = (function(){
                 this.$refs.courseContainer.resetSize();
                 this.$refs.vlist.adjustHeight();
-            // }).bind(this);
+            }).bind(this);
             if (await this.$checkLogin(this.$store) == false) {
                 this.$router.push('/victor');
             } 
@@ -97,10 +97,6 @@ export default {
 </script>
 
 <style>
-*{
-    margin:0px;
-    font-family: 'Noto Sans TC', sans-serif;
-}
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
 }
