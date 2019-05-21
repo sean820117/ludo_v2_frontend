@@ -10,10 +10,13 @@ window.onload = function(){
     document.getElementById("democourses").onclick = function(){
         document.getElementById("fbshare").style.display = "block";
     }
-    document.getElementById("clickshare").onclick = function(){
+    function openShareWindow(){
         isShared = true;
-        window.open(sharelink,"share","width=1000,height=600")
+        window.open(sharelink,"share","width=1000,height=600");
+        document.getElementById("share-mask").style.display = "none";
     }
+    document.getElementById("clickshare").onclick = openShareWindow;
+    document.getElementById("share-mask").onclick = openShareWindow;
     function switchCourse(id){
         if(isShared){
             dv.src = "https://player.vimeo.com/video/"+id;
@@ -23,6 +26,7 @@ window.onload = function(){
     $("#dc-2").click(()=>switchCourse(319395955));
     dcPlayer.on('ended', function(){
         document.getElementById("fbshare").style.display = "block";
+        document.getElementById("share-mask").style.display = "block";
     });
 
     var imgContainer = document.getElementById("ss-container");
