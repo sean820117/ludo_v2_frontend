@@ -2,7 +2,7 @@
     <div>
         <div class="receipt-text" @click="showReceipt" :class="{ 'receipt-text-black' : wordDark}">
                     我們使⽤電⼦發票, 將會於得獎時以簡訊與您聯繫
-                    <br>或可按此選擇使⽤載具儲存 / 輸⼊統⼀編號等
+                    <br>或可按此<u>選擇</u>使⽤載具儲存 / 輸⼊統⼀編號等
         </div>
         <div class="receipt-method"  v-if="displayReceipt">
             <input type="radio" id="e-receipt" name="receipt-carrier" value="e-receipt" checked>
