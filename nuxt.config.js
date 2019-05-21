@@ -31,7 +31,9 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: 'https://sdk.accountkit.com/en_US/sdk.js' }
+      { src: 'https://sdk.accountkit.com/en_US/sdk.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+      { src: 'https://player.vimeo.com/api/player.js' },
     ],
   },
   /*
@@ -40,7 +42,14 @@ module.exports = {
   css: [
     // { src: "swiper/dist/css/swiper.css" }
   ],
-  loading: { color: '#3B8070' },
+  loading: {
+    color: 'black',
+    failedColor: 'red',
+    height: '2px',
+    throttle: 500,
+    duration: 5000,
+    rtl: false
+  },
   /*
   ** Build configuration
   */
@@ -53,7 +62,7 @@ module.exports = {
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
-    ['@nuxtjs/google-gtag', { id: 'AW-744113367' }],    
+    ['@nuxtjs/google-gtag', { id: 'UA-137420846-2' }],    
     ['nuxt-facebook-pixel-module', {
       /* module options */
       pixelId: '2273854532873952',
