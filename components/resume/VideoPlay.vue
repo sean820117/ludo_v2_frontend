@@ -36,7 +36,8 @@ export default{
 <style>
 .videoplay{
     width: 100vw;
-    height: 222px;
+    height: 56vw;
     background: black;
+    max-height: 40vh;
 }
 </style>

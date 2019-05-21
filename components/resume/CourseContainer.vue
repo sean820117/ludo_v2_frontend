@@ -33,7 +33,7 @@ export default{
     methods: {
         resetSize(){
             var content = document.getElementById(this.labelName+'-content');
-            content.children[0].style.height = content.offsetHeight - 12 + "px";
+            content.children[0].style.height = content.offsetHeight - 22 + "px";
             content.children[0].style.overflowY = "hidden";
             for(let i=1; i<content.children.length;i++){
                 content.children[i].style.height = "unset";
