@@ -1,5 +1,5 @@
 <template>
-    <div style="height:100%">
+    <div :style="{height: show_second_block ? '100%' : ''}">
         <input type="radio" id="checkseemore" style="position: fixed;"/>
         <div class="first-block">
             <div class="cover-photo-container" :class="$mq">
@@ -244,20 +244,7 @@
                 </svg>
 
             </div>
-            <div class="contact-us-block">
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1)" :height="$mq === 'mobile' ? 53: (53 * 1)" viewBox="0 0 152 53">
-                    <text id="聯絡我們" transform="translate(76 40)" fill="#fff" font-size="38" font-family="" font-weight="600"><tspan x="-76" y="0">聯絡我們</tspan></text>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 142: (142 * 1)" :height="$mq === 'mobile' ? 96: (96 * 1)" viewBox="0 0 142 96.096">
-                    <g id="Group_610" data-name="Group 610" transform="translate(-117 -2993.308)">
-                        <text id="電話_02_2314-5818" data-name="電話
-                    (02) 2314-5818" transform="translate(188 3005.308)" fill="#fff" font-size="11" font-family="" font-weight="600"><tspan x="-11" y="0">電話</tspan><tspan y="0" font-family="" font-weight="700"></tspan><tspan font-family="" font-weight="700"><tspan x="-37.611" y="20">(02) 2314-5818</tspan></tspan></text>
-                        <text id="郵箱_endingcourt99_gmail.com" data-name="郵箱
-                    endingcourt99@gmail.com" transform="translate(188 3066.404)" fill="#fff" font-size="11" font-family="" font-weight="600"><tspan x="-11" y="0">郵箱</tspan><tspan y="0" font-family="" font-weight="700"></tspan><tspan font-family="" font-weight="700"><tspan x="-70.458" y="20">endingcourt99@gmail.com</tspan></tspan></text>
-                    </g>
-                </svg>
-                <img :src="is_ui_config_loaded ? ui_config.logo : ''" alt="logo">
-            </div>
+            
             <router-link v-if="!is_login" to="/victor/signup">
                 <footer class="paynow" style="background:#A42073;">
                     免費註冊
@@ -273,7 +260,6 @@
     </div>
 </template>
 <script>
-import Titlebar from "~/components/resume/Titlebar"
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 
@@ -308,29 +294,12 @@ export default {
             title: '學習歷程 - 得勝者文教',
         } 
     },
-    components: {
-        Titlebar,
-    },
     data() {
         return {
             is_ui_config_loaded:false,
             is_login:true,
             ui_config: Object,
             show_second_block: true,
-            swiperOption: {
-                loop:true,
-                effect : 'fade',
-                speed: 500,
-                centeredSlides: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable :true,
-                },
-            },
             banners: [
                 {
                     url:'/victor-LP-1.png',
@@ -411,7 +380,6 @@ export default {
             window.location.href = url;
         },
         arrangeLandingPage(){
-
             var imgContainer = document.getElementById("ss-container");
             var imgContainer2 = document.getElementById("ss-container2");
             var slideTimer = null, imgIndex = 0, slideInterval = 3000;
