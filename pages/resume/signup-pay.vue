@@ -36,14 +36,15 @@
                 <br><br>
                 模口星一的帶山說子得常之克光！設心轉早有東注！希裡同資來動告詩，利組資持報是種兒坐術濟國戲散於商源政般，線滿原沒示性多點成推來就指；錯臺在親……生式我們他工新叫；二選總方天不出間話東一去女！園座之本維切主方正談研物。
             </div>
-            <input type="checkbox" id="agree-contract">
+            <input type="checkbox" id="agree-contract" v-model="agreeContract">
             <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
             
             <receipt-type :wordDark="true"/>
             <div class="payment-container">
                 <div class="payment-info">
                     <div class="price">共計　新台幣　99 元</div>
-                    <div class="go-pay">前往付款</div>
+                    <div class="unchecked" v-if="!agreeContract">前往付款</div>
+                    <a href="signup-pay"><div class="go-pay" v-if="agreeContract">前往付款</div></a>
                 </div>
             </div>
         </div>
@@ -73,6 +74,7 @@ export default {
     data:() => ({
         directReg: false,
         displayReceipt: false,
+        agreeContract: false,
     }),
     methods: {
         toggleDriectReg(){
@@ -80,7 +82,7 @@ export default {
         },
         showReceipt(){
             this.displayReceipt = true;
-        }
+        },
     },
     mounted: function() {
         let irs = document.getElementsByClassName("reg-column-input");
@@ -206,6 +208,13 @@ textarea:focus, input:focus{
 }
 .payment-info .go-pay{
     background: #0090FF;
+    color: white;
+    font-size: 17px;
+    width: 100%;
+    height: 100%;
+}
+.payment-info .unchecked{
+    background: #7ec7ff;
     color: white;
     font-size: 17px;
 }
