@@ -77,14 +77,30 @@ export default {
         },
     },
     mounted: async function() {
+        
+    },
+    async beforeCreate() {
         if (process.client) {
             this.ui_config = await require('~/config/victor-config')
             this.is_ui_config_loaded = true;
             this.current_chapter = this.ui_config.chapters[0];
+            if( document.readyState !== 'loading' ) {
+                this.$refs.courseContainer.resetSize();
+                this.$refs.vlist.adjustHeight();
+            }else{
+                document.addEventListener("DOMContentLoaded", (function(){
+                    this.$refs.courseContainer.resetSize();
+                    this.$refs.vlist.adjustHeight();
+                }).bind(this));
+            }
             window.onload = (function(){
                 this.$refs.courseContainer.resetSize();
                 this.$refs.vlist.adjustHeight();
             }).bind(this);
+            setTimeout(() => {
+                this.$refs.courseContainer.resetSize();
+                this.$refs.vlist.adjustHeight();
+            },3000);
             if (await this.$checkLogin(this.$store) == false) {
                 this.$router.push('/victor');
             } 

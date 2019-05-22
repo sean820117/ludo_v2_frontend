@@ -481,7 +481,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 a{
     text-decoration: none;
 }
-.paynow a{
+.paynow {
     color: white;
 }
 .paynow-text{

@@ -6,13 +6,24 @@
                 <div class="v-title">{{ chapter.title }}</div>
                 <div class="v-context" v-html="chapter.description"></div>
             </div>
+            <loading 
+                :active="chapters.length < 1" 
+                color="white"
+                loader="dots"
+            ></loading>
         </div>
         <div class="scroll-button up-button" ref="upButton"><img src="/btn-video-up.png"/></div>
         <div class="scroll-button down-button" ref="downButton"><img src="/btn-video-down.png"/></div>
     </div>
 </template>
 <script>
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 export default {
+    components: {
+        Loading,
+    },
     data:() => ({
     }),
     props:{

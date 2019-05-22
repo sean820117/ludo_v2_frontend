@@ -258,10 +258,17 @@
                 </svg>
                 <img :src="is_ui_config_loaded ? ui_config.logo : ''" alt="logo">
             </div>
-            <footer class="paynow" style="background:#A42073;">
-                <router-link v-if="!is_login" to="/victor/signup">免費註冊</router-link>
-                <router-link v-else to="/victor/course">開始上課</router-link>
-            </footer>
+            <router-link v-if="!is_login" to="/victor/signup">
+                <footer class="paynow" style="background:#A42073;">
+                    免費註冊
+                </footer>
+            </router-link>
+            <router-link v-else to="/victor/course">
+                <footer class="paynow" style="background:#A42073;">
+                    開始上課
+                </footer>
+            </router-link>
+            
         </div>
     </div>
 </template>
