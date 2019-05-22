@@ -71,6 +71,14 @@ export default {
             this.displayReceipt = true;
         }
     },
+    mounted: function() {
+        let irs = document.getElementsByClassName("reg-column-input");
+        for(let i=0; i<irs.length; i++){
+            irs[i].onclick = function(){
+                window.scrollTo(0,irs[i].offsetTop);
+            }
+        }
+    }
 }
 </script>
 <style>
