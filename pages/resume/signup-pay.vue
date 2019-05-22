@@ -7,7 +7,7 @@
             <div class="reg-title">註冊</div>
             <div class="reg-subtitle">付款前需先註冊成為會員</div>
             <div class="third-party">
-                <third-party-icons/>
+                <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
             </div>
             <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             <div>
