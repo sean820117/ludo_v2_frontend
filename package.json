@@ -5,7 +5,7 @@
   "author": "SeanGo,Ruilong,Waisliaw",
   "private": true,
   "engines": {
-    "node": "8.9.1"
+    "node": "^10.0.1"
   },
   "scripts": {
     "dev": "nuxt",

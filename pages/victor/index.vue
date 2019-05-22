@@ -2,12 +2,10 @@
     <div style="height:100%">
         <input type="radio" id="checkseemore" style="position: fixed;"/>
         <div class="first-block">
-            <!-- <img class="earphone" src="/resume/earphone.png" />
-            <img class="earphone2" src="/resume/earphone2.png" /> -->
             <div class="cover-photo-container" :class="$mq">
                 <h3 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">升學「備審」將被「學習歷程」取代</h3>
                 <h1 class="title" :class="$mq" v-if="!show_second_block && $mq === 'desktop'">您，準備好了嗎？</h1>
-                <img :style="{display: !show_second_block && $mq === 'desktop' ? 'none':''}" class="cover-photo"  src="/cover-victor.svg" /></div>
+                <img :style="{visibility: !show_second_block && $mq === 'desktop' ? 'hidden':''}" class="cover-photo"  src="/cover-victor.svg" /></div>
             <div class="slogan" :class="$mq" v-if="show_second_block">
                 <div class="line1" :class="$mq" >
                     學習歷程全解析
