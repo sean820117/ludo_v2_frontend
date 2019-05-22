@@ -21,6 +21,10 @@ export default {
         this.$refs.autoSizeTextarea.oninput = this.adjustTextAreaHeight.bind(this);
         this.$refs.autoSizeTextarea.onchange = this.adjustTextAreaHeight.bind(this);
         this.buildLabel();
+        document.addEventListener("click", (function(event) {
+            if (event.target.closest(".load-history")) return;
+            this.$refs.historyList.style.display = "none";
+        }).bind(this));
     },
     methods: {
         adjustTextAreaHeight(){
@@ -83,13 +87,16 @@ export default {
 <style>
 .ai-judgment{
     position: relative;
-    height: 100%;
+    height: 35vh;
 }
 .load-history{
+    width: 80px;
     position: absolute;
-    right: 15px;
-    top: 8px;
-    color: #8F8F8F;
+    right: 0px;
+    top: 0px;
+    color: #8f8f8f;
+    text-align: center;
+    line-height: 35px;
 }
 .resume-history{
     position: absolute;
@@ -104,6 +111,7 @@ export default {
     box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
 }
 .resume-history > div{
+    line-height: 18px;
     padding: 10px 24px;
     font-size: 11px;
     background: white;

@@ -62,6 +62,15 @@ export default {
         videoUrl: 'https://player.vimeo.com/video/319395957',
     }),
     mounted: function() {
+        if( document.readyState !== 'loading' ) {
+            this.$refs.courseContainer.resetSize();
+            this.$refs.vlist.adjustHeight();
+        }else{
+            document.addEventListener("DOMContentLoaded", (function(){
+                this.$refs.courseContainer.resetSize();
+                this.$refs.vlist.adjustHeight();
+            }).bind(this));
+        }
         window.onload = (function(){
             this.$refs.courseContainer.resetSize();
             this.$refs.vlist.adjustHeight();

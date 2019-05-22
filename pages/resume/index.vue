@@ -89,6 +89,7 @@
                 <div class="sevenblock-1">學完即做完</div>
                 <div class="sevenblock-2">帶你實戰的線上課程+即時評測</div>
                 <div class="videoplay">
+                    <div id="share-mask"><div>點這分享到FB就能解鎖第二課</div></div>
                     <iframe id="demovideo" src="https://player.vimeo.com/video/319395957" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
@@ -158,7 +159,7 @@
                     — Jay Chang
                 </div>
             </div>
-            <div class="phoneimg"></div>
+            <img class="phoneimg" src="Group 154.png"/>
             <div class="nine-block">
                 <div class="nb-title">課程與評測規劃者</div>
                 <img class="nb-fly" src="Group 153-2.png" />
@@ -174,7 +175,9 @@
 
             <div class="blank-block"></div>
             <footer class="paynow">
-                <a href="paynow.html">立即付款</a>
+                <a href="paynow.html">
+                    <div class="paynow-text">立即付款</div>
+                </a>
             </footer>
         </div>
     </div>

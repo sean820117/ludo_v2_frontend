@@ -1,8 +1,8 @@
 <template>
     <div class="third-party-login">
         <a href="/"><img v-if="login_method.FB" src="/icon-fb.svg" @click.prevent="handleFBClick" /></a>
-        <a href="/"><img v-if="login_method.google" src="/icon-google.png" /></a>
-        <a href="/"><img v-if="login_method.line" src="/icon-line.png" /></a>
+        <a href="/"><img v-if="login_method.google" src="/icon-google.svg" /></a>
+        <a href="/"><img v-if="login_method.line" src="/icon-line.svg" /></a>
     </div>
 </template>
 

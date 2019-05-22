@@ -42,6 +42,10 @@ export default {
     flex-direction:column;
     justify-content:center;
     align-items: center;
+    /**/
+    height: 56vw;
+    background: black;
+    max-height: 40vh;
 }
 .video-player { 
     width: 100vw;
