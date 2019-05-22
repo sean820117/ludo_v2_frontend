@@ -66,7 +66,7 @@ export default {
         }
     },
     async mounted() {
-        this.currentCourse  = await import('~/static/data/course/' + this.course_id + '.js');
+        this.currentCourse  = await require('~/static/data/course/' + this.course_id + '.js');
         this.course_name = this.currentCourse.course_name;
     },
 }

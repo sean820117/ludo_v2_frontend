@@ -369,7 +369,7 @@ export default {
   components: {
     PageHeader,
     RadioButton,
-    'v-select': () => import('vue-select'),
+    'v-select': () => require('vue-select'),
   },
   async mounted(){
       /* init params */
@@ -380,7 +380,7 @@ export default {
         this.product_name = "讓備審飛單一學群";
         // Vue.component('v-select', vSelect);
         Vue.use(VueClipboard)
-        Vue.use(import('vue-js-modal'), { dialog: true })
+        Vue.use(require('vue-js-modal'), { dialog: true })
         this.is_server = false;
       }
   },

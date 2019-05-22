@@ -23,7 +23,6 @@
         :active="!is_ui_config_loaded" 
         color="#A42073"
         loader="dots"
-        opacity="0.8"
     ></loading>
   </div>
   
@@ -75,22 +74,21 @@ export default {
     },
     async mounted() {
         if (process.client) {
+            
             this.ui_config = await require('~/config/victor-config')
             // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;
                 console.log("save redirect : " + localStorage.redirect);
+                this.is_ui_config_loaded = true;
             }
-            this.is_ui_config_loaded = true;
             this.is_login = await this.$checkLogin(this.$store);
-            
-
         }
     },
 }
 </script>
 
-<style>
+<style lang="postcss">
 body {
   font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;
   font-size: 16px;

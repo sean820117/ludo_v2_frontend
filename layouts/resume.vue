@@ -39,7 +39,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.ui_config = await import('~/config/resume-config')
+            this.ui_config = await require('~/config/resume-config')
             // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;

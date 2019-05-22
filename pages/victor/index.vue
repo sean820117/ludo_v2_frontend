@@ -397,7 +397,9 @@ export default {
     methods: {
         seeMore() {
             this.show_second_block = false;
-            this.$fb.track('ViewContent');
+            if (process.env.NODE_ENV === "production") {
+                this.$fb.track('ViewContent');
+            }
         }, 
         goFBGroup(url) {
             this.$fb.query('trackCustom', 'join_group')

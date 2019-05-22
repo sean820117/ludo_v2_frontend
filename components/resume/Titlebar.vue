@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="project_header">
         <router-link :to="'/' + project_name"><img class="title-blue" :src="logo_src"/></router-link>
         <div class="login"><slot name="right-component"></slot></div>
     </div>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-.header{
+.project_header{
     text-align: left;
     z-index: 10;
     position:fixed;
@@ -23,7 +23,7 @@ export default {
     background: #FFF;
     height: 55px;
 }
-.header .login{
+.project_header .login{
     float:right;
     font-size: 14px;
     line-height: 55px;
@@ -31,7 +31,7 @@ export default {
     margin-right:20px;
     cursor: pointer;
 }
-.header .title-blue{
+.project_header .title-blue{
     margin-left: 10px;
     height: 80%;
     margin-top: 10px;
