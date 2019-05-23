@@ -114,10 +114,8 @@ export default {
         },
         async signup(email,password,repeated_password) {
             console.log("go sign up")
-
-            
             try {
-              let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
+              let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password,from:this.$route.path})
               if (response.data.status == '200') {
                   console.log("signup success")
 

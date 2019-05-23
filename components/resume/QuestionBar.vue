@@ -25,7 +25,7 @@ export default {
 <style>
 .question-bar{
     position: relative;
-    width: 100%;
+    width: 90vw;
     height: 33px;
     line-height: 33px;
     border-radius: 16px;
@@ -34,10 +34,11 @@ export default {
     padding-left: 20px;
     font-size: 15px;
     margin-bottom: 9px;
+    margin-left: 5vw;
 }
 .cross{
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
 }

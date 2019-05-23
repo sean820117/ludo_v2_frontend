@@ -1,17 +1,17 @@
 <template>
     <div class="course-menu-container">
-        <input class="labels first-radio" type="radio" :name="labelName" :id="labelName+'-first'" checked/>
-        <input class="labels second-radio" type="radio" :name="labelName" :id="labelName+'-second'" />
-        <input class="labels third-radio" type="radio" :name="labelName" :id="labelName+'-third'" />
+        <input class="labels first-radio" type="radio" :name="label_name" :id="label_name+'-first'" checked v-if="label_amount >= 1" />
+        <input class="labels second-radio" type="radio" :name="label_name" :id="label_name+'-second'" v-if="label_amount >= 2" />
+        <input class="labels third-radio" type="radio" :name="label_name" :id="label_name+'-third'" v-if="label_amount >= 3" />
 
         <div class="course-menu">
             <div class="three-labels">
-                <label class="first-label" :for="labelName+'-first'">課程選單</label>
-                <!-- <label class="second-label" :for="labelName+'-second'">AI 評測</label>
-                <label class="third-label" :for="labelName+'-third'">下載資源</label> -->
+                <label class="first-label" :for="label_name+'-first'" v-if="label_amount >= 1" >課程選單</label>
+                <label class="second-label" :for="label_name+'-second'" v-if="label_amount >= 2" >AI 評測</label>
+                <label class="third-label" :for="label_name+'-third'" v-if="label_amount >= 3" >下載資源</label>
             </div>
 
-            <div class="label-content" :id="labelName+'-content'">
+            <div class="label-content" :id="label_name+'-content'">
                 <div class="first-content">
                     <slot name="first-content"></slot>
                 </div>
@@ -28,11 +28,12 @@
 <script>
 export default {
     props:{
-        labelName: String,
+        label_name: String,
+        label_amount: Number,
     },
     methods: {
         resetSize(){
-            var content = document.getElementById(this.labelName+'-content');
+            var content = document.getElementById(this.label_name+'-content');
             content.children[0].style.height = content.offsetHeight - 22 + "px";
             content.children[0].style.overflowY = "hidden";
             for(let i=1; i<content.children.length;i++){
@@ -45,9 +46,8 @@ export default {
 <style>
 .course-menu-container{
     box-sizing: border-box;
-    width: 100%;
-    border-left: solid rgba(0,0,0,0) 25px;
-    border-right: solid rgba(0,0,0,0) 25px;
+    width: 90vw;
+    margin-left: 5vw;;
     height: 100%;
     display:flex;
     flex-direction:column;
@@ -78,6 +78,7 @@ export default {
 }
 .label-content{
     padding-top: 10px;
+    width: 90vw;
     max-width: 640px;
 }
 .label-content > div{

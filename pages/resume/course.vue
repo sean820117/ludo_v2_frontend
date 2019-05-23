@@ -1,18 +1,17 @@
 <template>
-    <div class="course-container">
-        <div class="upper-block">
-            <Titlebar><div slot="right-component">登出帳號</div></Titlebar>
+    <div class="course-container" :style="{background:getBaseColor}">
+        <div v-if="is_ui_config_loaded" class="upper-block">
             <div class="c-title">
-                <course-title :numberTitle="'第一堂課'" :courseTitle="'能代東預上大'" />
+                <course-title :numberTitle="getTitle" :courseTitle="getSubtitle" />
             </div>
             <div class="q-container">
                 <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
             </div>
-            <video-play :playerID="'cp1'" :videourl="videoUrl" />
+            <video-play :playerID="'cp1'" :videourl="getVideoUrl" />
         </div>
         <div>
-            <course-container ref="courseContainer" :labelName="'whatever-you-want'">
-                <video-list @videoSrcChanged="updateVideoSrc" slot="first-content" ref="vlist"/>
+            <course-container ref="courseContainer" :label_name="'whatever-you-want'" :label_amount="3">
+                <video-list @videoSrcChanged="updateChapter" slot="first-content" ref="vlist" :chapters="is_ui_config_loaded ? ui_config.chapters : []" />
                 <ai-judgment slot="second-content" />
                 <download-resource slot="third-content"/>
             </course-container>
@@ -28,7 +27,9 @@ import CourseContainer from "~/components/resume/CourseContainer"
 import VideoList from "~/components/resume/VideoList"
 import AiJudgment from "~/components/resume/AiJudgment"
 import DownloadResource from "~/components/resume/DownloadResource"
+
 export default {
+    layout:'resume',
     head () {
         return {
             link: [
@@ -54,39 +55,70 @@ export default {
         handleToggleCross(){
             setTimeout(this.$refs.courseContainer.resetSize,100);
         },
-        updateVideoSrc(id){
-            this.videoUrl = 'https://player.vimeo.com/video/'+id;
+        updateChapter(chapter){
+            this.current_chapter = chapter;
         }
     },
     data:() => ({
-        videoUrl: 'https://player.vimeo.com/video/319395957',
+        baseVideoUrl: 'https://player.vimeo.com/video/',
+        is_ui_config_loaded:false,
+        ui_config: {},
+        current_chapter:{},
     }),
-    mounted: function() {
-        if( document.readyState !== 'loading' ) {
-            this.$refs.courseContainer.resetSize();
-            this.$refs.vlist.adjustHeight();
-        }else{
-            document.addEventListener("DOMContentLoaded", (function(){
+    computed: {
+        getTitle: function() {
+            return this.is_ui_config_loaded ? this.current_chapter.title : '';
+        },
+        getSubtitle: function() {
+            return this.is_ui_config_loaded ? this.current_chapter.subtitle : '';
+        },
+        getVideoUrl: function() {
+            return this.is_ui_config_loaded ?  this.baseVideoUrl + this.current_chapter.video_id : this.baseVideoUrl + '111';
+        },
+        getBaseColor: function() {
+            return this.is_ui_config_loaded ?  this.ui_config.base_color : '';
+        },
+    },
+    mounted: async function() {
+        
+    },
+    async beforeCreate() {
+        if (process.client) {
+            this.ui_config = await require('~/config/resume-config')
+            this.is_ui_config_loaded = true;
+            this.current_chapter = this.ui_config.chapters[0];
+            if( document.readyState !== 'loading' ) {
                 this.$refs.courseContainer.resetSize();
                 this.$refs.vlist.adjustHeight();
-            }).bind(this));
+            }else{
+                document.addEventListener("DOMContentLoaded", (function(){
+                    this.$refs.courseContainer.resetSize();
+                    this.$refs.vlist.adjustHeight();
+                }).bind(this));
+            }
+            window.onload = (function(){
+                this.$refs.courseContainer.resetSize();
+                this.$refs.vlist.adjustHeight();
+            }).bind(this);
+            setTimeout(() => {
+                this.$refs.courseContainer.resetSize();
+                this.$refs.vlist.adjustHeight();
+            },3000);
+            if (await this.$checkLogin(this.$store) == false) {
+                this.$router.push('/resume');
+            } 
         }
-        window.onload = (function(){
-            this.$refs.courseContainer.resetSize();
-            this.$refs.vlist.adjustHeight();
-        }).bind(this);
     },
+    // async asyncData (context) {
+        
+    //     return { ui_config: ui_config, is_ui_config_loaded:is_ui_config_loaded,current_chapter:current_chapter}
+    // }
 }
 </script>
 
 <style>
-*{
-    margin:0px;
-    font-family: 'Noto Sans TC', sans-serif;
-}
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
-    background: #0090FF;
 }
 textarea:focus, input:focus{
     outline: none;
@@ -95,18 +127,17 @@ textarea:focus, input:focus{
     height: 100%;
     display: grid;
     grid-template-rows: min-content auto;
+    background: #0090FF;
 }
 .upper-block{
     padding-bottom: 10px;
 }
 .c-title{
     padding-top: 60px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .q-container{
     box-sizing: border-box;
     width: 100%;
-    border-left: solid rgba(0,0,0,0) 10px;
-    border-right: solid rgba(0,0,0,0) 10px;
 }
 </style>

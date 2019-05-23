@@ -40,13 +40,10 @@ window.onload = function(){
     });
 
     var imgContainer = document.getElementById("ss-container");
-    var imgContainer2 = document.getElementById("ss-container2");
+    
     var slideTimer = null, imgIndex = 0, slideInterval = 3000;
-    var slideTimer2 = null,imgIndex2 = 0;
     $(imgContainer.children[0]).show();
-    $(imgContainer2.children[0]).show();
     slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
-    slideTimer2 = setTimeout(()=>switchImg(1,imgContainer2,slideTimer2,imgIndex2), slideInterval);
     // $("#pre-img").click(()=>switchImg(-1));
     // $("#next-img").click(()=>switchImg(1));
     function switchImg(factor,element,stimer,theImgIndex){

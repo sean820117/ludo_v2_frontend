@@ -1,5 +1,5 @@
 <template>
-    <div class="course-container" :style="{background:'#A42073'}">
+    <div class="course-container" :style="{background:getBaseColor}">
         <div v-if="is_ui_config_loaded" class="upper-block">
             <div class="c-title">
                 <course-title :numberTitle="getTitle" :courseTitle="getSubtitle" />
@@ -10,7 +10,7 @@
             <video-play :playerID="'cp1'" :videourl="getVideoUrl" />
         </div>
         <div>
-            <course-container ref="courseContainer" :labelName="'whatever-you-want'">
+            <course-container ref="courseContainer" :label_name="'whatever-you-want'" :label_amount="1">
                 <video-list @videoSrcChanged="updateChapter" slot="first-content" ref="vlist" :chapters="is_ui_config_loaded ? ui_config.chapters : []" />
                 <!-- <ai-judgment slot="second-content" />
                 <download-resource slot="third-content"/> -->
@@ -75,6 +75,9 @@ export default {
         getVideoUrl: function() {
             return this.is_ui_config_loaded ?  this.baseVideoUrl + this.current_chapter.video_id : '';
         },
+        getBaseColor: function() {
+            return this.is_ui_config_loaded ?  this.ui_config.base_color : '';
+        },
     },
     mounted: async function() {
         
@@ -136,7 +139,5 @@ textarea:focus, input:focus{
 .q-container{
     box-sizing: border-box;
     width: 100%;
-    border-left: solid rgba(0,0,0,0) 10px;
-    border-right: solid rgba(0,0,0,0) 10px;
 }
 </style>

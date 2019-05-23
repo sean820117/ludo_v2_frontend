@@ -91,6 +91,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .line1{
     font-size: 42px;
     font-weight: 500;
+    line-height: 1.5em;
 }
 .line2{
     margin-top: -68px;
@@ -314,7 +315,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .videoplay{
     position: relative;
     margin: auto;
-    width:calc(100% - 36px);
+    width:calc(100vw - 36px);
 }
 #share-mask{
     background: rgba(0,0,0,0.6);

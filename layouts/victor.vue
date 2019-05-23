@@ -76,6 +76,7 @@ export default {
         if (process.client) {
             
             this.ui_config = await require('~/config/victor-config')
+            this.is_ui_config_loaded = true;
             // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;

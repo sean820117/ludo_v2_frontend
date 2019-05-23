@@ -2,14 +2,14 @@
     <div style="height:100%">
         <input type="radio" id="checkseemore" style="position: fixed;"/>
         <div class="banner">
-            <img class="title" src="Group_168.png"/>
-            <img class="title-blue" src="Group 153.png"/>
-            <div class="login">登入</div>
+            <img class="title" src="/resume/Group_168.png"/>
+            <img class="title-blue" src="/resume/Group 153.png"/>
+            <div class="login">{{ is_login ? '登出' : '登入'}}</div>
         </div>
         <div class="first-block">
-            <img class="earphone" src="earphone.png" />
-            <img class="earphone2" src="earphone2.png" />
-            <img class="eye" src="eye.png" />
+            <img class="earphone" src="/resume/earphone.png" />
+            <img class="earphone2" src="/resume/earphone2.png" />
+            <img class="eye" src="/resume/eye.png" />
             <div class="slogan">
                 <div class="line1">
                     讓你只用60分鐘
@@ -20,7 +20,7 @@
             </div>
             <label class="seemore" for="checkseemore">
                 瞭解更多
-                <img src="Union 1.png"/>
+                <img src="/resume/Union 1.png"/>
             </label>
         </div>
         <div class="scrolldown">
@@ -31,7 +31,7 @@
                         使用一個月99元，獲得履歷課程與無限次履歷評測
                     </div>
             </div>
-            <img src="Mask Group 4.png" style="margin-top:10px"/>
+            <img src="/resume/Mask Group 4.png" style="margin-top:10px"/>
             <div class="third-block">
                 <div class="tb-container">
                     <div class="tb-title">在找工作的你<br>是否正遇到以下問題</div>
@@ -54,12 +54,12 @@
             </div>
 
             <div class="slide-show">
-                <img id="pre-img" src="nsleft.png">
-                <img id="next-img" src="nsleft.png">
+                <img id="pre-img" src="/resume/nsleft.png">
+                <img id="next-img" src="/resume/nsleft.png">
                 <div id="ss-container">
-                    <img src="Group 534.png">
-                    <img src="Group 535.png">
-                    <img src="Group 536.png">
+                    <img src="/resume/Group 534.png">
+                    <img src="/resume/Group 535.png">
+                    <img src="/resume/Group 536.png">
                 </div>
             </div>
 
@@ -94,12 +94,12 @@
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="course">
-                        <div class="c-img"><img src="Group 54.png"/></div>
+                        <div class="c-img"><img src="/resume/Group 54.png"/></div>
                         <div class="c-title">超同標場</div>
                         <div class="c-context">以生在得算化山，種夠是種，看下優味？壓青能代東預上大！星方學，中格選不望能的公員東負前刻？</div>
                     </div>
                     <div id="dc-2" class="course">
-                        <div class="c-img"><img src="Group 54.png"/></div>
+                        <div class="c-img"><img src="/resume/Group 54.png"/></div>
                         <div class="c-title">爭先基看媽多月</div>
                         <div class="c-context">常致來對，車長去設科勢地我度母物一和！存師了者，較自快日音行他給覺方主家目，以生在得算化山，種夠是種，看下優味？</div>
                     </div>
@@ -136,7 +136,7 @@
             </div>
             <div class="comment-title">學員的評價</div>
             <div class="comment">
-                <img src="Mask Group 6.png"/>
+                <img src="/resume/Mask Group 6.png"/>
                 <div class="comment-content">
                     「原本準備畢業很忙，更沒有時間上網找很多資料，剛好有這個課程，讓我可以快速弄懂，才不會輸給其他有時間的同學」
                     <br><br>
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="comment">
-                <img src="Mask Group 7.png"/>
+                <img src="/resume/Mask Group 7.png"/>
                 <div class="comment-content">
                     「從來沒想過寫法用字竟然有這麼精細的差異，整堂課程簡單不拖拉，節奏很吸睛，不會像是其他線上課程的教學視頻一樣很死板想睡，酷！」
                     <br><br>
@@ -152,33 +152,38 @@
                 </div>
             </div>
             <div class="comment">
-                <img src="Mask Group 8.png"/>
+                <img src="/resume/Mask Group 8.png"/>
                 <div class="comment-content">
                     「比起那些只講基本原則的課程還紮實許多！！還有健檢功能可以避免自我感覺良好，真的知道自己履歷哪裡有問題」
                     <br><br>
                     — Jay Chang
                 </div>
             </div>
-            <img class="phoneimg" src="Group 154.png"/>
+            <img class="phoneimg" src="/resume/Group 154.png"/>
             <div class="nine-block">
                 <div class="nb-title">課程與評測規劃者</div>
-                <img class="nb-fly" src="Group 153-2.png" />
+                <img class="nb-fly" src="/resume/Group 153-2.png" />
                 <div class="nb-3">屬於台灣青年的知識自媒體</div>
                 <div class="nb-4">專注於18~30歲的知識教育普及</div>
-                <img src="Group 160.png"/>
+                <img src="/resume/Group 160.png"/>
             </div>
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <img src="Group 167.png" />
+                <img src="/resume/Group 167.png" />
             </div>
 
             <div class="blank-block"></div>
-            <footer class="paynow">
-                <a href="paynow.html">
-                    <div class="paynow-text">立即付款</div>
-                </a>
-            </footer>
+            <router-link v-if="!is_login" to="/resume/signup-pay">
+                <footer class="paynow">
+                    立即付款
+                </footer>
+            </router-link>
+            <router-link v-else to="/resume/course">
+                <footer class="paynow">
+                    開始上課
+                </footer>
+            </router-link>
         </div>
     </div>
 </template>
@@ -187,12 +192,10 @@ export default {
     head () {
         return {
             script: [
-                { src: "index.js"},
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
                 { src: 'https://player.vimeo.com/api/player.js' }        
             ],
             link: [
-                { rel: 'stylesheet', href: 'index.css' },
+                { rel: 'stylesheet', href: '/resume/index.css' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
             ],
             meta: [
@@ -200,6 +203,76 @@ export default {
                 { charset: "UTF-8"}
             ]
         } 
-  }
+    },
+    data:() => ({
+        is_login:false,
+    }),
+    async mounted() {
+        if (process.client) {
+            var dv = document.getElementById("demovideo");
+            var dcPlayer = new Vimeo.Player(dv);
+            var size = Math.min(640,window.innerWidth,window.innerHeight);
+            dv.style.height = size-36+"px";
+            dv.style.width = size-36+"px";
+            var isShared = false;
+            var shareurl = "https://tw.yahoo.com";
+            var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
+            document.getElementById("democourses").onclick = function(){
+                document.getElementById("fbshare").style.display = "block";
+            }
+            function openShareWindow(){
+                isShared = true;
+                window.open(sharelink,"share","width=1000,height=600");
+                document.getElementById("share-mask").style.display = "none";
+            }
+            document.getElementById("clickshare").onclick = openShareWindow;
+            document.getElementById("share-mask").onclick = openShareWindow;
+            function switchCourse(id){
+                if(isShared){
+                    dv.src = "https://player.vimeo.com/video/"+id;
+                }
+                function switchCourse(id){
+                    if(isShared){
+                        dv.src = "https://player.vimeo.com/video/"+id;
+                    }
+                }
+                $("#dc-1").click(()=>switchCourse(319395956));
+                $("#dc-2").click(()=>switchCourse(319395955));
+                dcPlayer.on('ended', function(){
+                    document.getElementById("fbshare").style.display = "block";
+                });
+            }
+            $("#dc-1").click(()=>switchCourse(319395956));
+            $("#dc-2").click(()=>switchCourse(319395955));
+            dcPlayer.on('ended', function(){
+                document.getElementById("fbshare").style.display = "block";
+                document.getElementById("share-mask").style.display = "block";
+            });
+
+            var imgContainer = document.getElementById("ss-container");
+            
+            var slideTimer = null, imgIndex = 0, slideInterval = 3000;
+            $(imgContainer.children[0]).show();
+            slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
+            // $("#pre-img").click(()=>switchImg(-1));
+            // $("#next-img").click(()=>switchImg(1));
+            function switchImg(factor,element,stimer,theImgIndex){
+                clearTimeout(stimer);
+                $(element.children[theImgIndex]).fadeOut(500,function(){
+                    var imgLength = element.children.length;
+                    theImgIndex = (theImgIndex+imgLength+1*factor)%imgLength;
+                    $(element.children[theImgIndex]).fadeIn(500);
+                    stimer = setTimeout(()=>switchImg(1,element,stimer,theImgIndex), slideInterval);
+                });
+            }
+            
+            if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+                localStorage.redirect = this.$route.path;
+                console.log("save redirect : " + localStorage.redirect);
+            }
+
+            this.is_login = this.$checkLogin(this.$store);
+        }
+    },
 }
 </script>

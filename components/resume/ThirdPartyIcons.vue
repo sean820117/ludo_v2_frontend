@@ -19,7 +19,7 @@ export default {
             });
             this.$fb.enable();
             this.$fb.track('CompleteRegistration');
-            window.location.href = 'https://api.ludonow.com/auth/facebook';
+            window.location.href = 'https://api.ludonow.com/auth/facebook?from=' + this.$route.path;
         }
     }
 }
