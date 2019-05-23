@@ -2,19 +2,11 @@
     <div class="signup-pay-page">
         <div class="main-block">
             <div>
-                <form id="basic-form" v-if="!directReg">
+                <form id="basic-form">
                     <div class="reg-block-title">基本資訊</div>
                     <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
                     <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
                     <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
-                </form>
-                <form id="directly-reg-form" v-if="directReg">
-                    <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
-                    <input name="password" class="reg-column-input" type="password" placeholder="密碼"/>
-                    <input name="password-check" class="reg-column-input" type="password" placeholder="確認密碼"/>
-                    <div class="reg-block-title">基本資訊</div>
-                    <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
-                    <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
                 </form>
             </div>
             <div class="reg-block-title">付款方式</div>
@@ -28,6 +20,7 @@
                 模口星一的帶山說子得常之克光！設心轉早有東注！希裡同資來動告詩，利組資持報是種兒坐術濟國戲散於商源政般，線滿原沒示性多點成推來就指；錯臺在親……生式我們他工新叫；二選總方天不出間話東一去女！園座之本維切主方正談研物。
             </div>
             <input type="checkbox" id="agree-contract" v-model="agreeContract">
+            <span class="checkmark"></span>
             <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
             
             <receipt-type :wordDark="true"/>
@@ -61,14 +54,10 @@ export default {
         ReceiptType,
     },
     data:() => ({
-        directReg: false,
         displayReceipt: false,
         agreeContract: false,
     }),
     methods: {
-        toggleDriectReg(){
-            this.directReg = !this.directReg;
-        },
         showReceipt(){
             this.displayReceipt = true;
         }
@@ -109,10 +98,11 @@ textarea:focus, input:focus{
     margin: auto;
     margin-bottom: 30px;
     width: 82vw;
-    padding: 22px 24px 48px 24px;
+    padding: 1px 24px 48px 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 .reg-block-title{
+    margin-top: 30px;
     font-size: 21px;
 }
 .reg-column-input{
@@ -131,14 +121,53 @@ textarea:focus, input:focus{
 }
 .agree-label{
     position: relative;
-    top: -3px;
-    margin-left: 13px;
+    top: -6px;
+    margin-left: 8px;
     font-size: 13px;
     color: #8F8F8F;
 }
 #agree-contract{
-    margin-left: 5px;
-    transform: scale(1.8);
+    position: absolute;
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 2px solid #a2a2a2;
+    border-radius: 3px;
+    background-color: white;
+}
+#agree-contract:hover ~ .checkmark{
+    border: 2px solid #b0b0b0;
+}
+#agree-contract:checked ~ .checkmark {
+    border: none;
+    background-color: #0090FF;
+}
+
+.checkmark:after {
+    content: "";
+    position: relative;
+    display: none;
+}
+#agree-contract:checked ~ .checkmark:after {
+    display: block;
+}
+.checkmark:after {
+    left: 7px;
+    top: 1px;
+    width: 7px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 #agree-contract:checked ~ .agree-label{
     color: #007CDC;
