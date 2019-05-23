@@ -1,15 +1,16 @@
 <template>
     <div class="signup-pay-page">
-        <titlebar/>
         <div class="sp-title">履歷課程與評測</div>
         <div class="sp-subtitle">使用一個月 NT$99</div>
         <div class="main-block">
-            <div class="reg-title">註冊</div>
-            <div class="reg-subtitle">付款前需先註冊成為會員</div>
-            <div class="third-party">
-                <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
+            <div v-if="is_login">
+                <div class="reg-title">{{ !directReg ? '註冊' : '直接註冊' }}</div>
+                <div class="reg-subtitle">{{ !directReg ? '付款前需先註冊成為會員' : '輸入信箱、密碼及基本資訊後完成付款即可成為會員' }}</div>
+                <div class="third-party">
+                    <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
+                </div>
+                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             </div>
-            <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
             <div>
                 <form id="basic-form" v-if="!directReg">
                     <div class="reg-block-title">基本資訊</div>
@@ -26,6 +27,7 @@
                     <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
                 </form>
             </div>
+            
             <div class="reg-block-title">付款方式</div>
             <div class="payment-contract">
                 我們與 Aftee 合作，讓您無論透過 ATM 轉帳、臨櫃繳款、或是信用卡刷卡，都能享有14天內付款之服務，讓您安心上課，先學先贏！
@@ -43,7 +45,7 @@
             <div class="payment-container">
                 <div class="payment-info">
                     <div class="price">共計　新台幣　99 元</div>
-                    <div class="go-pay">前往付款</div>
+                    <div class="go-pay" @click="onSubmit()">前往付款</div>
                 </div>
             </div>
         </div>
@@ -54,6 +56,7 @@ import Titlebar from "~/components/resume/Titlebar"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
 import ReceiptType from "~/components/resume/ReceiptType"
 export default {
+    layout: 'resume',
     head () {
         return {
             link: [
@@ -73,6 +76,8 @@ export default {
     data:() => ({
         directReg: false,
         displayReceipt: false,
+        is_login:true,
+        payed_or_not:false,
     }),
     methods: {
         toggleDriectReg(){
@@ -82,12 +87,19 @@ export default {
             this.displayReceipt = true;
         }
     },
+    async mounted() {
+        if (process.client) {
+            this.is_login = this.$checkLogin(this.$store);
+            // this.payed_or_not = await checkPayedInfo();
+            localStorage.redirect = this.$route.path;
+            console.log("save redirect : " + localStorage.redirect);
+        }
+    },
 }
 </script>
 <style>
 *{
     margin:0px;
-    font-family: 'Noto Sans TC', sans-serif;
 }
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
@@ -145,6 +157,7 @@ textarea:focus, input:focus{
     color: white;
     border-radius: 2px;
     font-size: 14px;
+    cursor: pointer;
 }
 .reg-block-title{
     margin-top: 30px;
