@@ -14,17 +14,17 @@
             <div>
                 <form id="basic-form" v-if="!directReg">
                     <div class="reg-block-title">基本資訊</div>
-                    <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
-                    <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
-                    <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
+                    <input id="input_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="scrollTo('#input_name')" />
+                    <input id="input_phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="scrollTo('#input_phone')" />
+                    <input id="input_email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="scrollTo('#input_email')" />
                 </form>
                 <form id="directly-reg-form" v-if="directReg">
-                    <input name="email" class="reg-column-input" type="text" placeholder="電子信箱"/>
-                    <input name="password" class="reg-column-input" type="password" placeholder="密碼"/>
-                    <input name="password-check" class="reg-column-input" type="password" placeholder="確認密碼"/>
+                    <input id="input_email_2" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="scrollTo('#input_email_2')" />
+                    <input id="input_password" name="password" class="reg-column-input" type="password" placeholder="密碼" @click="scrollTo('#input_password')" />
+                    <input id="input_password_check" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="scrollTo('#input_password_check')" />
                     <div class="reg-block-title">基本資訊</div>
-                    <input name="name" class="reg-column-input" type="text" placeholder="您的大名"/>
-                    <input name="phone" class="reg-column-input" type="text" placeholder="行動電話"/>
+                    <input id="input_name_2" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="scrollTo('#input_name_2')" />
+                    <input id="input_phone_2" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="scrollTo('#input_phone_2')" />
                 </form>
             </div>
             
@@ -38,14 +38,14 @@
                 <br><br>
                 模口星一的帶山說子得常之克光！設心轉早有東注！希裡同資來動告詩，利組資持報是種兒坐術濟國戲散於商源政般，線滿原沒示性多點成推來就指；錯臺在親……生式我們他工新叫；二選總方天不出間話東一去女！園座之本維切主方正談研物。
             </div>
-            <input type="checkbox" id="agree-contract">
+            <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
             <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
             
             <receipt-type :wordDark="true"/>
             <div class="payment-container">
                 <div class="payment-info">
                     <div class="price">共計　新台幣　99 元</div>
-                    <div class="go-pay" @click="onSubmit()">前往付款</div>
+                    <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
                 </div>
             </div>
         </div>
@@ -78,6 +78,7 @@ export default {
         displayReceipt: false,
         is_login:true,
         payed_or_not:false,
+        agree_contract_or_not: false,
     }),
     methods: {
         toggleDriectReg(){
@@ -85,6 +86,12 @@ export default {
         },
         showReceipt(){
             this.displayReceipt = true;
+        },
+        scrollTo(element) {
+            document.querySelector(element).scrollIntoView({
+                behavior: "smooth",
+                block:    "center",
+            });
         }
     },
     async mounted() {
@@ -213,5 +220,12 @@ textarea:focus, input:focus{
     background: #0090FF;
     color: white;
     font-size: 17px;
+    cursor: pointer;
 }
+.payment-info .go-pay.unchecked {
+    background: #7ec7ff;
+    color: white;
+    font-size: 17px;
+    cursor: not-allowed;
+}	
 </style>
