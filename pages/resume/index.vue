@@ -165,7 +165,7 @@
                 <img class="nb-fly" src="Group 153-2.png" />
                 <div class="nb-3">屬於台灣青年的知識自媒體</div>
                 <div class="nb-4">專注於18~30歲的知識教育普及</div>
-                <img src="Group 160.png"/>
+                <img class="nb-img" src="Group 160.png"/>
             </div>
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>

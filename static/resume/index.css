@@ -9,7 +9,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     z-index: 10;
     position:fixed;
     top:0px;
-    width: 100%;
+    width: 100vw;
     background: #0090FF;
     height: 55px;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
@@ -377,7 +377,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 .comment{
     margin: auto;
-    width: 343px;
+    width: 91vw;
     text-align: center;
     font-size: 18px;
     margin-bottom: 55px;
@@ -406,7 +406,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 .eb-content{
     font-size: 15px;
-    width: 328px;
+    width: 87vw;
     margin: auto;
     padding-left: 3px;
     padding-bottom: 82px;
@@ -415,7 +415,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     width: 100vw;
 }
 .nine-block{
-    width: 357px;
+    width: 95vw;
     margin: auto;
     margin-top: 34px;
     text-align: center;
@@ -439,6 +439,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
     font-weight: 500;
     margin-top: -5px;
     margin-bottom: 28px;
+}
+.nb-img{
+    width: 100%;
 }
 .ten-block{
     text-align: center;
@@ -469,7 +472,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     bottom: 0px;
     text-align: center;
     background: #0090FF;
-    width: 100%;
+    width: 100vw;
     height: 71px;
     line-height: 71px;
     font-size: 22px;
