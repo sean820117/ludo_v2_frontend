@@ -271,7 +271,7 @@ export default {
                 console.log("save redirect : " + localStorage.redirect);
             }
 
-            this.is_login = this.$checkLogin(this.$store);
+            this.is_login = await this.$checkLogin(this.$store);
         }
     },
 }
