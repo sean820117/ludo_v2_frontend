@@ -44,8 +44,8 @@ export default {
     align-items: center;
     /**/
     height: 56vw;
-    /* max-height: 40vh; */
-    max-height:360px;
+    background: black;
+    max-height: 40vh;
 }
 .video-player { 
     width: 100vw;

@@ -170,7 +170,7 @@
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <img src="/resume/Group 167.png" />
+                <router-link to="/resume/course"><img src="/resume/Group 167.png" /></router-link>
             </div>
 
             <div class="blank-block"></div>

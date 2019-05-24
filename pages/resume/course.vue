@@ -105,7 +105,7 @@ export default {
                 this.$refs.vlist.adjustHeight();
             },3000);
             if (await this.$checkLogin(this.$store) == false) {
-                this.$router.push('/resume');
+                this.$router.push('/resume/signup-pay');
             } 
         }
     },
