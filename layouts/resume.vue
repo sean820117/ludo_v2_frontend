@@ -2,7 +2,7 @@
   <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''">
         <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
-        <div v-else slot="right-component" @click="$router.push('/victor/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
+        <div v-else slot="right-component" @click="$router.push('/resume/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
     </titlebar>
     <nuxt/>
     <loading 

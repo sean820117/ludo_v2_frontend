@@ -4,7 +4,8 @@
         <div class="banner">
             <img class="title" src="/resume/Group_168.png"/>
             <img class="title-blue" src="/resume/Group 153.png"/>
-            <div class="login">{{ is_login ? '登出' : '登入'}}</div>
+            <div v-if="is_login" class="login" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
+            <div v-else class="login" @click="$router.push('/resume/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
         </div>
         <div class="first-block">
             <img class="earphone" src="/resume/earphone.png" />
