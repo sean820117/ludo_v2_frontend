@@ -1,6 +1,6 @@
 <template>
     <div class="ai-judgment">
-        <div class="answer-for-ai">
+        <div class="answer-for-ai" @click="focusTextArea">
             <div class="load-history" @click="toggleHistory">輸入紀錄
                 <div class="resume-history" ref="historyList">
                 </div>
@@ -75,6 +75,9 @@ export default{
             }
             this.buildLabel();
             this.$refs.feedBackBlock.show();
+        },
+        focusTextArea(){
+            this.$refs.autoSizeTextarea.focus();
         }
     },
     data:() => ({
