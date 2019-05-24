@@ -122,7 +122,8 @@ export default{
 .answer-for-ai{
     margin-top:5px;
     position: relative;
-    height: calc(95% - 21px);
+    min-height: calc(95% - 21px);
+    height: fit-content;
     background: white;
     color: black;
     border-radius: 2px;
