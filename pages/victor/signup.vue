@@ -19,7 +19,7 @@
             </div>
             <div class="login-column" v-if="login_or_signup === 'signup'">
                 <div class="login-column-label">確認密碼</div>
-                <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
+                <input name="confirm_password" class="login-column-input" type="password" v-model="confirm_password"/>
             </div>
             <div class="btn-login-and-signup-container">
                 <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p>
@@ -53,7 +53,7 @@ export default {
             errors: null,
             email: '',
             password: '',
-            confirmPassword: '',
+            confirm_password: '',
             is_ui_config_loaded:false,
             ui_config: Object,
             hint:'',
@@ -97,7 +97,7 @@ export default {
                 this.hint_color = "red"
                 return
             }
-            if (this.password !== this.confirmPassword && type === "signup") {
+            if (this.password !== this.confirm_password && type === "signup") {
                 this.hint = '密碼需大於八個字'
                 this.hint_color = "red"
                 return
@@ -107,7 +107,7 @@ export default {
             this.hint_color = ""
 
             if (type === "signup") {
-                this.signup(this.email, this.password, this.confirmPassword)    
+                this.signup(this.email, this.password, this.confirm_password)    
             } else {
                 this.login(this.email, this.password)
             }

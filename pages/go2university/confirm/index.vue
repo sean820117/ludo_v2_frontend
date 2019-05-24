@@ -13,7 +13,7 @@
         <section class="choices col-lg-6 col-sm-12">
           <!-- <radio-button :disabled="true" :active="prices[0].active" @click.native="alert('此優惠已結束～');setAfteeConfig();" :text="'超早鳥$ ' + prices[0].price + '/(優惠已結束)'" /> -->
           <radio-button :active="prices[1].active" @click.native="handlePriceSelecet(1)" :text="'$'+prices[1].price + '/學群(12節完整課程)'" />
-          <!-- <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');startAftee()" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" /> -->
+          <!-- <radio-button :disabled="true" :active="prices[2].active" @click.native="alert('此方案尚未開啟～');setAfteeConfig();startAftee()" :text="'原價$ ' + prices[2].price + '/學群(12節完整課程)'" /> -->
           <radio-button :active="prices[3].active" @click.native="handlePriceSelecet(3)" text="組合價 $4999 /全學群(72堂完整課程)" />
         </section>
         <section class="purchase col-lg-6 col-sm-12">
@@ -144,7 +144,7 @@ export default {
             }
           ],
           sales_settled:true,
-          shop_transaction_no:'A123456777',
+          shop_transaction_no:'A123456778',
           user_no:'1111',
       },
       aftee_pub_key: 'xk7OoSikOjV_e2F9Hg77Fw',
@@ -346,15 +346,12 @@ export default {
       });
       all_value = this.aftee_secret_key + "," + all_value
       console.log(all_value);
-      var hash = sha256.create();
-      hash.update(all_value);
-      all_value = hash;
-      // all_value = sha256(all_value);
+      all_value = sha256(all_value);
       console.log(all_value);
       all_value = Base64.encode(all_value);
       console.log(all_value);
-      // return all_value;
-      return "yyFUUgBdz47LP+cDU6iep6bOclhT81Xr+LiTqeEpS0k=";
+      return all_value;
+      // return "yyFUUgBdz47LP+cDU6iep6bOclhT81Xr+LiTqeEpS0k=";
     },
     sortObject(obj) {
         return Object.keys(obj).sort().reduce(function (result, key) {
