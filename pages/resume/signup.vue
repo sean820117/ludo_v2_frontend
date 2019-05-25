@@ -91,6 +91,7 @@ textarea:focus, input:focus{
     margin-top: 10px;
 }
 .signup-form{
+    margin-bottom: 30px;
     text-align: left;
 }
 .signup-form input[type=text]{
@@ -123,7 +124,7 @@ textarea:focus, input:focus{
     background: #1785db;
     color: #fff;
     font-size: 14px;
-    margin-left: 60%;
+    margin-left: calc(83.5% - 90px);
     margin-top: 6vh;
     border: none;
     border-radius: 3px;
