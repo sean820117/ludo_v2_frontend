@@ -1,6 +1,6 @@
 <template>
     <div class="question-bar" v-if="toggled">
-        {{question}} 
+        <a  href="https://www.surveycake.com/s/3kRX6" >{{question}}</a>
         <img class="cross" src="~/static/resume/path.png" @click="toggleCross" />
     </div>
 </template>
@@ -35,6 +35,10 @@ export default {
     font-size: 15px;
     margin-bottom: 9px;
     margin-left: 5vw;
+}
+.question-bar a {
+    text-decoration: none;
+    color: #007CDC;
 }
 .cross{
     position: absolute;

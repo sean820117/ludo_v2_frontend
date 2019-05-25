@@ -5,7 +5,7 @@
         <div v-else slot="right-component" @click="$router.push('/victor/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
     </titlebar>
     <nuxt/>
-    <div class="contact-us-block" v-if="$route.path !== '/victor'" style="width:100vw;">
+    <div class="contact-us-block" v-if="$route.path !== '/victor'" >
         <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1.5)" :height="$mq === 'mobile' ? 53: (53 * 1.5)" viewBox="0 0 152 53">
             <text id="聯絡我們" transform="translate(76 40)" fill="#fff" font-size="38" font-family="PingFangTC-Semibold, PingFang TC" font-weight="600"><tspan x="-76" y="0">聯絡我們</tspan></text>
         </svg>
@@ -59,12 +59,12 @@ export default {
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-                { hid: 'description', name: 'description', content: '得勝者文教，帶你秒懂108課綱—學習歷程' },
+                { hid: 'description', name: 'description', content: '得勝者文教，帶你秒懂108課綱—學習歷程！10堂課程免費看，立即註冊馬上拿！' },
                 { property : 'og:title' , content:"學習歷程 - 得勝者文教"},
                 { property : 'og:type' , content:"education tech."},
                 { property : 'og:url' , content:"https://www.ludonow.com/victor"},
-                { property : 'og:image' , content:""},
-                { property : 'og:description' , content:"得勝者文教，帶你秒懂108課綱—學習歷程"},
+                { property : 'og:image' , content:"https://www.ludonow.com/victor-og-img.jpg"},
+                { property : 'og:description' , content:"得勝者文教，帶你秒懂108課綱—學習歷程！10堂課程免費看，立即註冊馬上拿！"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [

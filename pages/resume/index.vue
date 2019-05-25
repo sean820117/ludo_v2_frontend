@@ -4,7 +4,8 @@
         <div class="banner">
             <img class="title" src="/resume/Group_168.png"/>
             <img class="title-blue" src="/resume/Group 153.png"/>
-            <div class="login">{{ is_login ? '登出' : '登入'}}</div>
+            <div v-if="is_login" class="login" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
+            <div v-else class="login" @click="$router.push('/resume/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
         </div>
         <div class="first-block">
             <img class="earphone" src="/resume/earphone.png" />
@@ -170,7 +171,7 @@
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <img src="/resume/Group 167.png" />
+                <router-link to="/resume/course"><img src="/resume/Group 167.png" /></router-link>
             </div>
 
             <div class="blank-block"></div>
@@ -474,7 +475,7 @@ export default {
             //     console.log("save redirect : " + localStorage.redirect);
             // }
 
-            // this.is_login = this.$checkLogin(this.$store);
+            //this.is_login = await this.$checkLogin(this.$store);
         }
     },
     components: {

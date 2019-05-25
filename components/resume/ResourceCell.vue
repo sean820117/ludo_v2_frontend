@@ -1,11 +1,13 @@
 <template>
     <div class="resource-cell">
-        <img class="rc-icon" :src="imgUrl" />
-        <div class="rc-text">
-            <div class="rc-name">{{rcName}}</div>
-            <div class="rc-info">{{rcInfo}}</div>
-        </div>
-        <img class="download-icon" src="baseline_get_app_black_18dp.png" />
+        <a :href="rcFile" target="_blank">
+            <img class="rc-icon" :src="imgUrl" />
+            <div class="rc-text">
+                <div class="rc-name">{{rcName}}</div>
+                <div class="rc-info">{{rcInfo}}</div>
+            </div>
+            <img class="download-icon" src="baseline_get_app_black_18dp.png" />
+        </a>
     </div>
 </template>
 <script>
@@ -13,7 +15,8 @@ export default {
     props:{
         imgUrl: String,
         rcName: String,
-        rcInfo: String
+        rcInfo: String,
+        rcFile: String,
     },
     // data:() => ({
     //     imgUrl: "Group 497.png",
