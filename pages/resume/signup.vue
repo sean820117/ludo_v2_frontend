@@ -15,11 +15,11 @@
             </div>
             <div class="login-column">
                 <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="text" />
+                <input name="password" class="login-column-input" type="password" />
             </div>
             <div class="login-column">
                 <div class="login-column-label">確認密碼</div>
-                <input name="password-check" class="login-column-input" type="text" />
+                <input name="password-check" class="login-column-input" type="password" />
             </div>
             <input class="paynow" type="submit" value="立即付款">
         </form>
@@ -94,7 +94,7 @@ textarea:focus, input:focus{
     margin-bottom: 30px;
     text-align: left;
 }
-.signup-form input[type=text]{
+.signup-form input[type=text], .signup-form input[type=password]{
     padding:0px 10px;
 }
 .login-column{

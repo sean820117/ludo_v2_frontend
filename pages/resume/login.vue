@@ -86,7 +86,7 @@ textarea:focus, input:focus{
     margin-bottom: 30px;
     text-align: left;
 }
-.login-form input[type=text]{
+.login-form input[type=text], .login-form input[type=password]{
     padding:0px 10px;
 }
 .login-column{
