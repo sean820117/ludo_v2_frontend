@@ -1,6 +1,6 @@
 <template>
     <div class="question-bar" v-if="toggled">
-        <a  href="https://www.surveycake.com/s/3kRX6" >{{question}}</a>
+        <a  href="https://www.surveycake.com/s/3kRX6" target="_blank">{{question}}</a>
         <img class="cross" src="~/static/resume/path.png" @click="toggleCross" />
     </div>
 </template>
