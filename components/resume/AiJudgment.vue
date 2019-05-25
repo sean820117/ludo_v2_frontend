@@ -76,7 +76,8 @@ export default{
             this.buildLabel();
             this.$refs.feedBackBlock.show();
         },
-        focusTextArea(){
+        focusTextArea(event){
+            if (event.target.closest(".load-history") || event.target.closest(".send-answer")) return;
             this.$refs.autoSizeTextarea.focus();
         }
     },
