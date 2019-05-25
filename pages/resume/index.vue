@@ -2,8 +2,8 @@
     <div style="height:100%">
         <input type="radio" id="checkseemore" style="position: fixed;"/>
         <div class="banner">
-            <img class="title" src="Group_168.png"/>
-            <img class="title-blue" src="Group 153.png"/>
+            <img class="title" src="Group 168.svg"/>
+            <img class="title-blue" src="Group 153.svg"/>
             <div class="login">登入</div>
         </div>
         <div class="first-block">
@@ -162,15 +162,15 @@
             <img class="phoneimg" src="Group 154.png"/>
             <div class="nine-block">
                 <div class="nb-title">課程與評測規劃者</div>
-                <img class="nb-fly" src="Group 153-2.png" />
+                <img class="nb-fly" src="Group 153.svg" />
                 <div class="nb-3">屬於台灣青年的知識自媒體</div>
                 <div class="nb-4">專注於18~30歲的知識教育普及</div>
-                <img class="nb-img" src="Group 160.png"/>
+                <img class="nb-img" src="Group 160.svg"/>
             </div>
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <img src="Group 167.png" />
+                <img src="Group 167.svg" />
             </div>
 
             <div class="blank-block"></div>

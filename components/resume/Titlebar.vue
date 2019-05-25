@@ -1,6 +1,6 @@
 <template>
     <div class="banner">
-        <img class="title-blue" src="~/static/resume/Group 153.png"/>
+        <img class="title-blue" src="~/static/resume/Group 153.svg"/>
         <div class="login"><slot name="right-component"></slot></div>
     </div>
 </template>
