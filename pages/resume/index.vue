@@ -1,13 +1,13 @@
 <template>
     <div style="height:100%">
-        <input type="radio" id="checkseemore" style="position: fixed;"/>
+        <input type="radio" id="checkseemore" style="position: fixed;" :checked="seemore_check_or_not"/>
         <div class="banner">
             <img class="title" src="/resume/Group_168.png"/>
             <img class="title-blue" src="/resume/Group 153.png"/>
-            <div v-if="is_login" class="login" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
-            <div v-else class="login" @click="$router.push('/resume/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
+            <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
+            <div v-else class="login" @click="$router.push('/resume/signup')" >登入</div>
         </div>
-        <div class="first-block">
+        <div class="first-block" v-touch:swipe="dragFirstBlock">
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -164,8 +164,8 @@
             <div class="nine-block">
                 <div class="nb-title">課程與評測規劃者</div>
                 <img class="nb-fly" src="/resume/Group 153-2.png" />
-                <div class="nb-3">屬於台灣青年的知識自媒體</div>
-                <div class="nb-4">專注於18~30歲的知識教育普及</div>
+                <div class="nb-3">台灣青年的知識自媒體</div>
+                <div class="nb-4">專注於18~30歲的知識教育</div>
                 <img src="/resume/Group 160.png"/>
             </div>
             <div class="ten-block">
@@ -189,6 +189,10 @@
     </div>
 </template>
 <script>
+import Vue from 'vue'
+import Vue2TouchEvents from 'vue2-touch-events'
+ 
+Vue.use(Vue2TouchEvents)
 export default {
     head () {
         return {
@@ -207,6 +211,7 @@ export default {
     },
     data:() => ({
         is_login:false,
+        seemore_check_or_not:false,
     }),
     async mounted() {
         if (process.client) {
@@ -275,5 +280,13 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
         }
     },
+    methods: {
+        dragFirstBlock(direction) {
+            console.log(direction);
+            if (direction == "top") {
+                this.seemore_check_or_not = true;
+            }
+        },
+    }
 }
 </script>
