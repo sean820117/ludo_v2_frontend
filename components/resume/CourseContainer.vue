@@ -5,7 +5,7 @@
         <input class="labels third-radio" type="radio" :name="labelName" :id="labelName+'-third'" />
 
         <div class="course-menu">
-            <div class="threee-labels">
+            <div class="threee-labels" ref="courseLabel">
                 <label class="first-label" :for="labelName+'-first'">課程選單</label>
                 <label class="second-label" :for="labelName+'-second'">AI 評測</label>
                 <label class="third-label" :for="labelName+'-third'">下載資源</label>
@@ -39,6 +39,14 @@ export default{
                 content.children[i].style.height = "unset";
             }
         },
+        toggleLabel(i,show){// i: 第幾個標籤,編號從0開始  show: 該標籤是否顯示
+            if(i>2 || i<0)return;
+            if(typeof show == undefined || !show){
+                this.$refs.courseLabel.children[i].style.display = "none";
+            }else{
+                this.$refs.courseLabel.children[i].style.display = "block";
+            }
+        }
     }
 }
 </script>

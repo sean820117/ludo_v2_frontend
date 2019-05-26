@@ -117,6 +117,11 @@ export default{
         },
         updatVideoSrc(id){
             this.$emit("videoSrcChanged",id);
+            if(id==319395957){
+                this.$parent.toggleLabel(1,false);
+            }else{
+                this.$parent.toggleLabel(1,true);
+            }
         }
     }
 }
