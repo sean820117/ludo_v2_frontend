@@ -3,8 +3,8 @@
     <div v-if="$mq === 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}">
         <input type="radio" id="checkseemore" style="position: fixed;" :checked="seemore_check_or_not"/>
         <div class="banner">
-            <img class="title" src="/resume/Group_168.png"/>
-            <img class="title-blue" src="/resume/Group 153.png"/>
+            <img class="title" src="/resume/resume-logo.svg"/>
+            <!-- <img class="title-blue" src="/resume/resume-logo.svg"/> -->
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
             <div v-else class="login" @click="$router.push('/resume/signup')" >登入</div>
         </div>
@@ -207,8 +207,8 @@
     <div v-else :style="{display: $mq === 'mobile' ? 'none' : ''}">
         <input type="radio" id="checkseemore" :checked="seemore_check_or_not" />
         <div class="md-banner">
-            <img class="md-title" src="/resume/Group_168.png"/>
-            <img class="md-title-blue" src="/resume/Group 153.png"/>
+            <img class="md-title" src="/resume/resume-logo.svg"/>
+            <!-- <img class="md-title-blue" src="/resume/resume-logo.svg"/> -->
             <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/signup')" >{{ is_login ? '登出' : '登入'}}</div>
         </div>
         <div class="md-first-block">

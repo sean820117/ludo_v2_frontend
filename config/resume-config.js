@@ -1,7 +1,7 @@
 module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
-    logo: "/resume/Group 153.png",
+    logo: "/resume/resume-logo.svg",
     base_color: '#1785db',
     view: {
         signup_page: {
@@ -36,7 +36,7 @@ module.exports = {
             subtitle:'換位思考，告訴你人資如何看履歷！',
             description:'- 學習歷程是什麼？<br>- 為什麼學習歷程會取代備審？<br>- 學習歷程的出現該如何面對？',
             thumbnail:'/victor-course-thumbnail-01.jpg',
-            video_id:'337212450',
+            video_id:'338611197',
             ai_id:'',
         },
         {
@@ -44,7 +44,7 @@ module.exports = {
             subtitle:'從選平台到職缺說明，教你做前期準備功課',
             description:'- 成績比別人高，上的學校卻比別人差？<br>- 會考制度介紹與原理分析<br>- 近年學生重點趨勢與落點分析- ',
             thumbnail:'/victor-course-thumbnail-02.jpg',
-            video_id:'337201236',
+            video_id:'338558397',
             ai_id:'',
         },
         {
@@ -52,7 +52,7 @@ module.exports = {
             subtitle:'最強自我介紹公式！貫穿所有自介需求！',
             description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
             thumbnail:'/victor-course-thumbnail-03.jpg',
-            video_id:'337212958',
+            video_id:'338559454',
             ai_id:'abstract',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「自我介紹」呈現方式在全國平均中屬於前20%。<br>若你要應徵的是前1%的頂尖公司，記得要更接近該公司的「願景與目標」撰寫自我介紹喔！練習只是輔助，投上才是重點。',
@@ -86,7 +86,7 @@ module.exports = {
             subtitle:'不只簡單交代！三點條列讓你真正寫好經歷',
             description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
             thumbnail:'/victor-course-thumbnail-03.jpg',
-            video_id:'337212958',
+            video_id:'338608971',
             ai_id:'work_experience',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「工作經歷」呈現方式在全國平均中屬於前20%。<br>若你要應徵的是前1%的頂尖公司，記得要更接近該公司的「職位的需求」撰寫經歷喔！練習只是輔助，投上才是重點。',
@@ -120,7 +120,7 @@ module.exports = {
             subtitle:'零經驗的逆襲！無相關經驗也能寫出有效經歷',
             description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
             thumbnail:'/victor-course-thumbnail-03.jpg',
-            video_id:'337212959',
+            video_id:'338609851',
             ai_id:'volunteer',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「志工經驗」呈現方式在全國平均中屬於前20%。<br>但若你要應徵的是前1%的頂尖公司，記得要更依照該職位需求的「特質與能力」來呈現！練習只是輔助，投上才是重點。',

@@ -24,6 +24,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .banner .title, #checkseemore:checked ~ .banner .title-blue{
     display:initial;
     margin-left: 10px;
+    margin-top: 10px;
 }
 
 .first-block{
@@ -128,7 +129,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 #checkseemore:checked ~ .first-block .seemore{
     display: none;
 }
-#checkseemore:checked ~ .banner{
+/* #checkseemore:checked ~ .banner{
     background: #FFF;
     color:#0090FF;
     box-shadow: unset;
@@ -138,7 +139,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 #checkseemore:checked ~ .banner .title, .banner .title-blue{
     display:none;
-}
+} */
 #checkseemore:checked ~ .scrolldown{
     display:block;
 }
