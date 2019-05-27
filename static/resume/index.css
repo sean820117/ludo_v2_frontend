@@ -24,7 +24,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .banner .title, #checkseemore:checked ~ .banner .title-blue{
     display:initial;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .first-block{
