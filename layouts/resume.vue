@@ -5,10 +5,12 @@
         <div v-else slot="right-component" @click="$router.push('/resume/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
     </titlebar>
     <nuxt/>
+    <resume-footer></resume-footer>
     <loading 
         :active="!is_ui_config_loaded" 
         color="#1785db"
         loader="dots"
+        :is-full-page="true"
     ></loading>
   </div>
   
@@ -16,6 +18,7 @@
 
 <script>
 import Titlebar from "~/components/resume/Titlebar"
+import ResumeFooter from "~/components/resume/ResumeFooter.vue";
 import Loading from 'vue-loading-overlay';
 import VueMq from 'vue-mq'
 import Vue from 'vue'
@@ -32,6 +35,7 @@ Vue.use(VueMq, {
 export default {
     components: {
         Titlebar,
+        ResumeFooter,
         Loading,
     },
     data:() => ({
@@ -62,7 +66,10 @@ export default {
         if (process.client) {
             
             this.ui_config = await require('~/config/resume-config')
-            this.is_ui_config_loaded = true;
+            setTimeout(() => {
+                this.is_ui_config_loaded = true;    
+            }, 1000);
+            
             // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;
@@ -93,23 +100,25 @@ body {
 }
 /* width */
 ::-webkit-scrollbar {
-width: 5px;
+    width: 3px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-background: #f1f1f1; 
-border: none;
+    background: #f1f1f1; 
+    border: none;
+    border-radius: 15px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: #888; 
+    background: #888; 
+    border-radius: 15px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: #555; 
+    background: #555; 
 }
 
 .contact-us-block {

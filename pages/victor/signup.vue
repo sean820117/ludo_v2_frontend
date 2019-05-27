@@ -187,7 +187,7 @@ textarea:focus, input:focus{
 }
 .reg-text{
     margin: auto;
-    padding-top: 18vh;
+    padding-top: 80px;
     font-size: 21px;
 }
 .reg-text2{

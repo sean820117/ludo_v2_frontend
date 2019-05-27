@@ -4,7 +4,7 @@
             <div v-for="chapter in chapters" :key="chapter.video_id" class="video-cell" @click="updateChapter(chapter)">
                 <div class="v-img"><img :src="chapter.thumbnail"/></div>
                 <div class="v-title">{{ chapter.title }}</div>
-                <div class="v-context" v-html="chapter.description"></div>
+                <div class="v-context" v-html="chapter.subtitle"></div>
             </div>
             <loading 
                 :active="chapters.length < 1" 
@@ -110,7 +110,7 @@ export default {
 <style>
 .vlist{
     position: relative;
-    height: 100%;
+    /* height: 100%; */
     overflow-y: hidden;
     grid-row: 1 / 3;
 }
@@ -133,8 +133,9 @@ export default {
     display: grid;
     grid-template-columns: 128px auto;
     grid-template-rows: 15px auto;
-    grid-gap: 5px;
+    grid-gap: 10px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .v-img{
     grid-row: 1 / 3;
@@ -144,10 +145,10 @@ export default {
     height: auto;
 }
 .v-title{
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: bold;
 }
 .v-context{
-    font-size: 9px;
+    font-size: 11px;
 }
 </style>

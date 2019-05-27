@@ -1,91 +1,158 @@
 <template>
-    <div class="ai-judgment">
-        <div class="answer-for-ai">
+    <div class="ai-judegment">
+        <div v-if="ai_id" class="answer-for-ai" @click="focusTextArea">
             <div class="load-history" @click="toggleHistory">輸入紀錄
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
-            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice"></textarea>
+            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
-        <ai-feed-back ref="feedBackBlock"/>
+        <div class="ai-judgement-no-ai" v-else>
+            這堂課沒有練習喔～
+        </div>
+        <ai-feed-back ref="feedBackBlock" :record_index="1" :score="current_score" :current_chapter="current_chapter"/>
     </div>
 </template>
 <script>
 import AiFeedBack from "~/components/resume/AiFeedBack"
+import axios from '~/config/axios-config'
+
 export default {
     components: {
         AiFeedBack,
     },
     mounted: function() {
-        this.$refs.autoSizeTextarea.oninput = this.adjustTextAreaHeight.bind(this);
-        this.$refs.autoSizeTextarea.onchange = this.adjustTextAreaHeight.bind(this);
-        this.buildLabel();
-        document.addEventListener("click", (function(event) {
-            if (event.target.closest(".load-history")) return;
-            this.$refs.historyList.style.display = "none";
-        }).bind(this));
+        setTimeout(() => {
+            if (this.ai_id) {
+                document.addEventListener("click", (function(event) {
+                    if (event.target.closest(".load-history")) return;
+                    this.$refs.historyList.style.display = "none";
+                }).bind(this));
+            }
+        }, 3000);
     },
     methods: {
         adjustTextAreaHeight(){
-            this.$refs.autoSizeTextarea.style.height = "66px";
-            this.$refs.autoSizeTextarea.style.height = this.$refs.autoSizeTextarea.scrollHeight+"px";
+            if (this.$refs.autoSizeTextarea) {
+                this.$refs.autoSizeTextarea.style.height = "66px";
+                this.$refs.autoSizeTextarea.style.height = this.$refs.autoSizeTextarea.scrollHeight+"px";
+            }
         },
-        buildLabel(){
-            this.$refs.historyList.innerHTML="";
-            if(localStorage["resumePractice"]){
-                let rp = JSON.parse(localStorage["resumePractice"]);
-                this.rpArray = rp;
-                for(let i = 0; i < rp.length; i++){
-                    let nd = document.createElement("div");
-                    nd.innerHTML = "第 "+(i+1)+" 次";
-                    nd.onclick = function(){
-                        this.loadResumeText(i);
-                    }.bind(this);
-                    this.$refs.historyList.appendChild(nd);
+        async buildLabel(){
+            try {
+                let postData = {
+                    section_part: this.ai_id,
+                    product_id: "resume_01"
+                };
+                let response = await axios.post('/apis/ai-assistant/get-evaluate-record',postData)
+                if (response.status == '200') {
+                    console.log("get record success")
+                    console.log(response.data);
+                    if (response.data.Items.length == 0) {
+                        this.$refs.historyList.innerHTML="<div>無紀錄</div>";
+                    } else {
+                        this.$refs.historyList.innerHTML="";
+                        this.last_loaded_record_items = response.data.Items;
+                        // sort items by date
+                        this.last_loaded_record_items.sort(function(a,b) {
+                            return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0 ;
+                        });
+                        this.last_loaded_record_items.forEach((item,index) => {
+                            let nd = document.createElement("div");
+                            nd.innerHTML = "#"+(index+1)+" - Rank " + item.score.rank;
+                            nd.onclick = function(){
+                                this.loadResumeText(index);
+                            }.bind(this);
+                            this.$refs.historyList.appendChild(nd);
+                        });
+                    }
+                    this.last_loaded_ai_id = this.ai_id;
+                } else {
+                    console.log(response)
                 }
-            }else{
-                this.$refs.historyList.innerHTML="<div>無紀錄</div>";
+            } catch(error) {
+                console.log(error)
+                return {};
             }
         },
         loadResumeText(i){
-            if(this.rpArray && this.rpArray[i]){
-                this.resumePractice = this.rpArray[i];
+            if(this.last_loaded_record_items && this.last_loaded_record_items[i]){
+                this.resumePractice = this.last_loaded_record_items[i].content;
                 setTimeout(() => this.adjustTextAreaHeight(),50);
             }
         },
-        toggleHistory(){
+        async toggleHistory(){
             this.isHistoryShow = !this.isHistoryShow;
             if(this.isHistoryShow){
-                this.$refs.historyList.style.display = "block";
+                if (this.last_loaded_ai_id == this.ai_id) {
+                    this.$refs.historyList.style.display = "block";
+                } else {
+                    this.$refs.historyList.style.display = "block";
+                    let loader = this.$loading.show({
+                        color:"#1785db",
+                        loader:"dots",
+                        opacity: 0.8,
+                        container:this.$refs.historyList,
+                    });
+                    await this.buildLabel();
+                    loader.hide();
+                }
             }else{
                 this.$refs.historyList.style.display = "none";
             }
         },
-        showFeedBack(){
-            if(this.rpArray){
-                if(this.rpArray.length >= 5){
-                    this.rpArray.shift();
-                }
-                this.rpArray.push(this.resumePractice);
-                localStorage["resumePractice"] = JSON.stringify(this.rpArray);
-            }else{
-                this.rpArray = [this.resumePractice];
-                localStorage["resumePractice"] = JSON.stringify(this.rpArray);
+        async showFeedBack(){
+            let loader = this.$loading.show({
+                color:"#1785db",
+                loader:"dots",
+                opacity: 0.8,
+            });
+            try {
+                this.current_score = await this.evaluate(this.resumePractice,"resume_01",this.ai_id);
+                console.log(this.current_score);
+            } catch(error) {
+                console.log(error);
             }
             this.buildLabel();
             this.$refs.feedBackBlock.show();
+            loader.hide();
+        },
+        focusTextArea(event){
+            if (event.target.closest(".load-history") || event.target.closest(".send-answer")) return;
+            this.$refs.autoSizeTextarea.focus();
+        },
+        async evaluate(content,product_id,section_part) {
+            try {
+                let response = await axios.post('/apis/ai-assistant/evaluate/',{content:content,product_id:product_id,section_part:section_part})
+                if (response.status == '200') {
+                    console.log("evaluate success")
+                    return response.data.score;
+                } else {
+                    console.log(response)
+                    return {};
+                }
+            } catch(error) {
+                console.log(error)
+                return {};
+            }
         }
     },
     data:() => ({
         isHistoryShow: false,
         resumePractice: "",
-        rpArray: null,
+        last_loaded_ai_id: '',
+        last_loaded_record_items:[],
+        current_score:{},
     }),
+    props:{
+        ai_id:'',
+        current_chapter: {},
+    },
 }
 </script>
 <style>
-.ai-judgment{
+.ai-judegment{
     position: relative;
     height: 35vh;
 }
@@ -97,18 +164,23 @@ export default {
     color: #8f8f8f;
     text-align: center;
     line-height: 35px;
+    font-size: 14px;
+    cursor: pointer;
 }
 .resume-history{
     position: absolute;
     display: grid;
     width: 130px;
-    right: -8px;
-    top: 23px;
+    right: 2px;
+    top: 33px;
     grid-gap: 1px;
     z-index: 20;
     padding: 1px;
     display: none;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+    min-height: 40px;
+    max-height: 112px;
+    overflow-y: scroll;
 }
 .resume-history > div{
     line-height: 18px;
@@ -122,7 +194,8 @@ export default {
 .answer-for-ai{
     margin-top:5px;
     position: relative;
-    height: calc(95% - 21px);
+    min-height: calc(95% - 21px);
+    height: fit-content;
     background: white;
     color: black;
     border-radius: 2px;
@@ -130,9 +203,9 @@ export default {
 }
 .answer-for-ai textarea{
     color: black;
-    width: calc(100% - 20px);
+    width: calc(100% - 90px);
     height: 66px;
-    margin: auto;
+    margin-left: 10px;
     display: block;
     font-size: 14px;
     border-style: none; 
@@ -153,5 +226,11 @@ export default {
     box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
+}
+.ai-judgement-no-ai {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 50px;
 }
 </style>

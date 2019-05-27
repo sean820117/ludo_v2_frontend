@@ -1,18 +1,18 @@
 <template>
     <div class="course-container" :style="{background:getBaseColor}">
         <div v-if="is_ui_config_loaded" class="upper-block">
-            <div class="c-title">
+            <div class="chapter-title">
                 <course-title :numberTitle="getTitle" :courseTitle="getSubtitle" />
             </div>
             <div class="q-container">
                 <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
             </div>
-            <video-play :playerID="'cp1'" :videourl="getVideoUrl" />
+            <video-play :playerID="'player1'" :videourl="getVideoUrl" />
         </div>
         <div>
             <course-container ref="courseContainer" :label_name="'whatever-you-want'" :label_amount="3">
                 <video-list @videoSrcChanged="updateChapter" slot="first-content" ref="vlist" :chapters="is_ui_config_loaded ? ui_config.chapters : []" />
-                <ai-judgment slot="second-content" />
+                <ai-judgment slot="second-content" :ai_id="getAIModelId" :current_chapter="current_chapter"/>
                 <download-resource slot="third-content"/>
             </course-container>
         </div>
@@ -28,19 +28,10 @@ import VideoList from "~/components/resume/VideoList"
 import AiJudgment from "~/components/resume/AiJudgment"
 import DownloadResource from "~/components/resume/DownloadResource"
 
+import { mapMutations, mapGetters } from 'vuex';
+
 export default {
     layout:'resume',
-    head () {
-        return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
-        } 
-    },
     components: {
         Titlebar,
         CourseTitle,
@@ -57,6 +48,7 @@ export default {
         },
         updateChapter(chapter){
             this.current_chapter = chapter;
+            this.$scrollTo("#player1");
         }
     },
     data:() => ({
@@ -66,6 +58,9 @@ export default {
         current_chapter:{},
     }),
     computed: {
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         getTitle: function() {
             return this.is_ui_config_loaded ? this.current_chapter.title : '';
         },
@@ -78,6 +73,9 @@ export default {
         getBaseColor: function() {
             return this.is_ui_config_loaded ?  this.ui_config.base_color : '';
         },
+        getAIModelId: function() {
+            return this.is_ui_config_loaded ?  this.current_chapter.ai_id : '';
+        },
     },
     mounted: async function() {
         
@@ -87,26 +85,27 @@ export default {
             this.ui_config = await require('~/config/resume-config')
             this.is_ui_config_loaded = true;
             this.current_chapter = this.ui_config.chapters[0];
-            if( document.readyState !== 'loading' ) {
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            }else{
-                document.addEventListener("DOMContentLoaded", (function(){
-                    this.$refs.courseContainer.resetSize();
-                    this.$refs.vlist.adjustHeight();
-                }).bind(this));
+            // window.onload = (function(){
+            //     this.$refs.courseContainer.resetSize();
+            //     this.$refs.vlist.adjustHeight();
+            // }).bind(this);
+            // setTimeout(() => {
+            //     this.$refs.courseContainer.resetSize();
+            //     this.$refs.vlist.adjustHeight();
+            // },3000);
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                this.$router.push('/resume/signup');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/resume/pay');
+                } else {
+                    console.log("payed")
+                }
             }
-            window.onload = (function(){
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            }).bind(this);
-            setTimeout(() => {
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            },3000);
-            if (await this.$checkLogin(this.$store) == false) {
-                this.$router.push('/resume/signup-pay');
-            } 
         }
     },
     // async asyncData (context) {
@@ -124,7 +123,7 @@ textarea:focus, input:focus{
     outline: none;
 }
 .course-container{
-    height: 100%;
+    min-height: 100%;
     display: grid;
     grid-template-rows: min-content auto;
     background: #0090FF;
@@ -132,7 +131,7 @@ textarea:focus, input:focus{
 .upper-block{
     padding-bottom: 10px;
 }
-.c-title{
+.chapter-title{
     padding-top: 60px;
     margin-bottom: 10px;
 }

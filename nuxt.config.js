@@ -58,7 +58,11 @@ module.exports = {
     // { src: '~/plugins/ga-victor.js', ssr: false },
     { src: '~/plugins/hotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
+    { src: '~/plugins/checkPayed.js', ssr: false },
+    { src: '~/plugins/modal.js', ssr: false },
+    { src: '~/plugins/loading.js', ssr: false },
     { src: '~/plugins/forceLogin.js', ssr: false },
+    { src: '~/plugins/scrollTo.js', ssr: false },
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [

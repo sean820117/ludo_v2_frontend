@@ -4,7 +4,7 @@
         <div class="sp-subtitle">使用一個月 NT$99</div>
         <div class="main-block">
             <div v-if="!is_login">
-                <div class="reg-title">{{ !directReg ? '註冊' : '直接註冊' }}</div>
+                <div class="reg-title">{{ !directReg ? '註冊/登入' : '直接註冊' }}</div>
                 <div class="reg-subtitle">{{ !directReg ? '付款前需先註冊成為會員' : '輸入信箱、密碼及基本資訊後完成付款即可成為會員' }}</div>
                 <div class="third-party">
                     <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
@@ -14,32 +14,28 @@
             <div>
                 <form id="basic-form" v-if="!directReg">
                     <div class="reg-block-title">基本資訊</div>
-                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="scrollTo('#input_name')" />
-                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="scrollTo('#input_phone')" />
-                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="scrollTo('#input_email')" />
+                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" />
+                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" />
+                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email')" />
                 </form>
                 
                 <form id="directly-reg-form" v-if="directReg">
-                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="scrollTo('#input_email_2')" />
-                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼" @click="scrollTo('#input_password')" />
-                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="scrollTo('#input_password_check')" />
+                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')" />
+                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼" @click="$scrollTo('#input_password')" />
+                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')" />
                     <div class="reg-block-title">基本資訊</div>
-                    <input id="input_name_2" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="scrollTo('#input_name_2')" />
-                    <input id="input_phone_2" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="scrollTo('#input_phone_2')" />
+                    <input id="input_name_2" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" />
+                    <input id="input_phone_2" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" />
                 </form>
             </div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
             <div class="reg-block-title">付款方式</div>
             <div class="payment-contract">
-                讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，
-                <br>
-                「AFTEE」後支付是在收到商品之後，才付款的支付方式。
+                讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。
                 <br>
                 不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！
                 <br>
-                商品寄出後，將透過簡訊寄送繳費通知。
-                <br>
-                請於收到繳費通知隔日起14天內依照內容指示，透過便利商店代收服務或ATM繳費等方式完成付款手續。
+                將於下單後 24 小時內透過簡訊寄送繳費通知。請於收到繳費通知隔日起 14 天內依照內容指示，透過便利商店代收服務或 ATM 繳費等方式完成付款手續。
                 <br><br>
                 ・注意事項
                 <br>
@@ -70,6 +66,7 @@
                     <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
                 </div>
             </div>
+            <v-dialog :width="'300px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
             <loading 
                 :active="processing_user_data_or_not" 
                 color="#1785db"
@@ -122,7 +119,7 @@ export default {
         directReg: false,
         displayReceipt: false,
         processing_user_data_or_not: false,
-        is_login:true,
+        is_login:false,
         payed_or_not:false,
         agree_contract_or_not: false,
         aftee_data : {
@@ -157,12 +154,6 @@ export default {
         },
         showReceipt(){
             this.displayReceipt = true;
-        },
-        scrollTo(element) {
-            document.querySelector(element).scrollIntoView({
-                behavior: "smooth",
-                block:    "center",
-            });
         },
         sortObject(obj) {
             return Object.keys(obj).sort().reduce(function (result, key) {
@@ -234,7 +225,18 @@ export default {
         succeededCallback(response) {
             console.log("aftee payed succeed")
             console.log(response)
-            this.$router.push('/resume/course')
+
+            this.$modal.show('dialog', {
+                title: '付款成功!',
+                text: '感謝您踏出邁向美好未來的第一步，課程內容絕對讓你耳目一新。\n現在就開始課程吧！',
+                buttons: [
+                    {
+                        title: '進入課程',       // Button title
+                        default: true,    // Will be triggered by default if 'Enter' pressed.
+                        handler: () => {this.$router.push('/resume/course')} // Button click handler
+                    },
+                ],
+            });
         },
         startAftee() {
             if (!this.user) {
@@ -343,9 +345,27 @@ export default {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             // this.payed_or_not = await checkPayedInfo();
-            localStorage.redirect = this.$route.path;
-            console.log("save redirect : " + localStorage.redirect);
             console.log("user id" + this.user.user_id);
+            if (!this.is_login) {
+                this.$router.push("/resume/signup");
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                } else {
+                    console.log("payed")
+                    this.$modal.show('dialog', {
+                        text: '您已購買過此課程',
+                        buttons: [
+                            {
+                                title: '點此進入課程',       // Button title
+                                default: true,    // Will be triggered by default if 'Enter' pressed.
+                                handler: () => {this.$router.push('/resume/course')} // Button click handler
+                            },
+                        ],
+                    });
+                }
+            }
         }
     },
 }
@@ -366,7 +386,7 @@ textarea:focus, input:focus{
 }
 .signup-pay-page{
     text-align: center;
-    height: 100%;
+    /* height: 100%; */
 }
 .sp-title{
     color: #007CDC;

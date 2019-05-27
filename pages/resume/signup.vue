@@ -1,6 +1,5 @@
 <template>
     <div class="signup-page">
-        <titlebar-new :logo_src="is_ui_config_loaded ? ui_config.logo : ''"><div slot="right-component" @click="$router.go(-1)" :style="{ color : is_ui_config_loaded ? ui_config.view.signup_page.back_button.color : '' }">返回</div></titlebar-new>
         <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
         <div class="reg-text2" :style="{color: hint_color}"> {{ hint }}</div>
         <div class="third-party">
@@ -70,6 +69,7 @@ export default {
             this.is_ui_config_loaded = true;
             this.hint = this.ui_config.view.signup_page.hint.default.text;
             this.hint_color = this.ui_config.view.signup_page.hint.default.color;
+            localStorage.redirect = '/resume/pay';
         }
     },
     components: {
@@ -111,7 +111,7 @@ export default {
         async signup(email,password,repeated_password) {
             console.log("go sign up")
             try {
-              let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password})
+              let response = await axios.post('/signup',{email:email,password:password,repeated_password:repeated_password,from:this.ui_config.project_name})
               if (response.data.status == '200') {
                   console.log("signup success")
                   let login_result = await this.$checkLogin(this.$store);
@@ -176,7 +176,7 @@ textarea:focus, input:focus{
 }
 .reg-text{
     margin: auto;
-    padding-top: 18vh;
+    padding-top: 80px;
     font-size: 21px;
 }
 .reg-text2{

@@ -31,7 +31,7 @@ export default {
     border-radius: 16px;
     color: #007CDC;
     background: #d9eeff;
-    padding-left: 20px;
+    padding-left: 10px;
     font-size: 15px;
     margin-bottom: 9px;
     margin-left: 5vw;

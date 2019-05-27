@@ -1,6 +1,6 @@
 <template>
     <div class="videoplayer-container" style="text-align:center">
-        <iframe :id="playerID"  ref="player"
+        <iframe :id="playerID"  ref="coursePlayer"
         :src="videourl" 
         frameborder="0" 
         allow="autoplay; fullscreen" class="video-player" allowfullscreen></iframe>
@@ -14,14 +14,13 @@ export default {
         playerID: String
     },
     mounted: function() {
-        var iframe = document.getElementById(this.playerID);
-        this.player = new Player(iframe);
-        this.getTotalTime().then(function(duration){
-            console.log("duration: "+duration);
-        });
-    //     var player = this.$refs.player;
-    //     player.style.width = this.playerWidth;
-    //     player.style.height = this.playerHeight;
+        if (process.client) {
+            var iframe = this.$refs.coursePlayer;
+            this.player = new Player(iframe);
+            this.getTotalTime().then(function(duration){
+                console.log("duration: "+duration);
+            });
+        }
     },
     methods: {
         getTotalTime(){ //return promise

@@ -1,7 +1,7 @@
 <template>
     <div class="course-container" :style="{background:getBaseColor}">
         <div v-if="is_ui_config_loaded" class="upper-block">
-            <div class="c-title">
+            <div class="chapter-title">
                 <course-title :numberTitle="getTitle" :courseTitle="getSubtitle" />
             </div>
             <div class="q-container" v-if="false">
@@ -132,7 +132,7 @@ textarea:focus, input:focus{
 .upper-block{
     padding-bottom: 10px;
 }
-.c-title{
+.chapter-title{
     padding-top: 60px;
     margin-bottom: 10px;
 }

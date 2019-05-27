@@ -48,7 +48,6 @@ export default {
     box-sizing: border-box;
     width: 90vw;
     margin-left: 5vw;;
-    height: 100%;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -82,7 +81,7 @@ export default {
     max-width: 640px;
 }
 .label-content > div{
-    height: 10px;
+    /* height: 10px; */
     display: none;
 }
 .first-radio:checked ~ .course-menu .first-label,
