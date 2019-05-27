@@ -55,9 +55,9 @@ export default {
 .labels{
     display: none;
 }
-.course-menu{
+.course-menu {
     display: grid;
-    grid-template-rows: 25px auto;
+    /* grid-template-rows: 25px auto; */
     height: 100%;
     color: white;
     font-size: 12px;
@@ -74,6 +74,15 @@ export default {
     border-top: solid rgba(0,0,0,0) 4px;
     margin-top: -1px;
     padding-top: 5px;
+    cursor: pointer;
+}
+@media (min-width: 900px) {
+    .three-labels label{
+        font-size: 25px !important;
+    }
+    .three-labels {
+        height: 50px;
+    }
 }
 .label-content{
     padding-top: 10px;

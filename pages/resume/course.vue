@@ -95,7 +95,8 @@ export default {
             // },3000);
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                this.$router.push('/resume/signup');
+                window.alert("尚未開通課程，請先前往購買～");
+                this.$router.push('/resume/pay');
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
                 if (!payed_or_not) {
@@ -138,5 +139,19 @@ textarea:focus, input:focus{
 .q-container{
     box-sizing: border-box;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 900px) {
+    .chapter-title{
+        padding-top: 80px;
+        margin-bottom: 10px;
+    }
+    .number-title {
+        font-size: 50px !important;
+        color: white;
+        font-weight: 400;
+    }
 }
 </style>

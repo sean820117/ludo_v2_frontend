@@ -34,7 +34,7 @@ export default {
     padding-left: 10px;
     font-size: 15px;
     margin-bottom: 9px;
-    margin-left: 5vw;
+    max-width: 640px;
 }
 .question-bar a {
     text-decoration: none;

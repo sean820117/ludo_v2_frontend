@@ -2,16 +2,10 @@
   <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">
         <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
-        <div v-else slot="right-component" @click="$router.push('/resume/signup')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
+        <div v-else slot="right-component" @click="$router.push('/resume/login')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
     </titlebar>
     <nuxt/>
     <resume-footer></resume-footer>
-    <loading 
-        :active="!is_ui_config_loaded" 
-        color="#1785db"
-        loader="dots"
-        :is-full-page="true"
-    ></loading>
   </div>
   
 </template>
@@ -19,10 +13,8 @@
 <script>
 import Titlebar from "~/components/resume/Titlebar"
 import ResumeFooter from "~/components/resume/ResumeFooter.vue";
-import Loading from 'vue-loading-overlay';
 import VueMq from 'vue-mq'
 import Vue from 'vue'
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -36,7 +28,6 @@ export default {
     components: {
         Titlebar,
         ResumeFooter,
-        Loading,
     },
     data:() => ({
         ui_config:Object,
@@ -48,7 +39,7 @@ export default {
             title: '履歷範本 - 找工作的加速器',
             meta: [
                 { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
                 { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
                 { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
                 { property : 'og:type' , content:"education tech."},
@@ -66,8 +57,14 @@ export default {
         if (process.client) {
             
             this.ui_config = await require('~/config/resume-config')
+            let loader = this.$loading.show({
+                color:"#1785db",
+                loader:"dots",
+                opacity: 0.8,
+            });
             setTimeout(() => {
                 this.is_ui_config_loaded = true;    
+                loader.hide();
             }, 1000);
             
             // console.log(this.ui_config.title);

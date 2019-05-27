@@ -114,6 +114,10 @@ export default {
     overflow-y: hidden;
     grid-row: 1 / 3;
 }
+.list-content {
+    max-width: 450px;
+    margin: auto;
+}
 .list-content::-webkit-scrollbar{
     width: 0px;
 }
@@ -136,6 +140,11 @@ export default {
     grid-gap: 10px;
     cursor: pointer;
     margin-bottom: 5px;
+}
+@media (min-width: 900px) {
+    .video-cell {
+        grid-template-columns: 160px auto;
+    }
 }
 .v-img{
     grid-row: 1 / 3;

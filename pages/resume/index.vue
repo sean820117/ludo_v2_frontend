@@ -6,9 +6,9 @@
             <img class="title" src="/resume/resume-logo.svg"/>
             <!-- <img class="title-blue" src="/resume/resume-logo.svg"/> -->
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
-            <div v-else class="login" @click="$router.push('/resume/signup')" >登入</div>
+            <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
         </div>
-        <div class="first-block" v-touch:swipe="dragFirstBlock">
+        <div class="first-block" @mousewheel="dragFirstBlock" @scroll="dragFirstBlock">
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -97,12 +97,12 @@
                 <div id="democourses">
                     <div id="dc-1" class="course">
                         <div class="c-img"><img :src="getChapterData01.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData01.title }}</div>
+                        <div class="c-title">{{ getChapterData01.title }}(試讀)</div>
                         <div class="c-context">{{ getChapterData01.subtitle }}</div>
                     </div>
                     <div id="dc-2" class="course">
                         <div class="c-img"><img :src="getChapterData04.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData04.title }}</div>
+                        <div class="c-title">{{ getChapterData04.title }}(試讀)</div>
                         <div class="c-context">{{ getChapterData04.subtitle }}</div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                     10 - 寄出前的準備，寫出高開信率的自我推薦！
                 </div>
             </div>
-            <div class="comment-title">學員的評價</div>
+            <div class="comment-title">學員評價</div>
             <div class="comment">
                 <img src="/resume/resume-stu01.png"/>
                 <div class="comment-content">
@@ -204,12 +204,12 @@
             </router-link>
         </div>
     </div>
-    <div v-else :style="{display: $mq === 'mobile' ? 'none' : ''}">
+    <div v-else :style="{display: $mq !== 'desktop' ? 'none' : 'block'}" class="md-body">
         <input type="radio" id="checkseemore" :checked="seemore_check_or_not" />
         <div class="md-banner">
             <img class="md-title" src="/resume/resume-logo.svg"/>
             <!-- <img class="md-title-blue" src="/resume/resume-logo.svg"/> -->
-            <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/signup')" >{{ is_login ? '登出' : '登入'}}</div>
+            <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/login')" >{{ is_login ? '登出' : '登入'}}</div>
         </div>
         <div class="md-first-block">
             <img class="md-earphone" src="/resume/earphone.png" />
@@ -300,14 +300,14 @@
                     <div id="dc-1" class="md-course">
                         <div class="md-c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData01.title }}</div>
+                            <div class="md-c-title">{{ getChapterData01.title }}(試讀)</div>
                             <div class="md-c-context">{{ getChapterData01.subtitle }}</div>
                         </div>
                     </div>
                     <div id="dc-2" class="md-course">
                         <div class="md-c-img"><img :src="getChapterData04.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData04.title }}</div>
+                            <div class="md-c-title">{{ getChapterData04.title }}(試讀)</div>
                             <div class="md-c-context">{{ getChapterData04.subtitle }}</div>
                         </div>
                     </div>
@@ -318,7 +318,7 @@
                 </div>
             </div>
             <div class="md-eight-block">
-                <div class="md-comment-title">學員的評價</div>
+                <div class="md-comment-title">學員評價</div>
                 <div class="md-comment-box">
                     <div class="md-comment">
                         <img src="/resume/resume-stu01.png"/>
@@ -442,20 +442,28 @@ Vue.use(VueMq, {
   }
 });
 export default {
-    head () {
-        return {
+    head() {
+        return  {
+            title: '履歷範本 - 找工作的加速器',
+            meta: [
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
+                { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
+                { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
+                { property : 'og:type' , content:"education tech."},
+                { property : 'og:url' , content:"https://www.ludonow.com/resume"},
+                { property : 'og:image' , content:"https://www.ludonow.com/resume-og-img.jpg"},
+                { property : 'og:description' , content:"狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。"},
+                { property : 'og:site_name' , content:"www.ludonow.com"},
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
+            ],
             script: [
                 { src: 'https://player.vimeo.com/api/player.js' }        
             ],
-            link: [
-                { rel: 'stylesheet', href: '/resume/index.css' },
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
-        } 
+        }
     },
     data:() => ({
         is_login: false,
@@ -497,15 +505,20 @@ export default {
             return data;
         },
     },
-    async mounted() {
+    async beforeCreate() {
         if (process.client) {
             const scrollTo = this.$scrollTo;
             this.ui_config = await require('~/config/resume-config');
             this.is_ui_config_loaded = true;
             const getChapterData01 = this.getChapterData01;
             const getChapterData04 = this.getChapterData04;
-
+            let loader = this.$loading.show({
+                color:"#1785db",
+                loader:"dots",
+                opacity: 0.8,
+            });
             setTimeout(() => {
+                loader.hide();
                 var dv = document.getElementById("demovideo");
                 var dcPlayer = new Vimeo.Player(dv);
                 // var size = Math.min(640,window.innerWidth,window.innerHeight);
@@ -534,7 +547,7 @@ export default {
                         }
                     }
                     $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                    $("#dc-2").click(()=>switchCourse(getChapterData03.video_id));
+                    $("#dc-2").click(()=>switchCourse(getChapterData04.video_id));
                     dcPlayer.on('ended', function(){
                         document.getElementById("fbshare").style.display = "block";
                     });
@@ -543,7 +556,7 @@ export default {
                     isShared = true;
                 }
                 $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                $("#dc-2").click(()=>{ switchCourse(getChapterData03.video_id);scrollTo((!isShared ? "#fbshare" : "#democourses"), (isShared ? "end" : "center") ); });
+                $("#dc-2").click(()=>{ switchCourse(getChapterData04.video_id);scrollTo((!isShared ? "#fbshare" : "#democourses"), (isShared ? "end" : "center") ); });
                 dcPlayer.on('ended', function(){
                     document.getElementById("fbshare").style.display = "block";
                     document.getElementById("share-mask").style.display = "block";
@@ -567,7 +580,7 @@ export default {
                 }
                 // $("#pre-img").click(()=>switchImg(-1));
                 // $("#next-img").click(()=>switchImg(1));
-            }, 3000);
+            }, 2000);
             
             
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
@@ -616,6 +629,505 @@ export default {
 .videoplay > div > div {
     line-height: 2em !important;
 }
+.banner{
+    z-index: 10;
+    position:fixed;
+    top:0px;
+    width: 100vw;
+    background: #0090FF;
+    height: 55px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+}
+.banner .login{
+    float:right;
+    font-size: 14px;
+    line-height: 55px;
+    color:white;
+    margin-right:20px;
+}
+.banner .title, #checkseemore:checked ~ .banner .title-blue{
+    display:initial;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.first-block{
+    position: relative;
+    width:100vw;
+    height: 100vh;
+    background: url("/resume/Group 139.png") #0090FF;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    transition: height 300ms linear;
+}
+.earphone{
+    position: absolute;
+    bottom: 0px;
+    left: 61px;
+}
+.earphone2{
+    position: absolute;
+    transform: rotate(-90deg);
+    top: calc(100% - 265px);
+    left: 100px;
+    visibility: hidden;
+}
+.eye{
+    position: absolute;
+    right: 0px;
+    top: 300px;
+    visibility: hidden;
+}
+#checkseemore:checked ~ .first-block .earphone{
+    display: none;
+}
+#checkseemore:checked ~ .first-block .earphone2{
+    transition: all 300ms linear;
+    top: 73px;
+    left: 0px;
+    transform:  rotate(0deg);
+    visibility: visible;
+}
+#checkseemore:checked ~ .first-block .eye{
+    transition: top 300ms linear;
+    top: 0px;
+    visibility: visible;
+}
+.scrolldown{
+    display:none;
+}
+.slogan{
+    position: absolute;
+    top: 36%;
+    /* width: 308px; */
+    left: calc(50% - 154px);
+}
+.slogan div{
+    text-align: justify;
+    color:white;
+}
+.slogan div:after{
+    content:"";
+    display:inline-block;
+    width:100%;
+    height:0px;
+}
+.line1{
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.5em;
+}
+.line2{
+    margin-top: -68px;
+    font-size: 50px;
+    font-weight: 100;
+}
+.seemore{
+    position: absolute;
+    text-align: center;
+    color: white;
+    left: calc(50% - 39px);
+    top: 66%;
+    width: 78px;
+    font-size: 19px;
+}
+#checkseemore:checked ~ .first-block{
+    background:#0090FF;
+    overflow-x: unset;
+    height:247px;
+}
+#checkseemore:checked ~ .first-block .line1{
+    font-size: 28px;
+}
+#checkseemore:checked ~ .first-block .line2{
+    margin-top: -44px;
+    font-size: 34px;
+    font-weight: 100;
+}
+#checkseemore:checked ~ .first-block .slogan{
+    width:210px;
+    top: 107px;
+    left: calc(50% - 105px);
+}
+#checkseemore:checked ~ .first-block .seemore{
+    display: none;
+}
+/* #checkseemore:checked ~ .banner{
+    background: #FFF;
+    color:#0090FF;
+    box-shadow: unset;
+}
+#checkseemore:checked ~ .banner .login{
+    color:#0090FF;
+}
+#checkseemore:checked ~ .banner .title, .banner .title-blue{
+    display:none;
+} */
+#checkseemore:checked ~ .scrolldown{
+    display:block;
+}
+.seconds-block{
+    position:relative;
+    color:#007CDC;
+    width: 100%;
+    /* height: 102px; */
+    text-align: center;
+    font-size: 27px;
+    font-weight: 500;
+    margin-top:105px;
+    line-height: 36px;
+    margin-bottom: 20px;
+}
+.sb-addition{
+    position: absolute;
+    display: contents;
+    font-size: 14px;
+    line-height: 17px;
+    bottom:0px;
+    left:50%;
+    transform: translateX(-50%);
+}
+.third-block{
+    width: calc(100% - 30px);
+    height:436px;
+    margin:auto;
+    background: #FFDE00;
+    margin-top:-112px;
+    color:black;
+    font-weight: 500;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+}
+.tb-container{
+    width: 303px;
+    margin: auto;
+}
+.tb-title{
+    padding-top: 63px;
+    text-align: right;
+    font-size: 27px;
+}
+.tb-content{
+    width:280px;
+    font-size: 16px;
+    margin-top: 95px;
+    line-height: 21px;
+}
+.four-block{
+    margin: auto;
+    margin-top: 41px;
+    width: 100%;
+    height: 99px;
+    text-align: center;
+    color: #007CDC;
+}
+.fourblock-1, .sevenblock-1{
+    font-size: 44px;
+    font-weight: 100;
+}
+.fourblock-2, .sevenblock-2{
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: -3px;
+}
+.slide-show{
+    position: relative;
+    width: 100vw;
+    text-align: center;
+    overflow-y: hidden;
+    margin-top: 49px;
+    margin-bottom: 49px;
+}
+.slide-show img{
+    width: 80vw;
+    display: none;
+}
+#pre-img{
+    position: absolute;
+    left: 5px;
+    top: 140px;
+}
+#next-img{
+    position: absolute;
+    right: 5px;
+    top: 140px;
+    transform: rotate(180deg);
+}
+.six-block{
+    height: 859px;
+    width:100%;
+    margin-top: 60px;
+    padding-bottom: 50px;
+    text-align: center;
+    background: #0090FF;
+    color: white;
+}
+.sixty-min div{
+    display: inline-block;
+}
+.sixty{
+    font-size: 109px;
+}
+.sixty-min .minute{
+    font-size: 30px;
+    font-weight: 100;
+}
+.perform-dif{
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: -20px;
+}
+.bu-assist{
+    font-size: 14px;
+    margin-top: 25px;
+}
+.before-class{
+    text-align: left;
+    margin: auto;
+    margin-top: 35px;
+    width: 317px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background: url("/resume/Group 148.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+.before-class div, .after-practice div{
+    width: 279px;
+    margin-left: 18px;
+    font-size: 16px;
+}
+.past{
+    border-left: 2px solid white;
+    padding-left: 8px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.past-content{
+    height: 84px;
+    margin-top: 18px;
+    margin-bottom: 68px;
+}
+.after-practice{
+    text-align: left;
+    margin: auto;
+    width: 317px;
+    border-bottom: 2px solid white;
+    background: url("/resume/Group 149.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+.after-content{
+    margin-top: 18px;
+    margin-bottom: 68px;
+}
+
+.seven-block{
+    width:100%;
+    text-align: center;
+    background: #F9F9F9;
+    padding-bottom: 24px;
+}
+.sevenblock-1, .sevenblock-2{
+    color: black;
+}
+.sevenblock-1{
+    padding-top: 40px;
+}
+.sevenblock-2{
+    margin-bottom: 38px;
+}
+.videoplay{
+    position: relative;
+    margin: auto;
+    width:calc(100vw - 36px);
+}
+#share-mask{
+    background: rgba(0,0,0,0.6);
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#share-mask div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+.course{
+    text-align: left;
+    margin: auto;
+    margin-top: 22px;
+    width: 83vw;
+    display: grid;
+    grid-template-columns: 128px auto;
+    grid-template-rows: 15px auto;
+    grid-gap: 5px;
+    align-content: center;
+}
+.c-img{
+    grid-row: 1 / 3;
+}
+.c-img img{
+    width:100%;
+    height: auto;
+}
+.c-title{
+    color: #007CDC;
+    font-size: 13px;
+    font-weight: 500;
+}
+.c-context{
+    font-size: 9px;
+    color: #8F8F8F
+}
+.fbshare{
+    width: 300px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 27px;
+    display: none;
+}
+.clickshare{
+    color: #0090FF;
+    float: right;
+}
+.comment-title{
+    text-align: center;
+    font-size: 42px;
+    color: #007CDC;
+    font-weight: 500;
+    margin-top: 39px;
+    margin-bottom: 51px;
+}
+.comment{
+    margin: auto;
+    width: 343px;
+    max-width: 91vw;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 55px;
+}
+.comment img {
+    width: 100px;
+}
+.comment-content{
+    margin-top: 15px;
+}
+.eight-block{
+    width: 100%;
+    background: #0090FF;
+    font-weight: 400;
+    color: white;
+}
+.eb-title{
+    font-size: 42px;
+    text-align: center;
+    padding-top: 24px;
+}
+.eb-des{
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 33px;
+    margin-top: -3px;
+    font-weight: 100;
+}
+.eb-content{
+    font-size: 15px;
+    width: 87vw;
+    margin: auto;
+    padding-left: 3px;
+    padding-bottom: 82px;
+}
+.phoneimg{
+    width: 100vw;
+}
+.nine-block{
+    width: 357px;
+    max-width: 95vw;
+    margin: auto;
+    margin-top: 34px;
+    text-align: center;
+}
+.nine-block img{
+    max-width: 95vw;
+}
+.nb-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.nb-fly{
+    width: 244px;
+    height: auto;
+    margin-top: -13px;
+}
+.nb-3{
+    margin-top: 16px;
+    font-size: 25px;
+    font-weight: 100;
+}
+.nb-4{
+    font-size: 23px;
+    font-weight: 500;
+    margin-top: -5px;
+    margin-bottom: 28px;
+}
+.ten-block{
+    text-align: center;
+    width: calc(100% - 30px);
+    height: 250px;
+    margin: auto;
+    margin-top: 46px;
+    font-weight: 500;
+    background: #FFDE00;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+.tb-1{
+    padding-top: 45px;
+    font-size: 27px;
+}
+.tb-2{
+    font-size: 30px;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+.blank-block{
+    width: 100%;
+    height: 126px;
+}
+.paynow{
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    background: #0090FF;
+    width: 100vw;
+    height: 71px;
+    line-height: 71px;
+    font-size: 22px;
+    font-weight: 500;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+a{
+    text-decoration: none;
+}
+.paynow {
+    color: white;
+}
+.paynow-text{
+    width: 100vw;
+    height: 100%;
+}
+.md-body {
+    display: none;
+}
 .md-banner{
     z-index: 10;
     position:fixed;
@@ -640,7 +1152,7 @@ export default {
 }
 .md-banner .md-title, #checkseemore:checked ~ .md-banner .md-title-blue{
     display:initial;
-    margin-left: 12%;
+    margin-left: 12vw;
 }
 .md-first-block{
     position: relative;

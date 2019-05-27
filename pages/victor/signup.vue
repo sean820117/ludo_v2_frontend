@@ -37,17 +37,6 @@ import axios from '~/config/axios-config'
 
 export default {
     layout: 'victor',
-    head () {
-        return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
-        } 
-    },
     data() {
         return {
             errors: null,

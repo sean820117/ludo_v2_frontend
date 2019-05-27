@@ -1,7 +1,7 @@
 <template>
     <div class="signup-page">
         <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
-        <div class="reg-text2" :style="{color: hint_color}"> {{ hint }}</div>
+        <div class="reg-text2"> {{ '付款前需先註冊成為會員' }}</div>
         <div class="third-party">
             <no-ssr><third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
         </div>
@@ -10,19 +10,20 @@
         <form class="signup-form">
             <div class="login-column">
                 <div class="login-column-label">電子信箱</div>
-                <input name="email" class="login-column-input" type="text" v-model="email"/>
+                <input name="email" class="login-column-input" type="text" v-model="email" placeholder="您的電子信箱"/>
             </div>
             <div class="login-column">
                 <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="password" v-model="password"/>
+                <input name="password" class="login-column-input" type="password" v-model="password" placeholder="密碼(須大於八個字)"/>
             </div>
             <div class="login-column" v-if="login_or_signup === 'signup'">
                 <div class="login-column-label">確認密碼</div>
-                <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
+                <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword" placeholder="再次輸入密碼"/>
             </div>
+            <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right'}"> {{ hint }}</div>
             <div class="btn-login-and-signup-container">
-                <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p>
-                <input class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" :value="login_or_signup === 'signup' ? '註冊' : '登入' " @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">
+                <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
+                <button class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</button>
             </div>
         </form>
     </div>
@@ -36,17 +37,6 @@ import axios from '~/config/axios-config'
 
 export default {
     layout: 'resume',
-    head () {
-        return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
-        } 
-    },
     data() {
         return {
             errors: null,
@@ -54,8 +44,8 @@ export default {
             password: '',
             confirmPassword: '',
             ui_config: Object,
-            hint:'',
-            hint_color:'',
+            hint:'請填寫',
+            hint_color:'transparent',
             is_ui_config_loaded:false,
             login_or_signup:'signup',
         }
@@ -67,8 +57,6 @@ export default {
         if (process.client) {
             this.ui_config = await require('~/config/resume-config')
             this.is_ui_config_loaded = true;
-            this.hint = this.ui_config.view.signup_page.hint.default.text;
-            this.hint_color = this.ui_config.view.signup_page.hint.default.color;
             localStorage.redirect = '/resume/pay';
         }
     },
@@ -225,8 +213,8 @@ textarea:focus, input:focus{
 }
 .btn-login-and-signup-container {
     display: flex;
-    margin-top: 6vh;
-    justify-content: space-between;
+    margin-top: 3vh;
+    justify-content: flex-end;
     width: 67vw;
     margin-left: 16.5vw;
 }

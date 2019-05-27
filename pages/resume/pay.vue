@@ -9,10 +9,10 @@
                 <div class="third-party">
                     <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
                 </div>
-                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">直接註冊</div>
+                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">本地註冊</div>
             </div>
             <div>
-                <form id="basic-form" v-if="!directReg">
+                <form id="basic-form" v-if="!directReg && is_login && !next_step_or_not">
                     <div class="reg-block-title">基本資訊</div>
                     <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" />
                     <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" />
@@ -21,49 +21,52 @@
                 
                 <form id="directly-reg-form" v-if="directReg">
                     <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')" />
-                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼" @click="$scrollTo('#input_password')" />
+                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字)" @click="$scrollTo('#input_password')" />
                     <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')" />
-                    <div class="reg-block-title">基本資訊</div>
-                    <input id="input_name_2" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" />
-                    <input id="input_phone_2" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" />
+                    <div class="reg-block-title" v-if="next_step_or_not">基本資訊</div>
+                    <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" />
+                    <input id="input_phone_2" v-if="next_step_or_not" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" />
                 </form>
             </div>
+            <div class="reg-directly" @click="next_step_or_not = true" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
-            <div class="reg-block-title">付款方式</div>
-            <div class="payment-contract">
-                讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。
-                <br>
-                不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！
-                <br>
-                將於下單後 24 小時內透過簡訊寄送繳費通知。請於收到繳費通知隔日起 14 天內依照內容指示，透過便利商店代收服務或 ATM 繳費等方式完成付款手續。
-                <br><br>
-                ・注意事項
-                <br>
-                透過由日商恩沛股份有限公司提供之「AFTEE」後支付服務完成的交易，
-                <br>
-                需依本服務之必要範圍內提供個人資料，
-                <br>
-                並將交易相關給付款項請求債權轉讓予日商恩沛股份有限公司。
-                <br>
-                關於個人資料處理事宜，請瀏覽以下網址：
-                <br>
-                <a href="https://aftee.tw/privacypolicy/">{{ 'https://aftee.tw/privacypolicy/' }}</a>
-                <br>
-                初次使用AFTEE時，最高使用額度為10,000元。
-                <br>
-                若款項超過繳費期限，將根據當次的金額加收年利率20%的支付遲延損害金。
-                <br>
-                未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
-                <br><br>
-            </div>
-            <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
-            <span class="checkmark"></span>
-            <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
-            <receipt-type :wordDark="true"/>
-            <div class="payment-container">
-                <div class="payment-info">
-                    <div class="price">共計　新台幣　99 元</div>
-                    <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
+            <div v-if="next_step_or_not || is_login">
+                <div class="reg-block-title">付款方式</div>
+                <div class="payment-contract">
+                    讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。
+                    <br>
+                    不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！
+                    <br>
+                    將於下單後 24 小時內透過簡訊寄送繳費通知。請於收到繳費通知隔日起 14 天內依照內容指示，透過便利商店代收服務或 ATM 繳費等方式完成付款手續。
+                    <br><br>
+                    ・注意事項
+                    <br>
+                    透過由日商恩沛股份有限公司提供之「AFTEE」後支付服務完成的交易，
+                    <br>
+                    需依本服務之必要範圍內提供個人資料，
+                    <br>
+                    並將交易相關給付款項請求債權轉讓予日商恩沛股份有限公司。
+                    <br>
+                    關於個人資料處理事宜，請瀏覽以下網址：
+                    <br>
+                    <a href="https://aftee.tw/privacypolicy/">{{ 'https://aftee.tw/privacypolicy/' }}</a>
+                    <br>
+                    初次使用AFTEE時，最高使用額度為10,000元。
+                    <br>
+                    若款項超過繳費期限，將根據當次的金額加收年利率20%的支付遲延損害金。
+                    <br>
+                    未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
+                    <br><br>
+                </div>
+                <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
+                <span class="checkmark"></span>
+                <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
+                <receipt-type :wordDark="true"/>
+                <div class="payment-container">
+                    <div class="payment-info">
+                        <div class="price">共計　新台幣　99 元</div>
+                        <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
+                    </div>
                 </div>
             </div>
             <v-dialog :width="'300px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
@@ -91,12 +94,8 @@ export default {
     layout: 'resume',
     head () {
         return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
             meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
             ],
             script: [
                 { src: 'https://auth.aftee.tw/v1/aftee.js' , async : true}
@@ -110,6 +109,7 @@ export default {
     },
     data:() => ({
         customer_name: '',
+        next_step_or_not: false,
         phone: '',
         email: '',
         password: '',
@@ -222,13 +222,22 @@ export default {
                 },
             });
         },
-        succeededCallback(response) {
+        async succeededCallback(response) {
             console.log("aftee payed succeed")
             console.log(response)
-
+            try {
+              let response = await axios.post('/apis/aftee-result',this.aftee_data)
+              if (response.data.status == '200') {
+                  console.log("payed success")
+              } else {
+                  console.log(response)
+              }
+            } catch (error) {
+                console.log(error)
+            }
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: '感謝您踏出邁向美好未來的第一步，課程內容絕對讓你耳目一新。\n現在就開始課程吧！',
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title
@@ -344,11 +353,10 @@ export default {
     async mounted() {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
-            // this.payed_or_not = await checkPayedInfo();
             console.log("user id" + this.user.user_id);
-            if (!this.is_login) {
-                this.$router.push("/resume/signup");
-            } else {
+            // if (!this.is_login) {
+            //     this.$router.push("/resume/signup");
+            // } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
                 if (!payed_or_not) {
                     console.log("not payed");
@@ -365,19 +373,12 @@ export default {
                         ],
                     });
                 }
-            }
+            // }
         }
     },
 }
 </script>
 <style>
-*{
-    margin:0px;
-}
-html, body, #__nuxt, #__layout, #__layout > div{
-    height: 100%;
-    background: white;
-}
 a{
     text-decoration: none;
 }
@@ -386,7 +387,7 @@ textarea:focus, input:focus{
 }
 .signup-pay-page{
     text-align: center;
-    /* height: 100%; */
+    min-height: 100vh;
 }
 .sp-title{
     color: #007CDC;
@@ -406,6 +407,7 @@ textarea:focus, input:focus{
     text-align: left;
     margin: 43px auto;
     width: 82vw;
+    max-width: 475px;
     padding: 22px 24px 48px 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }

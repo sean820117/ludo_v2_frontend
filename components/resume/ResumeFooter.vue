@@ -1,7 +1,7 @@
 <template>
     <div class="md-foot-block">
         <div class="md-foot-block-info">
-            <p>連絡電話<br>(02)7751-5104</p>
+            <p>讓狂人飛教育股份有限公司</p>
             <p>客服信箱<br>contact@flyingcrazyer.com</p>
         </div>
         <div class="md-foot-block-copyright">
@@ -22,13 +22,13 @@ export default {
 <style>
 .md-foot-block {
     width: 100vw;
-    height: 350px;
+    height: 330px;
     background-color: #535353;
     text-align: center;
     color: #D2D2D2;
 }
 .md-foot-block-info {
-    font-size: 22px;
+    font-size: 16px;
     padding: 20px 0 20px 0;
 }
 .md-foot-block-info p {
@@ -38,7 +38,7 @@ export default {
     line-height: 1.5em;
 }
 .md-foot-block-copyright p {
-    font-size: 18px;
+    font-size: 14px;
     letter-spacing: 1px;
     margin-top:15px; 
 }

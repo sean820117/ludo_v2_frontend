@@ -34,17 +34,11 @@ export default {
 </script>
 <style>
 .videoplayer-container {
-    width: 100vw;
-    /* height: 222px; */
     background: transparent;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items: center;
-    /**/
-    height: 56vw;
-    background: black;
-    max-height: 40vh;
 }
 .video-player { 
     width: 100vw;

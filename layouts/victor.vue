@@ -58,7 +58,7 @@ export default {
             title: '學習歷程 - 得勝者文教',
             meta: [
                 { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
                 { hid: 'description', name: 'description', content: '得勝者文教，帶你秒懂108課綱—學習歷程！10堂課程免費看，立即註冊馬上拿！' },
                 { property : 'og:title' , content:"學習歷程 - 得勝者文教"},
                 { property : 'og:type' , content:"education tech."},

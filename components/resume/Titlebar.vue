@@ -36,4 +36,12 @@ export default {
     height: 80%;
     margin-top: 5px;
 }
+@media (min-width: 900px) {
+    .project_header .title-blue{
+        margin-left: 12vw !important;
+    }
+    .project_header .login{
+        margin-right:12vw !important;
+    }
+}
 </style>
