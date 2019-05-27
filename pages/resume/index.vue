@@ -8,7 +8,7 @@
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
             <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
         </div>
-        <div class="first-block" @mousewheel="dragFirstBlock" @scroll="dragFirstBlock">
+        <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock">
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -597,9 +597,9 @@ export default {
     methods: {
         dragFirstBlock(direction) {
             console.log(direction);
-            if (direction == "top") {
+            // if (direction == "top") {
                 this.seemore_check_or_not = true;
-            }
+            // }
         },
         openShareWindow() {
             var shareurl = "https://www.ludonow.com/resume";
