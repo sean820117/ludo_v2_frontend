@@ -74,10 +74,6 @@ export default {
 }
 </script>
 <style>
-*{
-    margin:0px;
-    font-family: 'Noto Sans TC', sans-serif;
-}
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100%;
     background: white;
