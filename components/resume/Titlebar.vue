@@ -34,6 +34,6 @@ export default {
 .project_header .title-blue{
     margin-left: 10px;
     height: 80%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 </style>

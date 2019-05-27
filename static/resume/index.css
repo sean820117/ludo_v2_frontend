@@ -390,6 +390,9 @@ html, body, #__nuxt, #__layout, #__layout > div{
     font-size: 18px;
     margin-bottom: 55px;
 }
+.comment img {
+    width: 100px;
+}
 .comment-content{
     margin-top: 15px;
 }

@@ -138,27 +138,27 @@
             </div>
             <div class="comment-title">學員的評價</div>
             <div class="comment">
-                <img src="/resume/Mask Group 6.png"/>
+                <img src="/resume/resume-stu01.png"/>
                 <div class="comment-content">
                     「原本準備畢業很忙，更沒有時間上網找很多資料，剛好有這個課程，讓我可以快速弄懂，才不會輸給其他有時間的同學」
                     <br><br>
-                    — Mario Hung
+                    — 顏小姐
                 </div>
             </div>
             <div class="comment">
-                <img src="/resume/Mask Group 7.png"/>
+                <img src="/resume/resume-stu02.png"/>
                 <div class="comment-content">
                     「從來沒想過寫法用字竟然有這麼精細的差異，整堂課程簡單不拖拉，節奏很吸睛，不會像是其他線上課程的教學視頻一樣很死板想睡，酷！」
                     <br><br>
-                    — Eva Tsu
+                    — 張先生
                 </div>
             </div>
             <div class="comment">
-                <img src="/resume/Mask Group 8.png"/>
+                <img src="/resume/resume-stu03.png"/>
                 <div class="comment-content">
                     「比起那些只講基本原則的課程還紮實許多！！還有健檢功能可以避免自我感覺良好，真的知道自己履歷哪裡有問題」
                     <br><br>
-                    — Jay Chang
+                    — 許小姐
                 </div>
             </div>
             <img class="phoneimg" src="/resume/Group 154.png"/>
@@ -624,6 +624,9 @@ export default {
     background: #0090FF;
     height: 55px;
 }
+.md-banner img {
+    margin-top: 5px;
+}
 .md-banner .md-login{
     float:right;
     font-size: 14px;
@@ -705,7 +708,7 @@ export default {
     /* display: none; */
     height: 0px;
 }
-#checkseemore:checked ~ .md-banner{
+/* #checkseemore:checked ~ .md-banner{
     background: #FFF;
     color:#0090FF;
     box-shadow: unset;
@@ -715,7 +718,7 @@ export default {
 }
 #checkseemore:checked ~ .md-banner .md-title{
     display:none;
-}
+} */
 #checkseemore:checked ~ #checkseemore {
     display: none !important;
 }
