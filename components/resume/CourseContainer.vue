@@ -110,4 +110,10 @@ export default {
 .third-radio:checked ~ .course-menu .third-content{
     display: block;
 }
+_::-webkit-full-page-media, _:future, :root .second-radio:checked ~ .course-menu {
+    height: 0;
+}
+_::-webkit-full-page-media, _:future, :root .third-radio:checked ~ .course-menu {
+    height: 0;
+}
 </style>
