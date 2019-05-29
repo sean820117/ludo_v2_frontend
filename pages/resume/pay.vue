@@ -7,7 +7,7 @@
                 <div class="reg-title">{{ !directReg ? '註冊/登入' : '直接註冊' }}</div>
                 <div class="reg-subtitle">{{ !directReg ? '付款前需先註冊成為會員' : '輸入信箱、密碼及基本資訊後完成付款即可成為會員' }}</div>
                 <div class="third-party">
-                    <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
+                    <third-party-icons :login_method="{ FB : true, google:true, line:false}" />
                 </div>
                 <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">本地註冊</div>
             </div>

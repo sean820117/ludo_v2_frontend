@@ -1,7 +1,7 @@
 <template>
     <div class="third-party-login">
         <a href="/"><img v-if="login_method.FB" src="/icon-fb.svg" @click.prevent="handleFBClick" /></a>
-        <a href="/"><img v-if="login_method.google" src="/icon-google.svg" /></a>
+        <a href="/"><img v-if="login_method.google" src="/icon-google.svg" @click.prevent="handleGoogleClick"/></a>
         <a href="/"><img v-if="login_method.line" src="/icon-line.svg" /></a>
     </div>
 </template>
@@ -25,6 +25,9 @@ export default {
             }
             
             window.location.href = 'https://api.ludonow.com/auth/facebook?from=' + this.$route.path;
+        },
+        handleGoogleClick() {
+            window.location.href = 'https://api.ludonow.com/auth/google?from=' + this.$route.path;
         }
     }
 }
