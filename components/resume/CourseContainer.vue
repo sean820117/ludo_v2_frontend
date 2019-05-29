@@ -64,7 +64,6 @@ export default {
 .course-menu {
     display: grid;
     /* grid-template-rows: 25px auto; */
-    height: 100%;
     color: white;
     font-size: 12px;
     font-weight: 500;
@@ -109,11 +108,5 @@ export default {
 .second-radio:checked ~ .course-menu .second-content,
 .third-radio:checked ~ .course-menu .third-content{
     display: block;
-}
-_::-webkit-full-page-media, _:future, :root .second-radio:checked ~ .course-menu {
-    height: 0;
-}
-_::-webkit-full-page-media, _:future, :root .third-radio:checked ~ .course-menu {
-    height: 0;
 }
 </style>

@@ -141,9 +141,25 @@ export default {
     cursor: pointer;
     margin-bottom: 5px;
 }
+.v-title{
+    font-size: 15px;
+    font-weight: bold;
+}
+.v-context{
+    font-size: 12px;
+    margin-top: 3px;
+}
 @media (min-width: 900px) {
     .video-cell {
         grid-template-columns: 160px auto;
+    }
+    .v-title{
+        font-size: 19px;
+        font-weight: bold;
+    }
+    .v-context{
+        font-size: 14px;
+        margin-top: 5px;
     }
 }
 .v-img{
@@ -152,12 +168,5 @@ export default {
 .v-img img{
     width:100%;
     height: auto;
-}
-.v-title{
-    font-size: 15px;
-    font-weight: bold;
-}
-.v-context{
-    font-size: 11px;
 }
 </style>
