@@ -20,7 +20,7 @@
                     完勝60天準備
                 </div>
             </div>
-            <label class="seemore" for="checkseemore">
+            <label class="seemore" for="checkseemore" @click="dragFirstBlock">
                 瞭解更多
                 <img src="/resume/Union 1.png"/>
             </label>
@@ -192,11 +192,9 @@
                     A3: 不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
                 </div>
             </div>
-            <router-link v-if="!is_login" to="/resume/pay">
-                <footer class="paynow">
-                    立即購買
-                </footer>
-            </router-link>
+            <footer class="paynow" v-if="!payed_or_not" @click="clickPayNow">
+                立即購買
+            </footer>
             <router-link v-else to="/resume/course">
                 <footer class="paynow">
                     開始上課
@@ -294,7 +292,7 @@
                 <div class="md-sevenblock-2">帶你實戰的線上課程+即時評測</div>
                 <div class="md-videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button @click.prevent="openShareWindow">分享</button></div></div>
-                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="500px" height="450px"></iframe>
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="md-course">
@@ -412,11 +410,9 @@
                 </div>
             </div>
             <resume-footer></resume-footer>
-            <router-link v-if="!payed_or_not" to="/resume/pay">
-                <footer class="paynow">
-                    立即購買
-                </footer>
-            </router-link>
+            <footer class="paynow" v-if="!payed_or_not" @click="clickPayNow">
+                立即購買
+            </footer>
             <router-link v-else to="/resume/course">
                 <footer class="paynow">
                     開始上課
@@ -447,7 +443,7 @@ export default {
             title: '履歷範本 - 找工作的加速器',
             meta: [
                 { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
                 { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
                 { property : 'og:type' , content:"education tech."},
@@ -471,6 +467,9 @@ export default {
         ui_config : {},
         is_ui_config_loaded : false,
         payed_or_not: false,
+        video_10_percent: false,
+        video_50_percent: false,
+        video_90_percent: false,
     }),
     computed: { 
         ...mapGetters({
@@ -548,19 +547,18 @@ export default {
                     }
                     $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
                     $("#dc-2").click(()=>switchCourse(getChapterData04.video_id));
-                    dcPlayer.on('ended', function(){
-                        document.getElementById("fbshare").style.display = "block";
-                    });
+                    dcPlayer.on('ended', this.onEndCallback());
+                    dcPlayer.on('play',this.onPlayCallback());
                 }
                 if (localStorage.isShared == "true") {
                     isShared = true;
                 }
                 $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
                 $("#dc-2").click(()=>{ switchCourse(getChapterData04.video_id);scrollTo((!isShared ? "#fbshare" : "#democourses"), (isShared ? "end" : "center") ); });
-                dcPlayer.on('ended', function(){
-                    document.getElementById("fbshare").style.display = "block";
-                    document.getElementById("share-mask").style.display = "block";
-                });
+                dcPlayer.on('ended', this.onEndCallback);
+                dcPlayer.on('play',this.onPlayCallback);
+                dcPlayer.on('pause',this.onPauseCallback);
+                dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
 
                 if (this.$mq === "mobile") {
                     var imgContainer = document.getElementById("ss-container");
@@ -591,6 +589,11 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                this.$gtag('set', 'userId', this.user.user_id );
+                this.$gtag('config', 'UA-123332732-3', {
+                    'page_title' : 'LP cover',
+                    'page_path': '/0_cover'
+                });
             }
         }
     },
@@ -600,13 +603,67 @@ export default {
             // if (direction == "top") {
                 this.seemore_check_or_not = true;
             // }
+            this.$gtag('config', 'UA-123332732-3', {
+                'page_title' : 'LP intro',
+                'page_path': '/1_intro'
+            });
         },
         openShareWindow() {
+            this.$gtag('event', 'Click', {
+                'event_category': 'Share',
+                'event_label': '試讀課程分享',
+            });
             var shareurl = "https://www.ludonow.com/resume";
             var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
             localStorage.isShared = "true";
             window.open(sharelink,"share","width=1000,height=600");
             document.getElementById("share-mask").style.display = "none";
+        },
+        onPlayCallback() {
+            this.$gtag('event', 'Play', {
+                'event_category': 'Video',
+                'event_label': '[試讀] 01 - 面試攻略',
+            });
+        },
+        onEndCallback() {
+            document.getElementById("fbshare").style.display = "block";
+            this.$gtag('event', 'End', {
+                'event_category': 'Video',
+                'event_label': '[試讀] 01 - 面試攻略',
+            });
+        },
+        onPauseCallback(data) {
+            console.log(data);
+            this.$gtag('event', 'Pause', {
+                'event_category': 'video',
+                'event_label': '[試讀] 01 - 面試攻略',
+                'value':data.seconds
+            });
+        },
+        onTimeUpdateCallback(data) {
+            if (data.seconds > 0.1 && this.video_10_percent) {
+                this.$gtag('event', 'Play_to_10%', {
+                    'event_category': 'Video',
+                    'event_label': '[試讀] 01 - 面試攻略',
+                });
+            } else if (data.seconds > 0.5 && this.video_50_percent) {
+                this.$gtag('event', 'Play_to_50%', {
+                    'event_category': 'Video',
+                    'event_label': '[試讀] 01 - 面試攻略',
+                });
+            } else if (data.seconds > 0.9 && this.video_90_percent) {
+                this.$gtag('event', 'Play_to_90%', {
+                    'event_category': 'Video',
+                    'event_label': '[試讀] 01 - 面試攻略',
+                });
+            }
+        },
+        clickPayNow() {
+            this.$gtag('event', 'Click', {
+                'event_category': 'EC',
+                'event_label': '立即購買_頁尾',
+            });
+            this.$router.push("/resume/pay");
         }
     },
     components: {
@@ -665,6 +722,7 @@ export default {
     position: absolute;
     bottom: 0px;
     left: 61px;
+    width:287px;
 }
 .earphone2{
     position: absolute;
@@ -1114,6 +1172,7 @@ export default {
     font-size: 22px;
     font-weight: 500;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 a{
     text-decoration: none;

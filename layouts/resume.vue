@@ -15,6 +15,7 @@ import Titlebar from "~/components/resume/Titlebar"
 import ResumeFooter from "~/components/resume/ResumeFooter.vue";
 import VueMq from 'vue-mq'
 import Vue from 'vue'
+import { mapMutations, mapGetters } from 'vuex';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -34,12 +35,17 @@ export default {
         is_ui_config_loaded:false,
         is_login:false,
     }),
+    computed: { 
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
     head() {
         return  {
             title: '履歷範本 - 找工作的加速器',
             meta: [
                 { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
                 { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
                 { property : 'og:type' , content:"education tech."},
@@ -73,6 +79,10 @@ export default {
                 console.log("save redirect : " + localStorage.redirect);
             }
             this.is_login = await this.$checkLogin(this.$store);
+            if (this.is_login) {
+                this.$gtag('set', 'userId', this.user.user_id );
+                this.$gtag('config', 'UA-123332732-3');
+            }
         }
     },
 }

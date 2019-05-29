@@ -83,8 +83,12 @@ export default {
             }
         },
         async toggleHistory(){
+            this.$gtag('event', 'Click History', {
+                'event_category': 'AI',
+            });
             this.isHistoryShow = !this.isHistoryShow;
             if(this.isHistoryShow){
+                
                 if (this.last_loaded_ai_id == this.ai_id) {
                     this.$refs.historyList.style.display = "block";
                 } else {
@@ -123,6 +127,9 @@ export default {
             this.$refs.autoSizeTextarea.focus();
         },
         async evaluate(content,product_id,section_part) {
+            this.$gtag('event', 'Submit', {
+                'event_category': 'AI',
+            });
             try {
                 let response = await axios.post('/apis/ai-assistant/evaluate/',{content:content,product_id:product_id,section_part:section_part})
                 if (response.status == '200') {

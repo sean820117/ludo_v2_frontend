@@ -1,5 +1,5 @@
 <template>
-    <a :href="rcFile" download>
+    <a :href="rcFile" download @click="$gtag('event', 'Download', {'event_category': 'UIEvent', 'event_label' : rcFile});">
         <div class="resource-cell">
             <img class="rc-icon" :src="imgUrl" />
             <div class="rc-text">

@@ -66,7 +66,22 @@ module.exports = {
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
-    ['@nuxtjs/google-gtag', { id: 'UA-137420846-2' }],    
+    // ['@nuxtjs/google-gtag', { id: 'UA-137420846-2' }],
+    ['@nuxtjs/google-gtag',{
+      id: 'UA-123332732-3',
+      config: {
+        'send_page_view': false,
+        'anonymize_ip': false,  
+      },
+      debug: true,
+      disableAutoPageTrack: true,
+      // additionalAccounts: [{
+      //   id: 'AW-XXX-XX',
+      //   config: {
+      //     'send_page_view': false
+      //   }
+      // }]
+    }],    
     ['nuxt-facebook-pixel-module', {
       /* module options */
       pixelId: '2273854532873952',

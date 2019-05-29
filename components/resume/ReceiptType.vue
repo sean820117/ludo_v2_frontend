@@ -12,7 +12,7 @@
             <label for="personal-carrier" class="personal-carrier">個人載具</label>
             <label for="uid-receipt" class="uid-receipt">統一編號</label>
             <div class="receipt-number">
-                <input class="personal-carrier" type="text" name="personal-carrier-number" placeholder="輸入個人載具代碼"/>
+                <input class="personal-carrier" type="text" name="personal-carrier-number" placeholder="輸入個人載具代碼" value="/"/>
                 <input class="uid-receipt" type="text" name="uid-receipt" placeholder="輸入統一編號"/>
             </div>
         </div>
@@ -29,6 +29,10 @@ export default {
     methods: {
         showReceipt(){
             this.displayReceipt = true;
+            this.$gtag('event', 'Click', {
+                'event_category': 'EC',
+                'event_label': '電子發票_更多',
+            });
         }
     },
 }

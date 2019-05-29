@@ -7,7 +7,7 @@
         <div class="course-menu">
             <div class="three-labels">
                 <label class="first-label" :for="label_name+'-first'" v-if="label_amount >= 1" >課程選單</label>
-                <label class="second-label" :for="label_name+'-second'" v-if="label_amount >= 2" >AI 評測</label>
+                <label class="second-label" :for="label_name+'-second'" v-if="label_amount >= 2" @click="clickAITap">AI 評測</label>
                 <label class="third-label" :for="label_name+'-third'" v-if="label_amount >= 3" >下載資源</label>
             </div>
 
@@ -40,6 +40,12 @@ export default {
                 content.children[i].style.height = "unset";
             }
         },
+        clickAITap() {
+            this.$gtag('event', 'Display Input', {
+                'event_category': 'AI',
+                // 'event_label': 'Display Input',
+            });
+        }
     }
 }
 </script>

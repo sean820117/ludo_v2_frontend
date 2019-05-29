@@ -95,7 +95,7 @@ export default {
     head () {
         return {
             meta: [
-                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
             ],
             script: [
                 { src: 'https://auth.aftee.tw/v1/aftee.js' , async : true}
