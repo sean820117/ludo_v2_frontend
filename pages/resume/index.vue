@@ -2,12 +2,12 @@
 <div>
     <div v-if="$mq === 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}">
         <input type="radio" id="checkseemore" style="position: fixed;" :checked="seemore_check_or_not"/>
-        <div class="banner">
+        <!-- <div class="banner">
             <img class="title" src="/resume/resume-logo.svg"/>
-            <!-- <img class="title-blue" src="/resume/resume-logo.svg"/> -->
+            
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
             <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
-        </div>
+        </div> -->
         <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock">
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
@@ -179,17 +179,37 @@
                 <div class="eb-title">FAQ</div>
                 <div class="eb-content">
                     <br><br>
-                    Q1: 請問履歷範本在哪上課？上課時間為？
+                    <b>Q1: 請問履歷範本在哪上課？</b>
                     <br><br>
-                    A1: 履歷範本為『線上課程』喔！當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。
+                    履歷範本為『線上課程』，當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。
                     <br><br>
-                    Q2: 課程可以看幾次？
+                    <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    A2: 課程為一年份訂閱制，在訂購後的這一年內都可以一直重複觀看。
+                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
                     <br><br>
-                    Q3: 會有真人幫我把我的履歷改到好嗎？
+                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
                     <br><br>
-                    A3: 不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    <br><br>
+                    <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
+                    <br><br>
+                    不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
+                    <br><br>
+                    <b>Q5: 取消訂閱</b>
+                    <br><br>
+                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
+                    <br><br>
+                    <b>Q6: 付款方式</b>
+                    <br><br>
+                    讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
+                    <br><br>
+                    <b>Q7: 電子發票開立</b>
+                    <br><br>
+                    將於付款後 30 天內寄送至您註冊之電子信箱。
+                    <br><br>
+                    <b>Q8: 其他問題</b>
+                    <br><br>
+                    請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
             </div>
             <footer class="paynow" v-if="!payed_or_not" @click="clickPayNow">
@@ -204,11 +224,11 @@
     </div>
     <div v-else :style="{display: $mq !== 'desktop' ? 'none' : 'block'}" class="md-body">
         <input type="radio" id="checkseemore" :checked="seemore_check_or_not" />
-        <div class="md-banner">
+        <!-- <div class="md-banner">
             <img class="md-title" src="/resume/resume-logo.svg"/>
-            <!-- <img class="md-title-blue" src="/resume/resume-logo.svg"/> -->
+            <img class="md-title-blue" src="/resume/resume-logo.svg"/>
             <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/login')" >{{ is_login ? '登出' : '登入'}}</div>
-        </div>
+        </div> -->
         <div class="md-first-block">
             <img class="md-earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
@@ -396,17 +416,37 @@
                 <div class="eb-title">FAQ</div>
                 <div class="eb-content" style="width: 500px;">
                     <br><br>
-                    Q1: 請問履歷範本在哪上課？上課時間為？
+                    <b>Q1: 請問履歷範本在哪上課？</b>
                     <br><br>
-                    A1: 履歷範本為『線上課程』喔！當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。
+                    履歷範本為『線上課程』，當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。
                     <br><br>
-                    Q2: 課程可以看幾次？
+                    <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    A2: 課程為一年份訂閱制，在訂購後的這一年內都可以一直重複觀看。
+                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
                     <br><br>
-                    Q3: 會有真人幫我把我的履歷改到好嗎？
+                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
                     <br><br>
-                    A3: 不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    <br><br>
+                    <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
+                    <br><br>
+                    不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
+                    <br><br>
+                    <b>Q5: 取消訂閱</b>
+                    <br><br>
+                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
+                    <br><br>
+                    <b>Q6: 付款方式</b>
+                    <br><br>
+                    讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
+                    <br><br>
+                    <b>Q7: 電子發票開立</b>
+                    <br><br>
+                    將於付款後 30 天內寄送至您註冊之電子信箱。
+                    <br><br>
+                    <b>Q8: 其他問題</b>
+                    <br><br>
+                    請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
             </div>
             <resume-footer></resume-footer>
@@ -438,6 +478,7 @@ Vue.use(VueMq, {
   }
 });
 export default {
+    layout: 'resume',
     head() {
         return  {
             title: '履歷範本 - 找工作的加速器',
