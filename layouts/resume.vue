@@ -99,6 +99,7 @@ body {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   /* background: #FDFCF7; */
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {

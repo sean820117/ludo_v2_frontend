@@ -561,9 +561,6 @@ export default {
                 loader.hide();
                 var dv = document.getElementById("demovideo");
                 var dcPlayer = new Vimeo.Player(dv);
-                // var size = Math.min(640,window.innerWidth,window.innerHeight);
-                // dv.style.height = size-36+"px";
-                // dv.style.width = size-36+"px";
                 var isShared = false;
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
@@ -617,8 +614,6 @@ export default {
                         stimer = setTimeout(()=>switchImg(1,element,stimer,theImgIndex), slideInterval);
                     });
                 }
-                // $("#pre-img").click(()=>switchImg(-1));
-                // $("#next-img").click(()=>switchImg(1));
             }, 2000);
             
             
@@ -636,6 +631,18 @@ export default {
                     'page_path': '/0_cover'
                 });
             }
+            this.$gtag('event', 'view_item_list', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 199
+                    },
+                ]
+            });
         }
     },
     methods: {

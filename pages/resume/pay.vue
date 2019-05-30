@@ -139,7 +139,7 @@ export default {
             {
               item_count:1,
               item_name:'履歷課程與評測(一個月)',
-              item_price:99,
+              item_price:199,
               shop_item_id:'resume_01',
             }
           ],
@@ -243,6 +243,22 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+            this.$gtag('event', 'purchase', {
+                "transaction_id": this.aftee_data.shop_transaction_no,
+                "value": 183.22,
+                "currency": "TWD",
+                "tax": 2.85,
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 199
+                    },
+                ],
+            });
             this.$modal.show('dialog', {
                 title: '付款成功!',
                 text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
@@ -312,6 +328,22 @@ export default {
             this.hint = null
             this.hint_color = ""
             this.processing_user_data_or_not = true;
+            this.$gtag('event', 'begin_checkout', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 199
+                    },
+                ],
+                "coupon": ""
+            });
+            this.$gtag('event', 'Virtual', {
+                'event_category': 'EC',
+            });
             try {
                 if (!this.is_login) {
                     await this.signup(this.email, this.password, this.confirm_password);
@@ -377,26 +409,36 @@ export default {
             if (this.is_login) {
                 this.email = this.user.email;
             }
-            // if (!this.is_login) {
-            //     this.$router.push("/resume/signup");
-            // } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                if (!payed_or_not) {
-                    console.log("not payed");
-                } else {
-                    console.log("payed")
-                    this.$modal.show('dialog', {
-                        text: '您已購買過此課程',
-                        buttons: [
-                            {
-                                title: '點此進入課程',       // Button title
-                                default: true,    // Will be triggered by default if 'Enter' pressed.
-                                handler: () => {this.$router.push('/resume/course')} // Button click handler
-                            },
-                        ],
-                    });
-                }
-            // }
+
+            let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+            if (!payed_or_not) {
+                console.log("not payed");
+            } else {
+                console.log("payed")
+                this.$modal.show('dialog', {
+                    text: '您已購買過此課程',
+                    buttons: [
+                        {
+                            title: '點此進入課程',       // Button title
+                            default: true,    // Will be triggered by default if 'Enter' pressed.
+                            handler: () => {this.$router.push('/resume/course')} // Button click handler
+                        },
+                    ],
+                });
+            }
+
+            this.$gtag('event', 'add_to_cart', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 199
+                    },
+                ]
+            });
         }
     },
 }
