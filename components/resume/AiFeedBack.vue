@@ -147,5 +147,6 @@ export default {
     border-radius: 7px;
     margin-top: 9px;
     margin-bottom: 10px;
+    user-select: none;
 }
 </style>
