@@ -161,7 +161,6 @@ export default {
 <style>
 .ai-judegment{
     position: relative;
-    height: 35vh;
 }
 .load-history{
     width: 80px;
@@ -201,7 +200,7 @@ export default {
 .answer-for-ai{
     margin-top:5px;
     position: relative;
-    min-height: calc(95% - 21px);
+    min-height: 35vh;
     height: fit-content;
     background: white;
     color: black;
