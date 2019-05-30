@@ -20,6 +20,9 @@
             <div class="feedback-content" v-html="getExampleDescription">
             </div>
         </div>
+        <div class="close-feed-back-box">
+            <button class="close-feed-back-btn" @click="hide">返回</button>
+        </div>
     </div>
 </template>
 <script>
@@ -148,5 +151,27 @@ export default {
     margin-top: 9px;
     margin-bottom: 10px;
     user-select: none;
+}
+.close-feed-back-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close-feed-back-btn {
+    width: 250px;
+    height: 45px;
+    background: #0090FF;
+    color: white;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top:60px; 
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+}
+@media (max-width: 767px) {
+    .close-feed-back-btn {
+        width: 100px;
+    }
 }
 </style>

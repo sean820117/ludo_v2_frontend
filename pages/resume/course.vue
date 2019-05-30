@@ -95,8 +95,8 @@ export default {
             // },3000);
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                window.alert("尚未開通課程，請先前往購買～");
-                this.$router.push('/resume/pay');
+                // window.alert("尚未開通課程，請先前往購買～");
+                // this.$router.push('/resume/pay');
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
                 if (!payed_or_not) {

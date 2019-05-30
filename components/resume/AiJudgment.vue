@@ -5,7 +5,7 @@
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
-            <textarea placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
+            <textarea class="send-textarea" placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <div class="ai-judgement-no-ai" v-else>
@@ -171,7 +171,6 @@ export default {
 <style>
 .ai-judegment{
     position: relative;
-    height: 35vh;
 }
 .load-history{
     width: 80px;
@@ -211,7 +210,7 @@ export default {
 .answer-for-ai{
     margin-top:5px;
     position: relative;
-    min-height: calc(95% - 21px);
+    min-height: 35vh;
     height: fit-content;
     background: white;
     color: black;
@@ -249,5 +248,8 @@ export default {
     text-align: center;
     font-size: 20px;
     margin-top: 50px;
+}
+.send-textarea {
+    resize : none;
 }
 </style>

@@ -64,7 +64,6 @@ export default {
 .course-menu {
     display: grid;
     /* grid-template-rows: 25px auto; */
-    height: 100%;
     color: white;
     font-size: 12px;
     font-weight: 500;
