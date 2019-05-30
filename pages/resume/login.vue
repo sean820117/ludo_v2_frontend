@@ -58,8 +58,9 @@ export default {
             this.ui_config = await require('~/config/resume-config')
             this.is_ui_config_loaded = true;
             localStorage.redirect = '/resume/course';
-
-            if (await this.$checkLogin) {
+            
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not) {
                 this.$router.push('/resume')
             }
         }
