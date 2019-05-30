@@ -1,5 +1,5 @@
 <template>
-    <div class="project_header">
+    <div class="project_header" id="header">
         <router-link :to="'/' + project_name"><img class="title-blue" :src="logo_src"/></router-link>
         <div class="login"><slot name="right-component"></slot></div>
     </div>
@@ -22,6 +22,7 @@ export default {
     width: 100%;
     background: #FFF;
     height: 55px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
 }
 .project_header .login{
     float:right;

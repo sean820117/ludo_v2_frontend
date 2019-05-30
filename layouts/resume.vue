@@ -61,7 +61,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            
+            this.$scrollTo("#header");
             this.ui_config = await require('~/config/resume-config')
             let loader = this.$loading.show({
                 color:"#1785db",
