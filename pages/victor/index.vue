@@ -66,8 +66,8 @@
                     <text id="_8堂課程_60分鐘_掌握未來60年" data-name="8堂課程   60分鐘
                     掌握未來60年" transform="translate(76 21)" fill="#707070" font-size="20" font-family="" font-weight="300"><tspan x="-75.02" y="0">8</tspan><tspan y="0" font-family="">堂課程</tspan><tspan y="0" xml:space="preserve">   60</tspan><tspan y="0" font-family="">分鐘</tspan><tspan y="0"></tspan><tspan font-family=""><tspan x="-61.12" y="34">掌握未來</tspan><tspan y="34" font-family="">60</tspan><tspan y="34">年</tspan></tspan></text>
                 </svg>
-                <svg v-if="$mq === 'mobile'" xmlns="http://www.w3.org/2000/svg" width="211" height="276" viewBox="0 0 211 276">
-                    <text id="_01._學習歷程全解析_02._會考制度介紹_03._國高中志向確立_04._特色課程解說_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰_" data-name="
+                <svg v-if="$mq === 'mobile'" xmlns="http://www.w3.org/2000/svg" width="300" height="276" viewBox="0 0 300 276">
+                    <text id="_01._學習歷程全解析_02._會考制度介紹_03._國高中志向確立_04._特色課程解說_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰(上、下)_" data-name="
                     01. 學習歷程全解析
 
                     02. 會考制度介紹
@@ -82,10 +82,10 @@
 
                     07. 校系課程地圖說明
 
-                    08. 升學制度變化與應對教戰
-                    " transform="translate(0 14)" fill="#a42c67" font-size="18" font-family="" font-weight="700"><tspan x="0" y="0"></tspan><tspan x="0" y="16">01. </tspan><tspan y="16" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="16"></tspan><tspan x="0" y="32"></tspan><tspan x="0" y="48">02. </tspan><tspan y="48" font-family="" font-weight="600">會考制度介紹</tspan><tspan y="48"></tspan><tspan x="0" y="64"></tspan><tspan x="0" y="80">03. </tspan><tspan y="80" font-family="" font-weight="600">國高中志向確立</tspan><tspan y="80"></tspan><tspan x="0" y="96"></tspan><tspan x="0" y="112">04. </tspan><tspan y="112" font-family="" font-weight="600">特色課程解說</tspan><tspan y="112"></tspan><tspan x="0" y="128"></tspan><tspan x="0" y="144">05. </tspan><tspan y="144" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="144"></tspan><tspan x="0" y="160"></tspan><tspan x="0" y="176">06. </tspan><tspan y="176" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="176"></tspan><tspan x="0" y="192"></tspan><tspan x="0" y="208">07. </tspan><tspan y="208" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="208"></tspan><tspan x="0" y="224"></tspan><tspan x="0" y="240">08. </tspan><tspan y="240" font-family="" font-weight="600">升學制度變化與應對教戰</tspan><tspan y="240"></tspan><tspan font-family=""><tspan x="0" y="256"></tspan></tspan></text>
+                    08. 升學制度變化與應對教戰(上、下)
+                    " transform="translate(0 14)" fill="#a42c67" font-size="18" font-family="" font-weight="700"><tspan x="0" y="0"></tspan><tspan x="0" y="16">01. </tspan><tspan y="16" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="16"></tspan><tspan x="0" y="32"></tspan><tspan x="0" y="48">02. </tspan><tspan y="48" font-family="" font-weight="600">會考制度介紹</tspan><tspan y="48"></tspan><tspan x="0" y="64"></tspan><tspan x="0" y="80">03. </tspan><tspan y="80" font-family="" font-weight="600">國高中志向確立</tspan><tspan y="80"></tspan><tspan x="0" y="96"></tspan><tspan x="0" y="112">04. </tspan><tspan y="112" font-family="" font-weight="600">特色課程解說</tspan><tspan y="112"></tspan><tspan x="0" y="128"></tspan><tspan x="0" y="144">05. </tspan><tspan y="144" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="144"></tspan><tspan x="0" y="160"></tspan><tspan x="0" y="176">06. </tspan><tspan y="176" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="176"></tspan><tspan x="0" y="192"></tspan><tspan x="0" y="208">07. </tspan><tspan y="208" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="208"></tspan><tspan x="0" y="224"></tspan><tspan x="0" y="240">08. </tspan><tspan y="240" font-family="" font-weight="600">升學制度變化與應對教戰(上、下)</tspan><tspan y="240"></tspan><tspan font-family=""><tspan x="0" y="256"></tspan></tspan></text>
                 </svg>
-                <svg v-if="$mq === 'desktop'" xmlns="http://www.w3.org/2000/svg" width="660" height="264" viewBox="0 0 925.919 264">
+                <svg v-if="$mq === 'desktop'" xmlns="http://www.w3.org/2000/svg" width="660" height="264" viewBox="0 0 1040.919 264">
                     <g id="Group_589" data-name="Group 589" transform="translate(-538 -454.557)">
                         <text id="_01._學習歷程全解析_02._會考制度介紹_03._國高中志向確立_04._特色課程解說" data-name="01. 學習歷程全解析
 
@@ -94,13 +94,13 @@
                     03. 國高中志向確立
 
                     04. 特色課程解說" transform="translate(538 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">01. </tspan><tspan y="0" font-family="" font-weight="600">學習歷程全解析</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">02. </tspan><tspan y="72" font-family="" font-weight="600">會考制度介紹</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">03. </tspan><tspan y="144" font-family="" font-weight="600">國高中志向確立</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">04. </tspan><tspan y="216" font-family="" font-weight="600">特色課程解說</tspan></text>
-                        <text id="_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰" data-name="05. 高中轉類組影響
+                        <text id="_05._高中轉類組影響_06._大學學群分類與職涯關係_07._校系課程地圖說明_08._升學制度變化與應對教戰(上、下)" data-name="05. 高中轉類組影響
 
                     06. 大學學群分類與職涯關係
 
                     07. 校系課程地圖說明
 
-                    08. 升學制度變化與應對教戰" transform="translate(1023.92 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">05. </tspan><tspan y="0" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">06. </tspan><tspan y="72" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">07. </tspan><tspan y="144" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">08. </tspan><tspan y="216" font-family="" font-weight="600">升學制度變化與應對教戰</tspan></text>
+                    08. 升學制度變化與應對教戰(上、下)" transform="translate(1023.92 490.557)" fill="#a42c67" font-size="34" font-family="" font-weight="700"><tspan x="0" y="0">05. </tspan><tspan y="0" font-family="" font-weight="600">高中轉類組影響</tspan><tspan y="0"></tspan><tspan x="0" y="36"></tspan><tspan x="0" y="72">06. </tspan><tspan y="72" font-family="" font-weight="600">大學學群分類與職涯關係</tspan><tspan y="72"></tspan><tspan x="0" y="108"></tspan><tspan x="0" y="144">07. </tspan><tspan y="144" font-family="" font-weight="600">校系課程地圖說明</tspan><tspan y="144"></tspan><tspan x="0" y="180"></tspan><tspan x="0" y="216">08. </tspan><tspan y="216" font-family="" font-weight="600">升學制度變化與應對教戰(上、下)</tspan></text>
                     </g>
                 </svg>
             </div>

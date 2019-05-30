@@ -4,16 +4,11 @@
             <div class="chapter-title">
                 <course-title :numberTitle="getTitle" :courseTitle="getSubtitle" />
             </div>
-            <div class="q-container" v-if="false">
-                <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
-            </div>
-            <video-play :playerID="'cp1'" :videourl="getVideoUrl" />
+            <video-play :playerID="'player1'" :videourl="getVideoUrl" />
         </div>
         <div>
             <course-container ref="courseContainer" :label_name="'whatever-you-want'" :label_amount="1">
                 <video-list @videoSrcChanged="updateChapter" slot="first-content" ref="vlist" :chapters="is_ui_config_loaded ? ui_config.chapters : []" />
-                <!-- <ai-judgment slot="second-content" />
-                <download-resource slot="third-content"/> -->
             </course-container>
         </div>
     </div>
@@ -28,19 +23,10 @@ import VideoList from "~/components/resume/VideoList"
 import AiJudgment from "~/components/resume/AiJudgment"
 import DownloadResource from "~/components/resume/DownloadResource"
 
+import { mapMutations, mapGetters } from 'vuex';
+
 export default {
     layout:'victor',
-    head () {
-        return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"}
-            ]
-        } 
-    },
     components: {
         Titlebar,
         CourseTitle,
@@ -57,6 +43,7 @@ export default {
         },
         updateChapter(chapter){
             this.current_chapter = chapter;
+            this.$scrollTo("#player1");
         }
     },
     data:() => ({
@@ -66,6 +53,9 @@ export default {
         current_chapter:{},
     }),
     computed: {
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         getTitle: function() {
             return this.is_ui_config_loaded ? this.current_chapter.title : '';
         },
@@ -73,10 +63,13 @@ export default {
             return this.is_ui_config_loaded ? this.current_chapter.subtitle : '';
         },
         getVideoUrl: function() {
-            return this.is_ui_config_loaded ?  this.baseVideoUrl + this.current_chapter.video_id : '';
+            return this.is_ui_config_loaded ?  this.baseVideoUrl + this.current_chapter.video_id : this.baseVideoUrl + '111';
         },
         getBaseColor: function() {
             return this.is_ui_config_loaded ?  this.ui_config.base_color : '';
+        },
+        getAIModelId: function() {
+            return this.is_ui_config_loaded ?  this.current_chapter.ai_id : '';
         },
     },
     mounted: async function() {
@@ -87,26 +80,15 @@ export default {
             this.ui_config = await require('~/config/victor-config')
             this.is_ui_config_loaded = true;
             this.current_chapter = this.ui_config.chapters[0];
-            if( document.readyState !== 'loading' ) {
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            }else{
-                document.addEventListener("DOMContentLoaded", (function(){
-                    this.$refs.courseContainer.resetSize();
-                    this.$refs.vlist.adjustHeight();
-                }).bind(this));
-            }
-            window.onload = (function(){
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            }).bind(this);
-            setTimeout(() => {
-                this.$refs.courseContainer.resetSize();
-                this.$refs.vlist.adjustHeight();
-            },3000);
-            if (await this.$checkLogin(this.$store) == false) {
-                this.$router.push('/victor');
-            } 
+            // window.onload = (function(){
+            //     this.$refs.courseContainer.resetSize();
+            //     this.$refs.vlist.adjustHeight();
+            // }).bind(this);
+            // setTimeout(() => {
+            //     this.$refs.courseContainer.resetSize();
+            //     this.$refs.vlist.adjustHeight();
+            // },3000);
+            let login_or_not = await this.$checkLogin(this.$store);
         }
     },
     // async asyncData (context) {
@@ -124,7 +106,7 @@ textarea:focus, input:focus{
     outline: none;
 }
 .course-container{
-    height: 100%;
+    min-height: 100%;
     display: grid;
     grid-template-rows: min-content auto;
     background: #0090FF;
@@ -139,5 +121,19 @@ textarea:focus, input:focus{
 .q-container{
     box-sizing: border-box;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 900px) {
+    .chapter-title{
+        padding-top: 80px;
+        margin-bottom: 10px;
+    }
+    .number-title {
+        font-size: 50px !important;
+        color: white;
+        font-weight: 400;
+    }
 }
 </style>
