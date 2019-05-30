@@ -42,12 +42,27 @@ export default{
         toggleLabel(i,show){// i: 第幾個標籤,編號從0開始  show: 該標籤是否顯示
             if(i>2 || i<0)return;
             if(typeof show == undefined || !show){
-                this.$refs.courseLabel.children[i].style.display = "none";
+                if(this.$refs.courseLabel.children[i].style.display != "none"){
+                    this.$refs.courseLabel.children[i].style.display = "none";
+                    this.labelNum-=1;
+                }
             }else{
-                this.$refs.courseLabel.children[i].style.display = "block";
+                if(this.$refs.courseLabel.children[i].style.display == "none"){
+                    this.$refs.courseLabel.children[i].style.display = "block";
+                    this.labelNum+=1;
+                }
             }
+            let gridCol = "";
+            for(let i=1;i<this.labelNum;i++){
+                gridCol+=(100/this.labelNum).toFixed(2) + "% ";
+            }
+            gridCol+="auto";
+            this.$refs.courseLabel.style.gridTemplateColumns = gridCol;
         }
-    }
+    },
+    data:() => ({
+        labelNum: 3
+    })
 }
 </script>
 <style>
