@@ -9,7 +9,17 @@
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <div class="ai-judgement-no-ai" v-else>
-            這堂課沒有練習喔～
+            登登！這堂課沒有 AI 練習唷！
+            <br><br>
+            搭配 AI 練習課程如以下課程：
+            <br>
+            「自我介紹標準公式」
+            <br>
+            「有效撰寫工作經歷」
+            <br>
+            「志工社團經驗呈現」
+            <br>
+            「寫出能力的公信力」
         </div>
         <ai-feed-back ref="feedBackBlock" :record_index="1" :score="current_score" :current_chapter="current_chapter"/>
     </div>

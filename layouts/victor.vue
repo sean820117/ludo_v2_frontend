@@ -84,6 +84,7 @@ export default {
                 this.is_ui_config_loaded = true;
             }
             this.is_login = await this.$checkLogin(this.$store);
+            this.$gtag('config', 'UA-137420846-2');
         }
     },
 }
@@ -99,6 +100,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  overflow-x: hidden;
   /* background: #FDFCF7; */
 }
 

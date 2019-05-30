@@ -7,7 +7,7 @@
                 <div class="reg-title">{{ !directReg ? '註冊/登入' : '直接註冊' }}</div>
                 <div class="reg-subtitle">{{ !directReg ? '付款前需先註冊成為會員' : '輸入信箱、密碼及基本資訊後完成付款即可成為會員' }}</div>
                 <div class="third-party">
-                    <third-party-icons :login_method="{ FB : true, google:true, line:true}" />
+                    <third-party-icons :login_method="{ FB : true, google:true, line:false}" />
                 </div>
                 <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">本地註冊</div>
             </div>
@@ -31,13 +31,13 @@
             <div class="reg-directly" @click="next_step_or_not = true" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
             <div v-if="next_step_or_not || is_login">
-                <div class="reg-block-title">付款方式</div>
+                <div class="reg-block-title" id="payment-type">付款方式</div>
                 <div class="payment-contract">
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。
                     <br>
                     不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！
                     <br>
-                    將於下單後 24 小時內透過簡訊寄送繳費通知。請於收到繳費通知隔日起 14 天內依照內容指示，透過便利商店代收服務或 ATM 繳費等方式完成付款手續。
+                    將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。
                     <br><br>
                     ・注意事項
                     <br>
@@ -263,30 +263,37 @@ export default {
             if (this.email.length === 0) {
                 this.hint = '請填寫電子信箱欄位'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if(!this.is_login && this.password.length === 0) {
                 this.hint = '請填寫密碼欄位'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!EMAIL_REGEX.test(this.email)) {
                 this.hint = '電子信箱格式錯誤'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!this.is_login && this.password.length < 8) {
                 this.hint = '密碼需大於八個字'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (this.password != this.confirm_password && !this.is_login) {
                 this.hint = '密碼與確認密碼不符'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (this.phone.length < 10) {
                 this.hint = '行動電話格式錯誤'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!this.customer_name) {
                 this.hint = '請填寫姓名'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             }
 
@@ -354,6 +361,10 @@ export default {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
+
+            if (this.is_login) {
+                this.email = this.user.email;
+            }
             // if (!this.is_login) {
             //     this.$router.push("/resume/signup");
             // } else {

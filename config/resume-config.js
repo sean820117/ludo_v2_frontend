@@ -2,7 +2,7 @@ module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
     logo: "/resume/resume-logo.svg",
-    base_color: '#1785db',
+    base_color: '#0090FF',
     view: {
         signup_page: {
             login_method: {
