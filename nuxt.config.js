@@ -75,12 +75,12 @@ module.exports = {
       },
       debug: true,
       disableAutoPageTrack: true,
-      // additionalAccounts: [{
-      //   id: 'AW-XXX-XX',
-      //   config: {
-      //     'send_page_view': false
-      //   }
-      // }]
+      additionalAccounts: [{
+        id: 'UA-137420846-2',
+        config: {
+          'send_page_view': false
+        }
+      }]
     }],    
     ['nuxt-facebook-pixel-module', {
       /* module options */

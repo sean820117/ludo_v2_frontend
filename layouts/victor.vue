@@ -84,6 +84,7 @@ export default {
                 this.is_ui_config_loaded = true;
             }
             this.is_login = await this.$checkLogin(this.$store);
+            this.$gtag('config', 'UA-137420846-2');
         }
     },
 }
