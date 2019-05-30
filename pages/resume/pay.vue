@@ -61,7 +61,7 @@
                 <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
                 <span class="checkmark"></span>
                 <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
-                <receipt-type :wordDark="true"/>
+                <receipt-type :wordDark="true" @onReceiptTypeChange="onReceiptTypeChange"/>
                 <div class="payment-container">
                     <div class="payment-info">
                         <div class="price">共計　新台幣　99 元</div>
@@ -122,6 +122,11 @@ export default {
         is_login:false,
         payed_or_not:false,
         agree_contract_or_not: false,
+        receipt: {
+            receipt_personal:'/',
+            receipt_uniform:'',
+            receipt_type:'e-receipt',
+        },
         aftee_data : {
           amount:99,
           customer:{
@@ -225,8 +230,11 @@ export default {
         async succeededCallback(response) {
             console.log("aftee payed succeed")
             console.log(response)
+            let result_data = this.aftee_data;
+            result_data.receipt = this.receipt;
+
             try {
-              let response = await axios.post('/apis/aftee-result',this.aftee_data)
+              let response = await axios.post('/apis/aftee-result',result_data)
               if (response.data.status == '200') {
                   console.log("payed success")
               } else {
@@ -258,6 +266,10 @@ export default {
                 Aftee.start();
                 this.processing_user_data_or_not = false;
             },3000);
+        },
+        onReceiptTypeChange(receipt) {
+            this.receipt = receipt;
+            console.log(this.receipt);
         },
         async onSubmit() {
             if (this.email.length === 0) {

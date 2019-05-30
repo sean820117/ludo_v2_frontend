@@ -29,7 +29,6 @@
     </div>
 </template>
 <script >
-import TitlebarNew from "~/components/resume/TitlebarNew"
 import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
 import { EMAIL_REGEX } from '~/components/regex.js'
 
@@ -66,7 +65,6 @@ export default {
         }
     },
     components: {
-        TitlebarNew,
         ThirdPartyIcons,
     },
     methods: {
