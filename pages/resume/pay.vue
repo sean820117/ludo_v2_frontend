@@ -14,21 +14,21 @@
             <div>
                 <form id="basic-form" v-if="!directReg && is_login && !next_step_or_not">
                     <div class="reg-block-title">基本資訊</div>
-                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" />
-                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" />
-                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email')" />
+                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" @change="checkBasicInfo"/>
+                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" @change="checkBasicInfo"/>
+                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email')" @change="checkBasicInfo"/>
                 </form>
                 
                 <form id="directly-reg-form" v-if="directReg">
-                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')" />
-                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字)" @click="$scrollTo('#input_password')" />
-                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')" />
+                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')"/>
+                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字)" @click="$scrollTo('#input_password')"/>
+                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')"/>
                     <div class="reg-block-title" v-if="next_step_or_not">基本資訊</div>
-                    <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" />
-                    <input id="input_phone_2" v-if="next_step_or_not" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" />
+                    <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" @change="checkBasicInfo"/>
+                    <input id="input_phone_2" v-if="next_step_or_not" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" @change="checkBasicInfo"/>
                 </form>
             </div>
-            <div class="reg-directly" @click="next_step_or_not = true" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
+            <div class="reg-directly" @click="checkSignupInfo" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
             <div v-if="next_step_or_not || is_login">
                 <div class="reg-block-title" id="payment-type">付款方式</div>
@@ -58,7 +58,7 @@
                     未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
                     <br><br>
                 </div>
-                <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
+                <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not" @change="checkAgreeContract(agree_contract_or_not)">
                 <span class="checkmark"></span>
                 <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
                 <receipt-type :wordDark="true" @onReceiptTypeChange="onReceiptTypeChange"/>
@@ -120,6 +120,7 @@ export default {
         displayReceipt: false,
         processing_user_data_or_not: false,
         is_login:false,
+        sended_basic_info_ga_or_not: false,
         payed_or_not:false,
         agree_contract_or_not: false,
         receipt: {
@@ -259,6 +260,9 @@ export default {
                     },
                 ],
             });
+            this.$gtag('event', 'Virtual', {
+                'event_category': 'EC',
+            });
             this.$modal.show('dialog', {
                 title: '付款成功!',
                 text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
@@ -328,7 +332,7 @@ export default {
             this.hint = null
             this.hint_color = ""
             this.processing_user_data_or_not = true;
-            this.$gtag('event', 'begin_checkout', {
+            this.$gtag('event', 'checkout_progress', {
                 "items": [
                     {
                     "id": "resume_01",
@@ -339,17 +343,55 @@ export default {
                     "price": 199
                     },
                 ],
-                "coupon": ""
             });
-            this.$gtag('event', 'Virtual', {
-                'event_category': 'EC',
+            this.$gtag('event', 'set_checkout_option', {
+                "checkout_step": 4,
+                "checkout_option": "tap go pay",
+                "value": "true"
             });
+            
             try {
                 if (!this.is_login) {
                     await this.signup(this.email, this.password, this.confirm_password);
                     this.startAftee();
+                    this.$gtag('event', 'checkout_progress', {
+                        "items": [
+                            {
+                            "id": "resume_01",
+                            "name": "履歷範本課程(一個月)",
+                            "brand": "讓狂人飛",
+                            "category": "online AI course",
+                            "quantity": 1,
+                            "price": 199
+                            },
+                        ],
+                    });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 5,
+                        "checkout_option": "go to aftee",
+                        "value": "true"
+                    });
+                    
                 } else {
                     this.startAftee();
+                    this.$gtag('event', 'checkout_progress', {
+                        "items": [
+                            {
+                            "id": "resume_01",
+                            "name": "履歷範本課程(一個月)",
+                            "brand": "讓狂人飛",
+                            "category": "online AI course",
+                            "quantity": 1,
+                            "price": 199
+                            },
+                        ],
+                    });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 5,
+                        "checkout_option": "go to aftee",
+                        "value": "true"
+                    });
+                    
                 }
             } catch (error) {
                 console.log(error);
@@ -400,15 +442,80 @@ export default {
                 this.hint_color = "red"
             }
         },
+        checkSignupInfo() {
+            this.next_step_or_not = true;
+            // if (this.email && this.password && this.confirm_password) {
+                this.$gtag('event', 'begin_checkout', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 199
+                        },
+                    ],
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "signup",
+                    "value": "local"
+                });
+            // }
+        },
+        checkBasicInfo() {
+            if (this.email && this.customer_name && this.phone) {
+                if (!this.sended_basic_info_ga_or_not) {
+                    
+                    this.$gtag('event', 'checkout_progress', {
+                        "items": [
+                            {
+                            "id": "resume_01",
+                            "name": "履歷範本課程(一個月)",
+                            "brand": "讓狂人飛",
+                            "category": "online AI course",
+                            "quantity": 1,
+                            "price": 199
+                            },
+                        ],
+                    });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 2,
+                        "checkout_option": "input basic info",
+                        "value": "complete"
+                    });
+                    this.sended_basic_info_ga_or_not = true;
+                }
+            }
+        },
+        checkAgreeContract(agree_contract_or_not) {
+            if (this.agree_contract_or_not) {
+                
+                this.$gtag('event', 'checkout_progress', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 199
+                        },
+                    ],
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 3,
+                    "checkout_option": "agree contract",
+                    "value": "true"
+                });
+            }
+        }
     },
     async mounted() {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
-
-            if (this.is_login) {
-                this.email = this.user.email;
-            }
 
             let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
             if (!payed_or_not) {
@@ -439,6 +546,27 @@ export default {
                     },
                 ]
             });
+
+            if (this.is_login) {
+                this.email = this.user.email;
+                this.$gtag('event', 'begin_checkout', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 199
+                        },
+                    ],
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "login",
+                    "value": "fb/google"
+                });
+            }
         }
     },
 }
