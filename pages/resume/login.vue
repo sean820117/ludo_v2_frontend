@@ -20,7 +20,7 @@
                 <div class="login-column-label">確認密碼</div>
                 <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
             </div>
-            <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right'}"> {{ hint }}</div>
+            <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
             <div class="btn-login-and-signup-container">
                 <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
                 <button class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</button>
@@ -58,6 +58,10 @@ export default {
             this.ui_config = await require('~/config/resume-config')
             this.is_ui_config_loaded = true;
             localStorage.redirect = '/resume/course';
+
+            if (await this.$checkLogin) {
+                this.$router.push('/resume')
+            }
         }
     },
     components: {

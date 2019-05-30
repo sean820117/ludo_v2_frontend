@@ -31,7 +31,7 @@
             <div class="reg-directly" @click="next_step_or_not = true" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
             <div v-if="next_step_or_not || is_login">
-                <div class="reg-block-title">付款方式</div>
+                <div class="reg-block-title" id="payment-type">付款方式</div>
                 <div class="payment-contract">
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。
                     <br>
@@ -263,30 +263,37 @@ export default {
             if (this.email.length === 0) {
                 this.hint = '請填寫電子信箱欄位'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if(!this.is_login && this.password.length === 0) {
                 this.hint = '請填寫密碼欄位'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!EMAIL_REGEX.test(this.email)) {
                 this.hint = '電子信箱格式錯誤'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!this.is_login && this.password.length < 8) {
                 this.hint = '密碼需大於八個字'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (this.password != this.confirm_password && !this.is_login) {
                 this.hint = '密碼與確認密碼不符'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (this.phone.length < 10) {
                 this.hint = '行動電話格式錯誤'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             } else if (!this.customer_name) {
                 this.hint = '請填寫姓名'
                 this.hint_color = "red"
+                this.$scrollTo("#payment-type");
                 return
             }
 
@@ -354,6 +361,10 @@ export default {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
+
+            if (this.is_login) {
+                this.email = this.user.email;
+            }
             // if (!this.is_login) {
             //     this.$router.push("/resume/signup");
             // } else {
