@@ -631,6 +631,18 @@ export default {
                     'page_path': '/0_cover'
                 });
             }
+        }
+    },
+    methods: {
+        dragFirstBlock(direction) {
+            console.log(direction);
+            // if (direction == "top") {
+                this.seemore_check_or_not = true;
+            // }
+            this.$gtag('config', 'UA-123332732-3', {
+                'page_title' : 'LP intro',
+                'page_path': '/1_intro'
+            });
             this.$gtag('event', 'view_item_list', {
                 "items": [
                     {
@@ -643,17 +655,17 @@ export default {
                     },
                 ]
             });
-        }
-    },
-    methods: {
-        dragFirstBlock(direction) {
-            console.log(direction);
-            // if (direction == "top") {
-                this.seemore_check_or_not = true;
-            // }
-            this.$gtag('config', 'UA-123332732-3', {
-                'page_title' : 'LP intro',
-                'page_path': '/1_intro'
+            this.$gtag('event', 'view_item', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 199
+                    },
+                ]
             });
         },
         openShareWindow() {

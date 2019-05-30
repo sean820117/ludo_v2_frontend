@@ -81,8 +81,8 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.$gtag('set', 'userId', this.user.user_id );
-                this.$gtag('config', 'UA-123332732-3');
             }
+            this.$gtag('config', 'UA-123332732-3');
         }
     },
 }
