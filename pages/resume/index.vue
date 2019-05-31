@@ -176,7 +176,7 @@
             </div>
             <div class="blank-block"></div>
             <div class="eight-block" style="padding-bottom: 20px;">
-                <div class="eb-title">FAQ</div>
+                <div class="eb-title">常見問題</div>
                 <div class="eb-content">
                     <br><br>
                     <b>Q1: 請問履歷範本在哪上課？</b>
@@ -413,7 +413,7 @@
                 </div>
             </div>
              <div class="eight-block" style="padding-bottom: 20px;">
-                <div class="eb-title">FAQ</div>
+                <div class="eb-title">常見問題</div>
                 <div class="eb-content" style="width: 500px;">
                     <br><br>
                     <b>Q1: 請問履歷範本在哪上課？</b>
@@ -449,7 +449,6 @@
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
             </div>
-            <resume-footer></resume-footer>
             <footer class="paynow" v-if="!payed_or_not" @click="clickPayNow">
                 立即購買
             </footer>
@@ -1521,11 +1520,11 @@ a{
 }
 .md-sevenblock-1{
     padding-top: 50px;
-    font-size: 90px;
+    font-size: 44px;
 }
 .md-sevenblock-2{
     margin-bottom: 38px;
-    font-size: 35px;
+    font-size: 24px;
 }
 .md-videoplay{
     position: relative;
@@ -1611,7 +1610,7 @@ a{
 }
 .md-comment-title{
     text-align: center;
-    font-size: 80px;
+    font-size: 44px;
     color: #007CDC;
     font-weight: 500;
     margin-top: 39px;

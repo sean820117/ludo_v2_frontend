@@ -140,7 +140,7 @@ export default {
             {
               item_count:1,
               item_name:'履歷課程與評測(一個月)',
-              item_price:199,
+              item_price:99,
               shop_item_id:'resume_01',
             }
           ],
@@ -353,8 +353,10 @@ export default {
             
             try {
                 if (!this.is_login) {
-                    await this.signup(this.email, this.password, this.confirm_password);
-                    this.startAftee();
+                    let result = await this.signup(this.email, this.password, this.confirm_password);
+                    if (result) {
+                        this.startAftee();
+                    }
                     this.$gtag('event', 'checkout_progress', {
                         "items": [
                             {
@@ -409,6 +411,7 @@ export default {
                   console.log("signup success")
 
                   let login_result = await this.$checkLogin(this.$store);
+                  return true;
                 //   this.$router.push('/login-redirect')
               } else {
                   if (response.data.message == "此郵件已註冊!") {
@@ -418,11 +421,13 @@ export default {
                     this.hint_color = "red"
                   }
                   console.log(response)
+                  return false;
               }
             } catch (error) {
               this.hint = '註冊失敗'
               this.hint_color = "red"
-              console.log(error)
+              console.log(error);
+              return false;
             }
         },
         async login(email,password) {
