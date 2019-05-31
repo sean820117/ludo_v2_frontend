@@ -13,13 +13,13 @@
             <br><br>
             搭配 AI 練習課程如以下課程：
             <br>
-            「自我介紹標準公式」
+            「03.自我介紹標準公式」
             <br>
-            「有效撰寫工作經歷」
+            「04.有效撰寫工作經歷」
             <br>
-            「志工社團經驗呈現」
+            「05.志工社團經驗呈現」
             <br>
-            「寫出能力的公信力」
+            「06.寫出能力的公信力」
         </div>
         <ai-feed-back ref="feedBackBlock" :record_index="1" :score="current_score" :current_chapter="current_chapter"/>
     </div>
@@ -246,8 +246,9 @@ export default {
 }
 .ai-judgement-no-ai {
     text-align: center;
-    font-size: 20px;
-    margin-top: 50px;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .send-textarea {
     resize : none;

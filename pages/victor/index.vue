@@ -361,10 +361,6 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             
             this.arrangeLandingPage();
-            if (process.env.NODE_ENV === "production") {
-                this.$fb.enable();
-                this.$fb.track();
-            }
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },
@@ -372,11 +368,11 @@ export default {
         seeMore() {
             this.show_second_block = false;
             if (process.env.NODE_ENV === "production") {
-                this.$fb.track('ViewContent');
+                this.$fbq('track','ViewContent');
             }
         }, 
         goFBGroup(url) {
-            this.$fb.query('trackCustom', 'join_group')
+            this.$fbq('trackCustom', 'join_group')
             window.location.href = url;
         },
         arrangeLandingPage(){

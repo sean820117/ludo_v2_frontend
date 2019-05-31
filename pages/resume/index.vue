@@ -97,13 +97,13 @@
                 <div id="democourses">
                     <div id="dc-1" class="course">
                         <div class="c-img"><img :src="getChapterData01.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData01.title }}(試讀)</div>
-                        <div class="c-context">{{ getChapterData01.subtitle }}</div>
+                        <div class="c-title">{{ getChapterData01.subtitle }}(試讀)</div>
+                        <div class="c-context">{{ getChapterData01.description }}</div>
                     </div>
                     <div id="dc-2" class="course">
                         <div class="c-img"><img :src="getChapterData04.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData04.title }}(試讀)</div>
-                        <div class="c-context">{{ getChapterData04.subtitle }}</div>
+                        <div class="c-title">{{ getChapterData04.subtitle }}(試讀)</div>
+                        <div class="c-context">{{ getChapterData04.description }}</div>
                     </div>
                 </div>
                 <div class="fbshare" id="fbshare">
@@ -318,15 +318,15 @@
                     <div id="dc-1" class="md-course">
                         <div class="md-c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData01.title }}(試讀)</div>
-                            <div class="md-c-context">{{ getChapterData01.subtitle }}</div>
+                            <div class="md-c-title">{{ getChapterData01.subtitle }}(試讀)</div>
+                            <div class="md-c-context">{{ getChapterData01.description }}</div>
                         </div>
                     </div>
                     <div id="dc-2" class="md-course">
                         <div class="md-c-img"><img :src="getChapterData04.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData04.title }}(試讀)</div>
-                            <div class="md-c-context">{{ getChapterData04.subtitle }}</div>
+                            <div class="md-c-title">{{ getChapterData04.subtitle }}(試讀)</div>
+                            <div class="md-c-context">{{ getChapterData04.description }}</div>
                         </div>
                     </div>
                 </div>

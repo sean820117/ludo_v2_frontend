@@ -1,10 +1,10 @@
 <template>
     <div class="vlist" ref="vlist">
         <div ref="listContent" class="list-content" >
-            <div v-for="chapter in chapters" :key="chapter.video_id" class="video-cell" @click="updateChapter(chapter)">
+            <div v-for="(chapter) in chapters" :key="chapter.video_id" class="video-cell" @click="updateChapter(chapter)">
                 <div class="v-img"><img :src="chapter.thumbnail"/></div>
-                <div class="v-title">{{ chapter.title }}</div>
-                <div class="v-context" v-html="chapter.subtitle"></div>
+                <div class="v-title">{{  chapter.subtitle }}</div>
+                <div class="v-context" v-html="chapter.description"></div>
             </div>
             <loading 
                 :active="chapters.length < 1" 
@@ -154,11 +154,11 @@ export default {
         grid-template-columns: 160px auto;
     }
     .v-title{
-        font-size: 19px;
+        font-size: 16px;
         font-weight: bold;
     }
     .v-context{
-        font-size: 14px;
+        font-size: 12px;
         margin-top: 5px;
     }
 }

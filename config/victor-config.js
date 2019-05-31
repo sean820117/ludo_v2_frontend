@@ -3,6 +3,7 @@ module.exports = {
     title:'學習歷程 - 得勝者文教',
     logo: "/logo-victor.svg",
     base_color: '#A42073',
+    fbq_id: '2273854532873952',
     view: {
         signup_page: {
             login_method: {

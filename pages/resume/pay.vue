@@ -343,12 +343,13 @@ export default {
                     "price": 199
                     },
                 ],
+                'checkout_step' : 4,
             });
-            this.$gtag('event', 'set_checkout_option', {
-                "checkout_step": 4,
-                "checkout_option": "tap go pay",
-                "value": "true"
-            });
+            // this.$gtag('event', 'set_checkout_option', {
+            //     "checkout_step": 4,
+            //     "checkout_option": "tap go pay",
+            //     "value": "true"
+            // });
             
             try {
                 if (!this.is_login) {
@@ -365,12 +366,13 @@ export default {
                             "price": 199
                             },
                         ],
+                        'checkout_step' : 5,
                     });
-                    this.$gtag('event', 'set_checkout_option', {
-                        "checkout_step": 5,
-                        "checkout_option": "go to aftee",
-                        "value": "true"
-                    });
+                    // this.$gtag('event', 'set_checkout_option', {
+                    //     "checkout_step": 5,
+                    //     "checkout_option": "go to aftee",
+                    //     "value": "true"
+                    // });
                     
                 } else {
                     this.startAftee();
@@ -385,12 +387,13 @@ export default {
                             "price": 199
                             },
                         ],
+                        'checkout_step' : 5,
                     });
-                    this.$gtag('event', 'set_checkout_option', {
-                        "checkout_step": 5,
-                        "checkout_option": "go to aftee",
-                        "value": "true"
-                    });
+                    // this.$gtag('event', 'set_checkout_option', {
+                    //     "checkout_step": 5,
+                    //     "checkout_option": "go to aftee",
+                    //     "value": "true"
+                    // });
                     
                 }
             } catch (error) {
@@ -456,12 +459,13 @@ export default {
                         "price": 199
                         },
                     ],
+                    'checkout_step' : 1,
                 });
-                this.$gtag('event', 'set_checkout_option', {
-                    "checkout_step": 1,
-                    "checkout_option": "signup",
-                    "value": "local"
-                });
+                // this.$gtag('event', 'set_checkout_option', {
+                //     "checkout_step": 1,
+                //     "checkout_option": "signup",
+                //     "value": "local"
+                // });
             // }
         },
         checkBasicInfo() {
@@ -479,12 +483,13 @@ export default {
                             "price": 199
                             },
                         ],
+                        'checkout_step' : 2,
                     });
-                    this.$gtag('event', 'set_checkout_option', {
-                        "checkout_step": 2,
-                        "checkout_option": "input basic info",
-                        "value": "complete"
-                    });
+                    // this.$gtag('event', 'set_checkout_option', {
+                    //     "checkout_step": 2,
+                    //     "checkout_option": "input basic info",
+                    //     "value": "complete"
+                    // });
                     this.sended_basic_info_ga_or_not = true;
                 }
             }
@@ -503,12 +508,13 @@ export default {
                         "price": 199
                         },
                     ],
+                    'checkout_step' : 3,
                 });
-                this.$gtag('event', 'set_checkout_option', {
-                    "checkout_step": 3,
-                    "checkout_option": "agree contract",
-                    "value": "true"
-                });
+                // this.$gtag('event', 'set_checkout_option', {
+                //     "checkout_step": 3,
+                //     "checkout_option": "agree contract",
+                //     "value": "true"
+                // });
             }
         }
     },
@@ -560,12 +566,13 @@ export default {
                         "price": 199
                         },
                     ],
+                    'checkout_step' : 1,
                 });
-                this.$gtag('event', 'set_checkout_option', {
-                    "checkout_step": 1,
-                    "checkout_option": "login",
-                    "value": "fb/google"
-                });
+                // this.$gtag('event', 'set_checkout_option', {
+                //     "checkout_step": 1,
+                //     "checkout_option": "login",
+                //     "value": "fb/google"
+                // });
             }
         }
     },

@@ -85,6 +85,10 @@ export default {
             }
             this.is_login = await this.$checkLogin(this.$store);
             this.$gtag('config', 'UA-137420846-2');
+            if (process.env.NODE_ENV === "production") {
+                this.$fbq("init",this.ui_config.fbq_id);
+                this.$fbq("track","PageView");
+            }
         }
     },
 }

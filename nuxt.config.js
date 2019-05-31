@@ -54,7 +54,7 @@ module.exports = {
   ** Build configuration
   */
   plugins: [
-    { src: '~/plugins/gtm.js', ssr: false },
+    // { src: '~/plugins/gtm.js', ssr: false },
     // { src: '~/plugins/ga-victor.js', ssr: false },
     { src: '~/plugins/hotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
@@ -63,6 +63,7 @@ module.exports = {
     { src: '~/plugins/loading.js', ssr: false },
     { src: '~/plugins/forceLogin.js', ssr: false },
     { src: '~/plugins/scrollTo.js', ssr: false },
+    { src: '~/plugins/fbq.js', ssr: false },
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
@@ -81,11 +82,6 @@ module.exports = {
           'send_page_view': false
         }
       }]
-    }],    
-    ['nuxt-facebook-pixel-module', {
-      /* module options */
-      pixelId: '2273854532873952',
-      disabled: true,
     }],
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],

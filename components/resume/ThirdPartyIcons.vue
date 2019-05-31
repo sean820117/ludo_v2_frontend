@@ -20,8 +20,7 @@ export default {
                     'send_to': 'AW-744113367/TiSjCLOMw54BENeJ6eIC',
                     'event_callback': function () {},
                 });
-                this.$fb.enable();
-                this.$fb.track('CompleteRegistration');
+                this.$fbq("track","CompleteRegistration");
             }
             
             window.location.href = 'https://api.ludonow.com/auth/facebook?from=' + this.$route.path;
