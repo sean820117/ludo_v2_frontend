@@ -8,7 +8,7 @@
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
             <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
         </div> -->
-        <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock">
+        <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock" v-touch:moved="dragFirstBlock" >
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -97,12 +97,12 @@
                 <div id="democourses">
                     <div id="dc-1" class="course">
                         <div class="c-img"><img :src="getChapterData01.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData01.subtitle }}(試讀)</div>
+                        <div class="c-title">面試官思維分析(試讀)</div>
                         <div class="c-context">{{ getChapterData01.description }}</div>
                     </div>
-                    <div id="dc-2" class="course">
+                    <div id="dc-2" class="course" @click="onSecondPreviewCourseClick">
                         <div class="c-img"><img :src="getChapterData04.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData04.subtitle }}(試讀)</div>
+                        <div class="c-title">有效撰寫工作經歷(試讀)</div>
                         <div class="c-context">{{ getChapterData04.description }}</div>
                     </div>
                 </div>
@@ -318,14 +318,14 @@
                     <div id="dc-1" class="md-course">
                         <div class="md-c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData01.subtitle }}(試讀)</div>
+                            <div class="md-c-title">面試官思維分析(試讀)</div>
                             <div class="md-c-context">{{ getChapterData01.description }}</div>
                         </div>
                     </div>
-                    <div id="dc-2" class="md-course">
+                    <div id="dc-2" class="md-course" @click="onSecondPreviewCourseClick">
                         <div class="md-c-img"><img :src="getChapterData04.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData04.subtitle }}(試讀)</div>
+                            <div class="md-c-title">有效撰寫工作經歷(試讀)</div>
                             <div class="md-c-context">{{ getChapterData04.description }}</div>
                         </div>
                     </div>
@@ -510,6 +510,7 @@ export default {
         video_10_percent: false,
         video_50_percent: false,
         video_90_percent: false,
+        dv:{},
     }),
     computed: { 
         ...mapGetters({
@@ -558,40 +559,22 @@ export default {
             });
             setTimeout(() => {
                 loader.hide();
-                var dv = document.getElementById("demovideo");
-                var dcPlayer = new Vimeo.Player(dv);
-                var isShared = false;
+                this.dv = document.getElementById("demovideo");
+                var dcPlayer = new Vimeo.Player(this.dv);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
                 document.getElementById("democourses").onclick = function(){
                     document.getElementById("fbshare").style.display = "block";
                 }
                 function openShareWindow(){
-                    isShared = true;
+                    localStorage.isShared = 'true';
                     window.open(sharelink,"share","width=1000,height=600");
                     document.getElementById("share-mask").style.display = "none";
                 }
                 document.getElementById("clickshare").onclick = openShareWindow;
                 document.getElementById("share-mask").onclick = openShareWindow;
-                function switchCourse(id){
-                    if(localStorage.isShared == "true"){
-                        dv.src = "https://player.vimeo.com/video/"+id;
-                    }
-                    function switchCourse(id){
-                        if(localStorage.isShared == "true"){
-                            dv.src = "https://player.vimeo.com/video/"+id;
-                        }
-                    }
-                    $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                    $("#dc-2").click(()=>switchCourse(getChapterData04.video_id));
-                    dcPlayer.on('ended', this.onEndCallback());
-                    dcPlayer.on('play',this.onPlayCallback());
-                }
-                if (localStorage.isShared == "true") {
-                    isShared = true;
-                }
                 $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                $("#dc-2").click(()=>{ switchCourse(getChapterData04.video_id);scrollTo((!isShared ? "#fbshare" : "#democourses"), (isShared ? "end" : "center") ); });
+
                 dcPlayer.on('ended', this.onEndCallback);
                 dcPlayer.on('play',this.onPlayCallback);
                 dcPlayer.on('pause',this.onPauseCallback);
@@ -723,7 +706,21 @@ export default {
                 'event_label': '立即購買_頁尾',
             });
             this.$router.push("/resume/pay");
-        }
+        },
+        onSecondPreviewCourseClick() {
+            if (localStorage.isShared != "true") {
+                window.alert("需要先分享才能觀看這堂課喔");    
+                this.$scrollTo("#fbshare"); 
+            } else {
+                this.switchCourse(this.getChapterData04.video_id);
+                this.$scrollTo("#democourses"); 
+            }
+        },
+        switchCourse(id){
+            if(localStorage.isShared == "true"){
+                this.dv.src = "https://player.vimeo.com/video/"+id;
+            }
+        },
     },
     components: {
         ResumeFooter,
@@ -768,7 +765,7 @@ export default {
 }
 
 .first-block{
-    position: relative;
+    position: fixed;
     width:100vw;
     height: 100vh;
     background: url("/resume/Group 139.png") #0090FF;
@@ -810,6 +807,9 @@ export default {
     transition: top 300ms linear;
     top: 0px;
     visibility: visible;
+}
+#checkseemore:checked ~ .first-block{
+    position: relative;
 }
 .scrolldown{
     display:none;
@@ -1273,7 +1273,7 @@ a{
     margin-left: 12vw;
 }
 .md-first-block{
-    position: relative;
+    position: fixed;
     width:100vw;
     height: 100vh;
     background: url("/resume/Group 367.png") #0090FF;

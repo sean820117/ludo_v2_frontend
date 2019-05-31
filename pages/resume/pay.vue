@@ -21,7 +21,7 @@
                 
                 <form id="directly-reg-form" v-if="directReg">
                     <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')"/>
-                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字)" @click="$scrollTo('#input_password')"/>
+                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字且英數字混合)" @click="$scrollTo('#input_password')"/>
                     <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')"/>
                     <div class="reg-block-title" v-if="next_step_or_not">基本資訊</div>
                     <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" @change="checkBasicInfo"/>
@@ -308,7 +308,7 @@ export default {
                 this.$scrollTo("#payment-type");
                 return
             } else if (!this.is_login && this.password.length < 8) {
-                this.hint = '密碼需大於八個字'
+                this.hint = '密碼需大於八個字且英數字混合'
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
@@ -317,8 +317,8 @@ export default {
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
-            } else if (this.phone.length < 10) {
-                this.hint = '行動電話格式錯誤'
+            } else if (this.phone.length == 10) {
+                this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
@@ -527,6 +527,7 @@ export default {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
+            localStorage.redirect = this.$route.path;
 
             let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
             if (!payed_or_not) {

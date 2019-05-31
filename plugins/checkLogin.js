@@ -1,6 +1,4 @@
 import axios from '../config/axios-config'
-import Vue from 'vue'
-// import checkAuthority from '../middleware/checkAuthority'
 
 async function checkLogin (store) {
     console.log("checkLogin");

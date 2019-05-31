@@ -1,9 +1,23 @@
 /* eslint-disable */
 
-function fbq (event,label,options = null) {
+function fbPixel (event,label,options = null) {
+    if (process.env.NODE_ENV !== "production") return;
+
+    if (!options) {
+        fbq(event, label);
+    } else {
+        fbq(event, label, options);
+    }
+    // fbq("init", "YOUR_FACEBOOK_PIXEL_ID");
+  
+    // fbq("track", "PageView");
+}
+
+export default ({ app }, inject) => {
     /*
      ** Only run on client-side and only in production mode
      */
+    inject('fbq', fbPixel)
     if (process.env.NODE_ENV !== "production") return;
     /*
      ** Initialize Facebook Pixel Script
@@ -29,16 +43,6 @@ function fbq (event,label,options = null) {
       "script",
       "https://connect.facebook.net/en_US/fbevents.js"
     );
-    if (!options) {
-        fbq(event, label);
-    } else {
-        fbq(event, label, options);
-    }
-    // fbq("init", "YOUR_FACEBOOK_PIXEL_ID");
-  
-    // fbq("track", "PageView");
-}
 
-export default ({ app }, inject) => {
-    inject('fbq', fbq)
+    
 }

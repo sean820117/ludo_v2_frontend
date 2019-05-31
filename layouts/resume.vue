@@ -1,7 +1,7 @@
 <template>
   <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">
-        <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
+        <div v-if="user.user_id != ''" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
         <div v-else slot="right-component" @click="$router.push('/resume/login')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
     </titlebar>
     <nuxt/>
@@ -83,6 +83,8 @@ export default {
                 this.$gtag('set', 'userId', this.user.user_id );
             }
             this.$gtag('config', 'UA-123332732-3');
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
         }
     },
 }

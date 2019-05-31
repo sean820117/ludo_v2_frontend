@@ -140,7 +140,7 @@
                     <text id="加入_Facebook_社團_搶先收看最新解題直播" data-name="加入 Facebook 社團
                     搶先收看最新解題直播" transform="translate(100 21)" fill="#707070" font-size="20" font-family=""><tspan x="-89.473" y="0">加入</tspan><tspan y="0" xml:space="preserve" font-family=""> Facebook </tspan><tspan y="0">社團</tspan><tspan y="0" font-family=""></tspan><tspan x="-100" y="30">搶先收看最新解題直播</tspan></text>
                 </svg>
-                <a href="https://www.facebook.com/groups/350744379127084/">
+                <a @click.prevent="goFBGroup('https://www.facebook.com/groups/350744379127084/')">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
                         <defs>
                             <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
@@ -373,6 +373,7 @@ export default {
         }, 
         goFBGroup(url) {
             this.$fbq('trackCustom', 'join_group')
+            console.log('group');
             window.location.href = url;
         },
         arrangeLandingPage(){
