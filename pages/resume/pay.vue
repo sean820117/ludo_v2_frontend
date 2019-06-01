@@ -266,6 +266,13 @@ export default {
             this.$gtag('event', 'Virtual', {
                 'event_category': 'EC',
             });
+            this.$fbq('track', 'Purchase', {
+                currency: "TWD", 
+                value: 299.00,
+                content_ids: 'resume_01',
+                content_type: 'product'
+            });
+
             this.$modal.show('dialog', {
                 title: '付款成功!',
                 text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
@@ -355,31 +362,8 @@ export default {
             });
             
             try {
-                if (!this.is_login) {
-                    let result = await this.signup(this.email, this.password, this.confirm_password);
-                    if (result) {
-                        this.startAftee();
-                    }
-                    this.$gtag('event', 'checkout_progress', {
-                        "items": [
-                            {
-                            "id": "resume_01",
-                            "name": "履歷範本課程(一個月)",
-                            "brand": "讓狂人飛",
-                            "category": "online AI course",
-                            "quantity": 1,
-                            "price": 299
-                            },
-                        ],
-                        'checkout_step' : 5,
-                    });
-                    this.$gtag('event', 'set_checkout_option', {
-                        "checkout_step": 5,
-                        "checkout_option": "go to aftee",
-                        "value": "true"
-                    });
-                    
-                } else {
+                let result = await this.signup(this.email, this.password, this.confirm_password);
+                if (this.is_login) {
                     this.startAftee();
                     this.$gtag('event', 'checkout_progress', {
                         "items": [
@@ -400,11 +384,14 @@ export default {
                         "value": "true"
                     });
                     
+                } else {
+                    this.$scrollTo("#payment-type");
                 }
             } catch (error) {
                 console.log(error);
                 this.processing_user_data_or_not = false;
             }
+            this.processing_user_data_or_not = false;
         },
         async signup(email,password,repeated_password) {
             console.log("go sign up")
@@ -441,17 +428,23 @@ export default {
                     console.log("login success")
                     console.log(response)
                     let login_result = await this.$checkLogin(this.$store);
+                    return true;
                     // this.$router.push('/login-redirect')
                 } else {
                     console.log(response)
-                    this.hint = response.data.message;
+                    // this.hint = response.data.message;
+                    this.hint = "此帳號已註冊過，請先點選右上角登入";
+                    window.alert("此帳號已註冊過，請先進行登入！");
+                    this.$router.push('/resume/login')
                     this.hint_color = "red"
+                    return false;
                 }
             } 
             catch (error) {
                 console.log(error)
                 this.hint = "傳送失敗，請重新嘗試"
                 this.hint_color = "red"
+                return false;
             }
         },
         checkSignupInfo() {

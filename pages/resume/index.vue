@@ -113,9 +113,9 @@
             </div>
             <div class="eight-block">
                 <div class="eb-title">課程單元介紹</div>
-                <div class="eb-des-box" style="margin-top:20px;" :class="showOrNotA" @click="toggleClassA()">
+                <div class="eb-des-box" style="margin-top:20px;" :class="show_list[0]" @click="toggleClass(0)">
                     <div class="eb-des-box-title">第一堂課<br>面試官思維分析<hr>
-                    <div class="eb-des-circle" :class="showOrNotA">
+                    <div class="eb-des-circle" :class="show_list[0]">
                         <div></div>
                         <div></div>
                     </div>
@@ -129,9 +129,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotB" @click="toggleClassB()">
+                <div class="eb-des-box" :class="show_list[1]" @click="toggleClass(1)">
                     <div class="eb-des-box-title">第二堂課<br>選擇正確平台與邏輯<hr>
-                    <div class="eb-des-circle" :class="showOrNotB">
+                    <div class="eb-des-circle" :class="show_list[1]">
                         <div></div>
                         <div></div>
                     </div>
@@ -145,9 +145,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotC" @click="toggleClassC()">
+                <div class="eb-des-box" :class="show_list[2]" @click="toggleClass(2)">
                     <div class="eb-des-box-title">第三堂課<br>自我介紹標準公式<hr>
-                    <div class="eb-des-circle" :class="showOrNotC">
+                    <div class="eb-des-circle" :class="show_list[2]">
                         <div></div>
                         <div></div>
                     </div>
@@ -160,10 +160,10 @@
                         </div>  
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotD" @click="toggleClassD()">
+                <div class="eb-des-box" :class="show_list[3]" @click="toggleClass(3)">
                     <div class="eb-des-box-title">第四堂課<br>有效撰寫工作經歷<hr>
                         <div class="eb-des-box-content">
-                            <div class="eb-des-circle" :class="showOrNotD">
+                            <div class="eb-des-circle" :class="show_list[3]">
                                 <div></div>
                                 <div></div>
                             </div>
@@ -176,9 +176,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotE" @click="toggleClassE()">
+                <div class="eb-des-box" :class="show_list[4]" @click="toggleClass(4)">
                     <div class="eb-des-box-title">第五堂課<br>志工與社團經驗呈現<hr>
-                    <div class="eb-des-circle" :class="showOrNotE">
+                    <div class="eb-des-circle" :class="show_list[4]">
                         <div></div>
                         <div></div>
                     </div>    
@@ -191,9 +191,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotF" @click="toggleClassF()">
+                <div class="eb-des-box" :class="show_list[5]" @click="toggleClass(5)">
                     <div class="eb-des-box-title">第六堂課<br>寫出能力的公信力<hr>
-                    <div class="eb-des-circle" :class="showOrNotF">
+                    <div class="eb-des-circle" :class="show_list[5]">
                         <div></div>
                         <div></div>
                     </div>
@@ -206,9 +206,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotG" @click="toggleClassG()">
+                <div class="eb-des-box" :class="show_list[6]" @click="toggleClass(6)">
                     <div class="eb-des-box-title">第七堂課<br>利用學歷與個人成就<hr>
-                    <div class="eb-des-circle" :class="showOrNotG">
+                    <div class="eb-des-circle" :class="show_list[6]">
                         <div></div>
                         <div></div>
                     </div>
@@ -222,9 +222,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotH" @click="toggleClassH()">
+                <div class="eb-des-box" :class="show_list[7]" @click="toggleClass(7)">
                     <div class="eb-des-box-title">第八堂課<br>自傳五大向度分析<hr>
-                    <div class="eb-des-circle" :class="showOrNotH">
+                    <div class="eb-des-circle" :class="show_list[7]">
                         <div></div>
                         <div></div>
                     </div>
@@ -237,9 +237,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotI" @click="toggleClassI()">
+                <div class="eb-des-box" :class="show_list[8]" @click="toggleClass(8)">
                     <div class="eb-des-box-title">第九堂課<br>面試常見題目解析<hr>
-                    <div class="eb-des-circle" :class="showOrNotI">
+                    <div class="eb-des-circle" :class="show_list[8]">
                         <div></div>
                         <div></div>
                     </div>
@@ -255,9 +255,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotJ" @click="toggleClassJ()">
+                <div class="eb-des-box" :class="show_list[9]" @click="toggleClass(9)">
                     <div class="eb-des-box-title">第十堂課<br>提高求職信開信率<hr>
-                    <div class="eb-des-circle" :class="showOrNotJ">
+                    <div class="eb-des-circle" :class="show_list[9]">
                         <div></div>
                         <div></div>
                     </div>
@@ -705,16 +705,7 @@ export default {
         video_50_percent: false,
         video_90_percent: false,
         dv:{},
-        show_a:false,
-        show_b:false,
-        show_c:false,
-        show_d:false,
-        show_e:false,
-        show_f:false,
-        show_g:false,
-        show_h:false,
-        show_i:false,
-        show_j:false,
+        show_list:[],
     }),
     computed: { 
         ...mapGetters({
@@ -748,37 +739,6 @@ export default {
             }
             return data;
         },
-        showOrNotA(){
-            return this.show_a ? 'open':'';
-        },
-        showOrNotB(){
-            return this.show_b ? 'open':'';
-        },
-        showOrNotC(){
-            return this.show_c ? 'open':'';
-        },
-        showOrNotD(){
-            return this.show_d ? 'open':'';
-        },
-        showOrNotE(){
-            return this.show_e ? 'open':'';
-        },
-        showOrNotF(){
-            return this.show_f ? 'open':'';
-        },
-        showOrNotG(){
-            return this.show_g ? 'open':'';
-        },
-        showOrNotH(){
-            return this.show_h ? 'open':'';
-        },
-        showOrNotI(){
-            return this.show_i ? 'open':'';
-        },
-        showOrNotJ(){
-            return this.show_j ? 'open':'';
-        },
-
     },
     async beforeCreate() {
         if (process.client) {
@@ -900,6 +860,7 @@ export default {
                 'event_category': 'Video',
                 'event_label': '[試讀] 01 - 面試攻略',
             });
+            this.$fbq('trackCustom', 'PlayVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onEndCallback() {
             document.getElementById("fbshare").style.display = "block";
@@ -915,6 +876,7 @@ export default {
                 'event_label': '[試讀] 01 - 面試攻略',
                 'value':data.seconds
             });
+            this.$fbq('trackCustom', 'PauseVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onTimeUpdateCallback(data) {
             if (data.seconds > 0.1 && this.video_10_percent) {
@@ -922,16 +884,19 @@ export default {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo10p', {title: '[試讀] 01 - 面試攻略'});
             } else if (data.seconds > 0.5 && this.video_50_percent) {
                 this.$gtag('event', 'Play_to_50%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo50p', {title: '[試讀] 01 - 面試攻略'});
             } else if (data.seconds > 0.9 && this.video_90_percent) {
                 this.$gtag('event', 'Play_to_90%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo90p', {title: '[試讀] 01 - 面試攻略'});
             }
         },
         clickPayNow() {
@@ -939,6 +904,13 @@ export default {
                 'event_category': 'EC',
                 'event_label': '立即購買_頁尾',
             });
+            this.$fbq('track', 'AddToCart', {
+                currency: "TWD", 
+                value: 299.00,
+                content_ids: 'resume_01',
+                content_type: 'product'
+            });
+
             this.$router.push("/resume/pay");
         },
         onSecondPreviewCourseClick() {
@@ -955,35 +927,13 @@ export default {
                 this.dv.src = "https://player.vimeo.com/video/"+id;
             }
         },
-        toggleClassA() {
-            this.show_a = !this.show_a;
-        },
-        toggleClassB() {
-            this.show_b = !this.show_b;
-        },
-        toggleClassC() {
-            this.show_c = !this.show_c;
-        },
-        toggleClassD() {
-            this.show_d = !this.show_d;
-        },
-        toggleClassE() {
-            this.show_e = !this.show_e;
-        },
-        toggleClassF() {
-            this.show_f = !this.show_f;
-        },
-        toggleClassG() {
-            this.show_g = !this.show_g;
-        },
-        toggleClassH() {
-            this.show_h = !this.show_h;
-        },
-        toggleClassI() {
-            this.show_i = !this.show_i;
-        },
-        toggleClassJ() {
-            this.show_j = !this.show_j;
+        toggleClass(index) {
+            this.show_list = [];
+            this.show_list[index] = 'open'
+            this.$gtag('event', 'Toggle_On | Toggle_Off', {
+                eventCategory: 'UIEvent',
+                eventLabel: '課程' + index
+            });
         },
     },
     components: {
