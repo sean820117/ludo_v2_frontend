@@ -76,6 +76,9 @@
                 loader="dots"
             ></loading>
         </div>
+        <div class="aftee_banner">
+            <img src="/resume/AFTEE-bn01.png" alt="">
+        </div>
     </div>
 </template>
 <script>
@@ -246,7 +249,7 @@ export default {
             }
             this.$gtag('event', 'purchase', {
                 "transaction_id": this.aftee_data.shop_transaction_no,
-                "value": 183.22,
+                "value": 99,
                 "currency": "TWD",
                 "tax": 2.85,
                 "items": [
@@ -256,7 +259,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 199
+                    "price": 99
                     },
                 ],
             });
@@ -317,7 +320,7 @@ export default {
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
-            } else if (this.phone.length == 10) {
+            } else if (this.phone.length != 10) {
                 this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
@@ -340,16 +343,16 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 199
+                    "price": 99
                     },
                 ],
                 'checkout_step' : 4,
             });
-            // this.$gtag('event', 'set_checkout_option', {
-            //     "checkout_step": 4,
-            //     "checkout_option": "tap go pay",
-            //     "value": "true"
-            // });
+            this.$gtag('event', 'set_checkout_option', {
+                "checkout_step": 4,
+                "checkout_option": "tap go pay",
+                "value": "true"
+            });
             
             try {
                 if (!this.is_login) {
@@ -365,16 +368,16 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 199
+                            "price": 99
                             },
                         ],
                         'checkout_step' : 5,
                     });
-                    // this.$gtag('event', 'set_checkout_option', {
-                    //     "checkout_step": 5,
-                    //     "checkout_option": "go to aftee",
-                    //     "value": "true"
-                    // });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 5,
+                        "checkout_option": "go to aftee",
+                        "value": "true"
+                    });
                     
                 } else {
                     this.startAftee();
@@ -386,16 +389,16 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 199
+                            "price": 99
                             },
                         ],
                         'checkout_step' : 5,
                     });
-                    // this.$gtag('event', 'set_checkout_option', {
-                    //     "checkout_step": 5,
-                    //     "checkout_option": "go to aftee",
-                    //     "value": "true"
-                    // });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 5,
+                        "checkout_option": "go to aftee",
+                        "value": "true"
+                    });
                     
                 }
             } catch (error) {
@@ -415,7 +418,8 @@ export default {
                 //   this.$router.push('/login-redirect')
               } else {
                   if (response.data.message == "此郵件已註冊!") {
-                      this.login(email,password);
+                      await this.login(email,password);
+                      return true;
                   } else {
                     this.hint = '註冊失敗 - ' + response.data.message;
                     this.hint_color = "red"
@@ -461,16 +465,16 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 199
+                        "price": 99
                         },
                     ],
                     'checkout_step' : 1,
                 });
-                // this.$gtag('event', 'set_checkout_option', {
-                //     "checkout_step": 1,
-                //     "checkout_option": "signup",
-                //     "value": "local"
-                // });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "signup",
+                    "value": "local"
+                });
             // }
         },
         checkBasicInfo() {
@@ -485,16 +489,16 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 199
+                            "price": 99
                             },
                         ],
                         'checkout_step' : 2,
                     });
-                    // this.$gtag('event', 'set_checkout_option', {
-                    //     "checkout_step": 2,
-                    //     "checkout_option": "input basic info",
-                    //     "value": "complete"
-                    // });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 2,
+                        "checkout_option": "input basic info",
+                        "value": "complete"
+                    });
                     this.sended_basic_info_ga_or_not = true;
                 }
             }
@@ -510,16 +514,16 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 199
+                        "price": 99
                         },
                     ],
                     'checkout_step' : 3,
                 });
-                // this.$gtag('event', 'set_checkout_option', {
-                //     "checkout_step": 3,
-                //     "checkout_option": "agree contract",
-                //     "value": "true"
-                // });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 3,
+                    "checkout_option": "agree contract",
+                    "value": "true"
+                });
             }
         }
     },
@@ -554,7 +558,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 199
+                    "price": 99
                     },
                 ]
             });
@@ -569,16 +573,16 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 199
+                        "price": 99
                         },
                     ],
                     'checkout_step' : 1,
                 });
-                // this.$gtag('event', 'set_checkout_option', {
-                //     "checkout_step": 1,
-                //     "checkout_option": "login",
-                //     "value": "fb/google"
-                // });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "login",
+                    "value": "fb/google"
+                });
             }
         }
     },
@@ -740,4 +744,13 @@ textarea:focus, input:focus{
     font-size: 17px;
     cursor: not-allowed;
 }	
+.aftee_banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.aftee_banner img {
+    width: 100vw;
+    max-width: 400px;
+}
 </style>

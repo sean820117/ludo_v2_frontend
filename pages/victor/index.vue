@@ -373,8 +373,13 @@ export default {
         }, 
         goFBGroup(url) {
             this.$fbq('trackCustom', 'join_group')
-            console.log('group');
-            window.location.href = url;
+            this.$gtag('event', 'conversion', {
+                'send_to': 'AW-744113367/nzQWCOPNqaEBENeJ6eIC',
+                'event_callback': function() {
+                    console.log('group');
+                    window.location.href = url;
+                }
+            });
         },
         arrangeLandingPage(){
             var imgContainer = document.getElementById("ss-container");
@@ -564,6 +569,9 @@ p.content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.single-option a {
+    cursor: pointer;
 }
 .flex {
     display: flex;
