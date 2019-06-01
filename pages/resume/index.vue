@@ -113,27 +113,163 @@
             </div>
             <div class="eight-block">
                 <div class="eb-title">課程單元介紹</div>
-                <div class="eb-des">囊括台灣常見人力銀行履歷需求</div>
-                <div class="eb-content">
-                    1 - 換位思考，告訴你人資如何看履歷！
-                    <br><br>
-                    2 - 從選平台到職缺說明，教你做前期準備功課
-                    <br><br>
-                    3 - 最強自我介紹公式！貫穿所有自介需求！
-                    <br><br>
-                    4 - 不只簡單交代！三點條列讓你真正寫好經歷
-                    <br><br>
-                    5 - 零經驗的逆襲！無相關經驗也能寫出有效經歷
-                    <br><br>
-                    6 - 讓能力具有公信力！追求讓公司最有共鳴
-                    <br><br>
-                    7 - 校系獎狀大影響！妥善利用學歷與個人成就
-                    <br><br>
-                    8 - 自傳該不該寫？重點都寫到才加分！
-                    <br><br>
-                    9 - 那些題目在問什麼？常見面試題目暗黑解析
-                    <br><br>
-                    10 - 寄出前的準備，寫出高開信率的自我推薦！
+                <div class="eb-des-box" style="margin-top:20px;" :class="showOrNotA" @click="toggleClassA()">
+                    <div class="eb-des-box-title">第一堂課<br>面試官思維分析<hr>
+                    <div class="eb-des-circle" :class="showOrNotA">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content">
+                        <ol>
+                            <li>求職前，你該知道面試官如何看履歷！</li>
+                            <li>履歷隱藏四大指標：信度、價值、包容、願景</li>
+                            <li>如何透過舉例與經驗來呈現能力極限</li>
+                            </ol>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotB" @click="toggleClassB()">
+                    <div class="eb-des-box-title">第二堂課<br>選擇正確平台與邏輯<hr>
+                    <div class="eb-des-circle" :class="showOrNotB">
+                        <div></div>
+                        <div></div>
+                    </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>從選平台到職缺說明，教你做前期準備功課</li>
+                                <li>求職平台介紹與優劣分析</li>
+                                <li>目標產業的前景分析與薪水差異</li>
+                            </ol>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotC" @click="toggleClassC()">
+                    <div class="eb-des-box-title">第三堂課<br>自我介紹標準公式<hr>
+                    <div class="eb-des-circle" :class="showOrNotC">
+                        <div></div>
+                        <div></div>
+                    </div>
+                        <div class="eb-des-box-content">
+                        <ol>
+                            <li>價值觀的定義：你看見的問題與你如何改變</li>
+                            <li>自我介紹關鍵公式，四大元素留下深刻印象</li>
+                        </ol>
+                        <hr> 
+                        </div>  
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotD" @click="toggleClassD()">
+                    <div class="eb-des-box-title">第四堂課<br>有效撰寫工作經歷<hr>
+                        <div class="eb-des-box-content">
+                            <div class="eb-des-circle" :class="showOrNotD">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        <ol>
+                            <li>工作經歷的撰寫方式</li>
+                            <li>三條經歷撰寫，有效呈現經驗質與量</li>
+                            <li>寫出面試官心中，最有感的實際績效數字</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotE" @click="toggleClassE()">
+                    <div class="eb-des-box-title">第五堂課<br>志工與社團經驗呈現<hr>
+                    <div class="eb-des-circle" :class="showOrNotE">
+                        <div></div>
+                        <div></div>
+                    </div>    
+                        <div class="eb-des-box-content">
+                        <ol>
+                            <li>將重心轉移到學習成效</li>
+                            <li>將社團經歷做為跳板，接軌職場需求</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotF" @click="toggleClassF()">
+                    <div class="eb-des-box-title">第六堂課<br>寫出能力的公信力<hr>
+                    <div class="eb-des-circle" :class="showOrNotF">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content">
+                        <ol>
+                            <li>從職缺說明，找出職位能力需求</li>
+                            <li>從公司需求找出能力最佳操作定義</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotG" @click="toggleClassG()">
+                    <div class="eb-des-box-title">第七堂課<br>利用學歷與個人成就<hr>
+                    <div class="eb-des-circle" :class="showOrNotG">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content">
+                        <ol>
+                            <li>讓研究與主修科目強化價值觀與專業度</li>
+                            <li>強化關係鍊，讓校友人脈成為你的優勢</li>
+                            <li>如何有自信但不自傲的陳述成就</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotH" @click="toggleClassH()">
+                    <div class="eb-des-box-title">第八堂課<br>自傳五大向度分析<hr>
+                    <div class="eb-des-circle" :class="showOrNotH">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content">
+                        <ol>
+                            <li>人資如何解讀自傳</li>
+                            <li>自傳需滿足的五大向度</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotI" @click="toggleClassI()">
+                    <div class="eb-des-box-title">第九堂課<br>面試常見題目解析<hr>
+                    <div class="eb-des-circle" :class="showOrNotI">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content">
+                        <ol>
+                            <li>『最挫折經驗』挫折容忍與玻璃心</li>
+                            <li>『未來的願景』規劃與資源整合</li>
+                            <li>『優點與缺點』自我覺察與問題解決</li>
+                            <li>『情境題面試』分析與錯誤歸責</li>
+                            <li>『還有什麼想問的嗎』好奇心與主動性</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="eb-des-box" :class="showOrNotJ" @click="toggleClassJ()">
+                    <div class="eb-des-box-title">第十堂課<br>提高求職信開信率<hr>
+                    <div class="eb-des-circle" :class="showOrNotJ">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="eb-des-box-content" style="margin-top:20px;">
+                        <ol>
+                            <li>提高開信率的求職信撰寫</li>
+                            <li>求職信撰寫的四個段落</li>
+                            <li>求職信常見的錯誤解析</li>
+                        </ol>
+                        <hr>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="comment-title">學員評價</div>
@@ -167,7 +303,7 @@
                 <img class="nb-fly" src="/resume/Group 153-2.png" />
                 <div class="nb-3">台灣青年的知識自媒體</div>
                 <div class="nb-4">專注於18~30歲的知識教育</div>
-                <img src="/resume/Group 405.png"/>
+                <img src="/resume/Group 405.png" style="max-width:100%;"/>
             </div>
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
@@ -367,27 +503,93 @@
             <div class="md-nine-block">
                 <div class="md-eb-title">課程單元介紹</div>
                 <div class="md-eb-content-box">
-                    <div class="md-eb-content">
-                        1 - 換位思考，告訴你人資如何看履歷！
-                        <br><br>
-                        2 - 從選平台到職缺說明，教你做前期準備功課
-                        <br><br>
-                        3 - 最強自我介紹公式！貫穿所有自介需求！
-                        <br><br>
-                        4 - 不只簡單交代！三點條列讓你真正寫好經歷
-                        <br><br>
-                        5 - 零經驗的逆襲！無相關經驗也能寫出有效經歷
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">01.<br>面試官思維分析</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>求職前，你該知道面試官如何看履歷！</li>
+                            <li>履歷隱藏四大指標：信度、價值、包容、願景</li>
+                            <li>如何透過舉例與經驗來呈現能力極限</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="md-eb-content">
-                        6 - 讓能力具有公信力！追求讓公司最有共鳴
-                        <br><br>
-                        7 - 校系獎狀大影響！妥善利用學歷與個人成就
-                        <br><br>
-                        8 - 自傳該不該寫？重點都寫到才加分！
-                        <br><br>
-                        9 - 那些題目在問什麼？常見面試題目暗黑解析
-                        <br><br>
-                        10 - 寄出前的準備，寫出高開信率的自我推薦！
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">02.<br>選擇正確平台與邏輯</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>從選平台到職缺說明，教你做前期準備功課</li>
+                            <li>求職平台介紹與優劣分析</li>
+                            <li>目標產業的前景分析與薪水差異</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">03.<br>自我介紹標準公式</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>價值觀的定義：你看見的問題與你如何改變</li>
+                            <li>自我介紹關鍵公式，四大元素讓你留下深刻印象</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">04.<br>有效撰寫工作經歷</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>工作經驗的撰寫方式</li>
+                            <li>三條經歷撰寫，有效呈現經驗質與量</li>
+                            <li>寫出面試官心中，最有感的實際績效數字</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">05.<br>志工與社團經驗呈現</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>將重心轉移到學習成效</li>
+                            <li>將社團經歷做為跳板，接軌職場需求</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">06.<br>寫出能力的公信力</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>從職缺說明，找出職位能力需求</li>
+                            <li>從公司需求找出能力最佳操作定義</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">07.<br>利用學歷與個人成就</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>讓研究與主修科目強化價值觀與專業度</li>
+                            <li>強化關係鍊，讓校友人脈成為你的優勢</li>
+                            <li>如何有自信但不自傲的陳述成就</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box">
+                        <div class="md-eb-content-input-title">08.<br>自傳五大向度分析</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>人資如何解讀自傳</li>
+                            <li>自傳需滿足的五大向度</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box" style="height:210px">
+                        <div class="md-eb-content-input-title">09.<br>面試常見題目解析</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>『最挫折經驗』挫折容忍與玻璃心</li>
+                            <li>『未來的願景』規劃與資源整合</li>
+                            <li>『優點與缺點』自我覺察與問題解決</li>
+                            <li>『情境題面試』分析與錯誤歸責</li>
+                            <li>『還有什麼想問的嗎』好奇心與主動性</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="md-eb-content-input-box" style="border-bottom:0px;height:190px;">
+                        <div class="md-eb-content-input-title">10.<br>提高求職信開信率</div>
+                        <div class="md-eb-content-input-content"><ol>
+                            <li>提高開信率的求職信撰寫</li>
+                            <li>求職信撰寫的四個段落</li>
+                            <li>求職信常見錯誤解析</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,6 +713,16 @@ export default {
         video_50_percent: false,
         video_90_percent: false,
         dv:{},
+        show_a:false,
+        show_b:false,
+        show_c:false,
+        show_d:false,
+        show_e:false,
+        show_f:false,
+        show_g:false,
+        show_h:false,
+        show_i:false,
+        show_j:false,
     }),
     computed: { 
         ...mapGetters({
@@ -544,6 +756,37 @@ export default {
             }
             return data;
         },
+        showOrNotA(){
+            return this.show_a ? 'open':'';
+        },
+        showOrNotB(){
+            return this.show_b ? 'open':'';
+        },
+        showOrNotC(){
+            return this.show_c ? 'open':'';
+        },
+        showOrNotD(){
+            return this.show_d ? 'open':'';
+        },
+        showOrNotE(){
+            return this.show_e ? 'open':'';
+        },
+        showOrNotF(){
+            return this.show_f ? 'open':'';
+        },
+        showOrNotG(){
+            return this.show_g ? 'open':'';
+        },
+        showOrNotH(){
+            return this.show_h ? 'open':'';
+        },
+        showOrNotI(){
+            return this.show_i ? 'open':'';
+        },
+        showOrNotJ(){
+            return this.show_j ? 'open':'';
+        },
+
     },
     async beforeCreate() {
         if (process.client) {
@@ -720,6 +963,36 @@ export default {
             if(localStorage.isShared == "true"){
                 this.dv.src = "https://player.vimeo.com/video/"+id;
             }
+        },
+        toggleClassA() {
+            this.show_a = !this.show_a;
+        },
+        toggleClassB() {
+            this.show_b = !this.show_b;
+        },
+        toggleClassC() {
+            this.show_c = !this.show_c;
+        },
+        toggleClassD() {
+            this.show_d = !this.show_d;
+        },
+        toggleClassE() {
+            this.show_e = !this.show_e;
+        },
+        toggleClassF() {
+            this.show_f = !this.show_f;
+        },
+        toggleClassG() {
+            this.show_g = !this.show_g;
+        },
+        toggleClassH() {
+            this.show_h = !this.show_h;
+        },
+        toggleClassI() {
+            this.show_i = !this.show_i;
+        },
+        toggleClassJ() {
+            this.show_j = !this.show_j;
         },
     },
     components: {
@@ -1243,6 +1516,81 @@ a{
     width: 100vw;
     height: 100%;
 }
+.eb-des-box {
+    position: relative;
+   margin:0 35px; 
+   padding: 20px 0; 
+   height: 90px;
+   transition-duration:.4s;
+   transition-timing-function: ease;
+   overflow-y: hidden;
+}
+.eb-des-circle {
+    position: absolute;
+    width: 20px;
+	height: 20px;
+	/* background: #fff; */
+    border-radius: 10px;
+    top:40px;
+    right: 50px;
+    transition-duration:.4s;
+   transition-timing-function: ease;
+}
+.eb-des-circle.open {
+    transform: rotate(-180deg);
+}
+.eb-des-circle div:first-child {
+    width: 3px;
+    height: 12px;
+    background-color: #FFF;
+    transform: rotate(45deg);
+    position: absolute;
+    top:5px;
+    right: 6px;
+}
+.eb-des-circle div:last-child {
+    width: 3px;
+    height: 12px;
+    background-color: #FFF;
+    transform: rotate(135deg);
+    position: absolute;
+    top:5px;
+    right: 13px;
+}
+.eb-des-box:nth-child(11) {
+    height: 105px;
+}
+.eb-des-box.open {
+    height:180px ;
+}
+.eb-des-box:nth-child(4).open,.eb-des-box:nth-child(6).open,.eb-des-box:nth-child(7).open,.eb-des-box:nth-child(9).open {
+    height: 160px;
+}
+.eb-des-box:nth-child(10).open {
+    height: 220px;
+}
+.eb-des-box:nth-child(11).open {
+    height: 205px;
+}
+.eb-des-box-title {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center; 
+}
+.eb-des-box-title hr,.eb-des-box-content.open hr {
+    color:#fff;
+    margin: 15px 20px;
+    border-style: solid;
+    border-width: .5px;
+}
+.eb-des-box-content li {
+    color: #FFF;
+    text-align:left;
+    font-size: 13px;
+    font-weight:inherit;
+    line-height: 20px;
+}
 .md-body {
     display: none;
 }
@@ -1660,17 +2008,32 @@ a{
     font-weight: bold;
 }
 .md-eb-content-box {
-    width: 90%;
+    width: 88%;
     /* height: 70%; */
-    margin: auto;
+    margin: 0 6%;
 }
-.md-eb-content{
+.md-eb-content-input-box {
+    width: 100%;
+    height: 170px;
+    border-bottom: 1px solid #fff;
+    padding: 30px 0;
+}
+.md-eb-content-input-title {
     float: left;
-    font-size: 16px;
-    font-weight: bold;
-    width: 50%;
-    /* height: 70%; */
-    padding: 50px;
+    width: 280px;
+    height: 120px;
+    padding: 40px 0 0 60px;
+    font-size: 24px;
+    font-weight: bold; 
+}
+.md-eb-content-input-content {
+    float: left;
+    width: 370px;
+    height: 120px;
+    padding-top: 38px;
+    font-size:15px; 
+    line-height: 21px;
+    letter-spacing: .7px;
 }
 .md-phone-block {
     width: 100vw;
