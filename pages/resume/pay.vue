@@ -77,7 +77,7 @@
             ></loading>
         </div>
         <div class="aftee_banner">
-            <img src="/resume/AFTEE-bn01.png" alt="">
+            <img src="https://aftee.tw/start/banner/banner/AFTEE-bn01_468x200.png" alt="">
         </div>
     </div>
 </template>
