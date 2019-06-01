@@ -67,8 +67,8 @@ module.exports = {
 			{example:'',description:''},
 		],
 		C: [
-			{example:'',description:''},
-			{example:'',description:''},
+			{example:'OO有限公司｜遊戲設計師<br>1. 遊戲點子發想<br>2. 跨領域溝通 (程式設計師、美術師)<br>3. 帶領程式設計師實現產品',description:'1.以三個項目說明自己的整體工作<br>2.提及溝通涉及的對象，幫助主管想像其能解決的問題'},
+			{example:'OO台灣總代理   營運專員<br>1.新車發表會規劃及執行<br>2.外展客戶開發規劃及執行<br>3.異業廠商合作開發<br>4.講座形式活動規劃執行<br>5.各活動宣傳及場地佈置設計及輸出<br>6.活動影片剪輯<br>7.試駕會活動企劃執行<br>8.年度行銷預算及活動規劃<br>9.優惠活動推廣<br>10.佳節活動規劃及執行',description:'1.條列說明經歷過的專案與領域<br>2.塑造出能解決此領域相關問題的萬能形象'},
 			{example:'',description:''},
 			{example:'',description:''},
 			{example:'',description:''},

@@ -30,7 +30,7 @@
                     求職季的競爭<br>
                     比的不只是好，更是快<br>
                     <div class="sb-addition">
-                        使用一個月99元，獲得履歷課程與無限次履歷評測
+                        使用一季299元，獲得履歷課程與無限次履歷評測
                     </div>
             </div>
             <img src="/resume/Mask Group 4.png" style="margin-top:10px"/>
@@ -95,7 +95,7 @@
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
-                    <div id="dc-1" class="course">
+                    <div id="dc-1" class="course" @click="switchCourse(getChapterData01.video_id)">
                         <div class="c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="c-title">面試官思維分析(試讀)</div>
                         <div class="c-context">{{ getChapterData01.description }}</div>
@@ -321,29 +321,25 @@
                     <br><br>
                     <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
+                    課程為單季學習制，在訂購後的這一季內都可以一直重複觀看。
                     <br><br>
-                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
+                    <b>Q3： NT299 元/季學習服務之後會有更新內容嗎？</b>
                     <br><br>
-                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/8/3 前訂閱，即可以 NT299 元/季的價格訂購（原價為 NT499 元/季)。
                     <br><br>
                     <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
                     <br><br>
                     不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
                     <br><br>
-                    <b>Q5: 取消訂閱</b>
-                    <br><br>
-                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
-                    <br><br>
-                    <b>Q6: 付款方式</b>
+                    <b>Q5: 付款方式</b>
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q7: 電子發票開立</b>
+                    <b>Q6: 電子發票開立</b>
                     <br><br>
                     將於付款後 30 天內寄送至您註冊之電子信箱。
                     <br><br>
-                    <b>Q8: 其他問題</b>
+                    <b>Q7: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -387,7 +383,7 @@
                     求職季的競爭<br>
                     比的不只是好，更是快<br>
                     <div class="md-sb-addition">
-                        使用一個月99元，獲得履歷課程與無限次履歷評測
+                        使用一季299元，獲得履歷課程與無限次履歷評測
                     </div>
             </div>
                 <img src="/resume/md-Mask Group 4.png" style="margin-left:24%;width:500px;"/>
@@ -451,7 +447,7 @@
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
                 </div>
                 <div id="democourses">
-                    <div id="dc-1" class="md-course">
+                    <div id="dc-1" class="md-course" @click="switchCourse(getChapterData01.video_id)">
                         <div class="md-c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="md-c-box">
                             <div class="md-c-title">面試官思維分析(試讀)</div>
@@ -624,29 +620,25 @@
                     <br><br>
                     <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
+                    課程為單季學習制，在訂購後的這一季內都可以一直重複觀看。
                     <br><br>
-                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
+                    <b>Q3： NT299 元/季學習服務之後會有更新內容嗎？</b>
                     <br><br>
-                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/8/3 前訂閱，即可以 NT299 元/季的價格訂購（原價為 NT499 元/季)。
                     <br><br>
                     <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
                     <br><br>
                     不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
                     <br><br>
-                    <b>Q5: 取消訂閱</b>
-                    <br><br>
-                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
-                    <br><br>
-                    <b>Q6: 付款方式</b>
+                    <b>Q5: 付款方式</b>
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q7: 電子發票開立</b>
+                    <b>Q6: 電子發票開立</b>
                     <br><br>
                     將於付款後 30 天內寄送至您註冊之電子信箱。
                     <br><br>
-                    <b>Q8: 其他問題</b>
+                    <b>Q7: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -806,9 +798,9 @@ export default {
                 var dcPlayer = new Vimeo.Player(this.dv);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
-                document.getElementById("democourses").onclick = function(){
-                    document.getElementById("fbshare").style.display = "block";
-                }
+                // document.getElementById("democourses").onclick = function(){
+                //     document.getElementById("fbshare").style.display = "block";
+                // }
                 function openShareWindow(){
                     localStorage.isShared = 'true';
                     window.open(sharelink,"share","width=1000,height=600");
@@ -816,7 +808,6 @@ export default {
                 }
                 document.getElementById("clickshare").onclick = openShareWindow;
                 document.getElementById("share-mask").onclick = openShareWindow;
-                $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
 
                 dcPlayer.on('ended', this.onEndCallback);
                 dcPlayer.on('play',this.onPlayCallback);
@@ -876,7 +867,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 199
+                    "price": 299
                     },
                 ]
             });
@@ -888,7 +879,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 199
+                    "price": 299
                     },
                 ]
             });

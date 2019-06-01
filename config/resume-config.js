@@ -1,7 +1,7 @@
 module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
-    logo: "/resume/resume-logo.svg",
+    logo: "/resume/resume-logo.png",
     base_color: '#0090FF',
     fbq_id: '438072703402139',
     view: {

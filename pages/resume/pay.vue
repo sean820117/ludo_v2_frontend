@@ -1,7 +1,7 @@
 <template>
     <div class="signup-pay-page">
         <div class="sp-title">履歷課程與評測</div>
-        <div class="sp-subtitle">使用一個月 NT$99</div>
+        <div class="sp-subtitle">使用一季 NT$299</div>
         <div class="main-block">
             <div v-if="!is_login">
                 <div class="reg-title">{{ !directReg ? '註冊/登入' : '直接註冊' }}</div>
@@ -64,7 +64,7 @@
                 <receipt-type :wordDark="true" @onReceiptTypeChange="onReceiptTypeChange"/>
                 <div class="payment-container">
                     <div class="payment-info">
-                        <div class="price">共計　新台幣　99 元</div>
+                        <div class="price">共計　新台幣　299 元</div>
                         <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ export default {
             receipt_type:'e-receipt',
         },
         aftee_data : {
-          amount:99,
+          amount:299,
           customer:{
             address:'none',
             customer_name:"",
@@ -143,7 +143,7 @@ export default {
             {
               item_count:1,
               item_name:'履歷課程與評測(一個月)',
-              item_price:99,
+              item_price:299,
               shop_item_id:'resume_01',
             }
           ],
@@ -249,7 +249,7 @@ export default {
             }
             this.$gtag('event', 'purchase', {
                 "transaction_id": this.aftee_data.shop_transaction_no,
-                "value": 99,
+                "value": 299,
                 "currency": "TWD",
                 "tax": 2.85,
                 "items": [
@@ -259,7 +259,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 99
+                    "price": 299
                     },
                 ],
             });
@@ -343,7 +343,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 99
+                    "price": 299
                     },
                 ],
                 'checkout_step' : 4,
@@ -368,7 +368,7 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 99
+                            "price": 299
                             },
                         ],
                         'checkout_step' : 5,
@@ -389,7 +389,7 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 99
+                            "price": 299
                             },
                         ],
                         'checkout_step' : 5,
@@ -465,7 +465,7 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 99
+                        "price": 299
                         },
                     ],
                     'checkout_step' : 1,
@@ -489,7 +489,7 @@ export default {
                             "brand": "讓狂人飛",
                             "category": "online AI course",
                             "quantity": 1,
-                            "price": 99
+                            "price": 299
                             },
                         ],
                         'checkout_step' : 2,
@@ -514,7 +514,7 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 99
+                        "price": 299
                         },
                     ],
                     'checkout_step' : 3,
@@ -558,7 +558,7 @@ export default {
                     "brand": "讓狂人飛",
                     "category": "online AI course",
                     "quantity": 1,
-                    "price": 99
+                    "price": 299
                     },
                 ]
             });
@@ -573,7 +573,7 @@ export default {
                         "brand": "讓狂人飛",
                         "category": "online AI course",
                         "quantity": 1,
-                        "price": 99
+                        "price": 299
                         },
                     ],
                     'checkout_step' : 1,
