@@ -35,7 +35,7 @@ module.exports = {
         {
             title:'第一堂課',
             subtitle:'01.面試官思維分析',
-            description:'1.求職前，你該知道面試官如何看履歷！<br>2.履歷隱藏四大指標：信度、價值、',
+            description:'你該知道面試官如何看履歷，並學會履歷四大指標',
             thumbnail:'https://i.vimeocdn.com/video/787036073.jpg',
             video_id:'338611197',
             ai_id:'',
@@ -43,7 +43,7 @@ module.exports = {
         {
             title:'第二堂課',
             subtitle:'02.選擇正確平台與邏輯',
-            description:'- 成績比別人高，上的學校卻比別人差？<br>- 會考制度介紹與原理分析<br>- 近年學生重點趨勢與落點分析- ',
+            description:'求職平台優劣解析與不同產業之職缺薪水說明',
             thumbnail:'https://i.vimeocdn.com/video/787036050.jpg',
             video_id:'338558397',
             ai_id:'',
@@ -51,7 +51,7 @@ module.exports = {
         {
             title:'第三堂課',
             subtitle:'03.自我介紹標準公式(AI練習)',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'透過價值觀的定義，自介四元素，讓你的自我介紹令人印象深刻',
             thumbnail:'https://i.vimeocdn.com/video/787036031.jpg',
             video_id:'338559454',
             ai_id:'abstract',
@@ -85,7 +85,7 @@ module.exports = {
         {
             title:'第四堂課',
             subtitle:'04.有效撰寫工作經歷(AI練習)',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'有效呈現工作經驗的質量，寫出面試官心中，最有感的實際績效數字',
             thumbnail:'https://i.vimeocdn.com/video/787035997.jpg',
             video_id:'338608971',
             ai_id:'work_experience',
@@ -119,7 +119,7 @@ module.exports = {
         {
             title:'第五堂課',
             subtitle:'05.志工與社團經驗(AI練習)',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'將重心轉移到課外經歷與學習成效，接軌職場需求',
             thumbnail:'https://i.vimeocdn.com/video/787035952.jpg',
             video_id:'338609851',
             ai_id:'volunteer',
@@ -153,7 +153,7 @@ module.exports = {
         {
             title:'第六堂課',
             subtitle:'06.寫出能力的公信力(AI練習)',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'從職缺說明找出職位的能力需求，並從需求找出最佳的操作定義',
             thumbnail:'https://i.vimeocdn.com/video/787035912.jpg',
             video_id:'338698698',
             ai_id:'ability_and_skill',
@@ -187,7 +187,7 @@ module.exports = {
         {
             title:'第七堂課',
             subtitle:'07.利用學歷與個人成就',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'讓研究與主修科目強化價值觀與專業度，並讓校友人脈成為你的優勢',
             thumbnail:'https://i.vimeocdn.com/video/787035848.jpg',
             video_id:'338717203',
             ai_id:'',
@@ -195,7 +195,7 @@ module.exports = {
         {
             title:'第八堂課',
             subtitle:'08.自傳五大向度分析',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'學習自傳的標準結構，彰顯你的「價值觀」與「問題解決能力」',
             thumbnail:'https://i.vimeocdn.com/video/787035823.jpg',
             video_id:'338819657',
             ai_id:'',
@@ -203,7 +203,7 @@ module.exports = {
         {
             title:'第九堂課',
             subtitle:'09.面試常見題目解析',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'最挫折經驗、未來願景、優點與缺點、情境題面試、還有甚麼想問的嗎',
             thumbnail:'https://i.vimeocdn.com/video/787035780.jpg',
             video_id:'338820252',
             ai_id:'',
@@ -211,7 +211,7 @@ module.exports = {
         {
             title:'第十堂課',
             subtitle:'10.提高求職信開信率',
-            description:'- 如何國中時就確立志向？<br>- 如何從高一段考成績初步判斷適合類組？',
+            description:'使用四個段落，寫出提高開信率的求職信撰',
             thumbnail:'https://i.vimeocdn.com/video/787035739.jpg',
             video_id:'338821262',
             ai_id:'',
