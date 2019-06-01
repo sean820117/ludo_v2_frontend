@@ -303,7 +303,7 @@
                 <img class="nb-fly" src="/resume/Group 153-2.png" />
                 <div class="nb-3">台灣青年的知識自媒體</div>
                 <div class="nb-4">專注於18~30歲的知識教育</div>
-                <img src="/resume/Group 405.png"/>
+                <img src="/resume/Group 405.png" style="max-width:100%;"/>
             </div>
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
