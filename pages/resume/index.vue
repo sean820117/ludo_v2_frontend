@@ -361,7 +361,7 @@
             <img class="md-title-blue" src="/resume/resume-logo.svg"/>
             <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/login')" >{{ is_login ? '登出' : '登入'}}</div>
         </div> -->
-        <div class="md-first-block">
+        <div class="md-first-block" @scroll="dragFirstBlock" >
             <img class="md-earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -674,20 +674,7 @@ export default {
     layout: 'resume',
     head() {
         return  {
-            title: '履歷範本 - 找工作的加速器',
-            meta: [
-                { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
-                { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
-                { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
-                { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/resume"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume-og-img.jpg"},
-                { property : 'og:description' , content:"狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。"},
-                { property : 'og:site_name' , content:"www.ludonow.com"},
-            ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
             ],
             script: [
@@ -1572,14 +1559,14 @@ a{
 .md-first-block{
     position: fixed;
     width:100vw;
-    height: 100vh;
+    height: 101vh;
     background: url("/resume/Group 367.png") #0090FF;
     background-size:85%;
     background-position: center center;
     background-repeat: no-repeat;
     overflow-x: hidden;
     transition: height 200ms linear;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 .md-seemore{
     position: absolute;

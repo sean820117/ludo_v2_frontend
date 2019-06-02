@@ -55,7 +55,7 @@ export default {
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
         }
     },
