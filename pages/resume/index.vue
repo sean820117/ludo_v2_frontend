@@ -704,6 +704,7 @@ export default {
         video_10_percent: false,
         video_50_percent: false,
         video_90_percent: false,
+        show_fbshare_or_not:false,
         dv:{},
         show_list:[],
     }),
@@ -916,9 +917,11 @@ export default {
         onSecondPreviewCourseClick() {
             if (localStorage.isShared != "true") {
                 window.alert("需要先分享才能觀看這堂課喔");    
+                document.getElementById("fbshare").style.display = "block";
                 this.$scrollTo("#fbshare"); 
             } else {
                 this.switchCourse(this.getChapterData04.video_id);
+                document.getElementById("fbshare").style.display = "block";
                 this.$scrollTo("#democourses"); 
             }
         },
@@ -928,8 +931,13 @@ export default {
             }
         },
         toggleClass(index) {
-            this.show_list = [];
-            this.show_list[index] = 'open'
+            if (this.show_list[index] === 'open') {
+                this.show_list = [];
+            } else {
+                this.show_list = [];
+                this.show_list[index] = 'open'
+            }
+            
             this.$gtag('event', 'Toggle_On | Toggle_Off', {
                 eventCategory: 'UIEvent',
                 eventLabel: '課程' + index
