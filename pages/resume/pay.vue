@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <v-dialog :width="'300px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
+            <v-dialog :width="'350px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
             <loading 
                 :active="processing_user_data_or_not" 
                 color="#1785db"
@@ -275,7 +275,7 @@ export default {
 
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title
