@@ -142,7 +142,7 @@ export default {
           items:[
             {
               item_count:1,
-              item_name:'履歷課程與評測(一個月)',
+              item_name:'履歷課程與評測(一季)',
               item_price:299,
               shop_item_id:'resume_01',
             }
@@ -405,8 +405,12 @@ export default {
                 //   this.$router.push('/login-redirect')
               } else {
                   if (response.data.message == "此郵件已註冊!") {
-                      await this.login(email,password);
-                      return true;
+                    //   await this.login(email,password);
+                        this.hint = "此帳號已註冊過，請先點選右上角登入";
+                        window.alert("此帳號已註冊過，請先進行登入！");
+                        this.$router.push('/resume/login')
+                        this.hint_color = "red"
+                        return false;
                   } else {
                     this.hint = '註冊失敗 - ' + response.data.message;
                     this.hint_color = "red"
