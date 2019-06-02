@@ -778,7 +778,7 @@ export default {
                 if (this.$mq === "mobile") {
                     var imgContainer = document.getElementById("ss-container");
                 
-                    var slideTimer = null, imgIndex = 0, slideInterval = 3000;
+                    var slideTimer = null, imgIndex = 0, slideInterval = 4000;
                     $(imgContainer.children[0]).show();
                     slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
                 }
