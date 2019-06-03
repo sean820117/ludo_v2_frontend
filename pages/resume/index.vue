@@ -88,8 +88,8 @@
                 </div>
             </div>
             <div class="seven-block" v-if="$mq === 'mobile'">
-                <div class="sevenblock-1">學完即做完</div>
-                <div class="sevenblock-2">帶你實戰的線上課程+即時評測</div>
+                <div class="sevenblock-1">課程免費搶先看</div>
+                <div class="sevenblock-2">馬上體驗剖析面試官的思維</div>
                 <div class="videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button>分享</button></div></div>
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -440,8 +440,8 @@
                 </div>
             </div>
             <div class="md-seven-block">
-                <div class="md-sevenblock-1">學完即做完</div>
-                <div class="md-sevenblock-2">帶你實戰的線上課程+即時評測</div>
+                <div class="md-sevenblock-1">課程免費搶先看</div>
+                <div class="md-sevenblock-2">馬上體驗剖析面試官的思維</div>
                 <div class="md-videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button @click.prevent="openShareWindow">分享</button></div></div>
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
@@ -1321,7 +1321,7 @@ export default {
     font-size: 15px;
     margin: auto;
     margin-top: 27px;
-    display: none;
+    /* display: none; */
 }
 .clickshare{
     color: #0090FF;

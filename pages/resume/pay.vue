@@ -47,15 +47,11 @@
                     <br>
                     並將交易相關給付款項請求債權轉讓予日商恩沛股份有限公司。
                     <br>
-                    關於個人資料處理事宜，請瀏覽以下網址：
-                    <br>
-                    <a href="https://aftee.tw/privacypolicy/">{{ 'https://aftee.tw/privacypolicy/' }}</a>
-                    <br>
-                    初次使用AFTEE時，最高使用額度為10,000元。
-                    <br>
                     若款項超過繳費期限，將根據當次的金額加收年利率20%的支付遲延損害金。
-                    <br>
-                    未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
+                    <br><br>
+                    ・退款政策
+                    <br><br>
+                    履歷範本退款政策是針對在履歷範本網站中購買未達 7 天尚未啟用課程之學員，您可以寄信至 contact@flyingcrazyer.com 申請退款或針對您的履歷範本購買尋求協助。
                     <br><br>
                 </div>
                 <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not" @change="checkAgreeContract(agree_contract_or_not)">
