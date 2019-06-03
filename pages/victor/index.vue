@@ -290,40 +290,36 @@ export default {
             show_second_block: true,
             banners: [
                 {
-                    url:'/victor-LP-1.png',
+                    url:'/victor-LP-1.jpg',
                     key:0
                 },
                 {
-                    url:'/victor-LP-2.png',
+                    url:'/victor-LP-2.jpg',
                     key:1
                 },
                 {
-                    url:'/victor-LP-3.png',
+                    url:'/victor-LP-3.jpg',
                     key:2
                 },
                 {
-                    url:'/victor-LP-4.png',
+                    url:'/victor-LP-4.jpg',
                     key:3
                 },
                 {
-                    url:'/victor-LP-5.png',
+                    url:'/victor-LP-5.jpg',
                     key:4
                 },
                 {
-                    url:'/victor-LP-6.png',
+                    url:'/victor-LP-6.jpg',
                     key:5
                 },
                 {
-                    url:'/victor-LP-7.png',
+                    url:'/victor-LP-7.jpg',
                     key:6
                 },
                 {
-                    url:'/victor-LP-8.png',
+                    url:'/victor-LP-8.jpg',
                     key:7
-                },
-                {
-                    url:'/victor-LP-9.png',
-                    key:8
                 },
             ],
             banners2: [
