@@ -275,7 +275,7 @@ export default {
 
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br>現在就開始跟著狂人寫履歷吧！`,
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，及有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title

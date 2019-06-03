@@ -5,7 +5,7 @@
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
-            <textarea class="send-textarea" placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
+            <textarea class="send-textarea" :placeholder="placeholder" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <div class="ai-judgement-no-ai" v-else>
@@ -39,8 +39,10 @@ export default {
                     if (event.target.closest(".load-history")) return;
                     this.$refs.historyList.style.display = "none";
                 }).bind(this));
+
+                this.placeholder = this.current_chapter.practice_hint;
             }
-        }, 3000);
+        }, 2000);
     },
     methods: {
         adjustTextAreaHeight(){
@@ -161,6 +163,7 @@ export default {
         last_loaded_ai_id: '',
         last_loaded_record_items:[],
         current_score:{},
+        placeholder:'請填入你的練習回答',
     }),
     props:{
         ai_id:'',

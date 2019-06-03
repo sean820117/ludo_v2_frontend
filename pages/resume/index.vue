@@ -920,15 +920,18 @@ export default {
         toggleClass(index) {
             if (this.show_list[index] === 'open') {
                 this.show_list = [];
+                    this.$gtag('event', 'Toggle_Off', {
+                    'event_category': 'UIEvent',
+                    'event_label': '課程' + index
+                });
             } else {
                 this.show_list = [];
                 this.show_list[index] = 'open'
+                this.$gtag('event', 'Toggle_On', {
+                    'event_category': 'UIEvent',
+                    'event_label': '課程' + index
+                });
             }
-            
-            this.$gtag('event', 'Toggle_On | Toggle_Off', {
-                eventCategory: 'UIEvent',
-                eventLabel: '課程' + index
-            });
         },
     },
     components: {
