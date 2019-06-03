@@ -130,7 +130,7 @@ export default {
 }
 .feed-back-layout {
     margin: auto;
-    width: 100vw;
+    width: 100%;
     max-width: 600px;
 }
 .close-feed-back{
