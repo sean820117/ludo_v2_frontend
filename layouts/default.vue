@@ -4,6 +4,28 @@
   </div>
 </template>
 
+<script>
+export default {
+  head: {
+    title: 'Ludo Now',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
+      { hid: 'description', name: 'description', content: '' },
+      { property : 'og:title' , content:""},
+      { property : 'og:type' , content:""},
+      { property : 'og:url' , content:""},
+      { property : 'og:image' , content:""},
+      { property : 'og:description' , content:""},
+      { property : 'og:site_name' , content:""},
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+  }
+}
+</script>
+
 <style>
 body {
   font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;

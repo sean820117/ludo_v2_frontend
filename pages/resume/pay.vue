@@ -1,7 +1,7 @@
 <template>
     <div class="signup-pay-page">
         <div class="sp-title">履歷課程與評測</div>
-        <div class="sp-subtitle">使用一個月 NT$99</div>
+        <div class="sp-subtitle">使用一季 NT$299</div>
         <div class="main-block">
             <div v-if="!is_login">
                 <div class="reg-title">{{ !directReg ? '註冊/登入' : '直接註冊' }}</div>
@@ -14,21 +14,21 @@
             <div>
                 <form id="basic-form" v-if="!directReg && is_login && !next_step_or_not">
                     <div class="reg-block-title">基本資訊</div>
-                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" />
-                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" />
-                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email')" />
+                    <input id="input_name" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name')" @change="checkBasicInfo"/>
+                    <input id="input_phone" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone')" @change="checkBasicInfo"/>
+                    <input id="input_email" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email')" @change="checkBasicInfo"/>
                 </form>
                 
                 <form id="directly-reg-form" v-if="directReg">
-                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')" />
-                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字)" @click="$scrollTo('#input_password')" />
-                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')" />
+                    <input id="input_email_2" v-model="email" name="email" class="reg-column-input" type="text" placeholder="電子信箱" @click="$scrollTo('#input_email_2')"/>
+                    <input id="input_password" v-model="password" name="password" class="reg-column-input" type="password" placeholder="密碼(長度需大於八個字且英數字混合)" @click="$scrollTo('#input_password')"/>
+                    <input id="input_password_check" v-model="confirm_password" name="password-check" class="reg-column-input" type="password" placeholder="確認密碼" @click="$scrollTo('#input_password_check')"/>
                     <div class="reg-block-title" v-if="next_step_or_not">基本資訊</div>
-                    <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" />
-                    <input id="input_phone_2" v-if="next_step_or_not" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" />
+                    <input id="input_name_2" v-if="next_step_or_not" v-model="customer_name" name="name" class="reg-column-input" type="text" placeholder="您的大名" @click="$scrollTo('#input_name_2')" @change="checkBasicInfo"/>
+                    <input id="input_phone_2" v-if="next_step_or_not" v-model="phone" name="phone" class="reg-column-input" type="text" placeholder="行動電話" @click="$scrollTo('#input_phone_2')" @change="checkBasicInfo"/>
                 </form>
             </div>
-            <div class="reg-directly" @click="next_step_or_not = true" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
+            <div class="reg-directly" @click="checkSignupInfo" v-if="directReg && !next_step_or_not" style="margin-top: 20px;">下一步</div>
             <div class="reg-subtitle" :style="{ color : hint_color , margin: '5px'}">{{ hint }}</div>
             <div v-if="next_step_or_not || is_login">
                 <div class="reg-block-title" id="payment-type">付款方式</div>
@@ -58,23 +58,26 @@
                     未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
                     <br><br>
                 </div>
-                <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not">
+                <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not" @change="checkAgreeContract(agree_contract_or_not)">
                 <span class="checkmark"></span>
                 <label class="agree-label" for="agree-contract">我同意上述課程合約</label>
-                <receipt-type :wordDark="true"/>
+                <receipt-type :wordDark="true" @onReceiptTypeChange="onReceiptTypeChange"/>
                 <div class="payment-container">
                     <div class="payment-info">
-                        <div class="price">共計　新台幣　99 元</div>
+                        <div class="price">共計　新台幣　299 元</div>
                         <div class="go-pay" :class="agree_contract_or_not ? '' : 'unchecked'" @click="agree_contract_or_not ? onSubmit() : () => {}">前往付款</div>
                     </div>
                 </div>
             </div>
-            <v-dialog :width="'300px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
+            <v-dialog :width="'350px'" :clickToClose="false" @closed="$router.push('/resume/course')"/>
             <loading 
                 :active="processing_user_data_or_not" 
                 color="#1785db"
                 loader="dots"
             ></loading>
+        </div>
+        <div class="aftee_banner">
+            <img src="https://aftee.tw/start/banner/banner/AFTEE-bn01_468x200.png" alt="">
         </div>
     </div>
 </template>
@@ -120,10 +123,16 @@ export default {
         displayReceipt: false,
         processing_user_data_or_not: false,
         is_login:false,
+        sended_basic_info_ga_or_not: false,
         payed_or_not:false,
         agree_contract_or_not: false,
+        receipt: {
+            receipt_personal:'/',
+            receipt_uniform:'',
+            receipt_type:'e-receipt',
+        },
         aftee_data : {
-          amount:99,
+          amount:299,
           customer:{
             address:'none',
             customer_name:"",
@@ -133,8 +142,8 @@ export default {
           items:[
             {
               item_count:1,
-              item_name:'履歷課程與評測(一個月)',
-              item_price:99,
+              item_name:'履歷課程與評測(一季)',
+              item_price:299,
               shop_item_id:'resume_01',
             }
           ],
@@ -225,8 +234,11 @@ export default {
         async succeededCallback(response) {
             console.log("aftee payed succeed")
             console.log(response)
+            let result_data = this.aftee_data;
+            result_data.receipt = this.receipt;
+
             try {
-              let response = await axios.post('/apis/aftee-result',this.aftee_data)
+              let response = await axios.post('/apis/aftee-result',result_data)
               if (response.data.status == '200') {
                   console.log("payed success")
               } else {
@@ -235,9 +247,35 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+            this.$gtag('event', 'purchase', {
+                "transaction_id": this.aftee_data.shop_transaction_no,
+                "value": 299,
+                "currency": "TWD",
+                "tax": 2.85,
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 299
+                    },
+                ],
+            });
+            this.$gtag('event', 'Virtual', {
+                'event_category': 'EC',
+            });
+            this.$fbq('track', 'Purchase', {
+                currency: "TWD", 
+                value: 299.00,
+                content_ids: 'resume_01',
+                content_type: 'product'
+            });
+
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>現在就開始跟著狂人寫履歷吧！`,
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，及有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title
@@ -259,6 +297,10 @@ export default {
                 this.processing_user_data_or_not = false;
             },3000);
         },
+        onReceiptTypeChange(receipt) {
+            this.receipt = receipt;
+            console.log(this.receipt);
+        },
         async onSubmit() {
             if (this.email.length === 0) {
                 this.hint = '請填寫電子信箱欄位'
@@ -276,7 +318,7 @@ export default {
                 this.$scrollTo("#payment-type");
                 return
             } else if (!this.is_login && this.password.length < 8) {
-                this.hint = '密碼需大於八個字'
+                this.hint = '密碼需大於八個字且英數字混合'
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
@@ -285,8 +327,8 @@ export default {
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
-            } else if (this.phone.length < 10) {
-                this.hint = '行動電話格式錯誤'
+            } else if (this.phone.length != 10) {
+                this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
                 this.hint_color = "red"
                 this.$scrollTo("#payment-type");
                 return
@@ -300,17 +342,56 @@ export default {
             this.hint = null
             this.hint_color = ""
             this.processing_user_data_or_not = true;
+            this.$gtag('event', 'checkout_progress', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 299
+                    },
+                ],
+                'checkout_step' : 4,
+            });
+            this.$gtag('event', 'set_checkout_option', {
+                "checkout_step": 4,
+                "checkout_option": "tap go pay",
+                "value": "true"
+            });
+            
             try {
-                if (!this.is_login) {
-                    await this.signup(this.email, this.password, this.confirm_password);
+                let result = await this.signup(this.email, this.password, this.confirm_password);
+                if (this.is_login) {
                     this.startAftee();
+                    this.$gtag('event', 'checkout_progress', {
+                        "items": [
+                            {
+                            "id": "resume_01",
+                            "name": "履歷範本課程(一個月)",
+                            "brand": "讓狂人飛",
+                            "category": "online AI course",
+                            "quantity": 1,
+                            "price": 299
+                            },
+                        ],
+                        'checkout_step' : 5,
+                    });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 5,
+                        "checkout_option": "go to aftee",
+                        "value": "true"
+                    });
+                    
                 } else {
-                    this.startAftee();
+                    this.$scrollTo("#payment-type");
                 }
             } catch (error) {
                 console.log(error);
                 this.processing_user_data_or_not = false;
             }
+            this.processing_user_data_or_not = false;
         },
         async signup(email,password,repeated_password) {
             console.log("go sign up")
@@ -320,20 +401,28 @@ export default {
                   console.log("signup success")
 
                   let login_result = await this.$checkLogin(this.$store);
+                  return true;
                 //   this.$router.push('/login-redirect')
               } else {
                   if (response.data.message == "此郵件已註冊!") {
-                      this.login(email,password);
+                    //   await this.login(email,password);
+                        this.hint = "此帳號已註冊過，請先點選右上角登入";
+                        window.alert("此帳號已註冊過，請先進行登入！");
+                        this.$router.push('/resume/login')
+                        this.hint_color = "red"
+                        return false;
                   } else {
                     this.hint = '註冊失敗 - ' + response.data.message;
                     this.hint_color = "red"
                   }
                   console.log(response)
+                  return false;
               }
             } catch (error) {
               this.hint = '註冊失敗'
               this.hint_color = "red"
-              console.log(error)
+              console.log(error);
+              return false;
             }
         },
         async login(email,password) {
@@ -343,48 +432,155 @@ export default {
                     console.log("login success")
                     console.log(response)
                     let login_result = await this.$checkLogin(this.$store);
+                    return true;
                     // this.$router.push('/login-redirect')
                 } else {
                     console.log(response)
-                    this.hint = response.data.message;
+                    // this.hint = response.data.message;
+                    this.hint = "此帳號已註冊過，請先點選右上角登入";
+                    window.alert("此帳號已註冊過，請先進行登入！");
+                    this.$router.push('/resume/login')
                     this.hint_color = "red"
+                    return false;
                 }
             } 
             catch (error) {
                 console.log(error)
                 this.hint = "傳送失敗，請重新嘗試"
                 this.hint_color = "red"
+                return false;
             }
         },
+        checkSignupInfo() {
+            this.next_step_or_not = true;
+            // if (this.email && this.password && this.confirm_password) {
+                this.$gtag('event', 'begin_checkout', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 299
+                        },
+                    ],
+                    'checkout_step' : 1,
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "signup",
+                    "value": "local"
+                });
+            // }
+        },
+        checkBasicInfo() {
+            if (this.email && this.customer_name && this.phone) {
+                if (!this.sended_basic_info_ga_or_not) {
+                    
+                    this.$gtag('event', 'checkout_progress', {
+                        "items": [
+                            {
+                            "id": "resume_01",
+                            "name": "履歷範本課程(一個月)",
+                            "brand": "讓狂人飛",
+                            "category": "online AI course",
+                            "quantity": 1,
+                            "price": 299
+                            },
+                        ],
+                        'checkout_step' : 2,
+                    });
+                    this.$gtag('event', 'set_checkout_option', {
+                        "checkout_step": 2,
+                        "checkout_option": "input basic info",
+                        "value": "complete"
+                    });
+                    this.sended_basic_info_ga_or_not = true;
+                }
+            }
+        },
+        checkAgreeContract(agree_contract_or_not) {
+            if (this.agree_contract_or_not) {
+                
+                this.$gtag('event', 'checkout_progress', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 299
+                        },
+                    ],
+                    'checkout_step' : 3,
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 3,
+                    "checkout_option": "agree contract",
+                    "value": "true"
+                });
+            }
+        }
     },
     async mounted() {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
+            localStorage.redirect = this.$route.path;
+
+            let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+            if (!payed_or_not) {
+                console.log("not payed");
+            } else {
+                console.log("payed")
+                this.$modal.show('dialog', {
+                    text: '您已購買過此課程',
+                    buttons: [
+                        {
+                            title: '點此進入課程',       // Button title
+                            default: true,    // Will be triggered by default if 'Enter' pressed.
+                            handler: () => {this.$router.push('/resume/course')} // Button click handler
+                        },
+                    ],
+                });
+            }
+
+            this.$gtag('event', 'add_to_cart', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 299
+                    },
+                ]
+            });
 
             if (this.is_login) {
                 this.email = this.user.email;
+                this.$gtag('event', 'begin_checkout', {
+                    "items": [
+                        {
+                        "id": "resume_01",
+                        "name": "履歷範本課程(一個月)",
+                        "brand": "讓狂人飛",
+                        "category": "online AI course",
+                        "quantity": 1,
+                        "price": 299
+                        },
+                    ],
+                    'checkout_step' : 1,
+                });
+                this.$gtag('event', 'set_checkout_option', {
+                    "checkout_step": 1,
+                    "checkout_option": "login",
+                    "value": "fb/google"
+                });
             }
-            // if (!this.is_login) {
-            //     this.$router.push("/resume/signup");
-            // } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                if (!payed_or_not) {
-                    console.log("not payed");
-                } else {
-                    console.log("payed")
-                    this.$modal.show('dialog', {
-                        text: '您已購買過此課程',
-                        buttons: [
-                            {
-                                title: '點此進入課程',       // Button title
-                                default: true,    // Will be triggered by default if 'Enter' pressed.
-                                handler: () => {this.$router.push('/resume/course')} // Button click handler
-                            },
-                        ],
-                    });
-                }
-            // }
         }
     },
 }
@@ -451,7 +647,7 @@ textarea:focus, input:focus{
 }
 .reg-column-input{
     padding: 0px 10px;
-    height: 27px;
+    height: 35px;
     width: 100%;
     border-radius: 8px;
     border: none;
@@ -545,4 +741,13 @@ textarea:focus, input:focus{
     font-size: 17px;
     cursor: not-allowed;
 }	
+.aftee_banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.aftee_banner img {
+    width: 100vw;
+    max-width: 400px;
+}
 </style>

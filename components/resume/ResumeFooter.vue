@@ -7,7 +7,7 @@
         <div class="md-foot-block-copyright">
             <p>Copyright &copy; 2019 FlyingCrazyer Inc.</p>
             <p>All rights reserved</p>
-            <router-link to='/privacy'><p>privacy</p></router-link>
+            <router-link to='/privacy'><p>Privacy</p></router-link>
         </div>
     </div>
 </template>

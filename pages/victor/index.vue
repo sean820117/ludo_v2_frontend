@@ -140,7 +140,7 @@
                     <text id="加入_Facebook_社團_搶先收看最新解題直播" data-name="加入 Facebook 社團
                     搶先收看最新解題直播" transform="translate(100 21)" fill="#707070" font-size="20" font-family=""><tspan x="-89.473" y="0">加入</tspan><tspan y="0" xml:space="preserve" font-family=""> Facebook </tspan><tspan y="0">社團</tspan><tspan y="0" font-family=""></tspan><tspan x="-100" y="30">搶先收看最新解題直播</tspan></text>
                 </svg>
-                <a href="https://www.facebook.com/groups/350744379127084/">
+                <a @click.prevent="goFBGroup('https://www.facebook.com/groups/350744379127084/')">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :width="$mq === 'mobile' ? 240: (240 * 1)" :height="$mq === 'mobile' ? 60: (60 * 1)" viewBox="0 0 240 60">
                         <defs>
                             <filter id="Rectangle_179" x="0" y="0" width="240" height="60" filterUnits="userSpaceOnUse">
@@ -280,18 +280,6 @@ export default {
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
             ],
-            meta: [
-                { name: "viewport", content: "width=device-width, initial-scale=1.0"},
-                { charset: "UTF-8"},
-                { hid: 'description', name: 'description', content: '得勝者文教，帶你秒懂108課綱—學習歷程' },
-                { property : 'og:title' , content:"學習歷程 - 得勝者文教"},
-                { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/victor"},
-                { property : 'og:image' , content:""},
-                { property : 'og:description' , content:"得勝者文教，帶你秒懂108課綱—學習歷程"},
-                { property : 'og:site_name' , content:"www.ludonow.com"},
-            ],
-            title: '學習歷程 - 得勝者文教',
         } 
     },
     data() {
@@ -302,40 +290,36 @@ export default {
             show_second_block: true,
             banners: [
                 {
-                    url:'/victor-LP-1.png',
+                    url:'/victor-LP-1.jpg',
                     key:0
                 },
                 {
-                    url:'/victor-LP-2.png',
+                    url:'/victor-LP-2.jpg',
                     key:1
                 },
                 {
-                    url:'/victor-LP-3.png',
+                    url:'/victor-LP-3.jpg',
                     key:2
                 },
                 {
-                    url:'/victor-LP-4.png',
+                    url:'/victor-LP-4.jpg',
                     key:3
                 },
                 {
-                    url:'/victor-LP-5.png',
+                    url:'/victor-LP-5.jpg',
                     key:4
                 },
                 {
-                    url:'/victor-LP-6.png',
+                    url:'/victor-LP-6.jpg',
                     key:5
                 },
                 {
-                    url:'/victor-LP-7.png',
+                    url:'/victor-LP-7.jpg',
                     key:6
                 },
                 {
-                    url:'/victor-LP-8.png',
+                    url:'/victor-LP-8.jpg',
                     key:7
-                },
-                {
-                    url:'/victor-LP-9.png',
-                    key:8
                 },
             ],
             banners2: [
@@ -361,10 +345,6 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             
             this.arrangeLandingPage();
-            if (process.env.NODE_ENV === "production") {
-                this.$fb.enable();
-                this.$fb.track();
-            }
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },
@@ -372,12 +352,18 @@ export default {
         seeMore() {
             this.show_second_block = false;
             if (process.env.NODE_ENV === "production") {
-                this.$fb.track('ViewContent');
+                this.$fbq('track','ViewContent');
             }
         }, 
         goFBGroup(url) {
-            this.$fb.query('trackCustom', 'join_group')
-            window.location.href = url;
+            this.$fbq('trackCustom', 'join_group')
+            this.$gtag('event', 'conversion', {
+                'send_to': 'AW-744113367/nzQWCOPNqaEBENeJ6eIC',
+                'event_callback': function() {
+                    console.log('group');
+                    window.location.href = url;
+                }
+            });
         },
         arrangeLandingPage(){
             var imgContainer = document.getElementById("ss-container");
@@ -567,6 +553,9 @@ p.content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.single-option a {
+    cursor: pointer;
 }
 .flex {
     display: flex;

@@ -83,7 +83,7 @@ export default {
 }
 @media (min-width: 900px) {
     .three-labels label{
-        font-size: 25px !important;
+        font-size: 20px !important;
     }
     .three-labels {
         height: 50px;

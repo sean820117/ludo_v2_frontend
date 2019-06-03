@@ -15,21 +15,6 @@ module.exports = {
     apiUrl: process.env.API_URL || 'http://localhost:8000',
   },
   head: {
-    title: 'Ludo Now',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
-      { hid: 'description', name: 'description', content: '' },
-      { property : 'og:title' , content:""},
-      { property : 'og:type' , content:""},
-      { property : 'og:url' , content:""},
-      { property : 'og:image' , content:""},
-      { property : 'og:description' , content:""},
-      { property : 'og:site_name' , content:""},
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
     script: [
       { src: 'https://sdk.accountkit.com/en_US/sdk.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
@@ -54,15 +39,16 @@ module.exports = {
   ** Build configuration
   */
   plugins: [
-    { src: '~/plugins/gtm.js', ssr: false },
+    // { src: '~/plugins/gtm.js', ssr: false },
     // { src: '~/plugins/ga-victor.js', ssr: false },
-    { src: '~/plugins/hotjar.js', ssr: false },
+    // { src: '~/plugins/hotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
     { src: '~/plugins/checkPayed.js', ssr: false },
     { src: '~/plugins/modal.js', ssr: false },
     { src: '~/plugins/loading.js', ssr: false },
     { src: '~/plugins/forceLogin.js', ssr: false },
     { src: '~/plugins/scrollTo.js', ssr: false },
+    { src: '~/plugins/fbq.js', ssr: false },
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
@@ -75,17 +61,12 @@ module.exports = {
       },
       debug: true,
       disableAutoPageTrack: true,
-      additionalAccounts: [{
-        id: 'UA-137420846-2',
-        config: {
-          'send_page_view': false
-        }
-      }]
-    }],    
-    ['nuxt-facebook-pixel-module', {
-      /* module options */
-      pixelId: '2273854532873952',
-      disabled: true,
+      // additionalAccounts: [{
+      //   id: 'UA-137420846-2',
+      //   config: {
+      //     'send_page_view': false
+      //   }
+      // }]
     }],
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],

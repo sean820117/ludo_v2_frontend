@@ -6,7 +6,7 @@
     </titlebar>
     <nuxt/>
     <div class="contact-us-block" v-if="$route.path !== '/victor'" >
-        <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1.5)" :height="$mq === 'mobile' ? 53: (53 * 1.5)" viewBox="0 0 152 53">
+        <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 152: (152 * 1)" :height="$mq === 'mobile' ? 53: (53 * 1)" viewBox="0 0 152 53">
             <text id="聯絡我們" transform="translate(76 40)" fill="#fff" font-size="38" font-family="PingFangTC-Semibold, PingFang TC" font-weight="600"><tspan x="-76" y="0">聯絡我們</tspan></text>
         </svg>
         <svg xmlns="http://www.w3.org/2000/svg" :width="$mq === 'mobile' ? 142: (142 * 1.5)" :height="$mq === 'mobile' ? 96: (96 * 1.5)" viewBox="0 0 142 96.096">
@@ -85,6 +85,10 @@ export default {
             }
             this.is_login = await this.$checkLogin(this.$store);
             this.$gtag('config', 'UA-137420846-2');
+            if (process.env.NODE_ENV === "production") {
+                this.$fbq("init",this.ui_config.fbq_id);
+                this.$fbq("track","PageView");
+            }
         }
     },
 }

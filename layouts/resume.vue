@@ -1,7 +1,7 @@
 <template>
   <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">
-        <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
+        <div v-if="user.user_id != ''" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
         <div v-else slot="right-component" @click="$router.push('/resume/login')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
     </titlebar>
     <nuxt/>
@@ -50,12 +50,12 @@ export default {
                 { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
                 { property : 'og:type' , content:"education tech."},
                 { property : 'og:url' , content:"https://www.ludonow.com/resume"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume-og-img.jpg"},
-                { property : 'og:description' , content:"狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。"},
+                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
+                { property : 'og:description' , content:"狂人履歷線上課程，讓你60分鐘超越別人60天的準備。"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
         }
     },
@@ -81,8 +81,10 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.$gtag('set', 'userId', this.user.user_id );
-                this.$gtag('config', 'UA-123332732-3');
             }
+            this.$gtag('config', 'UA-123332732-3');
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
         }
     },
 }
@@ -99,6 +101,7 @@ body {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   /* background: #FDFCF7; */
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {

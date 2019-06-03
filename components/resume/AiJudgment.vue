@@ -5,7 +5,7 @@
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
-            <textarea class="send-textarea" placeholder="請填入你的練習回答" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
+            <textarea class="send-textarea" :placeholder="placeholder" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <div class="ai-judgement-no-ai" v-else>
@@ -13,13 +13,13 @@
             <br><br>
             搭配 AI 練習課程如以下課程：
             <br>
-            「自我介紹標準公式」
+            「03.自我介紹標準公式」
             <br>
-            「有效撰寫工作經歷」
+            「04.有效撰寫工作經歷」
             <br>
-            「志工社團經驗呈現」
+            「05.志工社團經驗呈現」
             <br>
-            「寫出能力的公信力」
+            「06.寫出能力的公信力」
         </div>
         <ai-feed-back ref="feedBackBlock" :record_index="1" :score="current_score" :current_chapter="current_chapter"/>
     </div>
@@ -39,8 +39,10 @@ export default {
                     if (event.target.closest(".load-history")) return;
                     this.$refs.historyList.style.display = "none";
                 }).bind(this));
+
+                this.placeholder = this.current_chapter.practice_hint;
             }
-        }, 3000);
+        }, 2000);
     },
     methods: {
         adjustTextAreaHeight(){
@@ -161,6 +163,7 @@ export default {
         last_loaded_ai_id: '',
         last_loaded_record_items:[],
         current_score:{},
+        placeholder:'請填入你的練習回答',
     }),
     props:{
         ai_id:'',
@@ -246,8 +249,9 @@ export default {
 }
 .ai-judgement-no-ai {
     text-align: center;
-    font-size: 20px;
-    margin-top: 50px;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .send-textarea {
     resize : none;

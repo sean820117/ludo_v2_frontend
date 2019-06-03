@@ -8,7 +8,7 @@
             <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
             <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
         </div> -->
-        <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock">
+        <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock" v-touch:moved="dragFirstBlock" >
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -30,7 +30,7 @@
                     求職季的競爭<br>
                     比的不只是好，更是快<br>
                     <div class="sb-addition">
-                        使用一個月99元，獲得履歷課程與無限次履歷評測
+                        使用一季299元，獲得履歷課程與無限次履歷評測
                     </div>
             </div>
             <img src="/resume/Mask Group 4.png" style="margin-top:10px"/>
@@ -95,15 +95,15 @@
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
-                    <div id="dc-1" class="course">
+                    <div id="dc-1" class="course" @click="switchCourse(getChapterData01.video_id)">
                         <div class="c-img"><img :src="getChapterData01.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData01.title }}(試讀)</div>
-                        <div class="c-context">{{ getChapterData01.subtitle }}</div>
+                        <div class="c-title">面試官思維分析(試讀)</div>
+                        <div class="c-context">{{ getChapterData01.description }}</div>
                     </div>
-                    <div id="dc-2" class="course">
+                    <div id="dc-2" class="course" @click="onSecondPreviewCourseClick">
                         <div class="c-img"><img :src="getChapterData04.thumbnail"/></div>
-                        <div class="c-title">{{ getChapterData04.title }}(試讀)</div>
-                        <div class="c-context">{{ getChapterData04.subtitle }}</div>
+                        <div class="c-title">有效撰寫工作經歷(試讀)</div>
+                        <div class="c-context">{{ getChapterData04.description }}</div>
                     </div>
                 </div>
                 <div class="fbshare" id="fbshare">
@@ -113,9 +113,9 @@
             </div>
             <div class="eight-block">
                 <div class="eb-title">課程單元介紹</div>
-                <div class="eb-des-box" style="margin-top:20px;" :class="showOrNotA" @click="toggleClassA()">
+                <div class="eb-des-box" style="margin-top:20px;" :class="show_list[0]" @click="toggleClass(0)">
                     <div class="eb-des-box-title">第一堂課<br>面試官思維分析<hr>
-                    <div class="eb-des-circle" :class="showOrNotA">
+                    <div class="eb-des-circle" :class="show_list[0]">
                         <div></div>
                         <div></div>
                     </div>
@@ -129,9 +129,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotB" @click="toggleClassB()">
+                <div class="eb-des-box" :class="show_list[1]" @click="toggleClass(1)">
                     <div class="eb-des-box-title">第二堂課<br>選擇正確平台與邏輯<hr>
-                    <div class="eb-des-circle" :class="showOrNotB">
+                    <div class="eb-des-circle" :class="show_list[1]">
                         <div></div>
                         <div></div>
                     </div>
@@ -145,9 +145,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotC" @click="toggleClassC()">
+                <div class="eb-des-box" :class="show_list[2]" @click="toggleClass(2)">
                     <div class="eb-des-box-title">第三堂課<br>自我介紹標準公式<hr>
-                    <div class="eb-des-circle" :class="showOrNotC">
+                    <div class="eb-des-circle" :class="show_list[2]">
                         <div></div>
                         <div></div>
                     </div>
@@ -160,10 +160,10 @@
                         </div>  
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotD" @click="toggleClassD()">
+                <div class="eb-des-box" :class="show_list[3]" @click="toggleClass(3)">
                     <div class="eb-des-box-title">第四堂課<br>有效撰寫工作經歷<hr>
                         <div class="eb-des-box-content">
-                            <div class="eb-des-circle" :class="showOrNotD">
+                            <div class="eb-des-circle" :class="show_list[3]">
                                 <div></div>
                                 <div></div>
                             </div>
@@ -176,9 +176,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotE" @click="toggleClassE()">
+                <div class="eb-des-box" :class="show_list[4]" @click="toggleClass(4)">
                     <div class="eb-des-box-title">第五堂課<br>志工與社團經驗呈現<hr>
-                    <div class="eb-des-circle" :class="showOrNotE">
+                    <div class="eb-des-circle" :class="show_list[4]">
                         <div></div>
                         <div></div>
                     </div>    
@@ -191,9 +191,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotF" @click="toggleClassF()">
+                <div class="eb-des-box" :class="show_list[5]" @click="toggleClass(5)">
                     <div class="eb-des-box-title">第六堂課<br>寫出能力的公信力<hr>
-                    <div class="eb-des-circle" :class="showOrNotF">
+                    <div class="eb-des-circle" :class="show_list[5]">
                         <div></div>
                         <div></div>
                     </div>
@@ -206,9 +206,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotG" @click="toggleClassG()">
+                <div class="eb-des-box" :class="show_list[6]" @click="toggleClass(6)">
                     <div class="eb-des-box-title">第七堂課<br>利用學歷與個人成就<hr>
-                    <div class="eb-des-circle" :class="showOrNotG">
+                    <div class="eb-des-circle" :class="show_list[6]">
                         <div></div>
                         <div></div>
                     </div>
@@ -222,9 +222,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotH" @click="toggleClassH()">
+                <div class="eb-des-box" :class="show_list[7]" @click="toggleClass(7)">
                     <div class="eb-des-box-title">第八堂課<br>自傳五大向度分析<hr>
-                    <div class="eb-des-circle" :class="showOrNotH">
+                    <div class="eb-des-circle" :class="show_list[7]">
                         <div></div>
                         <div></div>
                     </div>
@@ -237,9 +237,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotI" @click="toggleClassI()">
+                <div class="eb-des-box" :class="show_list[8]" @click="toggleClass(8)">
                     <div class="eb-des-box-title">第九堂課<br>面試常見題目解析<hr>
-                    <div class="eb-des-circle" :class="showOrNotI">
+                    <div class="eb-des-circle" :class="show_list[8]">
                         <div></div>
                         <div></div>
                     </div>
@@ -255,9 +255,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="eb-des-box" :class="showOrNotJ" @click="toggleClassJ()">
+                <div class="eb-des-box" :class="show_list[9]" @click="toggleClass(9)">
                     <div class="eb-des-box-title">第十堂課<br>提高求職信開信率<hr>
-                    <div class="eb-des-circle" :class="showOrNotJ">
+                    <div class="eb-des-circle" :class="show_list[9]">
                         <div></div>
                         <div></div>
                     </div>
@@ -312,7 +312,7 @@
             </div>
             <div class="blank-block"></div>
             <div class="eight-block" style="padding-bottom: 20px;">
-                <div class="eb-title">FAQ</div>
+                <div class="eb-title">常見問題</div>
                 <div class="eb-content">
                     <br><br>
                     <b>Q1: 請問履歷範本在哪上課？</b>
@@ -321,29 +321,25 @@
                     <br><br>
                     <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
+                    課程為單季學習制，在訂購後的這一季內都可以一直重複觀看。
                     <br><br>
-                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
+                    <b>Q3： NT299 元/季學習服務之後會有更新內容嗎？</b>
                     <br><br>
-                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/8/3 前訂閱，即可以 NT299 元/季的價格訂購（原價為 NT499 元/季)。
                     <br><br>
                     <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
                     <br><br>
                     不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
                     <br><br>
-                    <b>Q5: 取消訂閱</b>
-                    <br><br>
-                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
-                    <br><br>
-                    <b>Q6: 付款方式</b>
+                    <b>Q5: 付款方式</b>
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q7: 電子發票開立</b>
+                    <b>Q6: 電子發票開立</b>
                     <br><br>
                     將於付款後 30 天內寄送至您註冊之電子信箱。
                     <br><br>
-                    <b>Q8: 其他問題</b>
+                    <b>Q7: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -365,7 +361,7 @@
             <img class="md-title-blue" src="/resume/resume-logo.svg"/>
             <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/login')" >{{ is_login ? '登出' : '登入'}}</div>
         </div> -->
-        <div class="md-first-block">
+        <div class="md-first-block" @scroll="dragFirstBlock" >
             <img class="md-earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
             <img class="eye" src="/resume/eye.png" />
@@ -387,7 +383,7 @@
                     求職季的競爭<br>
                     比的不只是好，更是快<br>
                     <div class="md-sb-addition">
-                        使用一個月99元，獲得履歷課程與無限次履歷評測
+                        使用一季299元，獲得履歷課程與無限次履歷評測
                     </div>
             </div>
                 <img src="/resume/md-Mask Group 4.png" style="margin-left:24%;width:500px;"/>
@@ -451,18 +447,18 @@
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
                 </div>
                 <div id="democourses">
-                    <div id="dc-1" class="md-course">
+                    <div id="dc-1" class="md-course" @click="switchCourse(getChapterData01.video_id)">
                         <div class="md-c-img"><img :src="getChapterData01.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData01.title }}(試讀)</div>
-                            <div class="md-c-context">{{ getChapterData01.subtitle }}</div>
+                            <div class="md-c-title">面試官思維分析(試讀)</div>
+                            <div class="md-c-context">{{ getChapterData01.description }}</div>
                         </div>
                     </div>
-                    <div id="dc-2" class="md-course">
+                    <div id="dc-2" class="md-course" @click="onSecondPreviewCourseClick">
                         <div class="md-c-img"><img :src="getChapterData04.thumbnail"/></div>
                         <div class="md-c-box">
-                            <div class="md-c-title">{{ getChapterData04.title }}(試讀)</div>
-                            <div class="md-c-context">{{ getChapterData04.subtitle }}</div>
+                            <div class="md-c-title">有效撰寫工作經歷(試讀)</div>
+                            <div class="md-c-context">{{ getChapterData04.description }}</div>
                         </div>
                     </div>
                 </div>
@@ -615,7 +611,7 @@
                 </div>
             </div>
              <div class="eight-block" style="padding-bottom: 20px;">
-                <div class="eb-title">FAQ</div>
+                <div class="eb-title">常見問題</div>
                 <div class="eb-content" style="width: 500px;">
                     <br><br>
                     <b>Q1: 請問履歷範本在哪上課？</b>
@@ -624,34 +620,29 @@
                     <br><br>
                     <b>Q2: 課程可以看幾次？</b>
                     <br><br>
-                    課程為單月份訂閱制，在訂購後的這一個月內都可以一直重複觀看。
+                    課程為單季學習制，在訂購後的這一季內都可以一直重複觀看。
                     <br><br>
-                    <b>Q3：請問 NT99 元/月的訂閱服務之後會有更新內容嗎？</b>
+                    <b>Q3： NT299 元/季學習服務之後會有更新內容嗎？</b>
                     <br><br>
-                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/6/30 前訂閱，即可以終生以 NT99 元/月的價格訂購（原價為 NT199 元/月，中間斷訂的話則恢復常態 NT199 元/月計費)
+                    會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人飛鐵粉，即日起到 2019/8/3 前訂閱，即可以 NT299 元/季的價格訂購（原價為 NT499 元/季)。
                     <br><br>
                     <b>Q4: 會有真人幫我把我的履歷改到好嗎？</b>
                     <br><br>
                     不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。
                     <br><br>
-                    <b>Q5: 取消訂閱</b>
-                    <br><br>
-                    欲取消訂閱服務須請來信至 contact@flyingcrazyer.com 提出，將有專人協助為您服務。
-                    <br><br>
-                    <b>Q6: 付款方式</b>
+                    <b>Q5: 付款方式</b>
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q7: 電子發票開立</b>
+                    <b>Q6: 電子發票開立</b>
                     <br><br>
                     將於付款後 30 天內寄送至您註冊之電子信箱。
                     <br><br>
-                    <b>Q8: 其他問題</b>
+                    <b>Q7: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
             </div>
-            <resume-footer></resume-footer>
             <footer class="paynow" v-if="!payed_or_not" @click="clickPayNow">
                 立即購買
             </footer>
@@ -683,20 +674,7 @@ export default {
     layout: 'resume',
     head() {
         return  {
-            title: '履歷範本 - 找工作的加速器',
-            meta: [
-                { charset: 'utf-8' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
-                { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
-                { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
-                { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/resume"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume-og-img.jpg"},
-                { property : 'og:description' , content:"狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。"},
-                { property : 'og:site_name' , content:"www.ludonow.com"},
-            ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
             ],
             script: [
@@ -713,16 +691,9 @@ export default {
         video_10_percent: false,
         video_50_percent: false,
         video_90_percent: false,
-        show_a:false,
-        show_b:false,
-        show_c:false,
-        show_d:false,
-        show_e:false,
-        show_f:false,
-        show_g:false,
-        show_h:false,
-        show_i:false,
-        show_j:false,
+        show_fbshare_or_not:false,
+        dv:{},
+        show_list:[],
     }),
     computed: { 
         ...mapGetters({
@@ -756,37 +727,6 @@ export default {
             }
             return data;
         },
-        showOrNotA(){
-            return this.show_a ? 'open':'';
-        },
-        showOrNotB(){
-            return this.show_b ? 'open':'';
-        },
-        showOrNotC(){
-            return this.show_c ? 'open':'';
-        },
-        showOrNotD(){
-            return this.show_d ? 'open':'';
-        },
-        showOrNotE(){
-            return this.show_e ? 'open':'';
-        },
-        showOrNotF(){
-            return this.show_f ? 'open':'';
-        },
-        showOrNotG(){
-            return this.show_g ? 'open':'';
-        },
-        showOrNotH(){
-            return this.show_h ? 'open':'';
-        },
-        showOrNotI(){
-            return this.show_i ? 'open':'';
-        },
-        showOrNotJ(){
-            return this.show_j ? 'open':'';
-        },
-
     },
     async beforeCreate() {
         if (process.client) {
@@ -802,43 +742,21 @@ export default {
             });
             setTimeout(() => {
                 loader.hide();
-                var dv = document.getElementById("demovideo");
-                var dcPlayer = new Vimeo.Player(dv);
-                // var size = Math.min(640,window.innerWidth,window.innerHeight);
-                // dv.style.height = size-36+"px";
-                // dv.style.width = size-36+"px";
-                var isShared = false;
+                this.dv = document.getElementById("demovideo");
+                var dcPlayer = new Vimeo.Player(this.dv);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
-                document.getElementById("democourses").onclick = function(){
-                    document.getElementById("fbshare").style.display = "block";
-                }
+                // document.getElementById("democourses").onclick = function(){
+                //     document.getElementById("fbshare").style.display = "block";
+                // }
                 function openShareWindow(){
-                    isShared = true;
+                    localStorage.isShared = 'true';
                     window.open(sharelink,"share","width=1000,height=600");
                     document.getElementById("share-mask").style.display = "none";
                 }
                 document.getElementById("clickshare").onclick = openShareWindow;
                 document.getElementById("share-mask").onclick = openShareWindow;
-                function switchCourse(id){
-                    if(localStorage.isShared == "true"){
-                        dv.src = "https://player.vimeo.com/video/"+id;
-                    }
-                    function switchCourse(id){
-                        if(localStorage.isShared == "true"){
-                            dv.src = "https://player.vimeo.com/video/"+id;
-                        }
-                    }
-                    $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                    $("#dc-2").click(()=>switchCourse(getChapterData04.video_id));
-                    dcPlayer.on('ended', this.onEndCallback());
-                    dcPlayer.on('play',this.onPlayCallback());
-                }
-                if (localStorage.isShared == "true") {
-                    isShared = true;
-                }
-                $("#dc-1").click(()=>switchCourse(getChapterData01.video_id));
-                $("#dc-2").click(()=>{ switchCourse(getChapterData04.video_id);scrollTo((!isShared ? "#fbshare" : "#democourses"), (isShared ? "end" : "center") ); });
+
                 dcPlayer.on('ended', this.onEndCallback);
                 dcPlayer.on('play',this.onPlayCallback);
                 dcPlayer.on('pause',this.onPauseCallback);
@@ -847,7 +765,7 @@ export default {
                 if (this.$mq === "mobile") {
                     var imgContainer = document.getElementById("ss-container");
                 
-                    var slideTimer = null, imgIndex = 0, slideInterval = 3000;
+                    var slideTimer = null, imgIndex = 0, slideInterval = 4000;
                     $(imgContainer.children[0]).show();
                     slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
                 }
@@ -860,8 +778,6 @@ export default {
                         stimer = setTimeout(()=>switchImg(1,element,stimer,theImgIndex), slideInterval);
                     });
                 }
-                // $("#pre-img").click(()=>switchImg(-1));
-                // $("#next-img").click(()=>switchImg(1));
             }, 2000);
             
             
@@ -891,6 +807,30 @@ export default {
                 'page_title' : 'LP intro',
                 'page_path': '/1_intro'
             });
+            this.$gtag('event', 'view_item_list', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 299
+                    },
+                ]
+            });
+            this.$gtag('event', 'view_item', {
+                "items": [
+                    {
+                    "id": "resume_01",
+                    "name": "履歷範本課程(一個月)",
+                    "brand": "讓狂人飛",
+                    "category": "online AI course",
+                    "quantity": 1,
+                    "price": 299
+                    },
+                ]
+            });
         },
         openShareWindow() {
             this.$gtag('event', 'Click', {
@@ -908,6 +848,7 @@ export default {
                 'event_category': 'Video',
                 'event_label': '[試讀] 01 - 面試攻略',
             });
+            this.$fbq('trackCustom', 'PlayVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onEndCallback() {
             document.getElementById("fbshare").style.display = "block";
@@ -923,6 +864,7 @@ export default {
                 'event_label': '[試讀] 01 - 面試攻略',
                 'value':data.seconds
             });
+            this.$fbq('trackCustom', 'PauseVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onTimeUpdateCallback(data) {
             if (data.seconds > 0.1 && this.video_10_percent) {
@@ -930,16 +872,19 @@ export default {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo10p', {title: '[試讀] 01 - 面試攻略'});
             } else if (data.seconds > 0.5 && this.video_50_percent) {
                 this.$gtag('event', 'Play_to_50%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo50p', {title: '[試讀] 01 - 面試攻略'});
             } else if (data.seconds > 0.9 && this.video_90_percent) {
                 this.$gtag('event', 'Play_to_90%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
+                this.$fbq('trackCustom', 'PlayVideo90p', {title: '[試讀] 01 - 面試攻略'});
             }
         },
         clickPayNow() {
@@ -947,37 +892,46 @@ export default {
                 'event_category': 'EC',
                 'event_label': '立即購買_頁尾',
             });
+            this.$fbq('track', 'AddToCart', {
+                currency: "TWD", 
+                value: 299.00,
+                content_ids: 'resume_01',
+                content_type: 'product'
+            });
+
             this.$router.push("/resume/pay");
         },
-        toggleClassA() {
-            this.show_a = !this.show_a;
+        onSecondPreviewCourseClick() {
+            if (localStorage.isShared != "true") {
+                window.alert("需要先分享才能觀看這堂課喔");    
+                document.getElementById("fbshare").style.display = "block";
+                this.$scrollTo("#fbshare"); 
+            } else {
+                this.switchCourse(this.getChapterData04.video_id);
+                document.getElementById("fbshare").style.display = "block";
+                this.$scrollTo("#democourses"); 
+            }
         },
-        toggleClassB() {
-            this.show_b = !this.show_b;
+        switchCourse(id){
+            if(localStorage.isShared == "true"){
+                this.dv.src = "https://player.vimeo.com/video/"+id;
+            }
         },
-        toggleClassC() {
-            this.show_c = !this.show_c;
-        },
-        toggleClassD() {
-            this.show_d = !this.show_d;
-        },
-        toggleClassE() {
-            this.show_e = !this.show_e;
-        },
-        toggleClassF() {
-            this.show_f = !this.show_f;
-        },
-        toggleClassG() {
-            this.show_g = !this.show_g;
-        },
-        toggleClassH() {
-            this.show_h = !this.show_h;
-        },
-        toggleClassI() {
-            this.show_i = !this.show_i;
-        },
-        toggleClassJ() {
-            this.show_j = !this.show_j;
+        toggleClass(index) {
+            if (this.show_list[index] === 'open') {
+                this.show_list = [];
+                    this.$gtag('event', 'Toggle_Off', {
+                    'event_category': 'UIEvent',
+                    'event_label': '課程' + index
+                });
+            } else {
+                this.show_list = [];
+                this.show_list[index] = 'open'
+                this.$gtag('event', 'Toggle_On', {
+                    'event_category': 'UIEvent',
+                    'event_label': '課程' + index
+                });
+            }
         },
     },
     components: {
@@ -1023,7 +977,7 @@ export default {
 }
 
 .first-block{
-    position: relative;
+    position: fixed;
     width:100vw;
     height: 100vh;
     background: url("/resume/Group 139.png") #0090FF;
@@ -1065,6 +1019,9 @@ export default {
     transition: top 300ms linear;
     top: 0px;
     visibility: visible;
+}
+#checkseemore:checked ~ .first-block{
+    position: relative;
 }
 .scrolldown{
     display:none;
@@ -1603,16 +1560,16 @@ a{
     margin-left: 12vw;
 }
 .md-first-block{
-    position: relative;
+    position: fixed;
     width:100vw;
-    height: 100vh;
+    height: 101vh;
     background: url("/resume/Group 367.png") #0090FF;
     background-size:85%;
     background-position: center center;
     background-repeat: no-repeat;
     overflow-x: hidden;
     transition: height 200ms linear;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 .md-seemore{
     position: absolute;
@@ -1850,11 +1807,11 @@ a{
 }
 .md-sevenblock-1{
     padding-top: 50px;
-    font-size: 90px;
+    font-size: 44px;
 }
 .md-sevenblock-2{
     margin-bottom: 38px;
-    font-size: 35px;
+    font-size: 24px;
 }
 .md-videoplay{
     position: relative;
@@ -1940,7 +1897,7 @@ a{
 }
 .md-comment-title{
     text-align: center;
-    font-size: 80px;
+    font-size: 44px;
     color: #007CDC;
     font-weight: 500;
     margin-top: 39px;
