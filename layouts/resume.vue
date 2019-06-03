@@ -50,7 +50,7 @@ export default {
                 { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
                 { property : 'og:type' , content:"education tech."},
                 { property : 'og:url' , content:"https://www.ludonow.com/resume"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume-og-img.jpg"},
+                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
                 { property : 'og:description' , content:"狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
