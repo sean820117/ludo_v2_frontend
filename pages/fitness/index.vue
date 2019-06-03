@@ -11,11 +11,11 @@
             <h5>即刻開始</h5>
             <div class="actions" v-if="$mq == 'desktop'">
               <flat-button size="big" text="課程介紹" link="/fitness/course/01" hover="hover-fill-white" :dl="true"/>
-              <flat-button size="big" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="體驗練習" link="/fitness/course/drew01"/>
+              <flat-button size="big" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="體驗練習" link="/fitness/demo"/>
             </div>
             <div class="actions" v-if="$mq == 'mobile'">
               <flat-button size="medium" text="課程介紹" link="/fitness/course/drew" hover="hover-fill-white" :dl="true"/>
-              <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="體驗練習" link="/fitness/course/drew01"/>
+              <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="體驗練習" link="/fitness/demo"/>
             </div>
           </section>
         </div>

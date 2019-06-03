@@ -1,19 +1,18 @@
 <template>
     <div class="practice-area-bg-container">
         <div class="practice-area-container">
-            <h1 class="title green-color">やってみよう！</h1>
-            <p class="practice-area-content">正しい姿勢は、
-半分の努力で2倍結果を叶えます。<br>優秀なAIコーチと一緒にあなたの姿勢を改善しよう！<br><br>今すぐあなたのスクワットビデオをアップロード</p>
+            <h1 class="title green-color">马上练习</h1>
+            <p class="practice-area-content">正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的深蹲影片体验</p>
             <!-- <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="上傳影片" type="file" change="handleVideoUpload"/> -->
             <button
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-                <label ><input type="file" style="display:none;" @change="handleVideoUpload">アップロード</label>
+                <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
             </button>
         </div>
-        <div class="result-container">
-            <h1 class="title green-color">分析結果</h1>
+        <div class="result-container" >
+            <h1 class="title green-color">分析结果</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
@@ -30,6 +29,7 @@
 import FlatButton from "~/components/FlatButton.vue";
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
+
 
 export default {
     components: {
