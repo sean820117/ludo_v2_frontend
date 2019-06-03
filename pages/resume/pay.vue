@@ -647,7 +647,7 @@ textarea:focus, input:focus{
 }
 .reg-column-input{
     padding: 0px 10px;
-    height: 27px;
+    height: 35px;
     width: 100%;
     border-radius: 8px;
     border: none;
