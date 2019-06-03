@@ -89,7 +89,7 @@
             </div>
             <div class="seven-block" v-if="$mq === 'mobile'">
                 <div class="sevenblock-1">課程免費搶先看</div>
-                <div class="sevenblock-2">馬上體驗剖析面試官的思維</div>
+                <div class="sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button>分享</button></div></div>
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -441,7 +441,7 @@
             </div>
             <div class="md-seven-block">
                 <div class="md-sevenblock-1">課程免費搶先看</div>
-                <div class="md-sevenblock-2">馬上體驗剖析面試官的思維</div>
+                <div class="md-sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="md-videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button @click.prevent="openShareWindow">分享</button></div></div>
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
@@ -672,16 +672,6 @@ Vue.use(VueMq, {
 });
 export default {
     layout: 'resume',
-    head() {
-        return  {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            script: [
-                { src: 'https://player.vimeo.com/api/player.js' }        
-            ],
-        }
-    },
     data:() => ({
         is_login: false,
         seemore_check_or_not: false,

@@ -58,7 +58,8 @@ export default {
                 { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
             script: [
-                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' }        
+                { src: 'https://player.vimeo.com/api/player.js' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
             ],
         }
     },
