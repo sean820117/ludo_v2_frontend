@@ -789,7 +789,6 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                this.$gtag('set', 'userId', this.user.user_id );
                 this.$gtag('config', 'UA-123332732-3', {
                     'page_title' : 'LP cover',
                     'page_path': '/0_cover'

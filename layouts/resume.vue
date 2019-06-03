@@ -57,6 +57,9 @@ export default {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
+            script: [
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' }        
+            ],
         }
     },
     async mounted() {
@@ -73,16 +76,37 @@ export default {
                 loader.hide();
             }, 1000);
             
-            // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;
                 console.log("save redirect : " + localStorage.redirect);
             }
             this.is_login = await this.$checkLogin(this.$store);
-            if (this.is_login) {
-                this.$gtag('set', 'userId', this.user.user_id );
+
+            let campaign = {};
+            if (this.$route.query.utm_source && this.$route.query.utm_medium) {
+                campaign = {
+                    source: this.$route.query.utm_source, // utm_source
+                    medium: this.$route.query.utm_medium, // utm medium
+                    name: this.$route.query.utm_campaign,
+                }
+            } else {
+                campaign = {
+                    source: '(direct)', // utm_source
+                    medium: '(none)', // utm medium
+                }
             }
-            this.$gtag('config', 'UA-123332732-3');
+            
+            if (this.is_login) {
+                this.$gtag('config', 'UA-123332732-3', {
+                    'user_id': this.user.user_id,
+                    campaign: campaign,
+                });
+            } else {
+                this.$gtag('config', 'UA-123332732-3',{
+                    campaign: campaign,
+                });
+            }
+
             this.$fbq("init",this.ui_config.fbq_id);
             this.$fbq("track","PageView");
         }
