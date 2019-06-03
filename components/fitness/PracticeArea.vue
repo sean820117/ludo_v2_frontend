@@ -8,11 +8,12 @@
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-                <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
+              <label ><input v-if="showFileInput" type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
+                <!-- <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label> -->
             </button>
         </div>
-        <div class="result-container" >
-            <h1 class="title green-color">分析结果</h1>
+        <div class="result-container" id="result-box">
+            <h1 class="title green-color" >分析结果</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
@@ -42,14 +43,21 @@ export default {
             form.append('file',e.target.files[0])
             form.append('pose_type','squat')
             this.video_url = ""
+            this.showFileInput = false;
             let res = await axios.post('/apis/video-upload',form)
+            this.showFileInput = true;
             this.video_url = res.data.output_video_url;
             console.log(res)
             window.alert('Done');
+            this.$scrollTo('#result-box',"center");
         },
+    },
+    computed: {
+
     },
     data:() => ({
         video_url:'test',
+        showFileInput: true,
     }),
 }
 </script>
@@ -77,7 +85,7 @@ export default {
 h1.title {
   /* display: block; */
   width: 100%;
-  margin-top: 15vh;
+  padding-top: 15vh;
   /* font-weight: 200; */
   font-size: 25px;
   text-align: center;
