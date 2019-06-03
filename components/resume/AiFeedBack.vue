@@ -132,6 +132,7 @@ export default {
     margin: auto;
     width: 100%;
     max-width: 600px;
+    user-select: none;
 }
 .close-feed-back{
     position: fixed;
