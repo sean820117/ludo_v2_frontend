@@ -683,11 +683,13 @@ export default {
         }),
         getChapterData01() {
             let data = {
+                id:'01',
                 title:'第一堂課',
-                subtitle:'換位思考，告訴你人資如何看履歷！',
-                description:'- 學習歷程是什麼？<br>- 為什麼學習歷程會取代備審？<br>- 學習歷程的出現該如何面對？',
-                thumbnail:'/victor-course-thumbnail-01.jpg',
-                video_id:'337212450',
+                subtitle:'面試官思維分析',
+                description:'你該知道面試官如何看履歷，並學會履歷四大指標',
+                thumbnail:'https://i.vimeocdn.com/video/787036073.jpg',
+                video_id:'338611197',
+                ai_id:'',
             };
             
             if (this.is_ui_config_loaded) {
@@ -697,11 +699,13 @@ export default {
         },
         getChapterData04() {
             let data = {
-                title:'第一堂課',
-                subtitle:'換位思考，告訴你人資如何看履歷！',
-                description:'- 學習歷程是什麼？<br>- 為什麼學習歷程會取代備審？<br>- 學習歷程的出現該如何面對？',
-                thumbnail:'/victor-course-thumbnail-01.jpg',
-                video_id:'337212450',
+                id:'04',
+                title:'第四堂課',
+                subtitle:'有效撰寫工作經歷(AI練習)',
+                description:'有效呈現工作經驗的質量，寫出面試官心中，最有感的實際績效數字',
+                thumbnail:'https://i.vimeocdn.com/video/787035997.jpg',
+                video_id:'338608971',
+                ai_id:'work_experience',
             };
             
             if (this.is_ui_config_loaded) {
