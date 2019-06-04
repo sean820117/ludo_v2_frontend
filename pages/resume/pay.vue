@@ -9,7 +9,7 @@
                 <div class="third-party">
                     <third-party-icons :login_method="{ FB : true, google:true, line:false}" />
                 </div>
-                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">本地註冊</div>
+                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">建立新帳號</div>
             </div>
             <div>
                 <form id="basic-form" v-if="!directReg && is_login && !next_step_or_not">
@@ -51,7 +51,7 @@
                     <br><br>
                     ・退款政策
                     <br><br>
-                    履歷範本退款政策是針對在履歷範本網站中購買未達 7 天尚未啟用課程之學員，您可以寄信至 contact@flyingcrazyer.com 申請退款或針對您的履歷範本購買尋求協助。
+                    學員於購買後七日內尚未啟用課程，可憑訂單編號、註冊姓名、註冊之電子信箱帳號與檢附理由書申請退費。您可以寄信至 contact@flyingcrazyer.com 申請退款或針對您的履歷範本購買尋求協助。
                     <br><br>
                 </div>
                 <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not" @change="checkAgreeContract(agree_contract_or_not)">
@@ -72,7 +72,7 @@
                 loader="dots"
             ></loading>
         </div>
-        <div class="aftee_banner">
+        <div class="aftee_banner" v-if="next_step_or_not">
             <img src="https://aftee.tw/start/banner/banner/AFTEE-bn01_468x200.png" alt="">
         </div>
     </div>
@@ -271,7 +271,7 @@ export default {
 
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，及有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，即有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title
@@ -358,18 +358,21 @@ export default {
             });
             
             try {
-                let result = await this.signup(this.email, this.password, this.confirm_password);
+                // if use local signup, signup first
+                if (!this.is_login) {
+                    let result = await this.signup(this.email, this.password, this.confirm_password);
+                }
                 if (this.is_login) {
                     this.startAftee();
                     this.$gtag('event', 'checkout_progress', {
                         "items": [
                             {
-                            "id": "resume_01",
-                            "name": "履歷範本課程(一個月)",
-                            "brand": "讓狂人飛",
-                            "category": "online AI course",
-                            "quantity": 1,
-                            "price": 299
+                                "id": "resume_01",
+                                "name": "履歷範本課程(一個月)",
+                                "brand": "讓狂人飛",
+                                "category": "online AI course",
+                                "quantity": 1,
+                                "price": 299
                             },
                         ],
                         'checkout_step' : 5,
@@ -609,7 +612,7 @@ textarea:focus, input:focus{
     position: relative;
     text-align: left;
     margin: 43px auto;
-    width: 82vw;
+    width: 86vw;
     max-width: 475px;
     padding: 22px 24px 48px 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
@@ -743,7 +746,7 @@ textarea:focus, input:focus{
     justify-content: center;
 }
 .aftee_banner img {
-    width: 100vw;
+    width: 86vw;
     max-width: 400px;
 }
 </style>

@@ -335,11 +335,7 @@
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q6: 電子發票開立</b>
-                    <br><br>
-                    將於付款後 30 天內寄送至您註冊之電子信箱。
-                    <br><br>
-                    <b>Q7: 其他問題</b>
+                    <b>Q6: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -634,11 +630,7 @@
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q6: 電子發票開立</b>
-                    <br><br>
-                    將於付款後 30 天內寄送至您註冊之電子信箱。
-                    <br><br>
-                    <b>Q7: 其他問題</b>
+                    <b>Q6: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
