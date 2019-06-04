@@ -84,34 +84,20 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
 
             // set ga and fb pixel
-            let gtag_config = {}
-            let campaign = {};
-            // if (this.$route.query.utm_source && this.$route.query.utm_medium) {
-            //     campaign = {
-            //         source: this.$route.query.utm_source, // utm_source
-            //         medium: this.$route.query.utm_medium, // utm medium
-            //         name: this.$route.query.utm_campaign,
-            //     }
-            // } else {
-            //     campaign = {
-            //         source: '(direct)', // utm_source
-            //         medium: '(none)', // utm medium
-            //     }
+            // let gtag_config = {}
+            // if (this.$route.path === "/resume" || this.$route.path === "/resume/") {
+            //     console.log("true");
+            //     gtag_config.page_title = 'LP cover';
+            //     gtag_config.page_path = '/0_cover';
             // }
-            gtag_config.campaign = campaign;
-            if (this.$route.path === "/resume" || this.$route.path === "/resume/") {
-                console.log("true");
-                gtag_config.page_title = 'LP cover';
-                gtag_config.page_path = '/0_cover';
-            }
 
-            if (this.is_login) {
-                gtag_config.user_id = this.user.user_id;
-            } 
+            // if (this.is_login) {
+            //     gtag_config.user_id = this.user.user_id;
+            // } 
 
-            this.$gtag('config', 'UA-123332732-3', gtag_config);
-            this.$fbq("init",this.ui_config.fbq_id);
-            this.$fbq("track","PageView");
+            // this.$gtag('config', 'UA-123332732-3', gtag_config);
+            // this.$fbq("init",this.ui_config.fbq_id);
+            // this.$fbq("track","PageView");
         }
     },
 }

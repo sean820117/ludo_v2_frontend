@@ -107,6 +107,18 @@ export default {
                     console.log("payed")
                 }
             }
+
+            //ga
+            let gtag_config = {}
+
+            if (login_or_not) {
+                gtag_config.user_id = this.user.user_id;
+            } 
+
+            this.$gtag('config', 'UA-123332732-3', gtag_config);
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
+
         }
     },
     // async asyncData (context) {

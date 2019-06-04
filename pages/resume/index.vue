@@ -778,6 +778,18 @@ export default {
             if (this.is_login) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
             }
+            //ga and fb pixel
+            let gtag_config = {}
+            gtag_config.page_title = 'LP cover';
+            gtag_config.page_path = '/0_cover';
+
+            if (this.is_login) {
+                gtag_config.user_id = this.user.user_id;
+            } 
+
+            this.$gtag('config', 'UA-123332732-3', gtag_config);
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
         }
     },
     methods: {

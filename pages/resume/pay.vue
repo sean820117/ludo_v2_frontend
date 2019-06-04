@@ -545,6 +545,17 @@ export default {
                     ],
                 });
             }
+            
+            //ga
+            let gtag_config = {}
+
+            if (this.is_login) {
+                gtag_config.user_id = this.user.user_id;
+            } 
+
+            this.$gtag('config', 'UA-123332732-3', gtag_config);
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
 
             this.$gtag('event', 'add_to_cart', {
                 "items": [
