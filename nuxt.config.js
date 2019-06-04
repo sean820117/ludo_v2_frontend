@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     // { src: '~/plugins/gtm.js', ssr: false },
     // { src: '~/plugins/ga-victor.js', ssr: false },
-    // { src: '~/plugins/hotjar.js', ssr: false },
+    { src: '~/plugins/loadHotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
     { src: '~/plugins/checkPayed.js', ssr: false },
     { src: '~/plugins/modal.js', ssr: false },

@@ -786,7 +786,8 @@ export default {
             if (this.is_login) {
                 gtag_config.user_id = this.user.user_id;
             } 
-
+            this.$gtag('js', new Date());
+            this.$gtag('config', 'AW-739537538');
             this.$gtag('config', 'UA-123332732-3', gtag_config);
             this.$fbq("init",this.ui_config.fbq_id);
             this.$fbq("track","PageView");
