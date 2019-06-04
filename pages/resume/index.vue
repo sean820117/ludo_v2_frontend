@@ -92,7 +92,7 @@
                 <div class="sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button>分享</button></div></div>
-                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/338611197'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="course" @click="switchCourse(getChapterData01.video_id)">
@@ -440,7 +440,7 @@
                 <div class="md-sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="md-videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button @click.prevent="openShareWindow">分享</button></div></div>
-                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/338611197'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="md-course" @click="switchCourse(getChapterData01.video_id)">
@@ -731,6 +731,7 @@ export default {
                 loader.hide();
                 this.dv = document.getElementById("demovideo");
                 this.dcPlayer = new Vimeo.Player(this.dv);
+                this.dcPlayer.loadVideo(getChapterData01.video_id);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
                 // document.getElementById("democourses").onclick = function(){
@@ -896,7 +897,8 @@ export default {
         },
         switchCourse(id){
             if(localStorage.isShared == "true"){
-                this.dv.src = "https://player.vimeo.com/video/"+id;
+                // this.dv.src = "https://player.vimeo.com/video/"+id;
+                this.dcPlayer.loadVideo(id);
             }
         },
         toggleClass(index) {
