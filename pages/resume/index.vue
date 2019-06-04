@@ -676,6 +676,7 @@ export default {
         show_fbshare_or_not:false,
         dv:{},
         show_list:[],
+        dcPlayer: {},
     }),
     computed: { 
         ...mapGetters({
@@ -729,7 +730,7 @@ export default {
             setTimeout(() => {
                 loader.hide();
                 this.dv = document.getElementById("demovideo");
-                var dcPlayer = new Vimeo.Player(this.dv);
+                this.dcPlayer = new Vimeo.Player(this.dv);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
                 // document.getElementById("democourses").onclick = function(){
@@ -743,10 +744,10 @@ export default {
                 document.getElementById("clickshare").onclick = openShareWindow;
                 document.getElementById("share-mask").onclick = openShareWindow;
 
-                dcPlayer.on('ended', this.onEndCallback);
-                dcPlayer.on('play',this.onPlayCallback);
-                dcPlayer.on('pause',this.onPauseCallback);
-                dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
+                this.dcPlayer.on('ended', this.onEndCallback);
+                this.dcPlayer.on('play',this.onPlayCallback);
+                this.dcPlayer.on('pause',this.onPauseCallback);
+                this.dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
 
                 if (this.$mq === "mobile") {
                     var imgContainer = document.getElementById("ss-container");
@@ -775,10 +776,6 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                this.$gtag('config', 'UA-123332732-3', {
-                    'page_title' : 'LP cover',
-                    'page_path': '/0_cover'
-                });
             }
         }
     },
