@@ -86,18 +86,18 @@ export default {
             // set ga and fb pixel
             let gtag_config = {}
             let campaign = {};
-            if (this.$route.query.utm_source && this.$route.query.utm_medium) {
-                campaign = {
-                    source: this.$route.query.utm_source, // utm_source
-                    medium: this.$route.query.utm_medium, // utm medium
-                    name: this.$route.query.utm_campaign,
-                }
-            } else {
-                campaign = {
-                    source: '(direct)', // utm_source
-                    medium: '(none)', // utm medium
-                }
-            }
+            // if (this.$route.query.utm_source && this.$route.query.utm_medium) {
+            //     campaign = {
+            //         source: this.$route.query.utm_source, // utm_source
+            //         medium: this.$route.query.utm_medium, // utm medium
+            //         name: this.$route.query.utm_campaign,
+            //     }
+            // } else {
+            //     campaign = {
+            //         source: '(direct)', // utm_source
+            //         medium: '(none)', // utm medium
+            //     }
+            // }
             gtag_config.campaign = campaign;
             if (this.$route.path === "/resume" || this.$route.path === "/resume/") {
                 console.log("true");
