@@ -49,6 +49,11 @@ export default {
         updateChapter(chapter){
             this.current_chapter = chapter;
             this.$scrollTo("#player1");
+            this.$gtag('event', 'Play', {
+                'event_category': 'Video',
+                'event_label': chapter.id + "." + chapter.subtitle,
+            });
+            this.$fbq('trackCustom', 'PlayVideo', {title: chapter.id + "." + chapter.subtitle});
         }
     },
     data:() => ({

@@ -856,7 +856,7 @@ export default {
         onPauseCallback(data) {
             console.log(data);
             this.$gtag('event', 'Pause', {
-                'event_category': 'video',
+                'event_category': 'Video',
                 'event_label': '[試讀] 01 - 面試攻略',
                 'value':data.seconds
             });
