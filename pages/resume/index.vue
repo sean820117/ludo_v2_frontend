@@ -854,7 +854,6 @@ export default {
             });
         },
         onPauseCallback(data) {
-            console.log(data);
             this.$gtag('event', 'Pause', {
                 'event_category': 'Video',
                 'event_label': '[試讀] 01 - 面試攻略',
@@ -863,24 +862,27 @@ export default {
             this.$fbq('trackCustom', 'PauseVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onTimeUpdateCallback(data) {
-            if (data.seconds > 0.1 && this.video_10_percent) {
+            if (data.percent > 0.1 && !this.video_10_percent) {
                 this.$gtag('event', 'Play_to_10%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo10p', {title: '[試讀] 01 - 面試攻略'});
-            } else if (data.seconds > 0.5 && this.video_50_percent) {
+                this.video_10_percent = !this.video_10_percent;
+            } else if (data.percent > 0.5 && !this.video_50_percent) {
                 this.$gtag('event', 'Play_to_50%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo50p', {title: '[試讀] 01 - 面試攻略'});
-            } else if (data.seconds > 0.9 && this.video_90_percent) {
+                this.video_50_percent = !this.video_50_percent;
+            } else if (data.percent > 0.9 && !this.video_90_percent) {
                 this.$gtag('event', 'Play_to_90%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo90p', {title: '[試讀] 01 - 面試攻略'});
+                this.video_90_percent = !this.video_90_percent;
             }
         },
         clickPayNow() {
