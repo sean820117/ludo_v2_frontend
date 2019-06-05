@@ -13,15 +13,35 @@
             </button>
         </div>
         <div class="result-container" id="result-box">
-            <h1 class="title green-color" >分析结果</h1>
+            <h1 class="title green-color" style="padding-top:10vh">分析结果</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
             Your browser does not support the video tag.
-            </video> 
+            </video>
             <loading 
                 :active="!video_url" 
                 v-else ></loading>
+            <div class="result-video-content-box">
+                <div class="result-video-content">
+                  <div class="result-video-content-li">
+                    <h4 class="result-video-content-time">第一次</h4>
+                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾</p>
+                  </div>
+                  <div class="result-video-content-li">
+                    <h4 class="result-video-content-time">第二次</h4>
+                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
+                  </div>
+                  <div class="result-video-content-li">
+                    <h4 class="result-video-content-time">第二十五次</h4>
+                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
+                  </div>
+                  <div class="result-video-content-li">
+                    <h4 class="result-video-content-time">第二次</h4>
+                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
+                  </div>
+                </div>
+            </div>
         </div>  
     </div>
 </template>
@@ -99,7 +119,7 @@ h1.title {
     margin-bottom: 15vh;
 }
 .result-container {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
 }
 .result-video {
@@ -148,5 +168,38 @@ h1.title {
   outline: 0;
   text-decoration: none;
   color: inherit;
+}
+.result-video-content-box {
+  width: 100vw;
+  padding: 15px;
+}
+.result-video-content {
+  background: white;
+  width: 90vw;
+  min-height: 50vh;
+  margin: 2vh auto 0 auto;
+  border-radius:20px; 
+  padding: 15px 15px;
+}
+.result-video-content-li {
+  width: 100%;
+  min-height: 30px;
+  margin-bottom:10px; 
+  /* background: red; */
+  display: inline-flex;
+  align-items: center;
+}
+.result-video-content-time {
+  font-weight: 500;
+  padding: 0 5px;
+  color: #000;
+  min-width: 100px;
+  border-right: 2px #76FF00 solid;
+}
+.result-video-content-detailed {
+  padding: 10px 15px;
+  font-size: 14px;
+  align-self: auto;
+  
 }
 </style>
