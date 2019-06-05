@@ -8,7 +8,7 @@
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-              <label ><input v-if="showFileInput" type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
+              <label ><input v-if="!is_uploading" type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
                 <!-- <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label> -->
             </button>
         </div>
@@ -19,9 +19,17 @@
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
             Your browser does not support the video tag.
             </video>
-            <loading 
-                :active="!video_url" 
-                v-else ></loading>
+            <!-- <loading class="loading-icon"
+                color="#76FF00" width="80" height="80"
+                :active="video_url" 
+                >
+            <div slot="after" style="color:white;">約{{}}秒後分析完成</div>    
+            </loading> -->
+            <div class="loading-content" v-if="is_uploading">
+                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#76FF00">
+                    {{ value + '%' }}
+                </v-progress-circular>
+            </div>
             <div class="result-video-content-box">
                 <div class="result-video-content">
                   <div class="result-video-content-li">
@@ -47,10 +55,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuetify from 'vuetify';
 import FlatButton from "~/components/FlatButton.vue";
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
-
+// import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
 
 export default {
     components: {
@@ -63,12 +75,29 @@ export default {
             form.append('file',e.target.files[0])
             form.append('pose_type','squat')
             this.video_url = ""
-            this.showFileInput = false;
-            let res = await axios.post('/apis/video-upload',form)
-            this.showFileInput = true;
+            this.is_uploading = true;
+            this.interval = setInterval(() => {
+                if (this.value >= 95) {
+                    // return (this.value = 0)
+                    clearInterval(this.interval)
+                } else {
+                    this.value += 1
+                }
+                
+            }, 500)
+            const res = await axios.post('/apis/video-upload',form)
             this.video_url = res.data.output_video_url;
             console.log(res)
-            window.alert('Done');
+            this.value = 100;
+
+            setTimeout(()=> {
+                
+                clearInterval(this.interval);
+                this.is_uploading = false;
+                this.value = 0;
+            }, 1000)
+            
+            // window.alert('Done');
             this.$scrollTo('#result-box',"center");
         },
     },
@@ -77,8 +106,18 @@ export default {
     },
     data:() => ({
         video_url:'test',
-        showFileInput: true,
+        interval: {},
+        value: 0,
+        is_uploading:false,
     }),
+    beforeDestroy () {
+        clearInterval(this.interval)
+    },
+    mounted () {
+        if (process.client) {
+            
+        }
+    },
 }
 </script>
 
@@ -184,9 +223,7 @@ h1.title {
 .result-video-content-li {
   width: 100%;
   min-height: 30px;
-  margin-bottom:10px; 
-  /* background: red; */
-  display: inline-flex;
+  display: flex;
   align-items: center;
 }
 .result-video-content-time {
@@ -197,9 +234,25 @@ h1.title {
   border-right: 2px #76FF00 solid;
 }
 .result-video-content-detailed {
-  padding: 10px 5px 10px 15px;
+  padding: 8px 5px 10px 15px;
   font-size: 14px;
   align-self: auto;
+  margin: 0;
   
+}
+.loading-content {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .8);
+  z-index: 999;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.v-progress-circular {
+  margin: 1rem;
 }
 </style>
