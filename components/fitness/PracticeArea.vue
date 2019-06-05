@@ -197,7 +197,7 @@ h1.title {
   border-right: 2px #76FF00 solid;
 }
 .result-video-content-detailed {
-  padding: 10px 15px;
+  padding: 10px 5px 10px 15px;
   font-size: 14px;
   align-self: auto;
   

@@ -8,11 +8,9 @@
             <p v-html="unit"></p>
             <h2 v-html="title"></h2>
         </div>
-        <!-- <flat-button class="yoga-goto-start" size="big" bgColor="#99cba5" color="white" hover="" borderColor="#99cba5" text="コースをみる" @click="goToCourse()"/> -->
-        <!-- <button :class="'flat-button btn-big'" :style="{background: '#99cba5', borderColor: '#99cba5', color:'white'}">
-              <label><input type="radio" style="display:none;" @cilck="goToCourse()">コースをみる</label>
-        </button> -->
-        <button class="yoga-goto-start" @click="goToCourse" :style="{backgroundColor:'#99cba5',borderColor:'#99cba5',color:'white'}">コースをみる</button>
+        <div class="yoga-goto-start-box">
+            <button class="yoga-goto-start" @click="goToCourse" :style="{backgroundColor:'#99cba5',borderColor:'#99cba5',color:'white'}">コースをみる</button>
+        </div>
         <div class="yoga-front-information">
             <div>
                 <img src="/yoga/Yoga-front-information-1.svg" alt="">
@@ -77,9 +75,7 @@ export default {
     .yoga-front {
         width: 100vw;
         height: 100vh;
-        /* background-image: url('/yoga/Yoga-front-cover-pic.jpg');
-        background-size: cover;
-        background-position: 75% 0; */
+        overflow: hidden;
     }
     .yoga-front-header {
         position: relative;
@@ -106,7 +102,6 @@ export default {
         left: 15px;
     }
     .yoga-front-title {
-        margin: 20px auto;
         text-align: center;
     }
     .yoga-front-title p {
@@ -115,12 +110,16 @@ export default {
     }
     .yoga-front-title h2 {
         font-size: 8vw;
+        max-width: 90vw;
+        margin: 0 auto;
         
     }
+    .yoga-goto-start-box {
+        width: 200px;
+        height: 50px;
+        margin: 35vh auto 0 auto;
+    }
     .yoga-goto-start {
-        position: absolute;
-        bottom: 30vh;
-        right: 25vw;
         width: 200px;
         height: 50px;
         border-style:none; 
@@ -138,7 +137,7 @@ export default {
         background: white;
         bottom: 50px;
         border-radius:35px 35px 0 0; 
-        padding: 15px 20px 10px 20px;
+        padding: 15px 10px 10px 10px;
     }
     .yoga-front-information div {
         float: left;
@@ -158,7 +157,7 @@ export default {
         border-right: solid 1px #99CBA5;
     }
     .yoga-front-information div img {
-        height: 35px;
+        height: 4vh;
         margin: 5px 20px;
     }
     .yoga-front-seemore {
