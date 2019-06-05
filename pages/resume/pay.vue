@@ -122,6 +122,7 @@ export default {
         sended_basic_info_ga_or_not: false,
         payed_or_not:false,
         agree_contract_or_not: false,
+        ui_config:{},
         receipt: {
             receipt_personal:'/',
             receipt_uniform:'',
@@ -216,16 +217,52 @@ export default {
                     console.log("cancelled : " + user_no)
                     location.reload();
                 },
-                failed: function(response) {
-                    console.log(response);
-                    window.alert('付款失敗！請洽服務人員')
-                },
+                failed: this.failedCallback,
                 succeeded: this.succeededCallback,
-                error: function(name,message,errors) {
-                    console.log(errors);
-                    window.alert('付款失敗！請洽服務人員')
-                },
+                error: this.errorCallback,
             });
+        },
+        async failedCallback(response) {
+            // console.log(response)
+            let result_data = this.aftee_data;
+            result_data.items[0].shop_item_id = 'aftee_pay_failed'
+            result_data.error = response;
+
+            try {
+              let response = await axios.post('/apis/aftee-result',result_data)
+              if (response.data.status == '200') {
+                  console.log("report failed event success")
+              } else {
+                  console.log(response)
+              }
+            } catch (error) {
+                console.log(error)
+            }
+
+            window.alert('交易失敗！請洽服務人員');
+            location.reload();
+        },
+        async errorCallback(name,message,errors) {
+            // console.log(response)
+            let result_data = this.aftee_data;
+            result_data.items[0].shop_item_id = 'aftee_pay_error'
+            result_data.error.description = errors;
+            result_data.error.name = name;
+            result_data.error.message = message;
+
+            try {
+              let response = await axios.post('/apis/aftee-result',result_data)
+              if (response.data.status == '200') {
+                  console.log("report error event success")
+              } else {
+                  console.log(response)
+              }
+            } catch (error) {
+                console.log(error)
+            }
+
+            window.alert('付款失敗！請洽服務人員');
+            location.reload();
         },
         async succeededCallback(response) {
             console.log("aftee payed succeed")
@@ -525,6 +562,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
+            this.ui_config = await require('~/config/resume-config')
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
             localStorage.redirect = this.$route.path;

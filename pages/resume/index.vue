@@ -1318,7 +1318,6 @@ export default {
     font-size: 15px;
     margin: auto;
     margin-top: 27px;
-    /* display: none; */
 }
 .clickshare{
     color: #0090FF;
