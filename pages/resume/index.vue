@@ -308,7 +308,7 @@
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <router-link to="/resume/pay"><img src="/resume/Group 167.png" /></router-link>
+                <button @click="clickPayNow" ><img src="/resume/Group 167.png" /></button>
             </div>
             <div class="blank-block"></div>
             <div class="eight-block" style="padding-bottom: 20px;">
@@ -602,7 +602,7 @@
                         <div class="md-tb-2">1個月內找到理想工作</div>
                     </div>
                     <div class="md-tb-box">
-                        <router-link to="/resume/pay"><img src="/resume/Group 390.png" /></router-link>
+                        <button @click="clickPayNow"><img src="/resume/Group 390.png" /></button>
                     </div>
                 </div>
             </div>
