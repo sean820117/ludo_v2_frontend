@@ -12,7 +12,12 @@
                 <!-- <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label> -->
             </button>
         </div>
-        <div class="result-container" id="result-box">
+        <div class="loading-content" v-if="is_uploading">
+                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#76FF00">
+                    {{ value + '%' }}
+                </v-progress-circular>
+        </div>
+        <div class="result-container" v-if="is_showing" id="result-box">
             <h1 class="title green-color" style="padding-top:10vh">分析结果</h1>
             <video v-if="video_url" class="result-video" controls>
                 <source :src="video_url" type="video/mp4">
@@ -25,11 +30,11 @@
                 >
             <div slot="after" style="color:white;">約{{}}秒後分析完成</div>    
             </loading> -->
-            <div class="loading-content" v-if="is_uploading">
+            <!-- <div class="loading-content" v-if="is_uploading">
                 <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#76FF00">
                     {{ value + '%' }}
                 </v-progress-circular>
-            </div>
+            </div> -->
             <div class="result-video-content-box">
                 <div class="result-video-content">
                   <!-- <div class="result-video-content-li" v-for="(tags, index) in reps_wrong_tags" :key="index">
@@ -96,14 +101,15 @@ export default {
             this.value = 100;
 
             setTimeout(()=> {
-                
                 clearInterval(this.interval);
                 this.is_uploading = false;
                 this.value = 0;
+                this.is_showing = true;
             }, 1000)
-            
+            setTimeout(()=> {
+                this.$scrollTo('#result-box',"start");
+            },1500)
             // window.alert('Done');
-            this.$scrollTo('#result-box',"center");
         },
     },
     computed: {
@@ -114,9 +120,8 @@ export default {
         interval: {},
         value: 0,
         is_uploading:false,
-        reps_wrong_tags:[
-          // ['s_e_1','s_e_2'],['s_e_1','s_e_2']
-        ],
+        is_showing: false,
+        reps_wrong_tags:[],
     }),
     beforeDestroy () {
         clearInterval(this.interval)
