@@ -31,21 +31,11 @@
         <div class="yoga-assay-box">
             <div class="yoga-assay-content">
                 <h3>分析結果</h3>
-                <div class="yoga-assay-content-li">
-                    <h4 class="yoga-assay-content-time">一回目</h4>
-                    <p class="yoga-assay-content-detailed">もうちょっと頭をあげてね</p>
-                </div>
-                <div class="yoga-assay-content-li">
-                    <h4 class="yoga-assay-content-time">二回目</h4>
-                    <p class="yoga-assay-content-detailed">パーフェクト</p>
-                </div>
-                <div class="yoga-assay-content-li">
-                    <h4 class="yoga-assay-content-time">三十回目</h4>
-                    <p class="yoga-assay-content-detailed">もうちょっと頭をあげてねもうちょっと頭をあげてねもうちょっと頭をあげてねもうちょっと頭をあげてね</p>
-                </div>
-                <div class="yoga-assay-content-li">
-                    <h4 class="yoga-assay-content-time">三十一回目</h4>
-                    <p class="yoga-assay-content-detailed">もうちょっと頭をあげてねもうちょっと頭をあげてねもうちょっと頭をあげてねもうちょっと頭をあげてね</p>
+                <div class="yoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
+                    <h4 class="yoga-assay-content-time">{{i+1}}回目</h4>
+                    <div class="yoga-assay-content-detailed-box">
+                        <p class="yoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</p>
+                    </div>
                 </div>
                 <div class="yoga-assay-contact">
                     <p class="yoga-assay-contact-explain">分析結果がズレてる場合</p>
@@ -73,6 +63,7 @@ export default {
         interval: {},
         value: 0,
         is_uploading: false,
+        reps_wrong_tags:[['投投投投','手手手手手手手']],
     }),
     components: {
         FlatButton,
@@ -85,7 +76,7 @@ export default {
         goToCourse(){
             this.$scrollTo('#course-info',"start");
         },
-        async yogaVideoUpload(e) {
+       async handleVideoUpload(e) {
             let form = new FormData();
             form.append('file',e.target.files[0])
             form.append('pose_type','squat')
@@ -99,17 +90,32 @@ export default {
                     this.value += 1
                 }
             }, 500)
-            let res = await axios.post('/apis/video-upload',form)
-            // this.is_uploading = false;
+            const res = await axios.post('/apis/video-upload',form)
+            console.log(res.data)
+            this.video_url = res.data.output_video_url;
+            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
+              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
+                  if(res.data.reps_wrong_tags[i][j] == "s_e_1") res.data.reps_wrong_tags[i][j] = "低头";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_2") res.data.reps_wrong_tags[i][j] = "抬头";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_3") res.data.reps_wrong_tags[i][j] = "弯腰";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_4") res.data.reps_wrong_tags[i][j] = "膝盖过前";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_5") res.data.reps_wrong_tags[i][j] = "动作过快";
+                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+              }
+            }
+            console.log(res.data)
+            this.reps_wrong_tags = res.data.reps_wrong_tags;
+            this.value = 100;
+
             setTimeout(()=> {
+                
                 clearInterval(this.interval);
                 this.is_uploading = false;
                 this.value = 0;
             }, 1000)
-            this.video_url = res.data.output_video_url;
-            console.log(res)
+            
             // window.alert('Done');
-            this.$scrollTo('#course-assay',"center");
+            this.$scrollTo('#result-box',"center");
         },
     },
 }
@@ -221,20 +227,23 @@ export default {
         font-size: 14px;
     }
     .yoga-assay-content-detailed {
-        padding: 10px 0 10px 15px;
-        font-size: 12px;
+        padding: 5px 0 0 15px;
+        font-size: 13px;
         align-self: auto;
         color: #99CBA5;
+        margin-bottom: 0; 
     }
     .yoga-assay-contact {
         width: 150px;
         height: 80px;
-        margin: 10px auto 0 auto;
+        margin: 15px auto 0 auto;
     }
     .yoga-assay-contact-explain {
         text-align: center;
         font-size: 12px;
         color: #BFBFBF; 
+        margin-bottom: 5px;
+        
     }
     .yoga-assay-contact-btn {
         width: 130px;
