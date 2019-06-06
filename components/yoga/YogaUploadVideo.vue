@@ -12,7 +12,7 @@
         </div>
         <div class="yoga-upload-video-box">
             <button class="yoga-upload-video-btn">
-            <label><input v-if="showFileInput" type="file" style="display:none;" @change="yogaVideoUpload">アップロード</label>
+            <label><input v-if="!is_uploading" type="file" style="display:none;" @change="yogaVideoUpload">アップロード</label>
             </button>
         </div>
     </div>
@@ -22,7 +22,12 @@
                 <source :src="video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <loading active="!video_url" v-else></loading>
+        <!-- <loading active="!video_url" v-else></loading> -->
+        <div class="loading-content" v-if="is_uploading">
+                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#99CBA5">
+                    {{ value + '%' }}
+                </v-progress-circular>
+        </div>
         <div class="yoga-assay-box">
             <div class="yoga-assay-content">
                 <h3>分析結果</h3>
@@ -54,13 +59,20 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuetify from 'vuetify';
 import FlatButton from "~/components/FlatButton.vue";
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
+
 export default {
     data:()=> ({
         video_url:'test',
-        showFileInput: true,
+        interval: {},
+        value: 0,
+        is_uploading: false,
     }),
     components: {
         FlatButton,
@@ -78,12 +90,25 @@ export default {
             form.append('file',e.target.files[0])
             form.append('pose_type','squat')
             this.video_url = ""
-            this.showFileInput = false;
+            this.is_uploading = true;
+            this.interval = setInterval(() => {
+                if (this.value >= 95) {
+                    // return (this.value = 0)
+                    clearInterval(this.interval)
+                } else {
+                    this.value += 1
+                }
+            }, 500)
             let res = await axios.post('/apis/video-upload',form)
-            this.showFileInput = true;
+            // this.is_uploading = false;
+            setTimeout(()=> {
+                clearInterval(this.interval);
+                this.is_uploading = false;
+                this.value = 0;
+            }, 1000)
             this.video_url = res.data.output_video_url;
             console.log(res)
-            window.alert('Done');
+            // window.alert('Done');
             this.$scrollTo('#course-assay',"center");
         },
     },
@@ -220,6 +245,17 @@ export default {
         border-radius: 25px;
         margin: 5px 10px; 
         box-shadow: 0 2px 10px rgba(0, 0, 0, .16)
+    }
+    .loading-content {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, .8);
+        z-index: 999;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 </style>
