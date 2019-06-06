@@ -901,13 +901,14 @@ export default {
         },
         onSecondPreviewCourseClick() {
             if (localStorage.isShared != "true") {
-                window.alert("需要先分享才能觀看這堂課喔");    
+                window.alert("需要先分享才能觀看這堂課喔"); 
+                this.openShareWindow();   
                 document.getElementById("fbshare").style.display = "block";
                 this.$scrollTo("#fbshare"); 
             } else {
                 this.switchCourse(this.getChapterData04.video_id);
                 document.getElementById("fbshare").style.display = "block";
-                this.$scrollTo("#democourses"); 
+                this.$scrollTo("#demovideo"); 
             }
         },
         switchCourse(id){
