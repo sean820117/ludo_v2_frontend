@@ -1,7 +1,7 @@
 module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
-    logo: "/resume/resume-logo.png",
+    logo: "/resume/resume-logo.svg",
     base_color: '#0090FF',
     fbq_id: '438072703402139',
     view: {
@@ -58,7 +58,7 @@ module.exports = {
             thumbnail:'https://i.vimeocdn.com/video/787036031.jpg',
             video_id:'338559454',
             ai_id:'abstract',
-            practice_hint:'請填入你的練習回答',
+            practice_hint:'參考格式：\n\n你好，我是OO設計系畢業的學生，產品設計是我的專長，除此之外我有不斷的在自我進修，對於UI/UX…',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「自我介紹」呈現方式在全國平均中屬於前20%。<br>若你要應徵的是前1%的頂尖公司，記得要更接近該公司的「願景與目標」撰寫自我介紹喔！練習只是輔助，投上才是重點。',
                 B: '你獲得等級B，代表你所寫的「自我介紹」呈現方式在全國平均中，排名20%~40%。<br>下一個挑戰等級，是最高等級「A」。',
@@ -94,7 +94,7 @@ module.exports = {
             thumbnail:'https://i.vimeocdn.com/video/787035997.jpg',
             video_id:'338608971',
             ai_id:'work_experience',
-            practice_hint:'請填入你的練習回答',
+            practice_hint:'參考格式：\n\nOOOO活動企劃專員\n一.協助發展、規劃、執行、改進行銷策略及計劃之工作\n\n二.曾負責的專案…',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「工作經歷」呈現方式在全國平均中屬於前20%。<br>若你要應徵的是前1%的頂尖公司，記得要更接近該公司的「職位的需求」撰寫經歷喔！練習只是輔助，投上才是重點。',
                 B: '你獲得等級B，代表你所寫的「工作經歷」呈現方式在全國平均中，排名20%~40%。<br>下一個挑戰等級，是最高等級「A」。',
@@ -130,7 +130,7 @@ module.exports = {
             thumbnail:'https://i.vimeocdn.com/video/787035952.jpg',
             video_id:'338609851',
             ai_id:'volunteer',
-            practice_hint:'請填入你的練習回答',
+            practice_hint:'參考格式：\n\nTQC-DK-專案管理概論-專業級PM3\n管理過跨國行銷專案，完成過…',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「志工經驗」呈現方式在全國平均中屬於前20%。<br>但若你要應徵的是前1%的頂尖公司，記得要更依照該職位需求的「特質與能力」來呈現！練習只是輔助，投上才是重點。',
                 B: '你獲得等級B，代表你所寫的「志工經驗」呈現方式在全國平均中，排名20%~40%。<br>下一個挑戰等級，是最高等級「A」。',
@@ -166,7 +166,7 @@ module.exports = {
             thumbnail:'https://i.vimeocdn.com/video/787035912.jpg',
             video_id:'338698698',
             ai_id:'ability_and_skill',
-            practice_hint:'請填入你的練習回答',
+            practice_hint:'參考格式：\n\n高雄市政府社會局OOOO育兒資源中心服務志工\n• 服務台接待與諮詢、協助看顧嬰幼兒活動安全、\n•環境整理與…',
             rank_comment: {
                 A: '恭喜獲得等級A，代表你所寫的「能力技能」呈現方式在全國平均中屬於前20%。<br>但若你要應徵的是前1%的頂尖公司，記得要更依照該職位的「詳情需求」並附上作品集與證明來呈現喔！練習只是輔助，投上才是重點。',
                 B: '你獲得等級B，代表你所寫的「能力技能」呈現方式在全國平均中，排名20%~40%。<br>下一個挑戰等級，是最高等級「A」。',

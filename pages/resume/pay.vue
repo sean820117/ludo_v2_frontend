@@ -9,7 +9,7 @@
                 <div class="third-party">
                     <third-party-icons :login_method="{ FB : true, google:true, line:false}" />
                 </div>
-                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">本地註冊</div>
+                <div class="reg-directly" @click="toggleDriectReg" v-if="!directReg">建立新帳號</div>
             </div>
             <div>
                 <form id="basic-form" v-if="!directReg && is_login && !next_step_or_not">
@@ -47,15 +47,11 @@
                     <br>
                     並將交易相關給付款項請求債權轉讓予日商恩沛股份有限公司。
                     <br>
-                    關於個人資料處理事宜，請瀏覽以下網址：
-                    <br>
-                    <a href="https://aftee.tw/privacypolicy/">{{ 'https://aftee.tw/privacypolicy/' }}</a>
-                    <br>
-                    初次使用AFTEE時，最高使用額度為10,000元。
-                    <br>
                     若款項超過繳費期限，將根據當次的金額加收年利率20%的支付遲延損害金。
-                    <br>
-                    未成年的使用者，請事先徵得法定代理人或監護人之同意方可使用AFTEE。
+                    <br><br>
+                    ・退款政策
+                    <br><br>
+                    學員於購買後七日內尚未啟用課程，可憑訂單編號、註冊姓名、註冊之電子信箱帳號與檢附理由書申請退費。您可以寄信至 contact@flyingcrazyer.com 申請退款或針對您的履歷範本購買尋求協助。
                     <br><br>
                 </div>
                 <input type="checkbox" id="agree-contract" v-model="agree_contract_or_not" @change="checkAgreeContract(agree_contract_or_not)">
@@ -76,7 +72,7 @@
                 loader="dots"
             ></loading>
         </div>
-        <div class="aftee_banner">
+        <div class="aftee_banner" v-if="next_step_or_not">
             <img src="https://aftee.tw/start/banner/banner/AFTEE-bn01_468x200.png" alt="">
         </div>
     </div>
@@ -126,6 +122,7 @@ export default {
         sended_basic_info_ga_or_not: false,
         payed_or_not:false,
         agree_contract_or_not: false,
+        ui_config:{},
         receipt: {
             receipt_personal:'/',
             receipt_uniform:'',
@@ -220,16 +217,52 @@ export default {
                     console.log("cancelled : " + user_no)
                     location.reload();
                 },
-                failed: function(response) {
-                    console.log(response);
-                    window.alert('付款失敗！請洽服務人員')
-                },
+                failed: this.failedCallback,
                 succeeded: this.succeededCallback,
-                error: function(name,message,errors) {
-                    console.log(errors);
-                    window.alert('付款失敗！請洽服務人員')
-                },
+                error: this.errorCallback,
             });
+        },
+        async failedCallback(response) {
+            // console.log(response)
+            let result_data = this.aftee_data;
+            result_data.items[0].shop_item_id = 'aftee_pay_failed'
+            result_data.error = response;
+
+            try {
+              let response = await axios.post('/apis/aftee-result',result_data)
+              if (response.data.status == '200') {
+                  console.log("report failed event success")
+              } else {
+                  console.log(response)
+              }
+            } catch (error) {
+                console.log(error)
+            }
+
+            window.alert('交易失敗！請洽服務人員');
+            location.reload();
+        },
+        async errorCallback(name,message,errors) {
+            // console.log(response)
+            let result_data = this.aftee_data;
+            result_data.items[0].shop_item_id = 'aftee_pay_error'
+            result_data.error.description = errors;
+            result_data.error.name = name;
+            result_data.error.message = message;
+
+            try {
+              let response = await axios.post('/apis/aftee-result',result_data)
+              if (response.data.status == '200') {
+                  console.log("report error event success")
+              } else {
+                  console.log(response)
+              }
+            } catch (error) {
+                console.log(error)
+            }
+
+            window.alert('付款失敗！請洽服務人員');
+            location.reload();
         },
         async succeededCallback(response) {
             console.log("aftee payed succeed")
@@ -275,7 +308,7 @@ export default {
 
             this.$modal.show('dialog', {
                 title: '付款成功!',
-                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，及有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
+                text: `您的訂單編號：${this.aftee_data.shop_transaction_no}<br>下單後24小時內將透過簡訊寄送繳費通知<br><br>限時Bonus，即日起到6/10前。截圖本畫面，回傳<a href="https://lihi.vip/kngRC" target="_blank">該文</a>留言處，即有機會獲得狂人求職顧問1v1指導<br><br>現在就開始跟著狂人寫履歷吧！`,
                 buttons: [
                     {
                         title: '進入課程',       // Button title
@@ -362,18 +395,21 @@ export default {
             });
             
             try {
-                let result = await this.signup(this.email, this.password, this.confirm_password);
+                // if use local signup, signup first
+                if (!this.is_login) {
+                    let result = await this.signup(this.email, this.password, this.confirm_password);
+                }
                 if (this.is_login) {
                     this.startAftee();
                     this.$gtag('event', 'checkout_progress', {
                         "items": [
                             {
-                            "id": "resume_01",
-                            "name": "履歷範本課程(一個月)",
-                            "brand": "讓狂人飛",
-                            "category": "online AI course",
-                            "quantity": 1,
-                            "price": 299
+                                "id": "resume_01",
+                                "name": "履歷範本課程(一個月)",
+                                "brand": "讓狂人飛",
+                                "category": "online AI course",
+                                "quantity": 1,
+                                "price": 299
                             },
                         ],
                         'checkout_step' : 5,
@@ -526,6 +562,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
+            this.ui_config = await require('~/config/resume-config')
             this.is_login = await this.$checkLogin(this.$store);
             console.log("user id" + this.user.user_id);
             localStorage.redirect = this.$route.path;
@@ -546,6 +583,20 @@ export default {
                     ],
                 });
             }
+            
+            //ga
+            let gtag_config = {}
+
+            gtag_config.page_title = '履歷範本付款頁';
+            gtag_config.page_path = this.$route.path;
+            if (this.is_login) {
+                gtag_config.user_id = this.user.user_id;
+            } 
+            this.$gtag('js', new Date());
+            this.$gtag('config', 'AW-739537538');
+            this.$gtag('config', 'UA-123332732-3', gtag_config);
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
 
             this.$gtag('event', 'add_to_cart', {
                 "items": [
@@ -613,7 +664,7 @@ textarea:focus, input:focus{
     position: relative;
     text-align: left;
     margin: 43px auto;
-    width: 82vw;
+    width: 86vw;
     max-width: 475px;
     padding: 22px 24px 48px 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
@@ -747,7 +798,7 @@ textarea:focus, input:focus{
     justify-content: center;
 }
 .aftee_banner img {
-    width: 100vw;
+    width: 86vw;
     max-width: 400px;
 }
 </style>

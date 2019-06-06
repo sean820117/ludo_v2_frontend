@@ -5,7 +5,7 @@
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
-            <textarea class="send-textarea" :placeholder="placeholder" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
+            <textarea class="send-textarea" :placeholder="getPlaceholder" ref="autoSizeTextarea" v-model="resumePractice" @input="adjustTextAreaHeight" @change="adjustTextAreaHeight"></textarea>
             <div class="send-answer" @click="showFeedBack">送出答案</div>
         </div>
         <div class="ai-judgement-no-ai" v-else>
@@ -31,6 +31,15 @@ import axios from '~/config/axios-config'
 export default {
     components: {
         AiFeedBack,
+    },
+    computed: {
+        getPlaceholder() {
+            if (this.current_chapter) {
+                return this.current_chapter.practice_hint;
+            } else {
+                return '請填入你的練習回答';
+            }
+        }
     },
     mounted: function() {
         setTimeout(() => {
@@ -163,7 +172,6 @@ export default {
         last_loaded_ai_id: '',
         last_loaded_record_items:[],
         current_score:{},
-        placeholder:'請填入你的練習回答',
     }),
     props:{
         ai_id:'',
@@ -223,7 +231,8 @@ export default {
 .answer-for-ai textarea{
     color: black;
     width: calc(100% - 90px);
-    height: 66px;
+    /* height: 66px; */
+    height: 250px;
     margin-left: 10px;
     display: block;
     font-size: 14px;

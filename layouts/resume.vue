@@ -57,6 +57,10 @@ export default {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
+            script: [
+                { src: 'https://player.vimeo.com/api/player.js' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
+            ],
         }
     },
     async mounted() {
@@ -73,18 +77,31 @@ export default {
                 loader.hide();
             }, 1000);
             
-            // console.log(this.ui_config.title);
             if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 localStorage.redirect = this.$route.path;
                 console.log("save redirect : " + localStorage.redirect);
             }
             this.is_login = await this.$checkLogin(this.$store);
-            if (this.is_login) {
-                this.$gtag('set', 'userId', this.user.user_id );
-            }
-            this.$gtag('config', 'UA-123332732-3');
-            this.$fbq("init",this.ui_config.fbq_id);
-            this.$fbq("track","PageView");
+
+            // set ga and fb pixel
+            // let gtag_config = {}
+            // if (this.$route.path === "/resume" || this.$route.path === "/resume/") {
+            //     console.log("true");
+            //     gtag_config.page_title = 'LP cover';
+            //     gtag_config.page_path = '/0_cover';
+            // } else {
+            //     gtag_config.page_path = this.$route.path;
+            // }
+
+            // if (this.is_login) {
+            //     gtag_config.user_id = this.user.user_id;
+            // } 
+            // this.$gtag('js', new Date());
+            // this.$gtag('config', 'AW-739537538');
+            // this.$gtag('config', 'UA-123332732-3', gtag_config);
+            // this.$fbq("init",this.ui_config.fbq_id);
+            // this.$fbq("track","PageView");
+            this.$loadHotjar();
         }
     },
 }

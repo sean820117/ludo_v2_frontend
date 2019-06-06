@@ -88,11 +88,11 @@
                 </div>
             </div>
             <div class="seven-block" v-if="$mq === 'mobile'">
-                <div class="sevenblock-1">學完即做完</div>
-                <div class="sevenblock-2">帶你實戰的線上課程+即時評測</div>
+                <div class="sevenblock-1">課程免費搶先看</div>
+                <div class="sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button>分享</button></div></div>
-                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/338611197'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="course" @click="switchCourse(getChapterData01.video_id)">
@@ -335,11 +335,7 @@
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q6: 電子發票開立</b>
-                    <br><br>
-                    將於付款後 30 天內寄送至您註冊之電子信箱。
-                    <br><br>
-                    <b>Q7: 其他問題</b>
+                    <b>Q6: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -440,11 +436,11 @@
                 </div>
             </div>
             <div class="md-seven-block">
-                <div class="md-sevenblock-1">學完即做完</div>
-                <div class="md-sevenblock-2">帶你實戰的線上課程+即時評測</div>
+                <div class="md-sevenblock-1">課程免費搶先看</div>
+                <div class="md-sevenblock-2">讓你從0到1學習履歷撰寫</div>
                 <div class="md-videoplay">
                     <div id="share-mask"><div>覺得有幫助嗎？<br>分享這堂課給你朋友<br>就可以觀看第二支影片囉<br><button @click.prevent="openShareWindow">分享</button></div></div>
-                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/' + getChapterData01.video_id" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/338611197'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="640px" height="360px"></iframe>
                 </div>
                 <div id="democourses">
                     <div id="dc-1" class="md-course" @click="switchCourse(getChapterData01.video_id)">
@@ -634,11 +630,7 @@
                     <br><br>
                     讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> <a style="color:white;text-decoration: underline;" href="https://lihi.vip/JpeZj" target="_blanck">https://lihi.vip/JpeZj</a>
                     <br><br>
-                    <b>Q6: 電子發票開立</b>
-                    <br><br>
-                    將於付款後 30 天內寄送至您註冊之電子信箱。
-                    <br><br>
-                    <b>Q7: 其他問題</b>
+                    <b>Q6: 其他問題</b>
                     <br><br>
                     請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。
                 </div>
@@ -672,16 +664,6 @@ Vue.use(VueMq, {
 });
 export default {
     layout: 'resume',
-    head() {
-        return  {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,400,500' }
-            ],
-            script: [
-                { src: 'https://player.vimeo.com/api/player.js' }        
-            ],
-        }
-    },
     data:() => ({
         is_login: false,
         seemore_check_or_not: false,
@@ -694,6 +676,7 @@ export default {
         show_fbshare_or_not:false,
         dv:{},
         show_list:[],
+        dcPlayer: {},
     }),
     computed: { 
         ...mapGetters({
@@ -701,11 +684,13 @@ export default {
         }),
         getChapterData01() {
             let data = {
+                id:'01',
                 title:'第一堂課',
-                subtitle:'換位思考，告訴你人資如何看履歷！',
-                description:'- 學習歷程是什麼？<br>- 為什麼學習歷程會取代備審？<br>- 學習歷程的出現該如何面對？',
-                thumbnail:'/victor-course-thumbnail-01.jpg',
-                video_id:'337212450',
+                subtitle:'面試官思維分析',
+                description:'你該知道面試官如何看履歷，並學會履歷四大指標',
+                thumbnail:'https://i.vimeocdn.com/video/787036073.jpg',
+                video_id:'338611197',
+                ai_id:'',
             };
             
             if (this.is_ui_config_loaded) {
@@ -715,11 +700,13 @@ export default {
         },
         getChapterData04() {
             let data = {
-                title:'第一堂課',
-                subtitle:'換位思考，告訴你人資如何看履歷！',
-                description:'- 學習歷程是什麼？<br>- 為什麼學習歷程會取代備審？<br>- 學習歷程的出現該如何面對？',
-                thumbnail:'/victor-course-thumbnail-01.jpg',
-                video_id:'337212450',
+                id:'04',
+                title:'第四堂課',
+                subtitle:'有效撰寫工作經歷(AI練習)',
+                description:'有效呈現工作經驗的質量，寫出面試官心中，最有感的實際績效數字',
+                thumbnail:'https://i.vimeocdn.com/video/787035997.jpg',
+                video_id:'338608971',
+                ai_id:'work_experience',
             };
             
             if (this.is_ui_config_loaded) {
@@ -743,7 +730,8 @@ export default {
             setTimeout(() => {
                 loader.hide();
                 this.dv = document.getElementById("demovideo");
-                var dcPlayer = new Vimeo.Player(this.dv);
+                this.dcPlayer = new Vimeo.Player(this.dv);
+                this.dcPlayer.loadVideo(getChapterData01.video_id);
                 var shareurl = "https://www.ludonow.com/resume";
                 var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
                 // document.getElementById("democourses").onclick = function(){
@@ -757,10 +745,10 @@ export default {
                 document.getElementById("clickshare").onclick = openShareWindow;
                 document.getElementById("share-mask").onclick = openShareWindow;
 
-                dcPlayer.on('ended', this.onEndCallback);
-                dcPlayer.on('play',this.onPlayCallback);
-                dcPlayer.on('pause',this.onPauseCallback);
-                dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
+                this.dcPlayer.on('ended', this.onEndCallback);
+                this.dcPlayer.on('play',this.onPlayCallback);
+                this.dcPlayer.on('pause',this.onPauseCallback);
+                this.dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
 
                 if (this.$mq === "mobile") {
                     var imgContainer = document.getElementById("ss-container");
@@ -789,12 +777,20 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
             if (this.is_login) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                this.$gtag('set', 'userId', this.user.user_id );
-                this.$gtag('config', 'UA-123332732-3', {
-                    'page_title' : 'LP cover',
-                    'page_path': '/0_cover'
-                });
             }
+            //ga and fb pixel
+            let gtag_config = {}
+            gtag_config.page_title = 'LP cover';
+            gtag_config.page_path = '/0_cover';
+
+            if (this.is_login) {
+                gtag_config.user_id = this.user.user_id;
+            } 
+            this.$gtag('js', new Date());
+            this.$gtag('config', 'AW-739537538');
+            this.$gtag('config', 'UA-123332732-3', gtag_config);
+            this.$fbq("init",this.ui_config.fbq_id);
+            this.$fbq("track","PageView");
         }
     },
     methods: {
@@ -858,33 +854,35 @@ export default {
             });
         },
         onPauseCallback(data) {
-            console.log(data);
             this.$gtag('event', 'Pause', {
-                'event_category': 'video',
+                'event_category': 'Video',
                 'event_label': '[試讀] 01 - 面試攻略',
                 'value':data.seconds
             });
             this.$fbq('trackCustom', 'PauseVideo', {title: '[試讀] 01 - 面試攻略'});
         },
         onTimeUpdateCallback(data) {
-            if (data.seconds > 0.1 && this.video_10_percent) {
+            if (data.percent > 0.1 && !this.video_10_percent) {
                 this.$gtag('event', 'Play_to_10%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo10p', {title: '[試讀] 01 - 面試攻略'});
-            } else if (data.seconds > 0.5 && this.video_50_percent) {
+                this.video_10_percent = !this.video_10_percent;
+            } else if (data.percent > 0.5 && !this.video_50_percent) {
                 this.$gtag('event', 'Play_to_50%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo50p', {title: '[試讀] 01 - 面試攻略'});
-            } else if (data.seconds > 0.9 && this.video_90_percent) {
+                this.video_50_percent = !this.video_50_percent;
+            } else if (data.percent > 0.9 && !this.video_90_percent) {
                 this.$gtag('event', 'Play_to_90%', {
                     'event_category': 'Video',
                     'event_label': '[試讀] 01 - 面試攻略',
                 });
                 this.$fbq('trackCustom', 'PlayVideo90p', {title: '[試讀] 01 - 面試攻略'});
+                this.video_90_percent = !this.video_90_percent;
             }
         },
         clickPayNow() {
@@ -914,7 +912,8 @@ export default {
         },
         switchCourse(id){
             if(localStorage.isShared == "true"){
-                this.dv.src = "https://player.vimeo.com/video/"+id;
+                // this.dv.src = "https://player.vimeo.com/video/"+id;
+                this.dcPlayer.loadVideo(id);
             }
         },
         toggleClass(index) {
@@ -1321,7 +1320,6 @@ export default {
     font-size: 15px;
     margin: auto;
     margin-top: 27px;
-    display: none;
 }
 .clickshare{
     color: #0090FF;

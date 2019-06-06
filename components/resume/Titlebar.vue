@@ -40,6 +40,8 @@ export default {
 @media (min-width: 900px) {
     .project_header .title-blue{
         margin-left: 12vw !important;
+        height: 100% !important ;
+        margin-top: 0px !important;
     }
     .project_header .login{
         margin-right:12vw !important;

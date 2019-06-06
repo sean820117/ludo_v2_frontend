@@ -63,6 +63,7 @@ import Loading from 'vue-loading-overlay';
 import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
+
 export default {
     components: {
         FlatButton,
