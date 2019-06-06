@@ -8,7 +8,7 @@
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
             >
-              <label ><input v-if="showFileInput" type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
+              <label ><input v-if="!is_uploading" type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>
                 <!-- <label ><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label> -->
             </button>
         </div>
@@ -19,26 +19,28 @@
                 <!-- <source src="movie.ogg" type="video/ogg"> -->
             Your browser does not support the video tag.
             </video>
-            <loading 
-                :active="!video_url" 
-                v-else ></loading>
+            <!-- <loading class="loading-icon"
+                color="#76FF00" width="80" height="80"
+                :active="video_url" 
+                >
+            <div slot="after" style="color:white;">約{{}}秒後分析完成</div>    
+            </loading> -->
+            <div class="loading-content" v-if="is_uploading">
+                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#76FF00">
+                    {{ value + '%' }}
+                </v-progress-circular>
+            </div>
             <div class="result-video-content-box">
                 <div class="result-video-content">
-                  <div class="result-video-content-li">
-                    <h4 class="result-video-content-time">第一次</h4>
-                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾</p>
-                  </div>
-                  <div class="result-video-content-li">
-                    <h4 class="result-video-content-time">第二次</h4>
-                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
-                  </div>
-                  <div class="result-video-content-li">
-                    <h4 class="result-video-content-time">第二十五次</h4>
-                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
-                  </div>
-                  <div class="result-video-content-li">
-                    <h4 class="result-video-content-time">第二次</h4>
-                    <p class="result-video-content-detailed">頭兒肩膀膝腳趾頭兒肩膀膝腳趾</p>
+                  <!-- <div class="result-video-content-li" v-for="(tags, index) in reps_wrong_tags" :key="index">
+                    <div class="result-video-content-time">第{{index+1}}次</div>
+                    <p class="result-video-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}<br /></p>
+                  </div> -->
+                  <div class="result-video-content-li" v-for="(tags, i) in reps_wrong_tags" :key="i">
+                    <div class="result-video-content-time">第{{i+1}}次</div>
+                    <div class="result-video-content-detailed-box" >
+                        <p class="result-video-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</p>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -47,9 +49,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuetify from 'vuetify';
 import FlatButton from "~/components/FlatButton.vue";
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
+// import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
 
 
 export default {
@@ -63,12 +70,40 @@ export default {
             form.append('file',e.target.files[0])
             form.append('pose_type','squat')
             this.video_url = ""
-            this.showFileInput = false;
-            let res = await axios.post('/apis/video-upload',form)
-            this.showFileInput = true;
+            this.is_uploading = true;
+            this.interval = setInterval(() => {
+                if (this.value >= 95) {
+                    // return (this.value = 0)
+                    clearInterval(this.interval)
+                } else {
+                    this.value += 1
+                }
+            }, 500)
+            const res = await axios.post('/apis/video-upload',form)
+            console.log(res.data)
             this.video_url = res.data.output_video_url;
-            console.log(res)
-            window.alert('Done');
+            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
+              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
+                  if(res.data.reps_wrong_tags[i][j] == "s_e_1") res.data.reps_wrong_tags[i][j] = "低头";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_2") res.data.reps_wrong_tags[i][j] = "抬头";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_3") res.data.reps_wrong_tags[i][j] = "弯腰";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_4") res.data.reps_wrong_tags[i][j] = "膝盖过前";
+                  else if (res.data.reps_wrong_tags[i][j] == "s_e_5") res.data.reps_wrong_tags[i][j] = "动作过快";
+                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+              }
+            }
+            console.log(res.data)
+            this.reps_wrong_tags = res.data.reps_wrong_tags;
+            this.value = 100;
+
+            setTimeout(()=> {
+                
+                clearInterval(this.interval);
+                this.is_uploading = false;
+                this.value = 0;
+            }, 1000)
+            
+            // window.alert('Done');
             this.$scrollTo('#result-box',"center");
         },
     },
@@ -77,8 +112,32 @@ export default {
     },
     data:() => ({
         video_url:'test',
-        showFileInput: true,
+        interval: {},
+        value: 0,
+        is_uploading:false,
+        reps_wrong_tags:[
+          // ['s_e_1','s_e_2'],['s_e_1','s_e_2']
+        ],
     }),
+    beforeDestroy () {
+        clearInterval(this.interval)
+    },
+    mounted () {
+        if (process.client) {
+            // for(var i =0; i< this.reps_wrong_tags.length; i++){
+            //   for(var j = 0; j<this.reps_wrong_tags[i].length; j++){
+            //       console.log(this.reps_wrong_tags[i][j] == "s_e_1")
+            //       if(this.reps_wrong_tags[i][j] == "s_e_1") {
+            //         this.reps_wrong_tags[i][j] = "低頭";
+            //       }
+            //       else if (this.reps_wrong_tags[i][j] == "s_e_2") this.reps_wrong_tags[i][j] = "抬頭";
+            //       else if (this.reps_wrong_tags[i][j] == "s_e_3") this.reps_wrong_tags[i][j] = "彎腰";
+            //       else if (this.reps_wrong_tags[i][j] == "s_e_4") this.reps_wrong_tags[i][j] = "膝蓋過前";
+            //       else if (this.reps_wrong_tags[i][j] == "correct") this.reps_wrong_tags[i][j] = "姿勢正確";
+            //   }
+            // }
+        }
+    },
 }
 </script>
 
@@ -184,10 +243,9 @@ h1.title {
 .result-video-content-li {
   width: 100%;
   min-height: 30px;
-  margin-bottom:10px; 
-  /* background: red; */
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 .result-video-content-time {
   font-weight: 500;
@@ -197,9 +255,25 @@ h1.title {
   border-right: 2px #76FF00 solid;
 }
 .result-video-content-detailed {
-  padding: 10px 5px 10px 15px;
+  padding: 0px 5px 5px 15px;
   font-size: 14px;
   align-self: auto;
+  margin: 0;
   
+}
+.loading-content {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .8);
+  z-index: 999;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.v-progress-circular {
+  margin: 1rem;
 }
 </style>
