@@ -308,7 +308,7 @@
             <div class="ten-block">
                 <div class="tb-1">60分鐘學習與練習</div>
                 <div class="tb-2">1個月內找到理想工作</div>
-                <button @click="clickPayNow" ><img src="/resume/Group 167.png" /></button>
+                <button class="ten-block-buy-button" @click="clickPayNow" ><img src="/resume/Group 167.png" /></button>
             </div>
             <div class="blank-block"></div>
             <div class="eight-block" style="padding-bottom: 20px;">
@@ -602,7 +602,7 @@
                         <div class="md-tb-2">1個月內找到理想工作</div>
                     </div>
                     <div class="md-tb-box">
-                        <button @click="clickPayNow"><img src="/resume/Group 390.png" /></button>
+                        <button class="ten-block-buy-button" @click="clickPayNow"><img src="/resume/Group 390.png" /></button>
                     </div>
                 </div>
             </div>
@@ -1416,6 +1416,10 @@ export default {
     font-weight: 500;
     background: #FFDE00;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+.ten-block-buy-button {
+    background: transparent;
+    border: none;
 }
 .tb-1{
     padding-top: 45px;
