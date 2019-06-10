@@ -16,6 +16,11 @@
             </button>
         </div>
     </div>
+    <div class="loading-content" v-if="is_uploading">
+                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#99CBA5">
+                    {{ value + '%' }}
+                </v-progress-circular>
+    </div>
     <div class="yoga-assay" id="course-assay">
         <!-- <video class="yoga-assay-video" controls><source src="/yoga/Yoga-video-assay-text.MOV">您的瀏覽器不支援此 HTML5 影片標籤</video> -->
         <video v-if="video_url" class="yoga-assay-video" controls>
@@ -23,24 +28,22 @@
             Your browser does not support the video tag.
         </video>
         <!-- <loading active="!video_url" v-else></loading> -->
-        <div class="loading-content" v-if="is_uploading">
-                <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="#99CBA5">
-                    {{ value + '%' }}
-                </v-progress-circular>
-        </div>
         <div class="yoga-assay-box">
             <div class="yoga-assay-content">
-                <h3>分析結果</h3>
-                <div class="yoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
-                    <h4 class="yoga-assay-content-time">{{i+1}}回目</h4>
-                    <div class="yoga-assay-content-detailed-box">
-                        <p class="yoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</p>
+                <div class="yoga-assay-title"><h3>分析結果</h3></div>
+                <div class="yoga-assay-content-box">
+                    <div class="yoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
+                        <h4 class="yoga-assay-content-time">{{i+1}}回目</h4>
+                        <hooper class="yoga-assay-content-detailed-box">
+                            <slide class="yoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</slide>
+                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
+                        </hooper>
                     </div>
                 </div>
-                <div class="yoga-assay-contact">
+                <!-- <div class="yoga-assay-contact">
                     <p class="yoga-assay-contact-explain">分析結果がズレてる場合</p>
                     <button class="yoga-assay-contact-btn">お問い合わせ</button>
-                </div>
+                </div> -->
             </div>
         </div>
         
@@ -55,6 +58,9 @@ import FlatButton from "~/components/FlatButton.vue";
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vuetify/dist/vuetify.min.css'
+import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
+import 'hooper/dist/hooper.css';
+
 Vue.use(Vuetify)
 
 export default {
@@ -63,11 +69,18 @@ export default {
         interval: {},
         value: 0,
         is_uploading: false,
-        reps_wrong_tags:[['投投投投','手手手手手手手']],
+        is_showing: false,
+        reps_wrong_tags:[['頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭','手手手手手手','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手']],
     }),
+    beforeDestroy () {
+        clearInterval(this.interval)
+    },
     components: {
         FlatButton,
         Loading,
+        Hooper,
+        Slide,
+        HooperNavigation,
     },
     props: {
         bgImage: String,
@@ -76,47 +89,51 @@ export default {
         goToCourse(){
             this.$scrollTo('#course-info',"start");
         },
-       async handleVideoUpload(e) {
-            let form = new FormData();
-            form.append('file',e.target.files[0])
-            form.append('pose_type','squat')
-            this.video_url = ""
-            this.is_uploading = true;
-            this.interval = setInterval(() => {
-                if (this.value >= 95) {
-                    // return (this.value = 0)
-                    clearInterval(this.interval)
-                } else {
-                    this.value += 1
-                }
-            }, 500)
-            const res = await axios.post('/apis/video-upload',form)
-            console.log(res.data)
-            this.video_url = res.data.output_video_url;
-            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "s_e_1") res.data.reps_wrong_tags[i][j] = "低头";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_2") res.data.reps_wrong_tags[i][j] = "抬头";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_3") res.data.reps_wrong_tags[i][j] = "弯腰";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_4") res.data.reps_wrong_tags[i][j] = "膝盖过前";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_5") res.data.reps_wrong_tags[i][j] = "动作过快";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
-              }
-            }
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.value = 100;
+    //    async yogaVideoUpload(e) {
+    //         let form = new FormData();
+    //         form.append('file',e.target.files[0])
+    //         form.append('pose_id','squat01') //正式上線會使用'yoga01'
+    //         this.video_url = ""
+    //         this.is_uploading = true;
+    //         this.interval = setInterval(() => {
+    //             if (this.value >= 95) {
+    //                 // return (this.value = 0)
+    //                 clearInterval(this.interval)
+    //             } else {
+    //                 this.value += 1
+    //             }
+    //         }, 500)
+    //         const res = await axios.post('/apis/video-upload',form)
+    //         console.log(res.data)
+    //         this.video_url = res.data.output_video_url;
+    //         // this.video_url = res.data.location;
+    //         // for(var i =0; i< res.data.reps_wrong_tags.length; i++){
+    //         //   for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
+    //         //       if(res.data.reps_wrong_tags[i][j] == "s_e_1") res.data.reps_wrong_tags[i][j] = "低头";
+    //         //       else if (res.data.reps_wrong_tags[i][j] == "s_e_2") res.data.reps_wrong_tags[i][j] = "抬头";
+    //         //       else if (res.data.reps_wrong_tags[i][j] == "s_e_3") res.data.reps_wrong_tags[i][j] = "弯腰";
+    //         //       else if (res.data.reps_wrong_tags[i][j] == "s_e_4") res.data.reps_wrong_tags[i][j] = "膝盖过前";
+    //         //       else if (res.data.reps_wrong_tags[i][j] == "s_e_5") res.data.reps_wrong_tags[i][j] = "动作过快";
+    //         //       else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+    //         //   }
+    //         // }
+    //         console.log(res.data)
+    //         this.reps_wrong_tags = res.data.reps_wrong_tags;
+    //         this.value = 100;
 
-            setTimeout(()=> {
+    //         setTimeout(()=> {
                 
-                clearInterval(this.interval);
-                this.is_uploading = false;
-                this.value = 0;
-            }, 1000)
+    //             clearInterval(this.interval);
+    //             this.is_uploading = false;
+    //             this.value = 0;
+    //             this.is_showing = true;
+    //         }, 1000)
             
-            // window.alert('Done');
-            this.$scrollTo('#result-box',"center");
-        },
+    //         // window.alert('Done');
+    //         setTimeout(()=> {
+    //             this.$scrollTo('#course-assay',"start");
+    //         },1500)
+    //     },
     },
 }
 </script>
@@ -189,49 +206,80 @@ export default {
         background-color: #99CBA5;
     }
     .yoga-assay-video {
-        width: 100vw;
-        height: 50vh;
+        display: block;
+        width: 90vw;
+        height: 55vh;
         background-color: #000;
+        margin: auto;
     }
     .yoga-assay-box {
         width: 100vw;
         padding: 15px;
+        position: relative;
+        min-height: 45vh;
     }
     .yoga-assay-content {
         background: white;
         width: 90vw;
-        min-height: 40vh;
+        min-height: 41vh;
         margin: 0 auto;
         border-radius:20px; 
-        padding: 15px 15px 5px 15px;
+        padding: 0 15px 5px 15px;
+        position: absolute;
+        top: -30px;
+        left: 5vw;
     }
-    .yoga-assay-content h3 {
-        color: #99CBA5;
+    .yoga-assay-title {
+        width: 170px;
+        height: 45px;
+        background-color: #99cba5; 
+        margin: 0 auto;
+        padding: 5px;
+        border-radius: 0 0 25px 25px;
+        margin-bottom: 15px;
+    }
+    .yoga-assay-title h3 {
+        color: #FFF;
         text-align: center;
-        margin-bottom:15px; 
+        /* margin-bottom:15px;  */
         font-size:20px; 
+        text-shadow: 0 0 5px rgba(0,0,0,.3);
+    }
+    .yoga-assay-content-box {
+        width: auto;
+        height: 20vh;
+        overflow-y: auto;
+        overflow-x: hidden; 
     }
     .yoga-assay-content-li {
-        width: 100%;
-        min-height: 30px;
-        margin-bottom:10px; 
+        width: 95%;
+        min-height: 50px;
         display: inline-flex;
         align-items: center;
+        color: white;
+        border-radius: 10px;
+        margin: 10px 5px;
+        box-shadow: 0 2px 10px rgba(0,0,0,.2)
+    }
+    .yoga-assay-content-li:nth-child(odd) {
+        background-color:#D6D6D6; 
+    }
+    .yoga-assay-content-li:nth-child(even) {
+        background-color: #9A9A9A;
     }
     .yoga-assay-content-time {
         font-weight: 500;
-        padding: 0 5px;
-        color: #99CBA5;
+        padding: 0 15px;
         min-width: 90px;
-        border-right: 2px #DEDEDE solid;
+        border-right: 2px #fff solid;
         font-size: 14px;
     }
     .yoga-assay-content-detailed {
-        padding: 5px 0 0 15px;
+        padding: 5px 25px;
         font-size: 13px;
         align-self: auto;
-        color: #99CBA5;
         margin-bottom: 0; 
+    
     }
     .yoga-assay-contact {
         width: 150px;
@@ -265,6 +313,24 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .hooper {
+        height: auto;
+        position: relative;
+        
+    }
+    .hooper-prev.is-disabled, .hooper-prev {
+        position: absolute;
+        top: 53%;
+        left: -15px;
+    }
+    .hooper-next.is-disabled, .hooper-next {
+        position: absolute;
+        top: 53%;
+        right: 80px;
+    }
+    .hooper-prev.is-disabled,.hooper-next.is-disabled,.hooper-prev {
+        display: none;
     }
 }
 </style>
