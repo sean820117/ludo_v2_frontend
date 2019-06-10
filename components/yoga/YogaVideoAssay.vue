@@ -8,7 +8,9 @@
         <loading active="!video_url" v-else></loading>
         <div class="yoga-assay-box">
             <div class="yoga-assay-content">
-                <h3>分析結果</h3>
+                <div class="yoga-assay-content-title">
+                    <h3>分析結果</h3>
+                </div>
                 <div class="yoga-assay-content-li">
                     <h4 class="yoga-assay-content-time">一回目</h4>
                     <p class="yoga-assay-content-detailed">もうちょっと頭をあげてね</p>
@@ -72,8 +74,13 @@ export default {
         border-radius:20px; 
         padding: 15px 15px 5px 15px;
     }
-    .yoga-assay-content h3 {
-        color: #99CBA5;
+    .yoga-assay-content-title {
+        width: 150px;
+        height: 80px;
+        background: #99cba5;
+    }
+    .yoga-assay-content-title h3 {
+        color: #fff;
         text-align: center;
         margin-bottom:15px; 
         font-size:20px; 
