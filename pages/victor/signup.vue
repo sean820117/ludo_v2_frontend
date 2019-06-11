@@ -59,6 +59,10 @@ export default {
             this.is_ui_config_loaded = true;
             this.hint = this.ui_config.view.signup_page.hint.default.text;
             this.hint_color = this.ui_config.view.signup_page.hint.default.color;
+            if (process.env.NODE_ENV === "production") {
+                this.$fbq("init",this.ui_config.fbq_id);
+                this.$fbq("track","Lead");
+            }
         }
     },
     components: {
