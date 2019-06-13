@@ -9,6 +9,9 @@
                 <div class="course-information-content">
                     <p>講師介紹</p>
                 </div>
+                <div class="course-information-content">
+                    <p>AI助教</p>
+                </div>
             </div>
         </div>
         <div class="course-menu-box">
@@ -48,7 +51,7 @@ export default {
     .course-information-select {
         position: absolute;
         
-        width: 250px;
+        width: 80vw;
         height: 50px;
         bottom: 0;
         left: 0;

@@ -12,26 +12,26 @@
                 <label for="four" class="four-label">呼吸放鬆</label>
             </div>
             <div class="first-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="骨盆矯正的姿勢" 
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="改善疼痛症狀的伸展" 
                 ></mamiyoga-course-block>
             </div>
             <div class="second-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="伸展鼠蹊部的姿勢" 
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="睡醒好狀態的姿勢" 
                 ></mamiyoga-course-block>
             </div>
             <div class="third-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="舒緩疲勞與倦怠感" 
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu.png"
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="鬆弛的肚子變得緊實" 
                 ></mamiyoga-course-block>
             </div>

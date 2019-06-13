@@ -1,10 +1,13 @@
 <template>
     <div>
         <mamiyoga-header btnText="登入" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
-        <h2 class="mamiyoga-intro-title" v-html="title">
+        <!-- <h2 class="mamiyoga-intro-title" v-html="title">
             {{title}}
-        </h2>
-        <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="馬上體驗" class="mamiyoga-intro-btn"></mamiyoga-btn>
+        </h2> -->
+        <img src="/mamiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
+        <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+            <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="馬上體驗" class="mamiyoga-intro-btn"></mamiyoga-btn>
+        </router-link>
         <mamiyoga-login-select></mamiyoga-login-select>
         <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="">隱私政策</a></p>
     </div>
@@ -29,11 +32,15 @@ export default {
 <style>
 @media (max-width: 899px) {
     .mamiyoga-intro-title {
-        margin:10vh 0 35vh 0; 
+        /* margin:10vh 0 35vh 0; 
         text-align: center;
         color: #EEEFEA;
         font-size: 35px; 
-        text-shadow: 0 5px 10px rgba(0,0,0,.5)
+        text-shadow: 0 5px 10px rgba(0,0,0,.5) */
+        display: block;
+        margin: 10vh auto 35vh;
+        width: 70vw;
+
     }
     .mamiyoga-intro-btn {
         margin-bottom: 5vh; 
@@ -45,6 +52,7 @@ export default {
     }
     .mamiyoga-intro-agree a:visited {
         color: #DCD8CF;
+        
     }
 }
 </style>

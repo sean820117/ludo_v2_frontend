@@ -5,14 +5,16 @@
             Your browser does not support the video tag.
         </video>
         <div class="goback-btn">
-            <div class="goback-line"></div>
+            <router-link to="/mamiyoga/teach">
+                <div class="goback-line"></div>
+            </router-link>
         </div>
-        <div class="mamiyoga-assay-box">
-            <div class="mamiyoga-assay-content">
+        <div class="mamiyoga-assay-box" >
+            <div class="mamiyoga-assay-content" v-if="show_assay">
                 <div class="mamiyoga-assay-title"><h3>分析結果</h3></div>
                 <div class="mamiyoga-assay-content-box">
                     <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
-                        <h4 class="mamiyoga-assay-content-time">{{i+1}}回目</h4>
+                        <h4 class="mamiyoga-assay-content-time">第{{i+1}}回</h4>
                         <hooper class="mamiyoga-assay-content-detailed-box">
                             <slide class="mamiyoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</slide>
                             <hooper-navigation slot="hooper-addons"></hooper-navigation>
@@ -32,12 +34,18 @@ import 'hooper/dist/hooper.css';
 export default {
     data:()=> ({
         video_url: 'test',
-        reps_wrong_tags:[['頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭頭','手手手手手手','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手'],['頭頭頭頭頭頭頭頭頭','手手手手手手']],
+        reps_wrong_tags:[['脖子要稍微提高，不然會受傷唷！'],['做得非常正確唷！'],['手掌心是向內，感覺肌肉在支撐手臂']],
+        show_assay:false,
     }),
     components: {
         Hooper,
         Slide,
         HooperNavigation,
+    },
+    mounted: function(){
+        setTimeout(()=>{
+            this.show_assay = true;
+        },3000)
     },
 }
 </script>
@@ -97,8 +105,21 @@ export default {
         border-radius:20px; 
         padding: 0 15px 5px 15px;
         position: absolute;
-        top: -30px;
+        /* top: -30px; */
         left: 5vw;
+        top: -30px;
+        animation: uptosee 10s;
+    }
+    @keyframes uptosee {
+        0% {
+            top: 30vh ;
+        }
+        25%{
+            top: -30px;
+        }
+        100% {
+            top: -30px;
+        }
     }
     .mamiyoga-assay-title {
         width: 170px;
@@ -145,7 +166,7 @@ export default {
         font-size: 13px;
         align-self: auto;
         margin-bottom: 0; 
-    
+        max-width: 52vw;
     }
     .mamiyoga-assay-contact {
         width: 150px;
@@ -177,5 +198,6 @@ export default {
     .hooper-prev.is-disabled,.hooper-next.is-disabled,.hooper-prev {
         display: none;
     }
+
 }
 </style>

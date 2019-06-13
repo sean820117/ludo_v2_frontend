@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-index">
-        <mamiyoga-intro title="日本Mami人氣瑜伽"></mamiyoga-intro>
+        <mamiyoga-intro></mamiyoga-intro>
     </div>
 </template>
 

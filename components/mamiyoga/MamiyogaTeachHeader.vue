@@ -1,7 +1,9 @@
 <template>
     <div class="mamiyoga-header">
-        <div class="mamiyoga-header-logo">
-            <img src="/mamiyoga/header-logo.png" alt="">
+        <div class="mamiyoga-header-goback-btn">
+            <router-link to="/mamiyoga">
+            <img src="/mamiyoga/teach-goback.svg" alt="">
+            </router-link>
         </div>
         <div class="mamiyoga-header-login">
             <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{btnText}}</button>
@@ -31,7 +33,7 @@ export default {
         height: 60px;
         /* background: red; */
     }
-    .mamiyoga-header-logo {
+    .mamiyoga-header-goback-btn {
         width: 30px;
         height: 30px;
         /* background: white; */
@@ -39,10 +41,9 @@ export default {
         top: 2vh;
         left: 7vw;
     }
-    .mamiyoga-header-logo img {
+    .mamiyoga-header-goback-btn img {
         display: block;
-        margin: 5px auto;
-        width: 30px;
+        margin: 10px auto;
     }
     .mamiyoga-header-login {
         /* background: white; */

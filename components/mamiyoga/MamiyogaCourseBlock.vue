@@ -1,5 +1,5 @@
 <template>
-    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')'}">
+    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-bookmark">
             <img src="/mamiyoga/unit01.svg" alt="">
         </div>
@@ -79,10 +79,10 @@ export default {
     .course-block-contain {
         position: absolute;
         width: 90vw;
-        height: 10vh;
+        height: 8vh;
         bottom: 0;
         border-radius: 2vh;
-        padding: 1vh 0;
+        padding: 0;
     }
     .course-block-title {
         width: 88vw;
@@ -95,7 +95,7 @@ export default {
     }
     .course-block-title h4 {
         margin-left:10px; 
-        font-size:14px;
+        font-size:12px;
         font-weight: 400; 
     }
     .course-block-detail {
@@ -105,6 +105,7 @@ export default {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        margin-right: 10px;
     }
     .course-block-icon {
         float: left;
@@ -128,7 +129,7 @@ export default {
         margin-bottom: 5px; 
     } */
     .course-block-icon img {
-        height: 33px;
+        height: 4vh;
     }
 }
 </style>
