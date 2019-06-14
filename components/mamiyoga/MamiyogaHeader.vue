@@ -3,9 +3,11 @@
         <div class="mamiyoga-header-logo">
             <img src="/mamiyoga/header-logo.png" alt="">
         </div>
+        <router-link :to="{path:loginTo}">
         <div class="mamiyoga-header-login">
             <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{btnText}}</button>
         </div>
+        </router-link>
     </div>
 </template>
 
@@ -16,6 +18,7 @@ export default {
         bgColor: String,
         ftColor: String,
         btnText: String,
+        loginTo: String,
     },
     components: {
         MamiyogaSmallBtn,

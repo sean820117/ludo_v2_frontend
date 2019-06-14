@@ -40,7 +40,7 @@ export default {
 @media (max-width:899px) {
     .course-menu {
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
     }
     .course-information {

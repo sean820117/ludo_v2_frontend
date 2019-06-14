@@ -4,7 +4,7 @@
         <input type="radio" class="labels second-series" id="second" name="series">
         <input type="radio" class="labels third-series" id="third" name="series">
         <input type="radio" class="labels four-series" id="four" name="series">
-        <div class="mamiyoga-course-select">
+        <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
             <div class="label-box">
                 <label for="first" class="first-label">姿勢矯正</label>
                 <label for="second" class="second-label">伸展舒緩</label>
@@ -12,27 +12,55 @@
                 <label for="four" class="four-label">呼吸放鬆</label>
             </div>
             <div class="first-series-container">
+                <router-link to="/mamiyoga/course1" style="color:black;text-decoration:none;">
+                    <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                    blockColor="white" blockTitle="骨盆矯正的姿勢" unitSrc="/mamiyoga/course/unit01.svg"
+                    ></mamiyoga-course-block>
+                </router-link>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="骨盆矯正的姿勢" 
+                blockColor="white" blockTitle="改善疼痛症狀的伸展" unitSrc="/mamiyoga/course/unit02.svg"
                 ></mamiyoga-course-block>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="改善疼痛症狀的伸展" 
+                blockColor="white" blockTitle="改善疼痛症狀的伸展" unitSrc="/mamiyoga/course/unit03.svg"
                 ></mamiyoga-course-block>
             </div>
             <div class="second-series-container">
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="伸展鼠蹊部的姿勢" 
+                blockColor="white" blockTitle="伸展鼠蹊部的姿勢" unitSrc="/mamiyoga/course/unit04.svg"
                 ></mamiyoga-course-block>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="睡醒好狀態的姿勢" 
+                blockColor="white" blockTitle="睡醒好狀態的姿勢" unitSrc="/mamiyoga/course/unit05.svg"
                 ></mamiyoga-course-block>
             </div>
             <div class="third-series-container">
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="舒緩疲勞與倦怠感" 
+                blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit06.svg"
                 ></mamiyoga-course-block>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" 
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit07.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit08.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit09.svg"
+                ></mamiyoga-course-block>
+            </div>
+            <div class="four-series-container">
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit10.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit11.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit12.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit13.svg"
+                ></mamiyoga-course-block>
+                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
+                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit14.svg"
                 ></mamiyoga-course-block>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-bookmark">
-            <img src="/mamiyoga/unit01.svg" alt="">
+            <img :src="unitSrc" alt="">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -20,15 +20,15 @@
                         <p>{{aiText}}個AI練習</p>
                     </div> -->
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/03.svg" alt="">
+                        <img :src="poseSrc" alt="">
                         
                     </div>
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/7min.svg" alt="">
+                        <img :src="timeSrc" alt="">
                         
                     </div>
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/1ai.svg" alt="">
+                        <img :src="aiSrc" alt="">
                         
                     </div>
                 </div>
@@ -46,6 +46,10 @@ export default {
         poseText: Number,
         timeText: Number,
         aiText: Number,
+        poseSrc: String,
+        timeSrc: String,
+        aiSrc: String,
+        unitSrc: String,
     },
 }
 </script>
@@ -57,7 +61,7 @@ export default {
         width: 90vw;
         height: 26vh;
         /* background: red; */
-        margin: 2vh auto;
+        margin: 3vh auto 0;
         border-radius: 2vh;
         box-shadow: 0 3px 10px rgba(0,0,0,.2);
     }

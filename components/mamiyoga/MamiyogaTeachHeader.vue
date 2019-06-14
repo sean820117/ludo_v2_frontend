@@ -1,7 +1,7 @@
 <template>
     <div class="mamiyoga-header">
         <div class="mamiyoga-header-goback-btn">
-            <router-link to="/mamiyoga">
+            <router-link :to="{path:nextTo}">
             <img src="/mamiyoga/teach-goback.svg" alt="">
             </router-link>
         </div>
@@ -18,6 +18,7 @@ export default {
         bgColor: String,
         ftColor: String,
         btnText: String,
+        nextTo: String,
     },
     components: {
         MamiyogaSmallBtn,
