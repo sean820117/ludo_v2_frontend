@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <div class="mamiyoga-header-login">
-            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{btnText}}</button>
+            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="mamiyoga-header-login-btn">{{btnText}}</button>
         </div>
     </div>
 </template>
@@ -19,6 +19,7 @@ export default {
         ftColor: String,
         btnText: String,
         nextTo: String,
+        bgImg: String,
     },
     components: {
         MamiyogaSmallBtn,
@@ -29,10 +30,12 @@ export default {
 <style>
 @media (max-width: 899px) {
     .mamiyoga-header {
-        position: relative;
+        position: fixed;
         width: 100vw;
         height: 60px;
         /* background: red; */
+        z-index: 999;
+        top: 0;
     }
     .mamiyoga-header-goback-btn {
         width: 30px;
@@ -61,6 +64,8 @@ export default {
         text-align: center;
         border-style: none;
         box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
 </style>

@@ -30,6 +30,7 @@ export default {
         text-align: center;
         font-weight: 400; 
         margin-bottom: 3vh; 
+        padding-top: 6vh;
     }
     .mamiyoga-divide-header button {
         display: none;

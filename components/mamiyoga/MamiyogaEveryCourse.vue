@@ -78,6 +78,7 @@ export default {
         text-align: center;
         font-weight: 400; 
         margin-bottom: 2vh; 
+        padding-top: 6vh;
     }
     .mamiyoga-course-middle {
         width: 100vw;

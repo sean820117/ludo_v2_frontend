@@ -1,22 +1,27 @@
 <template>
     <div class="mamiyoga-assay-page">
-        <mamiyoga-teach-header nextTo="/mamiyoga/teach" bgColor="#9BAEB2" bgImg="/mamiyoga/repeat-btn.svg"></mamiyoga-teach-header>
+        <div class="mamiyoga-header" >
+            <div class="mamiyoga-header-goback-btn" @click="clickCloseAssay">
+                <img src="/mamiyoga/teach-goback.svg" alt="">
+            </div>
+            <div class="mamiyoga-header-login">
+                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
+                    <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;"  @change="clickRetryButton"></label>
+                </div>
+            </div>
+        </div>
         <video class="mamiyoga-assay-video" controls>
-                <source :src="video_url" type="video/mp4">
+                <source :src="video_result.output_video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <!-- <div class="goback-btn">
-            <router-link to="/mamiyoga/teach">
-                <img src="/mamiyoga/assay-back.svg" alt="">
-            </router-link>
-        </div> -->
         <div class="mamiyoga-assay-box">
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
+                <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div @click="showAssayContent" v-touch:swipe="showAssayContent">
                     <div class="mamiyoga-assay-title"><h3>分析結果</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
-                    <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
+                    <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
                         <h4 class="mamiyoga-assay-content-time">第{{i+1}}回</h4>
                         <hooper class="mamiyoga-assay-content-detailed-box">
                             <slide class="mamiyoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</slide>
@@ -24,8 +29,16 @@
                         </hooper>
                     </div>
                 </div>
-                <div v-touch:swipe="showAssayContent" style="padding-top:12vh;">
+                <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
+                        <div class="assay-grade-box">
+                            <p>準確率</p>
+                            <h3>76</h3>
+                            <div class="share-to-panter">
+                                <div></div>
+                                <p>分享給練習夥伴，可以得到夥伴的回饋</p>
+                            </div>
+                        </div>
                         <p>喜歡這次的練習嗎？分享出去</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
@@ -48,11 +61,15 @@
                                 <img src="/mamiyoga/share-icon-more.svg" alt="">
                             </div>
                         </div>
-                    </div>
-                    <div class="mamiyoga-assay-contact-box">
+                        <div>
+                            <img src="/mamiyoga/checkseecontact.svg" alt="" style="display:block;margin:0 auto;">
+                        </div>
+                        <div class="mamiyoga-assay-contact-box" id="contact-us-box">
                         <p>分析結果不如預期嗎？</p>
                         <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
+                        </div>
                     </div>
+                    
                 </div>
                 <div class="mamiyoga-assay-contact-back" v-if="show_contact_box">
                     <div class="mamiyoga-assay-contact-open">
@@ -76,8 +93,8 @@
                         </div>
                         <form action="">
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" 
-                        required placeholder="你的回饋可以更好的幫助我們優化練習體驗" v-model="apple"></textarea>
-                        <p style="text-align:right;margin:5px;">{{apple.length}}&nbsp;/&nbsp;150</p>
+                        required placeholder="你的回饋可以更好的幫助我們優化練習體驗" v-model="input_text"></textarea>
+                        <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
                         <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="show_contact_box = false">送出</button>
                         </form>
                     </div>
@@ -122,14 +139,19 @@ import Vue2TouchEvents from 'vue2-touch-events'
  
 Vue.use(Vue2TouchEvents)
 export default {
+    props:{
+        video_result: Object,
+    },
     data:()=> ({
-        video_url: 'test',
+        video_url: '',
         reps_wrong_tags:[],
         show: false,
         show_contact_box: false,
         show_star_box: false,
         is_shown_star_box: false,
-        apple: '',
+        input_text: '',
+        show_assay: true,
+        is_loaded: true,
     }),
     components: {
         Hooper,
@@ -141,6 +163,7 @@ export default {
     methods:{
         showAssayContent(){
             this.show = !this.show
+            console.log()
             if(!this.is_shown_star_box)  {
                 this.is_shown_star_box = true
                 setTimeout(()=>{
@@ -150,12 +173,22 @@ export default {
         },
         openContactBox(){
             this.show_contact_box = true
-        }
+        },
+        clickRetryButton(e){
+            this.$emit('handleRetryEvent',e)
+        },
+        clickCloseAssay(){
+            this.$emit('closeAssayWindow')
+        },
+        // showContactBox(){
+        //     this.$scrollTo('#contact-us-box','nearest');
+        // }
     },
     computed:{
         showContentOrNot(){
             return this.show ? 'open':'';
-        } 
+        },
+        
     },
 }
 </script>
@@ -294,8 +327,27 @@ export default {
     .mamiyoga-assay-share-box {
         /* background: red; */
         width:80vw;
-        height: 15vh;
+        height: 60vh;
+        overflow: scroll;
         /* margin-top: 15vh; */
+    }
+    .mamiyoga-assay-share-box::-webkit-scrollbar {
+        display: none;
+    }   
+    .assay-grade-box {
+        width:75vw;
+        height:30vh;
+        margin:20px auto 0;
+    }
+    .assay-grade-box h3 {
+        font-size:100px;
+        color:#97A8Af;
+        text-align:center;
+        font-weight:400;
+    }
+    .share-to-panter {
+        width:75vw;
+        height:1vh;
     }
     .mamiyoga-assay-share-box p {
         color: #707070;
@@ -309,6 +361,7 @@ export default {
         height: 10vh;
         display: flex;
         justify-content: space-between;
+        margin-bottom: 15px; 
     }
     .mamiyoga-assay-share-icon {
         width: 15vw;
@@ -321,9 +374,9 @@ export default {
     }
     .mamiyoga-assay-contact-box {
         width: 60vw;
-        height: 15vh;
+        height: 20vh;
         /* background: red; */
-        margin: 7vh auto 0 ;
+        margin: 8vh auto 0 ;
     }
     .mamiyoga-assay-contact-box p {
         font-size: 12px;
@@ -486,6 +539,9 @@ export default {
     }
     .questions.five:checked ~ .select-questions .five-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-checked-05.svg');
+    }
+    #checkseecontact:checked ~ .assay-grade-box {
+        
     }
 }
 </style>

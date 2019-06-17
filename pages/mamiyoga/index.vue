@@ -2,7 +2,7 @@
     <div class="mamiyoga-index">
         <mamiyoga-intro></mamiyoga-intro>
     </div>
-</template>
+</template> 
 
 <script>
 import MamiyogaIntro from '~/components/mamiyoga/MamiyogaIntro.vue';
