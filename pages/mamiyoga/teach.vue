@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded">
-            <!-- <mamiyoga-teach-header btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header> -->
+            <!-- <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
                 <div class="teach-title-box">
                 <h6>體驗練習</h6>
@@ -219,7 +219,7 @@ export default {
         letter-spacing: 3px; 
         text-align: center;
         display: block;
-        margin: 10px auto;
+        margin: 17vh auto 0;
         border-style: none;
         box-shadow:5px 5px 10px rgba(0,0,0,.2);
         background: #97A8AF;
