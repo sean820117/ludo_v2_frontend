@@ -29,8 +29,7 @@ export default {
         color: #51636F;
         text-align: center;
         font-weight: 400; 
-        margin-bottom: 3vh; 
-        padding-top: 6vh;
+        margin-bottom: 5vh; 
     }
     .mamiyoga-divide-header button {
         display: none;

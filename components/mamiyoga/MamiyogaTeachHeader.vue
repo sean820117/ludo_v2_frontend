@@ -1,12 +1,15 @@
 <template>
-    <div class="mamiyoga-header">
-        <div class="mamiyoga-header-goback-btn">
+    <div class="mamiyoga-teach-header">
+        <div class="mamiyoga-teach-header-goback-btn">
             <router-link :to="{path:nextTo}">
-            <img src="/mamiyoga/teach-goback.svg" alt="">
+                <img src="/mamiyoga/teach-goback.svg" alt="">
             </router-link>
         </div>
-        <div class="mamiyoga-header-login">
-            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="mamiyoga-header-login-btn">{{btnText}}</button>
+        <div class="mamiyoga-teach-header-title">
+            <h3 v-html="headerTitle">{{headerTitle}}</h3>
+        </div>
+        <div class="mamiyoga-teach-header-login">
+            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="mamiyoga-teach-header-login-btn">{{btnText}}</button>
         </div>
     </div>
 </template>
@@ -20,6 +23,7 @@ export default {
         btnText: String,
         nextTo: String,
         bgImg: String,
+        headerTitle: String,
     },
     components: {
         MamiyogaSmallBtn,
@@ -29,33 +33,38 @@ export default {
 
 <style>
 @media (max-width: 899px) {
-    .mamiyoga-header {
-        position: fixed;
+    .mamiyoga-teach-header {
+        position: relative;
         width: 100vw;
         height: 60px;
         /* background: red; */
-        z-index: 999;
         top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 999;
     }
-    .mamiyoga-header-goback-btn {
+    .mamiyoga-teach-header-goback-btn {
         width: 30px;
         height: 30px;
-        /* background: white; */
-        position: absolute;
-        top: 2vh;
-        left: 7vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    .mamiyoga-header-goback-btn img {
+    .mamiyoga-teach-header-goback-btn img {
         display: block;
-        margin: 10px auto;
     }
-    .mamiyoga-header-login {
-        /* background: white; */
-        position: absolute;
-        top: 3vh;
-        right: 6vw;
+    .mamiyoga-teach-header-title h3 {
+        font-size: 14px;
+        color: #51636F;
+        font-weight: 400;
     }
-    .mamiyoga-header-login-btn {
+    .mamiyoga-teach-header-login {
+        width: 55px;
+        height: 25px;
+    }
+    .mamiyoga-teach-header-login-btn {
         width: 55px;
         height: 25px;
         border-radius:20px;

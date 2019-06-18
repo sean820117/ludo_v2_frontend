@@ -4,7 +4,7 @@
         <input type="radio" class="labels second-divide" id="second" name="divide">
         <input type="radio" class="labels third-divide" id="third" name="divide">
         <div class="mamiyoga-divide-select">
-            <div class="label-box">
+            <div class="divide-label-box">
                 <label for="first" class="first-label">姿勢一</label>
                 <label for="second" class="second-label">姿勢二</label>
                 <label for="third" class="third-label">姿勢三</label>
@@ -35,13 +35,13 @@ export default {
     .labels {
         display: none;
     }
-    .label-box {
+    .divide-label-box {
         width: 90vw;
         margin: 0 auto;
         display: flex;
         justify-content:space-evenly;
     }
-    .label-box label {
+    .divide-label-box label {
         color: white;
         font-size: 12px;
         background-color: #D1D1D1; 

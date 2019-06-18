@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-each-course">
-        <mamiyoga-teach-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-teach-header>
+        <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
         <h3 v-html="courseTitle">{{courseTitle}}</h3>
         <div style="position:relative;">
             <video class="mamiyoga-course-video" controls>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
+import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
     props:{
@@ -49,7 +49,7 @@ export default {
         src: String,
     },
     components: {
-        MamiyogaTeachHeader,
+        MamiyogaMailHeader,
         MamiyogaBtn,
     }
 }
@@ -78,7 +78,6 @@ export default {
         text-align: center;
         font-weight: 400; 
         margin-bottom: 2vh; 
-        padding-top: 6vh;
     }
     .mamiyoga-course-middle {
         width: 100vw;

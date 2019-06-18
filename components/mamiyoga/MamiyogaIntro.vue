@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mamiyoga-index-intro">
         <mamiyoga-header btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" loginTo="/mamiyoga/menu"></mamiyoga-header>
         <!-- <h2 class="mamiyoga-intro-title" v-html="title">
             {{title}}
@@ -12,7 +12,7 @@
             <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="立即購買" style="margin-bottom:5vh;"></mamiyoga-btn>
         </router-link>
         <mamiyoga-login-select></mamiyoga-login-select>
-        <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="">隱私政策</a></p>
+        <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
     </div>
 </template>
 
@@ -34,6 +34,12 @@ export default {
 
 <style>
 @media (max-width: 899px) {
+    .mamiyoga-index-intro {
+        width: 100vw;
+        height: 100vh;
+        background-repeat:no-repeat;
+        background-size: cover; 
+    }
     .mamiyoga-intro-title {
         /* margin:10vh 0 35vh 0; 
         text-align: center;
