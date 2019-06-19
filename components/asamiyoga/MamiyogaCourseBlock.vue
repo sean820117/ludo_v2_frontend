@@ -61,7 +61,7 @@ export default {
         width: 90vw;
         height: 26vh;
         /* background: red; */
-        margin: 3vh auto 0;
+        margin: 2vh auto 0;
         border-radius: 2vh;
         box-shadow: 0 3px 10px rgba(0,0,0,.2);
     }

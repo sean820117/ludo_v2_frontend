@@ -11,7 +11,8 @@
                 <label for="third" class="third-label">減脂瘦身</label>
                 <label for="four" class="four-label">呼吸放鬆</label>
             </div>
-            <div class="first-series-container">
+            <div class="first-series-container mamiyoga-all-course">
+                <h5>矯正媽媽們產後不良姿勢來緩解疼痛</h5>
                 <router-link to="/mamiyoga/course1" style="color:black;text-decoration:none;">
                     <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                     blockColor="white" blockTitle="骨盆矯正的姿勢" unitSrc="/mamiyoga/course/unit01.svg"
@@ -24,7 +25,8 @@
                 blockColor="white" blockTitle="改善疼痛症狀的伸展" unitSrc="/mamiyoga/course/unit03.svg"
                 ></mamiyoga-course-block>
             </div>
-            <div class="second-series-container">
+            <div class="second-series-container mamiyoga-all-course">
+                <h5>幫助媽媽們提升睡眠品質</h5>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="伸展鼠蹊部的姿勢" unitSrc="/mamiyoga/course/unit04.svg"
                 ></mamiyoga-course-block>
@@ -32,7 +34,8 @@
                 blockColor="white" blockTitle="睡醒好狀態的姿勢" unitSrc="/mamiyoga/course/unit05.svg"
                 ></mamiyoga-course-block>
             </div>
-            <div class="third-series-container">
+            <div class="third-series-container mamiyoga-all-course">
+                <h5>塑造出比產前更漂亮的身體曲線</h5>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit06.svg"
                 ></mamiyoga-course-block>
@@ -46,7 +49,8 @@
                 blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit09.svg"
                 ></mamiyoga-course-block>
             </div>
-            <div class="four-series-container">
+            <div class="four-series-container mamiyoga-all-course">
+                <h5>釋放媽媽們的產後壓力</h5>
                 <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
                 blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit10.svg"
                 ></mamiyoga-course-block>
@@ -110,6 +114,13 @@ export default {
     .third-series:checked ~ .mamiyoga-course-select .third-series-container,
     .four-series:checked ~ .mamiyoga-course-select .four-series-container {
         display: block;
+    }
+    .mamiyoga-all-course h5 {
+        text-align: center;
+        font-size: 12px;
+        color: #585757;
+        font-weight: 400;
+        margin-top: 2vh; 
     }
 }
 </style>

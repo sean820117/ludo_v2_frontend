@@ -43,7 +43,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
-        z-index: 999;
+        z-index: 990;
     }
     .mamiyoga-teach-header-goback-btn {
         width: 30px;

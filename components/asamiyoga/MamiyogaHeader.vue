@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
     props: {
         bgColor: String,
@@ -21,7 +20,6 @@ export default {
         loginTo: String,
     },
     components: {
-        MamiyogaSmallBtn,
     },
 }
 </script>

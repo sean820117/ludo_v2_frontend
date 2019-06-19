@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <div class="mail-header-title">
-            <h3 v-html="headerTitle">{{headerTitle}}</h3>
+            <h3 v-html="headerTitle" :style="{color:mailheaderTitle}">{{headerTitle}}</h3>
         </div>
         <div class="mail-header-goback">
             <img src="/mamiyoga/menu-envelope.svg" alt="">
@@ -19,6 +19,7 @@ export default {
     props: {
         headerTitle: String,
         nextTo: String,
+        mailheaderTitle: String,
     }
 }
 </script>
@@ -34,6 +35,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
+        z-index: 995;
     }
     .mail-header-goback {
         width: 30px;
@@ -46,8 +48,7 @@ export default {
         display: block;
     }
     .mail-header-title h3 {
-        font-size: 18px;
-        color: #51636F;
+        font-size: 12px;
         font-weight: 400;
     }
 }

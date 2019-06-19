@@ -1,13 +1,11 @@
 <template>
     <div class="mamiyoga-assay-page">
-        <div class="mamiyoga-header" >
+        <div class="mamiyoga-assay-header" >
             <div class="mamiyoga-header-goback-btn" @click="clickCloseAssay">
                 <img src="/mamiyoga/teach-goback.svg" alt="">
             </div>
-            <div class="mamiyoga-header-login">
-                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
-                    <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;"  @change="clickRetryButton"></label>
-                </div>
+            <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
+                <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;"  @change="clickRetryButton"></label>
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
@@ -33,13 +31,12 @@
                     <div class="mamiyoga-assay-share-box">
                         <div class="assay-grade-box">
                             <p>準確率</p>
-                            <h3>76</h3>
-                            <div class="share-to-panter">
-                                <div></div>
-                                <p>分享給練習夥伴，可以得到夥伴的回饋</p>
+                            <div class="mamiyoga-assay-grade-num">
+                                <h3>76</h3>
+                                <p>%</p>
                             </div>
                         </div>
-                        <p>喜歡這次的練習嗎？分享出去</p>
+                        <p style="margin-top:5vh;margin-bottom:0;">快和朋友們分享這次的練習成果吧！</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
                                 <img src="/mamiyoga/share-icon-facebook.svg" alt="">
@@ -61,9 +58,6 @@
                                 <img src="/mamiyoga/share-icon-more.svg" alt="">
                             </div>
                         </div>
-                        <div>
-                            <img src="/mamiyoga/checkseecontact.svg" alt="" style="display:block;margin:0 auto;">
-                        </div>
                         <div class="mamiyoga-assay-contact-box" id="contact-us-box">
                         <p>分析結果不如預期嗎？</p>
                         <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
@@ -76,7 +70,7 @@
                         <div class="cancel-box" @click="show_contact_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
-                        <p style="margin:10px auto 10px;width:150px;">遇到了什麼問題嗎？</p>
+                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方嗎？</p>
                         <div class="star-line-box">
                             <input type="radio" class="questions first" id="first" name="questions">
                             <input type="radio" class="questions second" id="second" name="questions">
@@ -93,7 +87,7 @@
                         </div>
                         <form action="">
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" 
-                        required placeholder="你的回饋可以更好的幫助我們優化練習體驗" v-model="input_text"></textarea>
+                        required placeholder="謝謝您的回饋，讓我們儘速為您尋找解決方法" v-model="input_text"></textarea>
                         <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
                         <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="show_contact_box = false">送出</button>
                         </form>
@@ -104,7 +98,7 @@
                         <div class="cancel-box" @click="show_star_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
-                        <p>對這次的練習結果分析滿意嗎？</p>
+                        <p>請問您滿意這次的分析結果嗎？</p>
                         <img src="/mamiyoga/star-box-human.svg" alt="">
                         <div class="star-line-box">
                             <input type="radio" class="stars first" id="first" name="star">
@@ -202,10 +196,6 @@ export default {
         overflow: hidden;
         position: relative;
     }
-    .mamiyoga-assay-video {
-        width: 100vw;
-        height: 100vh;
-    }
     .goback-btn {
         width: 30px;
         height: 30px;
@@ -213,6 +203,31 @@ export default {
         top: 20px;
         left: 20px;
     }
+    .mamiyoga-header-login-btn {
+        width: 55px;
+        height: 25px;
+        display: block;
+        border-radius: 20px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 40%;
+    }
+    .mamiyoga-assay-header {
+        width: 100vw;
+        height: 60px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 995;
+    }
+    .mamiyoga-assay-video {
+        width: 100vw;
+        height: 100vh;
+    }
+    
     .mamiyoga-assay-box {
         width: 100vw;
         padding: 15px;
@@ -336,10 +351,14 @@ export default {
     }   
     .assay-grade-box {
         width:75vw;
-        height:30vh;
-        margin:20px auto 0;
+        margin:10px auto 0;
     }
-    .assay-grade-box h3 {
+    .mamiyoga-assay-grade-num {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    .mamiyoga-assay-grade-num h3 {
         font-size:100px;
         color:#97A8Af;
         text-align:center;
@@ -376,7 +395,7 @@ export default {
         width: 60vw;
         height: 20vh;
         /* background: red; */
-        margin: 8vh auto 0 ;
+        margin: 15px auto 0 ;
     }
     .mamiyoga-assay-contact-box p {
         font-size: 12px;

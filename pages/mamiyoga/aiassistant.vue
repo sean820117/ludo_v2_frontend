@@ -1,9 +1,14 @@
 <template>
     <div class="aiassistant-page">
-        <mamiyoga-mail-header headerTitle="AI助教"></mamiyoga-mail-header>
+        <mamiyoga-mail-header headerTitle="AI助教" nextTo="/mamiyoga/menu" mailheaderTitle="white"></mamiyoga-mail-header>
         <div class="aiassistant-intro">
             <p>正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的影片體驗。</p>
-            <mamiyoga-square-btn bgColor="#D1D1D1" ftColor="#707070" btnText="開始教學"></mamiyoga-square-btn>
+            <div>
+                <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教學" style="margin-bottom:5vh;"></mamiyoga-btn>
+            </div>
+            <div class="teach-question-box" @click="open_explain = true">
+                <img src="/mamiyoga/teach-question-btn.svg" alt="">
+            </div>
         </div>
         <div class="aiassistant-container">
             <h4>所有動作</h4>
@@ -12,18 +17,29 @@
             <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
             <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
         </div>
+        <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
     </div>
 </template>
 
 <script>
 import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
-import MamiyogaSquareBtn from '~/components/mamiyoga/MamiyogaSquareBtn.vue'
+import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 import MamiyogaAiassistantPoseBlock from '~/components/mamiyoga/MamiyogaAiassistantPoseBlock.vue'
+import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue'
 export default {
     components: {
         MamiyogaMailHeader,
-        MamiyogaSquareBtn,
+        MamiyogaBtn,
         MamiyogaAiassistantPoseBlock,
+        MamiyogaExplainBox,
+    },
+    data:()=>({
+        open_explain: false,
+    }),
+    methods: {
+        closeExplain(){
+            this.open_explain = false
+        }
     }
 }
 </script>
@@ -36,14 +52,15 @@ export default {
         background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
     }
     .aiassistant-intro {
-        width: 90vw;
-        height: 30vh;
-        margin: 1vh 5vw;
-        border-radius: 10px;
-        background-image: url('/mamiyoga/teach-title-img.png');
+        width: 100vw;
+        height: 40vh;
+        background-color: #24798F; 
+        position: absolute;
+        top: 0;
+        /* background-image: url('/mamiyoga/teach-title-img.png');
         background-position: center;
         background-size: cover;
-        background-repeat: no-repeat;  
+        background-repeat: no-repeat;   */
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -53,12 +70,12 @@ export default {
         text-align: center;
         color: white;
         font-size: 14px;
-        margin: 6vh 0 1vh;
+        margin: 13vh 0 1vh;
     }
     .aiassistant-container {
         width: 100vw;
         height: auto;
-        margin: 1vh 0 0;
+        margin-top: 34vh;
         padding-bottom: 10px;
     }
     .aiassistant-container h4 {
@@ -69,6 +86,13 @@ export default {
         border-bottom: solid 1px rgba(112,112,112,.3);
         padding-bottom: 1vh;
         margin: 0 5vw;
+    }
+    .teach-question-box {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 33vh;
+        right: 6vw;
     }
 }
 </style>

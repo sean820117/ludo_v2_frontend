@@ -1,13 +1,13 @@
 <template>
     <div class="course-menu">
-        <div class="course-information" style="backgroundImage:url('/mamiyoga/background-menu.png');">
+        <div class="course-information" >
             <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
             <div class="course-information-select">
                 <div class="course-information-content">
-                    <p>講師介紹</p>
+                    <router-link to="/mamiyoga/about" style="text-decoration:none;"><p>講師介紹</p></router-link>
                 </div>
                 <div class="course-information-content">
-                    <p>AI助教</p>
+                    <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;"><p>AI助教</p></router-link>
                 </div>
                 <div class="course-information-content">
                     <p>學習夥伴</p>
@@ -50,6 +50,7 @@ export default {
         position: relative;
         width: 100vw;
         height: 30vh;
+        background-image:url('/mamiyoga/background-menu.png');
     }
     .course-information-select {
         position: absolute;
