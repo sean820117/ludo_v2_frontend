@@ -1,6 +1,6 @@
 <template>
     <div class="practice-record-block" :style="{backImage:'url('+recordImg+')'}">
-        <div class="notice-box" v-if="have_notice"></div>
+        <!-- <div class="notice-box" v-if="have_notice"></div> -->
         <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
         <div class="bookmark-box" @click="checkStar" :class="checkOrNot"></div>
     </div>
@@ -9,11 +9,12 @@
 <script>
 export default {
     data:()=>({
-        have_notice: true,
+        // have_notice: true,
         check_star: false,
     }),
     props: {
         recordDate: String,
+        recordImg: String,
     },
     methods: {
         checkStar(){

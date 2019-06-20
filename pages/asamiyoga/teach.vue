@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div class="asami-teach-page" v-if="!is_loaded">
+        <div class="asami-teach-page" v-if="!is_loaded && !open_explain">
             <mamiyoga-teach-header headerTitle="体验练习" btnText="密码登录" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/asamiyoga"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
-                <div class="teach-course-info">
+                <div class="asamiyoga-teach-course-info">
                     <div></div>
                     <div>
                         <h3>改善疼痛症状的腰部伸展</h3>
                         <p>拍摄时间建议：20-45秒</p>
                     </div>
                 </div>
-                <div class="teach-question-box">
+                <div class="teach-question-box" @click="open_explain = true">
                     <img src="/asamiyoga/teach-question-btn.svg" alt="">
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
                 <button class="asami-teach-assay-btn" v-if="!is_shown_remind" @click="openRemind()">上传影片</button>
                 <button class="asami-teach-assay-btn" v-else>
-                    <label><input type="file" style="display:none;" @change="handleVideoUpload">上传影片</label>  
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上传影片</label>  
                 </button>
             </div>
             <div class="asami-before-remind" v-if="show_remind">
@@ -69,7 +69,7 @@
                         <p style="color:#8699A0;font-size:13px;">我们将记录您的动作<br>并交给AI团队分析</p>
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
-                                <label><input type="file" style="display:none;" @change="beforeRemind">好</label>  
+                                <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
                             </button>
                         </div>
                     </div>
@@ -77,12 +77,13 @@
             </div>
         </div>
         
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent" @closeAssayWindow="closeAssayWindow" v-else :video_result="video_result"></mamiyoga-assay-video>
+        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent" @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
                 :is-full-page="fullPage"></loading>
         </div>
+         <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
     </div>
 </template>
 
@@ -92,6 +93,7 @@ import MamiyogaTeachHeader from '~/components/asamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaCourseBlock from '~/components/asamiyoga/MamiyogaCourseBlock.vue';
 import MamiyogaBtn from '~/components/asamiyoga/MamiyogaBtn.vue';
 import MamiyogaAssayVideo from '~/components/asamiyoga/MamiyogaAssayVideo.vue';
+import MamiyogaExplainBox from '~/components/asamiyoga/MamiyogaExplainBox.vue';
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -110,6 +112,7 @@ export default {
         video_result: {},
         is_shown_remind: false,
         show_remind: false,
+        open_explain: false,
     }),
     components: {
         MamiyogaTeachHeader,
@@ -117,6 +120,7 @@ export default {
         MamiyogaBtn,
         Loading,
         MamiyogaAssayVideo,
+        MamiyogaExplainBox,
     },
     methods: {
         async handleVideoUpload(e) {
@@ -168,6 +172,9 @@ export default {
         beforeRemind(e){
             this.show_remind = false;
             this.handleVideoUpload(e);
+        },
+        closeExplain(){
+            this.open_explain = false;
         }
         // goToAssay(){
         //     this.isLoading = true;
@@ -187,6 +194,9 @@ export default {
         width: 100vw;
         min-height: 100vh;
         background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+    }
+    .asami-teach-page .asamiyoga-teach-header-title h3 {
+        padding-left: 25px; 
     }
     .teach-upload button {
         box-shadow:5px 5px 10px rgba(0,0,0,.2);
@@ -215,30 +225,30 @@ export default {
         background-image: url('/asamiyoga/teach-title-img.png'); 
         z-index: 0;
     }
-    .asami-teach-page .teach-course-info {
+    .asami-teach-page .asamiyoga-teach-course-info {
         width: 90vw;
         height: 75px;
         position: absolute;
         top: 23vh;
         margin-left: 5vw;
     }
-    .teach-course-info div:first-child {
-        height: 62px;
+    .asamiyoga-teach-course-info div:first-child {
+        height: 73px;
         width: 55px;
         float: left;
         background-repeat: no-repeat;
-        background-image: url('/asamiyoga/teach-photoby.svg');
+        background-image: url('/asamiyoga/teach-photoby-1.svg');
         background-position: center center;
     }
-    .teach-course-info div:last-child {
+    .asamiyoga-teach-course-info div:last-child {
         float: left;
-        padding: 10px 0 0 10px;
+        padding: 15px 0 0 10px;
     } 
-    .asami-teach-page .teach-course-info h3 {
+    .asami-teach-page .asamiyoga-teach-course-info h3 {
         color: #ECEDE8;
         font-size: 1.2em;
     }
-    .teach-course-info p {
+    .asamiyoga-teach-course-info p {
         color: #ecede8;
         font-size:14px;
         margin-top: 4px;

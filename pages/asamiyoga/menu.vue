@@ -1,24 +1,27 @@
 <template>
     <div class="course-menu">
-        <div class="course-information" style="backgroundImage:url('/mamiyoga/background-menu.png');">
+        <div class="asamiyoga-course-information">
             <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
             <div class="asamiyoga-course-information-select">
-                <div class="course-information-content">
-                    <p>教学理念</p>
+                <div class="mamiyoga-course-information-content">
+                    <router-link to="/asamiyoga/about" style="text-decoration:none;">
+                        <p>讲师介绍</p>
+                    </router-link>
                 </div>
-                <div class="course-information-content">
-                    <p>讲师介绍</p>
+                <div class="mamiyoga-course-information-content">
+                   <router-link to="/asamiyoga/aiassistant" style="text-decoration:none;">
+                        <p>AI助教</p>
+                    </router-link>
                 </div>
-                <!-- <div class="course-information-content">
-                    <p>學習夥伴</p>
-                </div> -->
+                <div class="mamiyoga-course-information-content">
+                    <p>学习伙伴</p>
+                </div>
             </div>
             <div class="course-mail-icon">
                 <img src="/mamiyoga/menu-envelope.svg" alt="">
             </div>
         </div>
         <div class="course-menu-box">
-            <h3 class="course-menu-box-title">日本mami人氣課程</h3>
             <mamiyoga-course-content></mamiyoga-course-content>
         </div>
     </div>
@@ -46,14 +49,15 @@ export default {
         min-height: 100vh;
         background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
     }
-    .course-information {
+    .asamiyoga-course-information {
         position: relative;
         width: 100vw;
         height: 30vh;
+        background-image:url('/asamiyoga/background-menu.png');
     }
     .asamiyoga-course-information-select {
         position: absolute;
-        width: 45vw;
+        width: 60vw;
         height: 50px;
         bottom: 0;
         left: 0;
@@ -62,19 +66,19 @@ export default {
         align-items: center;
         padding-left: 10px;
     }
-    .course-information-content {
+    .mamiyoga-course-information-content {
         float: left;
         width: 65px;
         height: 25px;
     }
-    .course-information-content:first-child p {
+    .mamiyoga-course-information-content:first-child p {
         border-right:1px solid #fff;
-        padding-right: 6px; 
+        /* padding-right: 6px;  */
     }
-    .course-information-content:nth-child(2) p {
+    .mamiyoga-course-information-content:nth-child(2) p {
         border-right:1px solid #fff;
     }
-    .course-information-content p {
+    .mamiyoga-course-information-content p {
         color: white;
         font-size: 12px;
         text-align: center;
@@ -83,12 +87,6 @@ export default {
         position: absolute;
         bottom: 2vh;
         right: 6vw;
-    }
-    .course-menu-box-title {
-        font-size: 12px;
-        font-weight: 400;
-        letter-spacing: 1px;
-        margin: 10px;
     }
 }
 </style>

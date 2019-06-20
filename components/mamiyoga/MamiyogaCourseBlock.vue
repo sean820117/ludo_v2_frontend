@@ -85,7 +85,7 @@ export default {
         width: 90vw;
         height: 8vh;
         bottom: 0;
-        border-radius: 2vh;
+        border-radius: 0 0 2vh 2vh;
         padding: 0;
     }
     .course-block-title {

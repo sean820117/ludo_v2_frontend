@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" ></mamiyoga-teach-header>
+            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
                 <div class="teach-course-info">
                     <div></div>
@@ -105,7 +105,7 @@ export default {
     //     }
     // },
     data:()=> ({
-        is_loaded: true,
+        is_loaded: false,
         isLoading: false,
         fullPage: true,
         video_result: {},

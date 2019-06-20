@@ -17,7 +17,6 @@
         <div class="mamiyoga-course-bottom">
             <div class="mamiyoga-course-bottom-content first">
                 <h5>課程簡介</h5>
-                <p>{{courseTime}}分鐘</p>
                 <div class="mamiyoga-course-bottom-first">
                     <p>骨盆位於身體上半部跟下半部的中間點，它不單單只是分隔開身體，也扮演著支撐身體的重要角色哦。
                         <br>為什麼說它重要呢？讓我們一起觀看麻美老師的說明與教學
@@ -28,12 +27,21 @@
                 <h5>姿勢簡介</h5>
                 <p>{{poseHave}}個姿勢</p>
                 <div class="mamiyoga-course-bottom-second">
-                    <p>一、骨盆矯正的姿勢<br>二、躺著也可以做的骨盆矯正的姿勢<br>三、產後矯正姿勢</p>
+                    <div class="mamiyoga-course-bottom-second-content-li">
+                        <img src="/mamiyoga/num/num01.svg" alt=""><p>骨盆矯正的姿勢</p>
+                    </div>
+                    <div class="mamiyoga-course-bottom-second-content-li">
+                        <img src="/mamiyoga/num/num02.svg" alt=""><p>躺著也可以做的骨盆矯正的姿勢</p>
+                    </div>
+                    <div class="mamiyoga-course-bottom-second-content-li">
+                        <img src="/mamiyoga/num/num03.svg" alt=""><p>產後矯正姿勢</p>
+                    </div>
                 </div>
             </div>
             <router-link to="/mamiyoga/divide1" style="text-decoration:none;">
-                <mamiyoga-btn btnText="影片分段" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin-bottom:3vh;" class="course-divide-btn"></mamiyoga-btn>
+                <mamiyoga-btn btnText="影片分段" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
             </router-link>
+            <mamiyoga-btn btnText="AI助教" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin-bottom:3vh;" class="course-divide-btn"></mamiyoga-btn>
         </div>
     </div>
 </template>
@@ -93,9 +101,9 @@ export default {
     .mamiyoga-course-bottom {
         /* background: red; */
         width: 100vw;
-        height: 57vh;
+        /* height: 57vh; */
         margin-top:2vh; 
-        padding: 0 5vw;
+        padding: 0 5vw 3vh;
     }
     .mamiyoga-course-bottom-content {
         /* background: gray; */
@@ -120,6 +128,15 @@ export default {
     }
     .course-divide-btn button {
         box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    }
+    .mamiyoga-course-bottom-second-content-li {
+        min-height: 25px;
+    }
+    .mamiyoga-course-bottom-second-content-li img {
+        width: 20px;
+        height: 15px;
+        margin: 2px 2px 0 0;
+        float: left;
     }
 }
 </style>

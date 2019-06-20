@@ -3,7 +3,7 @@
         <div class="mamiyoga-header-logo">
             <img src="/mamiyoga/header-logo.png" alt="">
         </div>
-        <router-link :to="{path:loginTo}">
+        <router-link :to="{path:loginTo}" style="text-decoration:none;">
         <div class="mamiyoga-header-login">
             <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{btnText}}</button>
         </div>
@@ -33,25 +33,28 @@ export default {
         width: 100vw;
         height: 60px;
         /* background: red; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
     }
     .mamiyoga-header-logo {
         width: 30px;
         height: 30px;
         /* background: white; */
-        position: absolute;
+        /* position: absolute;
         top: 2vh;
-        left: 7vw;
+        left: 7vw; */
     }
     .mamiyoga-header-logo img {
         display: block;
-        margin: 5px auto;
         width: 30px;
     }
     .mamiyoga-header-login {
         /* background: white; */
-        position: absolute;
+        /* position: absolute;
         top: 3vh;
-        right: 6vw;
+        right: 6vw; */
     }
     .mamiyoga-header-login-btn {
         width: 55px;

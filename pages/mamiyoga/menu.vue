@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="course-menu-box">
-            <h3 class="course-menu-box-title">日本mami人氣課程</h3>
+            <!-- <h3 class="course-menu-box-title">日本mami人氣課程</h3> -->
             <mamiyoga-course-content></mamiyoga-course-content>
         </div>
     </div>

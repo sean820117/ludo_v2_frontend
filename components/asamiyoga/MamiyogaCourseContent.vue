@@ -1,75 +1,135 @@
 <template>
-    <div class="mamiyoga-course-content">
+    <div class="asamiyoga-course-content">
         <input type="radio" class="labels first-series" id="first" name="series" checked>
         <input type="radio" class="labels second-series" id="second" name="series">
         <input type="radio" class="labels third-series" id="third" name="series">
-        <input type="radio" class="labels four-series" id="four" name="series">
-        <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
+        
+        <div class="mamiyoga-course-select" style="padding-bottom:4vh;">
             <div class="label-box">
-                <label for="first" class="first-label">姿勢矯正</label>
-                <label for="second" class="second-label">伸展舒緩</label>
-                <label for="third" class="third-label">減脂瘦身</label>
-                <label for="four" class="four-label">呼吸放鬆</label>
+                <label for="first" class="first-label">初级课程</label>
+                <label for="second" class="second-label">中级课程</label>
+                <label for="third" class="third-label">高级课程</label>
+                
             </div>
             <div class="first-series-container">
-                <router-link to="/mamiyoga/course1" style="color:black;text-decoration:none;">
-                    <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                    blockColor="white" blockTitle="骨盆矯正的姿勢" unitSrc="/mamiyoga/course/unit01.svg"
-                    ></mamiyoga-course-block>
-                </router-link>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="改善疼痛症狀的伸展" unitSrc="/mamiyoga/course/unit02.svg"
+                <mamiyoga-course-block v-for="basic in basics" :key="basic.id" 
+                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
+                :blockTitle="basic.title" :courseTo="basic.course_to" :have_ai="basic.have_ai"
+                :timeSrc="basic.course_time"
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="改善疼痛症狀的伸展" unitSrc="/mamiyoga/course/unit03.svg"
-                ></mamiyoga-course-block>
+                
             </div>
             <div class="second-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="伸展鼠蹊部的姿勢" unitSrc="/mamiyoga/course/unit04.svg"
+                <mamiyoga-course-block v-for="intermediate in intermediates" :key="intermediate.id"
+                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
+                :blockTitle="intermediate.title" :courseTo="intermediate.course_to" 
+                :have_ai="intermediate.have_ai" :timeSrc="intermediate.course_time"
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="睡醒好狀態的姿勢" unitSrc="/mamiyoga/course/unit05.svg"
-                ></mamiyoga-course-block>
+                
             </div>
             <div class="third-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit06.svg"
+                <mamiyoga-course-block v-for="advanced in advanceds" :key="advanced.id"
+                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
+                :blockTitle="advanced.title" :courseTo="advanced.course_to"
+                :have_ai="advanced.have_ai" :timeSrc="advanced.course_time"
                 ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit07.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit08.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit09.svg"
-                ></mamiyoga-course-block>
+                
             </div>
-            <div class="four-series-container">
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="舒緩疲勞與倦怠感" unitSrc="/mamiyoga/course/unit10.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit11.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit12.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit13.svg"
-                ></mamiyoga-course-block>
-                <mamiyoga-course-block bgImage="/mamiyoga/background-menu-old.png"
-                blockColor="white" blockTitle="鬆弛的肚子變得緊實" unitSrc="/mamiyoga/course/unit14.svg"
-                ></mamiyoga-course-block>
-            </div>
+            
         </div>
     </div>
 </template>
 
 <script>
-import MamiyogaCourseBlock from '~/components/mamiyoga/MamiyogaCourseBlock.vue';
+import MamiyogaCourseBlock from '~/components/asamiyoga/MamiyogaCourseBlock.vue';
 export default {
+    data:()=>({
+        basics: [
+            {
+                id: '1',
+                title: '用空气启动身体',
+                course_to: '',
+                have_ai: true,
+                course_time: '/asamiyoga/course-time/7min.svg',
+                },
+            {
+                id: '2',
+                title: '改善背部与肩部僵硬的姿势',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+                },
+            {
+                id: '3',
+                title: '用呼吸创造放松空间',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+                },
+            {
+                id: '4',
+                title: '打开自己全世界都会帮助你',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+                },
+        ],
+        intermediates:[
+            {
+                id: '1',
+                title: '回到没有歪斜的骨盆',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+            {
+                id: '2',
+                title: '减缓腰部酸痛',
+                course_to: '',
+                have_ai: true,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+            {
+                id: '3',
+                title: '打通压力沉积的地方',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+            {
+                id: '4',
+                title: '锻炼产后的腹肌',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+            {
+                id: '5',
+                title: '平衡自律神经',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+        ],
+        advanceds:[
+            {   
+                id: '1',
+                title: '松弛的肚子变得紧实',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+            {   
+                id: '2',
+                title: '回复产后的翘臀',
+                course_to: '',
+                have_ai: false,
+                course_time: '/asamiyoga/course-time/7min.svg',
+            },
+        ],
+
+    }),
+            
     components: {
         MamiyogaCourseBlock,
     }
@@ -81,11 +141,11 @@ export default {
     .labels {
         display: none;
     }
-    .label-box {
+    .asamiyoga-course-content .label-box {
         width: 90vw;
-        margin: 0 auto;
+        margin: 3vh auto;
         display: flex;
-        justify-content:space-around;
+        justify-content:space-evenly;
     }
     .label-box label {
         color: white;

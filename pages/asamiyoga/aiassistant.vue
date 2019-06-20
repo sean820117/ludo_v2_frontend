@@ -1,22 +1,21 @@
 <template>
     <div>
         <div class="aiassistant-page" v-if="!open_explain">
-            <mamiyoga-mail-header headerTitle="AI助教" nextTo="/mamiyoga/menu" mailheaderTitle="white"></mamiyoga-mail-header>
+            <mamiyoga-mail-header headerTitle="AI助教" nextTo="/asamiyoga/menu" mailheaderTitle="white"></mamiyoga-mail-header>
             <div class="aiassistant-intro">
-                <p>正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的影片體驗。</p>
-                <div>
+                <p>正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的影片体验。</p>
+                <!-- <div>
                     <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教學" style="margin-bottom:5vh;"></mamiyoga-btn>
-                </div>
+                </div> -->
                 <div class="teach-question-box" @click="open_explain = true">
                     <img src="/mamiyoga/teach-question-btn.svg" alt="">
                 </div>
             </div>
             <div class="aiassistant-container">
-                <h4>所有動作</h4>
-                <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
-                <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
-                <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
-                <mamiyoga-aiassistant-pose-block poseText="產後矯正姿勢"></mamiyoga-aiassistant-pose-block>
+                <h4>所有动作</h4>
+                <mamiyoga-aiassistant-pose-block v-for="aitake in aitakes" :key="aitake.id" 
+                :poseText="aitake.title" :aitakeTo="aitake.taketo"
+                ></mamiyoga-aiassistant-pose-block>
             </div>
         </div>
         <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
@@ -24,10 +23,10 @@
 </template>
 
 <script>
-import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
-import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
-import MamiyogaAiassistantPoseBlock from '~/components/mamiyoga/MamiyogaAiassistantPoseBlock.vue'
-import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue'
+import MamiyogaMailHeader from '~/components/asamiyoga/MamiyogaMailHeader.vue'
+import MamiyogaBtn from '~/components/asamiyoga/MamiyogaBtn.vue'
+import MamiyogaAiassistantPoseBlock from '~/components/asamiyoga/MamiyogaAiassistantPoseBlock.vue'
+import MamiyogaExplainBox from '~/components/asamiyoga/MamiyogaExplainBox.vue'
 export default {
     components: {
         MamiyogaMailHeader,
@@ -37,6 +36,23 @@ export default {
     },
     data:()=>({
         open_explain: false,
+        aitakes:[
+            {
+                id:'1',
+                title: '用空气启动身体',
+                taketo: '',
+            },
+            {
+                id:'2',
+                title: '减缓腰部酸痛',
+                taketo: '',
+            },
+            {
+                id:'3',
+                title: '',
+                taketo: '',
+            },
+        ],
     }),
     methods: {
         closeExplain(){

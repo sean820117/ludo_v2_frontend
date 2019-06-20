@@ -6,14 +6,14 @@
                 <div :style="{backgroundImage:'url('+photoBy+')'}"></div>
                 <div class="practice-record-intro-title-font">
                     <h3 v-text="recordTitle">{{recordTitle}}</h3>
-                    <p>拍攝時間建議：</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
+                    <p>拍摄时间建议：</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
                 </div>
             </div>
             <div class="practice-record-intro-btn-container">
                 <mamiyoga-square-btn class="practice-record-intro-btn" 
-                bgColor="#D1D1D1" ftColor="#707070" btnText="回到課程"></mamiyoga-square-btn>
+                bgColor="#D1D1D1" ftColor="#707070" btnText="回到课程"></mamiyoga-square-btn>
                 <mamiyoga-square-btn class="practice-record-intro-btn"
-                bgColor="#97A8AF" ftColor="#ECEDE8" btnText="上傳影片"></mamiyoga-square-btn>
+                bgColor="#97A8AF" ftColor="#ECEDE8" btnText="上传影片"></mamiyoga-square-btn>
             </div>
         </div>
         
