@@ -1,21 +1,21 @@
 <template>
-    <div class="mamiyoga-teach-header">
-        <div class="mamiyoga-teach-header-goback-btn">
+    <div class="asamiyoga-teach-header">
+        <div class="asamiyoga-teach-header-goback-btn">
             <router-link :to="{path:nextTo}">
-                <img src="/mamiyoga/teach-goback.svg" alt="">
+                <img src="/asamiyoga/teach-goback.svg" alt="">
             </router-link>
         </div>
-        <div class="mamiyoga-teach-header-title">
-            <h3 v-html="headerTitle">{{headerTitle}}</h3>
+        <div class="asamiyoga-teach-header-title">
+            <h3 v-html="headerTitle" :style="{color:titleColor}">{{headerTitle}}</h3>
         </div>
-        <div class="mamiyoga-teach-header-login">
-            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="mamiyoga-teach-header-login-btn">{{btnText}}</button>
+        <div class="asamiyoga-teach-header-login">
+            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="asamiyoga-teach-header-login-btn">{{btnText}}</button>
         </div>
     </div>
 </template>
 
 <script>
-import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
+import MamiyogaSmallBtn from '~/components/asamiyoga/MamiyogaSmallBtn.vue';
 export default {
     props: {
         bgColor: String,
@@ -24,6 +24,7 @@ export default {
         nextTo: String,
         bgImg: String,
         headerTitle: String,
+        titleColor: String,
     },
     components: {
         MamiyogaSmallBtn,
@@ -33,7 +34,7 @@ export default {
 
 <style>
 @media (max-width: 899px) {
-    .mamiyoga-teach-header {
+    .asamiyoga-teach-header {
         position: relative;
         width: 100vw;
         height: 60px;
@@ -45,26 +46,26 @@ export default {
         padding: 0 20px;
         z-index: 999;
     }
-    .mamiyoga-teach-header-goback-btn {
+    .asamiyoga-teach-header-goback-btn {
         width: 30px;
         height: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .mamiyoga-teach-header-goback-btn img {
+    .asamiyoga-teach-header-goback-btn img {
         display: block;
     }
-    .mamiyoga-teach-header-title h3 {
+    .asamiyoga-teach-header-title h3 {
         font-size: 14px;
         color: #51636F;
         font-weight: 400;
     }
-    .mamiyoga-teach-header-login {
-        width: 70px;
+    .asamiyoga-teach-header-login {
+        width: 65px;
         height: 25px;
     }
-    .mamiyoga-teach-header-login-btn {
+    .asamiyoga-teach-header-login-btn {
         width: 65px;
         height: 25px;
         border-radius:20px;

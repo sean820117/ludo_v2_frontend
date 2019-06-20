@@ -4,8 +4,16 @@
             <div class="asamiyoga-header-goback-btn" @click="clickCloseAssay">
                 <img src="/asamiyoga/teach-goback.svg" alt="">
             </div>
-            <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/asamiyoga/repeat-btn.svg)'}" class="asamiyoga-header-login-btn">
-                    <label><input type="file" style="display:none;"  @change="clickRetryButton"></label>
+            <div style="display:flex;">
+                <div :style="{backgroundColor:'#9BAEB2',
+                backgroundImage:'url(/asamiyoga/assay-comment-btn.svg)',
+                marginRight:'10px'}" @click="openCommentBox" class="asamiyoga-header-login-btn">
+                </div>
+                <div :style="{backgroundColor:'#9BAEB2',
+                backgroundImage:'url(/asamiyoga/assay-repeat-btn.svg)'}" 
+                class="asamiyoga-header-login-btn">
+                        <label style="width:55px;height:25px;display:block;"><input type="file" style="display:none;"  @change="clickRetryButton"></label>
+                </div>
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
@@ -117,6 +125,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="asamiyoga-assay-contact-back" v-if="show_comment_box">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="show_comment_box = false">
+                            <img src="/asamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p>正在加紧脚步开发中！</p>
+                        <img src="/asamiyoga/comment-box-human.svg" style="margin:30px auto 40px" alt="">
+                        <div class="star-line-box">
+                            <button class="mamiyoga-assay-contact-btn" @click="show_comment_box = false" style="width:90px;letter-space:0;margin-top:20px">期待</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -146,6 +166,7 @@ export default {
         input_text: '',
         show_assay: true,
         is_loaded: true,
+        show_comment_box: false,
     }),
     components: {
         Hooper,
@@ -174,6 +195,9 @@ export default {
         clickCloseAssay(){
             this.$emit('closeAssayWindow')
         },
+        openCommentBox(){
+            this.show_comment_box = true
+        }
         // showContactBox(){
         //     this.$scrollTo('#contact-us-box','nearest');
         // }
@@ -217,7 +241,7 @@ export default {
         top: 20px;
         left: 20px;
     }
-    .asamiyoga-header-login-btn {
+    .asamiyoga-assay-page .asamiyoga-header-login-btn {
         width: 55px;
         height: 25px;
         display: block;
@@ -225,7 +249,7 @@ export default {
         box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 40%;
+        background-size: 35%;
     }
     .mamiyoga-assay-box {
         width: 100vw;

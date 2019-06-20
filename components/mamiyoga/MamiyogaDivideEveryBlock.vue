@@ -15,7 +15,7 @@
                 <p>站在墊子上面，把雙腳張開，腳掌距離稍微比腰還要寬一點，並用兩手壓住前後的骨盆。<br><br>接著，將骨盆往前後移動，切記，練習的時候，不要駝背。<br><br>然後，我們要重複這個動作各10次。</p>
                 
             </div>
-            <button class="teach-assay-btn" @click="goToAssay()">上傳影片</button>
+            <button class="teach-assay-btn" @click="goToAssay()" v-if="ai_teacher">上傳影片</button>
         </div>
     </div>
 </template>
@@ -24,6 +24,7 @@
 export default {
     props:{
         courseTime:Number,
+        ai_teacher: false,
     },
     methods: {
         goToAssay(){

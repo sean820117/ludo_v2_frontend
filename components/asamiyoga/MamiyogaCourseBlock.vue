@@ -1,39 +1,45 @@
 <template>
-    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
-        <div class="course-bookmark">
-            <img :src="unitSrc" alt="">
-        </div>
-        <div class="course-block-contain" :style="{backgroundColor:blockColor}">
-            <div class="course-block-title">
-                <h4 v-html="blockTitle"></h4>
-                <div class="course-block-detail">
-                    <!-- <div class="course-block-icon">
-                        <img src="/mamiyoga/course-block-icon-pose.svg" alt="">
-                        <p>{{poseText}}個姿勢</p>
-                    </div>
-                    <div class="course-block-icon">
-                        <img src="/mamiyoga/course-block-icon-time.svg" alt="">
-                        <p>長度{{timeText}}分鐘</p>
-                    </div>
-                    <div class="course-block-icon">
-                        <img src="/mamiyoga/course-block-icon-ai.svg" alt="">
-                        <p>{{aiText}}個AI練習</p>
-                    </div> -->
-                    <div class="course-block-icon">
-                        <img :src="poseSrc" alt="">
-                        
-                    </div>
-                    <div class="course-block-icon">
-                        <img :src="timeSrc" alt="">
-                        
-                    </div>
-                    <div class="course-block-icon">
-                        <img :src="aiSrc" alt="">
-                        
+    <div>
+        <router-link :to="{path:courseTo}" style="color:black;text-decoration:none;">
+            <div class="asamiyoga-course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
+                <!-- <div class="course-bookmark">
+                    <img :src="unitSrc" alt="">
+                </div> -->
+                <div class="asamiyoga-ai-bookmark" v-if="have_ai">
+                    <img src="/asamiyoga/ai-badge.svg" alt="">
+                </div>
+                <div class="course-block-contain" :style="{backgroundColor:blockColor}">
+                    <div class="course-block-title">
+                        <h4 v-html="blockTitle"></h4>
+                        <div class="course-block-detail">
+                            <!-- <div class="course-block-icon">
+                                <img src="/mamiyoga/course-block-icon-pose.svg" alt="">
+                                <p>{{poseText}}個姿勢</p>
+                            </div>
+                            <div class="course-block-icon">
+                                <img src="/mamiyoga/course-block-icon-time.svg" alt="">
+                                <p>長度{{timeText}}分鐘</p>
+                            </div>
+                            <div class="course-block-icon">
+                                <img src="/mamiyoga/course-block-icon-ai.svg" alt="">
+                                <p>{{aiText}}個AI練習</p>
+                            </div> -->
+                            <!-- <div class="course-block-icon">
+                                <img :src="poseSrc" alt="">
+                                
+                            </div> -->
+                            <div class="course-block-icon">
+                                <img :src="timeSrc" alt="">
+                            </div>
+                            <!-- <div class="course-block-icon">
+                                <img :src="aiSrc" alt="">
+                                
+                            </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </router-link>
     </div>
 </template>
 
@@ -43,34 +49,43 @@ export default {
         bgImage: String,
         blockColor: String,
         blockTitle: String,
-        poseText: Number,
-        timeText: Number,
-        aiText: Number,
-        poseSrc: String,
         timeSrc: String,
-        aiSrc: String,
         unitSrc: String,
+        courseTo: String,
+        have_ai: false,
+
+        // poseSrc: String,
+        // aiSrc: String,
+        // poseText: Number,
+        // timeText: Number,
+        // aiText: Number,
     },
 }
 </script>
 
 <style>
 @media (max-width: 899px) {
-    .course-block {
+    .asamiyoga-course-block {
         position: relative;
         width: 90vw;
         height: 26vh;
         /* background: red; */
-        margin: 2vh auto 0;
+        margin: 3vh auto 0;
         border-radius: 2vh;
         box-shadow: 0 3px 10px rgba(0,0,0,.2);
     }
-    .course-bookmark {
+    .asamiyoga-ai-bookmark {
+        position: absolute;
+        top:-15px;
+        right: 15px;
+
+    }
+    /* .course-bookmark {
         width: 30px;
         position: absolute;
         top: -5px;
         left: 15px;
-    }
+    } */
     /* .course-bookmark p {
         position: absolute;
         top: 10px;
@@ -85,7 +100,7 @@ export default {
         width: 90vw;
         height: 8vh;
         bottom: 0;
-        border-radius: 2vh;
+        border-radius: 0 0 2vh 2vh;
         padding: 0;
     }
     .course-block-title {
@@ -98,16 +113,16 @@ export default {
         justify-content: space-between;
     }
     .course-block-title h4 {
-        margin-left:10px; 
+        margin-left: 20px; 
         font-size:12px;
         font-weight: 400; 
     }
     .course-block-detail {
         /* background: green; */
-        width: 45vw;
+        width: 25vw;
         height: 7vh;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-end;
         align-items: center;
         margin-right: 10px;
     }

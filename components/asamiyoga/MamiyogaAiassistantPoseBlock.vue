@@ -1,6 +1,10 @@
 <template>
-    <div class="aiassistant-pose-block">
-        <p v-text="poseText">{{poseText}}</p>
+    <div>
+        <router-link :to="{path:aitakeTo}" style="text-decoration:none;">
+            <div class="aiassistant-pose-block">
+                <p v-text="poseText">{{poseText}}</p>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -8,6 +12,7 @@
 export default {
     props: {
         poseText: String,
+        aitakeTo: String,
     }
 }
 </script>
@@ -23,6 +28,7 @@ export default {
         display: flex;
         align-items: flex-end;
         padding: 10px;
+        
     }
     .aiassistant-pose-block p {
         color: white;

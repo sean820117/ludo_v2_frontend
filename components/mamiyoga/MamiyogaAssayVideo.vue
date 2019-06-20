@@ -4,8 +4,14 @@
             <div class="mamiyoga-header-goback-btn" @click="clickCloseAssay">
                 <img src="/mamiyoga/teach-goback.svg" alt="">
             </div>
-            <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
-                <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
+            <div style="display:flex;">
+                <div :style="{backgroundColor:'#9BAEB2',
+                backgroundImage:'url(/mamiyoga/assay-comment-btn.svg)',
+                marginRight:'10px'}" @click="openCommentBox" class="mamiyoga-header-login-btn">
+                </div>
+                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
+                    <label style="width:55px;height:25px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
+                </div>
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
@@ -26,6 +32,14 @@
                             <hooper-navigation slot="hooper-addons"></hooper-navigation>
                         </hooper>
                     </div>
+                    <!-- <div class="mamiyoga-assay-content-li">
+                        <h4 class="mamiyoga-assay-content-time">第1回</h4>
+                        <hooper class="mamiyoga-assay-content-detailed-box">
+                            <slide class="mamiyoga-assay-content-detailed">姿勢正確</slide>
+                            <slide class="mamiyoga-assay-content-detailed">動作過快</slide>
+                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
+                        </hooper>
+                    </div> -->
                 </div>
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
@@ -36,7 +50,7 @@
                                 <p>%</p>
                             </div>
                         </div>
-                        <p style="margin-top:5vh;margin-bottom:0;">快和朋友們分享這次的練習成果吧！</p>
+                        <p style="margin-top:4vh;margin-bottom:0;">快和朋友們分享這次的練習成果吧！</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
                                 <img src="/mamiyoga/share-icon-facebook.svg" alt="">
@@ -58,9 +72,9 @@
                                 <img src="/mamiyoga/share-icon-more.svg" alt="">
                             </div>
                         </div>
-                        <div class="mamiyoga-assay-contact-box" id="contact-us-box">
-                        <p>分析結果不如預期嗎？</p>
-                        <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
+                            <div class="mamiyoga-assay-contact-box" id="contact-us-box">
+                            <p>分析結果不如預期嗎？</p>
+                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
                         </div>
                     </div>
                     
@@ -117,6 +131,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="mamiyoga-assay-contact-back" v-if="show_comment_box">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="show_comment_box = false">
+                            <img src="/mamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p>正在加緊腳步開發中！</p>
+                        <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 40px;">
+                        <div class="star-line-box">
+                            <button class="mamiyoga-assay-contact-btn" @click="show_comment_box = false" style="width:90px;letter-space:0;margin-top:20px">期待</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -146,6 +172,7 @@ export default {
         input_text: '',
         show_assay: true,
         is_loaded: true,
+        show_comment_box:false,
     }),
     components: {
         Hooper,
@@ -174,6 +201,9 @@ export default {
         clickCloseAssay(){
             this.$emit('closeAssayWindow')
         },
+        openCommentBox(){
+            this.show_comment_box = true
+        }
         // showContactBox(){
         //     this.$scrollTo('#contact-us-box','nearest');
         // }
@@ -211,7 +241,7 @@ export default {
         box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 40%;
+        background-size: 35%;
     }
     .mamiyoga-assay-header {
         width: 100vw;
@@ -225,7 +255,8 @@ export default {
     }
     .mamiyoga-assay-video {
         width: 100vw;
-        height: 100vh;
+        height: 88vh;
+        margin: 6vh 0;
     }
     
     .mamiyoga-assay-box {
@@ -307,7 +338,7 @@ export default {
         font-size: 13px;
         align-self: auto;
         margin-bottom: 0; 
-        max-width: 49vw;
+        /* max-width: 49vw; */
     }
     .mamiyoga-assay-contact {
         width: 150px;
@@ -425,6 +456,7 @@ export default {
         position: fixed;
         top: 0;
         left: 0;
+        z-index: 999;
     }
     .mamiyoga-assay-contact-open {
         width: 260px;

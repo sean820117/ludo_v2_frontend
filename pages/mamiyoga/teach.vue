@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="teach-page" v-if="!is_loaded">
-            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" ></mamiyoga-teach-header>
+        <div class="teach-page" v-if="!is_loaded && !open_explain">
+            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
                 <div class="teach-course-info">
                     <div></div>
@@ -69,14 +69,14 @@
                         <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI團隊分析</p>
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
-                                <label><input type="file" style="display:none;" @change="beforeRemind">好</label>  
+                                <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent" @closeAssayWindow="closeAssayWindow" v-else :video_result="video_result"></mamiyoga-assay-video>
+        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
