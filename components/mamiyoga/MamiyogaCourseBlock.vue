@@ -1,7 +1,7 @@
 <template>
-    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')'}">
+    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-bookmark">
-            <img src="/mamiyoga/unit01.svg" alt="">
+            <img :src="unitSrc" alt="">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -20,15 +20,15 @@
                         <p>{{aiText}}個AI練習</p>
                     </div> -->
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/03.svg" alt="">
+                        <img :src="poseSrc" alt="">
                         
                     </div>
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/7min.svg" alt="">
+                        <img :src="timeSrc" alt="">
                         
                     </div>
                     <div class="course-block-icon">
-                        <img src="/mamiyoga/1ai.svg" alt="">
+                        <img :src="aiSrc" alt="">
                         
                     </div>
                 </div>
@@ -46,6 +46,10 @@ export default {
         poseText: Number,
         timeText: Number,
         aiText: Number,
+        poseSrc: String,
+        timeSrc: String,
+        aiSrc: String,
+        unitSrc: String,
     },
 }
 </script>
@@ -57,7 +61,7 @@ export default {
         width: 90vw;
         height: 26vh;
         /* background: red; */
-        margin: 2vh auto;
+        margin: 3vh auto 0;
         border-radius: 2vh;
         box-shadow: 0 3px 10px rgba(0,0,0,.2);
     }
@@ -79,10 +83,10 @@ export default {
     .course-block-contain {
         position: absolute;
         width: 90vw;
-        height: 10vh;
+        height: 8vh;
         bottom: 0;
         border-radius: 2vh;
-        padding: 1vh 0;
+        padding: 0;
     }
     .course-block-title {
         width: 88vw;
@@ -95,7 +99,7 @@ export default {
     }
     .course-block-title h4 {
         margin-left:10px; 
-        font-size:14px;
+        font-size:12px;
         font-weight: 400; 
     }
     .course-block-detail {
@@ -105,6 +109,7 @@ export default {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        margin-right: 10px;
     }
     .course-block-icon {
         float: left;
@@ -128,7 +133,7 @@ export default {
         margin-bottom: 5px; 
     } */
     .course-block-icon img {
-        height: 33px;
+        height: 4vh;
     }
 }
 </style>
