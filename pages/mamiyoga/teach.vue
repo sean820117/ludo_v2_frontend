@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded">
-            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
+            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" ></mamiyoga-teach-header>
             <div class="teach-title-video-box">
                 <div class="teach-course-info">
                     <div></div>
@@ -56,7 +56,7 @@
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
                 <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">上傳影片</button>
                 <button class="teach-assay-btn" v-else>
-                    <label><input type="file" style="display:none;" @change="handleVideoUpload">上傳影片</label>  
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上傳影片</label>  
                 </button>
             </div>
             <div class="before-remind" v-if="show_remind">

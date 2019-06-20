@@ -5,7 +5,7 @@
                 <img src="/mamiyoga/teach-goback.svg" alt="">
             </div>
             <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
-                <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;"  @change="clickRetryButton"></label>
+                <label style="width:60px;height:30px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
