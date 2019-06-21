@@ -44,7 +44,7 @@
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
                         <div class="assay-grade-box">
-                            <p>準確率</p>
+                            <p style="margin-bottom:0;">準確率</p>
                             <div class="mamiyoga-assay-grade-num">
                                 <h3>76</h3>
                                 <p>%</p>
@@ -113,7 +113,7 @@
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
                         <p>請問您滿意這次的分析結果嗎？</p>
-                        <img src="/mamiyoga/star-box-human.svg" alt="">
+                        <img src="/mamiyoga/star-box-human.png" alt="">
                         <div class="star-line-box">
                             <input type="radio" class="stars first" id="first" name="star">
                             <input type="radio" class="stars second" id="second" name="star">
@@ -243,29 +243,27 @@ export default {
         background-repeat: no-repeat;
         background-size: 35%;
     }
-    .mamiyoga-assay-header {
+    .mamiyoga-assay-page .mamiyoga-assay-header {
         width: 100vw;
         height: 60px;
-        position: fixed;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
         z-index: 995;
     }
-    .mamiyoga-assay-video {
+    .mamiyoga-assay-page .mamiyoga-assay-video {
         width: 100vw;
-        height: 88vh;
-        margin: 6vh 0;
+        height: calc(100vh - 115px);
     }
     
-    .mamiyoga-assay-box {
+    .mamiyoga-assay-page .mamiyoga-assay-box {
         width: 100vw;
-        padding: 15px;
+        padding: 0 15px;
         position: relative;
         height: 30vh;
     }
-    .mamiyoga-assay-content {
+    .mamiyoga-assay-page .mamiyoga-assay-content {
         background: white;
         width: 90vw;
         height: 95vh;
@@ -273,14 +271,14 @@ export default {
         border-radius:20px; 
         padding: 0 15px 5px 15px;
         position: absolute;
-        /* top: -30px; */
+        top: 0;
         left: 5vw;
-        top: -50px;
+        /* top: -50px; */
         /* animation: uptosee 10s; */
         transition: 1s;
     }
-    .mamiyoga-assay-content.open {
-        top: -90vh;
+    .mamiyoga-assay-page .mamiyoga-assay-content.open {
+        top: calc(-85vh + 30px);
     }
     /* @keyframes uptosee {
         0% {
@@ -293,14 +291,14 @@ export default {
             top: -30px;
         }
     } */
-    .mamiyoga-assay-title {
+    .mamiyoga-assay-page .mamiyoga-assay-title {
         width: 170px;
         height: 45px;
         background-color: #9BAEB2; 
         margin: 0 auto;
         padding: 5px;
         border-radius: 0 0 25px 25px;
-        margin-bottom: 15px;
+        margin-bottom: 2vh;
         text-align: center;
         color: #fff;
     }
@@ -384,16 +382,17 @@ export default {
         width:75vw;
         margin:10px auto 0;
     }
-    .mamiyoga-assay-grade-num {
+    .mamiyoga-assay-page .mamiyoga-assay-grade-num {
         display: flex;
         justify-content: center;
         align-items: baseline;
+        height: 15vh;
     }
     .mamiyoga-assay-grade-num h3 {
         font-size:100px;
         color:#97A8Af;
         text-align:center;
-        font-weight:400;
+        font-weight:bold;
     }
     .share-to-panter {
         width:75vw;
@@ -405,28 +404,28 @@ export default {
         font-size: 12px;
         margin-bottom: 1vh;
     }
-    .mamiyoga-assay-share-icon-box {
+    .mamiyoga-assay-page .mamiyoga-assay-share-icon-box {
         /* background: green; */
         width: 80vw;
-        height: 10vh;
+        height: 7vh;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 15px; 
+        margin: 2vh 0 4vh; 
     }
-    .mamiyoga-assay-share-icon {
+    .mamiyoga-assay-page .mamiyoga-assay-share-icon {
         width: 15vw;
         /* background: white; */
-        height: 10vh;
+        height: 7vh;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
     }
-    .mamiyoga-assay-contact-box {
+    .mamiyoga-assay-page .mamiyoga-assay-contact-box {
         width: 60vw;
         height: 20vh;
         /* background: red; */
-        margin: 15px auto 0 ;
+        margin: 1vh auto 0 ;
     }
     .mamiyoga-assay-contact-box p {
         font-size: 12px;
@@ -517,7 +516,7 @@ export default {
         height: 30px;
         /* background: red; */
         margin: 0 4px ;
-        background-image: url('/mamiyoga/star.svg') ;
+        background-image: url('/mamiyoga/star.png') ;
         background-repeat: no-repeat;
         background-size: 75%; 
     }
@@ -526,25 +525,25 @@ export default {
     .stars.third:checked ~ .select-star .first-star,
     .stars.four:checked ~ .select-star .first-star,
     .stars.five:checked ~ .select-star .first-star {
-        background-image: url('/mamiyoga/star-checked.svg');
+        background-image: url('/mamiyoga/star-checked.png');
     }
     .stars.second:checked ~ .select-star .second-star,
     .stars.third:checked ~ .select-star .second-star,
     .stars.four:checked ~ .select-star .second-star,
     .stars.five:checked ~ .select-star .second-star {
-        background-image: url('/mamiyoga/star-checked.svg');
+        background-image: url('/mamiyoga/star-checked.png');
     }
     .stars.third:checked ~ .select-star .third-star,
     .stars.four:checked ~ .select-star .third-star,
     .stars.five:checked ~ .select-star .third-star {
-        background-image: url('/mamiyoga/star-checked.svg');
+        background-image: url('/mamiyoga/star-checked.png');
     }
     .stars.four:checked ~ .select-star .four-star,
     .stars.five:checked ~ .select-star .four-star {
-        background-image: url('/mamiyoga/star-checked.svg');
+        background-image: url('/mamiyoga/star-checked.png');
     }
     .stars.five:checked ~ .select-star .five-star {
-        background-image: url('/mamiyoga/star-checked.svg');
+        background-image: url('/mamiyoga/star-checked.png');
     }
     .select-questions {
         display: flex;
