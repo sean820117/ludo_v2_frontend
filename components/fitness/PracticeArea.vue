@@ -73,7 +73,7 @@ export default {
         async handleVideoUpload(e) {
             let form = new FormData();
             form.append('file',e.target.files[0])
-            form.append('pose_id','squat01')
+            form.append('pose_id','squat')
             this.video_url = ""
             this.is_uploading = true;
             this.interval = setInterval(() => {
