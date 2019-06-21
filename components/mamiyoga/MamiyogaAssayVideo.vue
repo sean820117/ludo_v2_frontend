@@ -5,9 +5,13 @@
                 <img src="/mamiyoga/teach-goback.svg" alt="">
             </div>
             <div style="display:flex;">
-                <div :style="{backgroundColor:'#9BAEB2',
+                <!-- <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(/mamiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBox" class="mamiyoga-header-login-btn">
+                </div> -->
+                <div :style="{backgroundColor:'#9BAEB2',
+                backgroundImage:'url(/mamiyoga/assay-comment-btn.svg)',
+                marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-header-login-btn">
                 </div>
                 <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
                     <label style="width:55px;height:25px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
@@ -131,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mamiyoga-assay-contact-back" v-if="show_comment_box">
+                <!-- <div class="mamiyoga-assay-contact-back" v-if="show_comment_box">
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="show_comment_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
@@ -140,6 +144,18 @@
                         <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 40px;">
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn" @click="show_comment_box = false" style="width:90px;letter-space:0;margin-top:20px">期待</button>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="mamiyoga-assay-contact-back mamiyoga-assay-comment-box" :class="showCommentOrNot">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="openCommentBlock">
+                            <img src="/mamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p>正在加緊腳步開發中！</p>
+                        <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 40px;">
+                        <div class="star-line-box">
+                            <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">期待</button>
                         </div>
                     </div>
                 </div>
@@ -172,6 +188,7 @@ export default {
         input_text: '',
         show_assay: true,
         is_loaded: true,
+        // show_comment_box:false,
         show_comment_box:false,
     }),
     components: {
@@ -201,17 +218,20 @@ export default {
         clickCloseAssay(){
             this.$emit('closeAssayWindow')
         },
-        openCommentBox(){
-            this.show_comment_box = true
-        }
-        // showContactBox(){
-        //     this.$scrollTo('#contact-us-box','nearest');
+        // openCommentBox(){
+        //     this.show_comment_box = true
         // }
+        openCommentBlock(){
+            this.show_comment_box = !this.show_comment_box
+        }
     },
     computed:{
         showContentOrNot(){
             return this.show ? 'open':'';
         },
+        showCommentOrNot(){
+            return this.show_comment_box ? 'open':'';
+        }
         
     },
 }
@@ -590,8 +610,14 @@ export default {
     .questions.five:checked ~ .select-questions .five-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-checked-05.svg');
     }
-    #checkseecontact:checked ~ .assay-grade-box {
-        
+
+
+
+    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box {
+        display: none;
+    }
+    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box.open {
+        display: block;
     }
 }
 </style>
