@@ -83,7 +83,7 @@
                     </div>
                     
                 </div>
-                <div class="mamiyoga-assay-contact-back" v-if="show_contact_box">
+                <!-- <div class="mamiyoga-assay-contact-back" v-if="show_contact_box">
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="show_contact_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
@@ -110,8 +110,72 @@
                         <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="show_contact_box = false">送出</button>
                         </form>
                     </div>
+                </div> -->
+                <!-- <div class="mamiyoga-assay-contact-back" v-if="show_star_box && show">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="show_star_box = false">
+                            <img src="/mamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p>請問您滿意這次的分析結果嗎？</p>
+                        <img src="/mamiyoga/star-box-human.png" alt="">
+                        <div class="star-line-box">
+                            <input type="radio" class="stars first" id="first" name="star">
+                            <input type="radio" class="stars second" id="second" name="star">
+                            <input type="radio" class="stars third" id="third" name="star">
+                            <input type="radio" class="stars four" id="four" name="star">
+                            <input type="radio" class="stars five" id="five" name="star">
+                            <div class="select-star">
+                                <label for="first" class="first-star"></label>
+                                <label for="second" class="second-star"></label>
+                                <label for="third" class="third-star"></label>
+                                <label for="four" class="four-star"></label>
+                                <label for="five" class="five-star"></label>
+                            </div>
+                            <button class="mamiyoga-assay-contact-btn" @click="show_star_box = false" style="width:90px;letter-space:0;margin-top:20px">送出</button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="mamiyoga-assay-contact-back" v-if="show_comment_box">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="show_comment_box = false">
+                            <img src="/mamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p>正在加緊腳步開發中！</p>
+                        <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 40px;">
+                        <div class="star-line-box">
+                            <button class="mamiyoga-assay-contact-btn" @click="show_comment_box = false" style="width:90px;letter-space:0;margin-top:20px">期待</button>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="mamiyoga-assay-contact-back mamiyoga-assay-contact-block" :class="showContactOrNot">
+                    <div class="mamiyoga-assay-contact-open">
+                        <div class="cancel-box" @click="openContactBox">
+                            <img src="/mamiyoga/cancel.svg" alt="">
+                        </div>
+                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方嗎？</p>
+                        <div class="star-line-box">
+                            <input type="radio" class="questions first" id="answer-first" name="questions">
+                            <input type="radio" class="questions second" id="answer-second" name="questions">
+                            <input type="radio" class="questions third" id="answer-third" name="questions">
+                            <input type="radio" class="questions four" id="answer-four" name="questions">
+                            <input type="radio" class="questions five" id="answer-five" name="questions">
+                            <div class="select-questions">
+                                <label for="answer-first" class="first-questions"></label>
+                                <label for="answer-second" class="second-questions"></label>
+                                <label for="answer-third" class="third-questions"></label>
+                                <label for="answer-four" class="four-questions"></label>
+                                <label for="answer-five" class="five-questions"></label>
+                            </div>
+                        </div>
+                        <form action="">
+                        <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" 
+                        required placeholder="謝謝您的回饋，讓我們儘速為您尋找解決方法" v-model="input_text"></textarea>
+                        <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
+                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openContactBox()">送出</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="mamiyoga-assay-contact-back" v-if="show_star_box && show">
+                <div class="mamiyoga-assay-contact-back mamiyoga-assay-star-block" :class="showStarOrNot">
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="show_star_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
@@ -135,18 +199,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="mamiyoga-assay-contact-back" v-if="show_comment_box">
-                    <div class="mamiyoga-assay-contact-open">
-                        <div class="cancel-box" @click="show_comment_box = false">
-                            <img src="/mamiyoga/cancel.svg" alt="">
-                        </div>
-                        <p>正在加緊腳步開發中！</p>
-                        <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 40px;">
-                        <div class="star-line-box">
-                            <button class="mamiyoga-assay-contact-btn" @click="show_comment_box = false" style="width:90px;letter-space:0;margin-top:20px">期待</button>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="mamiyoga-assay-contact-back mamiyoga-assay-comment-box" :class="showCommentOrNot">
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="openCommentBlock">
@@ -210,7 +262,7 @@ export default {
             }  
         },
         openContactBox(){
-            this.show_contact_box = true
+            this.show_contact_box = !this.show_contact_box
         },
         clickRetryButton(e){
             this.$emit('handleRetryEvent',e)
@@ -231,6 +283,12 @@ export default {
         },
         showCommentOrNot(){
             return this.show_comment_box ? 'open':'';
+        },
+        showContactOrNot(){
+            return this.show_contact_box ? 'open':'';
+        },
+        showStarOrNot(){
+            return this.show_star_box && this.show ? 'open':'';
         }
         
     },
@@ -613,11 +671,16 @@ export default {
 
 
 
-    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box {
+    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box,
+    .mamiyoga-assay-contact-back.mamiyoga-assay-contact-block,
+    .mamiyoga-assay-contact-back.mamiyoga-assay-star-block {
         display: none;
     }
-    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box.open {
+    .mamiyoga-assay-contact-back.mamiyoga-assay-comment-box.open,
+    .mamiyoga-assay-contact-back.mamiyoga-assay-contact-block.open,
+    .mamiyoga-assay-contact-back.mamiyoga-assay-star-block.open {
         display: block;
     }
+    
 }
 </style>
