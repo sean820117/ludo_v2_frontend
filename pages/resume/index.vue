@@ -1417,6 +1417,10 @@ export default {
     background: #FFDE00;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
 }
+.ten-block button{
+    background: transparent;
+    border: none;
+}
 .tb-1{
     padding-top: 45px;
     font-size: 27px;
