@@ -59,14 +59,14 @@
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上傳影片</label>  
                 </button>
             </div>
-            <div class="before-remind" v-if="show_remind">
+            <div class="before-remind" :class="showRemindBox">
                 <div class="mamiyoga-assay-contact-back" >
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="show_remind = false">
                             <img src="/asamiyoga/cancel.svg" alt="" >
                         </div>
                         <img src="/asamiyoga/teach-remind.svg" alt="" style="margin-top: 70px;">
-                        <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI團隊分析</p>
+                        <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI助教分析</p>
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
                                 <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
@@ -183,6 +183,11 @@ export default {
             
         //     // return console.log('YA');
         // },
+    },
+    computed: {
+        showRemindBox(){
+            return this.show_remind ? 'open':'';
+        }
     }
 }
 </script>
@@ -328,13 +333,17 @@ export default {
     .vld-icon svg {
         stroke: #DCD8CF;
     }
-    .before-remind {
+    .teach-page .before-remind {
         width: 100vw;
         min-height: 100vh;
         position: fixed;
         top: 0;
         background: rgba(0,0,0,.2);
         z-index: 999;
+        display: none;
+    }
+    .teach-page .before-remind.open {
+        display: block;
     }
     .mamiyoga-assay-contact-back {
         width: 100vw;

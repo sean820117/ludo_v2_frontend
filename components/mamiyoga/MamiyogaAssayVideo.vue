@@ -160,11 +160,26 @@
                             <input type="radio" class="questions four" id="answer-four" name="questions">
                             <input type="radio" class="questions five" id="answer-five" name="questions">
                             <div class="select-questions">
-                                <label for="answer-first" class="first-questions"></label>
-                                <label for="answer-second" class="second-questions"></label>
-                                <label for="answer-third" class="third-questions"></label>
-                                <label for="answer-four" class="four-questions"></label>
-                                <label for="answer-five" class="five-questions"></label>
+                                <label for="answer-first" class="first-questions">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-01.svg" alt="">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-01.svg" alt="">
+                                </label>
+                                <label for="answer-second" class="second-questions">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-02.svg" alt="">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-02.svg" alt="">
+                                </label>
+                                <label for="answer-third" class="third-questions">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-03.svg" alt="">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-03.svg" alt="">
+                                </label>
+                                <label for="answer-four" class="four-questions">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-04.svg" alt="">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-04.svg" alt="">
+                                </label>
+                                <label for="answer-five" class="five-questions">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-05.svg" alt="">
+                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-05.svg" alt="">
+                                </label>
                             </div>
                         </div>
                         <form action="">
@@ -189,11 +204,26 @@
                             <input type="radio" class="stars four" id="four" name="star">
                             <input type="radio" class="stars five" id="five" name="star">
                             <div class="select-star">
-                                <label for="first" class="first-star"></label>
-                                <label for="second" class="second-star"></label>
-                                <label for="third" class="third-star"></label>
-                                <label for="four" class="four-star"></label>
-                                <label for="five" class="five-star"></label>
+                                <label for="first" class="first-star">
+                                    <img src="/mamiyoga/star.svg" alt="">
+                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                </label>
+                                <label for="second" class="second-star">
+                                    <img src="/mamiyoga/star.svg" alt="">
+                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                </label>
+                                <label for="third" class="third-star">
+                                    <img src="/mamiyoga/star.svg" alt="">
+                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                </label>
+                                <label for="four" class="four-star">
+                                    <img src="/mamiyoga/star.svg" alt="">
+                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                </label>
+                                <label for="five" class="five-star">
+                                    <img src="/mamiyoga/star.svg" alt="">
+                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                </label>
                             </div>
                             <button class="mamiyoga-assay-contact-btn" @click="show_star_box = false" style="width:90px;letter-space:0;margin-top:20px">送出</button>
                         </div>
@@ -594,11 +624,67 @@ export default {
         height: 30px;
         /* background: red; */
         margin: 0 4px ;
-        background-image: url('/mamiyoga/star.png') ;
+        /* background-image: url('/mamiyoga/star.png') ;
         background-repeat: no-repeat;
-        background-size: 75%; 
+        background-size: 75%;  */
     }
-    .stars.first:checked ~ .select-star .first-star,
+    .select-star label img {
+        width: 95%;
+    }
+    .select-star label img:last-child {
+        display: none;
+    }
+    .stars.first:checked ~ .select-star .first-star img:first-child,
+    .stars.second:checked ~ .select-star .first-star img:first-child,
+    .stars.third:checked ~ .select-star .first-star img:first-child,
+    .stars.four:checked ~ .select-star .first-star img:first-child,
+    .stars.five:checked ~ .select-star .first-star img:first-child {
+        display: none;
+    }
+    .stars.first:checked ~ .select-star .first-star img:last-child,
+    .stars.second:checked ~ .select-star .first-star img:last-child,
+    .stars.third:checked ~ .select-star .first-star img:last-child,
+    .stars.four:checked ~ .select-star .first-star img:last-child,
+    .stars.five:checked ~ .select-star .first-star img:last-child {
+        display: block;
+    }
+    .stars.second:checked ~ .select-star .second-star img:first-child,
+    .stars.third:checked ~ .select-star .second-star img:first-child,
+    .stars.four:checked ~ .select-star .second-star img:first-child,
+    .stars.five:checked ~ .select-star .second-star img:first-child {
+        display: none;
+    }
+    .stars.second:checked ~ .select-star .second-star img:last-child,
+    .stars.third:checked ~ .select-star .second-star img:last-child,
+    .stars.four:checked ~ .select-star .second-star img:last-child,
+    .stars.five:checked ~ .select-star .second-star img:last-child {
+        display: block;
+    }
+    .stars.third:checked ~ .select-star .third-star img:first-child,
+    .stars.four:checked ~ .select-star .third-star img:first-child,
+    .stars.five:checked ~ .select-star .third-star img:first-child {
+        display: none;
+    }
+    .stars.third:checked ~ .select-star .third-star img:last-child,
+    .stars.four:checked ~ .select-star .third-star img:last-child,
+    .stars.five:checked ~ .select-star .third-star img:last-child {
+        display: block;
+    }
+    .stars.four:checked ~ .select-star .four-star img:first-child,
+    .stars.five:checked ~ .select-star .four-star img:first-child {
+        display: none;
+    }
+    .stars.four:checked ~ .select-star .four-star img:last-child,
+    .stars.five:checked ~ .select-star .four-star img:last-child {
+        display: block;
+    }
+    .stars.five:checked ~ .select-star .five-star img:first-child {
+        display: none;
+    }
+    .stars.five:checked ~ .select-star .five-star img:last-child {
+        display: block;
+    }
+    /* .stars.first:checked ~ .select-star .first-star,
     .stars.second:checked ~ .select-star .first-star,
     .stars.third:checked ~ .select-star .first-star,
     .stars.four:checked ~ .select-star .first-star,
@@ -622,7 +708,7 @@ export default {
     }
     .stars.five:checked ~ .select-star .five-star {
         background-image: url('/mamiyoga/star-checked.png');
-    }
+    } */
     .select-questions {
         display: flex;
         justify-content: space-evenly;
@@ -635,16 +721,36 @@ export default {
         height: 30px;
         /* background: red; */
         margin: 0 4px;
-        background-repeat: no-repeat;
-        background-size: contain; 
+        /* background-repeat: no-repeat;
+        background-size: contain;  */
     }
-    .select-questions .first-questions {
+    .select-questions label img {
+        width: 95%;
+    }
+    .select-questions label img:nth-child(2) {
+        display: none;
+    }
+    .questions.first:checked ~ .select-questions .first-questions img:first-child,
+    .questions.second:checked ~ .select-questions .second-questions img:first-child,
+    .questions.third:checked ~ .select-questions .third-questions img:first-child,
+    .questions.four:checked ~ .select-questions .four-questions img:first-child,
+    .questions.five:checked ~ .select-questions .five-questions img:first-child {
+        display: none;
+    }
+    .questions.first:checked ~ .select-questions .first-questions img:last-child,
+    .questions.second:checked ~ .select-questions .second-questions img:last-child,
+    .questions.third:checked ~ .select-questions .third-questions img:last-child,
+    .questions.four:checked ~ .select-questions .four-questions img:last-child,
+    .questions.five:checked ~ .select-questions .five-questions img:last-child {
+        display: block  !important;
+    }
+    /* .select-questions .first-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-01.svg');
     }
     .questions.first:checked ~ .select-questions .first-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-checked-01.svg');
-    }
-    .select-questions .second-questions {
+    } */
+    /* .select-questions .second-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-02.svg');
     }
     .questions.second:checked ~ .select-questions .second-questions {
@@ -667,7 +773,7 @@ export default {
     }
     .questions.five:checked ~ .select-questions .five-questions {
         background-image: url('/mamiyoga/babyface-icon/babyface-icon-checked-05.svg');
-    }
+    } */
 
 
 

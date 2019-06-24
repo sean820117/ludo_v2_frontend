@@ -8,12 +8,12 @@
                 <slide>
                    <h5>正面拍攝</h5>
                    <img src="/mamiyoga/explain-1.svg" alt="">
-                   <p>將您的身體『正面』面向相機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能基準分析成果。</p>
+                   <p>將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。</p>
                 </slide>
                 <slide>
                     <h5>側面拍攝</h5>
                     <img src="/mamiyoga/explain-2.svg" alt="">
-                    <p>將您的身體『側面』面向相機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能基準分析成果。</p>
+                    <p>將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。</p>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
