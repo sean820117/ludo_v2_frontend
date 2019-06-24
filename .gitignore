@@ -13,3 +13,4 @@ dist
 .DS_Store
 ecskey
 ecs-cli.asc
+ecs-deploy.sh

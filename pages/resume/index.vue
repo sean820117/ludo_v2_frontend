@@ -2042,6 +2042,10 @@ a{
     font-weight: bold;
     padding-top:60px; 
 }
+.md-tb-box button{
+    background: none;
+    border: none;
+}
 .md-tb-box img {
     width: 240px;
     height: auto;
