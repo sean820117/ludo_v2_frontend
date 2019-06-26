@@ -1,8 +1,10 @@
 <template>
-    <div class="divide-page">
-        <mamiyoga-teach-header class="mamiyoga-divide-header" nextTo="/mamiyoga/course1"></mamiyoga-teach-header>
-        <h3>骨盆矯正</h3>
-        <mamiyoga-divide-video></mamiyoga-divide-video>
+    <div>
+        <div class="divide-page" v-if="!showAssisant" >
+            <mamiyoga-teach-header class="mamiyoga-divide-header" nextTo="/mamiyoga/course1"></mamiyoga-teach-header>
+            <h3>骨盆矯正</h3>
+            <mamiyoga-divide-video @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-video>
+        </div>
     </div>
 </template>
 
@@ -10,10 +12,19 @@
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue';
 import MamiyogaDivideVideo from '~/components/mamiyoga/MamiyogaDivideVideo.vue';
 export default {
+    data:()=>({
+        showAssisant: false,
+    }),
     components:{
         MamiyogaTeachHeader,
         MamiyogaDivideVideo,
     },
+    methods:{
+        openVideoAssisant(){
+            console.log('OK');
+            this.showAssisant = true;
+        }
+    }
 }
 </script>
 
@@ -29,7 +40,7 @@ export default {
         color: #51636F;
         text-align: center;
         font-weight: 400; 
-        margin-bottom: 5vh; 
+        margin-bottom: 2vh; 
     }
     .mamiyoga-divide-header button {
         display: none;

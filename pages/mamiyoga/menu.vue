@@ -19,7 +19,7 @@
         </div>
         <div class="course-menu-box">
             <!-- <h3 class="course-menu-box-title">日本mami人氣課程</h3> -->
-            <mamiyoga-course-content></mamiyoga-course-content>
+            <mamiyoga-course-content :course_data="course_data"></mamiyoga-course-content>
         </div>
     </div>
 </template>
@@ -28,13 +28,17 @@
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaCourseContent from '~/components/mamiyoga/MamiyogaCourseContent.vue';
 export default {
-    props: {
-        bgImage: String,
-        menuTitle: String,
-    },
+    data:()=>({
+        course_data:{},
+    }),
     components: {
         MamiyogaHeader,
         MamiyogaCourseContent,
+    },
+    async mounted() {
+        if (process.client) {
+            this.course_data = await require('~/config/mamiyoga-course')
+        }
     }
 }
 </script>

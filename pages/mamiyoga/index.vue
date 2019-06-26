@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-index-intro">
-        <mamiyoga-header btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" loginTo="/mamiyoga/menu"></mamiyoga-header>
+        <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
         <!-- <h2 class="mamiyoga-intro-title" v-html="title">
             {{title}}
         </h2> -->

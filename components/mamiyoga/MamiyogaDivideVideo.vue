@@ -11,9 +11,9 @@
                     <img src="/mamiyoga/ai-badge.svg" alt=""> 姿勢三
                 </label>
             </div>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail first" :courseTime="3"></mamiyoga-divide-every-block>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail second" :courseTime="4"></mamiyoga-divide-every-block>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail third" :courseTime="5" :ai_teacher="true"></mamiyoga-divide-every-block>
+            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail first" :courseTime="3" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
+            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail second" :courseTime="4" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
+            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail third" :courseTime="5" :ai_teacher="true" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
         </div>
     </div>
 </template>
@@ -23,6 +23,12 @@ import MamiyogaDivideEveryBlock from '~/components/mamiyoga/MamiyogaDivideEveryB
 export default {
     components:{
         MamiyogaDivideEveryBlock,
+    },
+    methods:{
+        openVideoAssisant(){
+            console.log('OK');
+            this.$emit('openVideoAssisant');
+        }
     }
 }
 </script>

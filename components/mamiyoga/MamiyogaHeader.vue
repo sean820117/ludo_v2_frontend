@@ -1,11 +1,15 @@
 <template>
     <div class="mamiyoga-header">
+        <router-link to="/mamiyoga">
         <div class="mamiyoga-header-logo">
             <img src="/mamiyoga/header-logo.png" alt="">
         </div>
+        </router-link>
         <router-link :to="{path:loginTo}" style="text-decoration:none;">
         <div class="mamiyoga-header-login">
-            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{btnText}}</button>
+            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">登入</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button>
         </div>
         </router-link>
     </div>
@@ -14,6 +18,9 @@
 <script>
 import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
+    data:()=>({
+        is_login:false,
+    }),
     props: {
         bgColor: String,
         ftColor: String,
@@ -22,6 +29,11 @@ export default {
     },
     components: {
         MamiyogaSmallBtn,
+    },
+    async mounted() {
+        if (process.client) {
+            this.is_login = await this.$checkLogin(this.$store);
+        }
     },
 }
 </script>

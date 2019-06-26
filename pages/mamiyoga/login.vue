@@ -1,41 +1,53 @@
 <template>
     <div class="signup-page">
-        <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
-        <div class="reg-text2"> {{ '付款前需先註冊成為會員' }}</div>
-        <div class="third-party">
-            <no-ssr><third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
+        <div class="mamiyoga-header">
+            <div class="mamiyoga-header-logo"></div>
+            <div class="mamiyoga-header-login">
+                <button :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"
+                @click="switch_signup_and_login" class="mamiyoga-header-login-btn">{{ login_or_signup === "signup" ? '登入' : '註冊' }}</button>
+            </div>
         </div>
-        <div class="hr"></div>
-        <div class="text-or">or</div>
-        <form class="signup-form">
-            <div class="login-column">
-                <div class="login-column-label">電子信箱</div>
-                <input name="email" class="login-column-input" type="text" v-model="email" placeholder="您的信箱"/>
+        <div class="mamiyoga-login-container">
+            <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
+            <div class="reg-text2"> {{ '付款前需先註冊成為會員' }}</div>
+            <div class="third-party">
+                <no-ssr><mamiyoga-third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
             </div>
-            <div class="login-column">
-                <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="password" v-model="password" placeholder="您的密碼"/>
-            </div>
-            <div class="login-column" v-if="login_or_signup === 'signup'">
-                <div class="login-column-label">確認密碼</div>
-                <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
-            </div>
-            <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
-            <div class="btn-login-and-signup-container">
-                <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
-                <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</button>
-            </div>
-        </form>
+            <div class="hr"></div>
+            <div class="text-or">or</div>
+            <form class="signup-form">
+                <div class="login-column">
+                    <div class="login-column-label">電子信箱</div>
+                    <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
+                </div>
+                <div class="login-column">
+                    <div class="login-column-label">密碼</div>
+                    <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
+                </div>
+                <div class="login-column" v-if="login_or_signup === 'signup'">
+                    <div class="login-column-label">確認密碼</div>
+                    <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
+                </div>
+                <div class="login-column" v-if="login_or_signup === 'login'">
+                    <div style="height:53 px"></div>
+                </div>
+                <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
+                <div class="btn-login-and-signup-container">
+                    <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
+                    <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '立即付款' : '登入' }}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 <script >
-import ThirdPartyIcons from "~/components/resume/ThirdPartyIcons"
+import MamiyogaThirdPartyIcons from "~/components/mamiyoga/MamiyogaThirdPartyIcons"
 import { EMAIL_REGEX } from '~/components/regex.js'
 
 import axios from '~/config/axios-config'
 
 export default {
-    layout: 'resume',
+    layout: 'mamiyoga',
     data() {
         return {
             errors: null,
@@ -46,7 +58,7 @@ export default {
             hint:'請填寫',
             hint_color:'transparent',
             is_ui_config_loaded:false,
-            login_or_signup:'login',
+            login_or_signup:'signup',
         }
     },
     props: {
@@ -54,27 +66,28 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.ui_config = await require('~/config/resume-config')
+            this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            localStorage.redirect = '/resume/course';
+            localStorage.redirect = '/mamiyoga/menu';
             
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
-                this.$router.push('/resume')
+                window.alert('你已經登入了')
+                this.$router.push('/mamiyoga')
             }
             //ga
-            let gtag_config = {}
-            gtag_config.page_title = 'login';
-            gtag_config.page_path = this.$route.path;
-            this.$gtag('js', new Date());
-            this.$gtag('config', 'AW-739537538');
-            this.$gtag('config', 'UA-123332732-3', gtag_config);
-            this.$fbq("init",this.ui_config.fbq_id);
-            this.$fbq("track","PageView");
+            // let gtag_config = {}
+            // gtag_config.page_title = 'login';
+            // gtag_config.page_path = this.$route.path;
+            // this.$gtag('js', new Date());
+            // this.$gtag('config', 'AW-739537538');
+            // this.$gtag('config', 'UA-123332732-3', gtag_config);
+            // this.$fbq("init",this.ui_config.fbq_id);
+            // this.$fbq("track","PageView");
         }
     },
     components: {
-        ThirdPartyIcons,
+        MamiyogaThirdPartyIcons,
     },
     methods: {
         onSubmit(type) {
@@ -174,6 +187,17 @@ textarea:focus, input:focus{
     justify-content: center;
     align-items: center;
 }
+.signup-page .mamiyoga-header {
+    position: absolute;
+    top: 0;
+    
+}
+.signup-page .mamiyoga-header button {
+    color: #FFF;
+}
+.mamiyoga-login-container {
+    height: 80vh;
+}
 .reg-text{
     /* padding-top: 80px; */
     font-size: 21px;
@@ -186,11 +210,11 @@ textarea:focus, input:focus{
 .third-party{
     margin-top: 8vh;
 }
-.hr{
+.mamiyoga-login-container .hr{
     width: 63%;
     height: 1px;
     background: #D4D4D4;
-    margin-top: 23px;
+    margin:23px auto 0;
     max-width: 320px;
 }
 .text-or{
@@ -248,7 +272,7 @@ textarea:focus, input:focus{
     width: 90px;
     height: 36px;
     line-height: 36px;
-    background: #1785db;
+    /* background: #1785db; */
     color: #fff;
     font-size: 14px;
     /* margin-left: 60%; */
@@ -256,6 +280,6 @@ textarea:focus, input:focus{
     border: none;
     border-radius: 15px;
     padding: unset;
-    box-shadow: 0 5px 5px rgba(0,0,0,.3)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
 }
 </style>

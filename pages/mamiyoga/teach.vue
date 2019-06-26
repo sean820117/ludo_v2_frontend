@@ -298,7 +298,7 @@ export default {
     }
     .teacher-remind {
         width: 85vw;
-        margin: 10vh auto 0;
+        margin: 2vh auto 0;
         display: flex;
         align-items: center;
     }
