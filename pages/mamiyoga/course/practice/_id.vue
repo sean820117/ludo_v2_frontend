@@ -1,9 +1,10 @@
 <template>
     <div>
         <div class="divide-page" v-if="!is_loaded" >
-            <mamiyoga-teach-header class="mamiyoga-divide-header" nextTo="/mamiyoga/course1"></mamiyoga-teach-header>
-            <h3>骨盆矯正</h3>
-            <mamiyoga-divide-video @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
+            <mamiyoga-teach-header class="mamiyoga-divide-header"></mamiyoga-teach-header>
+            <h3>{{getTitle}}</h3>
+            <mamiyoga-divide-video :course_data="course_data"
+            @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
         </div>
         <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
         <div class="vld-parent" >
@@ -28,12 +29,23 @@ export default {
         video_result: {},
         isLoading: false,
         fullPage: true,
+        courses:[],
+        course_id:'',
+        course_data:{},
     }),
     components:{
         MamiyogaTeachHeader,
         MamiyogaDivideVideo,
         MamiyogaAssayVideo,
         Loading,
+    },
+    async mounted() {
+        if (process.client) {
+            this.courses = await require('~/config/mamiyoga-course');
+            this.course_id = this.$route.params.id;
+            this.course_data = this.courses.find(course => this.course_id == course.id);
+            console.log(this.course_id)
+        }
     },
     methods:{
         async handleVideoUpload(e) {
@@ -76,8 +88,23 @@ export default {
             this.is_loaded = false;
             console.log('OK');
             this.handleVideoUpload(e);
-        }
-
+        },
+    },
+    computed:{
+        getTitle(){
+            if (this.course_data) {
+                return this.course_data.title;
+            } else {
+                return '';
+            }
+        },
+        getPoseAmount(){
+            if (this.course_data) {
+                return this.course_data.pose_amount;
+            } else {
+                return '';
+            }
+        },
     }
 }
 </script>

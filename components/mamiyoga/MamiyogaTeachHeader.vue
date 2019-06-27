@@ -1,9 +1,9 @@
 <template>
     <div class="mamiyoga-teach-header">
         <div class="mamiyoga-teach-header-goback-btn">
-            <router-link :to="{path:nextTo}">
+            <a @click="$router.go(-1)">
                 <img src="/mamiyoga/teach-goback.svg" alt="">
-            </router-link>
+            </a>
         </div>
         <div class="mamiyoga-teach-header-title">
             <h3 v-html="headerTitle">{{headerTitle}}</h3>

@@ -1,35 +1,65 @@
 <template>
     <div class="mamiyoga-divide-block">
-        <input type="radio" class="labels first-divide" id="first" name="divide" checked>
-        <input type="radio" class="labels second-divide" id="second" name="divide">
-        <input type="radio" class="labels third-divide" id="third" name="divide">
+        <input v-for="pose in getPoses" :key="pose.pose_id" :name="pose" :checked="pose.pose_id == 'first'"
+        type="radio" class="labels" :class="pose.pose_id+'-divide'" :id="pose.pose_id">
+
         <div class="mamiyoga-divide-select">
             <div class="divide-label-box">
-                <label for="first" class="first-label">姿勢一</label>
-                <label for="second" class="second-label">姿勢二</label>
-                <label for="third" class="third-label">
-                    <img src="/mamiyoga/ai-badge.svg" alt=""> 姿勢三
+                <label :for="pose.pose_id" :class="pose.pose_id+'-label'" 
+                v-for="(pose,i) in getPoses" :key="i">
+                動作{{i+1}}
                 </label>
             </div>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail first" :courseTime="3" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail second" :courseTime="4" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
-            <mamiyoga-divide-every-block class="mamiyoga-divide-block-detail third" :courseTime="5" :ai_teacher="true" @openVideoAssisant="openVideoAssisant"></mamiyoga-divide-every-block>
+            <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
+            class="mamiyoga-divide-block-detail" :class="pose.pose_id" 
+            @handleCourseVideoUpload="handleCourseVideoUpload" :ai_teacher="pose.pose_ai"
+            :course_data="course_data">
+                <div slot="divide-video">
+                    <video class="mamiyoga-divide-every-video" controls>
+                        <source :src="pose.pose_video" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div slot="divide-text">
+                    <div class="mamiyoga-course-bottom-second-content-li" 
+                    v-for="(description,index) in pose.pose_description" :key="index">
+                        <p>{{index+1}}</p>
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+                <!-- <p v-for="(pose_description,index) in getDescription" :key="index">
+                    {{pose_description}}
+                </p> -->
+            </mamiyoga-divide-every-block>
         </div>
+        
     </div>
 </template>
 
 <script>
 import MamiyogaDivideEveryBlock from '~/components/mamiyoga/MamiyogaDivideEveryBlock.vue';
+
 export default {
+    props:{
+        course_data:Object,
+    },
     components:{
         MamiyogaDivideEveryBlock,
     },
     methods:{
-        openVideoAssisant(){
-            console.log('OK');
-            this.$emit('openVideoAssisant');
+        handleCourseVideoUpload(e){
+            this.$emit('handleCourseVideoUpload',e)
         }
-    }
+    },
+    computed:{
+        getPoses(){
+            if (this.course_data.poses) {
+                return this.course_data.poses;
+            } else {
+                return [];
+            }
+        },
+    },
 }
 </script>
 
@@ -68,16 +98,25 @@ export default {
         display: none;
     }
     .first-divide:checked ~ .mamiyoga-divide-select .first-label,
-    .second-divide:checked ~ .mamiyoga-divide-select .second-label {
-        background-color: #97A8AF;
-    }
+    .second-divide:checked ~ .mamiyoga-divide-select .second-label,
     .third-divide:checked ~ .mamiyoga-divide-select .third-label {
-        background-color: #24798F;
+        background-color: #97A8AF;
     }
     .first-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.first,
     .second-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.second,
     .third-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.third {
         display: block;
+    }
+    .mamiyoga-course-bottom-second-content-li {
+        min-height: 25px;
+    }
+    .mamiyoga-course-bottom-second-content-li p:first-child {
+        float: left;
+        background-color: #98A9AF;
+        padding:1px 5px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 6px;
     }
 }
 </style>

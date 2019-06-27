@@ -59,8 +59,8 @@
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上傳影片</label>  
                 </button>
             </div>
-            <div class="before-remind" :class="showRemindBox">
-                <div class="mamiyoga-assay-contact-back" >
+            <div class="before-remind" :class="showRemindBox" >
+                <!-- <div class="mamiyoga-assay-contact-back" >
                     <div class="mamiyoga-assay-contact-open">
                         <div class="cancel-box" @click="show_remind = false">
                             <img src="/asamiyoga/cancel.svg" alt="" >
@@ -73,7 +73,19 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <mamiyoga-window-alert-box>
+                    <div class="cancel-box" @click="show_remind = false">
+                        <img src="/asamiyoga/cancel.svg" alt="" >
+                    </div>
+                    <img src="/asamiyoga/teach-remind.svg" alt="" style="margin-top: 70px;">
+                    <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI助教分析</p>
+                    <div class="star-line-box">
+                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
+                            <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
+                        </button>
+                    </div>
+                </mamiyoga-window-alert-box>
             </div>
         </div>
         <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
@@ -93,6 +105,7 @@ import MamiyogaCourseBlock from '~/components/mamiyoga/MamiyogaCourseBlock.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue';
+import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -120,6 +133,7 @@ export default {
         Loading,
         MamiyogaAssayVideo,
         MamiyogaExplainBox,
+        MamiyogaWindowAlertBox,
     },
     methods: {
         async handleVideoUpload(e) {
@@ -174,15 +188,8 @@ export default {
         },
         closeExplain(){
             this.open_explain = false;
-        }
-        // goToAssay(){
-        //     this.isLoading = true;
-        //     setTimeout(()=>{
-        //         
-        //     },3000)
-            
-        //     // return console.log('YA');
-        // },
+        },
+        
     },
     computed: {
         showRemindBox(){

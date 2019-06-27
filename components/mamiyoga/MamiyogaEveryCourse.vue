@@ -1,14 +1,14 @@
 <template>
     <div class="mamiyoga-each-course">
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
-        <h3 v-html="courseTitle">{{courseTitle}}</h3>
+        <h3>{{getTitle}}</h3>
         <div style="position:relative;">
             <video class="mamiyoga-course-video" controls>
-                <source :src="video_url" type="video/mp4">
+                <source :src="getVideoUrl" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="course-bookmark">
-                <img :src="src" alt="">
+                <img :src="getChapterFlag" alt="">
             </div>
         </div>
         <div class="mamiyoga-course-middle">
@@ -18,30 +18,25 @@
             <div class="mamiyoga-course-bottom-content first">
                 <h5>課程簡介</h5>
                 <div class="mamiyoga-course-bottom-first">
-                    <p>骨盆位於身體上半部跟下半部的中間點，它不單單只是分隔開身體，也扮演著支撐身體的重要角色哦。
-                        <br>為什麼說它重要呢？讓我們一起觀看麻美老師的說明與教學
-                    </p>
+                    <p v-html="getCourseIntroduction">{{getCourseIntroduction}}</p>
                 </div>
             </div>
             <div class="mamiyoga-course-bottom-content second">
-                <h5>姿勢簡介</h5>
-                <p>{{poseHave}}個姿勢</p>
+                <h5>動作簡介</h5>
+                <p>{{getPoseAmount}}個動作</p>
                 <div class="mamiyoga-course-bottom-second">
-                    <div class="mamiyoga-course-bottom-second-content-li">
-                        <img src="/mamiyoga/num/num01.svg" alt=""><p>骨盆矯正的姿勢</p>
-                    </div>
-                    <div class="mamiyoga-course-bottom-second-content-li">
-                        <img src="/mamiyoga/num/num02.svg" alt=""><p>躺著也可以做的骨盆矯正的姿勢</p>
-                    </div>
-                    <div class="mamiyoga-course-bottom-second-content-li">
-                        <img src="/mamiyoga/num/num03.svg" alt=""><p>產後矯正姿勢</p>
+                    <div class="mamiyoga-course-bottom-second-content-li" v-for="(pose ,i) in getPoses" :key="i">
+                        <!-- <img src="/mamiyoga/num/num01.svg" alt=""><p>{{pose_brief}}</p> -->
+                        <p>{{i+1}}</p><p>{{pose.pose_brief}}</p>
                     </div>
                 </div>
             </div>
-            <router-link to="/mamiyoga/divide1" style="text-decoration:none;">
-                <mamiyoga-btn btnText="影片分段" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
-            </router-link>
-            <mamiyoga-btn btnText="AI助教" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin-bottom:3vh;" class="course-divide-btn"></mamiyoga-btn>
+            <div class="mamiyoga-go-to-divide-btn">
+                <router-link :to="'/mamiyoga/course/practice/' + goPractice"   style="text-decoration:none;">
+                    <mamiyoga-btn btnText="動作練習" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
+                </router-link>
+                <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher">
+            </div>
         </div>
     </div>
 </template>
@@ -51,14 +46,70 @@ import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
     props:{
-        courseTitle:String,
-        courseTime:Number,
-        poseHave:Number,
-        src: String,
+        course_data:Object,
     },
     components: {
         MamiyogaMailHeader,
         MamiyogaBtn,
+    },
+    computed: {
+        getTitle(){
+            if (this.course_data) {
+                return this.course_data.title;
+            } else {
+                return '';
+            }
+        },
+        getChapterFlag(){
+            if (this.course_data) {
+                return this.course_data.chapter_flag;
+            } else {
+                return '';
+            }
+        },
+        getPoseAmount(){
+            if (this.course_data.poses) {
+                console.log(this.course_data);
+                return this.course_data.poses.length;
+            } else {
+                return '';
+            }
+        },
+        getVideoUrl(){
+            if (this.course_data) {
+                return this.course_data.video_url;
+            } else {
+                return '';
+            }
+        },
+        getAiTeacher(){
+            if(this.course_data) {
+                return this.course_data.ai_teacher;
+            } else {
+                return '';
+            }
+        },
+        goPractice(){
+            if(this.course_data) {
+                return this.course_data.id;
+            } else {
+                return '';
+            }
+        },
+        getCourseIntroduction(){
+            if (this.course_data) {
+                return this.course_data.course_introduction;
+            } else {
+                return '';
+            }
+        },
+        getPoses(){
+            if (this.course_data) {
+                return this.course_data.poses;
+            } else {
+                return [];
+            }
+        },
     }
 }
 </script>
@@ -129,8 +180,24 @@ export default {
     .course-divide-btn button {
         box-shadow:5px 5px 10px rgba(0,0,0,.2);
     }
+    .mamiyoga-go-to-divide-btn {
+        position: relative;
+    }
+    .mamiyoga-go-to-divide-btn img {
+        position: absolute;
+        top: -2vh;
+        left: 27vw;
+    }
     .mamiyoga-course-bottom-second-content-li {
         min-height: 25px;
+    }
+    .mamiyoga-course-bottom-second-content-li p:first-child {
+        float: left;
+        background-color: #98A9AF;
+        padding: 1px 5px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 6px;  
     }
     .mamiyoga-course-bottom-second-content-li img {
         width: 20px;

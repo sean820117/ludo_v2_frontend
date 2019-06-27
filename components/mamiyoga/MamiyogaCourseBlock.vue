@@ -1,4 +1,5 @@
 <template>
+<div><router-link :to="'/mamiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-bookmark">
             <img :src="unitSrc" alt="">
@@ -35,6 +36,7 @@
             </div>
         </div>
     </div>
+</router-link></div>
 </template>
 
 <script>
@@ -50,6 +52,7 @@ export default {
         timeSrc: String,
         aiSrc: String,
         unitSrc: String,
+        goCourse: String,
     },
 }
 </script>

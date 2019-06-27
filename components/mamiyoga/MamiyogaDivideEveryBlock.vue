@@ -1,88 +1,62 @@
 <template>
     <div class="mamiyoga-divide-every">
-        <h4>骨盆矯正的姿勢</h4>
-        <video class="mamiyoga-divide-every-video" controls>
-                <source :src="video_url" type="video/mp4">
+        <h4></h4>
+        <!-- <video class="mamiyoga-divide-every-video" controls>
+                <source :src="pose_video" type="video/mp4">
                 Your browser does not support the video tag.
-        </video>
+        </video> -->
+        <slot name="divide-video"></slot>
         <div class="mamiyoga-divide-every-middle">
             <img src="/mamiyoga/eye.svg" alt=""><p>110</p>
         </div>
         <div class="mamiyoga-divide-every-bottom-content">
-            <h5>姿勢步驟</h5>
-            <p>{{courseTime}}分鐘</p>
+            <h5>動作步驟</h5>
             <div class="mamiyoga-divide-every-bottom">
-                <p>站在墊子上面，把雙腳張開，腳掌距離稍微比腰還要寬一點，並用兩手壓住前後的骨盆。<br><br>接著，將骨盆往前後移動，切記，練習的時候，不要駝背。<br><br>然後，我們要重複這個動作各10次。</p>
-                
+                <!-- <p v-for="pose in getPoseExplain" :key="pose.pose_id" >{{pose.pose_description}}</p> -->
+                <slot name="divide-text"></slot>
             </div>
             <button class="teach-assay-btn" v-if="ai_teacher">
-                <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上傳影片</label>  
+                <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上傳影片</label>  
             </button>
         </div>
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
-        <div class="vld-parent" >
-                <loading :active.sync="isLoading" 
-                :can-cancel="true" 
-                :is-full-page="fullPage"></loading>
-        </div>
+        
     </div>
 </template>
 
 <script>
-import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
-import axios from '~/config/axios-config';
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+// import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
+// import axios from '~/config/axios-config';
+// import Loading from 'vue-loading-overlay';
+// import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     data:()=>({
-        is_loaded: false,
-        video_result: {},
-        isLoading: false,
-        fullPage: true,
+        course_data: {},
     }),
     props:{
         courseTime:Number,
         ai_teacher: false,
+        pose_video: String,
     },
     components: {
-        Loading,
-        MamiyogaAssayVideo,
+        // Loading,
+        // MamiyogaAssayVideo,
     },
     methods: {
-        async handleVideoUpload(e) {
-            this.isLoading = true;
-            let form = new FormData();
-            form.append('file',e.target.files[0])
-            form.append('pose_id','yoga_6')
-            form.append('language','zh-tw')
-            const res = await axios.post('/apis/video-upload',form)
-            console.log(res.data)
-            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝蓋彎曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝蓋彎曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "軸心不穩";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿勢正確";
-              }
+        clickCourseVideoUpload(e){
+            this.$emit('handleCourseVideoUpload',e)
+        }
+    },
+    computed:{
+        getPoseExplain(){
+            if (this.course_data.poses) {
+                console.log(this.course_data.poses)
+                return this.course_data.poses;
+            } else {
+                return [];
             }
-            this.$emit('openVideoAssisant');
-            this.isLoading = false;
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.video_result = res.data;
-            this.is_loaded = true;
-        },
-        handleRetryEvent(e){
-            console.log("ok");
-            this.is_loaded = false;
-            this.handleVideoUpload(e);
-        },
-        closeAssayWindow(){
-            this.is_loaded = false;
-        },
+        }
+        
     }
 
 }

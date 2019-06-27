@@ -13,34 +13,34 @@
             </div>
             <div class="first-series-container mamiyoga-all-course">
                 <h5>矯正媽媽們產後不良姿勢來緩解疼痛</h5>
-                <mamiyoga-course-block v-for="rectify in course_data.rectifys" :key="rectify.id"
-                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
-                :blockTitle="rectify.title" :unitSrc="rectify.unit" :selectCourse="rectify.id"
-                
+                <mamiyoga-course-block v-for="rectify in getRectifys" :key="rectify.id"
+                :bgImage="rectify.preview_img" blockColor="white" 
+                :blockTitle="rectify.title" :unitSrc="rectify.chapter_flag" :selectCourse="rectify.id"
+                :goCourse="rectify.id"
                 ></mamiyoga-course-block>
                 
             </div>
             <div class="second-series-container mamiyoga-all-course">
                 <h5>幫助媽媽們提升睡眠品質</h5>
-                <mamiyoga-course-block v-for="alleviate in course_data.alleviates" :key="alleviate.id"
-                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
-                :blockTitle="alleviate.title" :unitSrc="alleviate.unit"
+                <mamiyoga-course-block v-for="alleviate in getAlleviates" :key="alleviate.id"
+                :bgImage="alleviate.preview_img" blockColor="white" 
+                :blockTitle="alleviate.title" :unitSrc="alleviate.chapter_flag" :goCourse="alleviate.id"
                 ></mamiyoga-course-block>
                 
             </div>
             <div class="third-series-container mamiyoga-all-course">
                 <h5>塑造出比產前更漂亮的身體曲線</h5>
-                <mamiyoga-course-block v-for="beauty in course_data.beautys" :key="beauty.id"
-                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
-                :blockTitle="beauty.title" :unitSrc="beauty.unit"
+                <mamiyoga-course-block v-for="beauty in getBeautys" :key="beauty.id"
+                :bgImage="beauty.preview_img" blockColor="white" 
+                :blockTitle="beauty.title" :unitSrc="beauty.chapter_flag" :goCourse="beauty.id"
                 ></mamiyoga-course-block>
                 
             </div>
             <div class="four-series-container mamiyoga-all-course">
                 <h5>釋放媽媽們的產後壓力</h5>
-                <mamiyoga-course-block v-for="blend in course_data.blends" :key="blend.id"
-                bgImage="/mamiyoga/background-menu-old.png" blockColor="white" 
-                :blockTitle="blend.title" :unitSrc="blend.unit"
+                <mamiyoga-course-block v-for="blend in getBlends" :key="blend.id"
+                :bgImage="blend.preview_img" blockColor="white" 
+                :blockTitle="blend.title" :unitSrc="blend.chapter_flag" :goCourse="blend.id"
                 ></mamiyoga-course-block>
                 
             </div>
@@ -56,16 +56,45 @@ export default {
     },
     data:()=>({
     }),
-    props:{
-        course_data:{
-            rectifys:[],
-            alleviates:[],
-            beautys:[],
-            blends:[],
+    computed:{
+        getRectifys(){
+            if (this.courses) {
+                const result_array = this.courses.filter(course => course.tags.find(tag => tag == 'rectify'));
+                return result_array;
+            } else {
+                return [];
+            }
         },
+        getAlleviates(){
+            if (this.courses) {
+                const result_array = this.courses.filter(course => course.tags.find(tag => tag == 'alleviate'));
+                return result_array;
+            } else {
+                return [];
+            }
+        },
+        getBeautys(){
+            if (this.courses) {
+                const result_array = this.courses.filter(course => course.tags.find(tag => tag == 'beauty'));
+                return result_array;
+            } else {
+                return [];
+            }
+        },
+        getBlends(){
+            if (this.courses) {
+                const result_array = this.courses.filter(course => course.tags.find(tag => tag == 'blend'));
+                return result_array;
+            } else {
+                return [];
+            }
+        },
+
     },
-    methods:{
-    }
+    props:{
+        courses:Array,
+    },
+
 }
 </script>
 
