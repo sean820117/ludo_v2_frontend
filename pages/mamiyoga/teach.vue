@@ -18,36 +18,42 @@
                 <h6>姿勢步驟</h6>
                 <div class="teach-content-text">
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num01.svg" alt="">
+                        <p class="teach-content-num">1</p>
                         <p>我們正躺，望向天花板</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num02.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num02.svg" alt=""> -->
+                        <p class="teach-content-num">2</p>
                         <p>把左膝抬高，兩手抱膝</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num03.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num03.svg" alt=""> -->
+                        <p class="teach-content-num">3</p>
                         <p>雙掌托住膝蓋，將腿往外拉開，直到能盡量伸直手臂</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num04.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num04.svg" alt=""> -->
+                        <p class="teach-content-num">4</p>
                         <p>現在，將右腳抬起，慢慢從墊子伸起來</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num05.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num05.svg" alt=""> -->
+                        <p class="teach-content-num">5</p>
                         <p>讓腳跟盡量畫大圓弧形，越大越好，再慢慢地放下</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num06.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num06.svg" alt=""> -->
+                        <p class="teach-content-num">6</p>
                         <p>重複這個動作3~5次，讓腰部有一點點拱起來，呈現一個圓弧型</p>
                     </div>
                     <div class="teach-content-li">
-                        <img src="/mamiyoga/num/num07.svg" alt="">
+                        <!-- <img src="/mamiyoga/num/num07.svg" alt=""> -->
+                        <p class="teach-content-num">7</p>
                         <p>然後，換邊也進行一樣的動作</p>
                     </div>
                 </div>
                 <div class="teacher-remind">
-                    <img src="/mamiyoga/teach-teacher-remind.svg" alt="">
+                    <img src="/mamiyoga/teach-teacher-remind.png" alt="">
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">麻美老師貼心叮嚀</p>
                         <p>盡量將力氣集中在腰部，如果動作做起來有點吃力的同學，可以把毛巾捲起來放進腰下。</p>
@@ -81,7 +87,7 @@
                     <img src="/asamiyoga/teach-remind.svg" alt="" style="margin-top: 70px;">
                     <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI助教分析</p>
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
+                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:25px">
                             <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
                         </button>
                     </div>
@@ -117,8 +123,9 @@ export default {
             
     //     }
     // },
+    layout:'mommiyoga',
     data:()=> ({
-        is_loaded: false,
+        is_loaded: true,
         isLoading: false,
         fullPage: true,
         video_result: {},
@@ -200,211 +207,248 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
+.teach-page {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+}
+.teach-upload button {
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+}
+.teach-title-box {
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 998;
+}
+.teach-title-box h6 {
+    font-size: 14px;
+    color: #97A8AF;
+    text-align: center;
+    font-weight: 400;
+}
+.teach-title-video-box {
+    width: 100vw;
+    height: 39vh;
+    position: absolute;
+    top: 0;
+    background-image: url('/mamiyoga/teach-title-img.png'); 
+    z-index: 0;
+}
+.teach-course-info {
+    width: 90vw;
+    height: 75px;
+    position: absolute;
+    top: 17vh;
+    margin-left: 5vw;
+}
+.teach-course-info div:first-child {
+    height: 62px;
+    width: 55px;
+    float: left;
+    background-repeat: no-repeat;
+    background-image: url('/mamiyoga/teach-photoby.svg');
+    background-position: center center;
+}
+.teach-course-info div:last-child {
+    float: left;
+    padding: 10px 0 0 10px;
+} 
+.teach-course-info h3 {
+    color: #ECEDE8;
+    font-size: 1.2em;
+}
+.teach-course-info p {
+    color: #ecede8;
+    font-size:14px;
+    margin-top: 4px;
+}
+.teach-question-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 30vh;
+    right: 6vw;
+}
+.teach-detail-box {
+    width: 100vw;
+    margin-top: 35vh;
+    padding-bottom: 5vh;
+}
+.teach-detail-box h6 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    padding-left: 15px; 
+}
+.teach-content-text {
+    font-weight: 400;
+    font-size: 12px;
+    color: #707070;
+    padding-top: 10px;
+}
+.teach-content-li {
+    width: 85vw;
+    min-height: 25px;
+    /* background: red; */
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+}
+.teach-content-num {
+    border-radius: 30px;
+    background-color: #97a9af;
+    text-align: center;
+    color: white;
+    padding: 1px 5px;
+    font-size: 12px;
+}
+.teach-content-li img {
+    width: 20px;
+    height: 15px;
+    float: left;
+    margin: 2px 2px 0 0; 
+}
+.teach-content-li p {
+    float: left;
+    margin-left: 4px; 
+}
+.teacher-remind {
+    width: 85vw;
+    margin: 2vh auto 0;
+    display: flex;
+    align-items: center;
+}
+.teacher-remind img {
+    float: left;
+    margin-right: 2vw; 
+}
+.teacher-remind-content {
+    float: left;
+    width: 75vw;
+    font-size: 12px; 
+    color: #5A5A5A;
+}
+.teach-assay-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 3vh auto 0;
+    border-style: none;
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    background: #97A8AF;
+    color: #fff;
+}
+.vld-overlay .vld-background {
+    background-color:black;
+}
+.vld-icon svg {
+    stroke: #DCD8CF;
+}
+.teach-page .before-remind {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,.2);
+    z-index: 999;
+    display: none;
+}
+.teach-page .before-remind.open {
+    display: block;
+}
+.mamiyoga-assay-contact-back {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.mamiyoga-assay-contact-open {
+    width: 260px;
+    height: 330px;
+    background: white;
+    margin: 25vh auto;
+    border-radius: 20px;
+    padding: 15px;
+}
+.cancel-box {
+    /* background: red; */
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cancel-box img {
+    width: 65%;
+}
+.mamiyoga-assay-contact-open p {
+    color: #707070;
+    text-align: center;
+    font-size: 12px;
+    margin: 30px 0 10px;
+}
+.mamiyoga-assay-contact-open img {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+.mamiyoga-assay-contact-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    background: #9BAEB2;
+    color: #fff;
+}
+@media (min-width: 769px) {
     .teach-page {
-        width: 100vw;
-        min-height: 100vh;
-        background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
-    }
-    .teach-upload button {
-        box-shadow:5px 5px 10px rgba(0,0,0,.2);
-    }
-    .teach-title-box {
-        width: 100vw;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        z-index: 998;
-    }
-    .teach-title-box h6 {
-        font-size: 14px;
-        color: #97A8AF;
-        text-align: center;
-        font-weight: 400;
+        width: 100%;
     }
     .teach-title-video-box {
-        width: 100vw;
-        height: 40vh;
-        position: absolute;
-        top: 0;
-        background-image: url('/mamiyoga/teach-title-img.png'); 
-        z-index: 0;
+        width: 450px;
     }
     .teach-course-info {
-        width: 90vw;
-        height: 75px;
-        position: absolute;
-        top: 23vh;
-        margin-left: 5vw;
-    }
-    .teach-course-info div:first-child {
-        height: 62px;
-        width: 55px;
-        float: left;
-        background-repeat: no-repeat;
-        background-image: url('/mamiyoga/teach-photoby.svg');
-        background-position: center center;
-    }
-    .teach-course-info div:last-child {
-        float: left;
-        padding: 10px 0 0 10px;
-    } 
-    .teach-course-info h3 {
-        color: #ECEDE8;
-        font-size: 1.2em;
-    }
-    .teach-course-info p {
-        color: #ecede8;
-        font-size:14px;
-        margin-top: 4px;
-    }
-    .teach-question-box {
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        top: 33vh;
-        right: 6vw;
+        margin-left: 30px;
+        width: 80%;
     }
     .teach-detail-box {
-        width: 100vw;
-        margin-top: 35vh;
-        padding-bottom: 5vh;
-    }
-    .teach-detail-box h6 {
-        font-size: 14px;
-        color: #000;
-        font-weight: 400;
-        padding-left: 15px; 
-    }
-    .teach-content-text {
-        font-weight: 400;
-        font-size: 12px;
-        color: #707070;
-        padding-top: 10px;
+        width: 100%;
     }
     .teach-content-li {
-        width: 85vw;
-        min-height: 25px;
-        /* background: red; */
-        margin: 0 auto;
-        display: flex;
-        align-items: flex-start;
-    }
-    .teach-content-li img {
-        width: 20px;
-        height: 15px;
-        float: left;
-        margin: 2px 2px 0 0; 
-    }
-    .teach-content-li p {
-        float: left;
-        margin-left: 4px; 
+        width: 100%;
     }
     .teacher-remind {
-        width: 85vw;
-        margin: 2vh auto 0;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        padding-left: 30px; 
     }
-    .teacher-remind img {
-        float: left;
-        margin-right: 2vw; 
+    .teach-content-text {
+        padding-left: 30px; 
     }
     .teacher-remind-content {
-        float: left;
-        width: 65vw;
-        font-size: 12px; 
-        color: #5A5A5A;
+        width: 75%;
     }
-    .teach-assay-btn {
-        width: 135px;
-        height: 35px;
-        border-radius:20px;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 3px; 
-        text-align: center;
-        display: block;
-        margin: 3vh auto 0;
-        border-style: none;
-        box-shadow:5px 5px 10px rgba(0,0,0,.2);
-        background: #97A8AF;
-        color: #fff;
-    }
-    .vld-overlay .vld-background {
-        background-color:black;
-    }
-    .vld-icon svg {
-        stroke: #DCD8CF;
-    }
-    .teach-page .before-remind {
-        width: 100vw;
-        min-height: 100vh;
-        position: fixed;
-        top: 0;
-        background: rgba(0,0,0,.2);
-        z-index: 999;
-        display: none;
-    }
-    .teach-page .before-remind.open {
-        display: block;
-    }
-    .mamiyoga-assay-contact-back {
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0,0,0,.5);
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-    .mamiyoga-assay-contact-open {
-        width: 260px;
-        height: 330px;
-        background: white;
-        margin: 25vh auto;
-        border-radius: 20px;
-        padding: 15px;
-    }
-    .cancel-box {
-        /* background: red; */
-        height: 30px;
-        width: 30px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .cancel-box img {
-        width: 65%;
-    }
-    .mamiyoga-assay-contact-open p {
-        color: #707070;
-        text-align: center;
-        font-size: 12px;
-        margin: 30px 0 10px;
-    }
-    .mamiyoga-assay-contact-open img {
-        display: block;
-        margin: 0 auto;
-        width: 50%;
-    }
-    .mamiyoga-assay-contact-btn {
-        width: 135px;
-        height: 35px;
-        border-radius:20px;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 3px; 
-        text-align: center;
-        display: block;
-        margin: 10px auto;
-        border-style: none;
-        box-shadow:5px 5px 10px rgba(0,0,0,.2);
-        background: #9BAEB2;
-        color: #fff;
+    .teach-question-box {
+        right: 30px;
     }
 }
 </style>

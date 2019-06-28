@@ -25,33 +25,38 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
+.mamiyoga-select-login {
+    width: 70vw;
+    height: 80px;
+    /* background: red; */
+    margin: 10px auto;
+}
+.mamiyoga-select-login p {
+    font-size: 12px;
+    text-align: center;
+    color: #DCD8CF;
+    margin-bottom: 5px;
+}
+.mamiyoga-select-login-box {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    /* background-color:green;  */
+}
+.mamiyoga-select-login-icon {
+    float: left;
+    /* margin: 0 2.5%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: white; */
+}
+@media (min-width: 769px) {
     .mamiyoga-select-login {
-        width: 70vw;
-        height: 80px;
-        /* background: red; */
-        margin: 10px auto;
-    }
-    .mamiyoga-select-login p {
-        font-size: 12px;
-        text-align: center;
-        color: #DCD8CF;
-        margin-bottom: 5px;
-    }
-    .mamiyoga-select-login-box {
-        width: 100%;
-        height: 50px;
-        /* background-color:green;  */
-    }
-    .mamiyoga-select-login-icon {
-        float: left;
-        width: 20%;
-        height: 100%;
-        margin: 0 2.5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* background: white; */
+        width: 70%;
     }
 }
 </style>

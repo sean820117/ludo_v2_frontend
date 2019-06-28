@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="divide-page" v-if="!is_loaded" >
-            <mamiyoga-teach-header class="mamiyoga-divide-header"></mamiyoga-teach-header>
+            <mamiyoga-mail-header class="mamiyoga-divide-header"></mamiyoga-mail-header>
             <h3>{{getTitle}}</h3>
             <mamiyoga-divide-video :course_data="course_data"
             @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue';
+import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue';
 import MamiyogaDivideVideo from '~/components/mamiyoga/MamiyogaDivideVideo.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import axios from '~/config/axios-config';
@@ -34,7 +34,7 @@ export default {
         course_data:{},
     }),
     components:{
-        MamiyogaTeachHeader,
+        MamiyogaMailHeader,
         MamiyogaDivideVideo,
         MamiyogaAssayVideo,
         Loading,

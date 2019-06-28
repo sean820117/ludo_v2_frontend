@@ -27,6 +27,7 @@
 <script>
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaCourseContent from '~/components/mamiyoga/MamiyogaCourseContent.vue';
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
         courses:[],
@@ -38,6 +39,32 @@ export default {
     async mounted() {
         if (process.client) {
             this.courses = await require('~/config/mamiyoga-course')
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
+    async beforeCreate() {
+        if (process.client) {
+            this.ui_config = await require('~/config/mamiyoga-config')
+            this.is_ui_config_loaded = true;
+
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/mamiyoga/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/resume/pay');
+                } else {
+                    console.log("payed")
+                }
+            }
         }
     }
 }

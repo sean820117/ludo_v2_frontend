@@ -1,6 +1,6 @@
 <template>
     <div class="record-page">
-        <mamiyoga-practice-record bgImg="/mamiyoga/teach-title-img.png" photoBy="/mamiyoga/teach-photoby-2.svg"
+        <mamiyoga-practice-record bgImg="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/teach-title-img.png" photoBy="/mamiyoga/teach-photoby-2.svg"
         recordTitle="伸展兩側手臂" recordTime="30-45"
         ></mamiyoga-practice-record>
         <div class="practice-record-content">

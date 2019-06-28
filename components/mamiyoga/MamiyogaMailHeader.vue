@@ -1,15 +1,16 @@
 <template>
     <div class="mail-header">
         <div class="mail-header-goback">
-            <router-link :to="{path:nextTo}">
+            <a @click="$router.go(-1)">
                 <img src="/mamiyoga/teach-goback.svg" alt="">
-            </router-link>
+            </a>
         </div>
         <div class="mail-header-title">
             <h3 v-html="headerTitle" :style="{color:mailheaderTitle}">{{headerTitle}}</h3>
         </div>
         <div class="mail-header-goback">
             <img src="/mamiyoga/menu-envelope.svg" alt="">
+            <div v-if="have_mail"></div>
         </div>
     </div>
 </template>
@@ -20,6 +21,7 @@ export default {
         headerTitle: String,
         nextTo: String,
         mailheaderTitle: String,
+        have_mail: false,
     }
 }
 </script>
@@ -43,6 +45,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
     .mail-header-goback img {
         display: block;
@@ -50,6 +53,15 @@ export default {
     .mail-header-title h3 {
         font-size: 12px;
         font-weight: 400;
+    }
+    .mail-header-goback div:last-child {
+        background-color: #FF9898;
+        width: 10px;
+        height: 10px; 
+        position: absolute;
+        bottom: 3px;
+        left: -3px;
+        border-radius: 15px;
     }
 }
 </style>

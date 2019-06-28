@@ -197,7 +197,7 @@ export default {
         padding: 1px 5px;
         border-radius: 10px;
         color: white;
-        margin-right: 6px;  
+        margin: 0 6px 6px 0;  
     }
     .mamiyoga-course-bottom-second-content-li img {
         width: 20px;

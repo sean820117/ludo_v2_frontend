@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
-        <mamiyoga-teach-header nextTo="/mamiyoga/menu"
-        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-teach-header>
+        <mamiyoga-login-header nextTo="/mamiyoga/menu"
+        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-login-header>
         <hooper>
             <slide class="about-teacher about-slide">
                 <div class="about-title"><h3>教師介紹</h3></div>
@@ -77,12 +77,12 @@
 </template>
 
 <script>
-import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue';
+import MamiyogaLoginHeader from '~/components/mamiyoga/MamiyogaLoginHeader.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
     components: {
-        MamiyogaTeachHeader,
+        MamiyogaLoginHeader,
         Hooper,
         Slide,
         HooperPagination,

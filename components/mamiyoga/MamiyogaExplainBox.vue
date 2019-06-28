@@ -44,7 +44,60 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
+@media (min-width: 769px) {
+    .mamiyoga-explain {
+        width: 450px;
+        height: 100vh;
+        background: #24798F;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+    }
+    .mamiyoga-explain-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    .mamiyoga-explain-content {
+        width: 100%;
+        height: 80vh;
+        margin: 0 auto;
+        padding-top: 10vh;
+    }
+    .mamiyoga-explain-content h5 {
+        text-align: center;
+        color: #F7F7F7;
+        font-size: 20px;
+    }
+    .mamiyoga-explain-content img {
+        display: block;
+        margin: 3vh auto;
+        height: 45vh;
+        width: 85%;
+    }
+    .mamiyoga-explain-content p {
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        width: 80%;
+        margin: 5vh auto 0;
+    }
+    .mamiyoga-explain .hooper {
+        height: 75vh;
+    }
+    
+    .mamiyoga-explain .hooper-indicator {
+        width: 7px;
+        height: 7px;
+        background-color: rgba(255,255,255,.4); 
+        margin: 0 4px; 
+    }
+    .mamiyoga-explain .hooper-indicator.is-active, 
+    .mamiyoga-explain .hooper-indicator:hover {
+        background-color:#fff; 
+    }
+}
+@media (max-width: 768px) {
     .mamiyoga-explain {
         width: 100vw;
         height: 100vh;
@@ -62,7 +115,7 @@ export default {
         width: 90vw;
         height: 80vh;
         margin: 0 auto;
-        padding-top: 10vh;
+        padding-top: 5vh;
     }
     .mamiyoga-explain-content h5 {
         text-align: center;
@@ -73,6 +126,7 @@ export default {
         display: block;
         margin: 3vh auto;
         height: 45vh;
+        width: 100%;
     }
     .mamiyoga-explain-content p {
         color: white;
@@ -93,6 +147,9 @@ export default {
     .mamiyoga-explain .hooper-indicator.is-active, 
     .mamiyoga-explain .hooper-indicator:hover {
         background-color:#fff; 
+    }
+    .mamiyoga-explain .hooper-pagination {
+        bottom: -5vh;
     }
 }
 </style>

@@ -6,8 +6,8 @@
         <div class="mamiyoga-divide-select">
             <div class="divide-label-box">
                 <label :for="pose.pose_id" :class="pose.pose_id+'-label'" 
-                v-for="(pose,i) in getPoses" :key="i">
-                動作{{i+1}}
+                v-for="(pose,i) in getPoses" :key="i" >
+                <img src="/mamiyoga/ai-badge.svg" v-show="pose.pose_ai" > 動作{{i+1}}
                 </label>
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
@@ -42,6 +42,7 @@ import MamiyogaDivideEveryBlock from '~/components/mamiyoga/MamiyogaDivideEveryB
 export default {
     props:{
         course_data:Object,
+        have_ai: false,
     },
     components:{
         MamiyogaDivideEveryBlock,
@@ -116,7 +117,7 @@ export default {
         padding:1px 5px;
         border-radius: 10px;
         color: white;
-        margin-right: 6px;
+        margin: 0 6px 6px 0;  
     }
 }
 </style>

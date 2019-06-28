@@ -39,10 +39,50 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
+@media (min-width: 769px) {
     .mamiyoga-header {
         position: relative;
-        width: 100vw;
+        width: 100%;
+        height: 60px;
+        /* background: red; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .mamiyoga-header-logo {
+        width: 30px;
+        height: 30px;
+        /* background: white; */
+        /* position: absolute;
+        top: 2vh;
+        left: 7vw; */
+    }
+    .mamiyoga-header-logo img {
+        display: block;
+        width: 30px;
+    }
+    .mamiyoga-header-login {
+        /* background: white; */
+        /* position: absolute;
+        top: 3vh;
+        right: 6vw; */
+    }
+    .mamiyoga-header-login-btn {
+        width: 55px;
+        height: 25px;
+        border-radius:20px;
+        font-weight: 500;
+        font-size: 12px;
+        text-align: center;
+        border-style: none;
+        box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+    }
+}
+@media (max-width: 768px) {
+    .mamiyoga-header {
+        position: relative;
+        width: 100%;
         height: 60px;
         /* background: red; */
         display: flex;
