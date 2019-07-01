@@ -26,7 +26,7 @@
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div @click="showAssayContent" v-touch:swipe="showAssayContent">
-                    <div class="mamiyoga-assay-title"><h3>分析結果</h3></div>
+                    <div class="mamiyoga-assay-title"><h3>分析结果</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
                     <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
@@ -48,13 +48,13 @@
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
                         <div class="assay-grade-box">
-                            <p style="margin-bottom:0;">準確率</p>
+                            <p style="margin-bottom:0;">准确率</p>
                             <div class="mamiyoga-assay-grade-num">
                                 <h3>76</h3>
                                 <p>%</p>
                             </div>
                         </div>
-                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">快和朋友們分享這次的練習成果吧！</p>
+                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">快和朋友们分享这次的练习成果吧！</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
                                 <img src="/mamiyoga/share-icon-facebook.svg" alt="">
@@ -77,8 +77,8 @@
                             </div>
                         </div>
                             <div class="mamiyoga-assay-contact-box" id="contact-us-box">
-                            <p>分析結果不如預期嗎？</p>
-                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
+                            <p>分析结果不如预期吗？</p>
+                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">联络我们</button>
                         </div>
                     </div>
                     
@@ -195,7 +195,7 @@
                         <div class="cancel-box" @click="openContactBox">
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
-                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方嗎？</p>
+                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方吗？</p>
                         <div class="star-line-box">
                             <input type="radio" class="questions first" id="answer-first" name="questions">
                             <input type="radio" class="questions second" id="answer-second" name="questions">
@@ -227,7 +227,7 @@
                         </div>
                         <form action="">
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" style="resize:none;"
-                        required placeholder="謝謝您的回饋，讓我們儘速為您尋找解決方法" v-model="input_text"></textarea>
+                        required placeholder="谢谢您的回馈，让我们尽速为您寻找解决方法" v-model="input_text"></textarea>
                         <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
                         <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="openContactBox()">送出</button>
                         </form>
@@ -277,7 +277,7 @@
                         <div class="cancel-box" @click="show_star_box = false">
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
-                        <p>請問您滿意這次的分析結果嗎？</p>
+                        <p>请问您满意这次的分析结果吗？</p>
                         <img src="/mamiyoga/star-box-human.png" alt="">
                         <div class="star-line-box">
                             <input type="radio" class="stars first" id="first" name="star">
@@ -328,7 +328,7 @@
                         <div class="cancel-box" @click="openCommentBlock">
                             <img src="/mamiyoga/cancel.svg" alt="">
                         </div>
-                        <p>正在加緊腳步開發中！</p>
+                        <p>正在加紧脚步开发中！</p>
                         <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 30px;">
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">期待</button>

@@ -14,6 +14,7 @@ export default {
     }),
     props: {
         recordDate: String,
+        recordImg: String,
     },
     methods: {
         checkStar(){
@@ -30,45 +31,44 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
-    .practice-record-block {
-        width: 90vw;
-        height: 120px;
-        margin: 3vh 5vw 0;
-        background: black;
-        position: relative;
-    }
-    .notice-box {
-        width: 30px;
-        height: 30px;
-        background: url('/mamiyoga/practice-record-notice.svg');
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        top: -2vh;
-        right: 3vw;
-    }
-    .practice-record-block-time {
-        color: white;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        font-size: 12px;
-    }
-    .bookmark-box {
-        width: 25px;
-        height: 25px;
-        background-image: url('/mamiyoga/star.svg');
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        bottom: 10px;
-        right: 3vw;
-    }
-    .bookmark-box.active {
-        background-image: url('/mamiyoga/star-checked.svg');
-    }
+.practice-record-block {
+    width: 90vw;
+    height: 120px;
+    margin: 3vh 5vw 0;
+    background: black;
+    position: relative;
 }
+.notice-box {
+    width: 30px;
+    height: 30px;
+    background: url('/mamiyoga/practice-record-notice.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -2vh;
+    right: 3vw;
+}
+.practice-record-block-time {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+}
+.bookmark-box {
+    width: 25px;
+    height: 25px;
+    background-image: url('/mamiyoga/star.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 10px;
+    right: 3vw;
+}
+.bookmark-box.active {
+    background-image: url('/mamiyoga/star-checked.svg');
+}
+
 </style>

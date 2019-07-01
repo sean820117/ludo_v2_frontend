@@ -7,7 +7,7 @@
                     <div></div>
                     <div>
                         <h3>改善疼痛症状的腰部伸展</h3>
-                        <p>拍摄时间建议：30-45秒</p>
+                        <p>拍摄时间建议：20-45秒</p>
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
@@ -88,13 +88,13 @@
                 </mamiyoga-window-alert-box>
             </div>
         </div>
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
+        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
                 :is-full-page="fullPage"></loading>
         </div>
-        <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
+        <mommiyoga-explain-block v-if="open_explain" @closeExplain="closeExplain"></mommiyoga-explain-block>
     </div>
 </template>
 
@@ -103,8 +103,8 @@
 import MommiyogaLoginHeader from '~/components/mamiyoga/MommiyogaLoginHeader.vue';
 import MamiyogaCourseBlock from '~/components/mamiyoga/MamiyogaCourseBlock.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
-import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
-import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue';
+import MommiyogaTeachAssay from '~/components/mamiyoga/MommiyogaTeachAssay.vue';
+import MommiyogaExplainBlock from '~/components/mamiyoga/MommiyogaExplainBlock.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
@@ -132,8 +132,8 @@ export default {
         MamiyogaCourseBlock,
         MamiyogaBtn,
         Loading,
-        MamiyogaAssayVideo,
-        MamiyogaExplainBox,
+        MommiyogaTeachAssay,
+        MommiyogaExplainBlock,
         MamiyogaWindowAlertBox,
     },
     methods: {

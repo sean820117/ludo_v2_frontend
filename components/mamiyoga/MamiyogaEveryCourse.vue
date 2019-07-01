@@ -115,95 +115,117 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
-    .mamiyoga-each-course {
-        width: 100vw;
-        min-height: 100vh;
-        background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
-    }
-    .mamiyoga-course-video {
-        width: 100vw;
-        height: auto;
-    }
-    .course-bookmark {
-        width: 30px;
-        position: absolute;
-        top: -10px;
-        left: 20px;
-    }
-    .mamiyoga-each-course h3 {
-        font-size: 24px;
-        color: #51636F;
-        text-align: center;
-        font-weight: 400; 
-        margin-bottom: 2vh; 
+
+.mamiyoga-each-course {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+}
+.mamiyoga-course-video {
+    width: 100vw;
+    height: auto;
+}
+.course-bookmark {
+    width: 30px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+}
+.mamiyoga-each-course h3 {
+    font-size: 24px;
+    color: #51636F;
+    text-align: center;
+    font-weight: 400; 
+    margin-bottom: 2vh; 
+}
+.mamiyoga-course-middle {
+    width: 100vw;
+    /* background: green; */
+    padding: 1vh 5vw;
+    text-align: right;
+    border-bottom: solid thin rgba(112,112,112,.3); 
+}
+.mamiyoga-course-middle p {
+    font-size: 12px;
+    color: #5C5C5C;
+}
+.mamiyoga-course-bottom {
+    /* background: red; */
+    width: 100vw;
+    /* height: 57vh; */
+    margin-top:2vh; 
+    padding: 0 5vw 3vh;
+}
+.mamiyoga-course-bottom-content {
+    /* background: gray; */
+    width: 90vw;
+    height: auto;
+}
+.mamiyoga-course-bottom-content.first {
+    margin-bottom: 1vh;
+}
+.mamiyoga-course-bottom-content h5 {
+    font-size: 14px;
+    color: #272727;
+    font-weight: 400;
+}
+.mamiyoga-course-bottom-content p {
+    font-size: 12px;
+    color: #707070;
+}
+.mamiyoga-course-bottom-first,.mamiyoga-course-bottom-second {
+    width: 90vw;
+    padding: 3vw;
+}
+.course-divide-btn button {
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+}
+.mamiyoga-go-to-divide-btn {
+    position: relative;
+}
+.mamiyoga-go-to-divide-btn img {
+    position: absolute;
+    top: -2vh;
+    left: 27vw;
+}
+.mamiyoga-course-bottom-second-content-li {
+    min-height: 25px;
+}
+.mamiyoga-course-bottom-second-content-li p:first-child {
+    float: left;
+    background-color: #98A9AF;
+    padding: 1px 5px;
+    border-radius: 10px;
+    color: white;
+    margin: 0 6px 6px 0;  
+}
+.mamiyoga-course-bottom-second-content-li img {
+    width: 20px;
+    height: 15px;
+    margin: 2px 2px 0 0;
+    float: left;
+}
+@media (min-width: 769px) {
+    .mamiyoga-each-course,.mamiyoga-course-video,
+    .mamiyoga-course-middle,.mamiyoga-course-bottom,
+    .mamiyoga-course-bottom-content,
+    .mamiyoga-course-bottom-first, .mamiyoga-course-bottom-second {
+        width: 100%;
     }
     .mamiyoga-course-middle {
-        width: 100vw;
-        /* background: green; */
-        padding: 1vh 5vw;
-        text-align: right;
-        border-bottom: solid thin rgba(112,112,112,.3); 
+        padding: 8px 25px;
     }
-    .mamiyoga-course-middle p {
-        font-size: 12px;
-        color: #5C5C5C;
+    .mamiyoga-course-bottom-first, .mamiyoga-course-bottom-second {
+        padding: 15px 0 15px 15px;
     }
     .mamiyoga-course-bottom {
-        /* background: red; */
-        width: 100vw;
-        /* height: 57vh; */
-        margin-top:2vh; 
-        padding: 0 5vw 3vh;
-    }
-    .mamiyoga-course-bottom-content {
-        /* background: gray; */
-        width: 90vw;
-        height: auto;
-    }
-    .mamiyoga-course-bottom-content.first {
-        margin-bottom: 1vh;
-    }
-    .mamiyoga-course-bottom-content h5 {
-        font-size: 14px;
-        color: #272727;
-        font-weight: 400;
-    }
-    .mamiyoga-course-bottom-content p {
-        font-size: 12px;
-        color: #707070;
-    }
-    .mamiyoga-course-bottom-first,.mamiyoga-course-bottom-second {
-        width: 90vw;
-        padding: 3vw;
-    }
-    .course-divide-btn button {
-        box-shadow:5px 5px 10px rgba(0,0,0,.2);
-    }
-    .mamiyoga-go-to-divide-btn {
-        position: relative;
+        margin-top:30px;
+        padding: 0 25px 10px;
     }
     .mamiyoga-go-to-divide-btn img {
-        position: absolute;
-        top: -2vh;
-        left: 27vw;
+        top: -15px;
+        left: 130px;
     }
-    .mamiyoga-course-bottom-second-content-li {
-        min-height: 25px;
-    }
-    .mamiyoga-course-bottom-second-content-li p:first-child {
-        float: left;
-        background-color: #98A9AF;
-        padding: 1px 5px;
-        border-radius: 10px;
-        color: white;
-        margin: 0 6px 6px 0;  
-    }
-    .mamiyoga-course-bottom-second-content-li img {
-        width: 20px;
-        height: 15px;
-        margin: 2px 2px 0 0;
-        float: left;
-    }
+    
 }
 </style>

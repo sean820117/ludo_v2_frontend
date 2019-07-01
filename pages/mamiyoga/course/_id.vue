@@ -8,6 +8,7 @@
 <script>
 import MamiyogaEveryCourse from '~/components/mamiyoga/MamiyogaEveryCourse.vue'
 export default {
+    layout: 'mommiyoga',
     data:()=>({
         courses:[],
         course_id:'',

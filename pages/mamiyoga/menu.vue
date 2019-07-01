@@ -29,6 +29,7 @@ import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaCourseContent from '~/components/mamiyoga/MamiyogaCourseContent.vue';
 import { mapMutations, mapGetters } from 'vuex';
 export default {
+    layout: 'mommiyoga',
     data:()=>({
         courses:[],
     }),
@@ -51,76 +52,90 @@ export default {
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
 
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
-                window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/mamiyoga/login');
-            } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                if (!payed_or_not) {
-                    console.log("not payed");
-                    window.alert("尚未開通課程，請先前往購買～");
-                    this.$router.push('/resume/pay');
-                } else {
-                    console.log("payed")
-                }
-            }
+            // let login_or_not = await this.$checkLogin(this.$store);
+            // if (login_or_not == false) {
+            //     window.alert("尚未登入帳號，請先前往登入～");
+            //     this.$router.push('/mamiyoga/login');
+            // } else {
+            //     let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+            //     if (!payed_or_not) {
+            //         console.log("not payed");
+            //         window.alert("尚未開通課程，請先前往購買～");
+            //         this.$router.push('/resume/pay');
+            //     } else {
+            //         console.log("payed")
+            //     }
+            // }
         }
     }
 }
 </script>
 
 <style>
-@media (max-width:899px) {
-    .course-menu {
-        width: 100vw;
-        min-height: 100vh;
-        background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
-    }
-    .course-information {
-        position: relative;
-        width: 100vw;
-        height: 30vh;
-        background-image:url('/mamiyoga/background-menu.png');
+
+.course-menu {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
+}
+.course-information {
+    position: relative;
+    width: 100vw;
+    height: 30vh;
+    background-image:url('/mamiyoga/background-menu.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.course-information-select {
+    position: absolute;
+    width: 60vw;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+.course-information-content {
+    float: left;
+    width: 65px;
+    height: 25px;
+}
+.course-information-content:first-child p {
+    border-right:1px solid #fff;
+    padding-right: 6px; 
+}
+.course-information-content:nth-child(2) p {
+    border-right:1px solid #fff;
+}
+.course-information-content p {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+.course-mail-icon {
+    position: absolute;
+    bottom: 2vh;
+    right: 6vw;
+}
+.course-menu-box-title {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 10px;
+}
+@media (min-width: 769px) {
+    .course-menu,.course-information {
+        width: 100%;
     }
     .course-information-select {
-        position: absolute;
-        width: 60vw;
-        height: 50px;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 10px;
-    }
-    .course-information-content {
-        float: left;
-        width: 65px;
-        height: 25px;
-    }
-    .course-information-content:first-child p {
-        border-right:1px solid #fff;
-        padding-right: 6px; 
-    }
-    .course-information-content:nth-child(2) p {
-        border-right:1px solid #fff;
-    }
-    .course-information-content p {
-        color: white;
-        font-size: 12px;
-        text-align: center;
+        width: 60%;
     }
     .course-mail-icon {
-        position: absolute;
-        bottom: 2vh;
-        right: 6vw;
+        bottom: 20px;
+        right: 30px;
     }
-    .course-menu-box-title {
-        font-size: 12px;
-        font-weight: 400;
-        letter-spacing: 1px;
-        margin: 10px;
-    }
+
 }
 </style>

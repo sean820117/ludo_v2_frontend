@@ -1,8 +1,8 @@
 <template>
 <div><router-link :to="'/mamiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
-        <div class="course-bookmark">
-            <img :src="unitSrc" alt="">
+        <div class="course-aimark">
+            <img src="/mamiyoga/ai-badge.svg" alt="" v-if="have_ai">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -20,18 +20,12 @@
                         <img src="/mamiyoga/course-block-icon-ai.svg" alt="">
                         <p>{{aiText}}個AI練習</p>
                     </div> -->
-                    <div class="course-block-icon">
-                        <img :src="poseSrc" alt="">
-                        
-                    </div>
+                    
                     <div class="course-block-icon">
                         <img :src="timeSrc" alt="">
                         
                     </div>
-                    <div class="course-block-icon">
-                        <img :src="aiSrc" alt="">
-                        
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -41,6 +35,9 @@
 
 <script>
 export default {
+    data:()=>({
+        
+    }),
     props: {
         bgImage: String,
         blockColor: String,
@@ -48,11 +45,9 @@ export default {
         poseText: Number,
         timeText: Number,
         aiText: Number,
-        poseSrc: String,
         timeSrc: String,
-        aiSrc: String,
-        unitSrc: String,
         goCourse: String,
+        have_ai: false,
     },
 }
 </script>
@@ -68,11 +63,11 @@ export default {
     border-radius: 2vh;
     box-shadow: 0 3px 10px rgba(0,0,0,.2);
 }
-.course-bookmark {
+.course-aimark {
     width: 30px;
     position: absolute;
-    top: -5px;
-    left: 15px;
+    top: -15px;
+    right: 15px;
 }
 /* .course-bookmark p {
     position: absolute;

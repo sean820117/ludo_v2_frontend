@@ -24,6 +24,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
+    layout: 'mommiyoga',
     data:()=>({
         is_loaded: false,
         video_result: {},
@@ -110,21 +111,24 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
+.divide-page {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+}
+.divide-page h3 {
+    font-size: 24px;
+    color: #51636F;
+    text-align: center;
+    font-weight: 400; 
+    margin-bottom: 2vh; 
+}
+.mamiyoga-divide-header button {
+    display: none;
+}
+@media (min-width: 769px) {
     .divide-page {
-        width: 100vw;
-        min-height: 100vh;
-        background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
-    }
-    .divide-page h3 {
-       font-size: 24px;
-        color: #51636F;
-        text-align: center;
-        font-weight: 400; 
-        margin-bottom: 2vh; 
-    }
-    .mamiyoga-divide-header button {
-        display: none;
+        width: 100%;
     }
 }
 </style>

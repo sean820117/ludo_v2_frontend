@@ -20,7 +20,7 @@
                     <p>骨頭導覽指導者養成課程修習完畢 </p>
                 </div>
             </slide>
-            <slide class="about-teacher">
+            <slide class="about-teacher about-slide">
                 <div class="about-title"><h3>教師介紹</h3></div>
                 <div class="about-teacher-content">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，
@@ -81,6 +81,7 @@ import MamiyogaLoginHeader from '~/components/mamiyoga/MamiyogaLoginHeader.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
+    layout:'mommiyoga',
     components: {
         MamiyogaLoginHeader,
         Hooper,
@@ -91,65 +92,89 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
-    .about-page .mamiyoga-teach-header {
-        position: absolute;
+
+.about-page .mamiyoga-teach-header {
+    position: absolute;
+}
+.about-title {
+    color: #F7F7F7;
+    font-size: 12px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+}
+.about-teacher.about-slide .about-title {
+    color: #97A8AF;
+}
+.about-teacher {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.about-teacher:first-child {
+    background-image: url('/mamiyoga/about-back-1.png');
+}
+.about-teacher:nth-child(3) {
+    background-image: url('/mamiyoga/about-back-2.png');
+    background-position: 40%;
+}
+.about-teacher:last-child {
+    background-image: url('/mamiyoga/about-back-3.png');
+}
+.about-teacher-content {
+    font-size: 12px;
+    width: 80vw;
+    height: auto;
+    position: absolute;
+    bottom: 10vh;
+    color: #97A8AF;
+}
+.about-for-mammy .about-teacher-content {
+    width: 90vw;
+    padding: 5vw;
+    color: #F7F7F7;
+    /* background-color: rgba(0,0,0,.7); */
+}
+.about-teacher-content h3 {
+    color: #97A8AF;
+    font-size: 24px;
+}
+.about-teacher-content h4 {
+    color: #97A8AF;
+    font-size: 20px;
+}
+.about-page .hooper {
+    width: 100vw;
+    height: 100vh;
+}
+.about-page .hooper-pagination {
+    bottom: 3vh;
+}
+.about-page .hooper-indicator {
+    width: 7px;
+    height: 7px;
+    background-color: rgba(255,255,255,.4); 
+    margin: 0 4px; 
+}
+.about-page .hooper-indicator.is-active, 
+.about-page .hooper-indicator:hover {
+    background-color:#fff; 
+}
+@media (min-width: 769px) {
+    .about-page .hooper {
+        width: 100%;
     }
-    .about-title {
-        color: #F7F7F7;
-        font-size: 12px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* text-align: center; */
-    }
-    .about-teacher {
-        background-image: url('/mamiyoga/about-back-1.png');
-        display: flex;
-        justify-content: center;
-    }
-    .about-teacher:nth-child(3) {
-        background-image: url('/mamiyoga/about-back-2.png');
-        background-position: 40%;
-    }
-    .about-teacher-content {
-        font-size: 12px;
-        width: 80vw;
-        height: auto;
-        position: absolute;
-        bottom: 10vh;
-        color: #F7F7F7;
+    .about-teacher-content,
+    .about-for-mammy .about-teacher-content {
+        width: 80%;
     }
     .about-for-mammy .about-teacher-content {
-        width: 90vw;
-        padding: 5vw;
-        background-color: rgba(0,0,0,.7);
+        padding: 0;
     }
-    .about-teacher-content h3 {
-        color: #F8F8F8;
-        font-size: 24px;
-    }
-    .about-teacher-content h4 {
-        color: #F8F8F8;
-        font-size: 20px;
-    }
-    .about-page .hooper {
-        width: 100vw;
-        height: 100vh;
-    }
-    .about-page .hooper-pagination {
-        bottom: 3vh;
-    }
-    .about-page .hooper-indicator {
-        width: 7px;
-        height: 7px;
-        background-color: rgba(255,255,255,.4); 
-        margin: 0 4px; 
-    }
-    .about-page .hooper-indicator.is-active, 
-    .about-page .hooper-indicator:hover {
-        background-color:#fff; 
-    }
+    
 }
 </style>

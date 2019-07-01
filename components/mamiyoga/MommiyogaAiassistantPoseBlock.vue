@@ -1,6 +1,10 @@
 <template>
-    <div class="aiassistant-pose-block">
-        <p>{{poseText}}</p>
+    <div>
+        <router-link :to="'/mommiyoga/record/' + goRecord" style="color:#000;">
+            <div class="aiassistant-pose-block">
+                <p>{{poseText}}</p>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -8,6 +12,7 @@
 export default {
     props: {
         poseText: String,
+        goRecord: String,
     }
 }
 </script>

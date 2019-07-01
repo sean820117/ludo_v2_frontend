@@ -99,46 +99,54 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
-    .labels {
-        display: none;
-    }
+
+.labels {
+    display: none;
+}
+.label-box {
+    width: 90vw;
+    margin: 3vh auto;
+    display: flex;
+    justify-content:space-around;
+}
+.label-box label {
+    color: white;
+    font-size: 12px;
+    background-color: #D1D1D1; 
+    padding: .5vh 2.8vw;
+    border-radius: 30px;
+    margin: 0 3px;
+}
+.first-series:checked ~ .mamiyoga-course-select .first-label,
+.second-series:checked ~ .mamiyoga-course-select .second-label,
+.third-series:checked ~ .mamiyoga-course-select .third-label,
+.four-series:checked ~ .mamiyoga-course-select .four-label {
+    background-color: #97A8AF;
+}
+.first-series-container,.second-series-container,
+.third-series-container,.four-series-container {
+    display: none;
+}
+.first-series:checked ~ .mamiyoga-course-select .first-series-container,
+.second-series:checked ~ .mamiyoga-course-select .second-series-container,
+.third-series:checked ~ .mamiyoga-course-select .third-series-container,
+.four-series:checked ~ .mamiyoga-course-select .four-series-container {
+    display: block;
+}
+.mamiyoga-all-course h5 {
+    text-align: center;
+    font-size: 12px;
+    color: #585757;
+    font-weight: 400;
+    margin-top: 2vh; 
+}
+@media (min-width: 769px) {
     .label-box {
-        width: 90vw;
-        margin: 3vh auto;
-        display: flex;
-        justify-content:space-around;
+        width: 100%;
+        margin: 20px auto;
     }
     .label-box label {
-        color: white;
-        font-size: 12px;
-        background-color: #D1D1D1; 
-        padding: .5vh 2.8vw;
-        border-radius: 30px;
-        margin: 0 3px;
-    }
-    .first-series:checked ~ .mamiyoga-course-select .first-label,
-    .second-series:checked ~ .mamiyoga-course-select .second-label,
-    .third-series:checked ~ .mamiyoga-course-select .third-label,
-    .four-series:checked ~ .mamiyoga-course-select .four-label {
-        background-color: #97A8AF;
-    }
-    .first-series-container,.second-series-container,
-    .third-series-container,.four-series-container {
-        display: none;
-    }
-    .first-series:checked ~ .mamiyoga-course-select .first-series-container,
-    .second-series:checked ~ .mamiyoga-course-select .second-series-container,
-    .third-series:checked ~ .mamiyoga-course-select .third-series-container,
-    .four-series:checked ~ .mamiyoga-course-select .four-series-container {
-        display: block;
-    }
-    .mamiyoga-all-course h5 {
-        text-align: center;
-        font-size: 12px;
-        color: #585757;
-        font-weight: 400;
-        margin-top: 2vh; 
+        padding: 5px 20px;
     }
 }
 </style>

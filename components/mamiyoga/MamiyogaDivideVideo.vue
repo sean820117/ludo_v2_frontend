@@ -14,6 +14,9 @@
             class="mamiyoga-divide-block-detail" :class="pose.pose_id" 
             @handleCourseVideoUpload="handleCourseVideoUpload" :ai_teacher="pose.pose_ai"
             :course_data="course_data">
+                <div slot="divide-title">
+                    <h4>{{pose.pose_brief}}</h4>
+                </div>
                 <div slot="divide-video">
                     <video class="mamiyoga-divide-every-video" controls>
                         <source :src="pose.pose_video" type="video/mp4">
@@ -65,59 +68,77 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
-    .mamiyoga-divide-block {
-        width: 100vw;
-        /* height: 80vh; */
-        /* background: red; */
-    }
-    .labels {
-        display: none;
-    }
-    .divide-label-box {
-        width: 90vw;
-        margin: 0 auto;
-        display: flex;
-        justify-content:space-evenly;
+.mamiyoga-divide-block {
+    width: 100vw;
+    /* height: 80vh; */
+    /* background: red; */
+}
+.labels {
+    display: none;
+}
+.divide-label-box {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-evenly;
+}
+.divide-label-box label {
+    color: white;
+    font-size: 12px;
+    background-color: #BFBDBD; 
+    padding: .5vh 6vw;
+    border-radius: 30px;
+    margin: 0 3px;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.3);
+    position: relative;
+}
+.divide-label-box img {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 35px;
+}
+.mamiyoga-divide-block-detail {
+    display: none;
+}
+.first-divide:checked ~ .mamiyoga-divide-select .first-label,
+.second-divide:checked ~ .mamiyoga-divide-select .second-label,
+.third-divide:checked ~ .mamiyoga-divide-select .third-label {
+    background-color: #97A8AF;
+}
+.first-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.first,
+.second-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.second,
+.third-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.third {
+    display: block;
+}
+.mamiyoga-course-bottom-second-content-li {
+    min-height: 25px;
+}
+.mamiyoga-course-bottom-second-content-li p:first-child {
+    float: left;
+    background-color: #98A9AF;
+    padding:1px 5px;
+    border-radius: 10px;
+    color: white;
+    margin: 0 6px 6px 0;  
+}
+.mamiyoga-divide-block-detail h4 {
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+    margin: 2vh 0 1.5vh;
+}
+@media (min-width: 769px) {
+    .mamiyoga-divide-block,.divide-label-box,
+    .mamiyoga-divide-every-video {
+        width: 100%;
     }
     .divide-label-box label {
-        color: white;
-        font-size: 12px;
-        background-color: #BFBDBD; 
-        padding: .5vh 6vw;
-        border-radius: 30px;
-        margin: 0 3px;
-        box-shadow: 2px 2px 7px rgba(0,0,0,.3);
-        position: relative;
+        padding:5px 35px;
+        margin-bottom:15px;
     }
-    .divide-label-box img {
-        position: absolute;
-        top: -25px;
-        left: 0;
-    }
-    .mamiyoga-divide-block-detail {
-        display: none;
-    }
-    .first-divide:checked ~ .mamiyoga-divide-select .first-label,
-    .second-divide:checked ~ .mamiyoga-divide-select .second-label,
-    .third-divide:checked ~ .mamiyoga-divide-select .third-label {
-        background-color: #97A8AF;
-    }
-    .first-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.first,
-    .second-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.second,
-    .third-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.third {
-        display: block;
-    }
-    .mamiyoga-course-bottom-second-content-li {
-        min-height: 25px;
-    }
-    .mamiyoga-course-bottom-second-content-li p:first-child {
-        float: left;
-        background-color: #98A9AF;
-        padding:1px 5px;
-        border-radius: 10px;
-        color: white;
-        margin: 0 6px 6px 0;  
+    .mamiyoga-divide-every-video {
+        height: 300px;
     }
 }
 </style>
