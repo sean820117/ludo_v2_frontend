@@ -86,6 +86,12 @@ body {
   overflow-x: hidden;
 }
 
+html, body, #__nuxt, #__layout, #__layout > div{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -129,16 +135,13 @@ body {
     html, body, #__nuxt, #__layout, #__layout > div{
         height: 100vh;
         width: 450px;
-        background: black;
+        /* background: black; */
         margin: 0 auto;
     }
-}
-@media (max-width:768px) {
-    html, body, #__nuxt, #__layout, #__layout > div{
-        height: 100vh;
-        width: 100vw;
-        margin: 0;
+    html {
+        background-color: black;
     }
 }
+
 </style>
 

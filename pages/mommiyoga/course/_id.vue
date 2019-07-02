@@ -1,12 +1,12 @@
 <template>
     <div>
-        <mamiyoga-every-course 
-        :course_data="course_data"></mamiyoga-every-course>
+        <mommiyoga-every-course 
+        :course_data="course_data"></mommiyoga-every-course>
     </div>
 </template>
 
 <script>
-import MamiyogaEveryCourse from '~/components/mamiyoga/MamiyogaEveryCourse.vue'
+import MommiyogaEveryCourse from '~/components/mamiyoga/MommiyogaEveryCourse.vue'
 export default {
     data:()=>({
         courses:[],
@@ -14,11 +14,11 @@ export default {
         course_data:{},
     }),
     components: {
-        MamiyogaEveryCourse,
+        MommiyogaEveryCourse,
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mamiyoga-course');
+            this.courses = await require('~/config/mommiyoga-course');
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
             console.log(this.course_id)

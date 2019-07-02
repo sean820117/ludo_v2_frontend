@@ -2,7 +2,10 @@
     <div class="practice-record-block" :style="{backImage:'url('+recordImg+')'}">
         <div class="notice-box" v-if="have_notice"></div>
         <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
-        <div class="bookmark-box" @click="checkStar" :class="checkOrNot"></div>
+        <div class="starmark-box" @click="checkStar">
+            <img src="/mamiyoga/star.svg" alt="" v-show="!check_star">
+            <img src="/mamiyoga/star-checked.svg" v-show="check_star" alt="">
+        </div>
     </div>
 </template>
 
@@ -22,9 +25,9 @@ export default {
         }
     },
     computed:{
-        checkOrNot() {
-            return this.check_star ? 'active':'';
-        }
+        // checkOrNot() {
+        //     return this.check_star ? 'active':'';
+        // }
     }
 
 }
@@ -56,19 +59,35 @@ export default {
     left: 10px;
     font-size: 12px;
 }
-.bookmark-box {
-    width: 25px;
-    height: 25px;
-    background-image: url('/mamiyoga/star.svg');
+.starmark-box {
+    width: 30px;
+    height: 30px;
+    /* background-image: url('/mamiyoga/star.svg');
     background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     position: absolute;
     bottom: 10px;
     right: 3vw;
 }
-.bookmark-box.active {
-    background-image: url('/mamiyoga/star-checked.svg');
+.starmark-box img {
+    width: 25px;
 }
-
+/* .bookmark-box.active {
+    background-image: url('/mamiyoga/star-checked.svg');
+} */
+@media (min-width: 769px) {
+    .practice-record-block {
+        width: 390px;
+        margin: 30px auto 0;
+    }
+    .notice-box {
+        bottom: -15px;
+        right: 29px;
+    }
+    .starmark-box {
+        bottom: 15px;
+        right: 25px;
+    }
+}
 </style>

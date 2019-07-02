@@ -1,7 +1,7 @@
 <template>
     <div class="course-menu">
         <div class="course-information" >
-            <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
+            <mommiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-header>
             <div class="course-information-select">
                 <div class="course-information-content">
                     <router-link to="/mommiyoga/about" style="text-decoration:none;"><p>讲师介绍</p></router-link>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
+import MommiyogaHeader from '~/components/mamiyoga/MommiyogaHeader.vue';
 import MommiyogaCourseContent from '~/components/mamiyoga/MommiyogaCourseContent.vue';
 import { mapMutations, mapGetters } from 'vuex';
 export default {
@@ -34,7 +34,7 @@ export default {
         courses:[],
     }),
     components: {
-        MamiyogaHeader,
+        MommiyogaHeader,
         MommiyogaCourseContent,
     },
     async mounted() {

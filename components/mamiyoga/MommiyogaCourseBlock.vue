@@ -1,5 +1,5 @@
 <template>
-<div><router-link :to="'/mamiyoga/course/' + goCourse" style="color:#000;">
+<div><router-link :to="'/mommiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-aimark">
             <img src="/mamiyoga/ai-badge.svg" alt="" v-if="have_ai">

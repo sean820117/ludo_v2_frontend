@@ -1,10 +1,9 @@
 <template>
     <div class="about-page">
-        <mamiyoga-login-header nextTo="/mamiyoga/menu"
-        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-login-header>
+        <mamiyoga-mail-header bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-mail-header>
         <hooper>
             <slide class="about-teacher about-slide">
-                <div class="about-title"><h3>教師介紹</h3></div>
+                <div class="about-title"><h3>教师介绍</h3></div>
                 <div class="about-teacher-content">
                     <div>
                         <h3>桥本麻美</h3>
@@ -39,51 +38,22 @@
                     </p>
                 </div>
             </slide>
-            <!-- <slide class="about-teacher about-for-mammy">
-                <div class="about-title"><h3>給產後的女性</h3></div>
-                <div class="about-teacher-content">
-                    <p>給產後的女性：<br><br>
-                    一般來說，女性要回復生產前的良好狀態，是需要十個月以上，這真的是段非常辛苦的日子。<br>
-                    而且，產後也無暇休息，還要照顧寶寶們。這常會導致骨盤變得岌岌可危，有鬆脫現象，或者
-                    子宮持續不斷出血。<br>
-                    若是不顧自己的身體，總是把自己放在最後一位，又因為環境變化、家庭的壓力、甚至是缺乏
-                    支持，就會衍生出很多後遺症。<br><br>
-                    而這是我最不樂見的，希望媽媽們，能為了自己，也為了小寶寶，好好保養照顧。因此我設計
-                    了一套program.即使是沒有辦法直接到瑜珈教室的媽媽們，或者是有著重重苦衷抽不開身的
-                    人，都可以透過這套在家能自己實施的瑜珈動作練習，讓心情得到放鬆，身體得到休息。<br><br>
-                    那怕只能盡到微薄的照料媽媽們的責任，我也願意認真設計，只要多那麼一位母親能夠因為這
-                    堂課而有所幫助，變得有精神，變得很幸福，這樣就好了。<br><br>
-                    因為媽媽們的幸福，就是小孩的幸福。<br>
-                    而你們的幸福，也是我的願望。</p>
-
-                </div>
-            </slide>
-            <slide class="about-teacher about-for-mammy">
-                <div class="about-title"><h3>給廣大的女性族群</h3></div>
-                <div class="about-teacher-content">
-                    <p>給廣大的女性族群:<br><br>
-                    有時候，女生們常常會壓力大到連自己都沒有發現。在每天每天的疲勞與壓力囤積中，不知不
-                    覺習慣了，直到受不了時垮下去，已經為時已晚。<br>
-                    所以，我希望能帶給大家一些瑜珈課程，讓女生朋友們也能每天都有煥然一新的重生感。<br><br>
-                    瑜珈，能夠聯繫身體與心靈，並且給予我們自信。<br>
-                    把瑜珈形容成讓每個人都能幸福活下去，變得更像自己喜歡模樣的香料，可一點都不為過哦！<br>
-                    讓我們將生活撒入瑜珈這個香料吧！一起藉由瑜珈獲得平靜的心靈與自信的曼妙體態！<br><br>
-                    我誠摯地推薦大家嘗試看看，有了瑜珈後，找尋到合適自己的生活方式！</p>
-                </div>
-            </slide> -->
+            
             <hooper-pagination slot="hooper-addons"></hooper-pagination>
         </hooper>
     </div>
 </template>
 
 <script>
-import MamiyogaLoginHeader from '~/components/mamiyoga/MamiyogaLoginHeader.vue';
+import MommiyogaLoginHeader from '~/components/mamiyoga/MommiyogaLoginHeader.vue';
+import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
     layout:'mommiyoga',
     components: {
-        MamiyogaLoginHeader,
+        MommiyogaLoginHeader,
+        MamiyogaMailHeader,
         Hooper,
         Slide,
         HooperPagination,
@@ -150,6 +120,8 @@ export default {
 .about-page .hooper {
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 0;
 }
 .about-page .hooper-pagination {
     bottom: 3vh;
@@ -166,7 +138,7 @@ export default {
 }
 @media (min-width: 769px) {
     .about-page .hooper {
-        width: 100%;
+        width: 450px;
     }
     .about-teacher-content,
     .about-for-mammy .about-teacher-content {

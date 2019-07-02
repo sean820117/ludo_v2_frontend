@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-header">
-        <router-link to="/mamiyoga">
+        <router-link to="/mommiyoga">
         <div class="mamiyoga-header-logo">
             <img src="/mamiyoga/header-logo.png" alt="">
         </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="aiassistant-page" v-if="!open_explain">
-            <mamiyoga-mail-header headerTitle="AI助教" nextTo="/mamiyoga/menu" mailheaderTitle="white"></mamiyoga-mail-header>
+            <mamiyoga-mail-header headerTitle="AI助教" mailheaderTitle="white"></mamiyoga-mail-header>
             <div class="aiassistant-intro">
                 <p>正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的影片体验。</p>
                 <div>
@@ -129,6 +129,9 @@ export default {
     }
     .aiassistant-container {
         margin-top: 320px; 
+    }
+    .aiassistant-container h4 {
+        margin: 0 30px;
     }
 }
 </style>
