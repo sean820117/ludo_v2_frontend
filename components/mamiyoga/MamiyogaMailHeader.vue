@@ -62,7 +62,7 @@ export default {
     left: -3px;
     border-radius: 15px;
 }
-@media (min-width: 796px) {
+@media (min-width: 769px) {
     .mail-header {
         width: 100%;
     }

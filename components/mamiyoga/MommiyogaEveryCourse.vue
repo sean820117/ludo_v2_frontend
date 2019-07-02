@@ -35,10 +35,10 @@
                     </div>
                 </div>
             </div>
-            <div class="mamiyoga-go-to-divide-btn">
-                <router-link :to="'/mamiyoga/course/practice/' + goPractice"   style="text-decoration:none;">
-                    <mamiyoga-btn btnText="上传影片" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
-                </router-link>
+            <div class="mamiyoga-go-to-divide-btn" v-if="getAiTeacher">
+                <button class="course-divide-btn">
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上传影片</label>  
+                </button>
                 <!-- <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher"> -->
             </div>
         </div>
@@ -55,6 +55,11 @@ export default {
     components: {
         MamiyogaMailHeader,
         MamiyogaBtn,
+    },
+    methods: {
+        handleVideoUpload(e){
+            this.$emit('handleCourseVideoUpload',e);
+        }
     },
     computed: {
         getTitle(){
@@ -188,8 +193,20 @@ export default {
     width: 90vw;
     padding: 3vw;
 }
-.course-divide-btn button {
+.course-divide-btn {
     box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    color: #EEEFEA;
+    background-color: #97A8AF;
 }
 .mamiyoga-go-to-divide-btn {
     position: relative;

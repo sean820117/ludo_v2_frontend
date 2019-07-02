@@ -1,24 +1,26 @@
 <template>
     <div class="index-contain">
-        <hooper :autoPlay="true" :playSpeed="8000">
-            <slide>
+        <!-- <hooper :autoPlay="true" :playSpeed="8000"> -->
+            <!-- <slide>
                 <video muted loop autoplay class="background-video">
                         <source src="/mommiyoga/index-video-1.mp4" type="video/mp4">
                 </video>
             </slide>
-            <slide>
-                <video muted loop autoplay class="background-video">
-                        <source src="/mommiyoga/index-video-4.mp4" type="video/mp4">
+            <slide> -->
+                <video muted loop autoplay class="background-video" >
+                        <source src="/mommiyoga/index-video-1.mp4" type="video/mp4">
+                        
                 </video>
-            </slide>
+            <!-- </slide> -->
             <!-- <hooper-pagination slot="hooper-addons"></hooper-pagination> -->
-        </hooper>
+        <!-- </hooper> -->
         <div class="mamiyoga-index-intro">
             <mommiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-header>
             <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                 {{title}}
             </h2> -->
             <img src="/mamiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <h3>入门版</h3>
             <div class="mamiyoga-intro-btn">
                 <router-link to="/mommiyoga/teach" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="马上体验" ></mamiyoga-btn>
@@ -36,11 +38,20 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import MommiyogaHeader from '~/components/mamiyoga/MommiyogaHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MommiyogaLoginSelect from '~/components/mamiyoga/MommiyogaLoginSelect.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
+import VueMq from 'vue-mq';
+Vue.use(VueMq, {
+  breakpoints: {
+    // small: 400,
+    mobile: 1250,
+    desktop: Infinity,
+  }
+});
 export default {
     layout:'mommiyoga',
     components: {
@@ -54,6 +65,7 @@ export default {
     props: {
         title: String,
     },
+
 }
 </script>
 
@@ -91,9 +103,14 @@ export default {
     font-size: 35px; 
     text-shadow: 0 5px 10px rgba(0,0,0,.5) */
     display: block;
-    margin: 10vh auto 25vh;
+    margin: 10vh auto 2vh;
     width: 70vw;
-
+}
+.mamiyoga-index-intro h3 {
+    color: #97A8AF;
+    text-align: center;
+    font-size: 18px; 
+    margin-bottom: 20vh;
 }
 .mamiyoga-intro-btn {
     margin: 0 auto 2vh;
@@ -130,7 +147,7 @@ export default {
         font-size: 35px; 
         text-shadow: 0 5px 10px rgba(0,0,0,.5) */
         display: block;
-        margin: 10vh auto 25vh;
+        margin: 100px auto 25px;
         width: 70%;
 
     }

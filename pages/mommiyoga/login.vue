@@ -4,12 +4,12 @@
             <div class="mamiyoga-header-logo"></div>
             <div class="mamiyoga-header-login">
                 <button :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"
-                @click="switch_signup_and_login" class="mamiyoga-header-login-btn">{{ login_or_signup === "signup" ? '登入' : '註冊' }}</button>
+                @click="switch_signup_and_login" class="mamiyoga-header-login-btn">{{ login_or_signup === "signup" ? '登录' : '注册' }}</button>
             </div>
         </div>
         <div class="mamiyoga-login-container">
-            <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
-            <div class="reg-text2"> {{ '付款前需先註冊成為會員' }}</div>
+            <div class="reg-text">{{ login_or_signup === 'signup' ? '注册' : '登录' }}</div>
+            <div class="reg-text2"> {{ '付款前需先注册成为会员' }}</div>
             <div class="third-party">
                 <no-ssr><mamiyoga-third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
             </div>
@@ -17,26 +17,26 @@
             <div class="text-or">or</div>
             <form class="signup-form">
                 <div class="login-column">
-                    <div class="login-column-label">電子信箱</div>
+                    <div class="login-column-label">电子信箱</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                 </div>
                 <div class="login-column">
-                    <div class="login-column-label">密碼</div>
+                    <div class="login-column-label">密码</div>
                     <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
                 </div>
                 <div class="login-column">
                     <div v-show="login_or_signup === 'signup'">
-                        <div class="login-column-label">確認密碼</div>
+                        <div class="login-column-label">确认密码</div>
                         <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
                     </div>
                 </div>
                 <!-- <div class="login-column" v-if="login_or_signup === 'login'">
                     <div style="height:53 px"></div>
                 </div> -->
-                <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
+                <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',height: '18px',}"> {{ hint }}</div>
                 <div class="btn-login-and-signup-container">
                     <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
-                    <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '立即付款' : '登入' }}</button>
+                    <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '立即付款' : '登录' }}</button>
                 </div>
             </form>
         </div>
@@ -49,7 +49,7 @@ import { EMAIL_REGEX } from '~/components/regex.js'
 import axios from '~/config/axios-config'
 
 export default {
-    // layout: 'mamiyoga',
+    layout: 'mommiyoga',
     data() {
         return {
             errors: null,
@@ -57,7 +57,7 @@ export default {
             password: '',
             confirmPassword: '',
             ui_config: Object,
-            hint:'請填寫',
+            hint:'请填写',
             hint_color:'transparent',
             is_ui_config_loaded:false,
             login_or_signup:'login',
@@ -70,12 +70,12 @@ export default {
         if (process.client) {
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            localStorage.redirect = '/mamiyoga/menu';
+            localStorage.redirect = '/mommiyoga/menu';
             
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
-                window.alert('你已經登入了')
-                this.$router.push('/mamiyoga/menu')
+                window.alert('你已经登入了')
+                this.$router.push('/mommiyoga/menu')
             }
             //ga
             // let gtag_config = {}
@@ -94,22 +94,22 @@ export default {
     methods: {
         onSubmit(type) {
             if (this.email.length === 0 || this.password.length === 0) {
-                this.hint = '請填寫所有欄位！'
+                this.hint = '请填写所有栏位！'
                 this.hint_color = "red"
                 return
             }
             if (!EMAIL_REGEX.test(this.email)) {
-                this.hint = '電子信箱格式錯誤'
+                this.hint = '电子信箱格式错误'
                 this.hint_color = "red"
                 return
             }
             if (this.password.length < 8) {
-                this.hint = '密碼過短'
+                this.hint = '密码过短'
                 this.hint_color = "red"
                 return
             }
             if (this.password !== this.confirmPassword && type === "signup") {
-                this.hint = '密碼需大於八個字'
+                this.hint = '密码需大于八个字'
                 this.hint_color = "red"
                 return
             }
@@ -132,12 +132,12 @@ export default {
                   let login_result = await this.$checkLogin(this.$store);
                   this.$router.push('/login-redirect')
               } else {
-                  this.hint = '註冊失敗 - ' + response.data.message;
+                  this.hint = '注册失败 - ' + response.data.message;
                   this.hint_color = "red"
                   console.log(response)
               }
             } catch (error) {
-              this.hint = '註冊失敗'
+              this.hint = '注册失败'
               this.hint_color = "red"
               console.log(error)
             }
@@ -158,7 +158,7 @@ export default {
             } 
             catch (error) {
                 console.log(error)
-                this.hint = "傳送失敗，請重新嘗試"
+                this.hint = "传送失败，请重新尝试"
                 this.hint_color = "red"
             }
         },
@@ -174,134 +174,141 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
-    /* html, body, #__nuxt, #__layout, #__layout > div{
-        height: 100vh;
-        background: white;
-    } */
-    textarea:focus, input:focus{
-        outline: none;
-    }
-    .signup-page{
-        text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+
+/* html, body, #__nuxt, #__layout, #__layout > div{
+    height: 100vh;
+    background: white;
+} */
+textarea:focus, input:focus{
+    outline: none;
+}
+.signup-page{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.signup-page .mamiyoga-header {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+.signup-page .mamiyoga-header-logo {
+    width: 30px;
+    height: 30px;
+}
+.signup-page .mamiyoga-header .mamiyoga-header-login-btn {
+    color: #FFF;
+    width: 55px;
+    height: 25px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-style: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+}
+.mamiyoga-login-container {
+    height: 80vh;
+}
+.reg-text{
+    /* padding-top: 80px; */
+    font-size: 21px;
+}
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
+}
+.third-party{
+    margin-top: 8vh;
+}
+.mamiyoga-login-container .hr{
+    width: 63%;
+    height: 1px;
+    background: #D4D4D4;
+    margin:23px auto 0;
+    max-width: 320px;
+}
+.text-or{
+    font-size: 14px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+.signup-form{
+    text-align: left;
+    width: 100vw;
+    max-width: 475px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup-form input[type=text]{
+    padding:0px 10px;
+}
+.signup-form input[type=password]{
+    padding:0px 10px;
+}
+.signup-form .login-column{
+    margin-top: 11px;
+    width: 67%;
+    height: 53px;
+}
+.login-column-label{
+    text-align: left;
+    color: #707070;
+    font-size: 11px;
+    line-height: 20px;
+    margin-bottom: 6px; 
+    padding-left: 5px;
+}
+.login-column-input{
+    height: 27px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background: #F3F3F3;
+}
+.btn-login-and-signup-container {
+    display: flex;
+    margin-top: 3vh;
+    justify-content: flex-end;
+    width: 67%;
+    /* margin-left: 16.5vw; */
+}
+.switch-login-and-signup {
+    font-size: 13px;
+    color: #8F8F8F;
+    margin-top: 10px;
+}
+.mamiyoga-btn-login-and-signup{
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+    /* background: #1785db; */
+    color: #fff;
+    font-size: 14px;
+    /* margin-left: 60%; */
+    /* margin-top: 6vh; */
+    border: none;
+    border-radius: 15px;
+    padding: unset;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+}
+@media (min-width: 769px) {
+    .signup-page {
+        background-color: white; 
     }
     .signup-page .mamiyoga-header {
-        position: absolute;
-        top: 0;
-        width: 100vw;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        padding: 0 20px;
-        justify-content: space-between;
-    }
-    .signup-page .mamiyoga-header-logo {
-        width: 30px;
-        height: 30px;
-    }
-    .signup-page .mamiyoga-header .mamiyoga-header-login-btn {
-        color: #FFF;
-        width: 55px;
-        height: 25px;
-        border-radius: 20px;
-        font-weight: 500;
-        font-size: 12px;
-        text-align: center;
-        border-style: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-    }
-    .mamiyoga-login-container {
-        height: 80vh;
-    }
-    .reg-text{
-        /* padding-top: 80px; */
-        font-size: 21px;
-    }
-    .reg-text2{
-        margin-top: 11px;
-        font-size: 13px;
-        color: #8F8F8F;
-    }
-    .third-party{
-        margin-top: 8vh;
-    }
-    .mamiyoga-login-container .hr{
-        width: 63%;
-        height: 1px;
-        background: #D4D4D4;
-        margin:23px auto 0;
-        max-width: 320px;
-    }
-    .text-or{
-        font-size: 14px;
-        font-weight: 100;
-        margin-top: 10px;
-    }
-    .signup-form{
-        text-align: left;
-        width: 100vw;
-        max-width: 475px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .signup-form input[type=text]{
-        padding:0px 10px;
-    }
-    .signup-form input[type=password]{
-        padding:0px 10px;
-    }
-    .signup-form .login-column{
-        margin-top: 11px;
-        width: 67%;
-        height: 53px;
-    }
-    .login-column-label{
-        text-align: left;
-        color: #707070;
-        font-size: 11px;
-        line-height: 20px;
-        margin-bottom: 6px; 
-        padding-left: 5px;
-    }
-    .login-column-input{
-        height: 27px;
-        width: 100%;
-        border-radius: 8px;
-        border: none;
-        background: #F3F3F3;
-    }
-    .btn-login-and-signup-container {
-        display: flex;
-        margin-top: 3vh;
-        justify-content: flex-end;
-        width: 67%;
-        /* margin-left: 16.5vw; */
-    }
-    .switch-login-and-signup {
-        font-size: 13px;
-        color: #8F8F8F;
-        margin-top: 10px;
-    }
-    .mamiyoga-btn-login-and-signup{
-        width: 90px;
-        height: 36px;
-        line-height: 36px;
-        /* background: #1785db; */
-        color: #fff;
-        font-size: 14px;
-        /* margin-left: 60%; */
-        /* margin-top: 6vh; */
-        border: none;
-        border-radius: 15px;
-        padding: unset;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+        width: 450px;
     }
 }
 

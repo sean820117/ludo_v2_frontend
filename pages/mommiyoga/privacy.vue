@@ -51,6 +51,7 @@
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
+    layout: 'mommiyoga',
     components:{
         MamiyogaTeachHeader,
         MamiyogaBtn,
@@ -59,27 +60,37 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
-    .privacy-header button {
-        display: none;
+.privacy-page {
+    padding-bottom: 20px;
+}
+.privacy-header button {
+    display: none;
+}
+.privacy-container {
+    width: 83vw;
+    margin: 0 8.5vw;
+    text-align: justify;
+}
+.privacy-container p {
+    font-size: 12px;
+    color: #707070;
+}
+.privacy-container h5 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 15px; 
+}
+.privacy-btn {
+    margin: 6vh 0 3vh;
+}
+@media (min-width: 769px) {
+    .privacy-page {
+        background: white;
     }
     .privacy-container {
-        width: 83vw;
-        margin: 0 8.5vw;
-        text-align: justify;
-    }
-    .privacy-container p {
-        font-size: 12px;
-        color: #707070;
-    }
-    .privacy-container h5 {
-        font-size: 14px;
-        color: #000;
-        font-weight: 400;
-        margin-top: 15px; 
-    }
-    .privacy-btn {
-        margin: 6vh 0 3vh;
+       width: 400px; 
+        margin: 0 25px;
     }
 }
 </style>

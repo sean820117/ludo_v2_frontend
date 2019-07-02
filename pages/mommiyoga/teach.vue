@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="teacher-remind">
-                    <img src="/mamiyoga/teach-teacher-remind.svg" alt="">
+                    <img src="/mommiyoga/teach-teacher-remind.png" alt="">
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">麻美老师贴心叮咛</p>
                         <p>尽量将力气集中在腰部，如果动作做起来有点吃力的同学，可以把毛巾卷起来放进腰下。</p>
@@ -201,7 +201,9 @@ export default {
 </script>
 
 <style>
-
+.teacher-remind img {
+    width: 50px;
+}
 @media (min-width:769px) {
     .teach-page {
         width: 100%;

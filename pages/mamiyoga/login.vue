@@ -175,10 +175,10 @@ export default {
 
 <style>
 @media (max-width:899px) {
-    html, body, #__nuxt, #__layout, #__layout > div{
+    /* html, body, #__nuxt, #__layout, #__layout > div{
         height: 100vh;
         background: white;
-    }
+    } */
     textarea:focus, input:focus{
         outline: none;
     }
