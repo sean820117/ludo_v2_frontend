@@ -76,15 +76,16 @@ export default {
 .course-menu {
     width: 100vw;
     min-height: 100vh;
-    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
 }
 .course-information {
     position: relative;
     width: 100vw;
     height: 30vh;
-    background-image:url('/mamiyoga/background-menu.png');
+    background-image:url('/mommiyoga/background-menu.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
+    background-position: center; 
 }
 .course-information-select {
     position: absolute;

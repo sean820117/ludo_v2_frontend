@@ -12,20 +12,20 @@
             </div>
             <div class="first-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="primary in getPrimarys" :key="primary.id"
-                :bgImage="primary.preview_img" blockColor="white" :have_ai="primary.ai_teacher"
+                :bgImage="primary.id" blockColor="white" :have_ai="primary.ai_teacher"
                 :blockTitle="primary.title"  :selectCourse="primary.id"
                 :goCourse="primary.id"
                 ></mommiyoga-course-block>
             </div>
             <div class="second-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="intermediate in getIntermediates" :key="intermediate.id"
-                :bgImage="intermediate.preview_img" blockColor="white" :have_ai="intermediate.ai_teacher"
+                :bgImage="intermediate.id" blockColor="white" :have_ai="intermediate.ai_teacher"
                 :blockTitle="intermediate.title"  :goCourse="intermediate.id"
                 ></mommiyoga-course-block>
             </div>
             <div class="third-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="advanced in getAdvanceds" :key="advanced.id"
-                :bgImage="advanced.preview_img" blockColor="white" :have_ai="advanced.ai_teacher"
+                :bgImage="advanced.id" blockColor="white" :have_ai="advanced.ai_teacher"
                 :blockTitle="advanced.title" :goCourse="advanced.id"
                 ></mommiyoga-course-block>
             </div>

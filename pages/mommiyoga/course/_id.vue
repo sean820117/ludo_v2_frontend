@@ -1,7 +1,7 @@
 <template>
     <div>
         <mommiyoga-every-course @handleCourseVideoUpload="handleCourseVideoUpload"
-        :course_data="course_data"></mommiyoga-every-course>
+        :course_data="course_data" v-if="!is_loaded"></mommiyoga-every-course>
         <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
@@ -33,6 +33,7 @@ export default {
     components: {
         MommiyogaEveryCourse,
         MommiyogaTeachAssay,
+        Loading,
     },
     async mounted() {
         if (process.client) {
@@ -73,18 +74,23 @@ export default {
             this.isLoading = true;
             let form = new FormData();
             form.append('file',e.target.files[0])
-            form.append('pose_id','yoga_6')
+            form.append('pose_id','yoga_'+this.course_data.upload_id)
             form.append('language','zh-tw')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
+            // for(var i =0; i< res.data.reps_wrong_tags.length; i++){
+            //   for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
+            //       if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
+            //       else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+            //   }
+            // }
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+                    this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
               }
             }
             this.isLoading = false;
@@ -121,5 +127,10 @@ export default {
 </script>
 
 <style>
-
+.vld-overlay .vld-background {
+    background-color:black;
+}
+.vld-icon svg {
+    stroke: #DCD8CF;
+}
 </style>

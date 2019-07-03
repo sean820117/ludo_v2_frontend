@@ -1,6 +1,6 @@
 <template>
     <div class="practice-record">
-        <div class="practice-record-intro" :style="{backgroundImage:'url('+bgImg+')',}">
+        <div class="practice-record-intro" :style="{backgroundImage:'url(/mommiyoga/course/course-preview-'+bgImg+'.jpg)',}">
             <a @click="$router.go(-1)">
                 <div class="practice-record-intro-close-box"></div>
             </a>
@@ -61,6 +61,9 @@ export default {
     height: 40vh;
     padding:15px;
     position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 35% center;
 }
 .practice-record-intro-close-box {
     width: 30px;
@@ -75,7 +78,8 @@ export default {
     width: 100vw;
     height: 65px;
     position: absolute;
-    bottom: 15vh;
+    bottom: 10vh;
+    left: 8vw;
 }
 .practice-record-photo-by {
     width: 50px;
@@ -147,6 +151,7 @@ export default {
     }
     .practice-record-intro-title {
         bottom: 100px;
+        left: 60px;
     }
 }
 

@@ -1,26 +1,15 @@
 <template>
     <div class="index-contain">
-        <!-- <hooper :autoPlay="true" :playSpeed="8000"> -->
-            <!-- <slide>
-                <video muted loop autoplay class="background-video">
-                        <source src="/mommiyoga/index-video-1.mp4" type="video/mp4">
-                </video>
-            </slide>
-            <slide> -->
-                <video muted loop autoplay class="background-video" >
-                        <source src="/mommiyoga/index-video-1.mp4" type="video/mp4">
-                        
-                </video>
-            <!-- </slide> -->
-            <!-- <hooper-pagination slot="hooper-addons"></hooper-pagination> -->
-        <!-- </hooper> -->
+        <video muted loop autoplay class="background-video" >
+            <source src="/mommiyoga/index-1.mp4" type="video/mp4">      
+        </video>
         <div class="mamiyoga-index-intro">
             <mommiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-header>
             <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                 {{title}}
             </h2> -->
-            <img src="/mamiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
-            <h3>入门版</h3>
+            <img src="/mommiyoga/mommiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            
             <div class="mamiyoga-intro-btn">
                 <router-link to="/mommiyoga/teach" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="马上体验" ></mamiyoga-btn>
@@ -92,7 +81,7 @@ export default {
 }
 .background-video {
     /* position: fixed; */
-    top: 0;
+    top: -3vh;
     min-width: 100vw;
     min-height: 100vh;
 }
@@ -103,7 +92,7 @@ export default {
     font-size: 35px; 
     text-shadow: 0 5px 10px rgba(0,0,0,.5) */
     display: block;
-    margin: 10vh auto 2vh;
+    margin: 10vh auto 25vh;
     width: 70vw;
 }
 .mamiyoga-index-intro h3 {
@@ -147,7 +136,7 @@ export default {
         font-size: 35px; 
         text-shadow: 0 5px 10px rgba(0,0,0,.5) */
         display: block;
-        margin: 100px auto 25px;
+        margin: 100px auto 255px;
         width: 70%;
 
     }
@@ -163,8 +152,15 @@ export default {
     .mamiyoga-intro-agree a,.mamiyoga-intro-agree a:visited {
         color: #DCD8CF;
     }
-    
-    
 }
-
+@media (max-width: 400px) {
+    .background-video {
+        top: -4vh;
+    }
+}
+@media (max-width: 350px) {
+    .background-video {
+        margin-top: -35vh;
+    }
+}
 </style>

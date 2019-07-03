@@ -18,9 +18,9 @@
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
         </div>
-        <div style="margin-top:8vh;">
+        <!-- <div style="margin-top:8vh;">
             <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教学" style="margin-bottom:5vh;"></mamiyoga-btn>
-        </div>
+        </div> -->
     </div>
 </template>
 

@@ -3,12 +3,21 @@
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
         <h3>{{getTitle}}</h3>
         <div style="position:relative;">
-            <video class="mamiyoga-course-video" controls>
-                <source :src="getVideoUrl" type="video/mp4">
+            <video class="mamiyoga-course-video" controls @click="is_opened = true"
+            preload="auto" :poster="'/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
+                <source :src="'/mommiyoga/course/course-video-'+goPractice+'.mov'" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="course-bookmark">
+            <!-- <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
+            </div> -->
+            <div class="mamiyoga-course-intro-title" v-if="getAiTeacher && !is_opened">
+                <div class="mamiyoga-course-photo-by" v-show="getPhotoBy"></div>
+                <div class="mamiyoga-course-photo-by" v-show="!getPhotoBy"></div>
+                <div class="mamiyoga-course-intro-title-font">
+                    <h4>{{getTitle}}</h4>
+                    <p>拍摄时间建议：</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
+                </div>
             </div>
         </div>
         <div class="mamiyoga-course-middle">
@@ -49,6 +58,9 @@
 import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
+    data:()=>({
+        is_opened: false,
+    }),
     props:{
         course_data:Object,
     },
@@ -112,13 +124,13 @@ export default {
                 return '';
             }
         },
-        // getPoses(){
-        //     if (this.course_data) {
-        //         return this.course_data.poses;
-        //     } else {
-        //         return [];
-        //     }
-        // },
+        getPhotoBy(){
+            if (this.course_data) {
+                return this.course_data.is_front
+            } else {
+                return ''
+            }
+        },
         getDescription(){
             if (this.course_data) {
                 return this.course_data.pose_description
@@ -140,6 +152,9 @@ export default {
 .mamiyoga-course-video {
     width: 100vw;
     height: auto;
+}
+.mamiyoga-each-course video[poster] {
+    object-fit: cover;
 }
 .course-bookmark {
     width: 30px;
@@ -232,6 +247,46 @@ export default {
     height: 15px;
     margin: 2px 2px 0 0;
     float: left;
+}
+.mamiyoga-course-intro-title {
+    width: 100vw;
+    height: 65px;
+    position: absolute;
+    bottom: 3vh;
+    left: 5vw;
+}
+.mamiyoga-course-photo-by {
+    width: 50px;
+    height: 65px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    margin-right: 10px; 
+    float: left;
+}
+.mamiyoga-course-photo-by:first-child {
+    background-image: url('/mommiyoga/teach-photoby-1.svg');
+}
+.mamiyoga-course-photo-by:nth-child(2) {
+    background-image: url('/mommiyoga/teach-photoby-2.svg');
+}
+.mamiyoga-course-intro-title-font {
+    height: 65px;
+    float: left;
+    color: white;
+    margin-top: 15px; 
+}
+.mamiyoga-course-intro-title-font h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.mamiyoga-course-intro-title-font p {
+    float: left;
+    font-size: 14px;
+}
+.mamiyoga-course-intro-title-font p:nth-child(3) {
+    font-style: italic;
+    margin-top: 2px;
 }
 @media (min-width: 769px) {
     .mamiyoga-each-course,.mamiyoga-course-video,

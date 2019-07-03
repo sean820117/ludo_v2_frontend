@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="record-page" v-if="!is_loaded">
-            <mommiyoga-practice-record bgImg="/mamiyoga/teach-title-img.png" 
+            <mommiyoga-practice-record :bgImg="course_data.id" 
             :recordTitle="course_data.title" recordTime="30-45" :goCourse="course_data.id" 
             :is_front="course_data.is_front" @handleCourseVideoUpload="handleCourseVideoUpload"
             ></mommiyoga-practice-record>
@@ -63,18 +63,23 @@ export default {
             this.isLoading = true;
             let form = new FormData();
             form.append('file',e.target.files[0])
-            form.append('pose_id','yoga_6')
+            form.append('pose_id','yoga_'+this.course_data.upload_id)
             form.append('language','zh-tw')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
+            // for(var i =0; i< res.data.reps_wrong_tags.length; i++){
+            //   for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
+            //       if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
+            //       else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+            //   }
+            // }
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+                    this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
               }
             }
             this.isLoading = false;
@@ -156,6 +161,12 @@ export default {
     border-bottom: solid 1px rgba(112,112,112,.3);
     padding-bottom: 1vh;
     margin: 3vh 5vw;
+}
+.vld-overlay .vld-background {
+    background-color:black;
+}
+.vld-icon svg {
+    stroke: #DCD8CF;
 }
 @media (min-width: 769px) {
     .record-page,.practice-record-content {

@@ -1,9 +1,10 @@
 <template>
 <div><router-link :to="'/mommiyoga/course/' + goCourse" style="color:#000;">
-    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
+    <div class="course-block">
         <div class="course-aimark">
             <img src="/mamiyoga/ai-badge.svg" alt="" v-if="have_ai">
         </div>
+        <div class="course-block-background" :style="{backgroundImage:'url(/mommiyoga/course/course-preview-'+bgImage+'.jpg)',backgroundSize:'cover'}"></div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
                 <h4 v-html="blockTitle"></h4>
@@ -69,15 +70,15 @@ export default {
     top: -15px;
     right: 15px;
 }
-/* .course-bookmark p {
-    position: absolute;
-    top: 10px;
-    left: 13px;
-    width: 20px;
-    line-height: 13px;
-    font-size: 12px;
-    text-align: center;
-} */
+.course-block-background {
+    /* position: absolute;
+    top: 0; */
+    width: 100%;
+    height: 18vh;
+    border-radius: 2vh 2vh 0 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 .course-block-contain {
     position: absolute;
     width: 90vw;
@@ -141,6 +142,9 @@ export default {
     .course-block-contain {
         width: 100%;
         height: 75px;
+    }
+    .course-block-background {
+        height: 175px;
     }
     .course-block-title {
         width: 90%;

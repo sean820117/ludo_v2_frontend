@@ -3,6 +3,11 @@
         <div class="teach-page" v-if="!is_loaded && !open_explain">
             <mommiyoga-login-header headerTitle="体验练习" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mommiyoga-login-header>
             <div class="teach-title-video-box">
+                <video class="mamiyoga-course-video" controls @click="is_opened = true"
+                preload="auto" poster="/mommiyoga/course/course-preview-1.jpg">
+                    <source src="/mommiyoga/course/course-video-1.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <div class="teach-course-info">
                     <div></div>
                     <div>
@@ -234,10 +239,6 @@ export default {
         height: 39vh;
         position: absolute;
         top: 0;
-        background-image: url('/mamiyoga/teach-title-img.png'); 
-        background-repeat:no-repeat;
-        background-position:center;
-        background-size:cover;   
         z-index: 0;
     }
     .teach-course-info {
@@ -252,12 +253,13 @@ export default {
         width: 55px;
         float: left;
         background-repeat: no-repeat;
-        background-image: url('/mamiyoga/teach-photoby.svg');
+        background-image: url('/mommiyoga/teach-photoby-1.svg');
         background-position: center center;
+        background-size: contain; 
     }
     .teach-course-info div:last-child {
         float: left;
-        padding: 10px 0 0 10px;
+        padding: 10px 0 0 5px;
     } 
     .teach-course-info h3 {
         color: #ECEDE8;
@@ -408,6 +410,10 @@ export default {
         background: #9BAEB2;
         color: #fff;
     }
+    .mamiyoga-course-video {
+        width: 100%;
+        height: 31vh;
+    }
 }
 @media (max-width:768px) and (orientation:portrait) {
     .teach-page {
@@ -438,11 +444,7 @@ export default {
         width: 100vw;
         height: 39vh;
         position: absolute;
-        top: 0;
-        background-image: url('/mamiyoga/teach-title-img.png'); 
-        background-repeat:no-repeat;
-        background-position:center;
-        background-size:cover;   
+        top: 0;  
         z-index: 0;
     }
     .teach-course-info {
@@ -626,6 +628,14 @@ export default {
         background: #9BAEB2;
         color: #fff;
     }
+    .mamiyoga-course-video {
+        width: 100vw;
+        height: auto;
+    }
+    .mamiyoga-each-course video[poster] {
+        object-fit: cover;
+    }
+    
 }
 @media screen and (orientation: landscape) and (max-width:768px) {
     .mamiyoga-assay-page .mamiyoga-assay-video {

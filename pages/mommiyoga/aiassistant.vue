@@ -3,10 +3,11 @@
         <div class="aiassistant-page" v-if="!open_explain">
             <mamiyoga-mail-header headerTitle="AI助教" mailheaderTitle="white"></mamiyoga-mail-header>
             <div class="aiassistant-intro">
+                <img src="/mommiyoga/aiassistant-title.png" alt="" class="aiassistant-title-img">
                 <p>正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的影片体验。</p>
-                <div>
+                <!-- <div>
                     <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教学" style="margin-bottom:5vh;"></mamiyoga-btn>
-                </div>
+                </div> -->
                 <div class="teach-question-box" @click="open_explain = true">
                     <img src="/mamiyoga/teach-question-btn.svg" alt="">
                 </div>
@@ -14,7 +15,8 @@
             <div class="aiassistant-container">
                 <h4>所有动作</h4>
                 <mommiyoga-aiassistant-pose-block v-for="array in have_ai_array" 
-                :key="array.id" :poseText="array.title" :goRecord="array.id"></mommiyoga-aiassistant-pose-block>
+                :key="array.id" :poseText="array.title" :goRecord="array.id"
+                :bgImg="array.id"></mommiyoga-aiassistant-pose-block>
             </div>
         </div>
         <mommiyoga-explain-block v-if="open_explain" @closeExplain="closeExplain"></mommiyoga-explain-block>
@@ -91,7 +93,7 @@ export default {
 }
 .aiassistant-intro {
     width: 100vw;
-    height: 40vh;
+    height: 41vh;
     background-color: #24798F; 
     position: absolute;
     top: 0;
@@ -103,17 +105,22 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
 }
+.aiassistant-title-img {
+    height: 18vh;
+    margin-top: 7vh;
+
+}
 .aiassistant-intro p {
     width: 100%;
     text-align: center;
     color: white;
     font-size: 14px;
-    margin: 13vh 0 1vh;
+    margin: 0 0 1vh;
 }
 .aiassistant-container {
     width: 100vw;
     height: auto;
-    margin-top: 34vh;
+    margin-top: 36vh;
     padding-bottom: 10px;
 }
 .aiassistant-container h4 {
@@ -149,6 +156,14 @@ export default {
     }
     .aiassistant-container h4 {
         margin: 0 30px;
+    }
+    .aiassistant-title-img {
+        width: 150px;
+        height: 131px;
+        margin-top: 70px; 
+    }
+    .aiassistant-intro p {
+        margin: 0 0 10px;
     }
 }
 </style>
