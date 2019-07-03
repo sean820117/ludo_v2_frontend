@@ -4,7 +4,7 @@
         <h3>{{getTitle}}</h3>
         <div style="position:relative;">
             <video class="mamiyoga-course-video" controls @click="is_opened = true"
-            preload="auto" :poster="'/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
+            preload="auto" :poster="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
                 <source :src="'/mommiyoga/course/course-video-'+goPractice+'.mov'" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -265,10 +265,10 @@ export default {
     float: left;
 }
 .mamiyoga-course-photo-by:first-child {
-    background-image: url('/mommiyoga/teach-photoby-1.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-1.svg');
 }
 .mamiyoga-course-photo-by:nth-child(2) {
-    background-image: url('/mommiyoga/teach-photoby-2.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-2.svg');
 }
 .mamiyoga-course-intro-title-font {
     height: 65px;

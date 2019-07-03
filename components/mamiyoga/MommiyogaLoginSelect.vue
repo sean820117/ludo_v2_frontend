@@ -3,16 +3,16 @@
         <p>其他登录方式</p>
         <div class="mamiyoga-select-login-box">
             <div class="mamiyoga-select-login-icon">
-                <img src="/asamiyoga/intro-icon-wechat.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.svg" alt="">
             </div>
             <div class="mamiyoga-select-login-icon">
-                <img src="/asamiyoga/intro-icon-qq.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-qq.svg" alt="">
             </div>
             <div class="mamiyoga-select-login-icon">
-                <img src="/asamiyoga/intro-icon-weibo.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-weibo.svg" alt="">
             </div>
             <div class="mamiyoga-select-login-icon">
-                <img src="/asamiyoga/intro-icon-more.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.svg" alt="">
             </div>
         </div>
     </div>

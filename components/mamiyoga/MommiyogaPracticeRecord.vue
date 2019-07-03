@@ -1,6 +1,6 @@
 <template>
     <div class="practice-record">
-        <div class="practice-record-intro" :style="{backgroundImage:'url(/mommiyoga/course/course-preview-'+bgImg+'.jpg)',}">
+        <div class="practice-record-intro" :style="{backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+bgImg+'.jpg)',}">
             <a @click="$router.go(-1)">
                 <div class="practice-record-intro-close-box"></div>
             </a>
@@ -91,10 +91,10 @@ export default {
     float: left;
 }
 .practice-record-photo-by:first-child {
-    background-image: url('/mommiyoga/teach-photoby-1.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-1.svg');
 }
 .practice-record-photo-by:nth-child(2) {
-    background-image: url('/mommiyoga/teach-photoby-2.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-2.svg');
 }
 .practice-record-intro-title-font {
     height: 65px;

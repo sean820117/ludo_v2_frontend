@@ -4,7 +4,7 @@
         <div class="course-aimark">
             <img src="/mamiyoga/ai-badge.svg" alt="" v-if="have_ai">
         </div>
-        <div class="course-block-background" :style="{backgroundImage:'url(/mommiyoga/course/course-preview-'+bgImage+'.jpg)',backgroundSize:'cover'}"></div>
+        <div class="course-block-background" :style="{backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+bgImage+'.jpg)',backgroundSize:'cover'}"></div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
                 <h4 v-html="blockTitle"></h4>

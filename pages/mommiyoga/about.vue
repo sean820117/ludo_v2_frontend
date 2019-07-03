@@ -135,7 +135,7 @@ export default {
     height: 40vh;
     position: absolute;
     top: 0;
-    background-image: url('/mommiyoga/course/course-preview-1.jpg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

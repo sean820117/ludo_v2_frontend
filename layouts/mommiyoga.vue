@@ -40,29 +40,29 @@ export default {
             user : 'user/getData',
         }),
     },
-    // head() {
-    //     return  {
-    //         title: 'MAMIYOGA',
-    //         meta: [
-    //             { charset: 'utf-8' },
-    //             { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
-    //             { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
-    //             { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
-    //             { property : 'og:type' , content:"education tech."},
-    //             { property : 'og:url' , content:"https://www.ludonow.com/resume"},
-    //             { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
-    //             { property : 'og:description' , content:"狂人履歷線上課程，讓你60分鐘超越別人60天的準備。"},
-    //             { property : 'og:site_name' , content:"www.ludonow.com"},
-    //         ],
-    //         link: [
-    //             { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
-    //         ],
-    //         script: [
-    //             { src: 'https://player.vimeo.com/api/player.js' },
-    //             { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
-    //         ],
-    //     }
-    // },
+    head() {
+        return  {
+            title: 'MAMIYOGA',
+            meta: [
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
+                { hid: 'description', name: 'description', content: '狂人履歷線上課程，讓你 60 分鐘超越別人 60 天的準備。' },
+                { property : 'og:title' , content:"履歷範本 - 找工作的加速器"},
+                { property : 'og:type' , content:"education tech."},
+                { property : 'og:url' , content:"https://www.ludonow.com/resume"},
+                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
+                { property : 'og:description' , content:"狂人履歷線上課程，讓你60分鐘超越別人60天的準備。"},
+                { property : 'og:site_name' , content:"www.ludonow.com"},
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
+            ],
+            script: [
+                { src: 'https://player.vimeo.com/api/player.js' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
+            ],
+        }
+    },
     async mounted() {
         if (process.client) {
             

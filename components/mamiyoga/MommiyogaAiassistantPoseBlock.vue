@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link :to="'/mommiyoga/record/' + goRecord" style="text-decoration: none">
-            <div class="aiassistant-pose-block" :style="{backgroundImage:'url(/mommiyoga/course/course-preview-'+bgImg+'.jpg)'}">
+            <div class="aiassistant-pose-block" :style="{backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+bgImg+'.jpg)'}">
                 <p>{{poseText}}</p>
             </div>
         </router-link>

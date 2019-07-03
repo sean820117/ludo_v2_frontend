@@ -1,7 +1,7 @@
 <template>
     <div class="index-contain">
         <video muted loop autoplay class="background-video" >
-            <source src="/mommiyoga/index-1.mp4" type="video/mp4">      
+            <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-1.mp4" type="video/mp4">      
         </video>
         <div class="mamiyoga-index-intro">
             <mommiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-header>
