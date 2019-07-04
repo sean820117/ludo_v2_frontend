@@ -2,7 +2,7 @@
     <div class="mamiyoga-header">
         <router-link to="/mamiyoga">
         <div class="mamiyoga-header-logo">
-            <img src="/mamiyoga/header-logo.png" alt="">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="">
         </div>
         </router-link>
         <router-link :to="{path:loginTo}" style="text-decoration:none;">

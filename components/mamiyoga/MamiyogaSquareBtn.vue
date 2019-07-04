@@ -29,6 +29,7 @@ export default {
     border-radius: 5px;
     letter-spacing: 3px;
     display: block;
+    cursor: pointer;
 }
 
 </style>

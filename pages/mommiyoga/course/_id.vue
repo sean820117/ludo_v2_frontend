@@ -2,7 +2,9 @@
     <div>
         <mommiyoga-every-course @handleCourseVideoUpload="handleCourseVideoUpload"
         :course_data="course_data" v-if="!is_loaded"></mommiyoga-every-course>
-        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
+        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent" 
+        :show_record_btn="true" :goRecord="course_data.id"
+        @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 

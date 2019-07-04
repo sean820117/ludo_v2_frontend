@@ -7,14 +7,20 @@
             ></mommiyoga-practice-record>
             <div class="practice-record-content">
                 <h4>练习记录</h4>
-                <div class="practice-record-content-container">
+                <div class="practice-record-content-container" v-for="data in user_data"
+                :key="data.id" >
+                    <!-- <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
                     <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block> -->
+                </div>
+                <div class="practice-record-no-content" v-if="!have_user_data">
+                    <p>尚无拍摄纪录</p>
                 </div>
             </div>
         </div>
-        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
+        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"
+         :show_record_btn="true" :goRecord="course_data.id"
+         @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
@@ -38,11 +44,14 @@ export default {
         courses:[],
         course_id:'',
         course_data:{},
+
         is_loaded: false,
         isLoading: false,
         fullPage: true,
         video_result: {},
-        
+
+        user_data:[],
+        have_user_data:false,
     }),
     components: {
         MommiyogaPracticeRecord,
@@ -161,6 +170,13 @@ export default {
     border-bottom: solid 1px rgba(112,112,112,.3);
     padding-bottom: 1vh;
     margin: 3vh 5vw;
+}
+.practice-record-no-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    color:#707070;
 }
 .vld-overlay .vld-background {
     background-color:black;

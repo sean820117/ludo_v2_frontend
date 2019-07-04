@@ -1,27 +1,36 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mommiyoga-login-header headerTitle="体验练习" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mommiyoga-login-header>
+            <mommiyoga-login-header headerTitle="体验练习" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
             <div class="teach-title-video-box">
-                <video class="mamiyoga-course-video" controls @click="is_opened = true"
+                <video class="mamiyoga-course-video-try" controls @click="is_opened = true"
                 preload="auto" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg">
-                    <source src="/mommiyoga/course/course-video-1.mov" type="video/mp4">
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="teach-course-info">
-                    <div></div>
+                <div class="teach-course-info" v-if="!is_opened">
                     <div>
-                        <h3></h3>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png" alt="">
+                    </div>
+                    <div>
+                        <h3>{{course_title}}</h3>
                         <p>拍摄时间建议：20-45秒</p>
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
-                    <img src="/mamiyoga/teach-question-btn.svg" alt="">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="">
                 </div>
             </div>
             <div class="teach-detail-box">
                 <h6>姿势步骤</h6>
                 <div class="teach-content-text">
+                    <div class="teach-content-li" :key="i"
+                    v-for="(description,i) in course_descriptions">
+                        <p class="teach-content-num">{{i+1}}</p>
+                        <p>{{description}}</p>
+                    </div>
+
+
                     <!-- <div class="teach-content-li">
                         <p class="teach-content-num">1</p>
                         <p>我们正躺，望向天花板</p>
@@ -70,7 +79,7 @@
                     <div class="cancel-box" @click="show_remind = false">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                     </div>
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.svg" alt="" style="margin-top: 50px;">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.png" alt="" style="margin-top: 50px;">
                     <p style="color:#8699A0;font-size:13px;">我们将记录您的动作<br>并交给AI助教分析</p>
                     <div class="star-line-box">
                         <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
@@ -80,7 +89,8 @@
                 </mamiyoga-window-alert-box>
             </div>
         </div>
-        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
+        <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent" :show_record_btn="false"
+        @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
@@ -113,8 +123,11 @@ export default {
         is_shown_remind: false,
         show_remind: false, 
         open_explain: false,
+        is_opened:false,
 
         courses:[],
+        course_title:'',
+        course_descriptions:[],
     }),
     
     components: {
@@ -129,6 +142,8 @@ export default {
     async mounted() {
         if (process.client) {
             this.courses = await require('~/config/mommiyoga-course');
+            this.course_title = this.courses[7].title;
+            this.course_descriptions = this.courses[7].pose_description;
         }
     },
     methods: {
@@ -231,20 +246,20 @@ export default {
     width: 90vw;
     height: 75px;
     position: absolute;
-    top: 17vh;
+    top: 27vh;
     margin-left: 5vw;
 }
-.teach-course-info div:first-child {
+.teach-course-info div:first-child img {
     height: 62px;
-    width: 55px;
+    width: 45px;
     float: left;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-image: url('/mamiyoga/teach-photoby.svg');
-    background-position: center center;
+    background-position: center center; */
 }
 .teach-course-info div:last-child {
     float: left;
-    padding: 10px 0 0 10px;
+    padding: 12px 0 0 5px;
 } 
 .teach-course-info h3 {
     color: #ECEDE8;
@@ -259,8 +274,13 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 30vh;
+    top: 33vh;
     right: 6vw;
+}
+.teach-question-box img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 .teach-detail-box {
     width: 100vw;
@@ -335,6 +355,10 @@ export default {
     box-shadow:5px 5px 10px rgba(0,0,0,.2);
     background: #97A8AF;
     color: #fff;
+    cursor: pointer;
+}
+.teach-assay-btn label {
+    cursor: pointer;
 }
 .vld-overlay .vld-background {
     background-color:black;
@@ -378,6 +402,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .cancel-box img {
     width: 65%;
@@ -408,9 +433,12 @@ export default {
     background: #9BAEB2;
     color: #fff;
 }
-.mamiyoga-course-video {
+.mamiyoga-assay-contact-btn label {
+    cursor: pointer;
+}
+.mamiyoga-course-video-try {
     width: 100vw;
-    height: auto;
+    height: 41vh;
 }
 .mamiyoga-each-course video[poster] {
     object-fit: cover;
@@ -422,16 +450,18 @@ export default {
     .teach-page {
         width: 100%;
     }
-    .mamiyoga-course-video {
+    .mamiyoga-course-video-try {
         width: 450px;
+        height: 330px;
     }
     .teach-course-info {
         width: 400px;
-        top: 200px;
+        top: 240px;
         margin-left: 30px; 
     }
     .teach-title-video-box {
         height: auto;
+        width: 450px;
     }
     .teach-detail-box {
         width: 100%;
@@ -444,6 +474,10 @@ export default {
         width: 100%;
         margin: 25px auto 0;
         padding: 0 35px;
+    }
+    .teach-question-box {
+        top: 270px;
+        right: 30px;
     }
 }
 

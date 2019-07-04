@@ -68,11 +68,12 @@ export default {
 .practice-record-intro-close-box {
     width: 30px;
     height: 30px;
-    background-image: url('/mamiyoga/practice-record-close.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     float: right;
+    cursor: pointer;
 }
 .practice-record-intro-title {
     width: 100vw;
@@ -91,16 +92,16 @@ export default {
     float: left;
 }
 .practice-record-photo-by:first-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-1.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png');
 }
 .practice-record-photo-by:nth-child(2) {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-2.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png');
 }
 .practice-record-intro-title-font {
     height: 65px;
     float: left;
     color: white;
-    margin-top: 15px; 
+    margin-top: 19px; 
 }
 .practice-record-intro-title-font h3 {
     font-size: 1.2em;
@@ -139,6 +140,9 @@ export default {
     border-radius: 5px;
     letter-spacing: 3px;
     display: block;
+}
+.practice-record-intro-btn label {
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .practice-record-intro {

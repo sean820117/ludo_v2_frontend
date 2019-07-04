@@ -3,13 +3,13 @@
         <div class="aiassistant-page" v-if="!open_explain">
             <mamiyoga-mail-header headerTitle="AI助教" mailheaderTitle="white"></mamiyoga-mail-header>
             <div class="aiassistant-intro">
-                <img src="/mommiyoga/aiassistant-title.png" alt="" class="aiassistant-title-img">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/aiassistant-title.png" alt="" class="aiassistant-title-img">
                 <p>正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的影片体验。</p>
                 <!-- <div>
                     <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教学" style="margin-bottom:5vh;"></mamiyoga-btn>
                 </div> -->
-                <div class="teach-question-box" @click="open_explain = true">
-                    <img src="/mamiyoga/teach-question-btn.svg" alt="">
+                <div class="aiassistant-teach-question-box" @click="open_explain = true">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="">
                 </div>
             </div>
             <div class="aiassistant-container">
@@ -39,11 +39,13 @@ export default {
     },
     data:()=>({
         open_explain: false,
+        courses: [],
+        have_ai_array: [],
     }),
-    props: {
-        courses:Array,
-        have_ai_array:Array,
-    },
+    // props: {
+    //     courses:Array,
+    //     have_ai_array:Array,
+    // },
     methods: {
         closeExplain(){
             this.open_explain = false
@@ -132,12 +134,17 @@ export default {
     padding-bottom: 1vh;
     margin: 0 5vw;
 }
-.teach-question-box {
+.aiassistant-teach-question-box {
     width: 30px;
     height: 30px;
     position: absolute;
     top: 33vh;
     right: 6vw;
+    cursor: pointer;
+}
+.aiassistant-teach-question-box img {
+    width: 30px;
+    height: 30px;
 }
 @media (min-width: 769px) {
     .aiassistant-page,.aiassistant-container {
@@ -147,7 +154,7 @@ export default {
         height: 360px;
         width: 450px;
     }
-    .teach-question-box {
+    .aiassistant-teach-question-box {
         top: 300px;
         right: 35px;
     }

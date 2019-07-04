@@ -2,7 +2,7 @@
     <div class="mamiyoga-teach-header">
         <div class="mamiyoga-teach-header-goback-btn">
             <a @click="$router.go(-1)">
-                <img src="/mamiyoga/teach-goback.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </a>
         </div>
         <div class="mamiyoga-teach-header-title">
@@ -50,9 +50,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .mamiyoga-teach-header-goback-btn img {
     display: block;
+    width: 20px;
+    height: 13px;
 }
 .mamiyoga-teach-header-title h3 {
     font-size: 14px;

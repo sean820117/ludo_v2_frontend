@@ -8,20 +8,25 @@
             <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                 {{title}}
             </h2> -->
-            <img src="/mommiyoga/mommiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-title.png" alt="" class="mamiyoga-intro-title">
             
             <div class="mamiyoga-intro-btn">
                 <router-link to="/mommiyoga/teach" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="马上体验" ></mamiyoga-btn>
                 </router-link>
             </div>
-            <div class="mamiyoga-intro-btn">
-                <router-link to="/" style="text-decoration: none;">
+            <div class="mamiyoga-intro-btn" v-if="!is_login">
+                <router-link to="/resume/pay" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="立即购买"  style="margin-bottom:5vh;"></mamiyoga-btn>
                 </router-link>
             </div>
+            <div class="mamiyoga-intro-btn" v-else>
+                <router-link to="/mommiyoga/menu" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="欢迎回来"  style="margin-bottom:5vh;"></mamiyoga-btn>
+                </router-link>
+            </div>
             <mommiyoga-login-select></mommiyoga-login-select>
-            <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用户协议</a>&nbsp;和&nbsp;<a href="/mommiyoga/privacy">隐私政策</a></p>
+            <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/mommiyoga/agreement">用户协议</a>&nbsp;和&nbsp;<a href="/mommiyoga/privacy">隐私政策</a></p>
         </div>
     </div>
 </template>
@@ -34,6 +39,8 @@ import MommiyogaLoginSelect from '~/components/mamiyoga/MommiyogaLoginSelect.vue
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 import VueMq from 'vue-mq';
+import { mapMutations, mapGetters } from 'vuex';
+
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
@@ -43,6 +50,9 @@ Vue.use(VueMq, {
 });
 export default {
     layout:'mommiyoga',
+    data:()=>({
+        is_login: false,
+    }),
     components: {
         MommiyogaHeader,
         MamiyogaBtn,
@@ -54,7 +64,16 @@ export default {
     props: {
         title: String,
     },
-
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
+    async beforeCreate() {
+        if (process.client) {
+            this.is_login = await this.$checkLogin(this.$store);
+        }
+    }
 }
 </script>
 
@@ -125,7 +144,7 @@ export default {
         min-height: 100vh;
         min-width: auto;
     }
-     .mamiyoga-index-intro {
+    .mamiyoga-index-intro {
         width: 450px;
         height: 100vh;
     }

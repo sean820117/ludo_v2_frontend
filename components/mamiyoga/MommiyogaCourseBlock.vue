@@ -2,7 +2,7 @@
 <div><router-link :to="'/mommiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block">
         <div class="course-aimark">
-            <img src="/mamiyoga/ai-badge.svg" alt="" v-if="have_ai">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="have_ai">
         </div>
         <div class="course-block-background" :style="{backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+bgImage+'.jpg)',backgroundSize:'cover'}"></div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
@@ -23,7 +23,7 @@
                     </div> -->
                     
                     <div class="course-block-icon">
-                        <img :src="timeSrc" alt="">
+                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course-data/'+timeSrc" alt="">
                         
                     </div>
                     
@@ -70,6 +70,10 @@ export default {
     top: -15px;
     right: 15px;
 }
+.course-aimark img {
+    width: 45px;
+    height: 45px;
+}
 .course-block-background {
     /* position: absolute;
     top: 0; */
@@ -103,16 +107,15 @@ export default {
 }
 .course-block-detail {
     /* background: green; */
-    width: 45vw;
-    height: 7vh;
+    width: 25vw;
+    height: 75px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
     margin-right: 10px;
 }
 .course-block-icon {
     float: left;
-    width: 15vw;
     background: white;
     display: flex;
     justify-content: center;
@@ -138,6 +141,7 @@ export default {
     .course-block {
         width: 90%;
         height: 250px;
+        margin: 25px auto 0;
     }
     .course-block-contain {
         width: 100%;
@@ -148,10 +152,13 @@ export default {
     }
     .course-block-title {
         width: 90%;
+        height: 75px;
     }
     .course-block-detail {
-        width: 50%;
+        width: 30%;
     }
-
+    .course-block-icon img {
+        height: 35px;
+    }
 }
 </style>

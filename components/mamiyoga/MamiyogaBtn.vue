@@ -26,6 +26,7 @@ export default {
     display: block;
     margin: 10px auto;
     border-style: none;
+    cursor: pointer;
 }
 
 </style>

@@ -5,7 +5,8 @@
         <div style="position:relative;">
             <video class="mamiyoga-course-video" controls @click="is_opened = true"
             preload="auto" :poster="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
-                <source :src="'/mommiyoga/course/course-video-'+goPractice+'.mov'" type="video/mp4">
+                <source :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-'+goPractice+'.mp4'"
+                 type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <!-- <div class="course-bookmark">
@@ -16,7 +17,7 @@
                 <div class="mamiyoga-course-photo-by" v-show="!getPhotoBy"></div>
                 <div class="mamiyoga-course-intro-title-font">
                     <h4>{{getTitle}}</h4>
-                    <p>拍摄时间建议：</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
+                    <p>拍摄时间建议：</p><p>{{getRecordTime}}</p><p>&nbsp;秒</p>
                 </div>
             </div>
         </div>
@@ -137,6 +138,13 @@ export default {
             } else {
                 return []
             }
+        },
+        getRecordTime(){
+            if (this.course_data) {
+                return this.course_data.record_time
+            } else {
+                return ''
+            }
         }
     }
 }
@@ -156,6 +164,7 @@ export default {
 .mamiyoga-each-course video[poster] {
     object-fit: cover;
 }
+
 .course-bookmark {
     width: 30px;
     position: absolute;
@@ -222,6 +231,12 @@ export default {
     border-style: none;
     color: #EEEFEA;
     background-color: #97A8AF;
+    
+}
+.course-divide-btn label {
+    width: 135px;
+    height: 35px;
+    cursor: pointer;
 }
 .mamiyoga-go-to-divide-btn {
     position: relative;
@@ -265,16 +280,16 @@ export default {
     float: left;
 }
 .mamiyoga-course-photo-by:first-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-1.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png');
 }
 .mamiyoga-course-photo-by:nth-child(2) {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-photoby-2.svg');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png');
 }
 .mamiyoga-course-intro-title-font {
     height: 65px;
     float: left;
     color: white;
-    margin-top: 15px; 
+    margin-top: 20px; 
 }
 .mamiyoga-course-intro-title-font h4 {
     font-size: 1.2em;
@@ -308,6 +323,11 @@ export default {
     .mamiyoga-go-to-divide-btn img {
         top: -15px;
         left: 130px;
+    }
+    .mamiyoga-course-intro-title { 
+        width: 80%;
+        bottom: 35px;
+        left: 30px;
     }
     
 }

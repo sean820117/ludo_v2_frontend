@@ -1,30 +1,25 @@
 <template>
-    <div class="mamiyoga-index-intro">
-        <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
-        <!-- <h2 class="mamiyoga-intro-title" v-html="title">
-            {{title}}
-        </h2> -->
-        <img src="/mamiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
-        <div class="mamiyoga-intro-btn">
-            <router-link to="/mamiyoga/teach" style="text-decoration: none;">
-                <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="體驗課程"></mamiyoga-btn>
-            </router-link>
-        </div>
-        <div class="mamiyoga-intro-btn" @click="openRemindBox">
-            <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="完整課程" style="margin-bottom:5vh;"></mamiyoga-btn>
-        </div>
-        <mamiyoga-login-select></mamiyoga-login-select>
-        <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
-        <div class="background-video">
-            <hooper :autoPlay="true" :playSpeed="8000">
-                <slide>
-                    <video src="/mommiyoga/index-video-1.mp4" muted="true" loop="true" autoplay="autoplay"></video>
-                </slide>
-                <slide>
-                    <video src="/mommiyoga/index-video-4.mp4" muted="true" loop="true" autoplay="autoplay"></video>
-                </slide>
-                
-            </hooper>
+    <div class="index-contain">
+        <video muted loop autoplay class="background-video" >
+            <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-1.mp4" type="video/mp4">      
+        </video>
+        <div class="mamiyoga-index-intro">
+            <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
+            <!-- <h2 class="mamiyoga-intro-title" v-html="title">
+                {{title}}
+            </h2> -->
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <div class="mamiyoga-intro-btn">
+                <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="體驗課程"></mamiyoga-btn>
+                </router-link>
+            </div>
+            <div class="mamiyoga-intro-btn" @click="openRemindBox">
+                <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="完整課程" style="margin-bottom:5vh;"></mamiyoga-btn>
+            </div>
+            <mamiyoga-login-select></mamiyoga-login-select>
+            <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
+           
         </div>
     </div>
 </template>
@@ -58,9 +53,18 @@ export default {
 </script>
 
 <style>
+.index-contain {    
+    overflow: hidden;
+    height: 100vh;
+}
+.index-contain .hooper {
+    height: auto;
+}
 .mamiyoga-index-intro {
     width: 100vw;
     min-height: 100vh;
+    position: fixed;
+    top: 0;
 }
 .mamiyoga-intro-title {
     /* margin:10vh 0 35vh 0; 
@@ -87,29 +91,40 @@ export default {
     color: #DCD8CF;
 }
 .background-video {
-    height: 100%;
-    position: fixed;
-    z-index: -99;
-    top: 0;
-}
-.background-video video {
-    height: 100%;
-    position: fixed;
-    z-index: -99;
-    top: 0;
+    /* position: fixed; */
+    top: -3vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 .hooper {
     width: 100vw;
     height: 100vh;
 }
 @media (min-width:769px) {
+    .index-contain {
+        width: 450px;
+        height: 100vh;
+    }
     .mamiyoga-index-intro {
-        width: 100%;
+        width: 450px;
         height: 100vh;
     }
     .mamiyoga-intro-title {
         width: 70%;
     }
-
+    .background-video {
+        min-height: 100vh;
+        min-width: auto;
+    }
+}
+@media (max-width: 400px) {
+    .background-video {
+        top: -4vh;
+    }
+}
+@media (max-width: 350px) {
+    .background-video {
+        margin-top: -35vh;
+    }
 }
 </style>

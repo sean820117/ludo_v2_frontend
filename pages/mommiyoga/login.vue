@@ -4,7 +4,7 @@
             <div class="mamiyoga-header-logo"></div>
             <div class="mamiyoga-header-login">
                 <button :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"
-                @click="switch_signup_and_login" class="mamiyoga-header-login-btn">{{ login_or_signup === "signup" ? '登录' : '注册' }}</button>
+                @click="switch_signup_and_login" class="mamiyoga-header-login-btn-switch">{{ login_or_signup === "signup" ? '登录' : '注册' }}</button>
             </div>
         </div>
         <div class="mamiyoga-login-container">
@@ -204,7 +204,7 @@ textarea:focus, input:focus{
     width: 30px;
     height: 30px;
 }
-.signup-page .mamiyoga-header .mamiyoga-header-login-btn {
+.signup-page .mamiyoga-header .mamiyoga-header-login-btn-switch {
     color: #FFF;
     width: 55px;
     height: 25px;

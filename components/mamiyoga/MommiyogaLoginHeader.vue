@@ -1,17 +1,17 @@
 <template>
     <div class="mamiyoga-header">
-        <div class="mail-header-goback">
+        <div class="login-header-goback">
             <a @click="$router.go(-1)">
-                <img src="/mamiyoga/teach-goback.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </a>
         </div>
-        <router-link :to="{path:loginTo}" style="text-decoration:none;">
+        
         <div class="mamiyoga-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">密码登录</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mommiyoga/login')">密码登录</button>
             <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button>
         </div>
-        </router-link>
+        
     </div>
 </template>
 
@@ -50,24 +50,25 @@ export default {
     padding: 0 20px;
     z-index: 980;
 }
-.mamiyoga-header-logo {
+/* .mamiyoga-header-logo {
     width: 30px;
     height: 30px;
-    /* background: white; */
-    /* position: absolute;
+    background: white;
+    position: absolute;
     top: 2vh;
-    left: 7vw; */
-}
-.mamiyoga-header-logo img {
+    left: 7vw;
+} */
+/* .mamiyoga-header-logo img {
     display: block;
     width: 30px;
-}
-.mamiyoga-header-login {
-    /* background: white; */
-    /* position: absolute;
+    cursor: pointer;
+} */
+/* .mamiyoga-header-login {
+    background: white;
+    position: absolute;
     top: 3vh;
-    right: 6vw; */
-}
+    right: 6vw;
+} */
 .mamiyoga-header-login-btn {
     width: 55px;
     height: 25px;
@@ -77,11 +78,12 @@ export default {
     text-align: center;
     border-style: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+    cursor: pointer;
 }
 .mamiyoga-header-login-btn.mommiyoga-header-login-btn {
     width: 70px;
 }
-.mail-header-goback {
+.login-header-goback {
     width: 30px;
     height: 30px;
     display: flex;
@@ -89,8 +91,11 @@ export default {
     align-items: center;
     position: relative;
 }
-.mail-header-goback img {
+.login-header-goback img {
     display: block;
+    width: 20px;
+    height: 13px;
+    cursor: pointer;
 }
 
 </style>

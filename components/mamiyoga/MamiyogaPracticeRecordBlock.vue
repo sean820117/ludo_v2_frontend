@@ -3,8 +3,8 @@
         <div class="notice-box" v-if="have_notice"></div>
         <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
         <div class="starmark-box" @click="checkStar">
-            <img src="/mamiyoga/star.svg" alt="" v-show="!check_star">
-            <img src="/mamiyoga/star-checked.svg" v-show="check_star" alt="">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="" v-show="!check_star">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" v-show="check_star" alt="">
         </div>
     </div>
 </template>
@@ -44,7 +44,7 @@ export default {
 .notice-box {
     width: 30px;
     height: 30px;
-    background: url('/mamiyoga/practice-record-notice.svg');
+    background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-record-notice.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -69,6 +69,7 @@ export default {
     position: absolute;
     bottom: 10px;
     right: 3vw;
+    cursor: pointer;
 }
 .starmark-box img {
     width: 25px;

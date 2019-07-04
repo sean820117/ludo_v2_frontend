@@ -1,6 +1,6 @@
 <template>
     <div class="about-page">
-        <mamiyoga-mail-header bgColor="#9BAEB2" headerTitle="教师介绍" ftColor="#97A8AF"></mamiyoga-mail-header>
+        <mamiyoga-mail-header bgColor="#9BAEB2" headerTitle="教师介绍" mailheaderTitle="#97A8AF"></mamiyoga-mail-header>
         <div class="about-title">
             <div class="about-title-font">
                 <h3>桥本麻美</h3>
