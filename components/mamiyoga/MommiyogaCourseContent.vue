@@ -14,19 +14,19 @@
                 <mommiyoga-course-block v-for="primary in getPrimarys" :key="primary.id"
                 :bgImage="primary.id" blockColor="white" :have_ai="primary.ai_teacher"
                 :blockTitle="primary.title"  :selectCourse="primary.id"
-                :goCourse="primary.id" :timeSrc="primary.time_img"
+                :goCourse="primary.id" :timeSrc="primary.id"
                 ></mommiyoga-course-block>
             </div>
             <div class="second-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="intermediate in getIntermediates" :key="intermediate.id"
                 :bgImage="intermediate.id" blockColor="white" :have_ai="intermediate.ai_teacher"
-                :blockTitle="intermediate.title"  :goCourse="intermediate.id" :timeSrc="intermediate.time_img"
+                :blockTitle="intermediate.title"  :goCourse="intermediate.id" :timeSrc="intermediate.id"
                 ></mommiyoga-course-block>
             </div>
             <div class="third-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="advanced in getAdvanceds" :key="advanced.id"
                 :bgImage="advanced.id" blockColor="white" :have_ai="advanced.ai_teacher"
-                :blockTitle="advanced.title" :goCourse="advanced.id" :timeSrc="advanced.time_img"
+                :blockTitle="advanced.title" :goCourse="advanced.id" :timeSrc="advanced.id"
                 ></mommiyoga-course-block>
             </div>
         </div>

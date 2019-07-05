@@ -23,7 +23,7 @@
                     </div> -->
                     
                     <div class="course-block-icon">
-                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course-data/'+timeSrc" alt="">
+                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-time-'+timeSrc+'.png'" alt="">
                         
                     </div>
                     
