@@ -3,26 +3,30 @@
         <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''"><div slot="right-component" @click="$router.go(-1)" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">返回</div></titlebar>
         <div class="reg-text">{{ login_or_signup === 'signup' ? '註冊' : '登入' }}</div>
         <div class="reg-text2" :style="{color: hint_color}"> {{ hint }}</div>
-        <div class="third-party">
+        <!-- <div class="third-party">
             <no-ssr><third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
-        </div>
+        </div> -->
         <div class="hr"></div>
         <div class="text-or">or</div>
         <form class="signup-form">
+            <div class="login-column">
+                <div class="login-column-label">姓名</div>
+                <input name="name" class="login-column-input" type="text" v-model="name"/>
+            </div>
             <div class="login-column">
                 <div class="login-column-label">電子信箱</div>
                 <input name="email" class="login-column-input" type="text" v-model="email"/>
             </div>
             <div class="login-column">
-                <div class="login-column-label">密碼</div>
-                <input name="password" class="login-column-input" type="password" v-model="password"/>
+                <div class="login-column-label">電話</div>
+                <input name="phone" class="login-column-input" type="number" v-model="phone"/>
             </div>
-            <div class="login-column" v-if="login_or_signup === 'signup'">
+            <!-- <div class="login-column" v-if="login_or_signup === 'signup'">
                 <div class="login-column-label">確認密碼</div>
                 <input name="confirm_password" class="login-column-input" type="password" v-model="confirm_password"/>
-            </div>
+            </div> -->
             <div class="btn-login-and-signup-container">
-                <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p>
+                <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
                 <button class="btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"  @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '註冊' : '登入'  }}</button>
             </div>
         </form>
@@ -41,6 +45,8 @@ export default {
         return {
             errors: null,
             email: '',
+            name:'',
+            phone:'',
             password: '',
             confirm_password: '',
             is_ui_config_loaded:false,
@@ -67,7 +73,7 @@ export default {
     },
     methods: {
         onSubmit(type) {
-            if (this.email.length === 0 || this.password.length === 0) {
+            if (this.email.length === 0 || this.name.length === 0 || this.phone.length === 0) {
                 this.hint = '請填寫所有欄位！'
                 this.hint_color = "red"
                 return
@@ -76,25 +82,26 @@ export default {
                 this.hint = '電子信箱格式錯誤'
                 this.hint_color = "red"
                 return
-            }
-            if (this.password.length < 8) {
-                this.hint = '密碼過短'
+            } else if (this.phone.length != 10) {
+                this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
                 this.hint_color = "red"
                 return
-            }
-            if (this.password !== this.confirm_password && type === "signup") {
-                this.hint = '密碼需大於八個字'
-                this.hint_color = "red"
-                return
-            }
+            } 
 
             this.hint = null
             this.hint_color = ""
 
-            if (type === "signup") {
-                this.signup(this.email, this.password, this.confirm_password)    
+            this.sendSubscribe();
+        },
+        async sendSubscribe() {
+            let response = await axios.post('/apis/subscribe-victor',{email:this.email,phone:this.phone,name:this.name});
+            if (response.data.status == '200') {
+                alert('註冊成功');
+                localStorage.victor = "true";
+                // this.$router.push('/victor/course');
+                window.location.href = '/victor/course';
             } else {
-                this.login(this.email, this.password)
+                alert('註冊失敗');
             }
         },
         async signup(email,password,repeated_password) {
@@ -207,6 +214,7 @@ textarea:focus, input:focus{
     margin: auto;
     margin-top: 11px;
     width: 67%;
+    max-width: 400px;
 }
 .login-column-label{
     text-align: left;
@@ -226,7 +234,7 @@ textarea:focus, input:focus{
 .btn-login-and-signup-container {
     display: flex;
     margin-top: 6vh;
-    justify-content: space-between;
+    justify-content: center;
     width: 67vw;
     margin-left: 16.5vw;
 }
