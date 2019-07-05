@@ -204,6 +204,7 @@ textarea:focus, input:focus{
     width: 30px;
     height: 30px;
 }
+
 .signup-page .mamiyoga-header .mamiyoga-header-login-btn-switch {
     color: #FFF;
     width: 55px;
@@ -214,6 +215,7 @@ textarea:focus, input:focus{
     text-align: center;
     border-style: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+    cursor: pointer;
 }
 .mamiyoga-login-container {
     height: 80vh;
@@ -301,7 +303,8 @@ textarea:focus, input:focus{
     border: none;
     border-radius: 15px;
     padding: unset;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .signup-page {
@@ -310,6 +313,25 @@ textarea:focus, input:focus{
     .signup-page .mamiyoga-header {
         width: 450px;
     }
+    .btn-login-and-signup-container {
+        padding-bottom: 15vh;
+    }
 }
-
+@media (max-width: 830px) and (min-width: 768px) and (orientation:landscape) {
+    .signup-form {
+        width: 450px;
+        background-color:white; 
+    }
+    .btn-login-and-signup-container {
+        padding-bottom: 15vh;
+    }
+}
+@media (max-width: 769px) and  (orientation:landscape) {
+    .signup-page {
+        min-height: 100vh;
+    }
+    .btn-login-and-signup-container {
+        padding-bottom: 15vh;
+    }
+}
 </style>

@@ -7,15 +7,20 @@
             ></mommiyoga-practice-record>
             <div class="practice-record-content">
                 <h4>练习记录</h4>
-                <div class="practice-record-content-container" v-for="data in user_data"
+                <!-- <div class="practice-record-content-container" v-for="data in user_data"
                 :key="data.id" >
-                    <!-- <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
                     <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block> -->
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                </div> -->
+                <div class="practice-record-content-container" >
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
                 </div>
-                <div class="practice-record-no-content" v-if="!have_user_data">
+                <!-- <div class="practice-record-no-content" v-if="!have_user_data">
                     <p>尚无拍摄纪录</p>
-                </div>
+                </div> -->
             </div>
         </div>
         <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"
@@ -192,4 +197,5 @@ export default {
         margin: 20px 30px;
     }
 }
+
 </style>

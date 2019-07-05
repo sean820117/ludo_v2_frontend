@@ -5,7 +5,6 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </div>
             <div style="display:flex;">
-                
                 <router-link to="/mommiyoga/aiassistant">
                     <div :style="{backgroundColor:'#9BAEB2',
                     backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-record-btn.svg)',
@@ -25,6 +24,11 @@
                 <source :src="video_result.output_video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <div class="mamiyoga-open-icon" @click="showAssayContent" :class="showContentOrNot">
+            <p>分析结果</p>
+        </div>
+        <div class="mamiyoga-open-background" :class="showContentOrNot"></div>
+        <div class="mamiyoga-close-icon" @click="showAssayContent" :class="showContentOrNot"></div>
         <div class="mamiyoga-assay-box">
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
@@ -699,6 +703,7 @@ export default {
 .mamiyoga-assay-star-block.open {
     display: block;
 }
+
 @media (min-width: 769px) {
     .mamiyoga-assay-page,.mamiyoga-assay-page .mamiyoga-assay-header,
     .mamiyoga-assay-page .mamiyoga-assay-video,
@@ -714,45 +719,56 @@ export default {
     .assay-grade-box {
         width: 75%;
     }
+    .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+        display: none;
+    }
 }
-@media (max-width: 769px) and  (orientation:landscape) {
+@media (max-width: 769px) and  (orientation:portrait) {
+    .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+        display: none;
+    }
+}
+@media (max-width: 830px) and (min-width: 768px) and (orientation:landscape) {
     .mamiyoga-assay-page .mamiyoga-assay-video {
-        height: calc(100vh - 60px);
+        height: calc(100% - 60px);
         float: left;
-        width: 90vw;
+        width: 100%;
     }
     .mamiyoga-assay-page .mamiyoga-assay-box {
-        width: 90vw;
-        height: calc(100vh - 60px);
+        width: 100%;
+        height: calc(100% - 60px);
     }
     .mamiyoga-assay-page .mamiyoga-assay-content {
-        height: 80vh;
+        height: 85vh;
         padding: 15px 15px 15px 0;
-        right: -180vw;
+        position: fixed;
+        top: 7.5vh;
+        width: 87vw;
+        display: none;
     }
     .mamiyoga-assay-page .mamiyoga-assay-content.open {
-        right: 0;
-        top: 0;
+        display: block;
+        top: 7.5vh;
     }
     .mamiyoga-assay-page .mamiyoga-assay-title {
         float: left;
         width: 40px;
-        height: 170px;
+        height: 50vh;
         border-radius: 0 25px 25px 0;
         margin: 10vh auto;
-        padding: 8vh 1vh;
+        padding: 9vh 1vh;
     }
     .mamiyoga-assay-content-box {
         width: 40vw;
-        height: 70vh;
+        height: calc(85vh - 30px);
         float: left;
-        margin-left: 2vw; 
+        margin-left: 2vw;
     }
     .share-text {
         display: none;
     }
     .mamiyoga-assay-share-box {
-        width: 35vw;
+        width: 30vw;
         height: 70vh;
     }
     .assay-grade-box {
@@ -760,21 +776,187 @@ export default {
     }
     .mamiyoga-assay-page .mamiyoga-assay-share-icon-box {
         width: 5vw;
-        height: 70vh;
+        height: 75vh;
         flex-wrap: wrap;
         position: absolute;
         right: 3vw;
         top: 5vh;
+        align-items: center;
+        margin: 0;
     }
     .mamiyoga-assay-page .mamiyoga-assay-contact-box {
-        width: 35vw;
+        width: 30vw;
         margin-top: 20vh;
     }
+    /*  */
     .mamiyoga-assay-grade-num h3 {
         font-size: 80px;
     }
     .mamiyoga-assay-contact-box .mamiyoga-assay-contact-btn {
         width: 100px;
+    }
+    .mamiyoga-open-icon {
+        width: 50px;
+        height: 50px;
+        background: #97A8AF;
+        z-index: 990;
+        position: absolute;
+        right: 4vw;
+        bottom: 15vh;
+        border-radius: 15px;
+        padding: 4px;
+        display: block;
+    }
+    .mamiyoga-open-icon p {
+        font-size: 15px;
+        color: #EEEFEA;
+        text-align: center;
+    }
+    .mamiyoga-open-icon.open {
+        display: none;
+    }
+    .mamiyoga-open-background {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        opacity: .6;
+        display: none;
+        position: fixed;
+        top: 0;
+    }
+    .mamiyoga-open-background.open {
+        display: block;
+    }
+    .mamiyoga-close-icon {
+        width: 30px;
+        height: 30px;
+        background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-landscape-close.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;   
+        z-index: 990;
+        position: fixed;
+        right: 2.5vw;
+        top: 4vh;
+        display: none;
+    }
+    .mamiyoga-close-icon.open {
+        display: block;
+    }
+}
+@media (max-width: 769px) and  (orientation:landscape) {
+    .mamiyoga-assay-page .mamiyoga-assay-video {
+        height: calc(100vh - 60px);
+        float: left;
+        width: 100vw;
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-box {
+        width: 90vw;
+        height: calc(100vh - 60px);
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-content {
+        height: 85vh;
+        padding: 15px 15px 15px 0;
+        position: fixed;
+        top: 7.5vh;
+        width: 87vw;
+        display: none;
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-content.open {
+        display: block;
+        top: 7.5vh;
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-title {
+        float: left;
+        width: 40px;
+        height: 50vh;
+        border-radius: 0 25px 25px 0;
+        margin: 10vh auto;
+        padding: 9vh 1vh;
+    }
+    .mamiyoga-assay-content-box {
+        width: 40vw;
+        height: calc(85vh - 30px);
+        float: left;
+        margin-left: 2vw;
+    }
+    .share-text {
+        display: none;
+    }
+    .mamiyoga-assay-share-box {
+        width: 30vw;
+        height: 70vh;
+    }
+    .assay-grade-box {
+        width: 100%;
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-share-icon-box {
+        width: 5vw;
+        height: 75vh;
+        flex-wrap: wrap;
+        position: absolute;
+        right: 3vw;
+        top: 5vh;
+        align-items: center;
+        margin: 0;
+    }
+    .mamiyoga-assay-page .mamiyoga-assay-contact-box {
+        width: 30vw;
+        margin-top: 20vh;
+    }
+    /*  */
+    .mamiyoga-assay-grade-num h3 {
+        font-size: 80px;
+    }
+    .mamiyoga-assay-contact-box .mamiyoga-assay-contact-btn {
+        width: 100px;
+    }
+    .mamiyoga-open-icon {
+        width: 50px;
+        height: 50px;
+        background: #97A8AF;
+        z-index: 990;
+        position: absolute;
+        right: 4vw;
+        bottom: 15vh;
+        border-radius: 15px;
+        padding: 4px;
+    }
+    .mamiyoga-open-icon p {
+        font-size: 15px;
+        color: #EEEFEA;
+        text-align: center;
+    }
+    .mamiyoga-open-icon.open {
+        display: none;
+    }
+    .mamiyoga-open-background {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        opacity: .6;
+        display: none;
+        position: fixed;
+        top: 0;
+    }
+    .mamiyoga-open-background.open {
+        display: block;
+    }
+    .mamiyoga-close-icon {
+        width: 30px;
+        height: 30px;
+        background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-landscape-close.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;   
+        z-index: 990;
+        position: absolute;
+        right: 1.5vw;
+        top: 4vh;
+        display: none;
+    }
+    .mamiyoga-close-icon.open {
+        display: block;
     }
 } 
 

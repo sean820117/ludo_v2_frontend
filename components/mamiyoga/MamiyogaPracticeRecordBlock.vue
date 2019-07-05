@@ -91,4 +91,9 @@ export default {
         right: 25px;
     }
 }
+@media (max-width: 769px) and  (orientation:landscape) {
+    .practice-record-block {
+        margin-top: 7vh; 
+    }
+}
 </style>

@@ -181,4 +181,12 @@ export default {
         margin-top: 50px; 
     }
 }
+@media (max-width: 769px) and  (orientation:landscape) {
+    .about-title {
+        height: 55vh;
+    }
+    .about-container {
+        margin-top: 40vh;
+    }
+}
 </style>

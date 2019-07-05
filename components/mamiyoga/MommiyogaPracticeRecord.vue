@@ -158,5 +158,12 @@ export default {
         left: 60px;
     }
 }
-
+@media (max-width: 769px) and  (orientation:landscape) {
+    .practice-record-intro {
+        height: 60vh;
+    }
+    .practice-record-intro-title {
+        bottom: 22vh;
+    }
+}
 </style>

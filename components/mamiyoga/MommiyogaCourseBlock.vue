@@ -161,4 +161,20 @@ export default {
         height: 35px;
     }
 }
+@media (max-width: 769px) and  (orientation:landscape) {
+    .course-block {
+        height: 50vh;
+        margin-top: 7vh;
+    }
+    .course-block-background {
+        height: 40vh;
+    }
+    .course-block-contain,.course-block-title {
+        height: 13vh;
+    }
+    .course-block-icon img {
+        height: 7vh;
+    }
+}
+
 </style>

@@ -481,10 +481,18 @@ export default {
     }
 }
 
-@media screen and (orientation: landscape) and (max-width:768px) {
-    .mamiyoga-assay-page .mamiyoga-assay-video {
-        width: 100vw;
-        height:calc(100vh - 60px);
+@media (max-width: 769px) and  (orientation:landscape) {
+    .mamiyoga-course-video-try {
+        height: 60vh;
+    }
+    .teach-course-info {
+        top: 38vh;
+    }
+    .teach-question-box {
+        top: 45vh;
+    }
+    .teach-detail-box {
+        margin-top: 50vh; 
     }
 }
 </style>

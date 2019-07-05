@@ -182,4 +182,12 @@ export default {
         margin-top: -35vh;
     }
 }
+@media (max-width: 830px) and  (orientation:landscape) {
+    .index-contain {
+        height: 200vh;
+    }
+    .mamiyoga-index-intro {
+        position: absolute;
+    }
+}
 </style>

@@ -204,4 +204,19 @@ export default {
     }
 
 }
+@media (max-width: 769px) and  (orientation:landscape) {
+    .course-information {
+        height: 60vh;
+    }
+    .course-information-select {
+        width: 35vw;
+    }
+    .course-mail-icon {
+        right: 4vw;
+    }
+    .mamiyoga-course-select {
+        padding-bottom: 7vh !important;
+    }
+    
+}
 </style>

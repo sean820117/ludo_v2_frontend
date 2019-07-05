@@ -155,5 +155,12 @@ export default {
         background-color:#fff; 
     }
 }
-
+@media (max-width: 769px) and  (orientation:landscape) {
+    .mamiyoga-explain-content img {
+        width: 30%;
+    }
+    .mamiyoga-explain .hooper-pagination {
+        bottom: -15vh;
+    }
+}
 </style>

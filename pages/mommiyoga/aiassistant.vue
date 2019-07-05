@@ -173,4 +173,18 @@ export default {
         margin: 0 0 10px;
     }
 }
+@media (max-width: 769px) and  (orientation:landscape) {
+    .aiassistant-intro {
+        height: 60vh;
+    }
+    .aiassistant-title-img {
+        margin-top: 12vh; 
+    }
+    .aiassistant-teach-question-box {
+        top: 47vh;
+    }
+    .aiassistant-container {
+        margin-top: 50vh; 
+    }
+}
 </style>

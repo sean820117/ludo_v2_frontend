@@ -64,7 +64,7 @@ export default {
     z-index: 995;
 }
 .mail-line {
-    width: 100vw;
+    width: 100%;
     height: 60px;
     display: flex;
     justify-content: space-between;

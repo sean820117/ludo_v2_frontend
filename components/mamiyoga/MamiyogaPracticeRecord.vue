@@ -96,6 +96,6 @@ export default {
     .practice-record-intro-btn {
         float: left;
     }
-
 }
+
 </style>

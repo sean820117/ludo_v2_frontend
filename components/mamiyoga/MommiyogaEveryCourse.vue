@@ -331,4 +331,10 @@ export default {
     }
     
 }
+
+@media (max-width: 769px) and  (orientation:landscape) {
+    .mamiyoga-course-intro-title {
+        bottom: 10vh;
+    }
+}
 </style>
