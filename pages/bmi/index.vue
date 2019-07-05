@@ -4,7 +4,7 @@
         <div class="bmi-index-content">
             <p>BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
             <p style="font-weight:400;">例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2</p>
-            <p style="color:#000;">體重正常範圍為 BMI=18.5~24</p>
+            <p style="color:#000;margin-top:3vh;">體重正常範圍為 BMI=18.5~24</p>
         </div>
         <div class="bmi-index-content">
             <p style="color:#000;font-weight:400;">快看看自己的BMI是否在理想範圍內吧！</p>
@@ -12,11 +12,11 @@
                 <div class="bmi-index-form-input">
                     <div class="bmi-index-form-input-li">
                         <div>身高<input type="number" id="height" name="height"  min="50" max="250">cm</div>
-                        <div @click="getBmi">開始計算</div>
+                        <div class="bmi-index-form-input-button" @click="getBmi">開始計算</div>
                     </div>
                     <div class="bmi-index-form-input-li">
                         <div>體重<input type="number" id="weight" name="weight"  min="50" max="250">kg</div>
-                        <button type="reset">清除計算</button>
+                        <button type="reset" class="bmi-index-form-input-button">清除計算</button>
                     </div>
                 </div>
             </form>
@@ -25,7 +25,7 @@
             <p style="color:#000;font-weight:400;">你的BMI為</p>
             <div class="bmi-index-form-end"><input type="number" disabled="disabled" :placeholder="bmi_result"></div>
             <div class="bmi-index-form-end-share">
-                <button @click="is_open = true">分享</button>
+                <button @click="openShareBox">分享</button>
             </div>
         </div>
         <div class="bmi-index-content" style="margin-top:10vh;">
@@ -34,6 +34,13 @@
         <div class="bmi-share-box" :class="is_open ? 'open':''">
             <div class="bmi-share-container">
                 <div class="bmi-share-close" @click="is_open = false"></div>
+                <p style="color:#000;font-weight:400;">你的BMI為</p>
+                <h5 v-if="have_input">{{bmi_result}}</h5>
+                <img src="/bmi/bmi-result-0.png" alt="" v-if="!have_input" style="margin-top: 3vh;">
+                <div style="margin-top:3vh;">
+                    <img :src="'/bmi/bmi-result-'+result_img+'.png'" alt="">
+                    <p>{{result_text}}</p>
+                </div>
             </div>
 
         </div>
@@ -43,20 +50,75 @@
 <script>
 import BmiHeader from '~/components/bmi/BmiHeader.vue';
 export default {
+    head() {
+        return  {
+            title: 'BMI計算',
+            meta: [
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
+                { hid: 'description', name: 'description', content: '' },
+                { property : 'og:title' , content:""},
+                { property : 'og:type' , content:""},
+                { property : 'og:url' , content:""},
+                { property : 'og:image' , content:""},
+                { property : 'og:description' , content:""},
+                { property : 'og:site_name' , content:""},
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '' }
+            ],
+        }
+    },
     data:()=>({
         is_open: false,
-        bmi_result: '',
+        bmi_result: 0,
+        result_text: '',
+        result_img: Number,
+        have_input: false,
     }),
     components: {
         BmiHeader,
     },
     methods: {
         getBmi(){
+            this.bmi_result = '';
             let height = document.getElementById('height').value;
             let weight = document.getElementById('weight').value;
-            this.bmi_result = weight/(height/100)*(height/100);
-            console.log('bmi_result')
+            setTimeout(()=> {
+                this.bmi_result = (weight/[(height/100)*(height/100)]).toFixed(1);
+                if(isNaN(this.bmi_result)){
+                    this.bmi_result = 0;
+                    this.result_text = '你還沒有填入身高體重ㄛ！';
+                }
+                else {
+                    if (this.bmi_result < 18.5 && this.bmi_result > 0){
+                        this.result_text = '嗚嗚你太瘦了！快多吸兩口空氣！';
+                        this.result_img = 1;
+                        this.have_input = true;
+                    } else if (this.bmi_result < 24 && this.bmi_result >= 18.5) {
+                        this.result_text = '太棒了！你在正常範圍裡！';
+                        this.result_img = 2;
+                        this.have_input = true;
+                    } else if (this.bmi_result >= 24) {
+                        this.result_text = '那個...你可能要動起來囉！';
+                        this.result_img = 3;
+                        this.have_input = true;
+                    } else if (this.bmi_result == 0) {
+                        this.result_text = '你還沒有填入身高體重ㄛ！';
+                    }
+                }
+            },300)
+        },
+        openShareBox(){
+            this.is_open = true;
+            if(this.bmi_result == 0){
+                this.result_text = '你還沒有填入身高體重ㄛ！';
+            }
         }
+        
+    },
+    computed: {
+        
     }
 }
 </script>
@@ -102,13 +164,15 @@ button {
     border-radius: 5px;
     margin: 0 5px;
 }
-.bmi-index-form-input button {
-    width: 65px;
+.bmi-index-form-input-button {
+    width: 70px;
     height: 21px;
     background-color: #000;
     color:white; 
     border-radius: 20px;
     border-style: none; 
+    font-size: 12px;
+    text-align: center;
 }
 .bmi-index-form-end {
     width: 100px;
@@ -119,6 +183,7 @@ button {
     border: rgba(112,112,112,.3) solid 1px;
     border-radius: 5px;
     height: 35px;
+    padding-left: 35%;
 }
 .bmi-index-content.bmi-index-end {
     position: relative;
@@ -157,18 +222,26 @@ button {
 }
 .bmi-share-container {
     width: 90vw;
-    height: 50vh;
-    background-color: white; 
-    border-radius: 40px; 
+    height: 60vh;
+    background-color: #FDFCF5; 
+    border-radius: 40px;
+    text-align: center; 
 }
 .bmi-share-close {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-image: url('/bmi/share-close.png');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;   
     margin: 3vh 0 0 75vw;
     cursor: pointer;
+}
+.bmi-share-container p {
+    font-size: 12px;
+}
+.bmi-share-container h5 {
+    font-size: 70px;
+    margin-top: 3vh;
 }
 </style>
