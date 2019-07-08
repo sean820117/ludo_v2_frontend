@@ -36,10 +36,31 @@
                 <div class="bmi-share-close" @click="is_open = false"></div>
                 <p style="color:#000;font-weight:400;">你的BMI為</p>
                 <h5 v-if="have_input">{{bmi_result}}</h5>
-                <img src="/bmi/bmi-result-0.png" alt="" v-if="!have_input" style="margin-top: 3vh;">
-                <div style="margin-top:3vh;">
+                <div style="margin-top: 3vh;" v-if="!have_input">
+                    <img src="/bmi/bmi-result-0.png" alt="">
+                    <p style="height:32px;margin-top:3vh;display:flex;align-items:center;justify-content:center;">{{result_text}}</p>
+                </div>
+                <div style="margin-top:3vh;display:flex;align-items:center;justify-content:center;" v-if="have_input">
                     <img :src="'/bmi/bmi-result-'+result_img+'.png'" alt="">
-                    <p>{{result_text}}</p>
+                    <!-- <div v-if="!have_input" style="height:26px;wight:30px;margin-top:3vh;"></div> -->
+                    <p style="margin-left:6px;">{{result_text}}</p>
+                </div>
+                <div class="bmi-share-icon-box">
+                    <div class="bmi-share-icon">
+                        <img src="/bmi/share-copy.png" alt="">
+                        <p>複製連結</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
+                        style="text-decoration: none" target="_blank">
+                            <img src="/bmi/share-facebook.png" alt="">
+                        </a>
+                        <p>facebook</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <img src="/bmi/share-more.png" alt="">
+                        <p>更多</p>
+                    </div>
                 </div>
             </div>
 
@@ -82,11 +103,12 @@ export default {
     methods: {
         getBmi(){
             this.bmi_result = '';
+            this.have_input = false;
             let height = document.getElementById('height').value;
             let weight = document.getElementById('weight').value;
             setTimeout(()=> {
                 this.bmi_result = (weight/[(height/100)*(height/100)]).toFixed(1);
-                if(isNaN(this.bmi_result)){
+                if(isNaN(this.bmi_result) || this.bmi_result === 'Infinity'){
                     this.bmi_result = 0;
                     this.result_text = '你還沒有填入身高體重ㄛ！';
                 }
@@ -103,9 +125,13 @@ export default {
                         this.result_text = '那個...你可能要動起來囉！';
                         this.result_img = 3;
                         this.have_input = true;
-                    } else if (this.bmi_result == 0) {
+                    } else {
+                        this.bmi_result = 0;
                         this.result_text = '你還沒有填入身高體重ㄛ！';
                     }
+                    // } else if (this.bmi_result == 0) {
+                    //     this.result_text = '你還沒有填入身高體重ㄛ！';
+                    // }
                 }
             },300)
         },
@@ -114,7 +140,9 @@ export default {
             if(this.bmi_result == 0){
                 this.result_text = '你還沒有填入身高體重ㄛ！';
             }
-        }
+        },
+        
+        
         
     },
     computed: {
@@ -173,6 +201,9 @@ button {
     border-style: none; 
     font-size: 12px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .bmi-index-form-end {
     width: 100px;
@@ -243,5 +274,20 @@ button {
 .bmi-share-container h5 {
     font-size: 70px;
     margin-top: 3vh;
+}
+.bmi-share-icon-box {
+    width: 70vw;
+    height: 50px;
+    /* background: red; */
+    margin: 4vh auto 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.bmi-share-icon img {
+    height: 45px;
+}
+.bmi-share-icon p {
+    color: #6A6A6A;
 }
 </style>
