@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-select-login">
-        <p>其他登錄方式</p>
+        <p>{{$t('index_select_login')}}</p>
         <div class="mamiyoga-select-login-box">
             <div class="mamiyoga-select-login-icon">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">

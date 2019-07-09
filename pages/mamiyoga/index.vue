@@ -1,21 +1,21 @@
 <template>
     <div class="index-contain">
         <video muted loop autoplay class="background-video" >
-            <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-1.mp4" type="video/mp4">      
+            <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-1.mp4" type="video/mp4">      
         </video>
         <div class="mamiyoga-index-intro">
             <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
             <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                 {{title}}
             </h2> -->
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title">
             <div class="mamiyoga-intro-btn">
                 <router-link to="/mamiyoga/teach" style="text-decoration: none;">
-                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="體驗課程"></mamiyoga-btn>
+                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" @click="openRemindBox">
-                <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="完整課程" style="margin-bottom:5vh;"></mamiyoga-btn>
+                <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;"></mamiyoga-btn>
             </div>
             <mamiyoga-login-select></mamiyoga-login-select>
             <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
@@ -93,7 +93,7 @@ export default {
 .background-video {
     /* position: fixed; */
     top: -3vh;
-    min-width: 100vw;
+    width: 100vw;
     min-height: 100vh;
 }
 .hooper {
@@ -114,7 +114,7 @@ export default {
     }
     .background-video {
         min-height: 100vh;
-        min-width: auto;
+        width: 450px;
     }
 }
 @media (max-width: 400px) {
@@ -124,7 +124,15 @@ export default {
 }
 @media (max-width: 350px) {
     .background-video {
-        margin-top: -35vh;
+        margin-top: -22vh;
+    }
+}
+@media (max-width: 830px) and  (orientation:landscape) {
+    .index-contain {
+        height: 200vh;
+    }
+    .mamiyoga-index-intro {
+        position: absolute;
     }
 }
 </style>

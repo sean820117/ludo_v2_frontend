@@ -68,6 +68,31 @@ module.exports = {
       //   }
       // }]
     }],
+    [
+      'nuxt-i18n', {
+        locales: [
+          {
+            code: 'zh-TW',
+            file: 'zh-TW.js',
+            iso: 'zh-Hant',
+          },
+          {
+            code: 'zh-CN',
+            file: 'zh-CN.js',
+            iso: 'zh-Hans',
+          },
+          {
+            code: 'JP',
+            file: 'JP.js',
+            iso: 'ja',
+          },
+        ],
+        lazy: true,
+        langDir: 'lang/',
+        defaultLocale: 'zh-TW',
+        detectBrowserLanguage: false,
+      }
+    ]
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],
   build: {

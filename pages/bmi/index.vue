@@ -58,12 +58,13 @@
                         <p>facebook</p>
                     </div>
                     <div class="bmi-share-icon">
+                        <a class="a2a_dd" href="https://www.addtoany.com/share">
                         <img src="/bmi/share-more.png" alt="">
+                        </a>
                         <p>更多</p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -77,6 +78,7 @@ export default {
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
+                { name: 'keywords', content: 'BMI怎麼算,BMI是什麼,BMI計算,bmi年齡標準,bmi年齡對照,bmi值'},
                 { hid: 'description', name: 'description', content: '' },
                 { property : 'og:title' , content:""},
                 { property : 'og:type' , content:""},
@@ -96,6 +98,7 @@ export default {
         result_text: '',
         result_img: Number,
         have_input: false,
+        href:'',
     }),
     components: {
         BmiHeader,
@@ -141,12 +144,15 @@ export default {
                 this.result_text = '你還沒有填入身高體重ㄛ！';
             }
         },
-        
-        
-        
+        // copyUrl(){
+        //     let web_path = 'www.ludonow.com/bmi';
+        //     web_path.execCommand('copy');
+        // }
     },
-    computed: {
-        
+    mounted(){
+        let recaptchaScript = document.createElement('script')
+        recaptchaScript.setAttribute('src', 'https://static.addtoany.com/menu/page.js')
+        document.head.appendChild(recaptchaScript)
     }
 }
 </script>

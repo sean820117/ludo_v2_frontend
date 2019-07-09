@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mamiyoga-teach-header headerTitle="體驗練習" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
+            <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
                 <div class="teach-course-info">
                     <div></div>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
-                    <img src="/mamiyoga/teach-question-btn.svg" alt="">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="">
                 </div>
             </div>
             <div class="teach-detail-box">
@@ -53,16 +53,16 @@
                     </div>
                 </div>
                 <div class="teacher-remind">
-                    <img src="/mamiyoga/teach-teacher-remind.png" alt="">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind.png" alt="">
                     <div class="teacher-remind-content">
-                        <p style="color:#8699A0;">麻美老師貼心叮嚀</p>
-                        <p>盡量將力氣集中在腰部，如果動作做起來有點吃力的同學，可以把毛巾捲起來放進腰下。</p>
+                        <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
+                        <p>{{$t('teach_teacher_remind_content')}}</p>
                     </div>
                 </div>
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
-                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">上傳影片</button>
+                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">{{$t('teach_button_upload')}}</button>
                 <button class="teach-assay-btn" v-else>
-                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上傳影片</label>  
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                 </button>
             </div>
             <div class="before-remind" :class="showRemindBox" >
@@ -82,13 +82,13 @@
                 </div> -->
                 <mamiyoga-window-alert-box>
                     <div class="cancel-box" @click="show_remind = false">
-                        <img src="/asamiyoga/cancel.svg" alt="" >
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                     </div>
-                    <img src="/asamiyoga/teach-remind.svg" alt="" style="margin-top: 70px;">
-                    <p style="color:#8699A0;font-size:13px;">我們將記錄您的動作<br>並交給AI助教分析</p>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.png" alt="" style="margin-top: 70px;">
+                    <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_remind_text')"></p>
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:25px">
-                            <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
+                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-space:0;margin-top:25px">
+                            <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
                         </button>
                     </div>
                 </mamiyoga-window-alert-box>
@@ -327,6 +327,9 @@ export default {
     float: left;
     margin-right: 2vw; 
 }
+.teacher-remind img {
+    width: 50px;
+}
 .teacher-remind-content {
     float: left;
     width: 75vw;
@@ -334,12 +337,12 @@ export default {
     color: #5A5A5A;
 }
 .teach-assay-btn {
-    width: 135px;
+    width: 155px;
     height: 35px;
     border-radius:20px;
     font-weight: 500;
     font-size: 14px;
-    letter-spacing: 3px; 
+    
     text-align: center;
     display: block;
     margin: 3vh auto 0;
@@ -449,6 +452,20 @@ export default {
     }
     .teach-question-box {
         right: 30px;
+    }
+}
+@media (max-width: 769px) and  (orientation:landscape) {
+    .mamiyoga-course-video-try {
+        height: 60vh;
+    }
+    .teach-course-info {
+        top: 38vh;
+    }
+    .teach-question-box {
+        top: 45vh;
+    }
+    .teach-detail-box {
+        margin-top: 50vh; 
     }
 }
 </style>
