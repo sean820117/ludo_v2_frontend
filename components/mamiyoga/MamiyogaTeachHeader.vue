@@ -9,7 +9,8 @@
             <h3 v-html="headerTitle">{{headerTitle}}</h3>
         </div>
         <div class="mamiyoga-teach-header-login">
-            <button v-html="btnText" :style="{backgroundColor:bgColor,color:ftColor,backgroundImage:'url('+bgImg+')'}" class="mamiyoga-teach-header-login-btn">{{btnText}}</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button>
         </div>
     </div>
 </template>
@@ -77,6 +78,16 @@ export default {
     box-shadow: 0px 2px 4px rgba(0,0,0,.3);
     background-position: center;
     background-repeat: no-repeat;
+}
+.mamiyoga-header-login-btn {
+    width: 63px;
+    height: 25px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-style: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.3);
 }
 @media (min-width: 769px) {
     .mamiyoga-teach-header{

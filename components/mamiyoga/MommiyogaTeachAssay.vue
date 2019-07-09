@@ -64,23 +64,29 @@
                         <p style="margin-top:4vh;margin-bottom:0;" class="share-text">快和朋友们分享这次的练习成果吧！</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
+                                <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
-                                
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
+                                <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-chat.png" alt="">
-                               
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
+                                <a href="https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-twitter.png" alt="">
-                                
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
+                                <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-wechat.png" alt="">
-                                
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
+                                <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;title=" target="_blank">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-more.png" alt="">
+                                </a>
                             </div>
                         </div>
                             <div class="mamiyoga-assay-contact-box" id="contact-us-box">
@@ -274,9 +280,9 @@ export default {
         },
         showStarOrNot(){
             return this.show_star_box && this.show ? 'open':'';
-        }
-        
+        } 
     },
+    
 }
 </script>
 
