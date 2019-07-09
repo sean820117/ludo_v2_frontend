@@ -47,7 +47,7 @@
                 </div>
                 <div class="bmi-share-icon-box">
                     <div class="bmi-share-icon">
-                        <img src="/bmi/share-copy.png" alt="">
+                        <img src="/bmi/share-copy.png" alt="" @click="copyUrl()">
                         <p>複製連結</p>
                     </div>
                     <div class="bmi-share-icon">
@@ -65,6 +65,7 @@
                     </div>
                 </div>
             </div>
+            <textarea id="urlCopied" cols="30" rows="1"></textarea>
         </div>
     </div>
 </template>
@@ -144,10 +145,13 @@ export default {
                 this.result_text = '你還沒有填入身高體重ㄛ！';
             }
         },
-        // copyUrl(){
-        //     let web_path = 'www.ludonow.com/bmi';
-        //     web_path.execCommand('copy');
-        // }
+        copyUrl(){
+            let Url = document.getElementById("urlCopied");
+            Url.innerHTML = window.location.href;
+            console.log(Url.innerHTML)
+            Url.select();
+            document.execCommand("copy");
+        }
     },
     mounted(){
         let recaptchaScript = document.createElement('script')
@@ -259,7 +263,7 @@ button {
 }
 .bmi-share-container {
     width: 90vw;
-    height: 60vh;
+    height: 360px;
     background-color: #FDFCF5; 
     border-radius: 40px;
     text-align: center; 
@@ -292,8 +296,13 @@ button {
 }
 .bmi-share-icon img {
     height: 45px;
+    cursor: pointer;
 }
 .bmi-share-icon p {
     color: #6A6A6A;
+}
+#urlCopied {
+    position: absolute;
+    top: 300vh;
 }
 </style>

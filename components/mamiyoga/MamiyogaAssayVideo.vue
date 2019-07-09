@@ -336,10 +336,10 @@
                         <div class="cancel-box" @click="openCommentBlock">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
-                        <p>正在加緊腳步開發中！</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin: 30px auto 30px;">
+                        <p v-html="$t('teach_assay_text_development')"></p>
                         <div class="star-line-box">
-                            <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">期待</button>
+                            <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spaceing:0;margin-top:20px" @click="openCommentBlock">{{$t('teach_assay_button_development')}}</button>
                         </div>
                     </mamiyoga-window-alert-box>
                 </div>

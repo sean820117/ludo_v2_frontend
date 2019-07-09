@@ -1,18 +1,13 @@
 <template>
   <div>
-    <!-- <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">
-        <div v-if="user.user_id != ''" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
-        <div v-else slot="right-component" @click="$router.push('/resume/login')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
-    </titlebar> -->
+    
     <nuxt/>
-    <!-- <resume-footer></resume-footer> -->
+    
   </div>
   
 </template>
 
 <script>
-import Titlebar from "~/components/resume/Titlebar"
-import ResumeFooter from "~/components/resume/ResumeFooter.vue";
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
@@ -85,7 +80,11 @@ body {
   /* background: #FDFCF7; */
   overflow-x: hidden;
 }
-
+html, body, #__nuxt, #__layout, #__layout > div{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -124,6 +123,16 @@ body {
 .contact-us-block img{
     margin:30px 0 10px 0;
 }
-
+@media (min-width:769px) {
+    html, body, #__nuxt, #__layout, #__layout > div{
+        height: 100vh;
+        width: 450px;
+        /* background: black; */
+        margin: 0 auto;
+    }
+    html {
+        background-color: black;
+    }
+}
 </style>
 
