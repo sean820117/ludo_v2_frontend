@@ -88,7 +88,10 @@ export default {
             //     this.$refs.courseContainer.resetSize();
             //     this.$refs.vlist.adjustHeight();
             // },3000);
-            let login_or_not = await this.$checkLogin(this.$store);
+            let login_or_not = localStorage.victor == "true" ? true:false;
+            if (!login_or_not) {
+                this.$router.push('/victor');
+            }
         }
     },
     // async asyncData (context) {

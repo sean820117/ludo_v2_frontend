@@ -342,9 +342,10 @@ export default {
         if (process.client) {
             this.ui_config = await require('~/config/victor-config')
             this.is_ui_config_loaded = true;
-            this.is_login = await this.$checkLogin(this.$store);
+            this.is_login = localStorage.victor == "true" ? true:false;
             
             this.arrangeLandingPage();
+            alert('於 2019/07/31 前註冊即送獨家學習歷程電子書\n\n注意事項：電子書將於 2019 年 8 月寄送至您註冊本網站之電子信箱');
             // this.$refs.mySwiper1.swiper.autoplay.start();
         }
     },

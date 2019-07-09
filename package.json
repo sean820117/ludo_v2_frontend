@@ -1,6 +1,6 @@
 {
   "name": "ludo_v2_frontend",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Nuxt.js project",
   "author": "SeanGo,Ruilong,Waisliaw",
   "private": true,
@@ -8,7 +8,7 @@
     "node": "^10.0.1"
   },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "HOST=0.0.0.0 PORT=3000 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
