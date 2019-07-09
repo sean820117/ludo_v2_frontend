@@ -52,7 +52,7 @@ module.exports = {
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
-    // ['@nuxtjs/google-gtag', { id: 'UA-137420846-2' }],
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-W7M9MNN' }],
     ['@nuxtjs/google-gtag',{
       id: 'UA-123332732-3',
       config: {
