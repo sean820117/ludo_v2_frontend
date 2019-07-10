@@ -1,16 +1,13 @@
 <template>
   <div>
-    
     <nuxt/>
-    
   </div>
-  
 </template>
 
 <script>
 import VueMq from 'vue-mq'
 import Vue from 'vue'
-import { mapMutations, mapGetters } from 'vuex';
+// import { mapMutations, mapGetters } from 'vuex';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -21,53 +18,47 @@ Vue.use(VueMq, {
 });
 
 export default {
-    components: {
-        Titlebar,
-        ResumeFooter,
-    },
-    data:() => ({
-        // ui_config:Object,
-        // is_ui_config_loaded:false,
-        is_login:false,
-    }),
-    computed: { 
-        ...mapGetters({
-            user : 'user/getData',
-        }),
-    },
+    // data:() => ({
+    //     is_login:false,
+    // }),
+    // computed: { 
+    //     ...mapGetters({
+    //         user : 'user/getData',
+    //     }),
+    // },
     head() {
         return  {
-            title: 'MAMIYOGA',
+            title: 'BOXING',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { hid: 'description', name: 'description', content: '' },
                 { property : 'og:title' , content:""},
-                { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/mommiyoga"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
-                { property : 'og:description' , content:"yoga"},
+                { property : 'og:type' , content:""},
+                { property : 'og:url' , content:"https://www.ludonow.com/boxing"},
+                { property : 'og:image' , content:""},
+                { property : 'og:description' , content:""},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
             ],
-            script: [
-                // { src: 'https://player.vimeo.com/api/player.js' },
-                // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
-            ],
         }
     },
-    async mounted() {
-        if (process.client) {
-            
-            this.is_login = await this.$checkLogin(this.$store);
-        }
-    },
+    // async mounted() {
+    //     if (process.client) { 
+    //         this.is_login = await this.$checkLogin(this.$store);
+    //     }
+    // },
 }
 </script>
 
 <style lang="postcss">
+@font-face {
+    font-family: 'MFLiHei_Nocom';
+    src: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/boxing/MFLiHei_Noncommercial-Regular.ttf');
+}
+
 body {
   font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;
   font-size: 16px;
@@ -77,14 +68,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  /* background: #FDFCF7; */
   overflow-x: hidden;
 }
+
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100vh;
     width: 100vw;
     margin: 0;
 }
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -123,16 +115,17 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .contact-us-block img{
     margin:30px 0 10px 0;
 }
+
 @media (min-width:769px) {
     html, body, #__nuxt, #__layout, #__layout > div{
         height: 100vh;
         width: 450px;
-        /* background: black; */
         margin: 0 auto;
     }
     html {
         background-color: black;
     }
 }
+
 </style>
 

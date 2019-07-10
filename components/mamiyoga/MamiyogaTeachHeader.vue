@@ -18,6 +18,9 @@
 <script>
 import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
+    data:()=>({
+        is_login:false,
+    }),
     props: {
         bgColor: String,
         ftColor: String,
@@ -28,6 +31,11 @@ export default {
     },
     components: {
         MamiyogaSmallBtn,
+    },
+    async mounted() {
+        if (process.client) {
+            this.is_login = await this.$checkLogin(this.$store);
+        }
     },
 }
 </script>
@@ -64,7 +72,7 @@ export default {
     font-weight: 400;
 }
 .mamiyoga-teach-header-login {
-    width: 55px;
+    
     height: 25px;
 }
 .mamiyoga-teach-header-login-btn {
