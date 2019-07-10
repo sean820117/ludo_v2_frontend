@@ -131,7 +131,7 @@ export default {
     
     layout: 'boxing',
     data:()=> ({
-        is_loaded: true,
+        is_loaded: false,
         isLoading: false,
         fullPage: true,
         video_result: {},

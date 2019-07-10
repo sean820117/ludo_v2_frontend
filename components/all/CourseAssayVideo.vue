@@ -24,7 +24,7 @@
                 <source :src="video_result.output_video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="mamiyoga-open-icon" @click="showAssayContent" :class="showContentOrNot">
+        <div class="boxing-open-icon" @click="showAssayContent" :class="showContentOrNot">
             <p>分析成果</p>
         </div>
         <div class="mamiyoga-open-background" :class="showContentOrNot"></div>
@@ -36,109 +36,21 @@
                     <div class="boxing-assay-title"><h3>分析成果</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
-                    <!-- <div class="boxing-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
+                    <div class="boxing-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
                         <h4 class="boxing-assay-content-time">第{{i+1}}回</h4>
                         <hooper class="boxing-assay-content-detailed-box">
                             <slide class="boxing-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</slide>
                             <hooper-navigation slot="hooper-addons"></hooper-navigation>
                         </hooper>
+                    </div>
+                    <!-- <div class="boxing-assay-content-li">
+                        <h4 class="boxing-assay-content-time">第1回</h4>
+                        <hooper class="boxing-assay-content-detailed-box">
+                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
+                            <slide class="boxing-assay-content-detailed">動作過快</slide>
+                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
+                        </hooper>
                     </div> -->
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
-                    <div class="boxing-assay-content-li">
-                        <h4 class="boxing-assay-content-time">第1回</h4>
-                        <hooper class="boxing-assay-content-detailed-box">
-                            <slide class="boxing-assay-content-detailed">姿勢正確</slide>
-                            <slide class="boxing-assay-content-detailed">動作過快</slide>
-                            <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                        </hooper>
-                    </div>
                 </div>
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
@@ -806,12 +718,12 @@ export default {
     .assay-grade-box {
         width: 75%;
     }
-    .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+    .boxing-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
         display: none;
     }
 }
 @media (max-width: 769px) and  (orientation:portrait) {
-    .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+    .boxing-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
         display: none;
     }
 }
@@ -850,6 +762,7 @@ export default {
         height: calc(85vh - 30px);
         float: left;
         margin-left: 2vw;
+        
     }
     .share-text {
         display: none;
@@ -882,10 +795,10 @@ export default {
     .mamiyoga-assay-contact-box .boxing-assay-contact-btn {
         width: 100px;
     }
-    .mamiyoga-open-icon {
+    .boxing-open-icon {
         width: 50px;
         height: 50px;
-        background: #97A8AF;
+        background: #FF2D51;
         z-index: 990;
         position: absolute;
         right: 4vw;
@@ -894,12 +807,12 @@ export default {
         padding: 4px;
         display: block;
     }
-    .mamiyoga-open-icon p {
+    .boxing-open-icon p {
         font-size: 15px;
         color: #EEEFEA;
         text-align: center;
     }
-    .mamiyoga-open-icon.open {
+    .boxing-open-icon.open {
         display: none;
     }
     .mamiyoga-open-background {
@@ -929,6 +842,9 @@ export default {
     }
     .mamiyoga-close-icon.open {
         display: block;
+    }
+    .hooper-next.is-disabled, .hooper-next {
+        right:0;
     }
 }
 @media (max-width: 769px) and  (orientation:landscape) {
@@ -998,10 +914,10 @@ export default {
     .mamiyoga-assay-contact-box .boxing-assay-contact-btn {
         width: 100px;
     }
-    .mamiyoga-open-icon {
+    .boxing-open-icon {
         width: 50px;
         height: 50px;
-        background: #97A8AF;
+        background: #FF2D51;
         z-index: 990;
         position: absolute;
         right: 4vw;
@@ -1009,12 +925,12 @@ export default {
         border-radius: 15px;
         padding: 4px;
     }
-    .mamiyoga-open-icon p {
+    .boxing-open-icon p {
         font-size: 15px;
         color: #EEEFEA;
         text-align: center;
     }
-    .mamiyoga-open-icon.open {
+    .boxing-open-icon.open {
         display: none;
     }
     .mamiyoga-open-background {
@@ -1045,9 +961,13 @@ export default {
     .mamiyoga-close-icon.open {
         display: block;
     }
-    .boxing-assay-content-detailed {
-        
+    .hooper-next.is-disabled, .hooper-next {
+        right:0;
     }
+    /* .boxing-assay-content-detailed {
+        width: 90% !important;
+
+    } */
 } 
 
 </style>

@@ -2,7 +2,8 @@
     <div class="bmi-index-page">
         <bmi-header></bmi-header>
         <div class="bmi-index-content">
-            <p>BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
+            <h5>BMI值計算機</h5>
+            <p style="margin-top:6vh;">BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
             <p style="font-weight:400;">例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2</p>
             <p style="color:#000;margin-top:3vh;">體重正常範圍為 BMI=18.5~24</p>
         </div>
@@ -29,10 +30,13 @@
             </div>
         </div>
         <div class="bmi-index-content" style="margin-top:10vh;">
-            <img src="/bmi/bmi.png" alt="">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi.png" alt="">
+        </div>
+        <div class="bmi-index-content">
+            <p style="margin-top:5vh;font-weight:300;">&copy; 2019 LUDO All Rights Reserved</p>
         </div>
         <div class="bmi-share-box" :class="is_open ? 'open':''">
-            <div class="bmi-share-container">
+            <div class="bmi-share-container" id="bmi-result">
                 <div class="bmi-share-close" @click="is_open = false"></div>
                 <p style="color:#000;font-weight:400;">你的BMI為</p>
                 <h5 v-if="have_input">{{bmi_result}}</h5>
@@ -41,25 +45,25 @@
                     <p style="height:32px;margin-top:3vh;display:flex;align-items:center;justify-content:center;">{{result_text}}</p>
                 </div>
                 <div style="margin-top:3vh;display:flex;align-items:center;justify-content:center;" v-if="have_input">
-                    <img :src="'/bmi/bmi-result-'+result_img+'.png'" alt="">
+                    <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-result-'+result_img+'.png'" alt="">
                     <!-- <div v-if="!have_input" style="height:26px;wight:30px;margin-top:3vh;"></div> -->
                     <p style="margin-left:6px;">{{result_text}}</p>
                 </div>
                 <div class="bmi-share-icon-box">
                     <div class="bmi-share-icon">
-                        <img src="/bmi/share-copy.png" alt="" @click="copyUrl()">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-copy.png" alt="" @click="copyUrl()">
                         <p>複製連結</p>
                     </div>
                     <div class="bmi-share-icon">
                         <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
                         style="text-decoration: none" target="_blank">
-                            <img src="/bmi/share-facebook.png" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-facebook.png" alt="">
                         </a>
                         <p>facebook</p>
                     </div>
                     <div class="bmi-share-icon">
                         <a class="a2a_dd" href="https://www.addtoany.com/share">
-                        <img src="/bmi/share-more.png" alt="">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-more.png" alt="">
                         </a>
                         <p>更多</p>
                     </div>
@@ -72,6 +76,7 @@
 
 <script>
 import BmiHeader from '~/components/bmi/BmiHeader.vue';
+
 export default {
     head() {
         return  {
@@ -91,9 +96,8 @@ export default {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '' }
             ],
-            script: [
-                {src: 'http://html2canvas.hertzen.com/dist/html2canvas.js'},
-            ],
+            
+
         }
     },
     data:()=>({
@@ -154,7 +158,7 @@ export default {
             console.log(Url.innerHTML)
             Url.select();
             document.execCommand("copy");
-        }
+        },
     },
     mounted(){
         let recaptchaScript = document.createElement('script')
@@ -176,7 +180,11 @@ button {
 }
 .bmi-index-content {
     padding:  0 10px;
-    margin-top: 7vh; 
+}
+.bmi-index-content h5 {
+    color: #3347E3;
+    font-size: 17px;
+    text-align: center;
 }
 .bmi-index-content p {
     text-align: center;
@@ -274,7 +282,7 @@ button {
 .bmi-share-close {
     width: 30px;
     height: 30px;
-    background-image: url('/bmi/share-close.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-close.png');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;   

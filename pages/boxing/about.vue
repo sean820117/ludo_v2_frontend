@@ -174,7 +174,7 @@ export default {
 }
 @media (min-width: 769px) {
     .boxing-about-page .hooper {
-        width: 100%;
+        width: 450px;
     }
     .boxing-about-teacher-content,
     .about-for-mammy .boxing-about-teacher-content {
@@ -183,6 +183,8 @@ export default {
     .about-for-mammy .boxing-about-teacher-content {
         padding: 0;
     }
-    
+    .hooper,.about-teacher:first-child {
+        width:450px !important; 
+    }
 }
 </style>
