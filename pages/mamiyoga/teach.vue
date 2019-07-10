@@ -3,11 +3,12 @@
         <div class="teach-page" v-if="!is_loaded && !open_explain">
             <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" nextTo="/mamiyoga"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="" class="teach-video-sample">
                 <div class="teach-course-info">
-                    <div></div>
+                    <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
                     <div>
-                        <h3>改善疼痛症狀的腰部伸展</h3>
-                        <p>拍攝時間建議：30-45秒</p>
+                        <h3>{{course_title}}</h3>
+                        <p v-html="$t('teach_text_time')"></p>
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
@@ -15,43 +16,44 @@
                 </div>
             </div>
             <div class="teach-detail-box">
-                <h6>姿勢步驟</h6>
+                <h6>{{$t('teach_tip_title')}}</h6>
                 <div class="teach-content-text">
+                    <div class="teach-content-li" :key="i"
+                    v-for="(description,i) in course_descriptions">
+                        <p class="teach-content-num">{{i+1}}</p>
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+                <!-- <div class="teach-content-text">
                     <div class="teach-content-li">
                         <p class="teach-content-num">1</p>
                         <p>我們正躺，望向天花板</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num02.svg" alt=""> -->
                         <p class="teach-content-num">2</p>
                         <p>把左膝抬高，兩手抱膝</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num03.svg" alt=""> -->
                         <p class="teach-content-num">3</p>
                         <p>雙掌托住膝蓋，將腿往外拉開，直到能盡量伸直手臂</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num04.svg" alt=""> -->
                         <p class="teach-content-num">4</p>
                         <p>現在，將右腳抬起，慢慢從墊子伸起來</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num05.svg" alt=""> -->
                         <p class="teach-content-num">5</p>
                         <p>讓腳跟盡量畫大圓弧形，越大越好，再慢慢地放下</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num06.svg" alt=""> -->
                         <p class="teach-content-num">6</p>
                         <p>重複這個動作3~5次，讓腰部有一點點拱起來，呈現一個圓弧型</p>
                     </div>
                     <div class="teach-content-li">
-                        <!-- <img src="/mamiyoga/num/num07.svg" alt=""> -->
                         <p class="teach-content-num">7</p>
                         <p>然後，換邊也進行一樣的動作</p>
                     </div>
-                </div>
+                </div> -->
                 <div class="teacher-remind">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind.png" alt="">
                     <div class="teacher-remind-content">
@@ -132,6 +134,10 @@ export default {
         is_shown_remind: false,
         show_remind: false, 
         open_explain: false,
+
+        courses:[],
+        course_title:'',
+        course_descriptions:[],
     }),
     components: {
         MamiyogaTeachHeader,
@@ -141,6 +147,22 @@ export default {
         MamiyogaAssayVideo,
         MamiyogaExplainBox,
         MamiyogaWindowAlertBox,
+    },
+    async mounted() {
+        if (process.client) {
+            if (this.$i18n.locale == 'JP') {
+                this.courses = await require('~/config/mamiyoga-course-jp');
+                this.course_title = this.courses[1].poses[0].pose_brief;
+                this.course_descriptions = this.courses[1].poses[0].pose_description;
+                
+            } else {
+                this.courses = await require('~/config/mamiyoga-course');
+                this.course_title = this.courses[1].poses[0].pose_brief;
+                this.course_descriptions = this.courses[1].poses[0].pose_description;
+               
+            }
+
+        }
     },
     methods: {
         async handleVideoUpload(e) {
@@ -239,24 +261,30 @@ export default {
     background-image: url('/mamiyoga/teach-title-img.png'); 
     z-index: 0;
 }
+.teach-video-sample {
+    height: 41vh;
+    margin-left: -25vw;
+}
 .teach-course-info {
     width: 90vw;
     height: 75px;
     position: absolute;
-    top: 17vh;
+    top: 25vh;
     margin-left: 5vw;
+    display:flex;
+    align-items: flex-end;
 }
 .teach-course-info div:first-child {
     height: 62px;
     width: 55px;
     float: left;
     background-repeat: no-repeat;
-    background-image: url('/mamiyoga/teach-photoby.svg');
     background-position: center center;
 }
 .teach-course-info div:last-child {
     float: left;
     padding: 10px 0 0 10px;
+    width: 80%;
 } 
 .teach-course-info h3 {
     color: #ECEDE8;
@@ -271,7 +299,7 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 30vh;
+    top: 33vh;
     right: 6vw;
 }
 .teach-detail-box {
@@ -337,7 +365,7 @@ export default {
     color: #5A5A5A;
 }
 .teach-assay-btn {
-    width: 155px;
+    width: 135px;
     height: 35px;
     border-radius:20px;
     font-weight: 500;
@@ -423,6 +451,11 @@ export default {
     background: #9BAEB2;
     color: #fff;
 }
+.teach-question-box img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
 @media (min-width: 769px) {
     .teach-page {
         width: 100%;
@@ -433,9 +466,11 @@ export default {
     .teach-course-info {
         margin-left: 30px;
         width: 80%;
+        top: 205px;
     }
     .teach-detail-box {
         width: 100%;
+        margin-top: 290px;
     }
     .teach-content-li {
         width: 100%;
@@ -452,6 +487,12 @@ export default {
     }
     .teach-question-box {
         right: 30px;
+        top: 270px;
+    }
+    .teach-video-sample {
+        width: 450px;
+        height: 330px;
+        margin-left: 0;
     }
 }
 @media (max-width: 769px) and  (orientation:landscape) {
@@ -466,6 +507,11 @@ export default {
     }
     .teach-detail-box {
         margin-top: 50vh; 
+    }
+    .teach-video-sample {
+        width: 100vw;
+        height: 65vh;
+        margin-left: 0;
     }
 }
 </style>

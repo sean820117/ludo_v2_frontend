@@ -21,7 +21,7 @@
                 </div>
             </form>
         </div>
-        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;">
+        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;" id="bmi-result">
             <p style="color:#000;font-weight:400;">你的BMI為</p>
             <div class="bmi-index-form-end"><input type="number" disabled="disabled" :placeholder="bmi_result"></div>
             <div class="bmi-index-form-end-share">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="bmi-share-icon-box">
                     <div class="bmi-share-icon">
-                        <img src="/bmi/share-copy.png" alt="">
+                        <img src="/bmi/share-copy.png" alt="" @click="copyUrl()">
                         <p>複製連結</p>
                     </div>
                     <div class="bmi-share-icon">
@@ -65,6 +65,7 @@
                     </div>
                 </div>
             </div>
+            <textarea id="urlCopied" cols="30" rows="1"></textarea>
         </div>
     </div>
 </template>
@@ -80,7 +81,7 @@ export default {
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { name: 'keywords', content: 'BMI怎麼算,BMI是什麼,BMI計算,bmi年齡標準,bmi年齡對照,bmi值'},
                 { hid: 'description', name: 'description', content: '' },
-                { property : 'og:title' , content:""},
+                { property : 'og:title' , content:"BMI值計算器"},
                 { property : 'og:type' , content:""},
                 { property : 'og:url' , content:""},
                 { property : 'og:image' , content:""},
@@ -89,6 +90,9 @@ export default {
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '' }
+            ],
+            script: [
+                {src: 'http://html2canvas.hertzen.com/dist/html2canvas.js'},
             ],
         }
     },
@@ -144,10 +148,13 @@ export default {
                 this.result_text = '你還沒有填入身高體重ㄛ！';
             }
         },
-        // copyUrl(){
-        //     let web_path = 'www.ludonow.com/bmi';
-        //     web_path.execCommand('copy');
-        // }
+        copyUrl(){
+            let Url = document.getElementById("urlCopied");
+            Url.innerHTML = window.location.href;
+            console.log(Url.innerHTML)
+            Url.select();
+            document.execCommand("copy");
+        }
     },
     mounted(){
         let recaptchaScript = document.createElement('script')
@@ -259,7 +266,7 @@ button {
 }
 .bmi-share-container {
     width: 90vw;
-    height: 60vh;
+    height: 360px;
     background-color: #FDFCF5; 
     border-radius: 40px;
     text-align: center; 
@@ -292,8 +299,13 @@ button {
 }
 .bmi-share-icon img {
     height: 45px;
+    cursor: pointer;
 }
 .bmi-share-icon p {
     color: #6A6A6A;
+}
+#urlCopied {
+    position: absolute;
+    top: 300vh;
 }
 </style>
