@@ -78,9 +78,10 @@ export default {
       if (!process.server) {
         // console.log(process.env.baseUrl + "/go2university");
         // this.$router.push("/go2university");
+        window.location.href = "http://intro.ludonow.com"
         if (localStorage.redirect) {
             console.log(localStorage.redirect);
-            this.$router.push(localStorage.redirect);
+            // this.$router.push(localStorage.redirect);
         } else {
             // this.$router.push("/");
         }

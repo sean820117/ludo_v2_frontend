@@ -3,11 +3,18 @@
         <div class="teach-page" v-if="!is_loaded && !open_explain">
             <mommiyoga-login-header headerTitle="体验练习" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
             <div class="teach-title-video-box">
-                <video class="mamiyoga-course-video-try" controls @click="is_opened = true"
+                <!-- <video id="experience" class="mamiyoga-course-video-try" @click="is_opened = true"
                 preload="auto" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
-                </video>
+                </video> -->
+                <vue-plyr @click="is_opened = true">
+                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg" src="video.mp4" id="course-video">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
+                        <source src="video-1080p.mp4" type="video/mp4" size="1080">
+                        <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
+                    </video>
+                </vue-plyr>
                 <div class="teach-course-info" v-if="!is_opened">
                     <div>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png" alt="">
@@ -101,6 +108,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VuePlyr from 'vue-plyr'
 
 import MommiyogaLoginHeader from '~/components/mamiyoga/MommiyogaLoginHeader.vue';
 import MamiyogaCourseBlock from '~/components/mamiyoga/MamiyogaCourseBlock.vue';
@@ -112,6 +121,8 @@ import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
+import 'vue-plyr/dist/vue-plyr.css'
+Vue.use(VuePlyr)
 export default {
     
     layout: 'mommiyoga',
@@ -207,14 +218,16 @@ export default {
         },
         closeExplain(){
             this.open_explain = false;
-        },
-        
+        }, 
     },
     computed: {
         showRemindBox(){
             return this.show_remind ? 'open':'';
-        }
-    }
+        },
+    },
+    
+    
+
 }
 </script>
 
@@ -254,7 +267,7 @@ export default {
     width: 90vw;
     height: 75px;
     position: absolute;
-    top: 27vh;
+    top: 23vh;
     margin-left: 5vw;
 }
 .teach-course-info div:first-child img {
@@ -282,7 +295,7 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 33vh;
+    top: 31vh;
     right: 6vw;
 }
 .teach-question-box img {
@@ -448,11 +461,18 @@ export default {
     width: 100vw;
     height: 41vh;
 }
-.mamiyoga-each-course video[poster] {
-    object-fit: cover;
+
+.plyr--video,.plyr audio, .plyr video {
+    height: 41vh;
 }
+/* .mamiyoga-each-course video[poster] {
+    object-fit: cover;
+} */
 .teacher-remind img {
     width: 50px;
+}
+.plyr--video .plyr__controls {
+    padding-top: 0;
 }
 @media (min-width:769px) {
     .teach-page {
@@ -464,7 +484,7 @@ export default {
     }
     .teach-course-info {
         width: 400px;
-        top: 240px;
+        top: 210px;
         margin-left: 30px; 
     }
     .teach-title-video-box {
@@ -484,8 +504,11 @@ export default {
         padding: 0 35px;
     }
     .teach-question-box {
-        top: 270px;
+        top: 250px;
         right: 30px;
+    }
+    .plyr--video,.plyr audio, .plyr video {
+        height: 330px;
     }
 }
 
@@ -501,6 +524,9 @@ export default {
     }
     .teach-detail-box {
         margin-top: 50vh; 
+    }
+    .plyr--video,.plyr audio, .plyr video {
+        height: 63vh;
     }
 }
 </style>

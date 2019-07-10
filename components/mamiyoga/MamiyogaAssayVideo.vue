@@ -2,22 +2,24 @@
     <div class="mamiyoga-assay-page">
         <div class="mamiyoga-assay-header" >
             <div class="mamiyoga-header-goback-btn" @click="clickCloseAssay">
-                <img src="/mamiyoga/teach-goback.svg" alt="">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </div>
             <div style="display:flex;">
-                <!-- <div :style="{backgroundColor:'#9BAEB2',
-                backgroundImage:'url(/mamiyoga/assay-comment-btn.svg)',
-                marginRight:'10px'}" @click="openCommentBox" class="mamiyoga-header-login-btn">
-                </div> -->
+                
                 <div :style="{backgroundColor:'#9BAEB2',
-                backgroundImage:'url(/mamiyoga/assay-comment-btn.svg)',
+                backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-header-login-btn">
                 </div>
-                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(/mamiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
+                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
                     <label style="width:55px;height:25px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
                 </div>
             </div>
         </div>
+        <div class="mamiyoga-open-icon" @click="showAssayContent" :class="showContentOrNot">
+            <p>分析结果</p>
+        </div>
+        <div class="mamiyoga-open-background" :class="showContentOrNot"></div>
+        <div class="mamiyoga-close-icon" @click="showAssayContent" :class="showContentOrNot"></div>
         <video class="mamiyoga-assay-video" controls>
                 <source :src="video_result.output_video_url" type="video/mp4">
             Your browser does not support the video tag.
@@ -26,7 +28,7 @@
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div @click="showAssayContent" v-touch:swipe="showAssayContent">
-                    <div class="mamiyoga-assay-title"><h3>分析結果</h3></div>
+                    <div class="mamiyoga-assay-title"><h3>{{$t('teach_assay_title')}}</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
                     <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
@@ -48,37 +50,43 @@
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
                         <div class="assay-grade-box">
-                            <p style="margin-bottom:0;">準確率</p>
+                            <p style="margin-bottom:0;">{{$t('teach_assay_correct')}}</p>
                             <div class="mamiyoga-assay-grade-num">
                                 <h3>76</h3>
                                 <p>%</p>
                             </div>
                         </div>
-                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">快和朋友們分享這次的練習成果吧！</p>
+                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">{{$t('teach_assay_share_friend')}}</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-facebook.svg" alt="">
-                                <!-- <p>Facebook</p> -->
+                                <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-chat.svg" alt="">
-                                <!-- <p>messenger</p> -->
+                                <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-chat.png" alt="">
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-twitter.svg" alt="">
-                                <!-- <p>Twitter</p> -->
+                                <a href="https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-twitter.png" alt="">
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-wechat.svg" alt="">
-                                <!-- <p>WeChat</p> -->
+                                <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-wechat.png" alt="">
+                                </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-more.svg" alt="">
+                                <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;title=" target="_blank">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-more.png" alt="">
+                                </a>
                             </div>
                         </div>
                             <div class="mamiyoga-assay-contact-box" id="contact-us-box">
-                            <p>分析結果不如預期嗎？</p>
-                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">聯絡我們</button>
+                            <p>{{$t('teach_assay_contact_text')}}</p>
+                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">{{$t('teach_assay_button_contact')}}</button>
                         </div>
                     </div>
                     
@@ -193,9 +201,9 @@
                 <div class="mamiyoga-assay-contact-block" :class="showContactOrNot">
                     <mamiyoga-window-alert-box>
                         <div class="cancel-box" @click="openContactBox">
-                            <img src="/mamiyoga/cancel.svg" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
-                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方嗎？</p>
+                        <p style="margin:30px auto 0;width:220px;">{{$t('teach_assay_contact_title')}}</p>
                         <div class="star-line-box">
                             <input type="radio" class="questions first" id="answer-first" name="questions">
                             <input type="radio" class="questions second" id="answer-second" name="questions">
@@ -204,32 +212,32 @@
                             <input type="radio" class="questions five" id="answer-five" name="questions">
                             <div class="select-questions">
                                 <label for="answer-first" class="first-questions">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-01.svg" alt="">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-01.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-01.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-checked-01.png" alt="">
                                 </label>
                                 <label for="answer-second" class="second-questions">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-02.svg" alt="">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-02.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-02.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-checked-02.png" alt="">
                                 </label>
                                 <label for="answer-third" class="third-questions">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-03.svg" alt="">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-03.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-03.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-checked-03.png" alt="">
                                 </label>
                                 <label for="answer-four" class="four-questions">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-04.svg" alt="">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-04.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-04.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-checked-04.png" alt="">
                                 </label>
                                 <label for="answer-five" class="five-questions">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-05.svg" alt="">
-                                    <img src="/mamiyoga/babyface-icon/babyface-icon-checked-05.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-05.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-checked-05.png" alt="">
                                 </label>
                             </div>
                         </div>
                         <form action="">
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" style="resize:none;"
-                        required placeholder="謝謝您的回饋，讓我們儘速為您尋找解決方法" v-model="input_text"></textarea>
+                        required :placeholder="$t('teach_assay_contact_input')" v-model="input_text"></textarea>
                         <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
-                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="openContactBox()">送出</button>
+                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="openContactBox()">{{$t('teach_assay_button_submit')}}</button>
                         </form>
                     </mamiyoga-window-alert-box>
                 </div>
@@ -275,10 +283,10 @@
                 <div class="mamiyoga-assay-star-block" :class="showStarOrNot">
                     <mamiyoga-window-alert-box>
                         <div class="cancel-box" @click="show_star_box = false">
-                            <img src="/mamiyoga/cancel.svg" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
-                        <p>請問您滿意這次的分析結果嗎？</p>
-                        <img src="/mamiyoga/star-box-human.png" alt="">
+                        <p v-html="$t('teach_assay_star_title')"></p>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-box-human.png" alt="">
                         <div class="star-line-box">
                             <input type="radio" class="stars first" id="first" name="star">
                             <input type="radio" class="stars second" id="second" name="star">
@@ -287,27 +295,27 @@
                             <input type="radio" class="stars five" id="five" name="star">
                             <div class="select-star">
                                 <label for="first" class="first-star">
-                                    <img src="/mamiyoga/star.svg" alt="">
-                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                                 <label for="second" class="second-star">
-                                    <img src="/mamiyoga/star.svg" alt="">
-                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                                 <label for="third" class="third-star">
-                                    <img src="/mamiyoga/star.svg" alt="">
-                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                                 <label for="four" class="four-star">
-                                    <img src="/mamiyoga/star.svg" alt="">
-                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                                 <label for="five" class="five-star">
-                                    <img src="/mamiyoga/star.svg" alt="">
-                                    <img src="/mamiyoga/star-checked.svg" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                             </div>
-                            <button class="mamiyoga-assay-contact-btn" @click="show_star_box = false" style="width:90px;letter-space:0;margin-top:5px">送出</button>
+                            <button class="mamiyoga-assay-contact-btn" @click="show_star_box = false" style="width:90px;letter-space:0;margin-top:5px">{{$t('teach_assay_button_submit')}}</button>
                         </div>
                     </mamiyoga-window-alert-box>
                 </div>
@@ -326,10 +334,10 @@
                 <div class="mamiyoga-assay-comment-box" :class="showCommentOrNot">
                     <mamiyoga-window-alert-box>
                         <div class="cancel-box" @click="openCommentBlock">
-                            <img src="/mamiyoga/cancel.svg" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
                         <p>正在加緊腳步開發中！</p>
-                        <img src="/mamiyoga/comment-box-human.svg" alt="" style="margin: 30px auto 30px;">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin: 30px auto 30px;">
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">期待</button>
                         </div>
@@ -432,12 +440,17 @@ export default {
     overflow: hidden;
     position: relative;
 }
-.goback-btn {
+.mamiyoga-header-goback-btn {
     width: 30px;
     height: 30px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.mamiyoga-header-goback-btn img {
+    width: 20px;
+    height: 13px;
 }
 .mamiyoga-header-login-btn {
     width: 55px;
@@ -626,6 +639,11 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+.mamiyoga-assay-share-icon img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
 }
 .mamiyoga-assay-page .mamiyoga-assay-contact-box {
     width: 60vw;
@@ -828,6 +846,9 @@ export default {
 .mamiyoga-assay-star-block.open {
     display: block;
 }
+.mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+    display: none;
+}
 @media (min-width: 769px) {
     .mamiyoga-assay-page,.mamiyoga-assay-page .mamiyoga-assay-header,
     .mamiyoga-assay-page .mamiyoga-assay-video,
@@ -844,44 +865,52 @@ export default {
         width: 75%;
     }
 }
+@media (max-width: 769px) and  (orientation:portrait) {
+    .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
+        display: none;
+    }
+}
 @media (max-width: 769px) and  (orientation:landscape) {
     .mamiyoga-assay-page .mamiyoga-assay-video {
         height: calc(100vh - 60px);
         float: left;
-        width: 90vw;
+        width: 100vw;
     }
     .mamiyoga-assay-page .mamiyoga-assay-box {
         width: 90vw;
         height: calc(100vh - 60px);
     }
     .mamiyoga-assay-page .mamiyoga-assay-content {
-        height: 80vh;
+        height: 85vh;
         padding: 15px 15px 15px 0;
-        right: -180vw;
+        position: fixed;
+        top: 7.5vh;
+        width: 87vw;
+        display: none;
     }
     .mamiyoga-assay-page .mamiyoga-assay-content.open {
-        right: 0;
-        top: 0;
+        display: block;
+        top: 7.5vh;
     }
     .mamiyoga-assay-page .mamiyoga-assay-title {
         float: left;
         width: 40px;
-        height: 170px;
+        height: 50vh;
         border-radius: 0 25px 25px 0;
         margin: 10vh auto;
-        padding: 8vh 1vh;
+        padding: 9vh 1vh;
     }
     .mamiyoga-assay-content-box {
         width: 40vw;
-        height: 70vh;
+        height: calc(85vh - 30px);
         float: left;
-        margin-left: 2vw; 
+        margin-left: 2vw;
     }
     .share-text {
         display: none;
     }
     .mamiyoga-assay-share-box {
-        width: 35vw;
+        width: 30vw;
         height: 70vh;
     }
     .assay-grade-box {
@@ -889,21 +918,73 @@ export default {
     }
     .mamiyoga-assay-page .mamiyoga-assay-share-icon-box {
         width: 5vw;
-        height: 70vh;
+        height: 75vh;
         flex-wrap: wrap;
         position: absolute;
         right: 3vw;
         top: 5vh;
+        align-items: center;
+        margin: 0;
     }
     .mamiyoga-assay-page .mamiyoga-assay-contact-box {
-        width: 35vw;
+        width: 30vw;
         margin-top: 20vh;
     }
+    /*  */
     .mamiyoga-assay-grade-num h3 {
         font-size: 80px;
     }
     .mamiyoga-assay-contact-box .mamiyoga-assay-contact-btn {
-        width: 100px;
+        width: 120px;
+        letter-spacing: 0;
+    }
+    .mamiyoga-open-icon {
+        width: 50px;
+        height: 50px;
+        background: #97A8AF;
+        z-index: 990;
+        position: absolute;
+        right: 4vw;
+        bottom: 15vh;
+        border-radius: 15px;
+        padding: 4px;
+        display: block;
+    }
+    .mamiyoga-open-icon p {
+        font-size: 15px;
+        color: #EEEFEA;
+        text-align: center;
+    }
+    .mamiyoga-open-icon.open {
+        display: none;
+    }
+    .mamiyoga-open-background {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        opacity: .6;
+        display: none;
+        position: fixed;
+        top: 0;
+    }
+    .mamiyoga-open-background.open {
+        display: block;
+    }
+    .mamiyoga-close-icon {
+        width: 30px;
+        height: 30px;
+        background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-landscape-close.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;   
+        z-index: 990;
+        position: absolute;
+        right: 1.5vw;
+        top: 4vh;
+        display: none;
+    }
+    .mamiyoga-close-icon.open {
+        display: block;
     }
 } 
 

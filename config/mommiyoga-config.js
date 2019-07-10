@@ -16,9 +16,7 @@ module.exports = {
             },
         }
     },
-    chapters:[
-        {
-
-        },
+    module:[
+        'nuxt-i18n'
     ],
 }
