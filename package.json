@@ -17,14 +17,12 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@dongido/vue-viaudio": "^0.2.8",
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/google-tag-manager": "^2.2.0",
     "@vimeo/player": "^2.9.1",
     "ajv": "^6.0.0",
     "ajv-keywords": "^3.2.0",
-    "axios": "^0.19.0",
-    "font-awesome": "^4.7.0",
+    "axios": "^0.18.0",
     "fs": "0.0.1-security",
     "hooper": "^0.2.0",
     "jquery": "^3.3.1",
@@ -47,14 +45,11 @@
     "vue-scrollto": "^2.13.0",
     "vue-select": "^2.6.4",
     "vue-textarea-autosize": "^1.0.4",
-    "vue-video": "^0.1.7",
-    "vue-video-player": "^5.0.2",
     "vue2-touch-events": "^2.0.0",
     "vuejs-progress-bar": "^1.0.9",
     "vuetify": "^1.5.14"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
