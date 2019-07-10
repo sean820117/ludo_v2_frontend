@@ -19,10 +19,11 @@
   "dependencies": {
     "@dongido/vue-viaudio": "^0.2.8",
     "@nuxtjs/google-gtag": "^1.0.4",
+    "@nuxtjs/google-tag-manager": "^2.2.0",
     "@vimeo/player": "^2.9.1",
     "ajv": "^6.0.0",
     "ajv-keywords": "^3.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "hooper": "^0.2.0",
