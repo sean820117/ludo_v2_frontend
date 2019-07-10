@@ -1,8 +1,7 @@
 FROM node:11.13-alpine
 
 ENV NODE_ENV production
-ENV RUNTIME_ENV=production
-
+ENV RUNTIME_ENV production
 RUN mkdir -p /var/www/app
 WORKDIR /var/www/app
 
