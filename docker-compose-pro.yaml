@@ -1,0 +1,17 @@
+version: '3'
+volumes:
+  node_modules:
+services:
+  ludo_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "127.0.0.1:3000:3000"
+    environment:
+      - BASE_URL=https://www.ludonow.com
+      - API_URL=https://api.ludonow.com
+      - RUNTIME_ENV=production
+    volumes:
+        - ./:/var/www/app
+        - node_modules:/var/www/app/node_modules
