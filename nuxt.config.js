@@ -58,7 +58,7 @@ module.exports = {
         id: 'GTM-W7M9MNN',
         // layer: 'dataLayer',
         pageTracking: true,
-        dev: true, // set to false to disable in dev mode
+        dev: process.env.RUNTIME_ENV != 'production' ? true : false, // set to false to disable in dev mode
         // query: {
         //   gtm_auth:        '...',
         //   gtm_preview:     '...',
