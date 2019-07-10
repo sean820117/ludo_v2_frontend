@@ -21,7 +21,7 @@
                 </div>
             </form>
         </div>
-        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;">
+        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;" id="bmi-result">
             <p style="color:#000;font-weight:400;">你的BMI為</p>
             <div class="bmi-index-form-end"><input type="number" disabled="disabled" :placeholder="bmi_result"></div>
             <div class="bmi-index-form-end-share">
@@ -81,7 +81,7 @@ export default {
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { name: 'keywords', content: 'BMI怎麼算,BMI是什麼,BMI計算,bmi年齡標準,bmi年齡對照,bmi值'},
                 { hid: 'description', name: 'description', content: '' },
-                { property : 'og:title' , content:""},
+                { property : 'og:title' , content:"BMI值計算器"},
                 { property : 'og:type' , content:""},
                 { property : 'og:url' , content:""},
                 { property : 'og:image' , content:""},
@@ -90,6 +90,9 @@ export default {
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '' }
+            ],
+            script: [
+                {src: 'http://html2canvas.hertzen.com/dist/html2canvas.js'},
             ],
         }
     },
