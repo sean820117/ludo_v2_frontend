@@ -63,7 +63,7 @@ module.exports = [
     },
     {
         id: '7',
-        title: '减缓腰部痠痛',
+        title: '减缓腰部疼痛',
         tags: ['intermediate'],
         record_time:'20-45',
         ai_teacher: true,

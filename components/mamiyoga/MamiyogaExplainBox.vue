@@ -141,6 +141,7 @@ export default {
         margin: 5vh auto 0;
     }
     .mamiyoga-explain .hooper {
+        width: 100%;
         height: 75vh;
     }
     

@@ -14,7 +14,7 @@ export default {
   teach_remind_text: '我們將記錄您的動作<br>並交給AI助教分析',
   teach_button_ok: '好',
 
-  teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.png',
+  teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.svg',
   teach_text_time: '建議拍攝時間：&nbsp;<i>20-45</i>&nbsp;秒',
 
   teach_assay_title: '結果分析',
@@ -33,5 +33,30 @@ export default {
   explain_title_secord: '側面拍攝',
   explain_text_first: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
   explain_text_secord: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
+  
+  menu_nav_text_teacher:'講師介紹',
+  menu_nav_text_record:'AI助教',
+  menu_nav_text_friend:'學習夥伴',
+  menu_tag_text_first:'矯正疼痛',
+  menu_tag_text_second:'舒壓安眠',
+  menu_tag_text_third:'美體塑身',
+  menu_tag_text_four:'調和心靈',
+
+  menu_content_text_first: '矯正媽媽產後不良姿勢來緩解疼痛',
+  menu_content_text_second: '幫助媽媽們提升睡眠品質',
+  menu_content_text_third: '塑造出比產前更漂亮的身體曲線',
+  menu_content_text_four: '釋放媽媽們的產後壓力',
+
+  about_first_title: '教師介紹',
+  about_third_title: '給產後的女性',
+  about_four_title: '給廣大的女性族群',
+  about_first_content_name: '橋本麻美',
+  about_first_content_name_en: 'asami hashimoto',
+  about_first_content_have: '持有證照',
+  about_first_content_course: '曾修習完畢相關課程',
+  about_first_content_course_text: '骨頭導覽指導著養成課程修習完畢',
+
+  about_second_content: '隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，所以花了不少力氣尋尋覓覓。<br>沒想到，在經歷過多次嘗試後，讓我有機會接觸到了瑜珈。因此身體健康也漸漸獲得改善，這促使了我變得更加專注練習，產生了良性循環還有更大的興趣，不知不覺間，也獲得了執照認證與教學資格。<br>我平時擔任專業自由瑜珈的指導教練，一週至少固定開班20堂，不過往往會更超過這數字。<br>除此之外，也擔任過日本屈指頂尖舞蹈跟唱歌少女團體「E-girl」的貼身瑜珈指導哦！而且我不但協助許許多多演藝圈人士的體態健康維護，也曾擔任過名人的私人瑜珈課程指導。<br>就算是在懷孕的時候，我也持續進行瑜珈教學，而且，我現在也還是個懷孕媽媽哦！所以，我有特別設計產後恢復的相關課程。當然，也還有其他針對不一樣煩惱需求的瑜珈課程，用來幫助不一樣的你！<br>我最擅長的領域是治癒身體和心靈的放鬆瑜珈。<br>在Instagram上也可看到我哦！目前追蹤人數已經突破了兩萬！'
+  
   
 }

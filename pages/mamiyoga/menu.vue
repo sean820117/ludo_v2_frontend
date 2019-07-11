@@ -4,13 +4,13 @@
             <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
             <div class="course-information-select">
                 <div class="course-information-content">
-                    <router-link to="/mamiyoga/about" style="text-decoration:none;"><p>講師介紹</p></router-link>
+                    <router-link to="/mamiyoga/about" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
                 </div>
                 <div class="course-information-content">
-                    <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;"><p>AI助教</p></router-link>
+                    <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
                 </div>
                 <div class="course-information-content">
-                    <p>學習夥伴</p>
+                    <p>{{$t('menu_nav_text_friend')}}</p>
                 </div>
             </div>
             <div class="course-mail-icon">
@@ -39,8 +39,16 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mamiyoga-course')
+            if (this.$i18n.locale == 'JP') {
+                this.courses = await require('~/config/mamiyoga-course-jp');
+            } else {
+                this.courses = await require('~/config/mamiyoga-course');
+            }
+
         }
+        // if (process.client) {
+        //     this.courses = await require('~/config/mamiyoga-course')
+        // }
     },
     computed:{
         ...mapGetters({
@@ -82,7 +90,7 @@ export default {
     position: relative;
     width: 100vw;
     height: 30vh;
-    background-image:url('/mamiyoga/background-menu.png');
+    background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-menu-background.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
 }

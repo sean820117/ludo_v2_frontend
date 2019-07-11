@@ -17,7 +17,7 @@
                 </vue-plyr>
                 <div class="teach-course-info" v-if="!is_opened">
                     <div>
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png" alt="">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png" alt="">
                     </div>
                     <div>
                         <h3>{{course_title}}</h3>
@@ -153,8 +153,8 @@ export default {
     async mounted() {
         if (process.client) {
             this.courses = await require('~/config/mommiyoga-course');
-            this.course_title = this.courses[7].title;
-            this.course_descriptions = this.courses[7].pose_description;
+            this.course_title = this.courses[6].title;
+            this.course_descriptions = this.courses[6].pose_description;
         }
     },
     methods: {

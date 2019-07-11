@@ -1,7 +1,7 @@
 module.exports = [
     {
         id: '1',
-        title: '骨盆矯正瑜珈',
+        title: '日文-骨盆矯正瑜珈',
         chapter_flag: '/mamiyoga/course/unit01.svg',
         tags: ['rectify'],
         ai_teacher: false,
@@ -34,7 +34,7 @@ module.exports = [
     },
     {
         id: '2',
-        title: '可以邊躺邊做的疲勞恢復瑜珈',
+        title: '日文-可以邊躺邊做的疲勞恢復瑜珈',
         chapter_flag: '/mamiyoga/course/unit02.svg',
         tags: ['rectify'],
         ai_teacher: true,
@@ -67,7 +67,7 @@ module.exports = [
     },
     {
         id: '3',
-        title: '讓深呼吸變深的瑜珈',
+        title: '日文-讓深呼吸變深的瑜珈',
         chapter_flag: '/mamiyoga/course/unit03.svg',
         tags: ['rectify'],
         ai_teacher: true,
@@ -94,7 +94,7 @@ module.exports = [
     },
     {
         id: '4',
-        title: '讓淋巴液流暢的瑜珈',
+        title: '日文-讓淋巴液流暢的瑜珈',
         chapter_flag: '/mamiyoga/course/unit04.svg',
         tags: ['alleviate'],
         ai_teacher: true,
@@ -120,7 +120,7 @@ module.exports = [
     },
     {
         id: '5',
-        title: '讓人煥然一新的瑜珈',
+        title: '日文-讓人煥然一新的瑜珈',
         chapter_flag: '/mamiyoga/course/unit05.svg',
         tags: ['alleviate'],
         ai_teacher: true,
@@ -146,7 +146,7 @@ module.exports = [
     },
     {
         id: '6',
-        title: '從身體內部守護的產後瑜珈',
+        title: '日文-從身體內部守護的產後瑜珈',
         chapter_flag: '/mamiyoga/course/unit06.svg',
         tags: ['beauty'],
         ai_teacher: true,
@@ -172,7 +172,7 @@ module.exports = [
     },
     {
         id: '7',
-        title: '解消產後肥胖的瑜珈',
+        title: '日文-解消產後肥胖的瑜珈',
         chapter_flag: '/mamiyoga/course/unit07.svg',
         tags: ['beauty'],
         ai_teacher: true,
@@ -205,7 +205,7 @@ module.exports = [
     },
     {
         id: '8',
-        title: '製造身體曲線的瑜珈',
+        title: '日文-製造身體曲線的瑜珈',
         chapter_flag: '/mamiyoga/course/unit08.svg',
         tags: ['beauty'],
         ai_teacher: false,
@@ -232,7 +232,7 @@ module.exports = [
     },
     {
         id: '9',
-        title: '產後的腹肌瑜珈',
+        title: '日文-產後的腹肌瑜珈',
         chapter_flag: '/mamiyoga/course/unit09.svg',
         tags: ['beauty'],
         ai_teacher: false,
@@ -265,7 +265,7 @@ module.exports = [
     },
     {
         id: '10',
-        title: '產後的下半身減肥瑜珈',
+        title: '日文-產後的下半身減肥瑜珈',
         chapter_flag: '/mamiyoga/course/unit10.svg',
         tags: ['blend'],
         ai_teacher: false,
@@ -291,7 +291,7 @@ module.exports = [
     },
     {
         id: '11',
-        title: '療癒的呼吸法',
+        title: '日文-療癒的呼吸法',
         chapter_flag: '/mamiyoga/course/unit11.svg',
         tags: ['blend'],
         ai_teacher: false,
@@ -317,7 +317,7 @@ module.exports = [
     },
     {
         id: '12',
-        title: '讓睡眠品質變好的瑜珈',
+        title: '日文-讓睡眠品質變好的瑜珈',
         chapter_flag: '/mamiyoga/course/unit12.svg',
         tags: ['blend'],
         ai_teacher: false,
@@ -343,7 +343,7 @@ module.exports = [
     },
     {
         id: '13',
-        title: '消除壓力的瑜珈',
+        title: '日文-消除壓力的瑜珈',
         chapter_flag: '/mamiyoga/course/unit13.svg',
         tags: ['blend'],
         ai_teacher: false,
@@ -376,7 +376,7 @@ module.exports = [
     },
     {
         id: '14',
-        title: '調整自律神經的瑜珈',
+        title: '日文-調整自律神經的瑜珈',
         chapter_flag: '/mamiyoga/course/unit14.svg',
         tags: ['blend'],
         ai_teacher: false,
