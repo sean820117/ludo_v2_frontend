@@ -2,7 +2,7 @@
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
             <mommiyoga-login-header headerTitle="体验练习" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
-            <div class="teach-title-video-box">
+            <div class="teach-title-video-box" @click="is_opened = true">
                 <!-- <video id="experience" class="mamiyoga-course-video-try" @click="is_opened = true"
                 preload="auto" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4">
@@ -10,7 +10,7 @@
                 </video> -->
                 <vue-plyr >
                     <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg" src="video.mp4" id="course-video">
-                        <source  @click="is_opened = true" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
                         <source src="video-1080p.mp4" type="video/mp4" size="1080">
                         <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
                     </video>
@@ -168,12 +168,12 @@ export default {
             console.log(res.data)
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
+                  if(res.data.reps_wrong_tags[i][j] == "1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+                  else if (res.data.reps_wrong_tags[i][j] == "2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
+                  else if (res.data.reps_wrong_tags[i][j] == "3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+                  else if (res.data.reps_wrong_tags[i][j] == "4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
+                  else if (res.data.reps_wrong_tags[i][j] == "5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
+                  else if (res.data.reps_wrong_tags[i][j] == "0") res.data.reps_wrong_tags[i][j] = "姿势正确";
               }
             }
             this.isLoading = false;
@@ -210,7 +210,13 @@ export default {
         },
         closeExplain(){
             this.open_explain = false;
-        }, 
+        },
+        // playVideo(){
+        //     var vid = document.getElementById('course-video');
+        //     vid.addEventListener('click',function(){
+        //         window.alert('ok')
+        //     })
+        // }
     },
     computed: {
         showRemindBox(){
@@ -466,9 +472,6 @@ export default {
 .plyr--video .plyr__controls {
     padding-top: 0;
 }
-/* .plyr__control.plyr__control--overlaid:checked ~ .teach-course-info {
-    display: none;
-} */
 @media (min-width:769px) {
     .teach-page {
         width: 100%;
