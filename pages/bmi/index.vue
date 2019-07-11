@@ -31,20 +31,7 @@
                     </div>
                 </div>
             </form>
-            <!-- <form v-if="$mq == 'desktop'" class="ds-form">
-                <div class="bmi-index-form-input">
-                    <div class="bmi-index-form-input-li">
-                        <div>身高(height)<input type="number" id="ds-height" name="ds-height"  min="50" max="250">公分(cm)</div>
-                    </div>
-                    <div class="bmi-index-form-input-li">
-                        <div>體重(weight)<input type="number" id="ds-weight" name="ds-weight"  min="50" max="250">公斤(kg)</div>
-                    </div>
-                    <div class="bmi-index-form-input-li">
-                        <div class="bmi-index-form-input-button" @click="getBmiDs">開始計算</div>
-                        <button type="reset" class="bmi-index-form-input-button">清除計算</button>
-                    </div>
-                </div>
-            </form> -->
+            
         </div>
         <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;">
             <p style="color:#000;font-weight:400;">你的BMI為</p>
@@ -80,7 +67,7 @@
                 </div>
                 <div style="margin-top:3vh;display:flex;align-items:center;justify-content:center;" v-if="have_input">
                     <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-result-'+result_img+'.png'" alt="">
-                    <!-- <div v-if="!have_input" style="height:26px;wight:30px;margin-top:3vh;"></div> -->
+                    
                     <p style="margin-left:6px;">{{result_text}}</p>
                 </div>
                 <div class="bmi-share-icon-box">
@@ -95,11 +82,7 @@
                         </a>
                         <p>facebook</p>
                     </div>
-                    <!-- <div class="bmi-share-icon" @click="shareUrl()">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-facebook.png" alt="">
-                        <p>facebook</p>
-                    </div> -->
-                    <!-- <img :src="htmlUrl" alt=""> -->
+                    
                     <div class="bmi-share-icon">
                         <a class="a2a_dd" href="https://www.addtoany.com/share">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-more.png" alt="">
@@ -110,41 +93,7 @@
             </div>
             <textarea id="urlCopied" cols="30" rows="1"></textarea>
         </div>
-        <!-- <div class="bmi-share-box ds-share" v-if="$mq == 'desktop'" id="ds-share-box" :class="is_open ? 'open':''">
-            <div class="bmi-share-container" id="ds-result">
-                <div class="bmi-share-close" @click="is_open = false"></div>
-                <p style="color:#000;font-weight:400;">你的BMI為</p>
-                <h5 v-if="have_input" >{{ds_result}}</h5>
-                <div style="margin-top: 3vh;" v-if="!have_input">
-                    <img src="/bmi/bmi-result-0.png" alt="">
-                    <p style="height:32px;margin-top:3vh;display:flex;align-items:center;justify-content:center;">{{result_text}}</p>
-                </div>
-                <div style="margin-top:3vh;display:flex;align-items:center;justify-content:center;" v-if="have_input">
-                    <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-result-'+result_img+'.png'" alt="">
-                    <p style="margin-left:6px;">{{result_text}}</p>
-                </div>
-                <div class="bmi-share-icon-box">
-                    <div class="bmi-share-icon">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-copy.png" alt="" @click="copyUrl()">
-                        <p>複製連結</p>
-                    </div>
-                    <div class="bmi-share-icon">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
-                        style="text-decoration: none" target="_blank">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-facebook.png" alt="">
-                        </a>
-                        <p>facebook</p>
-                    </div>
-                    <div class="bmi-share-icon">
-                        <a class="a2a_dd" href="https://www.addtoany.com/share">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-more.png" alt="">
-                        </a>
-                        <p>更多</p>
-                    </div>
-                </div>
-            </div>
-            <textarea id="urlCopied" cols="30" rows="1"></textarea>
-        </div> -->
+        
     </div>
 </template>
 
@@ -174,7 +123,6 @@ export default {
                 { property : 'og:title' , content:"BMI值計算器"},
                 { property : 'og:type' , content:""},
                 { property : 'og:url' , content:""},
-                // { 'property' : 'og:image' , 'content':`${this.htmlUrl}`},
                 { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-img.png"},
                 { property : 'og:description' , content:""},
                 { property : 'og:site_name' , content:""},
