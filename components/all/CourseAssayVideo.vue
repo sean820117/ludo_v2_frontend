@@ -57,7 +57,7 @@
                         <div class="assay-grade-box">
                             <p style="margin-bottom:0;">准确率</p>
                             <div class="boxing-assay-grade-num">
-                                <h3>76</h3>
+                                <h3>{{video_result.score}}</h3>
                                 <p>%</p>
                             </div>
                         </div>
@@ -219,7 +219,7 @@ export default {
         is_loaded: true,
         // show_comment_box:false,
         show_comment_box:false,
-        
+        score: '',
     }),
     components: {
         Hooper,

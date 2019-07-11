@@ -34,4 +34,9 @@ export default {
 .bmi-header-logo:last-child {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/header-icon.png'); 
 }
+@media (min-width:769px) {
+    .bmi-header-logo {
+        width: 80px;
+    }
+}
 </style>

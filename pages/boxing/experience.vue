@@ -168,7 +168,7 @@ export default {
             let form = new FormData();
             form.append('file',e.target.files[0])
             form.append('pose_id','boxing_1')
-            form.append('language','zh-tw')
+            form.append('language','zh-cn')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
