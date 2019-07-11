@@ -8,9 +8,9 @@
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video> -->
-                <vue-plyr @click="is_opened = true">
+                <vue-plyr >
                     <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg" src="video.mp4" id="course-video">
-                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
+                        <source  @click="is_opened = true" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
                         <source src="video-1080p.mp4" type="video/mp4" size="1080">
                         <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
                     </video>
@@ -474,6 +474,9 @@ export default {
 .plyr--video .plyr__controls {
     padding-top: 0;
 }
+/* .plyr__control.plyr__control--overlaid:checked ~ .teach-course-info {
+    display: none;
+} */
 @media (min-width:769px) {
     .teach-page {
         width: 100%;

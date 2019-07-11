@@ -2,7 +2,8 @@
     <div class="bmi-index-page">
         <bmi-header></bmi-header>
         <div class="bmi-index-content">
-            <p>BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
+            <h5>BMI值計算機</h5>
+            <p style="margin-top:6vh;">BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
             <p style="font-weight:400;">例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2</p>
             <p style="color:#000;margin-top:3vh;">體重正常範圍為 BMI=18.5~24</p>
         </div>
@@ -11,55 +12,80 @@
             <form>
                 <div class="bmi-index-form-input">
                     <div class="bmi-index-form-input-li">
-                        <div>身高<input type="number" id="height" name="height"  min="50" max="250">cm</div>
-                        <div class="bmi-index-form-input-button" @click="getBmi">開始計算</div>
+                        <div>
+                            身高<div v-if="$mq == 'desktop'">(height)</div>
+                            <input type="number" id="height" name="height"  min="50" max="250">
+                            <div v-if="$mq == 'desktop'">公分(</div>cm<div v-if="$mq == 'desktop'">)</div></div>
+                        <div class="bmi-index-form-input-button" v-if="$mq == 'mobile'" @click="getBmi">開始計算</div>
                     </div>
                     <div class="bmi-index-form-input-li">
-                        <div>體重<input type="number" id="weight" name="weight"  min="50" max="250">kg</div>
+                        <div>
+                            體重<div v-if="$mq == 'desktop'">(weight)</div>
+                            <input type="number" id="weight" name="weight"  min="50" max="250">
+                            <div v-if="$mq == 'desktop'">公斤(</div>kg<div v-if="$mq == 'desktop'">)</div></div>
+                        <button type="reset" class="bmi-index-form-input-button" v-if="$mq == 'mobile'">清除計算</button>
+                    </div>
+                    <div class="bmi-index-form-input-li" v-if="$mq == 'desktop'">
+                        <div class="bmi-index-form-input-button" @click="getBmi">開始計算</div>
                         <button type="reset" class="bmi-index-form-input-button">清除計算</button>
                     </div>
                 </div>
             </form>
+            
         </div>
-        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;" id="bmi-result">
+        <div class="bmi-index-content bmi-index-end" style="margin-top:3vh;">
             <p style="color:#000;font-weight:400;">你的BMI為</p>
             <div class="bmi-index-form-end"><input type="number" disabled="disabled" :placeholder="bmi_result"></div>
             <div class="bmi-index-form-end-share">
                 <button @click="openShareBox">分享</button>
             </div>
         </div>
+        <!-- <div class="bmi-index-content bmi-index-end ds-end" v-if="$mq == 'desktop'" style="margin-top:3vh;">
+            <div class="bmi-index-form-end">
+                <p style="color:#000;font-weight:400;float:left;font-size:14px;">你的BMI為</p>
+                <input type="number" disabled="disabled" :placeholder="ds_result">
+                <div class="bmi-index-form-end-share">
+                    <button style="font-size:14px;" @click="openShareBox">分享</button>
+                </div>
+            </div>
+            
+        </div> -->
         <div class="bmi-index-content" style="margin-top:10vh;">
-            <img src="/bmi/bmi.png" alt="">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi.png" alt="">
+        </div>
+        <div class="bmi-index-content">
+            <p style="margin-top:5vh;font-weight:300;">&copy; 2019 LUDO All Rights Reserved</p>
         </div>
         <div class="bmi-share-box" :class="is_open ? 'open':''">
-            <div class="bmi-share-container">
+            <div class="bmi-share-container" id="result">
                 <div class="bmi-share-close" @click="is_open = false"></div>
                 <p style="color:#000;font-weight:400;">你的BMI為</p>
-                <h5 v-if="have_input">{{bmi_result}}</h5>
+                <h5 v-if="have_input" >{{bmi_result}}</h5>
                 <div style="margin-top: 3vh;" v-if="!have_input">
                     <img src="/bmi/bmi-result-0.png" alt="">
                     <p style="height:32px;margin-top:3vh;display:flex;align-items:center;justify-content:center;">{{result_text}}</p>
                 </div>
                 <div style="margin-top:3vh;display:flex;align-items:center;justify-content:center;" v-if="have_input">
-                    <img :src="'/bmi/bmi-result-'+result_img+'.png'" alt="">
-                    <!-- <div v-if="!have_input" style="height:26px;wight:30px;margin-top:3vh;"></div> -->
+                    <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-result-'+result_img+'.png'" alt="">
+                    
                     <p style="margin-left:6px;">{{result_text}}</p>
                 </div>
                 <div class="bmi-share-icon-box">
                     <div class="bmi-share-icon">
-                        <img src="/bmi/share-copy.png" alt="" @click="copyUrl()">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-copy.png" alt="" @click="copyUrl()">
                         <p>複製連結</p>
                     </div>
                     <div class="bmi-share-icon">
                         <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
                         style="text-decoration: none" target="_blank">
-                            <img src="/bmi/share-facebook.png" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-facebook.png" alt="">
                         </a>
                         <p>facebook</p>
                     </div>
+                    
                     <div class="bmi-share-icon">
                         <a class="a2a_dd" href="https://www.addtoany.com/share">
-                        <img src="/bmi/share-more.png" alt="">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-more.png" alt="">
                         </a>
                         <p>更多</p>
                     </div>
@@ -67,11 +93,24 @@
             </div>
             <textarea id="urlCopied" cols="30" rows="1"></textarea>
         </div>
+        
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import VueMq from 'vue-mq'
+
 import BmiHeader from '~/components/bmi/BmiHeader.vue';
+
+Vue.use(VueMq, {
+  breakpoints: {
+    // small: 400,
+    mobile: 768,
+    desktop: Infinity,
+  }
+});
+
 export default {
     head() {
         return  {
@@ -84,25 +123,26 @@ export default {
                 { property : 'og:title' , content:"BMI值計算器"},
                 { property : 'og:type' , content:""},
                 { property : 'og:url' , content:""},
-                { property : 'og:image' , content:""},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-img.png"},
                 { property : 'og:description' , content:""},
                 { property : 'og:site_name' , content:""},
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '' }
             ],
-            script: [
-                {src: 'http://html2canvas.hertzen.com/dist/html2canvas.js'},
-            ],
         }
+    },
+    computed:{
+        
     },
     data:()=>({
         is_open: false,
         bmi_result: 0,
+        ds_result: 0,
         result_text: '',
         result_img: Number,
         have_input: false,
-        href:'',
+        htmlUrl: '',
     }),
     components: {
         BmiHeader,
@@ -142,6 +182,40 @@ export default {
                 }
             },300)
         },
+        getBmiDs(){
+            this.ds_result = '';
+            this.have_input = false;
+            let h = document.getElementById('ds-height').value;
+            let w = document.getElementById('ds-weight').value;
+            setTimeout(()=> {
+                this.ds_result = (w/[(h/100)*(h/100)]).toFixed(1);
+                if(isNaN(this.ds_result) || this.ds_result === 'Infinity'){
+                    this.ds_result = 0;
+                    this.result_text = '你還沒有填入身高體重ㄛ！';
+                }
+                else {
+                    if (this.ds_result < 18.5 && this.ds_result > 0){
+                        this.result_text = '嗚嗚你太瘦了！快多吸兩口空氣！';
+                        this.result_img = 1;
+                        this.have_input = true;
+                    } else if (this.ds_result < 24 && this.ds_result >= 18.5) {
+                        this.result_text = '太棒了！你在正常範圍裡！';
+                        this.result_img = 2;
+                        this.have_input = true;
+                    } else if (this.ds_result >= 24) {
+                        this.result_text = '那個...你可能要動起來囉！';
+                        this.result_img = 3;
+                        this.have_input = true;
+                    } else {
+                        this.ds_result = 0;
+                        this.result_text = '你還沒有填入身高體重ㄛ！';
+                    }
+                    // } else if (this.ds_result == 0) {
+                    //     this.result_text = '你還沒有填入身高體重ㄛ！';
+                    // }
+                }
+            },300)
+        },
         openShareBox(){
             this.is_open = true;
             if(this.bmi_result == 0){
@@ -154,12 +228,48 @@ export default {
             console.log(Url.innerHTML)
             Url.select();
             document.execCommand("copy");
-        }
+        },
+        // shareUrl(){
+        //     const html2canvas = require('html2canvas');
+        //     console.log('ok');
+        //     html2canvas(document.querySelector("#result")).then(canvas => {
+        //         // document.body.appendChild(canvas)
+        //         let url = canvas.toDataURL('image/png');
+        //         this.htmlUrl = url;
+        //         this.sendUrl();
+        //     });
+        //     console.log('go');
+        //     document.querySelector("meta[property='image']").setAttribute('content', htmlUrl);
+        //     document.location.href='https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi'
+        // }
     },
     mounted(){
         let recaptchaScript = document.createElement('script')
         recaptchaScript.setAttribute('src', 'https://static.addtoany.com/menu/page.js')
         document.head.appendChild(recaptchaScript)
+    },
+    computed : {
+        // dragDrop(){
+        //     window.onload = function(){
+        //         var block = document.getElementById('ds-share-box')
+        //         block.onmousedown = function(ev){
+        //             var oevent = ev || event;
+                    
+        //             var distanceX = oevent.clientX - block.offsetLeft;
+        //             var distanceY = oevent.clientY - block.offsetTop;
+
+        //             document.onmousemove = function(ev){
+        //             var oevent = ev || event;
+        //             block.style.left = oevent.clientX - distanceX + 'px';
+        //             block.style.top = oevent.clientY - distanceY + 'px'; 
+        //             };
+        //             document.onmouseup = function(){
+        //             document.onmousemove = null;
+        //             document.onmouseup = null;
+        //             };
+        //         }
+        //     }
+        // }
     }
 }
 </script>
@@ -176,7 +286,11 @@ button {
 }
 .bmi-index-content {
     padding:  0 10px;
-    margin-top: 7vh; 
+}
+.bmi-index-content h5 {
+    color: #3347E3;
+    font-size: 17px;
+    text-align: center;
 }
 .bmi-index-content p {
     text-align: center;
@@ -274,7 +388,7 @@ button {
 .bmi-share-close {
     width: 30px;
     height: 30px;
-    background-image: url('/bmi/share-close.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-close.png');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;   
@@ -307,5 +421,81 @@ button {
 #urlCopied {
     position: absolute;
     top: 300vh;
+}
+@media (min-width:769px) {
+    .bmi-index-content:nth-child(2) p:last-child {
+        display: none;
+    }
+    .bmi-index-content:nth-child(3) {
+        margin-top:50px;
+    }
+    .bmi-index-content:nth-child(3) p:first-child {
+        letter-spacing: 3px;
+    }
+
+    .bmi-index-content img {
+        width: 600px;
+    }
+    .bmi-index-content:nth-last-child(2) p {
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
+    }
+    .bmi-index-content form {
+        width: 300px;
+    }
+    .bmi-index-form-input-li:first-child ,
+    .bmi-index-form-input-li:nth-child(2) {
+        justify-content: center;
+    }
+    .bmi-index-form-input-li:first-child div:first-child,
+    .bmi-index-form-input-li:nth-child(2) div:first-child {
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        font-size: 14px;
+    }
+    .bmi-index-form-input-li:nth-child(3) {
+        justify-content: space-evenly;
+        margin-top: 35px;
+    }
+    .bmi-index-form-input input {
+        width: 100px;
+        margin: 0 10px;
+    }
+    .bmi-index-form-input-button {
+        line-height: 10px;
+    }
+    .bmi-index-content.bmi-index-end {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bmi-index-form-end {
+        margin: 0 10px;
+    }
+    .bmi-index-form-end-share {
+        position: unset;
+    }
+    .bmi-share-box {
+        background: transparent;
+        width: 300px;
+        height: 390px;
+    }
+    .bmi-share-container {
+        width: 300px;
+        height: 390px;
+        background: white;
+        border: 1px solid #000;
+        position: fixed;
+        top: 25%;
+        right: 4%;
+    }
+    .bmi-share-close {
+        margin:20px 0 0 250px;
+    }
+    .bmi-share-icon-box {
+        width: 300px;
+    }
 }
 </style>

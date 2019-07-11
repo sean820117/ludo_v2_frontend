@@ -38,12 +38,12 @@
                 </router-link>
             </div> -->
             <mommiyoga-login-select></mommiyoga-login-select>
-            <p class="boxing-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/">用户协议</a>&nbsp;和&nbsp;<a href="/">隐私政策</a></p>
+            <p class="boxing-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用户协议</a>&nbsp;和&nbsp;<a href="">隐私政策</a></p>
         </div>
-        <div :class="showRemindOrNot">
+        <div class="show-remind-box" :class="showRemindOrNot">
             <course-remind-no-board @closeRemind="is_show_remind = false">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/boxing/prepare-box-human.png" alt="" style="margin-top: 20px;width:40%;">
-                <p style="font-size:13px;margin:15px 0px;">课程尚未开放<br>预计八月上线</p>
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/boxing/prepare-box-human.png" alt="" style="margin:50px auto 30px;width:40%;">
+                <p style="font-size:13px;margin:15px 0px;line-height:20px;">课程尚未开放<br>预计八月上线</p>
                 <div class="star-line-box">
                     <button class="boxing-assay-contact-btn" 
                     style="width:90px;letter-space:0;margin-top:20px;font-family:'MFLiHei_Nocom';" @click="is_show_remind = false">期待</button>
@@ -180,7 +180,28 @@ export default {
 .boxing-intro-agree a,.boxing-intro-agree a:visited {
     color: #DCD8CF;
 }
-
+.show-remind-box {
+    display: none;
+}
+.show-remind-box.open {
+    display: block;
+}
+.boxing-assay-contact-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    /* letter-spacing: 3px;  */
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    background: #FF2D51;
+    color: #fff;
+    cursor: pointer;
+}
 @media (min-width: 769px) {
     .boxing-contain {
         width: 450px;
