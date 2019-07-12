@@ -9,9 +9,9 @@
                     Your browser does not support the video tag.
                 </video> -->
                 <vue-plyr >
-                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg" src="video.mp4" id="course-video">
-                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-1.mp4" type="video/mp4" size="720">
-                        <source src="video-1080p.mp4" type="video/mp4" size="1080">
+                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-7.jpg" src="video.mp4" id="course-video">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-7.mp4" type="video/mp4" size="720">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-7.mp4" type="video/mp4" size="1080">
                         <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
                     </video>
                 </vue-plyr>
@@ -75,9 +75,9 @@
                     </div>
                 </div>
                 
-                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">上传影片</button>
+                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">开始练习</button>
                 <button class="teach-assay-btn" v-else>
-                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上传影片</label>  
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">开始练习</label>  
                 </button>
             </div>
             <div class="before-remind" :class="showRemindBox" >

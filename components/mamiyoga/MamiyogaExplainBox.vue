@@ -4,7 +4,7 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png" alt="">
         </div>
         <div class="mamiyoga-explain-content">
-            <hooper>
+            <hooper :autoPlay="true">
                 <slide>
                    <h5>{{$t('explain_title_first')}}</h5>
                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
@@ -17,6 +17,18 @@
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
+            <!-- <carousel :perPageCustom="[[300,1]]">
+                <slide>
+                   <h5>{{$t('explain_title_first')}}</h5>
+                   <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
+                   <p>{{$t('explain_text_first')}}</p>
+                </slide>
+                <slide>
+                    <h5>{{$t('explain_title_secord')}}</h5>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
+                    <p>{{$t('explain_text_secord')}}</p>
+                </slide>
+            </carousel> -->
         </div>
         <div style="margin-top:8vh;">
             <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教學" style="margin-bottom:5vh;"></mamiyoga-btn>
@@ -25,15 +37,23 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
+// import VueCarousel from 'vue-carousel';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
+// import { Carousel, Slide } from 'vue-carousel';
 import 'hooper/dist/hooper.css';
+// Vue.use(VueCarousel);
 export default {
     components: {
+        MamiyogaBtn,
         Hooper,
         Slide,
         HooperPagination,
-        MamiyogaBtn,
+        
+        // Carousel,
+        // Slide,
     },
     methods: {
         closeBox(){
@@ -56,12 +76,13 @@ export default {
     position: absolute;
     top: 15px;
     right: 15px;
+    cursor: pointer;
 }
 .mamiyoga-explain-content {
     width: 90vw;
     height: 80vh;
     margin: 0 auto;
-    padding-top: 5vh;
+    padding-top: 45px;
 }
 .mamiyoga-explain-content h5 {
     text-align: center;
