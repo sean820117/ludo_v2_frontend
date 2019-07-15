@@ -4,7 +4,7 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png" alt="">
         </div>
         <div class="mamiyoga-explain-content">
-            <hooper>
+            <hooper :autoPlay="true">
                 <slide>
                    <h5>正面拍摄</h5>
                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">

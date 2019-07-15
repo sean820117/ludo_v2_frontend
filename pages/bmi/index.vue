@@ -106,7 +106,7 @@ import BmiHeader from '~/components/bmi/BmiHeader.vue';
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
-    mobile: 768,
+    mobile: 769,
     desktop: Infinity,
   }
 });

@@ -9,9 +9,9 @@
                     Your browser does not support the video tag.
                 </video> -->
                 <vue-plyr >
-                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-7.jpg" src="video.mp4" id="course-video">
-                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-7.mp4" type="video/mp4" size="720">
-                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-7.mp4" type="video/mp4" size="1080">
+                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-5.jpg" src="video.mp4" id="course-video">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="720">
+                        <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="1080">
                         <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
                     </video>
                 </vue-plyr>
@@ -76,8 +76,10 @@
                 </div>
                 
                 <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">开始练习</button>
-                <button class="teach-assay-btn" v-else>
-                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">开始练习</label>  
+                <button class="teach-assay-btn" v-else style="padding:0;">
+                    <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;">
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">开始练习
+                    </label>  
                 </button>
             </div>
             <div class="before-remind" :class="showRemindBox" >
@@ -89,15 +91,17 @@
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.png" alt="" style="margin-top: 50px;">
                     <p style="color:#8699A0;font-size:13px;">我们将记录您的动作<br>并交给AI助教分析</p>
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px">
-                            <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好</label>  
+                        <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px;padding:0;">
+                            <label style="display:flex;align-items:center;justify-content:center;width:60px;height:30px;">
+                                <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">好
+                            </label>  
                         </button>
                     </div>
                 </mamiyoga-window-alert-box>
             </div>
         </div>
         <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent" :show_record_btn="false"
-        @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
+        @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result" :pose_id="pose_id"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
                 :can-cancel="true" 
@@ -139,6 +143,7 @@ export default {
         courses:[],
         course_title:'',
         course_descriptions:[],
+        pose_id: 'yoga_27',
     }),
     
     components: {
@@ -153,8 +158,8 @@ export default {
     async mounted() {
         if (process.client) {
             this.courses = await require('~/config/mommiyoga-course');
-            this.course_title = this.courses[6].title;
-            this.course_descriptions = this.courses[6].pose_description;
+            this.course_title = this.courses[4].title;
+            this.course_descriptions = this.courses[4].pose_description;
         }
     },
     methods: {
@@ -162,17 +167,20 @@ export default {
             this.isLoading = true;
             let form = new FormData();
             form.append('file',e.target.files[0])
-            form.append('pose_id','yoga_6')
+            form.append('pose_id',this.pose_id)
             form.append('language','zh-tw')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "1") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "2") res.data.reps_wrong_tags[i][j] = "膝盖弯曲";
-                  else if (res.data.reps_wrong_tags[i][j] == "3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                  else if (res.data.reps_wrong_tags[i][j] == "5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
+                  if(res.data.reps_wrong_tags[i][j] == "1") res.data.reps_wrong_tags[i][j] = "耸肩";
+                  else if (res.data.reps_wrong_tags[i][j] == "2") res.data.reps_wrong_tags[i][j] = "身体往后倒";
+                  else if (res.data.reps_wrong_tags[i][j] == "3") res.data.reps_wrong_tags[i][j] = "身体往前倒";
+                  else if (res.data.reps_wrong_tags[i][j] == "4") res.data.reps_wrong_tags[i][j] = "背部弯曲";
+                  else if (res.data.reps_wrong_tags[i][j] == "5") res.data.reps_wrong_tags[i][j] = "手伸不够直";
+                  else if (res.data.reps_wrong_tags[i][j] == "6") res.data.reps_wrong_tags[i][j] = "抬手不完全";
+                  else if (res.data.reps_wrong_tags[i][j] == "7") res.data.reps_wrong_tags[i][j] = "伸展不完全";
+                  else if (res.data.reps_wrong_tags[i][j] == "8") res.data.reps_wrong_tags[i][j] = "未坐下";
                   else if (res.data.reps_wrong_tags[i][j] == "0") res.data.reps_wrong_tags[i][j] = "姿势正确";
               }
             }

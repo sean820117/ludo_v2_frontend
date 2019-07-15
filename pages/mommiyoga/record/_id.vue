@@ -24,7 +24,7 @@
             </div>
         </div>
         <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"
-         :show_record_btn="true" :goRecord="course_data.id"
+         :show_record_btn="true" :goRecord="course_data.id" :pose_id="pose_id"
          @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mommiyoga-teach-assay>
         <div class="vld-parent" >
                 <loading :active.sync="isLoading" 
@@ -57,6 +57,7 @@ export default {
 
         user_data:[],
         have_user_data:false,
+        pose_id:'',
     }),
     components: {
         MommiyogaPracticeRecord,
@@ -69,6 +70,7 @@ export default {
             this.courses = await require('~/config/mommiyoga-course');
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
+            this.pose_id = 'yoga_'+this.course_data.upload_id;
             console.log(this.course_id)
         }
     },
@@ -77,7 +79,7 @@ export default {
             this.isLoading = true;
             let form = new FormData();
             form.append('file',e.target.files[0])
-            form.append('pose_id','yoga_'+this.course_data.upload_id)
+            form.append('pose_id',this.pose_id)
             form.append('language','zh-tw')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
@@ -93,7 +95,7 @@ export default {
             // }
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                    this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
+                    res.data.reps_wrong_tags[i][j] = this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
               }
             }
             this.isLoading = false;

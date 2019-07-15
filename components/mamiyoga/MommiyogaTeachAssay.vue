@@ -57,7 +57,7 @@
                         <div class="assay-grade-box">
                             <p style="margin-bottom:0;">准确率</p>
                             <div class="mamiyoga-assay-grade-num">
-                                <h3>76</h3>
+                                <h3>{{video_result.score}}</h3>
                                 <p>%</p>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                             <div class="mamiyoga-assay-contact-box" id="contact-us-box">
                             <p>分析结果不如预期吗？</p>
-                            <button class="mamiyoga-assay-contact-btn" @click="openContactBox()">联络我们</button>
+                            <button class="mamiyoga-assay-contact-btn" @click="show_contact_box = true">联络我们</button>
                         </div>
                     </div>
                     
@@ -99,16 +99,16 @@
                 
                 <div class="mamiyoga-assay-contact-block" :class="showContactOrNot">
                     <mamiyoga-window-alert-box>
-                        <div class="cancel-box" @click="openContactBox">
+                        <div class="cancel-box" @click="show_contact_box = false">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
                         <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方吗？</p>
                         <div class="star-line-box">
-                            <input type="radio" class="questions first" id="answer-first" name="questions">
-                            <input type="radio" class="questions second" id="answer-second" name="questions">
-                            <input type="radio" class="questions third" id="answer-third" name="questions">
-                            <input type="radio" class="questions four" id="answer-four" name="questions">
-                            <input type="radio" class="questions five" id="answer-five" name="questions">
+                            <input type="radio" class="questions first" id="answer-first" name="questions" value="verybad" v-model="impress">
+                            <input type="radio" class="questions second" id="answer-second" name="questions" value="bad" v-model="impress">
+                            <input type="radio" class="questions third" id="answer-third" name="questions" value="normal" v-model="impress">
+                            <input type="radio" class="questions four" id="answer-four" name="questions" value="notbad" v-model="impress">
+                            <input type="radio" class="questions five" id="answer-five" name="questions" value="good" v-model="impress"> 
                             <div class="select-questions">
                                 <label for="answer-first" class="first-questions">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-01.png" alt="">
@@ -136,8 +136,8 @@
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" style="resize:none;"
                         required placeholder="谢谢您的回馈，让我们尽速为您寻找解决方法" v-model="input_text"></textarea>
                         <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
-                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="openContactBox()">送出</button>
                         </form>
+                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="sendIdea()">送出</button>
                     </mamiyoga-window-alert-box>
                 </div>
                 
@@ -149,11 +149,11 @@
                         <p>请问您满意这次的分析结果吗？</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-box-human.png" alt="">
                         <div class="star-line-box">
-                            <input type="radio" class="stars first" id="first" name="star">
-                            <input type="radio" class="stars second" id="second" name="star">
-                            <input type="radio" class="stars third" id="third" name="star">
-                            <input type="radio" class="stars four" id="four" name="star">
-                            <input type="radio" class="stars five" id="five" name="star">
+                            <input type="radio" class="stars first" id="first" value="one" name="star" v-model="picked_star">
+                            <input type="radio" class="stars second" id="second" value="two" name="star" v-model="picked_star">
+                            <input type="radio" class="stars third" id="third" value="three" name="star" v-model="picked_star">
+                            <input type="radio" class="stars four" id="four" value="four" name="star" v-model="picked_star">
+                            <input type="radio" class="stars five" id="five" value="five" name="star" v-model="picked_star">
                             <div class="select-star">
                                 <label for="first" class="first-star">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
@@ -176,7 +176,7 @@
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" alt="">
                                 </label>
                             </div>
-                            <button class="mamiyoga-assay-contact-btn" @click="show_star_box = false" style="width:90px;letter-space:0;margin-top:5px">送出</button>
+                            <button class="mamiyoga-assay-contact-btn" @click="sendStarValue()" style="width:90px;letter-space:0;margin-top:5px">送出</button>
                         </div>
                     </mamiyoga-window-alert-box>
                 </div>
@@ -207,6 +207,8 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
 import 'hooper/dist/hooper.css';
 import Vue2TouchEvents from 'vue2-touch-events'
+import axios from '~/config/axios-config';
+import { mapMutations, mapGetters } from 'vuex';
 
  
 Vue.use(Vue2TouchEvents)
@@ -215,6 +217,7 @@ export default {
         video_result: Object,
         show_record_btn: false,
         goRecord:String,
+        pose_id: String,
     },
     data:()=> ({
         video_url: '',
@@ -228,7 +231,8 @@ export default {
         is_loaded: true,
         // show_comment_box:false,
         show_comment_box:false,
-        
+        picked_star:'',
+        impress: '', 
     }),
     components: {
         Hooper,
@@ -250,7 +254,7 @@ export default {
             }  
         },
         openContactBox(){
-            this.show_contact_box = !this.show_contact_box
+            this.show_contact_box = !this.show_contact_box;    
         },
         clickRetryButton(e){
             this.$emit('handleRetryEvent',e)
@@ -266,9 +270,33 @@ export default {
         },
         closeAlertBox(){
             this.show_contact_box = false
+        },
+        async sendStarValue(){
+            this.show_star_box = false;
+            let send_user_id = '0000'
+            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q1',rating:this.picked_star};
+            if (this.user.user_id != '') {
+                send_user_id = this.user.user_id
+            }
+            const form_res = await axios.post('/apis/send-feedback',send_data);
+            console.log(form_res)
+        },
+        async sendIdea(){
+            this.show_contact_box = false;
+            let send_user_id = '0000'
+            if (this.user.user_id != '') {
+                send_user_id = this.user.user_id
+            }
+            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,text:this.input_text};
+            console.log(send_data)
+            const form_res = await axios.post('/apis/send-feedback',send_data);
+            console.log(form_res.data.status)
         }
     },
     computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         showContentOrNot(){
             return this.show ? 'open':'';
         },
@@ -280,7 +308,7 @@ export default {
         },
         showStarOrNot(){
             return this.show_star_box && this.show ? 'open':'';
-        } 
+        },
     },
     
 }
