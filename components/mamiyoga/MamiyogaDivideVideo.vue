@@ -7,7 +7,7 @@
             <div class="divide-label-box">
                 <label :for="pose.pose_id" :class="pose.pose_id+'-label'" 
                 v-for="(pose,i) in getPoses" :key="i" >
-                <img src="/mamiyoga/ai-badge.svg" v-show="pose.pose_ai" > 動作{{i+1}}
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" > 動作{{i+1}}
                 </label>
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"

@@ -14,8 +14,8 @@ export default {
     teach_remind_text: '今やったのをAIアシスタントに<br>チェックしてもらうね！',
     teach_button_ok: 'オッケー',
 
-    teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-jp-2.png',
-    teach_text_time: '撮影時間の目安：&nbsp;<i>20-50</i>&nbsp;秒',
+    teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-jp-2.svg',
+    teach_text_time: '撮影時間の目安：&nbsp;<i>20-45</i>&nbsp;秒',
 
     teach_assay_title: '結果を分析',
     teach_assay_correct: '正確率',
@@ -33,4 +33,17 @@ export default {
     explain_title_secord: '側面で撮影',
     explain_text_first: 'AIアシスタントが正確に分析できるように、体の「正面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
     explain_text_secord: 'AIアシスタントが正確に分析できるように、体の「側面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
+
+    menu_nav_text_teacher:'日文-講師介紹',
+    menu_nav_text_record:'日文-AI助教',
+    menu_nav_text_friend:'日文-學習夥伴',
+    menu_tag_text_first:'日文-矯正疼痛',
+    menu_tag_text_second:'日文-舒壓安眠',
+    menu_tag_text_third:'日文-美體塑身',
+    menu_tag_text_four:'日文-調和心靈',
+
+    menu_content_text_first: '日文-矯正媽媽產後不良姿勢來緩解疼痛',
+    menu_content_text_second: '日文-幫助媽媽們提升睡眠品質',
+    menu_content_text_third: '日文-塑造出比產前更漂亮的身體曲線',
+    menu_content_text_four: '日文-釋放媽媽們的產後壓力',
 }

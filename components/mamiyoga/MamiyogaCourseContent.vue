@@ -6,13 +6,13 @@
         <input type="radio" class="labels four-series" id="four" name="series">
         <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
             <div class="label-box">
-                <label for="first" class="first-label">矯正疼痛</label>
-                <label for="second" class="second-label">舒壓安眠</label>
-                <label for="third" class="third-label">美體塑身</label>
-                <label for="four" class="four-label">調和心靈</label>
+                <label for="first" class="first-label">{{$t('menu_tag_text_first')}}</label>
+                <label for="second" class="second-label">{{$t('menu_tag_text_second')}}</label>
+                <label for="third" class="third-label">{{$t('menu_tag_text_third')}}</label>
+                <label for="four" class="four-label">{{$t('menu_tag_text_four')}}</label>
             </div>
             <div class="first-series-container mamiyoga-all-course">
-                <h5>矯正媽媽們產後不良姿勢來緩解疼痛</h5>
+                <h5>{{$t('menu_content_text_first')}}</h5>
                 <mamiyoga-course-block v-for="rectify in getRectifys" :key="rectify.id"
                 :bgImage="rectify.preview_img" blockColor="white" 
                 :blockTitle="rectify.title" :unitSrc="rectify.chapter_flag" :selectCourse="rectify.id"
@@ -21,7 +21,7 @@
                 
             </div>
             <div class="second-series-container mamiyoga-all-course">
-                <h5>幫助媽媽們提升睡眠品質</h5>
+                <h5>{{$t('menu_content_text_second')}}</h5>
                 <mamiyoga-course-block v-for="alleviate in getAlleviates" :key="alleviate.id"
                 :bgImage="alleviate.preview_img" blockColor="white" 
                 :blockTitle="alleviate.title" :unitSrc="alleviate.chapter_flag" :goCourse="alleviate.id"
@@ -29,7 +29,7 @@
                 
             </div>
             <div class="third-series-container mamiyoga-all-course">
-                <h5>塑造出比產前更漂亮的身體曲線</h5>
+                <h5>{{$t('menu_content_text_third')}}</h5>
                 <mamiyoga-course-block v-for="beauty in getBeautys" :key="beauty.id"
                 :bgImage="beauty.preview_img" blockColor="white" 
                 :blockTitle="beauty.title" :unitSrc="beauty.chapter_flag" :goCourse="beauty.id"
@@ -37,7 +37,7 @@
                 
             </div>
             <div class="four-series-container mamiyoga-all-course">
-                <h5>釋放媽媽們的產後壓力</h5>
+                <h5>{{$t('menu_content_text_four')}}</h5>
                 <mamiyoga-course-block v-for="blend in getBlends" :key="blend.id"
                 :bgImage="blend.preview_img" blockColor="white" 
                 :blockTitle="blend.title" :unitSrc="blend.chapter_flag" :goCourse="blend.id"

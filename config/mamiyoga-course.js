@@ -2,7 +2,7 @@ module.exports = [
     {
         id: '1',
         title: '骨盆矯正瑜珈',
-        chapter_flag: '/mamiyoga/course/unit01.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit01.svg',
         tags: ['rectify'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -12,21 +12,21 @@ module.exports = [
             {
                 pose_id: 'first',
                 pose_brief: '讓身體記憶骨盆的正位',
-                pose_video:'',
+                pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4',
                 pose_description:['雙腳張開，比腰再寬一點','兩手壓住前後骨盆','讓骨盆前後移動','感受背部打直，不要駝背','記住骨盆移動的感覺','重複動作十次'],
                 pose_ai:false,
             },
             {
                 pose_id: 'second',
                 pose_brief: '躺著也可以做的骨盆矯正姿勢',
-                pose_video:'',
+                pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action02.mp4',
                 pose_description:['側躺在瑜珈墊上','手臂支撐頭部','兩隻腳膝蓋彎曲','上面的腳彎曲90度，舉起到身前','下方的腳伸直','吸氣，讓彎曲的膝蓋向天空張開','吐氣，慢慢將膝蓋放回原點','重複十次之後，換另一邊'],
                 pose_ai:false,
             },
             {
                 pose_id: 'third',
                 pose_brief: '回到沒有歪斜的骨盆',
-                pose_video:'',
+                pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action03.mp4',
                 pose_description:['首先模仿趴睡的姿勢','兩隻手肘將上半身撐起','調整手肘讓雙臂與肩同寬','抱持手肘位置，右膝蓋往腰部下方靠近','右膝撐地，用大腿的力量將身體撐起','右腿：腰部與大腿是九十度、大腿與小腿也是九十度','左腿：大腿小腿貼在地板上，腳掌朝後與小腿90度','臉部朝前，重複三到五次呼吸','另一邊也做相同的動作','屁股碰到後腳跟，手伸直手掌貼地伸直背部後緩緩坐起'],
                 pose_ai:false,
             },
@@ -35,7 +35,7 @@ module.exports = [
     {
         id: '2',
         title: '可以邊躺邊做的疲勞恢復瑜珈',
-        chapter_flag: '/mamiyoga/course/unit02.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit02.svg',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -68,7 +68,7 @@ module.exports = [
     {
         id: '3',
         title: '讓深呼吸變深的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit03.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03.svg',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -95,7 +95,7 @@ module.exports = [
     {
         id: '4',
         title: '讓淋巴液流暢的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit04.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit04.svg',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -121,7 +121,7 @@ module.exports = [
     {
         id: '5',
         title: '讓人煥然一新的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit05.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit05.svg',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -147,7 +147,7 @@ module.exports = [
     {
         id: '6',
         title: '從身體內部守護的產後瑜珈',
-        chapter_flag: '/mamiyoga/course/unit06.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit06.svg',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -173,7 +173,7 @@ module.exports = [
     {
         id: '7',
         title: '解消產後肥胖的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit07.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit07.svg',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -206,7 +206,7 @@ module.exports = [
     {
         id: '8',
         title: '製造身體曲線的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit08.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit08.svg',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -233,7 +233,7 @@ module.exports = [
     {
         id: '9',
         title: '產後的腹肌瑜珈',
-        chapter_flag: '/mamiyoga/course/unit09.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit09.svg',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -266,7 +266,7 @@ module.exports = [
     {
         id: '10',
         title: '產後的下半身減肥瑜珈',
-        chapter_flag: '/mamiyoga/course/unit10.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit10.svg',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -292,7 +292,7 @@ module.exports = [
     {
         id: '11',
         title: '療癒的呼吸法',
-        chapter_flag: '/mamiyoga/course/unit11.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit11.svg',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -318,7 +318,7 @@ module.exports = [
     {
         id: '12',
         title: '讓睡眠品質變好的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit12.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit12.svg',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -344,7 +344,7 @@ module.exports = [
     {
         id: '13',
         title: '消除壓力的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit13.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit13.svg',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',
@@ -377,7 +377,7 @@ module.exports = [
     {
         id: '14',
         title: '調整自律神經的瑜珈',
-        chapter_flag: '/mamiyoga/course/unit14.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit14.svg',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: '/mamiyoga/background-menu-old.png',

@@ -43,31 +43,23 @@
                 <div class="teach-content-text">
                     <div class="teach-content-li">
                         <p class="boxing-try-content-num">1</p>
-                        <p>我们正躺，望向天花板</p>
+                        <p>抱紧双拳，紧靠脸颊</p>
                     </div>
                     <div class="teach-content-li">
                         <p class="boxing-try-content-num">2</p>
-                        <p>把左膝抬高，两手抱膝</p>
+                        <p>想像耳朵旁边有一条尼龙线</p>
                     </div>
                     <div class="teach-content-li">
                         <p class="boxing-try-content-num">3</p>
-                        <p>双掌托住膝盖，将腿往外拉开，直到能尽量伸直手臂</p>
+                        <p>利用腰部与脚，带动上半身闪躲尼龙线</p>
                     </div>
                     <div class="teach-content-li">
                         <p class="boxing-try-content-num">4</p>
-                        <p>现在，将右脚抬起，慢慢从垫子伸起来</p>
+                        <p>保持核心姿势，肩膀保护脸颊</p>
                     </div>
                     <div class="teach-content-li">
                         <p class="boxing-try-content-num">5</p>
-                        <p>让脚跟尽量划大圆弧形，越大越好，再慢慢地放下</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="boxing-try-content-num">6</p>
-                        <p>重复这个动作3~5次，让腰部有一点点拱起来，呈现一个圆弧型</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="boxing-try-content-num">7</p>
-                        <p>然后，换边也进行一样的动作</p>
+                        <p>重复3~5回</p>
                     </div>
                 </div>
                 <div class="teacher-remind">

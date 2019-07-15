@@ -1,6 +1,6 @@
 <template>
     <div class="index-contain">
-        <video muted loop autoplay class="background-video" >
+        <video muted loop autoplay playsinline class="background-video" >
             <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-1.mp4" type="video/mp4">      
         </video>
         <div class="mamiyoga-index-intro">
@@ -16,7 +16,7 @@
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" v-if="!is_login">
-                <router-link to="/resume/pay" style="text-decoration: none;">
+                <router-link to="/mommiyoga/login" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="立即购买"  style="margin-bottom:5vh;"></mamiyoga-btn>
                 </router-link>
             </div>

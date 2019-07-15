@@ -1,14 +1,14 @@
 <template>
     <div class="about-page">
-        <mamiyoga-login-header nextTo="/mamiyoga/menu"
-        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-login-header>
+        <mamiyoga-mail-header nextTo="/mamiyoga/menu"
+        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-mail-header>
         <hooper>
             <slide class="about-teacher about-slide">
                 <div class="about-title"><h3>教師介紹</h3></div>
                 <div class="about-teacher-content">
                     <div>
                         <h3>橋本麻美</h3>
-                        <h4>asami hashimoto</h4>
+                        <h4 style="margin-bottom:30px;">asami hashimoto</h4>
                     </div>
                     <p style="font-weight: bold; margin-bottom: 5px;">持有證照</p>
                     <p style="margin-bottom: 10px;">Yoga Aliance RYT200<br>
@@ -77,13 +77,13 @@
 </template>
 
 <script>
-import MamiyogaLoginHeader from '~/components/mamiyoga/MamiyogaLoginHeader.vue';
+import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
     layout:'mommiyoga',
     components: {
-        MamiyogaLoginHeader,
+        MamiyogaMailHeader,
         Hooper,
         Slide,
         HooperPagination,
@@ -116,14 +116,14 @@ export default {
     background-size: cover;
 }
 .about-teacher:first-child {
-    background-image: url('/mamiyoga/about-back-1.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-1.png');
 }
 .about-teacher:nth-child(3) {
-    background-image: url('/mamiyoga/about-back-2.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-2.png');
     background-position: 40%;
 }
 .about-teacher:last-child {
-    background-image: url('/mamiyoga/about-back-3.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-3.png');
 }
 .about-teacher-content {
     font-size: 12px;
@@ -150,6 +150,8 @@ export default {
 .about-page .hooper {
     width: 100vw;
     height: 100vh;
+    /* position: absolute;
+    top: 0; */
 }
 .about-page .hooper-pagination {
     bottom: 3vh;
@@ -164,9 +166,16 @@ export default {
 .about-page .hooper-indicator:hover {
     background-color:#fff; 
 }
+@media (max-width: 768px) {
+    .about-page .hooper {
+        position: absolute;
+        top:0;
+    }
+}
 @media (min-width: 769px) {
     .about-page .hooper {
         width: 100%;
+        margin-top: -60px;
     }
     .about-teacher-content,
     .about-for-mammy .about-teacher-content {
@@ -175,6 +184,14 @@ export default {
     .about-for-mammy .about-teacher-content {
         padding: 0;
     }
-    
+    .about-teacher:first-child {
+        background-position: 20%; 
+    }
+    .about-teacher:nth-child(3) {
+        background-position: 50%; 
+    }
+    .about-teacher:last-child {
+        background-position: 30%;
+    }
 }
 </style>

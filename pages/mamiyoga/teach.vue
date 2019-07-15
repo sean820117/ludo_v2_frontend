@@ -258,7 +258,7 @@ export default {
     height: 39vh;
     position: absolute;
     top: 0;
-    background-image: url('/mamiyoga/teach-title-img.png'); 
+    
     z-index: 0;
 }
 .teach-video-sample {

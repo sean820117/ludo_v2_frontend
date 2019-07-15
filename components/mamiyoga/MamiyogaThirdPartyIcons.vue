@@ -1,7 +1,10 @@
 <template>
     <div class="third-party-login">
-        <a href="/"><img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/login-icon-facebook.svg" @click.prevent="handleFBClick" /></a>
+        <!-- <a href="/"><img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/login-icon-facebook.svg" @click.prevent="handleFBClick" /></a>
         <a href="/"><img v-if="login_method.google" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/login-icon-google.svg" @click.prevent="handleGoogleClick"/></a>
+        <a href="/"><img v-if="login_method.line" src="/icon-line.svg" /></a> -->
+        <a href=""><img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-login-page-wechat.png"/></a>
+        <a href=""><img v-if="login_method.google" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-login-page-qq.png"/></a>
         <a href="/"><img v-if="login_method.line" src="/icon-line.svg" /></a>
     </div>
 </template>

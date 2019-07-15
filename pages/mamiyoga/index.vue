@@ -15,7 +15,9 @@
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" @click="openRemindBox">
-                <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;"></mamiyoga-btn>
+                <router-link to="/mamiyoga/menu" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;"></mamiyoga-btn>
+                </router-link>
             </div>
             <mamiyoga-login-select></mamiyoga-login-select>
             <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>

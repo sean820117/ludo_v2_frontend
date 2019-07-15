@@ -106,7 +106,7 @@ import BmiHeader from '~/components/bmi/BmiHeader.vue';
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
-    mobile: 768,
+    mobile: 769,
     desktop: Infinity,
   }
 });
@@ -331,6 +331,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1px 7px 2px;
 }
 .bmi-index-form-end {
     width: 100px;
@@ -437,7 +438,7 @@ button {
         width: 600px;
     }
     .bmi-index-content:nth-last-child(2) p {
-        position: absolute;
+        position: fixed;
         bottom: 20px;
         right: 30px;
     }
@@ -463,9 +464,9 @@ button {
         width: 100px;
         margin: 0 10px;
     }
-    .bmi-index-form-input-button {
+    /* .bmi-index-form-input-button {
         line-height: 10px;
-    }
+    } */
     .bmi-index-content.bmi-index-end {
         display: flex;
         align-items: center;

@@ -80,7 +80,7 @@ export default {
     cursor: pointer;
 }
 .mamiyoga-header-login-btn.mommiyoga-header-login-btn {
-    width: 70px;
+    width: 80px;
 }
 
 

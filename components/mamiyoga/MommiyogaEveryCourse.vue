@@ -2,13 +2,21 @@
     <div class="mamiyoga-each-course">
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
         <h3>{{getTitle}}</h3>
-        <div style="position:relative;">
-            <video class="mamiyoga-course-video" controls @click="is_opened = true"
+        <div style="position:relative;" @click="is_opened = true">
+            <!-- <video class="mamiyoga-course-video" controls @click="is_opened = true"
             preload="auto" :poster="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
                 <source :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-'+goPractice+'.mp4'"
                  type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
+            </video> -->
+            
+            <vue-plyr>
+                <video :poster="getPreviewImg" :src="getVideoUrl" id="course-video">
+                    <source :src="getVideoUrl" type="video/mp4" size="720">
+                    <source :src="getVideoUrl" type="video/mp4" size="1080">
+                    <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
+                </video>
+            </vue-plyr>
             <!-- <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
             </div> -->
@@ -56,8 +64,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VuePlyr from 'vue-plyr'
 import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
+
+import 'vue-plyr/dist/vue-plyr.css'
+Vue.use(VuePlyr)
 export default {
     data:()=>({
         is_opened: false,
@@ -142,6 +155,13 @@ export default {
         getRecordTime(){
             if (this.course_data) {
                 return this.course_data.record_time
+            } else {
+                return ''
+            }
+        },
+        getPreviewImg(){
+            if (this.course_data) {
+                return this.course_data.preview_img
             } else {
                 return ''
             }
