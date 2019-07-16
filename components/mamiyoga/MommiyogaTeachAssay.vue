@@ -104,11 +104,11 @@
                         </div>
                         <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方吗？</p>
                         <div class="star-line-box">
-                            <input type="radio" class="questions first" id="answer-first" name="questions" value="verybad" v-model="impress">
-                            <input type="radio" class="questions second" id="answer-second" name="questions" value="bad" v-model="impress">
-                            <input type="radio" class="questions third" id="answer-third" name="questions" value="normal" v-model="impress">
-                            <input type="radio" class="questions four" id="answer-four" name="questions" value="notbad" v-model="impress">
-                            <input type="radio" class="questions five" id="answer-five" name="questions" value="good" v-model="impress"> 
+                            <input type="radio" class="questions first" id="answer-first" name="questions" value="1" v-model="impress">
+                            <input type="radio" class="questions second" id="answer-second" name="questions" value="2" v-model="impress">
+                            <input type="radio" class="questions third" id="answer-third" name="questions" value="3" v-model="impress">
+                            <input type="radio" class="questions four" id="answer-four" name="questions" value="4" v-model="impress">
+                            <input type="radio" class="questions five" id="answer-five" name="questions" value="5" v-model="impress"> 
                             <div class="select-questions">
                                 <label for="answer-first" class="first-questions">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/babyface-icon/babyface-icon-01.png" alt="">
@@ -149,11 +149,11 @@
                         <p>请问您满意这次的分析结果吗？</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-box-human.png" alt="">
                         <div class="star-line-box">
-                            <input type="radio" class="stars first" id="first" value="one" name="star" v-model="picked_star">
-                            <input type="radio" class="stars second" id="second" value="two" name="star" v-model="picked_star">
-                            <input type="radio" class="stars third" id="third" value="three" name="star" v-model="picked_star">
-                            <input type="radio" class="stars four" id="four" value="four" name="star" v-model="picked_star">
-                            <input type="radio" class="stars five" id="five" value="five" name="star" v-model="picked_star">
+                            <input type="radio" class="stars first" id="first" value="1" name="star" v-model="picked_star">
+                            <input type="radio" class="stars second" id="second" value="2" name="star" v-model="picked_star">
+                            <input type="radio" class="stars third" id="third" value="3" name="star" v-model="picked_star">
+                            <input type="radio" class="stars four" id="four" value="4" name="star" v-model="picked_star">
+                            <input type="radio" class="stars five" id="five" value="5" name="star" v-model="picked_star">
                             <div class="select-star">
                                 <label for="first" class="first-star">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="">
@@ -279,7 +279,6 @@ export default {
                 send_user_id = this.user.user_id
             }
             const form_res = await axios.post('/apis/send-feedback',send_data);
-            console.log(form_res)
         },
         async sendIdea(){
             this.show_contact_box = false;
@@ -287,10 +286,9 @@ export default {
             if (this.user.user_id != '') {
                 send_user_id = this.user.user_id
             }
-            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,text:this.input_text};
-            console.log(send_data)
+            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,message:this.input_text};
             const form_res = await axios.post('/apis/send-feedback',send_data);
-            console.log(form_res.data.status)
+            
         }
     },
     computed:{

@@ -96,6 +96,7 @@ export default {
             for(var i =0; i< res.data.reps_wrong_tags.length; i++){
               for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
                    res.data.reps_wrong_tags[i][j] = this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
+                   console.log(this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]])
               }
             }
             this.isLoading = false;

@@ -1,18 +1,37 @@
 <template>
-    <div class="mamiyoga-select-login">
-        <p>{{$t('index_select_login')}}</p>
-        <div class="mamiyoga-select-login-box">
-            <div class="mamiyoga-select-login-icon">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
+    <div>
+        <div class="mamiyoga-select-login" v-if="!is_beta">
+            <p>{{$t('index_select_login')}}</p>
+            <div class="mamiyoga-select-login-box">
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.png" alt="">
+                </div>
             </div>
-            <div class="mamiyoga-select-login-icon">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="">
-            </div>
-            <div class="mamiyoga-select-login-icon">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">
-            </div>
-            <div class="mamiyoga-select-login-icon">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.png" alt="">
+        </div>
+        <div class="mamiyoga-select-login" v-if="is_beta">
+            <p>快和朋友分享</p>
+            <div class="mamiyoga-select-login-box">
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">
+                </div>
+                <div class="mamiyoga-select-login-icon">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.png" alt="">
+                </div>
             </div>
         </div>
     </div>
@@ -20,7 +39,9 @@
 
 <script>
 export default {
-
+    props:{
+        is_beta: false,
+    },
 }
 </script>
 

@@ -12,17 +12,26 @@
 <script>
 export default {
     data:()=>({
-        have_notice: true,
+        have_notice: false,
         check_star: false,
+        is_playing: false,
     }),
+    components:{
+        // MommiyogaRecordVideo,
+    },
     props: {
         recordDate: String,
         recordImg: String,
+        recordUrl: String,
     },
     methods: {
         checkStar(){
-            this.check_star = !this.check_star
-        }
+            this.check_star = !this.check_star;
+            localStorage
+        },
+        // openRecordVideo(){
+        //     this.$emit('openRecordVideo');
+        // }
     },
     computed:{
         // checkOrNot() {
@@ -40,6 +49,7 @@ export default {
     margin: 3vh 5vw 0;
     background: black;
     position: relative;
+    cursor: pointer;
 }
 .notice-box {
     width: 30px;
