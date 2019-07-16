@@ -21,7 +21,7 @@
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
-                <source :src="record_data_select.video_url" type="video/mp4">
+                <source src="" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-open-icon" @click="showAssayContent" :class="showContentOrNot">
@@ -57,7 +57,7 @@
                         <div class="assay-grade-box">
                             <p style="margin-bottom:0;">准确率</p>
                             <div class="mamiyoga-assay-grade-num">
-                                <h3>{{record_data_select.score}}</h3>
+                                <!-- <h3>{{record_data_select.score}}</h3> -->
                                 <p>%</p>
                             </div>
                         </div>
@@ -218,6 +218,7 @@ export default {
         show_record_btn: false,
         goRecord:String,
         pose_id: String,
+        // record_video: String,
     },
     data:()=> ({
         video_url: '',

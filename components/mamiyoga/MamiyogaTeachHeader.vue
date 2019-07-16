@@ -36,11 +36,11 @@ export default {
     components: {
         MamiyogaSmallBtn,
     },
-    async mounted() {
-        if (process.client) {
-            this.is_login = await this.$checkLogin(this.$store);
-        }
-    },
+    // async mounted() {
+    //     if (process.client) {
+    //         this.is_login = await this.$checkLogin(this.$store);
+    //     }
+    // },
     methods:{
         openRemindBox(){
             this.$emit('openRemindBox')

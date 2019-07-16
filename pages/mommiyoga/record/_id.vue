@@ -13,14 +13,13 @@
                     <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
                     <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
                 </div> -->
-                <div class="practice-record-content-container" >
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
-                    <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
+                <div class="practice-record-content-container" v-if="record_data != ''">
+                    <mamiyoga-practice-record-block v-for="(record,i) in record_data"
+                    :key="i" ></mamiyoga-practice-record-block>
                 </div>
-                <!-- <div class="practice-record-no-content" v-if="!have_user_data">
+                <div class="practice-record-no-content" v-else>
                     <p>尚无拍摄纪录</p>
-                </div> -->
+                </div>
             </div>
         </div>
         <mommiyoga-teach-assay @handleRetryEvent="handleRetryEvent"
@@ -49,6 +48,7 @@ export default {
         courses:[],
         course_id:'',
         course_data:{},
+        record_data:{},
 
         is_loaded: false,
         isLoading: false,
@@ -68,10 +68,24 @@ export default {
     async mounted() {
         if (process.client) {
             this.courses = await require('~/config/mommiyoga-course');
-            this.course_id = this.$route.params.id;
-            this.course_data = this.courses.find(course => this.course_id == course.id);
+            this.course_data = this.courses.find(course => this.$route.params.id == course.upload_id);
+            this.course_id = this.course_data.id;
+            
             this.pose_id = 'yoga_'+this.course_data.upload_id;
             console.log(this.course_id)
+
+            try {
+                let send_data = {user_id:'0000',pose_id:this.pose_id};
+                const res = await axios.post('/apis/get-pose-results',send_data);
+                if (res.data.status == 200) {
+                    this.record_data = res.data.Items
+                    console.log(this.record_data)
+                } else {
+                    window.alert('读取失败')
+                }
+            } catch (error) {
+                
+            }
         }
     },
     methods: {
@@ -127,6 +141,10 @@ export default {
             console.log('OK');
             this.handleVideoUpload(e);
         },
+        // setRecordDate(date){
+            // new Date(date)
+
+        // }
     },
     computed:{
         ...mapGetters({

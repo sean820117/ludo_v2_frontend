@@ -21,6 +21,9 @@
                 </div>
             </slide>
             <slide class="about-teacher about-slide">
+                <video muted loop autoplay class="background-video" >
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-1.mp4" type="video/mp4">      
+                </video>
                 <div class="about-title"><h3>教師介紹</h3></div>
                 <div class="about-teacher-content">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，
@@ -92,7 +95,12 @@ export default {
 </script>
 
 <style>
-
+.background-video {
+    /* position: fixed; */
+    top: -3vh;
+    width: auto;
+    min-height: 100vh;
+}
 .about-page .mamiyoga-teach-header {
     position: absolute;
 }

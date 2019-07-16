@@ -23,10 +23,10 @@
         </div>
         <div class="index-contain" v-if="is_beta">
             <video muted loop autoplay class="background-video" >
-                <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-1.mp4" type="video/mp4">      
+                <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
             </video>
             <div class="mamiyoga-index-intro">
-                <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF" :is_beta="true"></mamiyoga-header>
+                <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
                 <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                     {{title}}
                 </h2> -->
@@ -146,7 +146,7 @@ export default {
 .background-video {
     /* position: fixed; */
     top: -3vh;
-    width: 100vw;
+    width: auto;
     min-height: 100vh;
 }
 .hooper {
@@ -207,7 +207,7 @@ export default {
     }
     .background-video {
         min-height: 100vh;
-        width: 450px;
+        width: auto;
     }
 }
 @media (max-width: 400px) {

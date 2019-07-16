@@ -55,7 +55,7 @@ export default {
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' }
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
