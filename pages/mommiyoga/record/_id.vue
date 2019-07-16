@@ -15,7 +15,8 @@
                 </div> -->
                 <div class="practice-record-content-container" v-if="record_data != ''">
                     <mamiyoga-practice-record-block v-for="(record,i) in record_data"
-                    :key="i" ></mamiyoga-practice-record-block>
+                    :key="i" :recordDate="record.video_url" :video_url="record.video_url"
+                    :score="record.score"></mamiyoga-practice-record-block>
                 </div>
                 <div class="practice-record-no-content" v-else>
                     <p>尚无拍摄纪录</p>

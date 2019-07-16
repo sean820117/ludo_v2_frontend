@@ -11,6 +11,7 @@
         </div>
         <div class="practice-record-video" :class="showVideo">
             <mommiyoga-record-video @closeRecordWindow="closeRecordWindow"
+            :video_url="video_url" :score="score"
             ></mommiyoga-record-video>
         </div>
     </div>
@@ -23,6 +24,7 @@ export default {
         have_notice: false,
         check_star: false,
         is_playing: false,
+        
     }),
     components:{
         MommiyogaRecordVideo,
@@ -31,6 +33,8 @@ export default {
         recordDate: String,
         recordImg: String,
         recordUrl: String,
+        video_url: String,
+        score: Number,
         // record_video_url: String,
     },
     methods: {

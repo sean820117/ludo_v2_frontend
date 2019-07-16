@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
         <mamiyoga-mail-header nextTo="/mamiyoga/menu"
-        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF"></mamiyoga-mail-header>
+        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF" :is_beta="true"></mamiyoga-mail-header>
         <hooper>
             <slide class="about-teacher about-slide">
                 <div class="about-title"><h3>教師介紹</h3></div>
@@ -20,7 +20,7 @@
                     <p>骨頭導覽指導者養成課程修習完畢 </p>
                 </div>
             </slide>
-            <slide class="about-teacher about-slide">
+            <slide class="about-teacher about-slide" style="overflow:hidden;">
                 <video muted loop autoplay class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-1.mp4" type="video/mp4">      
                 </video>
@@ -42,7 +42,10 @@
                     </p>
                 </div>
             </slide>
-            <slide class="about-teacher about-for-mammy">
+            <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
+                <video muted loop autoplay class="background-video" >
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-2.mp4" type="video/mp4">      
+                </video>
                 <div class="about-title"><h3>給產後的女性</h3></div>
                 <div class="about-teacher-content">
                     <p>給產後的女性：<br><br>
@@ -61,7 +64,10 @@
 
                 </div>
             </slide>
-            <slide class="about-teacher about-for-mammy">
+            <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
+                <video muted loop autoplay class="background-video" >
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-3.mp4" type="video/mp4">      
+                </video>
                 <div class="about-title"><h3>給廣大的女性族群</h3></div>
                 <div class="about-teacher-content">
                     <p>給廣大的女性族群:<br><br>
@@ -111,6 +117,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    width: 100vw;
     /* text-align: center; */
 }
 .about-teacher.about-slide .about-title {
@@ -145,7 +153,7 @@ export default {
     width: 90vw;
     padding: 5vw;
     color: #F7F7F7;
-    /* background-color: rgba(0,0,0,.7); */
+    background-color: rgba(0,0,0,.3);
 }
 .about-teacher-content h3 {
     color: #97A8AF;
@@ -200,6 +208,9 @@ export default {
     }
     .about-teacher:last-child {
         background-position: 30%;
+    }
+    .about-title {
+        width: 450px;
     }
 }
 </style>

@@ -9,7 +9,7 @@
             <div class="mail-header-title">
                 <h3 v-html="headerTitle" :style="{color:mailheaderTitle}">{{headerTitle}}</h3>
             </div>
-            <div class="mail-header-goback" @click="not_online = true">
+            <div class="mail-header-goback" @click="not_online = true" v-if="!is_beta">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
                 <div v-if="have_mail"></div>
             </div>
@@ -35,12 +35,14 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 export default {
     data:()=>({
         not_online: false,
+        
     }),
     props: {
         headerTitle: String,
         nextTo: String,
         mailheaderTitle: String,
         have_mail: false,
+        is_beta: false,
     },
     components: {
         MamiyogaWindowAlertBox

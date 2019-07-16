@@ -251,6 +251,7 @@ export default {
             //     send_user_id = this.user.user_id
             // }
             const form_res = await axios.post('/apis/send-feedback',send_data);
+            console.log(form_res)
         },
         
     },
