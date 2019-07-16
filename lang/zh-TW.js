@@ -5,6 +5,7 @@ export default {
   index_button_pay: '完整課程', 
   index_select_login: '其他登錄方式',
   index_img_title:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title.png',
+  index_agree_text: '登入及同意LUDO用戶協議和隱私政策',
 
   teach_title:'體驗練習',
   teach_tip_title: '姿勢步驟',

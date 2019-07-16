@@ -5,7 +5,8 @@ export default {
     index_button_pay: '有料版コース',
     index_select_login: '他のログインのやりかた',
     index_img_title:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title-jp.png',
-    
+    index_agree_text: 'ログインして本サービスを利用することで、<br>LUDOのプライバシーポリシーに同意したものとします。',
+
     teach_title:'無料版・練習',
     teach_tip_title: 'やりかた',
     teach_button_upload: 'スタート',

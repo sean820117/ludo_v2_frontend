@@ -6,10 +6,11 @@
         </div>
         </router-link>
         <router-link :to="{path:loginTo}" style="text-decoration:none;">
-        <div class="mamiyoga-header-login">
+        <div class="mamiyoga-header-login" v-if="!is_beta">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button>
+            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button> -->
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox">{{$t('header_login')}}</button>
+            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button> -->
         </div>
         </router-link>
     </div>
@@ -26,6 +27,7 @@ export default {
         ftColor: String,
         btnText: String,
         loginTo: String,
+        is_beta: false,
     },
     components: {
         MamiyogaSmallBtn,
@@ -35,6 +37,11 @@ export default {
             this.is_login = await this.$checkLogin(this.$store);
         }
     },
+    methods:{
+        openRemindBox(){
+            this.$emit('openRemindBox');
+        }
+    }
 }
 </script>
 

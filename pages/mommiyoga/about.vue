@@ -1,6 +1,7 @@
 <template>
     <div class="about-page">
-        <mamiyoga-mail-header bgColor="#9BAEB2" headerTitle="教师介绍" mailheaderTitle="#97A8AF"></mamiyoga-mail-header>
+        <!-- <mamiyoga-mail-header bgColor="#9BAEB2" headerTitle="教师介绍" mailheaderTitle="#97A8AF"></mamiyoga-mail-header> -->
+        <mommiyoga-login-header headerTitle="教师介绍" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
         <div class="about-title">
             <div class="about-title-font">
                 <h3>桥本麻美</h3>
@@ -105,20 +106,20 @@ export default {
             this.ui_config = await require('~/config/mommiyoga-config')
             this.is_ui_config_loaded = true;
 
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
-                window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/mommiyoga/login');
-            } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                if (!payed_or_not) {
-                    console.log("not payed");
-                    window.alert("尚未開通課程，請先前往購買～");
-                    this.$router.push('/resume/pay');
-                } else {
-                    console.log("payed")
-                }
-            }
+            // let login_or_not = await this.$checkLogin(this.$store);
+            // if (login_or_not == false) {
+            //     window.alert("尚未登入帳號，請先前往登入～");
+            //     this.$router.push('/mommiyoga/login');
+            // } else {
+            //     let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+            //     if (!payed_or_not) {
+            //         console.log("not payed");
+            //         window.alert("尚未開通課程，請先前往購買～");
+            //         this.$router.push('/resume/pay');
+            //     } else {
+            //         console.log("payed")
+            //     }
+            // }
         }
     }
 }

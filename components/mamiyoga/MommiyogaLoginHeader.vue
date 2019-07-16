@@ -5,7 +5,9 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </a>
         </div>
-        
+        <div>
+            <h3>{{headerTitle}}</h3>
+        </div>
         <div class="mamiyoga-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
             <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mommiyoga/login')">密码登录</button>
@@ -26,6 +28,7 @@ export default {
         ftColor: String,
         btnText: String,
         loginTo: String,
+        headerTitle: String,
     },
     components: {
         MamiyogaSmallBtn,
@@ -96,6 +99,9 @@ export default {
     width: 20px;
     height: 13px;
     cursor: pointer;
+}
+.mamiyoga-header h3 {
+    color: #97a8af;
 }
 
 </style>

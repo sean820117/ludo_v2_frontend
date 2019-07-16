@@ -15,7 +15,7 @@
             <div class="aiassistant-container">
                 <h4>所有动作</h4>
                 <mommiyoga-aiassistant-pose-block v-for="array in have_ai_array" 
-                :key="array.id" :poseText="array.title" :goRecord="array.id"
+                :key="array.id" :poseText="array.title" :goRecord="array.upload_id"
                 :bgImg="array.id"></mommiyoga-aiassistant-pose-block>
             </div>
         </div>

@@ -12,7 +12,7 @@
                     <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-5.jpg" src="video.mp4" id="course-video">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="720">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="1080">
-                        <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
+                        <!-- <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default> -->
                     </video>
                 </vue-plyr>
                 <div class="teach-course-info" v-if="!is_opened">
@@ -68,7 +68,9 @@
                     </div> -->
                 </div>
                 <div class="teacher-remind">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind.png" alt="">
+                    <a href="/mommiyoga/about">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind.png" alt="">
+                    </a>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">麻美老师贴心叮咛</p>
                         <p>尽量将力气集中在腰部，如果动作做起来有点吃力的同学，可以把毛巾卷起来放进腰下。</p>
