@@ -15,7 +15,8 @@
                 </div> -->
                 <div class="practice-record-content-container" v-if="record_data != ''">
                     <mamiyoga-practice-record-block v-for="(record,i) in record_data"
-                    :key="i" :recordDate="record.video_url" :video_url="record.video_url"
+                    :key="i" :recordDate="setRecordDate(record.createdAt)" :video_url="record.video_url"
+                    :tags="switchTag(record)"
                     :score="record.score"></mamiyoga-practice-record-block>
                 </div>
                 <div class="practice-record-no-content" v-else>
@@ -142,15 +143,34 @@ export default {
             console.log('OK');
             this.handleVideoUpload(e);
         },
-        // setRecordDate(date){
-            // new Date(date)
-
-        // }
+        switchTag(record) {
+            // let errorMessage = {
+            //     'action_1': {
+            //         '1': 'Hello world'
+            //     }
+            // };
+            // console.log(errorMessage['action_1']['1']);
+            for (var i =0; i<record.reps_wrong_tags.length; i++){
+                for(var j=0; j<record.reps_wrong_tags[i].length; j++)
+                if (record.reps_wrong_tags[i][j]){
+                    record.reps_wrong_tags[i][j] = this.course_data.upload_notices[record.reps_wrong_tags[i][j]]
+                }
+            }
+            console.log(record.reps_wrong_tags)
+            return record.reps_wrong_tags;
+        },
+        setRecordDate(date){
+            let update = new Date(date) 
+            let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
+            let month = update.getMonth() < 10 ? '0'+update.getMonth() : update.getMonth();
+            return update.getFullYear()+'/'+month+'/'+day;
+        }
     },
     computed:{
         ...mapGetters({
             user : 'user/getData',
         }),
+        
     },
     async beforeCreate() {
         if (process.client) {

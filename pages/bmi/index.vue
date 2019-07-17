@@ -2,12 +2,12 @@
     <div class="bmi-index-page">
         <bmi-header></bmi-header>
         <div class="bmi-tag">
-            <input type="radio" id="bmitool" name="tools" checked  @click="show_bmi_tool = true,show_tdee_tool = false">
+            <input type="radio" id="bmitool" name="tools" checked  @click="show_bmi_tool = true">
             <label class="bmi-label" for="bmitool"><h5>BMI值計算機</h5></label>
-            <input type="radio" id="teddtool" name="tools" @click="show_bmi_tool = false,show_tdee_tool = true">
+            <input type="radio" id="teddtool" name="tools" @click="show_bmi_tool = false">
             <label class="tedd-label" for="teddtool"><h5>TDEE值計算機</h5></label>
         </div>
-        <div class="bmi-tag-first" :class="show_bmi_tool ? 'open':''">
+        <div class="bmi-tag-first" v-if="show_bmi_tool">
             <div class="bmi-index-content">
                 <p style="margin-top:4vh;">BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</p>
                 <p style="font-weight:400;">例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2</p>
@@ -15,7 +15,7 @@
             </div>
             <div class="bmi-index-content">
                 <p style="color:#000;font-weight:400;margin-top:3vh;">快看看自己的BMI是否在理想範圍內吧！</p>
-                <p style="color:#3855A3;font-weight:400;text-decoration:underline;" @click="getBmi">點我數值參考</p>
+                <p style="color:#3855A3;font-weight:400;text-decoration:underline;" @click="have_consult = true">點我數值參考</p>
                 <!-- <form>
                     <div class="bmi-index-form-input">
                         <div class="bmi-index-form-input-li">
@@ -53,13 +53,13 @@
                     <div class="bmi-index-form-input-li human-height">
                         <p>身高（公分）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="height" name="height">
+                            <input type="number" id="height" name="height" v-model="height">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
                         <p>體重（公斤）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="weight" name="weight">
+                            <input type="number" id="weight" name="weight" v-model="weight">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li">
@@ -69,7 +69,7 @@
                 </form>
             </div>
         </div>
-        <div class="bmi-tag-second" :class="show_tdee_tool ? 'open':''">
+        <div class="bmi-tag-second" v-if="!show_bmi_tool">
             <div class="bmi-index-content">
                 <p style="margin:4vh auto 0;font-weight:400;text-align:left;width:75vw;">透過基礎代謝率（BMR）以及運動習慣，我們能夠透過公式得出每日消耗熱量（TDEE）。TDEE可以幫助妳/你掌握每天的營養攝取量以及運動量。</p>
             </div>
@@ -78,9 +78,9 @@
                     <div class="bmi-index-form-input-li sexual">
                         <p>性別：</p>
                         <div class="bmi-index-form-input-label">
-                            <input type="radio" id="tdeegirl" value="tdeegirl" name="sexual" checked v-model="sexual">
+                            <input type="radio" id="tdeegirl" value="tdeegirl" name="tdeesexual" v-model="tdeesexual" checked>
                             <label for="tdeegirl" class="first-label">女</label>
-                            <input type="radio" id="tdeeboy" value="tdeeboy" name="sexual" v-model="sexual">
+                            <input type="radio" id="tdeeboy" value="tdeeboy" name="tdeesexual" v-model="tdeesexual">
                             <label for="tdeeboy" class="second-label">男</label>
                         </div>
                     </div>
@@ -93,13 +93,13 @@
                     <div class="bmi-index-form-input-li human-height">
                         <p>身高（公分）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="tdeeheight" name="height">
+                            <input type="number" id="tdeeheight" name="height" :value="height">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
                         <p>體重（公斤）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="tdeeweight" name="weight">
+                            <input type="number" id="tdeeweight" name="weight" :value="weight">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
@@ -192,24 +192,77 @@
         <div class="bmi-result-box" :class="have_result ? 'open':''">
             <div class="bmi-result-container">
                 <h5>計算結果</h5>
-                <p style="font-size:13px;margin-top:20px;">你的BMI為</p>
-                <p style="font-size:70px;">{{bmi_result}}</p>
-                <p style="font-size:14px;">{{result_text}}</p>
-                <img style="margin-top:20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-tool-result-1.jpg" alt="">
-                <h5 style="width:auto;margin-top:5px;">你是一隻...愛運動的科基！</h5>
+                <p style="font-size:12px;margin-top:2vh;">你的BMI為</p>
+                <p style="font-size:60px;">{{bmi_result}}</p>
+                <p style="font-size:13px;">{{result_text}}</p>
+                <img style="margin-top:2vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-tool-result-1.jpg" alt="">
+                <h5 style="width:auto;margin-top:0;">你是一隻...愛運動的科基！</h5>
+                <div class="bmi-share-icon-box">
+                    <div class="bmi-share-icon">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/icon-share-copy.png" alt="" @click="copyUrl()">
+                        <p>複製連結</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
+                        style="text-decoration: none" target="_blank">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/icon-share-facebook.png" alt="">
+                        </a>
+                        <p>facebook</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fbmi&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-messager.png" alt="">
+                        </a>
+                        <p>Messenger</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.addtoany.com/add_to/line?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fbmi&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-line.png" alt="">
+                        </a>
+                        <p>Line</p>
+                    </div>
+                </div>
                 <div class="bmi-index-form-input-button bmi-result-btn" style="background-color: #3855A3;" @click="sendTdee">TDEE值計算機</div>
             </div>
+            <div style="position:fixed;width:100vw;height:14vh;top:0;" @click="have_result = false"></div>
         </div>
         <div class="bmi-result-box" :class="have_tdee_result ? 'open':''">
             <div class="bmi-result-container">
                 <h5>計算結果</h5>
-                <p style="font-size:13px;margin-top:20px;">你的健康攝取量為</p>
+                <p style="font-size:13px;margin-top:2vh;">你的健康攝取量為</p>
                 <!-- <p>{{bmi_result}}</p> -->
-                <p style="font-size:70px;">{{tdee_result}}</p>
-                <!-- <p style="font-size:14px;">{{result_text}}</p> -->
-                <div class="bmi-index-form-input-button bmi-result-btn" style="background-color: #3855A3;">獲得免費健康菜單
+                <div style="font-size:60px;display:flex;align-items:baseline;justify-content:center;">{{tdee_result}}<p style="font-size:17px;">大卡</p></div>
+                <img style="margin-top:2vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-tool-result-1.jpg" alt="">
+                <h5 style="width:auto;margin-top:0;">最適合的運動是：瑜珈</h5>
+                <div class="bmi-share-icon-box">
+                    <div class="bmi-share-icon">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/icon-share-copy.png" alt="" @click="copyUrl()">
+                        <p>複製連結</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.ludonow.com/bmi" 
+                        style="text-decoration: none" target="_blank">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/icon-share-facebook.png" alt="">
+                        </a>
+                        <p>facebook</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fbmi&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-messager.png" alt="">
+                        </a>
+                        <p>Messenger</p>
+                    </div>
+                    <div class="bmi-share-icon">
+                        <a href="https://www.addtoany.com/add_to/line?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fbmi&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-line.png" alt="">
+                        </a>
+                        <p>Line</p>
+                    </div>
                 </div>
+                <div class="bmi-index-form-input-button bmi-result-btn" style="background-color: #3855A3;">獲得免費健康菜單</div>
+                <textarea id="urlCopied" cols="30" rows="1"></textarea>
             </div>
+            <div style="position:fixed;width:100vw;height:14vh;top:0;" @click="have_tdee_result = false"></div>
         </div>
     </div>
 </template>
@@ -266,8 +319,10 @@ export default {
         show_bmi_tool: true,
         show_tdee_tool: false,
         have_tdee_result: false,
-        sexual: 'tdeegirl',
+        tdeesexual: 'tdeegirl',
         selected: '1',
+        height: '',
+        weight: '',
     }),
     components: {
         BmiHeader,
@@ -311,9 +366,9 @@ export default {
             let bmr = 0;
             // this.tdee_result = (weight/[(height/100)*(height/100)]).toFixed(1);
             // let bmr = (10*weight+6.25*height-5*year).toFixed(0);
-            if (this.sexual == 'tdeegirl') {
+            if (this.tdeesexual == 'tdeegirl') {
                 bmr = (10*weight+6.25*height-5*year-161)
-            } else if (this.sexual == 'tdeeboy') {
+            } else if (this.tdeesexual == 'tdeeboy') {
                 bmr = (10*weight+6.25*height-5*year+5)
             }
             if(this.selected == '1'){
@@ -331,8 +386,7 @@ export default {
         },
         sendTdee(){
             this.have_result = false;
-            this.show_tdee_tool = true;
-            this.how_bmi_tool = false;
+            this.show_bmi_tool = false;
         },
         // getBmi(){
         //     this.bmi_result = '';
@@ -491,12 +545,12 @@ button {
     color: #3347E3;
     border-bottom: 2px solid #3347e3;
 }
-.bmi-tag-first,.bmi-tag-second {
+/* .bmi-tag-first,.bmi-tag-second {
     display: none;
 }
 .bmi-tag-first.open,.bmi-tag-second.open {
     display: block;
-}
+} */
 .bmi-index-content p {
     text-align: center;
     font-size: 12px; 
@@ -634,9 +688,9 @@ button {
     animation: consult-box 1s forwards;
 }
 .bmi-index-form-input-button.bmi-result-btn {
-    position: absolute;
-    margin: 0 6vw;
-    bottom: 11vh;
+    /* position: absolute; */
+    margin: 0 auto;
+    /* bottom: 11vh; */
 }
 @keyframes consult-box {
     0%{ bottom: -55vh;}
@@ -681,7 +735,7 @@ button {
 }
 .bmi-result-container h5 {
     font-size: 21px;
-    margin: 20px auto 0;
+    margin: 2vh auto 0;
     color: #3855A3;
     display: block;
     width: 120px;
@@ -717,17 +771,10 @@ button {
     margin: 20px 0 0 25px;
     cursor: pointer;
 }
-/* .bmi-share-container p {
-    font-size: 12px;
-}
-.bmi-share-container h5 {
-    font-size: 70px;
-    margin-top: 3vh;
-} 
 .bmi-share-icon-box {
     width: 70vw;
-    height: 50px;
-    margin: 4vh auto 0;
+    height: 75px;
+    margin: 2vh auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -737,7 +784,15 @@ button {
     cursor: pointer;
 }
 .bmi-share-icon p {
+    font-size: 12px;
     color: #6A6A6A;
+} 
+/* .bmi-share-container p {
+    font-size: 12px;
+}
+.bmi-share-container h5 {
+    font-size: 70px;
+    margin-top: 3vh;
 } */
 #urlCopied {
     position: absolute;

@@ -9,9 +9,9 @@
             </div>
             <div class="practice-record-bak" @click="is_playing = true"></div>
         </div>
-        <div class="practice-record-video" :class="showVideo">
+        <div class="practice-record-video" v-if="is_playing">
             <mommiyoga-record-video @closeRecordWindow="closeRecordWindow"
-            :video_url="video_url" :score="score"
+            :video_url="video_url" :score="score" :reps_wrong_tags="tags"
             ></mommiyoga-record-video>
         </div>
     </div>
@@ -32,15 +32,16 @@ export default {
     props: {
         recordDate: String,
         recordImg: String,
-        recordUrl: String,
         video_url: String,
         score: Number,
+        tags: Array,
         // record_video_url: String,
     },
     methods: {
         checkStar(){
             this.check_star = !this.check_star;
-            localStorage.setItem(this.check_star,true)
+            localStorage[this.video_url+'check_star'] = !localStorage[this.video_url+'check_star'];
+
         },
         closeRecordWindow(){
             this.is_playing = false;
@@ -49,11 +50,14 @@ export default {
         //     this.$emit('openRecordVideo');
         // }
     },
-    computed:{
-        showVideo(){
-            return this.is_playing ? 'show':'';
-        }
+    mounted(){
+        this.check_star = localStorage[this.video_url+'check_star']
     }
+    // computed:{
+    //     showVideo(){
+    //         return this.is_playing ? 'show':'';
+    //     }
+    // }
 
 }
 </script>
@@ -105,10 +109,17 @@ export default {
     height: 120px;
     /* margin: 3vh 5vw 0; */
 }
-.practice-record-video {
+/* .practice-record-video {
     display: none;
 }
 .practice-record-video.show {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 450px;
+    z-index: 999;
+} */
+.practice-record-video {
     display: block;
     position: fixed;
     top: 0;

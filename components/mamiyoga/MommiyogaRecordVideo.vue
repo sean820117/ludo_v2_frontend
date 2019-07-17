@@ -36,13 +36,13 @@
                     <div class="mamiyoga-assay-title"><h3>分析结果</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
-                    <!-- <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in video_result.reps_wrong_tags" :key="i">
+                    <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
                         <h4 class="mamiyoga-assay-content-time">第{{i+1}}回</h4>
                         <hooper class="mamiyoga-assay-content-detailed-box">
                             <slide class="mamiyoga-assay-content-detailed" v-for="(tag ,index) in tags" :key="index">{{tag}}</slide>
                             <hooper-navigation slot="hooper-addons"></hooper-navigation>
                         </hooper>
-                    </div> -->
+                    </div>
                     <!-- <div class="mamiyoga-assay-content-li">
                         <h4 class="mamiyoga-assay-content-time">第1回</h4>
                         <hooper class="mamiyoga-assay-content-detailed-box">
@@ -218,11 +218,12 @@ export default {
         show_record_btn: false,
         goRecord:String,
         pose_id: String,
+        video_url: String,
+        score: Number,
+        reps_wrong_tags: Array,
         // record_video: String,
     },
     data:()=> ({
-        video_url: '',
-        score: '',
         // reps_wrong_tags:[],
         show: false,
         show_contact_box: false,
@@ -430,17 +431,20 @@ export default {
     background-color: #9A9A9A;
 }
 .mamiyoga-assay-content-time {
-    font-weight: 500;
-    padding: 0 25px;
-    min-width: 90px;
-    border-right: 2px #fff solid;
-    font-size: 14px;
+    font-weight: 500 !important;
+    padding: 0 25px !important;
+    min-width: 90px !important;
+    border-right: 2px #fff solid !important;
+    font-size: 14px !important;
+    border-bottom: none !important;
+    margin: 0 !important;
+    color:#FFF !important;
 }
 .mamiyoga-assay-content-detailed {
-    padding: 5px 15px;
-    font-size: 13px;
-    align-self: auto;
-    margin-bottom: 0; 
+    padding: 5px 15px !important;
+    font-size: 13px !important;
+    align-self: auto !important;
+    margin-bottom: 0 !important; 
     /* max-width: 49vw; */
 }
 .mamiyoga-assay-contact {
