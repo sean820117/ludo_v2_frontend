@@ -80,6 +80,7 @@ export default {
             let form = new FormData();
             form.append('file',e.target.files[0])
             form.append('pose_id',this.pose_id)
+            form.append('user_id',this.user.user_id)
             form.append('language','zh-tw')
             const res = await axios.post('/apis/video-upload',form)
             console.log(res.data)
