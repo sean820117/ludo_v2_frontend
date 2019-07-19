@@ -6,14 +6,14 @@
         <div class="mamiyoga-explain-content">
             <hooper :autoPlay="true">
                 <slide>
-                   <h5>正面拍摄</h5>
+                   <h5>{{$t('explain_title_first')}}</h5>
                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
-                   <p>将您的身体『正面』面向手机，拍摄距离约2公尺，让全身入镜，这样AI助教才能精准分析成果。</p>
+                   <p>{{$t('explain_text_first')}}</p>
                 </slide>
                 <slide>
-                    <h5>侧面拍摄</h5>
+                    <h5>{{$t('explain_title_secord')}}</h5>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
-                    <p>将您的身体『侧面』面向手机，拍摄距离约2公尺，让全身入镜，这样AI助教才能精准分析成果。</p>
+                    <p>{{$t('explain_text_secord')}}</p>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>

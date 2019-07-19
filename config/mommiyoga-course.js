@@ -32,16 +32,16 @@ module.exports = [
     },
     {
         id: '4',
-        title: '让全身的神经进入休息状态',
+        title: '让全身的神经进入休息',
         tags: ['primary'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-4.jpg',
         video_url:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-4.mp4',
-        pose_description:['先仰躺看天花板，让脚开与垫子同宽','手掌面向天花板，在腋下留一个拳头的空间','慢慢地闭上眼睛把全身的力量都交给垫子','把头左右摇一摇、滚一滚','从口中吐哈～这样的把全身力量放松','进行5-10分钟，不让身体变冷的程度','身上也可以盖上棉被保暖','脑中什么都不用想的放松','持续着自然的呼吸','起身的时候，先从末端的手足收紧、放松（石头、布、石头、布），开着握着重复','让整个身体起床','再把头左右摇晃，让两个膝盖立起来','把身体往旁边，慢慢地起身'],
+        pose_description:['先仰躺看天花板，让脚开与垫子同宽','手掌面向天花板，在腋下留一个拳头的空间','慢慢地闭上眼睛把全身的力量都交给垫子','把头左右摇一摇、滚一滚','从口中吐哈～这样的把全身力量放松','进行5-10分钟，不让身体变冷的程度','持续着自然的呼吸','起身的时候，先从末端的手足收紧、放松（石头、布、石头、布），开着握着重复','让整个身体起床','再把头左右摇晃，让两个膝盖立起来','把身体往旁边，慢慢地起身'],
     },
     {
         id: '5',
-        title: '打开自己全世界都会帮助你',
+        title: '全世界都会帮助你！',
         tags: ['primary'],
         record_time:'20-45',
         ai_teacher: true,
@@ -70,7 +70,7 @@ module.exports = [
         is_front:true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-7.jpg',
         video_url:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-7.mp4',
-        pose_description:['正躺，眼睛看向天花板','左膝抬高，两手抱住膝盖','双掌托住膝盖，让双手臂伸直','将右脚抬起，用腰部的力量将整条腿做上下摆动三到五次','腰部有一点拱起来是可以的','（如果很吃力的同学可以把毛巾捲起来放在腰下）','右脚做完，换左边做三到五次'],
+        pose_description:['正躺，眼睛看向天花板','左膝抬高，两手抱住膝盖','双掌托住膝盖，让双手臂伸直','将右脚抬起，用腰部的力量将整条腿做上下摆动三到五次','腰部有一点拱起来是可以的','如果很吃力的同学可以把毛巾捲起来放在腰下','右脚做完，换左边做三到五次'],
         upload_id: '6',
         upload_notices:['姿势正确','膝盖弯曲','膝盖弯曲','抬腿速度太快','抬腿速度太快','轴心不稳']
     },
@@ -85,7 +85,7 @@ module.exports = [
     },
     {
         id: '9',
-        title: '锻鍊产后的腹肌',
+        title: '锻鍊产后腹肌',
         tags: ['intermediate'],
         record_time:'20-45',
         ai_teacher: true,
@@ -107,7 +107,7 @@ module.exports = [
     },
     {
         id: '11',
-        title: '松弛的肚子变得紧实',
+        title: '让肚子变得更紧实',
         tags: ['advanced'],
         record_time:'20-45',
         ai_teacher: true,

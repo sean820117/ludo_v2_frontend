@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="practice-record-block" :style="{backImage:'url('+recordImg+')'}">
+        <div class="practice-record-block" :style="{backgroundImage:'url('+recordImg+')'}">
             <div class="notice-box" v-if="have_notice"></div>
             <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
             <div class="starmark-box" @click="checkStar">
@@ -69,6 +69,8 @@ export default {
     margin: 3vh 5vw 0;
     background: black;
     position: relative;
+    background-position: center center;
+    background-size: cover; 
     cursor: pointer;
 }
 .notice-box {

@@ -8,25 +8,27 @@
             <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                 {{title}}
             </h2> -->
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <img v-if="is_open" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-title.png" alt="" class="mamiyoga-intro-title">
+            <img v-if="!is_open" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-title-zh.png" alt="" class="mamiyoga-intro-title">
             
             <div class="mamiyoga-intro-btn">
-                <router-link to="/mommiyoga/teach" style="text-decoration: none;">
-                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="马上体验" ></mamiyoga-btn>
+                <router-link :to="go_teach+'/mommiyoga/teach'" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')" ></mamiyoga-btn>
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" v-if="!is_login">
-                <router-link to="/mommiyoga/login" style="text-decoration: none;">
-                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="立即购买"  style="margin-bottom:5vh;"></mamiyoga-btn>
+                <router-link :to="go_teach+'/mommiyoga/login'" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')"  style="margin-bottom:5vh;"></mamiyoga-btn>
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" v-else>
-                <router-link to="/mommiyoga/menu" style="text-decoration: none;">
-                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="欢迎回来"  style="margin-bottom:5vh;"></mamiyoga-btn>
+                <router-link :to="go_teach+'/mommiyoga/menu'" style="text-decoration: none;">
+                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_after')"  style="margin-bottom:5vh;"></mamiyoga-btn>
                 </router-link>
             </div>
-            <mommiyoga-login-select></mommiyoga-login-select>
-            <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/mommiyoga/agreement">用户协议</a>&nbsp;和&nbsp;<a href="/mommiyoga/privacy">隐私政策</a></p>
+            <mommiyoga-login-select v-if="is_open"></mommiyoga-login-select>
+            <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select>
+            <p class="mamiyoga-intro-agree">{{$t('index_agree_text')}}&nbsp;<a :href="go_teach+'/mommiyoga/agreement'">{{$t('index_agree_link_1')}}</a>&nbsp;和&nbsp;<a :href="go_teach+'/mommiyoga/privacy'">{{$t('index_agree_link_2')}}</a></p>
         </div>
     </div>
 </template>
@@ -36,10 +38,12 @@ import Vue from 'vue';
 import MommiyogaHeader from '~/components/mamiyoga/MommiyogaHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MommiyogaLoginSelect from '~/components/mamiyoga/MommiyogaLoginSelect.vue';
+import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue'
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 import VueMq from 'vue-mq';
 import { mapMutations, mapGetters } from 'vuex';
+import axios from '~/config/axios-config'
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -52,11 +56,16 @@ export default {
     layout:'mommiyoga',
     data:()=>({
         is_login: false,
+        is_open:false,
+        go_teach: '',
+        is_ui_config_loaded:false,
+        ui_config: Object,
     }),
     components: {
         MommiyogaHeader,
         MamiyogaBtn,
         MommiyogaLoginSelect,
+        MamiyogaLoginSelect,
         Hooper,
         Slide,
         HooperPagination,
@@ -73,6 +82,36 @@ export default {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
         }
+    },
+    async mounted() {
+        if (process.client) {
+            if (this.$i18n.locale == 'zh-CN') {
+                this.is_open = true
+                this.go_teach = '/zh-CN'
+            } else {
+                this.is_open = false
+                this.go_teach = ''
+            }
+            this.ui_config = await require('~/config/mamiyoga-config')
+            this.is_ui_config_loaded = true;
+            localStorage.redirect = '/mommiyoga/menu';
+        }   
+    },
+    methods: {
+        // goTeach(){
+        //     if (this.$i18n.locale == 'zh-CN') {
+        //         this.$router.push({path:'/zh-CN/mommiyoga/teach'})
+        //     } else {
+        //         this.$router.push({path:'/mommiyoga/teach'})
+        //     }
+        // },
+        // goMenu(){
+        //     if (this.$i18n.locale == 'zh-CN') {
+        //         this.$router.push({path:'/zh-CN/mommiyoga/menu'})
+        //     } else {
+        //         this.$router.push({path:'/mommiyoga/menu'})
+        //     }
+        // }
     }
 }
 </script>
@@ -112,7 +151,7 @@ export default {
     text-shadow: 0 5px 10px rgba(0,0,0,.5) */
     display: block;
     margin: 10vh auto 25vh;
-    width: 70vw;
+    width: 80vw;
 }
 .mamiyoga-index-intro h3 {
     color: #97A8AF;

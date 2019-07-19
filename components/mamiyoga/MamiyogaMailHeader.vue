@@ -19,11 +19,11 @@
                 <div class="cancel-box" @click="not_online = false">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                 </div>
-                <p>正在加紧脚步开发中！</p>
+                <p>{{$t('teach_assay_chat_text')}}</p>
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 20px;width:40%;">
-                <p style="font-size:13px;margin:15px 0px;">这是个可以分享影片<br>获得匿名学习夥伴回馈的功能</p>
+                <p style="font-size:13px;margin:15px 0px;" v-html="$t('teach_assay_chat_content')"></p>
                 <div class="star-line-box">
-                    <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="not_online = false">期待</button>
+                    <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="not_online = false">{{$t('teach_assay_button_development')}}</button>
                 </div>
             </mamiyoga-window-alert-box>
         </div>

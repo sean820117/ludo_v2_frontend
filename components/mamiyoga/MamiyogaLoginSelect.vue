@@ -4,17 +4,17 @@
             <p>{{$t('index_select_login')}}</p>
             <div class="mamiyoga-select-login-box">
                 <div class="mamiyoga-select-login-icon">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
+                    <a href="/"><img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="" @click.prevent="handleFBClick"></a>
                 </div>
                 <div class="mamiyoga-select-login-icon">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="">
+                    <a href="/"><img v-if="login_method.google" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="" @click.prevent="handleGoogleClick"></a>
                 </div>
-                <div class="mamiyoga-select-login-icon">
+                <!-- <div class="mamiyoga-select-login-icon">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">
                 </div>
                 <div class="mamiyoga-select-login-icon">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.png" alt="">
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="mamiyoga-select-login" v-if="is_beta">
@@ -49,7 +49,27 @@
 export default {
     props:{
         is_beta: false,
+        login_method:Object,
     },
+    methods: {
+        handleFBClick() {
+            
+            if (this.$route.path == "/victor/signup") {
+                console.log("/victor/signup");
+                this.$gtag('event', 'conversion', {
+                    'send_to': 'AW-744113367/TiSjCLOMw54BENeJ6eIC',
+                    'event_callback': function () {},
+                });
+                this.$fbq("track","CompleteRegistration");
+            }
+            
+            window.location.href = 'https://api.ludonow.com/auth/facebook?from=' + this.$route.path;
+        },
+        handleGoogleClick() {
+            window.location.href = 'https://api.ludonow.com/auth/google?from=' + this.$route.path;
+        }
+    },
+
 }
 </script>
 

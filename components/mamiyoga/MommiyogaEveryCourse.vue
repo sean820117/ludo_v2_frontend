@@ -14,23 +14,29 @@
                 <video :poster="getPreviewImg" :src="getVideoUrl" id="course-video">
                     <source :src="getVideoUrl" type="video/mp4" size="720">
                     <source :src="getVideoUrl" type="video/mp4" size="1080">
-                    <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default>
+                    <!-- <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default> -->
                 </video>
             </vue-plyr>
             <!-- <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
             </div> -->
             <div class="mamiyoga-course-intro-title" v-if="getAiTeacher && !is_opened">
-                <div class="mamiyoga-course-photo-by" v-show="getPhotoBy"></div>
-                <div class="mamiyoga-course-photo-by" v-show="!getPhotoBy"></div>
+                <div class="mamiyoga-course-photo-img" v-if="is_see">
+                    <div class="mamiyoga-course-photo-by" v-show="getPhotoBy"></div>
+                    <div class="mamiyoga-course-photo-by" v-show="!getPhotoBy"></div>
+                </div>
+                <div class="mommiyoga-course-photo-img" v-if="!is_see">
+                    <div class="mamiyoga-course-photo-by" v-show="getPhotoBy"></div>
+                    <div class="mamiyoga-course-photo-by" v-show="!getPhotoBy"></div>
+                </div>
                 <div class="mamiyoga-course-intro-title-font">
                     <h4>{{getTitle}}</h4>
-                    <p>拍摄时间建议：</p><p>{{getRecordTime}}</p><p>&nbsp;秒</p>
+                    <p>{{$t('course_time_text')}}</p><p>{{getRecordTime}}</p><p>&nbsp;秒</p>
                 </div>
             </div>
         </div>
         <div class="mamiyoga-course-middle">
-            <p>观看次数&nbsp;110</p>
+            <!-- <p>观看次数&nbsp;110</p> -->
         </div>
         <div class="mamiyoga-course-bottom">
             <!-- <div class="mamiyoga-course-bottom-content first">
@@ -40,7 +46,7 @@
                 </div>
             </div> -->
             <div class="mamiyoga-course-bottom-content second">
-                <h5>动作步骤</h5>
+                <h5>{{$t('course_tips_text')}}</h5>
                 <!-- <p>{{getPoseAmount}}</p> -->
                 <!-- <div class="mamiyoga-course-bottom-second">
                     <div class="mamiyoga-course-bottom-second-content-li" v-for="(pose ,i) in getPoses" :key="i">
@@ -55,7 +61,7 @@
             </div>
             <div class="mamiyoga-go-to-divide-btn" v-if="getAiTeacher">
                 <button class="course-divide-btn">
-                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">上传影片</label>  
+                    <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                 </button>
                 <!-- <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher"> -->
             </div>
@@ -74,6 +80,7 @@ Vue.use(VuePlyr)
 export default {
     data:()=>({
         is_opened: false,
+        is_see: false,
     }),
     props:{
         course_data:Object,
@@ -85,6 +92,13 @@ export default {
     methods: {
         handleVideoUpload(e){
             this.$emit('handleCourseVideoUpload',e);
+        }
+    },
+    mounted(){
+        if(this.$i18n.locale == 'zh-CN'){
+            this.is_see = true
+        } else {
+            this.is_see = false
         }
     },
     computed: {
@@ -299,11 +313,17 @@ export default {
     margin-right: 10px; 
     float: left;
 }
-.mamiyoga-course-photo-by:first-child {
+.mamiyoga-course-photo-img .mamiyoga-course-photo-by:first-child {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png');
 }
-.mamiyoga-course-photo-by:nth-child(2) {
+.mamiyoga-course-photo-img .mamiyoga-course-photo-by:nth-child(2) {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png');
+}
+.mommiyoga-course-photo-img .mamiyoga-course-photo-by:first-child {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-1.png');
+}
+.mommiyoga-course-photo-img .mamiyoga-course-photo-by:nth-child(2) {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.png');
 }
 .mamiyoga-course-intro-title-font {
     height: 65px;

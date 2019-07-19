@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mommiyoga-login-header headerTitle="体验练习" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
+            <mommiyoga-login-header :headerTitle="$t('teach_title')" bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-login-header>
             <div class="teach-title-video-box" @click="is_opened = true">
                 <!-- <video id="experience" class="mamiyoga-course-video-try" @click="is_opened = true"
                 preload="auto" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-1.jpg">
@@ -9,7 +9,7 @@
                     Your browser does not support the video tag.
                 </video> -->
                 <vue-plyr >
-                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-5.jpg" src="video.mp4" id="course-video">
+                    <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-5.jpg" src="" id="course-video">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="720">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="1080">
                         <!-- <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default> -->
@@ -17,11 +17,12 @@
                 </vue-plyr>
                 <div class="teach-course-info" v-if="!is_opened">
                     <div>
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png" alt="">
+                        <img v-if="is_see" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png" alt="">
+                        <img v-if="!is_see" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.png" alt="">
                     </div>
                     <div>
                         <h3>{{course_title}}</h3>
-                        <p>拍摄时间建议：20-45秒</p>
+                        <p v-html="$t('teach_text_time')"></p>
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
@@ -29,58 +30,28 @@
                 </div>
             </div>
             <div class="teach-detail-box">
-                <h6>姿势步骤</h6>
+                <h6>{{$t('teach_tip_title')}}</h6>
                 <div class="teach-content-text">
                     <div class="teach-content-li" :key="i"
                     v-for="(description,i) in course_descriptions">
                         <p class="teach-content-num">{{i+1}}</p>
                         <p>{{description}}</p>
                     </div>
-
-
-                    <!-- <div class="teach-content-li">
-                        <p class="teach-content-num">1</p>
-                        <p>我们正躺，望向天花板</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">2</p>
-                        <p>把左膝抬高，两手抱膝</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">3</p>
-                        <p>双掌托住膝盖，将腿往外拉开，直到能尽量伸直手臂</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">4</p>
-                        <p>现在，将右脚抬起，慢慢从垫子伸起来</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">5</p>
-                        <p>让脚跟尽量画大圆弧形，越大越好，再慢慢地放下</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">6</p>
-                        <p>重复这个动作3~5次，让腰部有一点点拱起来，呈现一个圆弧型</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">7</p>
-                        <p>然后，换边也进行一样的动作</p>
-                    </div> -->
                 </div>
                 <div class="teacher-remind">
-                    <a href="/mommiyoga/about">
+                    <a :href="go_about + '/mommiyoga/about'">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind.png" alt="">
                     </a>
                     <div class="teacher-remind-content">
-                        <p style="color:#8699A0;">麻美老师贴心叮咛</p>
-                        <p>尽量将力气集中在腰部，如果动作做起来有点吃力的同学，可以把毛巾卷起来放进腰下。</p>
+                        <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
+                        <p>{{$t('teach_teacher_remind_content')}}</p>
                     </div>
                 </div>
                 
-                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">开始练习</button>
+                <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">{{$t('teach_button_upload')}}</button>
                 <button class="teach-assay-btn" v-else style="padding:0;">
                     <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;">
-                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">开始练习
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}
                     </label>  
                 </button>
             </div>
@@ -91,7 +62,7 @@
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                     </div>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.png" alt="" style="margin-top: 50px;">
-                    <p style="color:#8699A0;font-size:13px;">我们将记录您的动作<br>并交给AI助教分析</p>
+                    <p style="color:#8699A0;font-size:13px;" v-html="$t('teach_remind_text')"></p>
                     <div class="star-line-box">
                         <button class="mamiyoga-assay-contact-btn"  style="width:60px;height:30px;letter-space:0;margin-top:45px;padding:0;">
                             <label style="display:flex;align-items:center;justify-content:center;width:60px;height:30px;">
@@ -141,6 +112,8 @@ export default {
         show_remind: false, 
         open_explain: false,
         is_opened:false,
+        go_about: '',
+        is_see: false,
 
         courses:[],
         course_title:'',
@@ -159,7 +132,15 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mommiyoga-course');
+            if(this.$i18n.locale == 'zh-CN'){
+                this.courses = await require('~/config/mommiyoga-course');
+                this.go_about = '/zh-CN'
+                this.is_see = true
+            } else {
+                this.courses = await require('~/config/mommiyoga-course-zhtw');
+                this.go_about = ''
+                this.is_see = false
+            }
             this.course_title = this.courses[4].title;
             this.course_descriptions = this.courses[4].pose_description;
         }

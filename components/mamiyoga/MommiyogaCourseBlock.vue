@@ -1,5 +1,5 @@
 <template>
-<div><router-link :to="'/mommiyoga/course/' + goCourse" style="color:#000;">
+<div><router-link :to="go_course + '/mommiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block">
         <div class="course-aimark">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="have_ai">
@@ -23,7 +23,7 @@
                     </div> -->
                     
                     <div class="course-block-icon">
-                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-time-'+timeSrc+'.png'" alt="">
+                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-time-'+is_open+timeSrc+'.png'" alt="">
                         
                     </div>
                     
@@ -37,7 +37,8 @@
 <script>
 export default {
     data:()=>({
-        
+        go_course: '',
+        is_open: '',
     }),
     props: {
         bgImage: String,
@@ -49,7 +50,17 @@ export default {
         timeSrc: String,
         goCourse: String,
         have_ai: false,
+        
     },
+    mounted(){
+        if(this.$i18n.locale == 'zh-CN') {
+            this.go_course = '/zh-CN'
+            this.is_open = ''
+        } else {
+            this.go_course = ''
+            this.is_open = 'zh-'
+        }
+    }
 }
 </script>
 

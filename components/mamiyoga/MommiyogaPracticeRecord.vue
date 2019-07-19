@@ -6,24 +6,30 @@
             </a>
             <div class="practice-record-intro-title">
                 <!-- <div :style="{backgroundImage:'url('+photoBy+')'}"></div> -->
-                <div class="practice-record-photo-by" v-show="is_front"></div>
-                <div class="practice-record-photo-by" v-show="!is_front"></div>
+                <div class="practice-record-photo-img" v-if="is_see">
+                    <div class="practice-record-photo-by" v-show="is_front"></div>
+                    <div class="practice-record-photo-by" v-show="!is_front"></div>
+                </div>
+                <div class="practice-record-photo-img-zh" v-if="!is_see">
+                    <div class="practice-record-photo-by" v-show="is_front"></div>
+                    <div class="practice-record-photo-by" v-show="!is_front"></div>
+                </div>
                 <div class="practice-record-intro-title-font">
                     <h3 v-text="recordTitle">{{recordTitle}}</h3>
-                    <p>拍摄时间建议：</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
+                    <p>{{$t('course_time_text')}}</p><p v-html="recordTime">{{recordTime}}</p><p>&nbsp;秒</p>
                 </div>
             </div>
             <div class="practice-record-intro-btn-container">
-                <router-link :to="'/mommiyoga/course/' + goCourse">
+                <router-link :to="go_course + '/mommiyoga/course/' + goCourse">
                     <mamiyoga-square-btn class="practice-record-intro-btn" 
-                    bgColor="#D1D1D1" ftColor="#707070" btnText="回到课程"></mamiyoga-square-btn>
+                    bgColor="#D1D1D1" ftColor="#707070" :btnText="$t('record_btn_goback')"></mamiyoga-square-btn>
                 </router-link>
                 <!-- <mamiyoga-square-btn class="practice-record-intro-btn"
                 bgColor="#97A8AF" ftColor="#ECEDE8" btnText="上传影片">
                 </mamiyoga-square-btn> -->
                 <div class="practice-record-square-btn">
                     <button class="practice-record-intro-btn">
-                        <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上传影片</label>  
+                        <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button>
                 </div>
             </div>
@@ -35,6 +41,10 @@
 <script>
 import MamiyogaSquareBtn from '~/components/mamiyoga/MamiyogaSquareBtn.vue'
 export default {
+    data:()=>({
+        go_course: '',
+        is_see: false,
+    }),
     props: {
         bgImg: String,
         photoBy: String,
@@ -49,6 +59,15 @@ export default {
     methods: {
         clickCourseVideoUpload(e){
             this.$emit('handleCourseVideoUpload',e)
+        }
+    },
+    mounted(){
+        if(this.$i18n.locale == 'zh-CN') {
+            this.go_course = '/zh-CN'
+            this.is_see = true
+        } else {
+            this.go_course = ''
+            this.is_see = false
         }
     }
 }
@@ -91,11 +110,17 @@ export default {
     margin-right: 10px; 
     float: left;
 }
-.practice-record-photo-by:first-child {
+.practice-record-photo-img .practice-record-photo-by:first-child {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png');
 }
-.practice-record-photo-by:nth-child(2) {
+.practice-record-photo-img .practice-record-photo-by:nth-child(2) {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png');
+}
+.practice-record-photo-img-zh .practice-record-photo-by:first-child {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-1.png');
+}
+.practice-record-photo-img-zh .practice-record-photo-by:nth-child(2) {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.png');
 }
 .practice-record-intro-title-font {
     height: 65px;

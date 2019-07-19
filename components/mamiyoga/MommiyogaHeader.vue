@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-header">
-        <router-link to="/mommiyoga">
+        <router-link :to="go_login + '/mommiyoga'">
         <div class="mamiyoga-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-header-logo.png" alt="">
         </div>
@@ -8,8 +8,8 @@
         
         <div class="mamiyoga-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mommiyoga/login')">密码登录</button>
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="logout" v-else >登出</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push(go_login + '/mommiyoga/login')">{{$t('header_login')}}</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="logout" v-else >{{$t('header_logout')}}</button>
         </div>
         
     </div>
@@ -20,6 +20,7 @@ import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
     data:()=>({
         is_login:false,
+        go_login: '',
     }),
     props: {
         bgColor: String,
@@ -39,6 +40,12 @@ export default {
     async mounted() {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
+
+            if(this.$i18n.locale == 'zh-CN') {
+                this.go_login = '/zh-CN'
+            } else {
+                this.go_login = ''
+            }
         }
     },
 }

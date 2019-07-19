@@ -40,7 +40,11 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mommiyoga-course');
+            if(this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mommiyoga-course');
+            } else {
+                this.courses = await require('~/config/mommiyoga-course-zhtw');
+            }            
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
             this.pose_id = 'yoga_'+this.course_data.upload_id;
