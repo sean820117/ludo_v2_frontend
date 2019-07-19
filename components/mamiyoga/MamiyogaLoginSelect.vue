@@ -21,16 +21,24 @@
             <p>快和朋友分享</p>
             <div class="mamiyoga-select-login-box">
                 <div class="mamiyoga-select-login-icon">
+                    <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
+                    </a>
                 </div>
                 <div class="mamiyoga-select-login-icon">
+                    <a href="https://www.addtoany.com/add_to/google_gmail?linkurl=http%3A%2F%2Fludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="">
+                    </a>
                 </div>
                 <div class="mamiyoga-select-login-icon">
+                    <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">
+                    </a>
                 </div>
                 <div class="mamiyoga-select-login-icon">
+                    <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fludonow.com%2Fmamiyoga&amp;title=" target="_blank">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-more.png" alt="">
+                    </a>
                 </div>
             </div>
         </div>

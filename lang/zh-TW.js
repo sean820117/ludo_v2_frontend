@@ -27,7 +27,7 @@ export default {
   teach_assay_contact_input: '謝謝您的回饋，讓我們儘速為您尋找解決方法',
   teach_assay_button_submit: '送出',
   teach_assay_star_title: '請問您滿意這次的分析結果嗎？',
-  teach_assay_text_development: '課程尚未開放<br>預計九月上線',
+  teach_assay_text_development: '課程尚未開放<br>預計八月上線',
   teach_assay_button_development: '期待',
 
   explain_title_first: '正面拍攝',

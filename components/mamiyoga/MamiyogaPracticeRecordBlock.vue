@@ -1,43 +1,63 @@
 <template>
-    <div class="practice-record-block" :style="{backImage:'url('+recordImg+')'}">
-        <div class="notice-box" v-if="have_notice"></div>
-        <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
-        <div class="starmark-box" @click="checkStar">
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="" v-show="!check_star">
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" v-show="check_star" alt="">
+    <div>
+        <div class="practice-record-block" :style="{backImage:'url('+recordImg+')'}">
+            <div class="notice-box" v-if="have_notice"></div>
+            <p class="practice-record-block-time" v-text="recordDate">{{recordDate}}</p>
+            <div class="starmark-box" @click="checkStar">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star.png" alt="" v-show="!check_star">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/star-checked.png" v-show="check_star" alt="">
+            </div>
+            <div class="practice-record-bak" @click="is_playing = true"></div>
+        </div>
+        <div class="practice-record-video" v-if="is_playing">
+            <mommiyoga-record-video @closeRecordWindow="closeRecordWindow"
+            :video_url="video_url" :score="score" :reps_wrong_tags="tags"
+            ></mommiyoga-record-video>
         </div>
     </div>
 </template>
 
 <script>
+import MommiyogaRecordVideo from '~/components/mamiyoga/MommiyogaRecordVideo.vue'
 export default {
     data:()=>({
         have_notice: false,
         check_star: false,
         is_playing: false,
+        
     }),
     components:{
-        // MommiyogaRecordVideo,
+        MommiyogaRecordVideo,
     },
     props: {
         recordDate: String,
         recordImg: String,
-        recordUrl: String,
+        video_url: String,
+        score: Number,
+        tags: Array,
+        // record_video_url: String,
     },
     methods: {
         checkStar(){
             this.check_star = !this.check_star;
-            localStorage
+            localStorage[this.video_url+'check_star'] = !localStorage[this.video_url+'check_star'];
+
         },
+        closeRecordWindow(){
+            this.is_playing = false;
+        }
         // openRecordVideo(){
         //     this.$emit('openRecordVideo');
         // }
     },
-    computed:{
-        // checkOrNot() {
-        //     return this.check_star ? 'active':'';
-        // }
+    mounted(){
+        this.check_star = localStorage[this.video_url+'check_star']
     }
+    // computed:{
+    //     showVideo(){
+    //         return this.is_playing ? 'show':'';
+    //     }
+    // }
 
 }
 </script>
@@ -84,9 +104,28 @@ export default {
 .starmark-box img {
     width: 25px;
 }
-/* .bookmark-box.active {
-    background-image: url('/mamiyoga/star-checked.svg');
+.practice-record-bak {
+    width: 100%;
+    height: 120px;
+    /* margin: 3vh 5vw 0; */
+}
+/* .practice-record-video {
+    display: none;
+}
+.practice-record-video.show {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 450px;
+    z-index: 999;
 } */
+.practice-record-video {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 450px;
+    z-index: 999;
+}
 @media (min-width: 769px) {
     .practice-record-block {
         width: 390px;
