@@ -25,7 +25,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-open-icon" @click="showAssayContent" :class="showContentOrNot">
-            <p>分析结果</p>
+            <p>{{$t('teach_assay_title')}}</p>
         </div>
         <div class="mamiyoga-open-background" :class="showContentOrNot"></div>
         <div class="mamiyoga-close-icon" @click="showAssayContent" :class="showContentOrNot"></div>
@@ -33,7 +33,7 @@
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div style="cursor:pointer;" @click="showAssayContent" v-touch:swipe="showAssayContent">
-                    <div class="mamiyoga-assay-title"><h3>分析结果</h3></div>
+                    <div class="mamiyoga-assay-title"><h3>{{$t('teach_assay_title')}}</h3></div>
                 </div>
                 <div class="mamiyoga-assay-content-box">
                     <div class="mamiyoga-assay-content-li"  v-for="(tags, i) in reps_wrong_tags" :key="i">
@@ -55,13 +55,13 @@
                 <div style="padding-top:5h;">
                     <div class="mamiyoga-assay-share-box">
                         <div class="assay-grade-box">
-                            <p style="margin-bottom:0;">准确率</p>
+                            <p style="margin-bottom:0;">{{$t('teach_assay_correct')}}</p>
                             <div class="mamiyoga-assay-grade-num">
                                 <h3>{{score}}</h3>
                                 <p>%</p>
                             </div>
                         </div>
-                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">快和朋友们分享这次的练习成果吧！</p>
+                        <p style="margin-top:4vh;margin-bottom:0;" class="share-text">{{$t('teach_assay_share_friend')}}</p>
                         <div class="mamiyoga-assay-share-icon-box">
                             <div class="mamiyoga-assay-share-icon">
                                 <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
@@ -90,8 +90,8 @@
                             </div>
                         </div>
                             <div class="mamiyoga-assay-contact-box" id="contact-us-box">
-                            <p>分析结果不如预期吗？</p>
-                            <button class="mamiyoga-assay-contact-btn" @click="show_contact_box = true">联络我们</button>
+                            <p>{{$t('teach_assay_contact_text')}}</p>
+                            <button class="mamiyoga-assay-contact-btn" @click="show_contact_box = true">{{$t('teach_assay_button_contact')}}</button>
                         </div>
                     </div>
                     
@@ -102,7 +102,7 @@
                         <div class="cancel-box" @click="show_contact_box = false">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
-                        <p style="margin:10px auto 10px;width:150px;">您有遇到不了解的地方吗？</p>
+                        <p style="margin:10px auto 10px;width:150px;">{{$t('teach_assay_contact_title')}}</p>
                         <div class="star-line-box">
                             <input type="radio" class="questions first" id="answer-first" name="questions" value="1" v-model="impress">
                             <input type="radio" class="questions second" id="answer-second" name="questions" value="2" v-model="impress">
@@ -134,14 +134,14 @@
                         </div>
                         <form action="">
                         <textarea name="message" id="" rows="7" class="contact-textarea" maxlength="150" style="resize:none;"
-                        required placeholder="谢谢您的回馈，让我们尽速为您寻找解决方法" v-model="input_text"></textarea>
+                        required :placeholder="$t('teach_assay_contact_input')" v-model="input_text"></textarea>
                         <p style="text-align:right;margin:5px;">{{input_text.length}}&nbsp;/&nbsp;150</p>
                         </form>
-                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="sendIdea()">送出</button>
+                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:5px" @click="sendIdea()">{{$t('teach_assay_button_submit')}}</button>
                     </mamiyoga-window-alert-box>
                 </div>
                 
-                <div class="mamiyoga-assay-star-block" :class="showStarOrNot">
+                <!-- <div class="mamiyoga-assay-star-block" :class="showStarOrNot">
                     <mamiyoga-window-alert-box>
                         <div class="cancel-box" @click="show_star_box = false">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -179,18 +179,18 @@
                             <button class="mamiyoga-assay-contact-btn" @click="sendStarValue()" style="width:90px;letter-space:0;margin-top:5px">送出</button>
                         </div>
                     </mamiyoga-window-alert-box>
-                </div>
+                </div> -->
                 
                 <div class="mamiyoga-assay-comment-box" :class="showCommentOrNot">
                     <mamiyoga-window-alert-box>
                         <div class="cancel-box" @click="openCommentBlock">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                         </div>
-                        <p>正在加紧脚步开发中！</p>
+                        <p>{{$t('teach_assay_chat_text')}}</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 20px;width:40%;">
-                        <p style="font-size:13px;margin:15px 0px;">这是个可以分享影片<br>获得匿名学习夥伴回馈的功能</p>
+                        <p style="font-size:13px;margin:15px 0px;" v-html="$t('teach_assay_chat_content')"></p>
                         <div class="star-line-box">
-                            <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">期待</button>
+                            <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="openCommentBlock">{{$t('teach_assay_button_development')}}</button>
                         </div>
                     </mamiyoga-window-alert-box>
                 </div>

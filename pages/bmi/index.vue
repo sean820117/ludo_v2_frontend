@@ -53,13 +53,13 @@
                     <div class="bmi-index-form-input-li human-height">
                         <p>身高（公分）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="height" name="height" :placeholder="heightText" v-model="height">
+                            <input type="number" id="height" v-model="height" name="height" :placeholder="heightText">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
                         <p>體重（公斤）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="weight" :placeholder="weightText" name="weight" v-model="weight">
+                            <input type="number" id="weight" v-model="weight" :placeholder="weightText" name="weight">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li">
@@ -93,13 +93,13 @@
                     <div class="bmi-index-form-input-li human-height">
                         <p>身高（公分）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="tdeeheight" name="height" :value="height" :placeholder="theightText">
+                            <input type="number" id="tdeeheight" v-model="height" name="height" :placeholder="theightText">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
                         <p>體重（公斤）：</p>
                         <div class="bmi-index-form-input-value">
-                            <input type="number" id="tdeeweight" name="weight" :value="weight" :placeholder="tweightText">
+                            <input type="number" id="tdeeweight" v-model="weight" name="weight" :placeholder="tweightText">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
@@ -272,7 +272,9 @@
                         <p>Line</p>
                     </div>
                 </div>
+                <a href="https://www.ludonow.com/mamiyoga" style="text-decoration:none;">
                 <div class="bmi-index-form-input-button bmi-result-btn" style="background-color: #3855A3;">獲得免費健康菜單</div>
+                </a>
                 <textarea id="urlCopied" cols="30" rows="1"></textarea>
             </div>
             <div style="position:fixed;width:100vw;height:100px;top:0;" @click="have_tdee_result = false"></div>

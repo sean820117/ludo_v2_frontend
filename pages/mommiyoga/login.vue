@@ -4,29 +4,32 @@
             <div class="mamiyoga-header-logo"></div>
             <div class="mamiyoga-header-login">
                 <button :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }"
-                @click="switch_signup_and_login" class="mamiyoga-header-login-btn-switch">{{ login_or_signup === "signup" ? '登录' : '注册' }}</button>
+                @click="switch_signup_and_login" class="mamiyoga-header-login-btn-switch">{{ login_or_signup === "signup" ? $t('login_btn_login') : $t('login_btn_signup') }}</button>
             </div>
         </div>
         <div class="mamiyoga-login-container">
-            <div class="reg-text">{{ login_or_signup === 'signup' ? '注册' : '登录' }}</div>
-            <div class="reg-text2"> {{ '付款前需先注册成为会员' }}</div>
-            <div class="third-party">
+            <div class="reg-text">{{ login_or_signup === 'signup' ? $t('login_btn_signup') : $t('login_btn_login') }}</div>
+            <div class="reg-text2"> {{$t('login_text_remind')}}</div>
+            <div class="third-party" v-if="is_open">
+                <no-ssr ><mommiyoga-third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
+            </div>
+            <div class="third-party" v-if="!is_open">
                 <no-ssr><mamiyoga-third-party-icons v-if="is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"/></no-ssr>
             </div>
             <div class="hr"></div>
             <div class="text-or">or</div>
             <form class="signup-form">
                 <div class="login-column">
-                    <div class="login-column-label">电子信箱</div>
+                    <div class="login-column-label">{{$t('login_input_email')}}</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                 </div>
                 <div class="login-column">
-                    <div class="login-column-label">密码</div>
+                    <div class="login-column-label">{{$t('login_input_password')}}</div>
                     <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
                 </div>
                 <div class="login-column">
                     <div v-show="login_or_signup === 'signup'">
-                        <div class="login-column-label">确认密码</div>
+                        <div class="login-column-label">{{$t('login_input_again')}}</div>
                         <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
                     </div>
                 </div>
@@ -36,14 +39,15 @@
                 <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',height: '18px',}"> {{ hint }}</div>
                 <div class="btn-login-and-signup-container">
                     <!-- <p class="switch-login-and-signup" @click="switch_signup_and_login">我要{{ login_or_signup === "signup" ? '登入' : '註冊' }}</p> -->
-                    <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '立即付款' : '登录' }}</button>
+                    <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? $t('login_btn_pay') : $t('login_btn_login') }}</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
 <script >
-import MamiyogaThirdPartyIcons from "~/components/mamiyoga/MamiyogaThirdPartyIcons"
+import MamiyogaThirdPartyIcons from "~/components/mamiyoga/MamiyogaThirdPartyIcons.vue"
+import MommiyogaThirdPartyIcons from "~/components/mamiyoga/MommiyogaThirdPartyIcons.vue"
 import { EMAIL_REGEX } from '~/components/regex.js'
 
 import axios from '~/config/axios-config'
@@ -61,6 +65,7 @@ export default {
             hint_color:'transparent',
             is_ui_config_loaded:false,
             login_or_signup:'login',
+            is_open: false,
         }
     },
     props: {
@@ -68,14 +73,25 @@ export default {
     },
     async mounted() {
         if (process.client) {
+            if(this.$i18n.locale == 'zh-CN') {
+                this.is_open = true
+            } else {
+                this.is_open = false
+            }
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
             localStorage.redirect = '/mommiyoga/menu';
-            
+
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
-                window.alert('你已经登入了')
-                this.$router.push('/mommiyoga/menu')
+                if(this.$i18n.locale == 'zh-CN') {
+                    window.alert('你已经登入了')
+                    this.$router.push('/zh-CN/mommiyoga/menu')
+                } else {
+                    window.alert('你已經登入了')
+                    this.$router.push('/mommiyoga/menu')
+                }
+                
             }
             //ga
             // let gtag_config = {}
@@ -90,28 +106,52 @@ export default {
     },
     components: {
         MamiyogaThirdPartyIcons,
+        MommiyogaThirdPartyIcons,
     },
     methods: {
         onSubmit(type) {
-            if (this.email.length === 0 || this.password.length === 0) {
-                this.hint = '请填写所有栏位！'
-                this.hint_color = "red"
-                return
-            }
-            if (!EMAIL_REGEX.test(this.email)) {
-                this.hint = '电子信箱格式错误'
-                this.hint_color = "red"
-                return
-            }
-            if (this.password.length < 8) {
-                this.hint = '密码过短'
-                this.hint_color = "red"
-                return
-            }
-            if (this.password !== this.confirmPassword && type === "signup") {
-                this.hint = '密码需大于八个字'
-                this.hint_color = "red"
-                return
+            if(this.$i18n.locale == 'zh-CN') {
+                if (this.email.length === 0 || this.password.length === 0) {
+                    this.hint = '请填写所有栏位！'
+                    this.hint_color = "red"
+                    return
+                }
+                if (!EMAIL_REGEX.test(this.email)) {
+                    this.hint = '电子信箱格式错误'
+                    this.hint_color = "red"
+                    return
+                }
+                if (this.password.length < 8) {
+                    this.hint = '密码过短'
+                    this.hint_color = "red"
+                    return
+                }
+                if (this.password !== this.confirmPassword && type === "signup") {
+                    this.hint = '密码需大于八个字'
+                    this.hint_color = "red"
+                    return
+                }
+            } else {
+                if (this.email.length === 0 || this.password.length === 0) {
+                    this.hint = '請填寫所有欄位！'
+                    this.hint_color = "red"
+                    return
+                }
+                if (!EMAIL_REGEX.test(this.email)) {
+                    this.hint = '電子信箱格式錯誤'
+                    this.hint_color = "red"
+                    return
+                }
+                if (this.password.length < 8) {
+                    this.hint = '密碼過短'
+                    this.hint_color = "red"
+                    return
+                }
+                if (this.password !== this.confirmPassword && type === "signup") {
+                    this.hint = '密碼需大於八個字'
+                    this.hint_color = "red"
+                    return
+                }
             }
 
             this.hint = null
@@ -132,12 +172,20 @@ export default {
                   let login_result = await this.$checkLogin(this.$store);
                   this.$router.push('/login-redirect')
               } else {
-                  this.hint = '注册失败 - ' + response.data.message;
+                  if(this.$i18n.locale == 'zh-CN') {
+                      this.hint = '注册失败 - ' + response.data.message;
+                  } else {
+                      this.hint = '註冊失敗 - ' + response.data.message;
+                  }
                   this.hint_color = "red"
                   console.log(response)
               }
             } catch (error) {
-              this.hint = '注册失败'
+              if(this.$i18n.locale == 'zh-CN') {
+                  this.hint = '注册失败'
+              } else {
+                  this.hint = '註冊失敗'
+              }
               this.hint_color = "red"
               console.log(error)
             }
@@ -158,7 +206,11 @@ export default {
             } 
             catch (error) {
                 console.log(error)
-                this.hint = "传送失败，请重新尝试"
+                if(this.$i18n.locale == 'zh-CN') {
+                    this.hint = "传送失败，请重新尝试"
+                } else {
+                    this.hint = "傳送失敗，請重新嘗試"
+                }
                 this.hint_color = "red"
             }
         },

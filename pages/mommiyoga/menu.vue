@@ -4,13 +4,13 @@
             <mommiyoga-header bgColor="#9BAEB2" ftColor="#FFF"></mommiyoga-header>
             <div class="course-information-select">
                 <div class="course-information-content">
-                    <router-link to="/mommiyoga/about" style="text-decoration:none;"><p>讲师介绍</p></router-link>
+                    <router-link :to="go_about+'/mommiyoga/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
                 </div>
                 <div class="course-information-content">
-                    <router-link to="/mommiyoga/aiassistant" style="text-decoration:none;"><p>AI助教</p></router-link>
+                    <router-link :to="go_about+'/mommiyoga/aiassistant'" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
                 </div>
                 <div class="course-information-content" @click="not_online = true">
-                    <p>学习夥伴</p>
+                    <p>{{$t('menu_nav_text_friend')}}</p>
                 </div>
             </div>
             <div class="course-mail-icon" @click="not_online = true">
@@ -26,11 +26,11 @@
                 <div class="cancel-box" @click="not_online = false">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                 </div>
-                <p>正在加紧脚步开发中！</p>
+                <p>{{$t('teach_assay_chat_text')}}</p>
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 20px;width:40%;">
-                <p style="font-size:13px;margin:15px 0px;">这是个可以分享影片<br>获得匿名学习夥伴回馈的功能</p>
+                <p style="font-size:13px;margin:15px 0px;" v-html="$t('teach_assay_chat_content')"></p>
                 <div class="star-line-box">
-                    <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="not_online = false">期待</button>
+                    <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="not_online = false">{{$t('teach_assay_button_development')}}</button>
                 </div>
             </mamiyoga-window-alert-box>
         </div>
@@ -47,6 +47,7 @@ export default {
     data:()=>({
         courses:[],
         not_online: false,
+        go_about:''
     }),
     components: {
         MommiyogaHeader,
@@ -55,7 +56,13 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mommiyoga-course')
+            if( this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mommiyoga-course')
+                this.go_about = '/zh-CN'
+            } else {
+                this.courses = await require('~/config/mommiyoga-course-zhtw')
+                this.go_about = ''
+            }
         }
     },
     computed:{

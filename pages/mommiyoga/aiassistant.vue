@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="aiassistant-page" v-if="!open_explain">
-            <mamiyoga-mail-header headerTitle="AI助教" mailheaderTitle="white"></mamiyoga-mail-header>
+            <mamiyoga-mail-header :headerTitle="$t('menu_nav_text_record')" mailheaderTitle="white"></mamiyoga-mail-header>
             <div class="aiassistant-intro">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/aiassistant-title.png" alt="" class="aiassistant-title-img">
-                <p>正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的影片体验。</p>
+                <p v-html="$t('aiaiassistant_title_text')"></p>
                 <!-- <div>
                     <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教学" style="margin-bottom:5vh;"></mamiyoga-btn>
                 </div> -->
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="aiassistant-container">
-                <h4>所有动作</h4>
+                <h4>{{$t('aiaiassistant_content_title')}}</h4>
                 <mommiyoga-aiassistant-pose-block v-for="array in have_ai_array" 
                 :key="array.id" :poseText="array.title" :goRecord="array.upload_id"
                 :bgImg="array.id"></mommiyoga-aiassistant-pose-block>
@@ -53,7 +53,11 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mommiyoga-course')
+            if (this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mommiyoga-course')
+            } else {
+                this.courses = await require('~/config/mommiyoga-course-zhtw')
+            }
             this.have_ai_array = this.courses.filter(course => course.ai_teacher === true)
         }
     },

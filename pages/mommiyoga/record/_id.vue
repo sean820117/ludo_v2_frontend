@@ -6,7 +6,7 @@
             :is_front="course_data.is_front" @handleCourseVideoUpload="handleCourseVideoUpload"
             ></mommiyoga-practice-record>
             <div class="practice-record-content">
-                <h4>练习记录</h4>
+                <h4>{{$t('record_content_title')}}</h4>
                 <!-- <div class="practice-record-content-container" v-for="data in user_data"
                 :key="data.id" >
                     <mamiyoga-practice-record-block></mamiyoga-practice-record-block>
@@ -16,11 +16,11 @@
                 <div class="practice-record-content-container" v-if="record_data != ''">
                     <mamiyoga-practice-record-block v-for="(record,i) in record_data"
                     :key="i" :recordDate="setRecordDate(record.createdAt)" :video_url="record.video_url"
-                    :tags="switchTag(record)"
+                    :tags="switchTag(record)" :recordImg="record.preview_img"
                     :score="record.score"></mamiyoga-practice-record-block>
                 </div>
                 <div class="practice-record-no-content" v-else>
-                    <p>尚无拍摄纪录</p>
+                    <p>{{$t('record_content_text')}}</p>
                 </div>
             </div>
         </div>
@@ -69,7 +69,12 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mommiyoga-course');
+            if(this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mommiyoga-course');
+            } else {
+                this.courses = await require('~/config/mommiyoga-course-zhtw');
+            }
+            
             this.course_data = this.courses.find(course => this.$route.params.id == course.upload_id);
             this.course_id = this.course_data.id;
             

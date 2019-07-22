@@ -6,9 +6,9 @@
         <input type="radio" class="labels four-series" id="four" name="series">
         <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
             <div class="label-box">
-                <label for="first" class="first-label">初级课程</label>
-                <label for="second" class="second-label">中级课程</label>
-                <label for="third" class="third-label">高级课程</label>
+                <label for="first" class="first-label">{{$t('menu_tag_mommiyoga_first')}}</label>
+                <label for="second" class="second-label">{{$t('menu_tag_mommiyoga_second')}}</label>
+                <label for="third" class="third-label">{{$t('menu_tag_mommiyoga_third')}}</label>
             </div>
             <div class="first-series-container mamiyoga-all-course">
                 <mommiyoga-course-block v-for="primary in getPrimarys" :key="primary.id"

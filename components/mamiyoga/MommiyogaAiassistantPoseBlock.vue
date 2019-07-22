@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link :to="'/mommiyoga/record/' + goRecord" style="text-decoration: none">
+        <router-link :to="go_record+'/mommiyoga/record/' + goRecord" style="text-decoration: none">
             <div class="aiassistant-pose-block" :style="{backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+bgImg+'.jpg)'}">
                 <p>{{poseText}}</p>
             </div>
@@ -10,10 +10,20 @@
 
 <script>
 export default {
+    data:()=>({
+        go_record: ''
+    }),
     props: {
         poseText: String,
         goRecord: String,
         bgImg:String,
+    },
+    mounted(){
+        if(this.$i18n.locale == 'zh-CN') {
+            this.go_record = '/zh-CN'
+        } else {
+            this.go_record = ''
+        }
     }
 }
 </script>
