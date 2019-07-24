@@ -66,6 +66,21 @@ import 'hooper/dist/hooper.css';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 
 export default {
+    head(){
+        return  {
+            title: 'BMI計算',
+            meta: [
+                { charset: 'utf-8' },
+                { hid: 'description', name: 'description', content: '' },
+                { property : 'og:title' , content:""},
+                { property : 'og:type' , content:"Mamiyoga"},
+                { property : 'og:url' , content:"https://www.ludonow.com/mommiyoga"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-to-facebook.jpg"},
+                { property : 'og:description' , content:"yoga"},
+                { property : 'og:site_name' , content:"www.ludonow.com"},
+            ],
+        }
+    },
     layout:'mommiyoga',
     data:()=>({
         is_beta: true,

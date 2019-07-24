@@ -42,7 +42,7 @@ export default {
     },
     head() {
         return  {
-            title: 'MAMIYOGA',
+            title: 'MOMMI YOGA',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
@@ -50,7 +50,7 @@ export default {
                 { property : 'og:title' , content:""},
                 { property : 'og:type' , content:"education tech."},
                 { property : 'og:url' , content:"https://www.ludonow.com/mommiyoga"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
+                // { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
                 { property : 'og:description' , content:"yoga"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
