@@ -33,7 +33,7 @@
                 <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                     {{title}}
                 </h2> -->
-                <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title" style="margin:10vh auto 19vh;">
+                <img :src="$t('index_img_title')" alt="瑜珈" class="mamiyoga-intro-title" style="margin:10vh auto 19vh;">
                 <div class="mamiyoga-intro-btn">
                     <router-link to="/mamiyoga/teach" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
@@ -52,26 +52,29 @@
             
             </div>
             <div class="mamiyoga-intro-wrap" id="index-wrap">
-                <img style="width:100%" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-first.png" alt="">
+                <img style="width:100%" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-secord.png" alt="瑜珈好處">
                 <article class="mamiyoga-intro-wrap-block">
-                    <h5 id="title-first">你知道嗎？日本產後媽媽除了飲食調整之外，還會透過瑜珈來保養身體</h5>
+                    <div style="background:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-title-background.png');margin-top:5vh;background-repeat:no-repeat;background-size:contain;height:130px;background-position:center;">
+                        <h1  style="margin:0;line-height:40px;color:#97A8AF;font-size:34px;font-family: 'ShueiGoGinStd';">Mami yoga<br>日本人氣瑜珈</h1>
+                    </div>
+                    <h5 id="title-first" style="margin-top:0;">你知道嗎？日本產後媽媽除了飲食調整之外，還會透過瑜珈來保養身體</h5>
                     <p>懷孕生產對每一個媽媽來說絕對是一個全新階段，<br>這也是世界上最美好、最滿足的事情之一。<br><br>
                     但身心的劇烈變化經常讓人無法負荷，瑜珈能夠幫助女性在這趟階段轉換的旅程之中更輕鬆的照顧好自己。<br><br>
                     別擔心，只要持續練習瑜珈，<br>就會更健康、更有活力、更加強壯！</p>
                 </article>
                 <article class="mamiyoga-intro-wrap-block">
-                    <h5 id="title-secord">產後瘦身瑜珈是什麼</h5>
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-1.png" alt="">
+                    <h2 id="title-secord">產後瘦身瑜珈是什麼</h2>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-1.png" alt="有氧舞蹈">
                     <p style="width:80%;margin:0 auto;">產後瑜珈是促進骨盆腔血液循環的運動，不管是剖腹產還是自然產，在這個期間都可依個人體質及傷口情況開始練習。</p>
-                    <img style="margin-top:7vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-2.png" alt="">
+                    <img style="margin-top:7vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-2.png" alt="肚皮舞">
                     <p style="width:80%;margin:0 auto;">產後瑜珈中的很多動作都有伸展、保護內臟及雕塑肌肉、增加彈性的功效。</p>
                 </article>
                 <article class="mamiyoga-intro-wrap-block">
-                    <h5 id="title-third">把握產後黃金六個月<br>產後瘦身瑜珈消脂又緊實</h5>
+                    <h3 id="title-third">把握產後黃金六個月<br>產後瘦身瑜珈消脂又緊實</h3>
                     <p>新媽媽可以好好把握時間，配合瑜珈動作，會讓你有意想不到的驚喜。<br><br>
                     適當產後瑜珈運動能改善血液循環、恢復皮膚張力以及減少脂肪堆積，更能消除腹部、臀部、大腿等處多餘的脂肪，恢復懷孕前的窈窕身姿。</p>
                 </article>
-                <video muted loop autoplay style="width:100%;margin:4vh 0 6vh;">
+                <video loop controls style="width:100%;margin:4vh 0 6vh;" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
                 </video>
                 <div class="mamiyoga-intro-btn">
@@ -179,13 +182,13 @@ export default {
     mounted(){
         window.addEventListener('scroll',function(){
         let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
-        if(top > 450){
+        if(top > 600){
             document.getElementById('title-first').classList.add('slideInDown')    
         }
-        if(top > 600){
+        if(top > 1000){
             document.getElementById('title-secord').classList.add('fadeIn')    
         }
-        if(top > 1200){
+        if(top > 1500){
             document.getElementById('title-third').classList.add('fadeIn')    
         }
         })
@@ -248,6 +251,10 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'ShueiGoGinStd';
+    src: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/A-OTF-GothicMB101Pro-Ultra.otf');
+}
 .index-contain {    
     overflow: hidden;
     height: 100vh;
@@ -350,6 +357,9 @@ export default {
     margin: 0 auto;
     width: 90%;
 }
+.mamiyoga-intro-wrap-block h1,
+.mamiyoga-intro-wrap-block h2,
+.mamiyoga-intro-wrap-block h3,
 .mamiyoga-intro-wrap-block h5 {
     color: #24798F;
     font-size: 20px;
