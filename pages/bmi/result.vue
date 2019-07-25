@@ -1,23 +1,24 @@
 <template>
-    <div>
+    <div style="background-color: white;">
         <result-header title="計算結果"></result-header>
         <main>
             <section class="bmi-result-block" style="margin:5vh auto;">
                 <h6>BMI值</h6>
-                <p>{{get_bmi}}</p>
+                <p>{{change_bmi}}</p>
             </section>
-            <section class="bmi-result-block">
-                <div class="bmi-result-row">
-                    <section class="bmi-result-block-li">
-                        <h6>目前體重</h6>
-                    </section>
-                    <section class="bmi-result-block-li">
-                        <h6>還需要</h6>
-                    </section>
+            
+            <section class="bmi-result-block" style="display: flex;">
+                <div class="bmi-result-block-li">
+                    <h6>目前體重</h6>
+                    <p style="color:#3855A3;">{{input_weight}}</p>
+                </div>
+                <div class="bmi-result-block-li">
+                    <h6>還需要</h6>
                 </div>
             </section>
-            <section class="bmi-result-block">
-                <input type="range" name="" id="" min="1" max="100" value="50" class="bmi-range">
+            
+            <section class="bmi-result-block" style="display: flex;justify-content:center;margin:8vh auto 0;">
+                <input type="range" name="" id="" min="2" max="40" class="bmi-range" v-model="change_bmi">
             </section>
         </main>
     </div>
@@ -28,18 +29,26 @@ import ResultHeader from '~/components/bmi/ResultHeader.vue'
 export default {
     data:()=>({
         get_bmi:0,
+        change_bmi:0,
+        input_weight: 0,
     }),
+    mounted(){
+        if(localStorage.to_bmi != '') {
+            this.get_bmi = localStorage.to_bmi
+        }
+        if(localStorage.input_weight != '') {
+            this.input_weight = localStorage.input_weight
+        } 
+        
+    },
     components: {
         ResultHeader,
-    }
+    },
+    
 }
 </script>
 
 <style>
-html, body, #__nuxt, #__layout, #__layout > div {
-    background-color: white;
-}
-
 .bmi-result-block h6,.bmi-result-block-li h6 {
     width: 70px;
     color: white;
@@ -63,31 +72,32 @@ html, body, #__nuxt, #__layout, #__layout > div {
 }
 .bmi-result-block-li {
     width: 50%;
-    float: left;
 }
 
 .bmi-range {
     -webkit-appearance: none;
-    width: 100%;
-    height: 5px;
+    width: 65%;
+    height: 4px;
     background: #d3d3d3;
      outline: none;
 }
 .bmi-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%; 
-  background: #4CAF50;
+  background: #51BC59;
   cursor: pointer;
 }
 
 .bmi-range::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #51BC59;
   cursor: pointer;
 }
+
+
 </style>

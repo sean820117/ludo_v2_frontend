@@ -17,19 +17,19 @@
                 <div class="bmi-index-form-input-li human-height">
                     <p>年齡：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeyear" name="tdeeyear" :placeholder="tyearText">
+                        <input type="number" id="tdeeyear" name="tdeeyear" :placeholder="tyearText" :value="input_year">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
                     <p>身高（公分）：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeheight" name="height" :placeholder="theightText">
+                        <input type="number" id="tdeeheight" name="height" :placeholder="theightText" :value="input_height">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
                     <p>體重（公斤）：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeweight"  name="weight" :placeholder="tweightText">
+                        <input type="number" id="tdeeweight"  name="weight" :placeholder="tweightText" :value="input_weight">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
@@ -114,6 +114,17 @@ export default {
         document.getElementById('label-tdee').classList.add('active')
         document.getElementById('label-bmi').classList.remove('active')
 
+        if(localStorage.input_year != '') {
+            this.input_year = localStorage.input_year
+        }
+        if(localStorage.input_weight != '') {
+            this.input_weight = localStorage.input_weight
+        }
+        if(localStorage.input_height != '') {
+            this.input_height = localStorage.input_height
+        }
+
+
     },
     data:()=>({
         tdeesexual: 'tdeegirl',
@@ -121,6 +132,10 @@ export default {
         tyearText: '',
         tweightText: '',
         theightText: '',
+
+        input_year: '',
+        input_height: '',
+        input_weight: '',
     }),
     methods: {
         getTdee(){
@@ -132,6 +147,11 @@ export default {
 
             if( height != 0 && weight != 0 && year != 0 ) {
                 
+                localStorage.input_year = year
+                localStorage.input_height = height
+                localStorage.input_weight = weight
+
+
                 if(this.tdeesexual == 'tdeegirl') {
                     bmr = (10*weight+6.25*height-5*year-161).toFixed(0)
                 } else if (this.tdeesexual == 'tdeeboy') {

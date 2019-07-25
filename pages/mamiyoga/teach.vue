@@ -93,8 +93,8 @@
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
                     </div>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 5px;margin-left:60px;">
-                    <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p>
-                    <p style="letter-spacing:3px;">課程上線即可獲取優惠</p>
+                    <!-- <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p> -->
+                    <p style="letter-spacing:3px;">獲取優惠免費觀看課程</p>
                     <input type="text" name="email" v-model="email" placeholder="輸入電子信箱" class="beta-input-email">
                     <div class="star-line-box">
                         <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:25px" @click="sendEmail()">獲取優惠</button>
@@ -264,6 +264,10 @@ export default {
 </script>
 
 <style>
+::placeholder {
+    color:#000;
+    font-size: 14px;
+}
 .teach-page {
     width: 100vw;
     min-height: 100vh;
@@ -499,10 +503,10 @@ export default {
     border-radius: 7px;
     border-style: none;
     border: solid 1px rgba(0,0,0,.3);
-    height:25px;
+    height:30px;
 }
 .beta-input-box .mamiyoga-assay-contact-open {
-    height: 365px;
+    height: 330px;
 }
 @media (min-width: 769px) {
     .teach-page {

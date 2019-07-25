@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: white;">
+    <div style="background-color: white;min-height:100vh;">
         <result-header title="運動與飲食建議"></result-header>
         <main>
             <section class="bmi-tdeeresult-block" >
