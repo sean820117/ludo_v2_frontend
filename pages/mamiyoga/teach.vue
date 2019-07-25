@@ -266,7 +266,7 @@ export default {
 <style>
 ::placeholder {
     color:#000;
-    font-size: 14px;
+    font-size: 13px;
 }
 .teach-page {
     width: 100vw;

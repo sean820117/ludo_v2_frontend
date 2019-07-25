@@ -28,7 +28,7 @@
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
                 </video>
             </div>
-            <div class="mamiyoga-index-intro" style="position: absolute;" v-touch:swipe="goDown" v-touch:moved="goDown">
+            <div class="mamiyoga-index-intro" style="position: absolute;">
                 <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
                 <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                     {{title}}
@@ -45,9 +45,9 @@
                 <mamiyoga-login-select :is_beta="true"></mamiyoga-login-select>
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p> -->
-                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:0 auto;width: 30%;"  @click="goDown">
-                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;">了解更多</p>
-                    <img style="width:30px;margin:1vh 0 0;cursor:pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
+                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 30%;"  @click="goDown">
+                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDown">了解更多</p>
+                    <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDown" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
             
             </div>
