@@ -266,7 +266,7 @@ export default {
 <style>
 ::placeholder {
     color:#000;
-    font-size: 15px;
+    font-size: 13px;
 }
 .teach-page {
     width: 100vw;
@@ -503,7 +503,8 @@ export default {
     border-radius: 7px;
     border-style: none;
     border: solid 1px rgba(0,0,0,.3);
-    height: 50px;
+    height: 60px;
+    padding:0;
 }
 .beta-input-box .mamiyoga-assay-contact-open {
     height: 330px;
