@@ -157,27 +157,27 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            let form = new FormData();
-            form.append('file',e.target.files[0])
-            form.append('pose_id','boxing_1')
-            form.append('language','zh-cn')
-            const res = await axios.post('/apis/video-upload',form)
-            console.log(res.data)
-            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "1") res.data.reps_wrong_tags[i][j] = "摆动过小";
-                  else if (res.data.reps_wrong_tags[i][j] == "2") res.data.reps_wrong_tags[i][j] = "摆动过大";
-                  else if (res.data.reps_wrong_tags[i][j] == "0") res.data.reps_wrong_tags[i][j] = "姿势正确";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
-                //   else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
-              }
+            var data = await this.$poseUpload(e.target.file[0],'boxing_1','zh-cn')
+            if(!data) {
+                alert('網路錯誤')
+            } else if(data.status == 200) {    
+                // for(var i =0; i< data.reps_wrong_tags.length; i++){
+                //     for(var j = 0; j<data.reps_wrong_tags[i].length; j++){
+                //         if(data.reps_wrong_tags[i][j] == "1") data.reps_wrong_tags[i][j] = "摆动过小";
+                //         else if (data.reps_wrong_tags[i][j] == "2") data.reps_wrong_tags[i][j] = "摆动过大";
+                //         else if (data.reps_wrong_tags[i][j] == "0") data.reps_wrong_tags[i][j] = "姿势正确";
+                //     }
+                // }   
+                alert('上傳成功');
+            } else if (data.status == 500) {
+                alert('未偵測到動作')
             }
+
+            let result = await this.$getPoseResult();
+            
             this.isLoading = false;
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.video_result = res.data;
+            this.reps_wrong_tags = data.reps_wrong_tags;
+            this.video_result = data;
             this.is_loaded = true;
             // setTimeout(()=> {
             //     clearInterval(this.interval);

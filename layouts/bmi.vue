@@ -7,7 +7,7 @@
     </nav>
     <nuxt/>
     <footer class="bmi-index-content">
-        <p style="margin:2vh 0 1vh;font-weight:300;">&copy;2019 LUDO All Rights Reserved</p>
+        <p style="margin:5vh 0 1vh;font-weight:300;color:#969696;">&copy;2019 LUDO All Rights Reserved</p>
     </footer>
   </div>
   
@@ -190,6 +190,7 @@ html, body, #__nuxt, #__layout, #__layout > div{
     background: #C3C3C3;
     padding: 10px 52px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .bmi-index-form-input-label #girl:checked ~ .first-label,
 .bmi-index-form-input-label #boy:checked ~ .second-label {
@@ -220,6 +221,13 @@ html, body, #__nuxt, #__layout, #__layout > div{
     justify-content: center;
     align-items: center;
     padding: 1px 7px 2px;
+    cursor: pointer;
+}
+@media (min-width:769px) {
+    .bmi-tag {
+        width: 400px;
+        margin: 0 auto;
+    }
 }
 </style>
 

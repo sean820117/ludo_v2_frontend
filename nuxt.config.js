@@ -56,9 +56,10 @@ module.exports = {
       '@nuxtjs/google-tag-manager', 
       {
         id: 'GTM-W7M9MNN',
-        // layer: 'dataLayer',
+        layer: 'dataLayer',
         pageTracking: true,
         dev: process.env.RUNTIME_ENV != 'production' ? true : false, // set to false to disable in dev mode
+        // dev:true,
         // query: {
         //   gtm_auth:        '...',
         //   gtm_preview:     '...',

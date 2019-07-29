@@ -1,7 +1,7 @@
 <template>
     <main>
         <article class="bmi-index-content">
-            <p style="margin:4vh auto 0;font-weight:400;text-align:left;width:75vw;">透過基礎代謝率（BMR）以及運動習慣，我們能夠透過公式得出每日消耗熱量（TDEE）。TDEE可以幫助妳/你掌握每天的營養攝取量以及運動量。</p>
+            <p class="tdee-text-content">透過基礎代謝率（BMR）以及運動習慣，我們能夠透過公式得出每日消耗熱量（TDEE）。TDEE可以幫助妳/你掌握每天的營養攝取量以及運動量。</p>
         </article>
         <section class="bmi-index-content">
             <form class="bmi-index-form">
@@ -17,19 +17,19 @@
                 <div class="bmi-index-form-input-li human-height">
                     <p>年齡：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeyear" name="tdeeyear" :placeholder="tyearText" :value="input_year">
+                        <input type="number" id="tdeeyear" name="tdeeyear" :placeholder="tyearText" v-model="input_year">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
                     <p>身高（公分）：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeheight" name="height" :placeholder="theightText" :value="input_height">
+                        <input type="number" id="tdeeheight" name="height" :placeholder="theightText" v-model="input_height">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
                     <p>體重（公斤）：</p>
                     <div class="bmi-index-form-input-value">
-                        <input type="number" id="tdeeweight"  name="weight" :placeholder="tweightText" :value="input_weight">
+                        <input type="number" id="tdeeweight"  name="weight" :placeholder="tweightText" v-model="input_weight">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
@@ -138,6 +138,15 @@ export default {
         input_weight: '',
     }),
     methods: {
+        // inputData(){
+        //     let height = document.getElementById('tdeeheight').value;
+        //     let weight = document.getElementById('tdeeweight').value;
+        //     let year = document.getElementById('tdeeyear').value;
+        //         localStorage.input_year = year
+        //         localStorage.input_height = height
+        //         localStorage.input_weight = weight
+
+        // },
         getTdee(){
 
             let height = document.getElementById('tdeeheight').value;
@@ -233,5 +242,16 @@ export default {
 </script>
 
 <style>
-
+.tdee-text-content {
+    margin: 4vh auto 0 !important;
+    font-weight: 400;
+    text-align: left;
+    width: 300px;
+}
+@media (min-width: 796px) {
+    
+    .bmi-index-form-input-li.sexual {
+        margin-top: 50px;
+    }
+}
 </style>

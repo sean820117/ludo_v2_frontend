@@ -1,8 +1,8 @@
 <template>
-    <div style="background-color: white;min-height:100vh;">
+    <div style="background-color: white;min-height:100vh;padding-bottom:1vh;">
         <result-header title="運動與飲食建議"></result-header>
         <main>
-            <section class="bmi-tdeeresult-block" >
+            <section class="bmi-tdeeresult-block" style="max-width: 300px;">
                 <input type="radio" name="select-need" id="increase" checked>
                 <input type="radio" name="select-need" id="reduce">
                 <div class="bmi-tdeeresult-labelbox">
@@ -41,7 +41,7 @@
                 </div>
             </section> -->
             <hr>
-            <section class="bmi-tdeeresult-block">
+            <section class="bmi-tdeeresult-block" style="max-width:600px;">
                 <div class="bmi-tdeeresult-title">便利健康菜單建議</div>
                 <div class="bmi-tdeeresult-select">
                     <li style="color:#1EA1AC;border:#1EA1AC 3px solid;" @click="openBreakfast()">早餐</li>
@@ -62,7 +62,7 @@
                 </div>
             </section>
             <hr>
-            <section class="bmi-tdeeresult-block">
+            <section class="bmi-tdeeresult-block" style="max-width: 400px;">
                 <div class="bmi-tdeeresult-title">便利自我訓練菜單</div>
                 <video src="">
                     <source src="">
@@ -167,6 +167,7 @@ hr {
 }
 .bmi-tdeeresult-labelbox {
     width: 65%;
+    max-width: 300px;
     margin:2vh auto 4vh;
     display: flex;
     justify-content: space-evenly;
@@ -284,6 +285,7 @@ hr {
     background-position:center;
     background-size: contain;  
     background-repeat: no-repeat;
+    max-width: 600px;
 }
 .bmi-tdee-menu div:first-child {
     height: 10px;

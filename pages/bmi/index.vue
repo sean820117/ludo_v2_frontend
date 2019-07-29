@@ -8,7 +8,7 @@
             </article>
             <article class="bmi-index-content">
                 <p style="color:#000;font-weight:400;margin-top:3vh;">快看看自己的BMI是否在理想範圍內吧！</p>
-                <h3 style="color:#3855A3;font-weight:400;text-decoration:underline;" @click="have_consult = true">點我數值參考</h3>
+                <h3 style="color:#3855A3;font-weight:400;text-decoration:underline;cursor:pointer;width:80px;margin:10px auto 0;" @click="have_consult = true">點我數值參考</h3>
             </article>
             <section class="bmi-index-content">
                 <form class="bmi-index-form">
@@ -702,19 +702,19 @@ button {
         margin-top:50px;
     }
     .bmi-index-content:nth-child(3) p:first-child {
-        letter-spacing: 3px;
+        letter-spacing: 1px;
     }
 
     .bmi-index-content img {
         width: 600px;
     }
-    .bmi-index-content:nth-last-child(2) p {
+    /* .bmi-index-content:nth-last-child(2) p {
         position: fixed;
         bottom: 20px;
         right: 30px;
-    }
+    } */
     .bmi-index-content form {
-        width: 300px;
+        width: 250px;
     }
     /* .bmi-index-form-input-li:first-child ,
     .bmi-index-form-input-li:nth-child(2) {
@@ -764,10 +764,27 @@ button {
         right: 4%;
     }
     .bmi-share-close {
-        margin:20px 0 0 250px;
+        margin:20px 0 0 25px;
     }
     .bmi-share-icon-box {
         width: 300px;
+    }
+
+    .bmi-consult-container {
+        width: 550px;
+        height: 470px;
+        background-color: #FFF; 
+        border-radius: 25px;
+        text-align: center; 
+        position: absolute;
+        top: 25vh;
+        animation: consult-box 1s forwards;
+    }
+    .bmi-consult-container img {
+        width: 80%;
+    }
+    .bmi-consult-container div:last-child {
+        display: none;
     }
 }
 </style>
