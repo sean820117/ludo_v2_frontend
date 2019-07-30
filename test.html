@@ -40,6 +40,7 @@ function success(stream){
 var CompatibleURL = window.URL || window.webkitURL;
 // video.src = CompatibleURL.createObjectURL(stream);
 video.srcObject=stream;
+
 //播放視訊
 video.play();
 }
