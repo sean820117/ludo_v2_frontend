@@ -21,16 +21,19 @@
                 <p class="mamiyoga-intro-agree" v-html="$t('index_agree_text')"></p>
             </div>
         </div>
-        <div class="index-contain" v-if="is_beta">
-            <video muted loop autoplay class="background-video" >
-                <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
-            </video>
-            <div class="mamiyoga-index-intro">
+
+        <div class="index-contain" v-if="is_beta" style="min-height:300vh;overflow:visible;" >
+            <div class="background-video-contain">
+                <video muted loop autoplay class="background-video" >
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
+                </video>
+            </div>
+            <div class="mamiyoga-index-intro" style="position: absolute;">
                 <mamiyoga-header bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
                 <!-- <h2 class="mamiyoga-intro-title" v-html="title">
                     {{title}}
                 </h2> -->
-                <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title">
+                <img :src="$t('index_img_title')" alt="瑜珈" class="mamiyoga-intro-title" style="margin:10vh auto 19vh;">
                 <div class="mamiyoga-intro-btn">
                     <router-link to="/mamiyoga/teach" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
@@ -41,9 +44,83 @@
                 </div>
                 <mamiyoga-login-select :is_beta="true"></mamiyoga-login-select>
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
+                <!-- <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p> -->
+                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 30%;"  @click="goDown">
+                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDown">了解更多</p>
+                    <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDown" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
+                </div>
+            
+            </div>
+            <div class="mamiyoga-intro-wrap" id="index-wrap">
+                <img style="width:100%" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-secord.png" alt="瑜珈好處">
+                <article class="mamiyoga-intro-wrap-block">
+                    <div style="background:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-title-background.png');margin-top:5vh;background-repeat:no-repeat;background-size:contain;height:130px;background-position:center;">
+                        <h1  style="margin:0;line-height:40px;color:#97A8AF;font-size:34px;font-family: 'ShueiGoGinStd';">Mami yoga<br>日本人氣瑜珈</h1>
+                    </div>
+                    <h5 id="title-first" style="margin-top:0;">你知道嗎？日本產後媽媽除了飲食調整之外，還會透過瑜珈來保養身體</h5>
+                    <p>懷孕生產對每一個媽媽來說絕對是一個全新階段，<br>這也是世界上最美好、最滿足的事情之一。<br><br>
+                    但身心的劇烈變化經常讓人無法負荷，瑜珈能夠幫助女性在這趟階段轉換的旅程之中更輕鬆的照顧好自己。<br><br>
+                    別擔心，只要持續練習瑜珈，<br>就會更健康、更有活力、更加強壯！</p>
+                </article>
+                <article class="mamiyoga-intro-wrap-block">
+                    <h2 id="title-secord">產後瘦身瑜珈是什麼</h2>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-1.png" alt="有氧舞蹈">
+                    <p style="width:80%;margin:0 auto;">產後瑜珈是促進骨盆腔血液循環的運動，不管是剖腹產還是自然產，在這個期間都可依個人體質及傷口情況開始練習。</p>
+                    <img style="margin-top:7vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-2.png" alt="肚皮舞">
+                    <p style="width:80%;margin:0 auto;">產後瑜珈中的很多動作都有伸展、保護內臟及雕塑肌肉、增加彈性的功效。</p>
+                </article>
+                <article class="mamiyoga-intro-wrap-block">
+                    <h3 id="title-third">把握產後黃金六個月<br>產後瘦身瑜珈消脂又緊實</h3>
+                    <p>新媽媽可以好好把握時間，配合瑜珈動作，會讓你有意想不到的驚喜。<br><br>
+                    適當產後瑜珈運動能改善血液循環、恢復皮膚張力以及減少脂肪堆積，更能消除腹部、臀部、大腿等處多餘的脂肪，恢復懷孕前的窈窕身姿。</p>
+                </article>
+                <video loop controls style="width:100%;margin:4vh 0 6vh;" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
+                </video>
+                <div class="mamiyoga-intro-btn">
+                    <router-link to="/bmi" style="text-decoration: none;">
+                        <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="先測BMI"></mamiyoga-btn>
+                    </router-link>
+                </div>
+                <div class="mamiyoga-intro-btn">
+                    <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+                        <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="體驗課程"></mamiyoga-btn>
+                    </router-link>
+                </div>
+                <p style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">快和朋友分享吧！</p>
+                <div class="mamiyoga-assay-share-icon-box">
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-chat.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-twitter.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-wechat.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;title=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-more.png" alt="">
+                        </a>
+                    </div>
+                </div>
                 <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
             </div>
         </div>
+
+
+
         <mamiyoga-window-alert-box v-if="is_open">
             <div class="cancel-box" @click="is_open = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -58,14 +135,33 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
+import Vue2TouchEvents from 'vue2-touch-events'
 
+ 
+Vue.use(Vue2TouchEvents)
 export default {
+    head(){
+        return  {
+            title: 'MAMI YOGA',
+            meta: [
+                { charset: 'utf-8' },
+                { hid: 'description', name: 'description', content: '' },
+                { property : 'og:title' , content:""},
+                { property : 'og:type' , content:"Mamiyoga"},
+                { property : 'og:url' , content:"https://www.ludonow.com/mamiyoga"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-to-facebook.jpg"},
+                { property : 'og:description' , content:"yoga"},
+                { property : 'og:site_name' , content:"www.ludonow.com"},
+            ],
+        }
+    },
     layout:'mommiyoga',
     data:()=>({
         is_beta: true,
@@ -83,6 +179,21 @@ export default {
     props: {
         title: String,
     },
+    mounted(){
+        window.addEventListener('scroll',function(){
+        let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+        if(top > 600){
+            document.getElementById('title-first').classList.add('slideInDown')    
+        }
+        if(top > 1000){
+            document.getElementById('title-secord').classList.add('fadeIn')    
+        }
+        if(top > 1500){
+            document.getElementById('title-third').classList.add('fadeIn')    
+        }
+        })
+        
+    },
     methods:{
         goTeach(){
             if (this.$i18n.locale == 'JP') {
@@ -93,19 +204,57 @@ export default {
         },
         openRemindBox(){
             this.is_open = true;
+        },
+        goDown(){
+            this.$scrollTo('#index-wrap',"start");
         }
     },
-    // computed:{
-    //     goTeach(){
-    //         if (this.$i18n.locale == 'JP') {
-    //             return '/mommiyoga/teach'
-    //         } 
+    computed:{
+    //     getScrollTop(){
+    //         var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+    //         if(document.body){
+    //             bodyScrollTop = document.body.scrollTop;
+    //         }
+    //         if(document.documentElement){
+    //             documentScrollTop = document.documentElement.scrollTop;
+    //         }
+    //         scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+    //         return scrollTop;
+    //     },
+    //     getWindowHeight(){
+    //         var windowHeight = 0;
+    //         if(document.compatMode == "CSS1Compat"){
+    //             windowHeight = document.documentElement.clientHeight;
+    //         } else{
+    //             windowHeight = document.body.clientHeight;
+    //         }
+    //         return windowHeight;
+    //     },
+    //     getScrollHeight(){
+    //         var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+    //         if(document.body){
+    //             bodyScrollHeight = document.body.scrollHeight;
+    //         }　　
+    //         if(document.documentElement){
+    //             documentScrollHeight = document.documentElement.scrollHeight;
+    //             }
+    //         scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    //         return scrollHeight;
+    //     },
+    //     scrollFn(){
+    //         if(getScrollTop() + getWindowHeight() == getScrollHeight()){
+    //             return  document.getElementById('title-first').classList.add('slideInDown')
+    //         }
     //     }
-    // }
+    }
 }
 </script>
 
 <style>
+@font-face {
+    font-family: 'ShueiGoGinStd';
+    src: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/A-OTF-GothicMB101Pro-Ultra.otf');
+}
 .index-contain {    
     overflow: hidden;
     height: 100vh;
@@ -193,6 +342,120 @@ export default {
     color: #fff;
     cursor: pointer;
 }
+
+/*行銷變更內容*/
+.background-video-contain {
+    height: 100vh;
+    overflow: hidden;
+}
+.mamiyoga-intro-wrap {
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+    min-height: 200vh;
+    padding-bottom: 5vh;
+}
+.mamiyoga-intro-wrap-block {
+    margin: 0 auto;
+    width: 90%;
+}
+.mamiyoga-intro-wrap-block h1,
+.mamiyoga-intro-wrap-block h2,
+.mamiyoga-intro-wrap-block h3,
+.mamiyoga-intro-wrap-block h5 {
+    color: #24798F;
+    font-size: 20px;
+    text-align: center;
+    margin: 6vh auto;
+}
+.mamiyoga-intro-wrap-block img {
+    display: block;
+    margin: 3vh auto;
+}
+.mamiyoga-intro-wrap-block p {
+    color: #707070;
+    font-size: 13px;
+    text-align: center;
+}
+.mamiyoga-intro-wrap .mamiyoga-assay-share-icon-box {
+    width: 80%;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    margin: 2vh auto 4vh; 
+}
+.mamiyoga-intro-wrap .mamiyoga-assay-share-icon {
+    width: 15vw;
+    height: 7vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;  
+}
+.mamiyoga-assay-share-icon img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+#title-first,#title-secord,#title-third {
+    opacity: 0;
+}
+
+.slideInDown {
+    opacity: 1 !important;
+    animation: slideInDown 1s both;
+    animation-duration: 1s;
+}
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeIn {
+    opacity: 1 !important;
+    animation: fadeIn 1s both;
+    animation-duration: 1s;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+
 @media (min-width:769px) {
     .index-contain {
         width: 450px;
@@ -209,6 +472,22 @@ export default {
         min-height: 100vh;
         width: auto;
     }
+    
+
+    /*行銷網頁版*/
+    .mamiyoga-intro-wrap-block h5 {
+        margin: 40px auto;
+    }
+    .mamiyoga-intro-wrap-block img {
+        margin: 25px auto;
+    }
+    .mamiyoga-intro-wrap .mamiyoga-assay-share-icon-box {
+        height: 35px;
+    }
+    .mamiyoga-intro-wrap .mamiyoga-assay-share-icon {
+        height:35px;
+    }
+    
 }
 @media (max-width: 400px) {
     .background-video {

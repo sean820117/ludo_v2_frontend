@@ -17,7 +17,7 @@
                 </router-link>
             </div>
             <div class="mamiyoga-intro-btn" v-if="!is_login">
-                <router-link :to="go_teach+'/mommiyoga/login'" style="text-decoration: none;">
+                <router-link :to="go_teach+'/mommiyoga/pay'" style="text-decoration: none;">
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')"  style="margin-bottom:5vh;"></mamiyoga-btn>
                 </router-link>
             </div>

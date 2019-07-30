@@ -1,12 +1,12 @@
 <template>
-    <div class="bmi-haeder-container" >
+    <header class="bmi-haeder-container" >
         <div class="bmi-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/header-logo.png" alt="BMI計算器">
         </div>
         <div class="bmi-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/header-icon.png" alt="BMI怎麼計算">
         </div>
-    </div>
+    </header>
 </template>
 
 <script>

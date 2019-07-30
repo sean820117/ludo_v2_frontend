@@ -195,9 +195,9 @@ export default {
     width: 100vw;
     height: auto;
 }
-.mamiyoga-each-course video[poster] {
+/* .mamiyoga-each-course video[poster] {
     object-fit: cover;
-}
+} */
 
 .course-bookmark {
     width: 30px;

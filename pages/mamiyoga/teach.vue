@@ -4,7 +4,7 @@
             <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="" class="teach-video-sample">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
                 <div class="teach-course-info">
                     <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
                     <div>
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="teach-question-box" @click="open_explain = true">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="唐幼馨">
                 </div>
             </div>
             <div class="teach-detail-box">
@@ -57,7 +57,7 @@
                 </div> -->
                 <div class="teacher-remind">
                     <router-link to="/mamiyoga/about">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
@@ -90,11 +90,11 @@
                 </mamiyoga-window-alert-box>
                 <mamiyoga-window-alert-box v-if="is_beta" class="beta-input-box">
                     <div class="cancel-box" @click="show_remind = false">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="肚皮舞" >
                     </div>
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 5px;margin-left:60px;">
-                    <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p>
-                    <p style="letter-spacing:3px;">課程上線即可獲取優惠</p>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="有氧舞蹈" style="margin-top: 5px;margin-left:60px;">
+                    <!-- <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p> -->
+                    <p style="letter-spacing:3px;">獲取優惠免費觀看課程</p>
                     <input type="text" name="email" v-model="email" placeholder="輸入電子信箱" class="beta-input-email">
                     <div class="star-line-box">
                         <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:25px" @click="sendEmail()">獲取優惠</button>
@@ -264,6 +264,10 @@ export default {
 </script>
 
 <style>
+::placeholder {
+    color:#000;
+    font-size: 13px;
+}
 .teach-page {
     width: 100vw;
     min-height: 100vh;
@@ -499,10 +503,11 @@ export default {
     border-radius: 7px;
     border-style: none;
     border: solid 1px rgba(0,0,0,.3);
-    height:25px;
+    height: 60px;
+    padding:0;
 }
 .beta-input-box .mamiyoga-assay-contact-open {
-    height: 365px;
+    height: 330px;
 }
 @media (min-width: 769px) {
     .teach-page {
