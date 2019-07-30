@@ -53,12 +53,12 @@ export default {
                 { property : 'og:title' , content:"BMI值｜線上計算器"},
                 { property : 'og:type' , content:"website"},
                 { property : 'og:url' , content:"http://www.ludonow.com/bmi"},
-                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/share-img.png"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-fb-share.jpg"},
                 { property : 'og:description' , content:"BMI值計算公式: BMI = 體重(公斤) / 身高2(公尺2)五秒回饋，馬上測出你的身材，在台灣人口在哪個區間"},
                 { property : 'og:site_name' , content:"LUDONOW.COM"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/logo.ico' }
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },

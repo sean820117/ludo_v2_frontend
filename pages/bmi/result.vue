@@ -33,7 +33,7 @@
             </section>
             <section class="bmi-result-block">
                 <p style="color:#5D5759;font-size:14px;margin:5vh 0px 1vh;">想得到專屬於你的健康菜單嗎？<br>試試看TDEE值計算機吧！</p>
-                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push('/bmi/tdee')">獲得免費健康菜單</div>
+                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push('/bmi/tdee')">TDEE值計算機</div>
             </section>
         </main>
     </div>
@@ -48,6 +48,26 @@ export default {
         range_text: '',
         is_true: false,
     }),
+    head() {
+        return  {
+            title: 'BMI計算',
+            meta: [
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
+                { name: 'keywords', content: 'BMI怎麼算,BMI是什麼,BMI計算,bmi年齡標準,bmi年齡對照,bmi值'},
+                { hid: 'description', name: 'description', content: '' },
+                { property : 'og:title' , content:"BMI值｜線上計算器"},
+                { property : 'og:type' , content:"website"},
+                { property : 'og:url' , content:"http://www.ludonow.com/bmi"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-fb-share.jpg"},
+                { property : 'og:description' , content:"BMI值計算公式: BMI = 體重(公斤) / 身高2(公尺2)五秒回饋，馬上測出你的身材，在台灣人口在哪個區間"},
+                { property : 'og:site_name' , content:"LUDONOW.COM"},
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/logo.ico' }
+            ],
+        }
+    },
     mounted(){
         if(process.client) {
             if(localStorage.to_bmi != '') {
