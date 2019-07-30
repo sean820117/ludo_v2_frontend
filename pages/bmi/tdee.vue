@@ -47,7 +47,7 @@
                 </div>
                 <div class="bmi-index-form-input-li">
                     <p style="text-align:center;margin:5vh 0 1vh;">計算後得知TDEE，我們將提供您<br>免費的健康菜單與運動喔！</p>
-                    <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getTdee()">獲得免費健康菜單</div>
+                    <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getTdee()">開始計算</div>
                 </div>
             </form>
         </section>

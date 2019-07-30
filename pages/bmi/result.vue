@@ -33,7 +33,7 @@
             </section>
             <section class="bmi-result-block">
                 <p style="color:#5D5759;font-size:14px;margin:5vh 0px 1vh;">想得到專屬於你的健康菜單嗎？<br>試試看TDEE值計算機吧！</p>
-                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push('/bmi/tdee')">獲得免費健康菜單</div>
+                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push('/bmi/tdee')">TDEE值計算機</div>
             </section>
         </main>
     </div>
