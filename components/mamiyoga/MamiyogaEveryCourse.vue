@@ -3,10 +3,13 @@
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
         <h3>{{getTitle}}</h3>
         <div style="position:relative;">
-            <video class="mamiyoga-course-video" controls>
+            <!-- <video class="mamiyoga-course-video" controls>
                 <source :src="getVideoUrl" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
+            </video> -->
+            <div class="iframe-container">
+                <iframe :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
             <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
             </div>
@@ -125,6 +128,11 @@ export default {
     width: 100vw;
     height: auto;
 }
+.iframe-container {
+    width: 100vw;
+    min-height:31vh;
+    position:relative;
+}
 .course-bookmark {
     width: 30px;
     position: absolute;
@@ -209,8 +217,12 @@ export default {
     .mamiyoga-each-course,.mamiyoga-course-video,
     .mamiyoga-course-middle,.mamiyoga-course-bottom,
     .mamiyoga-course-bottom-content,
-    .mamiyoga-course-bottom-first, .mamiyoga-course-bottom-second {
+    .mamiyoga-course-bottom-first, .mamiyoga-course-bottom-second,
+    .iframe-container {
         width: 100%;
+    }
+    .iframe-container {
+        min-height: 260px;
     }
     .mamiyoga-course-middle {
         padding: 8px 25px;

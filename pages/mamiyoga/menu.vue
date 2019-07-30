@@ -93,6 +93,7 @@ export default {
     background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-menu-background.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
+    background-position: center center;
 }
 .course-information-select {
     position: absolute;

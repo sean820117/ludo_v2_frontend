@@ -274,7 +274,7 @@ hr {
 }
 .bmi-tdeeresult-select {
     width: 80vw;
-    margin: 0 10vw 1vh;
+    margin: 0 5vw 1vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
