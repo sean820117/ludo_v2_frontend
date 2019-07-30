@@ -15,7 +15,7 @@
                     <div class="bmi-index-form-input-li sexual">
                         <p>性別：</p>
                         <div class="bmi-index-form-input-label">
-                            <input type="radio" id="girl" value="girl" name="sexual" checked v-model="sexual">
+                            <input type="radio" id="girl" value="girl" name="sexual" v-model="sexual">
                             <label for="girl" class="first-label">女</label>
                             <input type="radio" id="boy" value="boy" name="sexual" v-model="sexual">
                             <label for="boy" class="second-label">男</label>
@@ -221,6 +221,9 @@ export default {
         if(localStorage.input_weight != '') {
             this.input_weight = localStorage.input_weight
         }
+        if(localStorage.input_sexual == 'girl' || localStorage.input_sexual == 'boy') {
+            this.sexual = localStorage.input_sexual
+        } else false
     },
     // head() {
     //     return  {
@@ -274,16 +277,15 @@ export default {
         // animals_result: '',
         // render_bmi:0,
         // render_tdee:0,
-        
-
-
     }),
     components: {
         BmiHeader,
     },
     methods: {
         getBmi(){
+            localStorage.input_sexual = this.sexual;
             
+
             let height = document.getElementById('height').value;
             let weight = document.getElementById('weight').value;
             let bmi = 0;

@@ -8,10 +8,10 @@
                 <div class="bmi-index-form-input-li sexual">
                     <p>性別：</p>
                     <div class="bmi-index-form-input-label">
-                        <input type="radio" id="tdeegirl" value="tdeegirl" name="tdeesexual" v-model="tdeesexual" checked>
-                        <label for="tdeegirl" class="first-label">女</label>
-                        <input type="radio" id="tdeeboy" value="tdeeboy" name="tdeesexual" v-model="tdeesexual">
-                        <label for="tdeeboy" class="second-label">男</label>
+                        <input type="radio" id="girl" value="girl" name="tdeesexual" v-model="tdeesexual">
+                        <label for="girl" class="first-label">女</label>
+                        <input type="radio" id="boy" value="boy" name="tdeesexual" v-model="tdeesexual">
+                        <label for="boy" class="second-label">男</label>
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
@@ -114,6 +114,10 @@ export default {
         document.getElementById('label-tdee').classList.add('active')
         document.getElementById('label-bmi').classList.remove('active')
 
+        if(localStorage.input_sexual == 'girl' || localStorage.input_sexual == 'boy'){
+            this.tdeesexual = localStorage.input_sexual
+        } else false
+        
         if(localStorage.input_year != '') {
             this.input_year = localStorage.input_year
         }
@@ -127,7 +131,7 @@ export default {
 
     },
     data:()=>({
-        tdeesexual: 'tdeegirl',
+        tdeesexual: 'girl',
         selected: '1',
         tyearText: '',
         tweightText: '',
@@ -149,6 +153,8 @@ export default {
         // },
         getTdee(){
 
+            localStorage.input_sexual = this.tdeesexual
+
             let height = document.getElementById('tdeeheight').value;
             let weight = document.getElementById('tdeeweight').value;
             let year = document.getElementById('tdeeyear').value;
@@ -161,9 +167,9 @@ export default {
                 localStorage.input_weight = weight
 
 
-                if(this.tdeesexual == 'tdeegirl') {
+                if(this.tdeesexual == 'girl') {
                     bmr = (10*weight+6.25*height-5*year-161).toFixed(0)
-                } else if (this.tdeesexual == 'tdeeboy') {
+                } else if (this.tdeesexual == 'boy') {
                     bmr = (10*weight+6.25*height-5*year+5).toFixed(0)
                 }
                 localStorage.to_bmr = bmr
