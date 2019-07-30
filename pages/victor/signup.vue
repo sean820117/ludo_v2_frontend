@@ -100,6 +100,7 @@ export default {
                 alert('註冊成功');
                 localStorage.victor = "true";
                 // this.$router.push('/victor/course');
+                this.$fbq('track','CompleteRegistration');
                 window.location.href = '/victor/course';
             } else {
                 alert('註冊失敗');
