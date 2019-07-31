@@ -21,12 +21,12 @@
                 </div>
             </slide>
             <slide class="about-teacher about-slide" style="overflow:hidden;">
-                <video muted loop autoplay class="background-video" >
+                <video muted loop autoplay playsinline  class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-1.mp4" type="video/mp4">      
                 </video>
-                <div class="about-title"><h3>教師介紹</h3></div>
+                <div class="about-title"><h3 style="color:#FFF;">教師介紹</h3></div>
                 <div class="about-teacher-content">
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，
+                    <p style="color:#FFF;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，
                         所以花了不少力氣尋尋覓覓。<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;沒想到，在經歷過多次嘗試後，讓我有機會接觸到了瑜珈。因此身體健康也漸漸獲得改善
                         ，這促使了我變得更加專注練習，產生了良性循環還有更大的興趣，不知不覺間，也獲得
@@ -43,7 +43,7 @@
                 </div>
             </slide>
             <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
-                <video muted loop autoplay class="background-video" >
+                <video muted loop autoplay playsinline class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-2.mp4" type="video/mp4">      
                 </video>
                 <div class="about-title"><h3>給產後的女性</h3></div>
@@ -65,7 +65,7 @@
                 </div>
             </slide>
             <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
-                <video muted loop autoplay class="background-video" >
+                <video muted loop autoplay playsinline  class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-3.mp4" type="video/mp4">      
                 </video>
                 <div class="about-title"><h3>給廣大的女性族群</h3></div>
@@ -142,7 +142,7 @@ export default {
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-3.png');
 }
 .about-teacher-content {
-    font-size: 12px;
+    font-size: 14px;
     width: 80vw;
     height: auto;
     position: absolute;
@@ -153,7 +153,7 @@ export default {
     width: 90vw;
     padding: 5vw;
     color: #F7F7F7;
-    background-color: rgba(0,0,0,.3);
+    /* background-color: rgba(0,0,0,.3); */
 }
 .about-teacher-content h3 {
     color: #97A8AF;

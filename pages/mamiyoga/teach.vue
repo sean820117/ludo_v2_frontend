@@ -55,6 +55,11 @@
                         <p>然後，換邊也進行一樣的動作</p>
                     </div>
                 </div> -->
+                <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
+                    <router-link to="/mamiyoga/about">
+                        <h6 style="float:left;">講師介紹</h6><p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
+                    </router-link>
+                </div>
                 <div class="teacher-remind">
                     <router-link to="/mamiyoga/about">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="瑜珈">
@@ -94,10 +99,10 @@
                     </div>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="有氧舞蹈" style="margin-top: 5px;margin-left:60px;">
                     <!-- <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p> -->
-                    <p style="letter-spacing:3px;">獲取優惠免費觀看課程</p>
+                    <p style="letter-spacing:3px;">獲取免費課程</p>
                     <input type="text" name="email" v-model="email" placeholder="輸入電子信箱" class="beta-input-email">
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:25px" @click="sendEmail()">獲取優惠</button>
+                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:25px" @click="sendEmail()">馬上取得</button>
                     </div>
                 </mamiyoga-window-alert-box>
             </div>
@@ -142,7 +147,7 @@ export default {
             
     //     }
     // },
-    layout:'mommiyoga',
+    layout:'mamiyoga',
     data:()=> ({
         is_loaded: false,
         isLoading: false,
@@ -266,7 +271,7 @@ export default {
 <style>
 ::placeholder {
     color:#000;
-    font-size: 13px;
+    font-size: 14px;
 }
 .teach-page {
     width: 100vw;
@@ -348,7 +353,7 @@ export default {
 }
 .teach-detail-box h6 {
     font-size: 14px;
-    color: #000;
+    color: #707070;
     font-weight: 400;
     padding-left: 15px; 
 }
@@ -386,7 +391,7 @@ export default {
 }
 .teacher-remind {
     width: 85vw;
-    margin: 2vh auto 0;
+    margin: 0 auto;
     display: flex;
     align-items: center;
 }
@@ -505,6 +510,7 @@ export default {
     border: solid 1px rgba(0,0,0,.3);
     height: 60px;
     padding:0;
+    font-size: 14px;
 }
 .beta-input-box .mamiyoga-assay-contact-open {
     height: 330px;

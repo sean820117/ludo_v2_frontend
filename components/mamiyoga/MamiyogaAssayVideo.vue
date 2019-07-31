@@ -65,7 +65,7 @@
                             </div>
                             <div class="mamiyoga-assay-share-icon">
                                 <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
-                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-chat.png" alt="">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat.png" alt="">
                                 </a>
                             </div>
                             <div class="mamiyoga-assay-share-icon">
