@@ -255,7 +255,7 @@ export default {
             // if (this.user.user_id != '') {
             //     send_user_id = this.user.user_id
             // }
-            const res = await axios.post('/apis/subcribe-mamiyoga',send_data);
+            const res = await axios.post('/apis/subscribe-mamiyoga',send_data);
             console.log(res)
         },
         
