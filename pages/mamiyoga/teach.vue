@@ -88,7 +88,7 @@
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-remind.png" alt="" style="margin-top: 70px;">
                     <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_remind_text')"></p>
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-space:0;margin-top:25px">
+                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-space:0;margin-top:25px;cursor:pointer;">
                             <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
                         </button>
                     </div>
@@ -101,8 +101,9 @@
                     <!-- <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p> -->
                     <p style="letter-spacing:3px;">獲取免費課程</p>
                     <input type="text" name="email" v-model="email" placeholder="輸入電子信箱" class="beta-input-email">
+                    <div style="text-align:center;font-size:13px;margin:1vh auto 0;height:20px;width:80%;color:#ff9898;">{{errors}}</div>
                     <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:25px" @click="sendEmail()">馬上取得</button>
+                        <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-spacing:0;margin-top:18px" @click="sendEmail">馬上取得</button>
                     </div>
                 </mamiyoga-window-alert-box>
             </div>
@@ -124,6 +125,34 @@
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button>
             </div>
         </mamiyoga-window-alert-box>
+        <mamiyoga-window-alert-box v-if="is_pushed" class="beta-result-box">
+            <div class="cancel-box" @click="is_pushed = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            </div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-gift.png" alt="" style="margin-top:40px;width:40%;">
+            <p style="letter-spacing:3px;">收到您的信箱！<br><br>我們將於3~5個工作天回覆您</p>
+            <div class="star-line-box">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_pushed = false">好的</button>
+            </div>
+            <p>快和朋友們分享吧！</p>
+            <div class="mamiyoga-assay-share-icon-box">
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/add_to/line?linkurl=www.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-line.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mamiyoga-assay-share-icon">
+                        <a href="https://www.addtoany.com/share#url=www.ludonow.com%2Fmamiyoga&amp;title=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-more.png" alt="">
+                        </a>
+                    </div>
+                </div>
+        </mamiyoga-window-alert-box>
         
     </div>
 </template>
@@ -139,6 +168,7 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import { EMAIL_REGEX } from '~/components/regex.js'
 
 export default {
     // layout: "mamiyoga",
@@ -158,8 +188,10 @@ export default {
         open_explain: false,
         
         is_open: false,
+        is_pushed: false,
         is_beta: true,
         email: '',
+        errors: '',
 
         courses:[],
         course_title:'',
@@ -248,17 +280,23 @@ export default {
         openRemindBox(){
             this.is_open = true;
         },
-        async sendEmail(){
-            this.show_remind = false;
-            // let send_user_id = '0000'
+        async sendEmail(e){
             let send_data = {email:this.email};
-            // if (this.user.user_id != '') {
-            //     send_user_id = this.user.user_id
-            // }
-            const res = await axios.post('/apis/subscribe-mamiyoga',send_data);
-            console.log(res)
-        },
-        
+            if (this.email.length === 0) {
+                this.errors = '請填寫email欄位'
+                e.preventDefault();
+                return
+            } else if (!EMAIL_REGEX.test(this.email)) {
+                this.errors = '電子信箱格式錯誤'
+                e.preventDefault();
+                return
+            } else {
+                this.show_remind = false;
+                this.is_pushed = true;
+                const res = await axios.post('/apis/subscribe-mamiyoga',send_data);
+                
+            }
+        }, 
     },
     computed: {
         showRemindBox(){
@@ -422,6 +460,7 @@ export default {
     box-shadow:5px 5px 10px rgba(0,0,0,.2);
     background: #97A8AF;
     color: #fff;
+    cursor: pointer;
 }
 .vld-overlay .vld-background {
     background-color:black;
@@ -494,6 +533,7 @@ export default {
     box-shadow:5px 5px 10px rgba(0,0,0,.2);
     background: #9BAEB2;
     color: #fff;
+    cursor: pointer;
 }
 .teach-question-box img {
     width: 30px;
@@ -513,7 +553,30 @@ export default {
     font-size: 14px;
 }
 .beta-input-box .mamiyoga-assay-contact-open {
-    height: 330px;
+    height: 360px;
+}
+.beta-result-box .mamiyoga-assay-contact-open {
+    height: 430px;
+}
+.beta-result-box .mamiyoga-assay-share-icon-box {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin: 2vh auto 4vh; 
+}
+.beta-result-box .mamiyoga-assay-share-icon {
+    width: 15vw;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;  
+}
+.mamiyoga-assay-share-icon img {
+    width: 36px !important;
+    height: 36px;
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .teach-page {
