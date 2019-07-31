@@ -45,7 +45,7 @@
                 <mamiyoga-login-select :is_beta="true"></mamiyoga-login-select>
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p> -->
-                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 30%;"  @click="goDown">
+                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDown">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDown" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
@@ -55,7 +55,7 @@
                 <img style="width:100%" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-secord.png" alt="瑜珈好處">
                 <article class="mamiyoga-intro-wrap-block">
                     <div style="background:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-title-background.png');margin-top:5vh;background-repeat:no-repeat;background-size:cover;height:130px;justify-content:center;align-items:center;display:flex;margin-bottom:3vh;">
-                        <h1  style="margin:0;line-height:38px;color:#24798F;font-size:32px;font-weight:bold;letter-spacing:4px;">Mami yoga<br>日本人氣瑜珈</h1>
+                        <h1  style="margin:0;line-height:47px;color:#24798F;font-size:40px;font-weight:bold;letter-spacing:4px;">Mami yoga<br>日本人氣瑜珈</h1>
                     </div>
                     <h5 id="title-first" style="margin-top:0;">你知道嗎？日本產後媽媽除了調整飲食，還會透過瑜珈來保養身體</h5>
                     <p>懷孕生產對每一個媽媽來說絕對是一個全新階段，<br>這也是世界上最美好、最滿足的事情之一。<br><br>

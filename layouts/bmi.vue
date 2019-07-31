@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bmi_layout">
     <bmi-header></bmi-header>
     <nav class="bmi-tag">
         <h1 class="nav-label" id="label-bmi"  @click="$router.push('/bmi')">BMI值計算機</h1>
@@ -90,13 +90,20 @@ body {
 
 }
 
-html, body, #__nuxt, #__layout, #__layout > div{
+/* html, body, #__nuxt, #__layout, #__layout > div{
     height: 100vh;
     width: 100vw;
     margin: 0;
     background-color: #FDFCF5; 
     
+} */
+.bmi_layout {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-color: #FDFCF5; 
 }
+
 
 *, *:before, *:after {
   box-sizing: border-box;

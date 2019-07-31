@@ -49,6 +49,7 @@ module.exports = {
     { src: '~/plugins/forceLogin.js', ssr: false },
     { src: '~/plugins/scrollTo.js', ssr: false },
     { src: '~/plugins/fbq.js', ssr: false },
+    { src: '~/plugins/poseUpload.js', ssr: false },
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
