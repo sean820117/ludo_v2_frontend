@@ -67,7 +67,7 @@ module.exports = [
     },
     {
         id: '3',
-        title: '讓深呼吸變深的瑜珈',
+        title: '讓呼吸變深的瑜珈',
         chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03.svg',
         tags: ['rectify'],
         ai_teacher: true,
