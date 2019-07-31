@@ -21,7 +21,7 @@
             <p>快和朋友分享</p>
             <div class="mamiyoga-select-login-box">
                 <div class="mamiyoga-select-login-icon">
-                    <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                    <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="">
                     </a>
                 </div>

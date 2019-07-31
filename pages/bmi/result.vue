@@ -85,9 +85,9 @@ export default {
             let range_slider = document.getElementById('range_bar')
             let range_bullet = document.getElementById('range-bullet')
             let bullet_pos = this.change_bmi /range_slider.max;
-            console.log(bullet_pos)
+            // console.log(bullet_pos)
             range_bullet.style.left = (bullet_pos * 188) + "px";
-            console.log(range_bullet.style.left)
+            // console.log(range_bullet.style.left)
         }
     },
     components: {

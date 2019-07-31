@@ -33,7 +33,7 @@
                                 <!-- <p>Facebook</p> -->
                             </div>
                             <div class="mamiyoga-assay-share-icon">
-                                <img src="/mamiyoga/share-icon-chat.svg" alt="">
+                                <img src="/mamiyoga/share-fb-icon-chat.svg" alt="">
                                 <!-- <p>messenger</p> -->
                             </div>
                             <div class="mamiyoga-assay-share-icon">

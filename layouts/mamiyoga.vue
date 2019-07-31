@@ -1,13 +1,14 @@
 <template>
-  <div>
-    
-    <nuxt/>
-    
-  </div>
-  
+    <div class="mami_layout">
+        <div class="mami_back">
+            <nuxt/>
+        </div>
+    </div>
 </template>
 
 <script>
+// import Titlebar from "~/components/resume/Titlebar"
+// import ResumeFooter from "~/components/resume/ResumeFooter.vue";
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
@@ -22,8 +23,8 @@ Vue.use(VueMq, {
 
 export default {
     components: {
-        Titlebar,
-        ResumeFooter,
+        // Titlebar,
+        // ResumeFooter,
     },
     data:() => ({
         // ui_config:Object,
@@ -37,20 +38,20 @@ export default {
     },
     head() {
         return  {
-            title: 'MAMIYOGA',
+            title: 'MAMI YOGA',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { hid: 'description', name: 'description', content: '' },
                 { property : 'og:title' , content:""},
                 { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/mommiyoga"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
+                { property : 'og:url' , content:"https://www.ludonow.com/mamiyoga"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-to-facebook.jpg"},
                 { property : 'og:description' , content:"yoga"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/fc-logo.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' }
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
@@ -80,11 +81,13 @@ body {
   /* background: #FDFCF7; */
   overflow-x: hidden;
 }
+/* 
 html, body, #__nuxt, #__layout, #__layout > div{
     height: 100vh;
     width: 100vw;
     margin: 0;
-}
+} */
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -123,16 +126,22 @@ html, body, #__nuxt, #__layout, #__layout > div{
 .contact-us-block img{
     margin:30px 0 10px 0;
 }
+
 @media (min-width:769px) {
-    html, body, #__nuxt, #__layout, #__layout > div{
-        height: 100vh;
+
+    .mami_layout{
+        min-height: 100vh;
+        background: black ;
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; */
+    }
+    .mami_back {
         width: 450px;
-        /* background: black; */
         margin: 0 auto;
     }
-    html {
-        background-color: black;
-    }
 }
+
 </style>
 

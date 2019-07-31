@@ -15,13 +15,24 @@
             @handleCourseVideoUpload="handleCourseVideoUpload" :ai_teacher="pose.pose_ai"
             :course_data="course_data">
                 <div slot="divide-title">
-                    <h4>{{pose.pose_brief}}</h4>
+                    <h4 v-if="!pose.pose_ai">{{pose.pose_brief}}</h4>
+                    <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div>
                 </div>
-                <div slot="divide-video">
+                <div slot="divide-video" style="position:relative">
                     <video class="mamiyoga-divide-every-video" controls>
                         <source :src="pose.pose_video" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="mamiyoga-course-intro-title" v-if="pose.pose_ai && !is_played">
+                        <div class="mommiyoga-course-photo-img" v-if="!is_see">
+                            <div class="mamiyoga-course-photo-by" v-show="!pose.is_front"></div>
+                            <div class="mamiyoga-course-photo-by" v-show="pose.is_front"></div>
+                        </div>
+                        <div class="mamiyoga-course-intro-title-font">
+                            <h5>{{pose.pose_brief}}</h5>
+                            <p>{{$t('course_time_text')}}</p><p>{{getRecordTime}}</p><p>&nbsp;秒</p>
+                        </div>
+                    </div>
                 </div>
                 <div slot="divide-text">
                     <div class="mamiyoga-course-bottom-second-content-li" 
@@ -128,6 +139,60 @@ export default {
     text-align: center;
     margin: 2vh 0 1.5vh;
 }
+
+.mamiyoga-course-intro-title {
+    width: 90%;
+    height: 65px;
+    position: absolute;
+    bottom: 70px;
+    left: 5vw;
+}
+.mamiyoga-course-photo-by {
+    width: 50px;
+    height: 65px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    margin-right: 10px; 
+    float: left;
+}
+/* .mamiyoga-course-photo-img .mamiyoga-course-photo-by:first-child {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-1.png');
+}
+.mamiyoga-course-photo-img .mamiyoga-course-photo-by:nth-child(2) {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mommiyoga-teach-photoby-2.png');
+} */
+.mommiyoga-course-photo-img .mamiyoga-course-photo-by:first-child {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-1.png');
+}
+.mommiyoga-course-photo-img .mamiyoga-course-photo-by:nth-child(2) {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.png');
+}
+.mamiyoga-course-intro-title-font {
+    height: 65px;
+    float: left;
+    color: white;
+    margin-top: 20px; 
+}
+.mamiyoga-course-intro-title-font h5 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.mamiyoga-course-intro-title-font p {
+    float: left;
+    font-size: 14px;
+}
+.mamiyoga-course-intro-title-font p:nth-child(3) {
+    font-style: italic;
+    margin-top: 2px;
+}
+
+
+
+
+
+
+
 @media (min-width: 769px) {
     .mamiyoga-divide-block,.divide-label-box,
     .mamiyoga-divide-every-video {

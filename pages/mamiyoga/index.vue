@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="index-contain" v-if="!is_beta">
-            <video muted loop autoplay class="background-video" >
+            <video muted loop autoplay playsinline class="background-video" >
                 <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-1.mp4" type="video/mp4">      
             </video>
             <div class="mamiyoga-index-intro">
@@ -24,7 +24,7 @@
 
         <div class="index-contain" v-if="is_beta" style="min-height:300vh;overflow:visible;" >
             <div class="background-video-contain">
-                <video muted loop autoplay class="background-video" >
+                <video muted loop autoplay playsinline class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
                 </video>
             </div>
@@ -45,7 +45,7 @@
                 <mamiyoga-login-select :is_beta="true"></mamiyoga-login-select>
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p> -->
-                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 30%;"  @click="goDown">
+                <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDown">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDown" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
@@ -54,10 +54,10 @@
             <div class="mamiyoga-intro-wrap" id="index-wrap">
                 <img style="width:100%" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-secord.png" alt="瑜珈好處">
                 <article class="mamiyoga-intro-wrap-block">
-                    <div style="background:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-title-background.png');margin-top:5vh;background-repeat:no-repeat;background-size:contain;height:130px;background-position:center;">
-                        <h1  style="margin:0;line-height:40px;color:#97A8AF;font-size:34px;font-family: 'ShueiGoGinStd';">Mami yoga<br>日本人氣瑜珈</h1>
+                    <div style="background:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-title-background.png');margin-top:5vh;background-repeat:no-repeat;background-size:cover;height:130px;justify-content:center;align-items:center;display:flex;margin-bottom:3vh;">
+                        <h1  style="margin:0;line-height:47px;color:#24798F;font-size:40px;font-weight:bold;letter-spacing:4px;">Mami yoga<br>日本人氣瑜珈</h1>
                     </div>
-                    <h5 id="title-first" style="margin-top:0;">你知道嗎？日本產後媽媽除了飲食調整之外，還會透過瑜珈來保養身體</h5>
+                    <h5 id="title-first" style="margin-top:0;">你知道嗎？日本產後媽媽除了調整飲食，還會透過瑜珈來保養身體</h5>
                     <p>懷孕生產對每一個媽媽來說絕對是一個全新階段，<br>這也是世界上最美好、最滿足的事情之一。<br><br>
                     但身心的劇烈變化經常讓人無法負荷，瑜珈能夠幫助女性在這趟階段轉換的旅程之中更輕鬆的照顧好自己。<br><br>
                     別擔心，只要持續練習瑜珈，<br>就會更健康、更有活力、更加強壯！</p>
@@ -74,7 +74,7 @@
                     <p>新媽媽可以好好把握時間，配合瑜珈動作，會讓你有意想不到的驚喜。<br><br>
                     適當產後瑜珈運動能改善血液循環、恢復皮膚張力以及減少脂肪堆積，更能消除腹部、臀部、大腿等處多餘的脂肪，恢復懷孕前的窈窕身姿。</p>
                 </article>
-                <video loop controls style="width:100%;margin:4vh 0 6vh;" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
+                <video loop controls autoplay playsinline muted style="width:100%;margin:4vh 0 6vh;" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
                 </video>
                 <div class="mamiyoga-intro-btn">
@@ -90,27 +90,27 @@
                 <p style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">快和朋友分享吧！</p>
                 <div class="mamiyoga-assay-share-icon-box">
                     <div class="mamiyoga-assay-share-icon">
-                        <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <a href="https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
                         </a>
                     </div>
                     <div class="mamiyoga-assay-share-icon">
-                        <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-chat.png" alt="">
+                        <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat.png" alt="">
                         </a>
                     </div>
                     <div class="mamiyoga-assay-share-icon">
-                        <a href="https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <a href="https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-twitter.png" alt="">
                         </a>
                     </div>
                     <div class="mamiyoga-assay-share-icon">
-                        <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;linkname=" target="_blank">
+                        <a href="https://www.addtoany.com/add_to/wechat?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-wechat.png" alt="">
                         </a>
                     </div>
                     <div class="mamiyoga-assay-share-icon">
-                        <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fwww.ludonow.com%2Fmommiyoga&amp;title=" target="_blank">
+                        <a href="https://www.addtoany.com/share#url=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;title=" target="_blank">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-more.png" alt="">
                         </a>
                     </div>
@@ -147,22 +147,22 @@ import Vue2TouchEvents from 'vue2-touch-events'
  
 Vue.use(Vue2TouchEvents)
 export default {
-    head(){
-        return  {
-            title: 'MAMI YOGA',
-            meta: [
-                { charset: 'utf-8' },
-                { hid: 'description', name: 'description', content: '' },
-                { property : 'og:title' , content:""},
-                { property : 'og:type' , content:"Mamiyoga"},
-                { property : 'og:url' , content:"https://www.ludonow.com/mamiyoga"},
-                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-to-facebook.jpg"},
-                { property : 'og:description' , content:"yoga"},
-                { property : 'og:site_name' , content:"www.ludonow.com"},
-            ],
-        }
-    },
-    layout:'mommiyoga',
+    // head(){
+    //     return  {
+    //         title: 'MAMI YOGA',
+    //         meta: [
+    //             { charset: 'utf-8' },
+    //             { hid: 'description', name: 'description', content: '' },
+    //             { property : 'og:title' , content:""},
+    //             { property : 'og:type' , content:"Mamiyoga"},
+    //             { property : 'og:url' , content:"https://www.ludonow.com/mamiyoga"},
+    //             { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-to-facebook.jpg"},
+    //             { property : 'og:description' , content:"yoga"},
+    //             { property : 'og:site_name' , content:"www.ludonow.com"},
+    //         ],
+    //     }
+    // },
+    layout:'mamiyoga',
     data:()=>({
         is_beta: true,
         is_open: false,
@@ -186,10 +186,10 @@ export default {
             document.getElementById('title-first').classList.add('slideInDown')    
         }
         if(top > 1000){
-            document.getElementById('title-secord').classList.add('fadeIn')    
+            document.getElementById('title-secord').classList.add('slideInDown')    
         }
         if(top > 1500){
-            document.getElementById('title-third').classList.add('fadeIn')    
+            document.getElementById('title-third').classList.add('slideInDown')    
         }
         })
         
