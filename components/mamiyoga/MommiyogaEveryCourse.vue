@@ -3,20 +3,21 @@
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
         <h3>{{getTitle}}</h3>
         <div style="position:relative;" @click="is_opened = true">
-            <!-- <video class="mamiyoga-course-video" controls @click="is_opened = true"
+            <video class="mamiyoga-course-video" controls @click="is_opened = true"
             preload="auto" :poster="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-'+goPractice+'.jpg'">
                 <source :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-'+goPractice+'.mp4'"
                  type="video/mp4">
                 Your browser does not support the video tag.
-            </video> -->
+            </video>
             
-            <vue-plyr>
+            <!-- <vue-plyr>
                 <video :poster="getPreviewImg" :src="getVideoUrl" id="course-video">
                     <source :src="getVideoUrl" type="video/mp4" size="720">
                     <source :src="getVideoUrl" type="video/mp4" size="1080">
-                    <!-- <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default> -->
+                    
                 </video>
-            </vue-plyr>
+            </vue-plyr> -->
+
             <!-- <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
             </div> -->

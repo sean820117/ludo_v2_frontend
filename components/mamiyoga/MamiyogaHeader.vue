@@ -82,6 +82,7 @@ export default {
     text-align: center;
     border-style: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .mamiyoga-header {

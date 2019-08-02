@@ -30,8 +30,16 @@
                 </slide>
             </carousel> -->
         </div>
-        <!-- <div style="margin-top:8vh;">
-            <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" btnText="影片教學" style="margin-bottom:5vh;"></mamiyoga-btn>
+        <div style="margin-top:8vh;">
+            <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
+            <button class="mamiyoga-btn" style="margin-bottom:5vh;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
+        </div>
+        <mamiyoga-video-sample v-if="show_video" @closeVideo="closeVideo"></mamiyoga-video-sample>
+        <!-- <div class="explain-video-box-contain" v-if="show_video">
+            <div class="explain-video-box">
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-video-1.mp4" id="sample-video">
+                </video>
+            </div>
         </div> -->
     </div>
 </template>
@@ -40,24 +48,43 @@
 import Vue from 'vue';
 
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
-// import VueCarousel from 'vue-carousel';
+import MamiyogaVideoSample from '~/components/mamiyoga/MamiyogaVideoSample.vue'
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
-// import { Carousel, Slide } from 'vue-carousel';
 import 'hooper/dist/hooper.css';
+
+// import VueCarousel from 'vue-carousel';
+// import { Carousel, Slide } from 'vue-carousel';
+
 // Vue.use(VueCarousel);
 export default {
+    data:()=>({
+        show_video: false,
+    }),
     components: {
         MamiyogaBtn,
+        MamiyogaVideoSample,
         Hooper,
         Slide,
         HooperPagination,
-        
         // Carousel,
         // Slide,
+    },
+    async mounted(){
+        if(process.client){
+            // let video = document.getElementById('sample-video')
+            // if(video) {
+            //     video.onended = ()=> {
+            //         this.show_video = false;
+            //     }
+            // } else false
+        }
     },
     methods: {
         closeBox(){
             this.$emit('closeExplain')
+        },
+        closeVideo(){
+            this.show_video = false
         }
     }
 }
@@ -121,6 +148,19 @@ export default {
 .mamiyoga-explain-close img {
     width: 30px;
     height: 30px;
+}
+.mamiyoga-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .mamiyoga-explain {

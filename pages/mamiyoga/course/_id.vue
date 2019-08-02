@@ -19,7 +19,11 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            this.courses = await require('~/config/mamiyoga-course');
+            if(this.$i18n.locale == 'JP') {
+                this.courses = await require('~/config/mamiyoga-course-jp');
+            } else {
+                this.courses = await require('~/config/mamiyoga-course');
+            }
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
             console.log(this.course_id)

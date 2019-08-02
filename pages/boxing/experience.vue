@@ -157,10 +157,10 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            var data = await this.$poseUpload(e.target.file[0],'boxing_1','zh-cn')
+            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_6','zh-cn')
             if(!data) {
                 alert('網路錯誤')
-            } else if(data.status == 200) {    
+            } else if(data.status == 102) {    
                 // for(var i =0; i< data.reps_wrong_tags.length; i++){
                 //     for(var j = 0; j<data.reps_wrong_tags[i].length; j++){
                 //         if(data.reps_wrong_tags[i][j] == "1") data.reps_wrong_tags[i][j] = "摆动过小";
@@ -168,16 +168,43 @@ export default {
                 //         else if (data.reps_wrong_tags[i][j] == "0") data.reps_wrong_tags[i][j] = "姿势正确";
                 //     }
                 // }   
-                alert('上傳成功');
-            } else if (data.status == 500) {
-                alert('未偵測到動作')
+                let timeout_limit = 0;
+                let get_result_interval = setInterval(() => {
+                axios.post('/apis/get-pose-result',{user_id:"0002",pose_id:"yoga_6",createdAt:data.createdAt})
+                    .then((response) => {
+                        if (response.data.result.status == 200) {
+                            console.log(response.data.result);
+                            this.video_result = response.data.result;
+                            clearInterval(get_result_interval);
+                        } else if(response.data.result.status == 102) {
+                            console.log("還沒跑完");
+                        } else if(response.data.result.status == 204) {
+                            console.log("未偵測到動作");
+                            clearInterval(get_result_interval);
+                        } else {
+                            console.log(response);
+                            clearInterval(get_result_interval);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("fail");
+                        clearInterval(get_result_interval);
+                    })
+                    timeout_limit += 1;
+                    if (timeout_limit >=100) {
+                        console.log("unknown error, contact developers~");
+                        clearInterval(get_result_interval);
+                    }
+                }, 3000);
+                console.log('上傳成功');
+            } else {
+                alert('Network error')
             }
 
-            let result = await this.$getPoseResult();
+            
             
             this.isLoading = false;
-            this.reps_wrong_tags = data.reps_wrong_tags;
-            this.video_result = data;
+            
             this.is_loaded = true;
             // setTimeout(()=> {
             //     clearInterval(this.interval);
