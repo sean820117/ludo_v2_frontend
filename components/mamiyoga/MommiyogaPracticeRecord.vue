@@ -165,9 +165,16 @@ export default {
     border-radius: 5px;
     letter-spacing: 3px;
     display: block;
+    padding: 0;
+    cursor: pointer;
 }
 .practice-record-intro-btn label {
     cursor: pointer;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media (min-width: 769px) {
     .practice-record-intro {

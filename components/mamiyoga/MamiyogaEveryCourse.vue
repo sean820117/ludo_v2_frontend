@@ -1,7 +1,7 @@
 <template>
     <div class="mamiyoga-each-course">
         <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
-        <h3>{{getTitle}}</h3>
+        <h3 v-html="getTitle"></h3>
         <div style="position:relative;">
             <!-- <video class="mamiyoga-course-video" controls>
                 <source :src="getVideoUrl" type="video/mp4">

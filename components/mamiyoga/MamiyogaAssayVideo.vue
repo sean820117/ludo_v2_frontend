@@ -5,13 +5,12 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </div>
             <div style="display:flex;">
-                
                 <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-header-login-btn">
                 </div>
                 <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
-                    <label style="width:55px;height:25px;display:block;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
+                    <label style="width:55px;height:25px;display:block;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
                 </div>
             </div>
         </div>
@@ -21,7 +20,7 @@
         <div class="mamiyoga-open-background" :class="showContentOrNot"></div>
         <div class="mamiyoga-close-icon" @click="showAssayContent" :class="showContentOrNot"></div>
         <video class="mamiyoga-assay-video" controls>
-                <source :src="video_result.output_video_url" type="video/mp4">
+                <source :src="video_result.video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-assay-box">
@@ -52,7 +51,7 @@
                         <div class="assay-grade-box">
                             <p style="margin-bottom:0;">{{$t('teach_assay_correct')}}</p>
                             <div class="mamiyoga-assay-grade-num">
-                                <h3>76</h3>
+                                <h3>{{video_result.score}}</h3>
                                 <p>%</p>
                             </div>
                         </div>
@@ -330,6 +329,7 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 35%;
+    cursor: pointer;
 }
 .mamiyoga-assay-page .mamiyoga-assay-header {
     width: 100vw;
@@ -389,6 +389,7 @@ export default {
     margin-bottom: 2vh;
     text-align: center;
     color: #fff;
+    cursor:pointer;
 }
 .mamiyoga-assay-content-box {
     width: auto;
@@ -609,6 +610,7 @@ export default {
     height: 30px;
     /* background: red; */
     margin: 0 4px ;
+    cursor: pointer;
     /* background-image: url('/mamiyoga/star.png') ;
     background-repeat: no-repeat;
     background-size: 75%;  */
@@ -682,6 +684,7 @@ export default {
     height: 30px;
     /* background: red; */
     margin: 0 4px;
+    cursor: pointer;
     /* background-repeat: no-repeat;
     background-size: contain;  */
 }

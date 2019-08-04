@@ -12,7 +12,7 @@
                     <video poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-preview-5.jpg" src="" id="course-video">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="720">
                         <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/course-video-5.mp4" type="video/mp4" size="1080">
-                        <!-- <track kind="captions" label="English" srclang="en" src="captions-en.vtt" default> -->
+                        <!-- <track kind="captions" label="English" srclang="zh-CN" src="chttps://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/course/mamiyoga-L14.vtt" default> -->
                     </video>
                 </vue-plyr>
                 <div class="teach-course-info" v-if="!is_opened">

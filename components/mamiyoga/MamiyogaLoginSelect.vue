@@ -4,10 +4,14 @@
             <p>{{$t('index_select_login')}}</p>
             <div class="mamiyoga-select-login-box">
                 <div class="mamiyoga-select-login-icon">
-                    <a href="/"><img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="" @click.prevent="handleFBClick"></a>
+                    <a href="/">
+                        <img v-if="login_method.FB" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-facebook.png" alt="" @click.prevent="handleFBClick">
+                    </a>
                 </div>
                 <div class="mamiyoga-select-login-icon">
-                    <a href="/"><img v-if="login_method.google" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="" @click.prevent="handleGoogleClick"></a>
+                    <a href="/">
+                        <img v-if="login_method.google" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-google.png" alt="" @click.prevent="handleGoogleClick">
+                    </a>
                 </div>
                 <!-- <div class="mamiyoga-select-login-icon">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-icon-wechat.png" alt="">

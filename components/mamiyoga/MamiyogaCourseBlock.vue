@@ -67,6 +67,7 @@ export default {
     margin: 3vh auto 0;
     border-radius: 2vh;
     box-shadow: 0 3px 10px rgba(0,0,0,.2);
+    background-position: center -20px;
 }
 .course-bookmark {
     width: 30px;

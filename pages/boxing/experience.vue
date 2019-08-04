@@ -157,28 +157,55 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            let form = new FormData();
-            form.append('file',e.target.files[0])
-            form.append('pose_id','boxing_1')
-            form.append('language','zh-cn')
-            const res = await axios.post('/apis/video-upload',form)
-            console.log(res.data)
-            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "1") res.data.reps_wrong_tags[i][j] = "摆动过小";
-                  else if (res.data.reps_wrong_tags[i][j] == "2") res.data.reps_wrong_tags[i][j] = "摆动过大";
-                  else if (res.data.reps_wrong_tags[i][j] == "0") res.data.reps_wrong_tags[i][j] = "姿势正确";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-                //   else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "轴心不稳";
-                //   else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
-              }
+            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_6','zh-cn')
+            if(!data) {
+                alert('網路錯誤')
+            } else if(data.status == 102) {    
+                // for(var i =0; i< data.reps_wrong_tags.length; i++){
+                //     for(var j = 0; j<data.reps_wrong_tags[i].length; j++){
+                //         if(data.reps_wrong_tags[i][j] == "1") data.reps_wrong_tags[i][j] = "摆动过小";
+                //         else if (data.reps_wrong_tags[i][j] == "2") data.reps_wrong_tags[i][j] = "摆动过大";
+                //         else if (data.reps_wrong_tags[i][j] == "0") data.reps_wrong_tags[i][j] = "姿势正确";
+                //     }
+                // }   
+                let timeout_limit = 0;
+                let get_result_interval = setInterval(() => {
+                axios.post('/apis/get-pose-result',{user_id:"0002",pose_id:"yoga_6",createdAt:data.createdAt})
+                    .then((response) => {
+                        if (response.data.result.status == 200) {
+                            console.log(response.data.result);
+                            this.video_result = response.data.result;
+                            this.isLoading = false;
+                            this.is_loaded = true;
+                            clearInterval(get_result_interval);
+                        } else if(response.data.result.status == 102) {
+                            console.log("還沒跑完");
+                        } else if(response.data.result.status == 204) {
+                            console.log("未偵測到動作");
+                            clearInterval(get_result_interval);
+                        } else {
+                            console.log(response);
+                            clearInterval(get_result_interval);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("fail");
+                        clearInterval(get_result_interval);
+                    })
+                    timeout_limit += 1;
+                    if (timeout_limit >=100) {
+                        console.log("unknown error, contact developers~");
+                        clearInterval(get_result_interval);
+                    }
+                }, 3000);
+                console.log('上傳成功');
+            } else {
+                alert('Network error')
             }
-            this.isLoading = false;
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.video_result = res.data;
-            this.is_loaded = true;
+
+            
+            
+            
             // setTimeout(()=> {
             //     clearInterval(this.interval);
             //     this.is_uploading = false;
