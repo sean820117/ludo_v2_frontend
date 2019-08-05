@@ -4,17 +4,15 @@
             <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4" class="teach-video-sample"></video>
+                <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
                 <div class="teach-course-info">
                     <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
                     <div>
                         <h3>{{course_title}}</h3>
                         <p v-html="$t('teach_text_time')"></p>
                     </div>
-                </div>
-                <div class="teach-question-box" @click="open_explain = true">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn.png" alt="唐幼馨">
-                </div>
+                </div> -->
             </div>
             <div class="teach-detail-box">
                 <h6>{{$t('teach_tip_title')}}</h6>
@@ -62,7 +60,7 @@
                 </div>
                 <div class="teacher-remind">
                     <router-link :to="goAbout+'/mamiyoga/about'">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="瑜珈">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-about.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
@@ -70,14 +68,20 @@
                     </div>
                 </div>
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
-                <div v-if="!is_beta">
+                <div v-if="!is_beta" style="position:relative">
                     <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">{{$t('teach_button_upload')}}</button>
                     <button class="teach-assay-btn" v-else>
                         <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button>
+                    <div class="teach-question-box" @click="open_explain = true">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
+                    </div>
                 </div>
-                <div v-if="is_beta">
+                <div v-if="is_beta" style="position:relative">
                     <button class="teach-assay-btn" @click="openRemind()">{{$t('teach_button_upload')}}</button>
+                    <div class="teach-question-box" @click="open_explain = true">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
+                    </div>
                 </div>
             </div>
             <div class="before-remind" :class="showRemindBox" >
@@ -351,8 +355,10 @@ export default {
     z-index: 0;
 }
 .teach-video-sample {
-    height: 41vh;
-    margin-left: -25vw;
+    /* height: 41vh;
+    margin-left: -25vw; */
+    width: 100vw;
+    margin-top: 60px;
 }
 .teach-course-info {
     width: 90vw;
@@ -384,12 +390,19 @@ export default {
     font-size:14px;
     margin-top: 4px;
 }
-.teach-question-box {
+/* .teach-question-box {
     width: 30px;
     height: 30px;
     position: absolute;
     top: 33vh;
     right: 6vw;
+} */
+.teach-question-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    left: calc(55vw + 70px);
 }
 .teach-detail-box {
     width: 100vw;
@@ -621,7 +634,7 @@ export default {
     }
     .teach-video-sample {
         width: 450px;
-        height: 330px;
+        height: 270px;
         margin-left: 0;
     }
 }

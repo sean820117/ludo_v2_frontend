@@ -61,7 +61,7 @@
             </div>
             <div style="position:fixed;bottom:3vh;display:flex;width:100vw;justify-content:center;align-items:center;">
                 <a href="https://www.ludonow.com/mamiyoga" style="text-decoration:none;">
-                    <div class="bmi-index-form-input-button" style="background-color:#DE396C;">加入匿名運動社群</div>
+                    <div class="bmi-index-form-input-button" style="background-color:#DE396C;">立即體驗瑜珈課程</div>
                 </a>
             </div>
             </section>

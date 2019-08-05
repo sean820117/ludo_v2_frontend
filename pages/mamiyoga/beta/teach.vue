@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="teach-page" v-if="!is_loaded && !open_explain">
+        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show">
             <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
@@ -74,7 +74,7 @@
                         <label style="cursor:pointer;width:135px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button>
                     <div class="teach-question-box" @click="open_explain = true">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn-1.png" alt="唐幼馨">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
                     </div>
                 </div>
                 <div v-if="is_beta">
@@ -129,19 +129,21 @@
                 :is-full-page="fullPage"></loading>
         </div> -->
         <div class="loading-bar" v-if="isLoading">
-            <div class="bar-back">
-                <div id="bar-container">
-                    <div id="bar"></div>
+            <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
+                <div class="bar-back">
+                    <div id="bar-container">
+                        <div id="bar"></div>
+                    </div>
+                    <p style="margin-left:2%;font-size:14px;">{{show_value}}</p>
                 </div>
-                <p style="margin-left:2%;font-size:14px;">{{show_value}}</p>
             </div>
-            <div>
-                <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;" v-html="$t('start_experience_uptext')"></p>
+            <div style="margin:5vh auto;">
+                <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;font-size:13px;" v-html="$t('start_experience_uptext')"></p>
                 <div class="mamiyoga-show-article" @click="changeArticle">
                     <p v-html="post_article"></p>
                 </div>
             </div>
-            <div style="width:80%;height:50px;display:flex;justify-content:center;">
+            <div style="width:100%;height:50px;display:flex;justify-content:center;">
                 <button v-show="play_assay" class="see-assay-btn" @click="isLoading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
         </div>
@@ -188,7 +190,7 @@
         <!-- <mamiyoga-video-tips></mamiyoga-video-tips> -->
         <div class="video-tips" v-if="first_show">
             <div class="video-tips-box">
-                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4" id="tip-video"></video>
+                <video controls autoplay playsinline muted src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4" id="tip-video"></video>
             </div>
             <div class="close-tips-box" @click="first_show = false">
                 <p>Skip></p>
@@ -593,7 +595,7 @@ export default {
 }
 .teach-detail-box {
     width: 100vw;
-    margin-top: 32vh;
+    margin-top: calc(25vh + 50px);
     padding-bottom: 5vh;
 }
 .teach-detail-box h6 {
@@ -805,10 +807,10 @@ export default {
     top: 0;
     /* left: 0;  */
     z-index: 999;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 .bar-back {
     width: 80%;
@@ -818,6 +820,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 #bar-container {
     width: 70%;
@@ -853,6 +856,7 @@ export default {
     background: #24798F;
     color: #fff;
     border-style: none;
+    font-size: 14px;
 }
 .video-tips {
     position: fixed;

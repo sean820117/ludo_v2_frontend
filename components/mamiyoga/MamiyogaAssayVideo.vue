@@ -7,9 +7,9 @@
             <div style="display:flex;">
                 <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
-                marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-header-login-btn">
+                marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-assay-header-login-btn">
                 </div>
-                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-header-login-btn">
+                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-assay-header-login-btn">
                     <label style="width:55px;height:25px;display:block;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-assay-box">
-            <div>
+            <div style="margin-top:5px;">
                 <p class="mamiyoga-assay-prompt">上にスワイプして開く</p>
                 <hr class="mamiyoga-assay-prompt-line">
             </div>
@@ -324,7 +324,7 @@ export default {
     width: 20px;
     height: 13px;
 }
-.mamiyoga-header-login-btn {
+.mamiyoga-assay-header-login-btn {
     width: 55px;
     height: 25px;
     display: block;
@@ -346,7 +346,7 @@ export default {
 }
 .mamiyoga-assay-page .mamiyoga-assay-video {
     width: 100vw;
-    height: calc(100vh - 150px);
+    height: calc(100vh - 200px);
     /* height: calc(100vh - 115px); */
 }
 
@@ -364,7 +364,7 @@ export default {
     border-radius:20px; 
     padding: 0 15px 5px 15px;
     position: absolute;
-    top: 35px;
+    top: 40px;
     /* top:0; */
     left: 5vw;
     /* top: -50px; */
@@ -372,7 +372,7 @@ export default {
     transition: 1s;
 }
 .mamiyoga-assay-page .mamiyoga-assay-content.open {
-    top: calc(-85vh + 30px);
+    top: calc(-75vh + 30px);
 }
 /* @keyframes uptosee {
     0% {

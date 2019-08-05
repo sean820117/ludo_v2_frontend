@@ -187,6 +187,37 @@ export default {
 .tips-text:last-child img{
     display: none;
 }
+.video-tips {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.video-tips-box {
+    transform: rotate(90deg);
+    position:fixed;
+    top: 21vh;
+}
+#tip-video {
+    width: 85vh;
+}
+.close-tips-box {
+    width: 45px;
+    height: 30px;
+    position: fixed;
+    color: #fff;
+    transform: rotate(90deg);
+    bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 @media (min-width: 769px) {
     .mamiyoga-explain {
         width: 450px;
