@@ -110,7 +110,7 @@
                 <!-- <mamiyoga-video-tips v-if="!played"></mamiyoga-video-tips> -->
                 <div class="before-remind-content">
                     <div style="margin-top:5vh;">
-                        <img style="display:block;margin:0 auto 2vh;width:60%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/before-remind-img-1.png" alt="">
+                        <img style="display:block;margin:0 auto 2vh;width:50%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/before-remind-img-1.png" alt="">
                         <p style="color:#24798F;text-align:center;font-size:14px;" v-html="$t('start_experience_text')"></p>
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:25px;cursor:pointer;background-color:#FF9898;color:#F7F7F7;letter-spacing:0;">
@@ -141,6 +141,7 @@
                 <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;font-size:13px;" v-html="$t('start_experience_uptext')"></p>
                 <div class="mamiyoga-show-article" @click="changeArticle">
                     <p v-html="post_article"></p>
+                    <img style="position:absolute;width:30px;bottom:20px;right:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tap.png" alt="">
                 </div>
             </div>
             <div style="width:100%;height:50px;display:flex;justify-content:center;">
@@ -590,12 +591,12 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 5px;
+    top: 2px;
     left: calc(55vw + 70px);
 }
 .teach-detail-box {
     width: 100vw;
-    margin-top: calc(25vh + 50px);
+    margin-top: calc(25vh + 65px);
     padding-bottom: 5vh;
 }
 .teach-detail-box h6 {
@@ -840,7 +841,7 @@ export default {
     height: 300px;
     background: white;
     border-radius: 20px;
-    padding: 15px;
+    padding: 0 15px;
     /* text-align: center; */
     color:#8699A0;
     display:flex;
@@ -848,6 +849,7 @@ export default {
     justify-content: center;
     font-size: 12px;
     margin: 0 auto;
+    position: relative;
 }
 .see-assay-btn {
     width: 135px;

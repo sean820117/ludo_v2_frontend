@@ -16,13 +16,14 @@
                     <p>{{$t('explain_text_secord')}}</p>
                 </slide>
                 <slide>
-                    <h5 style="margin-bottom:3vh">{{$t('sample_video_title')}}</h5>
+                    <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
                     <div >
-                        <div v-for="(line,i) in $t('sample_video_text')"
+                        <img style="height:55vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-pic.png" alt="">
+                        <!-- <div v-for="(line,i) in $t('sample_video_text')"
                         :key="i" class="tips-text">
                             <p>{{line}}</p>
                             <img style="width:10px;height:8px;margin:5px auto" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/down-arrow.png" alt="">
-                        </div>
+                        </div> -->
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -125,7 +126,7 @@ export default {
 }
 .mamiyoga-explain-content {
     width: 90vw;
-    height: 65vh;
+    height: 70vh;
     margin: 0 auto;
     padding-top: 45px;
 }
@@ -148,7 +149,7 @@ export default {
     margin: 5vh auto 0;
 }
 .mamiyoga-explain .hooper {
-    height: 60vh;
+    height: 65vh;
 }
 .mamiyoga-explain .hooper-indicator {
     width: 7px;
