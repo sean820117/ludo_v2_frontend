@@ -191,7 +191,7 @@ export default {
         goAbout: '',
         is_open: false,
         is_pushed: false,
-        is_beta: false,
+        is_beta: true,
         email: '',
         errors: '',
 

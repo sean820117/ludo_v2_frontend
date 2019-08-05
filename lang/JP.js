@@ -1,8 +1,8 @@
 export default {
     header_login:'ログイン',
 
-    index_button_free: '無料版コース',
-    index_button_pay: '有料版コース',
+    index_button_free: '体験版',
+    index_button_pay: 'フルコース',
     index_select_login: '他のログインのやりかた',
     index_img_title:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title-jp.png',
     index_agree_text: 'ログインして本サービスを利用することで、<br>LUDOのプライバシーポリシーに同意したものとします。',
@@ -34,7 +34,7 @@ export default {
     explain_title_secord: '側面で撮影',
     explain_text_first: 'AIアシスタントが正確に分析できるように、体の「正面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
     explain_text_secord: 'AIアシスタントが正確に分析できるように、体の「側面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
-    explain_btn_video: '影片教学',
+    explain_btn_video: 'AIの使い方動画',
 
     sample_video_title:'AIアシスタントの使い方',
     // sample_video_text_1: 'スタートボタンを押す',
@@ -50,7 +50,8 @@ export default {
     sample_video_remind_1: '※もう一度見たい時は',
     sample_video_remind_2: 'を押してね',
     sample_video_btn: '了解、始めよう',
-    start_experience_btn_3: '結果を見る',
+    start_experience_uptext: '分析中、、、<br>その間にママへの一言アドバイス',
+    start_experience_btn_3: '採点結果を見る',
 
     start_experience_text: '練習のやり方、わかった？<br><br>スマホのカメラを起動し<br>あなたの練習を今から記録します<br>ビデオをAIアシスタントが分析します<br><br>準備ができたらカメラを起動してね！',
     start_experience_btn_1: 'カメラを開ける',

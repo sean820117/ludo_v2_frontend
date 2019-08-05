@@ -15,6 +15,16 @@
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
                     <p>{{$t('explain_text_secord')}}</p>
                 </slide>
+                <slide>
+                    <h5 style="margin-bottom:3vh">{{$t('sample_video_title')}}</h5>
+                    <div >
+                        <div v-for="(line,i) in $t('sample_video_text')"
+                        :key="i" class="tips-text">
+                            <p>{{line}}</p>
+                            <img style="width:10px;height:8px;margin:5px auto" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/down-arrow.png" alt="">
+                        </div>
+                    </div>
+                </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
             <!-- <carousel :perPageCustom="[[300,1]]">
@@ -32,9 +42,17 @@
         </div>
         <div style="margin-top:8vh;">
             <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
-            <button class="mamiyoga-btn" style="margin-bottom:5vh;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
+            <button class="mamiyoga-btn" style="letter-spacing:0;margin-bottom:5vh;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
         </div>
-        <mamiyoga-video-sample v-if="show_video" @closeVideo="closeVideo"></mamiyoga-video-sample>
+        <div class="video-tips" v-if="show_video">
+            <div class="video-tips-box">
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4" id="tip-video"></video>
+            </div>
+            <div class="close-tips-box" @click="show_video = false">
+                <p>Skip></p>
+            </div>
+        </div>
+        <!-- <mamiyoga-video-sample v-if="show_video" @closeVideo="closeVideo"></mamiyoga-video-sample> -->
         <!-- <div class="explain-video-box-contain" v-if="show_video">
             <div class="explain-video-box">
                 <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-video-1.mp4" id="sample-video">
@@ -124,7 +142,7 @@ export default {
 }
 .mamiyoga-explain-content p {
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     width: 66vw;
     margin: 5vh auto 0;
@@ -161,6 +179,13 @@ export default {
     margin: 10px auto;
     border-style: none;
     cursor: pointer;
+}
+.tips-text p {
+    margin:5px auto 0;
+    text-align:center;
+}
+.tips-text:last-child img{
+    display: none;
 }
 @media (min-width: 769px) {
     .mamiyoga-explain {

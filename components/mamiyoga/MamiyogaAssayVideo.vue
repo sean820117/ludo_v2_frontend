@@ -24,6 +24,10 @@
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-assay-box">
+            <!-- <div>
+                <p>上にスワイプして開く</p>
+                <hr style="width:50%;border:2px solid #8699A0;margin:0 auto;border-radius: 5px;">
+            </div> -->
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div @click="showAssayContent" v-touch:swipe="showAssayContent">
@@ -342,7 +346,7 @@ export default {
 }
 .mamiyoga-assay-page .mamiyoga-assay-video {
     width: 100vw;
-    height: calc(100vh - 115px);
+    height: calc(100vh - 145px);
 }
 
 .mamiyoga-assay-page .mamiyoga-assay-box {
@@ -359,7 +363,7 @@ export default {
     border-radius:20px; 
     padding: 0 15px 5px 15px;
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 5vw;
     /* top: -50px; */
     /* animation: uptosee 10s; */

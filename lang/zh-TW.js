@@ -42,7 +42,7 @@ export default {
   explain_title_secord: '側面拍攝',
   explain_text_first: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
   explain_text_secord: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
-  explain_btn_video: '影片教學',
+  explain_btn_video: '觀看教學',
 
   sample_video_title:'AI助教使用步驟教學',
   // sample_video_text_1: '步驟一、按下開始練習按鈕',
