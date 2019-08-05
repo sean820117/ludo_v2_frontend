@@ -16,13 +16,14 @@
                     <p>{{$t('explain_text_secord')}}</p>
                 </slide>
                 <slide>
-                    <h5 style="margin-bottom:3vh">{{$t('sample_video_title')}}</h5>
+                    <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
                     <div >
-                        <div v-for="(line,i) in $t('sample_video_text')"
+                        <img style="height:55vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-pic.png" alt="">
+                        <!-- <div v-for="(line,i) in $t('sample_video_text')"
                         :key="i" class="tips-text">
                             <p>{{line}}</p>
                             <img style="width:10px;height:8px;margin:5px auto" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/down-arrow.png" alt="">
-                        </div>
+                        </div> -->
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -125,7 +126,7 @@ export default {
 }
 .mamiyoga-explain-content {
     width: 90vw;
-    height: 80vh;
+    height: 70vh;
     margin: 0 auto;
     padding-top: 45px;
 }
@@ -137,7 +138,7 @@ export default {
 .mamiyoga-explain-content img {
     display: block;
     margin: 3vh auto;
-    height: 45vh;
+    height: 35vh;
     width: auto;
 }
 .mamiyoga-explain-content p {
@@ -148,7 +149,7 @@ export default {
     margin: 5vh auto 0;
 }
 .mamiyoga-explain .hooper {
-    height: 75vh;
+    height: 65vh;
 }
 .mamiyoga-explain .hooper-indicator {
     width: 7px;
@@ -186,6 +187,37 @@ export default {
 }
 .tips-text:last-child img{
     display: none;
+}
+.video-tips {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.video-tips-box {
+    transform: rotate(90deg);
+    position:fixed;
+    top: 21vh;
+}
+#tip-video {
+    width: 85vh;
+}
+.close-tips-box {
+    width: 45px;
+    height: 30px;
+    position: fixed;
+    color: #fff;
+    transform: rotate(90deg);
+    bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .mamiyoga-explain {

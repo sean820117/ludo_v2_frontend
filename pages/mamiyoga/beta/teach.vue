@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="teach-page" v-if="!is_loaded && !open_explain">
+        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show">
             <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
                 <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample"> -->
-                <video controls src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L13_action3.mp4" class="teach-video-sample"></video>
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4" class="teach-video-sample"></video>
                 <!-- <div class="teach-course-info">
                     <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
                     <div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="teacher-remind">
                     <router-link :to="goAbout+'/mamiyoga/about'">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="瑜珈">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-about.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
@@ -74,7 +74,7 @@
                         <label style="cursor:pointer;width:135px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button>
                     <div class="teach-question-box" @click="open_explain = true">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-question-btn-1.png" alt="唐幼馨">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
                     </div>
                 </div>
                 <div v-if="is_beta">
@@ -110,7 +110,7 @@
                 <!-- <mamiyoga-video-tips v-if="!played"></mamiyoga-video-tips> -->
                 <div class="before-remind-content">
                     <div style="margin-top:5vh;">
-                        <img style="display:block;margin:0 auto 2vh;width:60%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/before-remind-img-1.png" alt="">
+                        <img style="display:block;margin:0 auto 2vh;width:50%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/before-remind-img-1.png" alt="">
                         <p style="color:#24798F;text-align:center;font-size:14px;" v-html="$t('start_experience_text')"></p>
                         <div class="star-line-box">
                             <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:25px;cursor:pointer;background-color:#FF9898;color:#F7F7F7;letter-spacing:0;">
@@ -129,19 +129,22 @@
                 :is-full-page="fullPage"></loading>
         </div> -->
         <div class="loading-bar" v-if="isLoading">
-            <div class="bar-back">
-                <div id="bar-container">
-                    <div id="bar"></div>
+            <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
+                <div class="bar-back">
+                    <div id="bar-container">
+                        <div id="bar"></div>
+                    </div>
+                    <p style="margin-left:2%;font-size:14px;">{{show_value}}</p>
                 </div>
-                <p style="margin-left:2%;font-size:14px;">{{show_value}}</p>
             </div>
-            <div>
-                <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;" v-html="$t('start_experience_uptext')"></p>
+            <div style="margin:5vh auto;">
+                <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;font-size:13px;" v-html="$t('start_experience_uptext')"></p>
                 <div class="mamiyoga-show-article" @click="changeArticle">
                     <p v-html="post_article"></p>
+                    <img style="position:absolute;width:30px;bottom:20px;right:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tap.png" alt="">
                 </div>
             </div>
-            <div style="width:80%;height:50px;display:flex;justify-content:center;">
+            <div style="width:100%;height:50px;display:flex;justify-content:center;">
                 <button v-show="play_assay" class="see-assay-btn" @click="isLoading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
         </div>
@@ -188,7 +191,7 @@
         <!-- <mamiyoga-video-tips></mamiyoga-video-tips> -->
         <div class="video-tips" v-if="first_show">
             <div class="video-tips-box">
-                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4" id="tip-video"></video>
+                <video controls autoplay playsinline muted src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4" id="tip-video"></video>
             </div>
             <div class="close-tips-box" @click="first_show = false">
                 <p>Skip></p>
@@ -222,7 +225,7 @@ export default {
     // },
     layout:'mamiyoga',
     data:()=> ({
-        is_loaded: true,
+        is_loaded: false,
         isLoading: false,
         fullPage: true,
         video_result: {},
@@ -281,9 +284,19 @@ export default {
                 this.course_descriptions = this.courses[12].poses[2].pose_description;
             }
             let tip = document.getElementById('tip-video')
+            // if (tip.requestFullscreen) {
+            //     tip.requestFullscreen();
+            // } else if (tip.mozRequestFullScreen) {
+            //     tip.mozRequestFullScreen();
+            // } else if (tip.webkitRequestFullscreen) {
+            //     tip.webkitRequestFullscreen();
+            // } else if (tip.msRequestFullscreen) { 
+            //     tip.msRequestFullscreen();
+            // }
             tip.onended = function(){
                 this.first_show = false
             }.bind(this);
+
             // let bar = document.getElementById('bar');
             // let width = 1;
             // let id = setInterval(()=>{
@@ -306,6 +319,7 @@ export default {
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
+                this.isLoading = false;
             } else if(data.status == 102) {  
                 
                 // for(var i =0; i< data.reps_wrong_tags.length; i++){
@@ -329,19 +343,22 @@ export default {
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
                             console.log("未偵測到動作");
-                            alert('wrong pose')
+                            alert('動きを検知していません')
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);
-                            this.isLoading = false;
                         } else {
                             alert('unkrown error')
                             console.log(response);
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);
                         }
                     })
                     .catch((error) => {
                         console.log("fail");
+                        alert('unknown error')
+                        this.isLoading = false;
                         clearInterval(get_result_interval);
                         clearInterval(id);
                     })
@@ -574,12 +591,12 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 5px;
+    top: 2px;
     left: calc(55vw + 70px);
 }
 .teach-detail-box {
     width: 100vw;
-    margin-top: 32vh;
+    margin-top: calc(25vh + 65px);
     padding-bottom: 5vh;
 }
 .teach-detail-box h6 {
@@ -791,10 +808,10 @@ export default {
     top: 0;
     /* left: 0;  */
     z-index: 999;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 .bar-back {
     width: 80%;
@@ -804,6 +821,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 #bar-container {
     width: 70%;
@@ -823,7 +841,7 @@ export default {
     height: 300px;
     background: white;
     border-radius: 20px;
-    padding: 15px;
+    padding: 0 15px;
     /* text-align: center; */
     color:#8699A0;
     display:flex;
@@ -831,6 +849,7 @@ export default {
     justify-content: center;
     font-size: 12px;
     margin: 0 auto;
+    position: relative;
 }
 .see-assay-btn {
     width: 135px;
@@ -839,6 +858,7 @@ export default {
     background: #24798F;
     color: #fff;
     border-style: none;
+    font-size: 14px;
 }
 .video-tips {
     position: fixed;
@@ -943,6 +963,28 @@ export default {
         width: 100vw;
         height: 65vh;
         margin-left: 0;
+    }
+    
+}
+@media (max-width: 1001px) and  (orientation:landscape) {
+    .video-tips {
+        display: block;
+        left: 0;
+    }
+    .video-tips-box {
+        transform: rotate(0deg);
+        top: 0;
+        left: 2vw;
+    }
+    .close-tips-box {
+        transform: rotate(0deg);
+        bottom: 50vh;
+        right: 4vw;
+    }
+    #tip-video {
+        width: auto;
+        height: 85vh;
+        margin: 7.5vh 0;
     }
 }
 </style>
