@@ -185,6 +185,7 @@ export default {
                             clearInterval(get_result_interval);
                         } else {
                             console.log(response);
+                            alert("something error")
                             clearInterval(get_result_interval);
                         }
                     })

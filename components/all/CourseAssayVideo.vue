@@ -21,7 +21,7 @@
             </div>
         </div>
         <video class="mamiyoga-assay-video" controls>
-                <source :src="video_result.output_video_url" type="video/mp4">
+                <source :src="video_result.video_url" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="boxing-open-icon" @click="showAssayContent" :class="showContentOrNot">
