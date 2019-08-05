@@ -346,7 +346,8 @@ export default {
 }
 .mamiyoga-assay-page .mamiyoga-assay-video {
     width: 100vw;
-    height: calc(100vh - 145px);
+    /* height: calc(100vh - 145px); */
+    height: calc(100vh - 115px);
 }
 
 .mamiyoga-assay-page .mamiyoga-assay-box {
@@ -363,7 +364,8 @@ export default {
     border-radius:20px; 
     padding: 0 15px 5px 15px;
     position: absolute;
-    top: 30px;
+    /* top: 30px; */
+    top:0;
     left: 5vw;
     /* top: -50px; */
     /* animation: uptosee 10s; */
