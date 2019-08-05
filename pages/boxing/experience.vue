@@ -157,7 +157,7 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_6','zh-cn')
+            var data = await this.$poseUpload(e.target.files[0],"guest",'boxing_1','zh-cn')
             if(!data) {
                 alert('網路錯誤')
             } else if(data.status == 102) {    
@@ -170,29 +170,39 @@ export default {
                 // }   
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:"0002",pose_id:"yoga_6",createdAt:data.createdAt})
+                axios.post('/apis/get-pose-result',{user_id:"guest",pose_id:"boxing_1",createdAt:data.createdAt})
                     .then((response) => {
                         if (response.data.result.status == 200) {
                             console.log(response.data.result);
                             this.video_result = response.data.result;
+                            this.isLoading = false;
+                            this.is_loaded = true;
                             clearInterval(get_result_interval);
                         } else if(response.data.result.status == 102) {
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
                             console.log("未偵測到動作");
+                            alert("未偵測到人或正確動作");
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                         } else {
                             console.log(response);
+                            alert("something error")
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                         }
                     })
                     .catch((error) => {
                         console.log("fail");
+                        alert("something error")
+                        this.isLoading = false;
                         clearInterval(get_result_interval);
                     })
                     timeout_limit += 1;
                     if (timeout_limit >=100) {
                         console.log("unknown error, contact developers~");
+                        alert("timeout")
+                        this.isLoading = false;
                         clearInterval(get_result_interval);
                     }
                 }, 3000);
@@ -203,9 +213,7 @@ export default {
 
             
             
-            this.isLoading = false;
             
-            this.is_loaded = true;
             // setTimeout(()=> {
             //     clearInterval(this.interval);
             //     this.is_uploading = false;

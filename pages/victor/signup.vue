@@ -65,6 +65,7 @@ export default {
             this.is_ui_config_loaded = true;
             this.hint = this.ui_config.view.signup_page.hint.default.text;
             this.hint_color = this.ui_config.view.signup_page.hint.default.color;
+            this.$fbq('track','lead');
         }
     },
     components: {
@@ -99,6 +100,7 @@ export default {
                 alert('註冊成功');
                 localStorage.victor = "true";
                 // this.$router.push('/victor/course');
+                this.$fbq('track','CompleteRegistration');
                 window.location.href = '/victor/course';
             } else {
                 alert('註冊失敗');

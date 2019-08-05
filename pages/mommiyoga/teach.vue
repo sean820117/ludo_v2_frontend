@@ -168,20 +168,7 @@ export default {
               }
             }
             this.isLoading = false;
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.video_result = res.data;
             this.is_loaded = true;
-            // setTimeout(()=> {
-            //     clearInterval(this.interval);
-            //     this.is_uploading = false;
-            //     this.value = 0;
-            //     this.is_showing = true;
-            // }, 1000)
-            // setTimeout(()=> {
-            //     this.$scrollTo('#result-box',"start");
-            // },1500)
-            // window.alert('Done');
         },
         handleRetryEvent(e){
             console.log("ok");
