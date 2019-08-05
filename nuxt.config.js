@@ -49,10 +49,25 @@ module.exports = {
     { src: '~/plugins/forceLogin.js', ssr: false },
     { src: '~/plugins/scrollTo.js', ssr: false },
     { src: '~/plugins/fbq.js', ssr: false },
+    { src: '~/plugins/poseUpload.js', ssr: false },
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
-    // ['@nuxtjs/google-gtag', { id: 'UA-137420846-2' }],
+    [
+      '@nuxtjs/google-tag-manager', 
+      {
+        id: 'GTM-W7M9MNN',
+        layer: 'dataLayer',
+        pageTracking: true,
+        dev: process.env.NODE_ENV == 'development' ? true : false, // set to false to disable in dev mode
+        // query: {
+        //   gtm_auth:        '...',
+        //   gtm_preview:     '...',
+        //   gtm_cookies_win: '...'
+        // },
+        // scriptURL: '//example.com'
+      },
+    ],
     ['@nuxtjs/google-gtag',{
       id: 'UA-123332732-3',
       config: {
@@ -68,6 +83,31 @@ module.exports = {
       //   }
       // }]
     }],
+    [
+      'nuxt-i18n', {
+        locales: [
+          {
+            code: 'zh-TW',
+            file: 'zh-TW.js',
+            iso: 'zh-Hant',
+          },
+          {
+            code: 'zh-CN',
+            file: 'zh-CN.js',
+            iso: 'zh-Hans',
+          },
+          {
+            code: 'JP',
+            file: 'JP.js',
+            iso: 'ja',
+          },
+        ],
+        lazy: true,
+        langDir: 'lang/',
+        defaultLocale: 'zh-TW',
+        detectBrowserLanguage: false,
+      }
+    ]
   ],
   // serverMiddleware: ['~/middleware/selectiveSSR'],
   build: {

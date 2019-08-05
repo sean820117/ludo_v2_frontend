@@ -11,6 +11,7 @@ services:
     environment:
       - BASE_URL=https://www.ludonow.com
       - API_URL=https://api.ludonow.com
+      - RUNTIME_ENV=production
     volumes:
         - ./:/var/www/app
         - node_modules:/var/www/app/node_modules

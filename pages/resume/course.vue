@@ -7,7 +7,7 @@
             <div class="q-container">
                 <question-bar :question="'課程開始前，可以幫我先填個問卷嗎？'"/>
             </div>
-            <video-play :playerID="'player1'" :videourl="getVideoUrl" />
+            <video-play :playerID="'player1'" :videourl="getVideoUrl" :title="getTitle"/>
         </div>
         <div>
             <course-container ref="courseContainer" :label_name="'whatever-you-want'" :label_amount="3">

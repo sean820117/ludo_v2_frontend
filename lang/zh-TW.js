@@ -1,0 +1,116 @@
+export default {
+  header_login:'登入',
+  header_logout: '登出',
+
+  index_button_free: '體驗課程',
+  index_button_pay: '完整課程', 
+  index_button_after: '歡迎回來',
+  index_select_login: '其他登錄方式',
+  index_img_title:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-title.png',
+  index_agree_text: '登入及同意LUDO',
+  index_agree_link_1: '用戶協議',
+  index_agree_link_2: '隱私政策',
+
+  teach_title:'體驗練習',
+  teach_tip_title: '姿勢步驟',
+  teach_button_upload: '開始練習',
+  teach_teacher_remind: '麻美老師貼心叮嚀',
+  teach_teacher_remind_content: '盡量將力氣集中在腰部，如果動作做起來有點吃力的同學，可以把毛巾捲起來放進腰下。',
+  teach_remind_text: '我們將記錄您的動作<br>並交給AI助教分析',
+  teach_button_ok: '好',
+
+  teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.svg',
+  teach_text_time: '建議拍攝時間：&nbsp;<i>20-45</i>&nbsp;秒',
+
+  teach_assay_title: '分析成果',
+  teach_assay_correct: '準確率',
+  teach_assay_share_friend: '快和朋友們分享這次的練習成果吧！',
+  teach_assay_button_contact: '聯絡我們',
+  teach_assay_contact_text: '分析結果不如預期嗎？',
+  teach_assay_contact_title: '您有遇到不了解的地方嗎？',
+  teach_assay_contact_input: '謝謝您的回饋，讓我們儘速為您尋找解決方法',
+  teach_assay_button_submit: '送出',
+  teach_assay_star_title: '請問您滿意這次的分析結果嗎？',
+
+  teach_assay_chat_text: '正在加緊腳步開發中！',
+  teach_assay_chat_content: '這是個可以分享影片<br>獲得匿名學習夥伴回饋的功能',
+
+  teach_assay_text_development: '課程尚未開放<br>預計八月上線',
+  teach_assay_button_development: '期待',
+
+  explain_title_first: '正面拍攝',
+  explain_title_secord: '側面拍攝',
+  explain_text_first: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
+  explain_text_secord: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
+  explain_btn_video: '觀看教學',
+
+  sample_video_title:'AI助教使用步驟教學',
+  // sample_video_text_1: '步驟一、按下開始練習按鈕',
+  // sample_video_text_2: '步驟二、將相機架好位子',
+  // sample_video_text_3: '步驟三、按下錄影按鈕',
+  // sample_video_text_4: '步驟四、確認拍攝範圍無超出畫面',
+  // sample_video_text_5: '步驟五、開始做動作',
+  // sample_video_text_6: '步驟六、按下錄影鍵完成錄影',
+  // sample_video_text_7: '步驟七、按下使用影片上傳',
+  // sample_video_text_8: '步驟八、等待AI助教分析中，觀看小文章',
+  // sample_video_text_9: '步驟九、觀看回饋影片及分析成果',
+  sample_video_text: ['按下開始練習按鈕','將相機架好位子','按下錄影按鈕','確認拍攝範圍無超出畫面','開始做動作','按下錄影鍵完成錄影','按下使用影片上傳','等待AI助教分析中，觀看小文章','觀看回饋影片及分析成果'],
+  sample_video_remind_1: '小提醒：忘記步驟請點選&nbsp;',
+  sample_video_remind_2: '&nbsp;再次觀看教學',
+  sample_video_btn: '跳過教學',
+
+  start_experience_text: '觀看完教學是否更加清楚流程了呢<br><br>開啟相機<br>我們將記錄您的動作<br>並交給AI助教分析<br><br>準備好了就開始吧',
+  start_experience_btn_1: '開啟相機',
+  start_experience_btn_2: '再看一次',
+  start_experience_btn_3: '觀看結果',
+
+  menu_nav_text_teacher:'講師介紹',
+  menu_nav_text_record:'AI助教',
+  menu_nav_text_friend:'學習夥伴',
+
+  menu_tag_mommiyoga_first: '初級課程',
+  menu_tag_mommiyoga_second: '中級課程',
+  menu_tag_mommiyoga_third: '高級課程',
+
+  menu_tag_text_first:'矯正疼痛',
+  menu_tag_text_second:'舒壓安眠',
+  menu_tag_text_third:'美體塑身',
+  menu_tag_text_four:'調和心靈',
+
+  menu_content_text_first: '矯正媽媽產後不良姿勢來緩解疼痛',
+  menu_content_text_second: '幫助媽媽們提升睡眠品質',
+  menu_content_text_third: '塑造出比產前更漂亮的身體曲線',
+  menu_content_text_four: '釋放媽媽們的產後壓力',
+
+  about_first_title: '教師介紹',
+  about_third_title: '給產後的女性',
+  about_four_title: '給廣大的女性族群',
+  about_first_content_name: '橋本麻美',
+  about_first_content_name_en: 'asami hashimoto',
+  about_first_content_have: '持有證照',
+  about_first_content_course: '曾修習完畢相關課程',
+  about_first_content_course_text: '骨頭導覽指導著養成課程修習完畢',
+
+  about_second_content: '&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，所以花了不少力氣尋尋覓覓。<br>&nbsp;&nbsp;&nbsp;&nbsp;沒想到，在經歷過多次嘗試後，讓我有機會接觸到了瑜珈。因此身體健康也漸漸獲得改善，這促使了我變得更加專注練習，產生了良性循環還有更大的興趣，不知不覺間，也獲得了執照認證與教學資格。<br>&nbsp;&nbsp;&nbsp;&nbsp;我平時擔任專業自由瑜珈的指導教練，一週至少固定開班20堂，不過往往會更超過這數字。<br>&nbsp;&nbsp;&nbsp;&nbsp;除此之外，也擔任過日本屈指頂尖舞蹈跟唱歌少女團體「E-girl」的貼身瑜珈指導哦！而且我不但協助許許多多演藝圈人士的體態健康維護，也曾擔任過名人的私人瑜珈課程指導。<br>&nbsp;&nbsp;&nbsp;&nbsp;就算是在懷孕的時候，我也持續進行瑜珈教學，而且，我現在也還是個懷孕媽媽哦！所以，我有特別設計產後恢復的相關課程。當然，也還有其他針對不一樣煩惱需求的瑜珈課程，用來幫助不一樣的你！<br>&nbsp;&nbsp;&nbsp;&nbsp;我最擅長的領域是治癒身體和心靈的放鬆瑜珈。<br>&nbsp;&nbsp;&nbsp;&nbsp;在Instagram上也可看到我哦！目前追蹤人數已經突破了兩萬！',
+  about_third_content:'給產後的女性：<br><br>一般來說，女性要回復生產前的良好狀態，是需要十個月以上，這真的是段非常辛苦的日子。<br>而且，產後也無暇休息，還要照顧寶寶們。這常會導致骨盤變得岌岌可危，有鬆脫現象，或者子宮持續不斷出血。<br>若是不顧自己的身體，總是把自己放在最後一位，又因為環境變化、家庭的壓力、甚至是缺乏支持，就會衍生出很多後遺症。<br><br>而這是我最不樂見的，希望媽媽們，能為了自己，也為了小寶寶，好好保養照顧。因此我設計了一套program.即使是沒有辦法直接到瑜珈教室的媽媽們，或者是有著重重苦衷抽不開身的人，都可以透過這套在家能自己實施的瑜珈動作練習，讓心情得到放鬆，身體得到休息。<br><br>那怕只能盡到微薄的照料媽媽們的責任，我也願意認真設計，只要多那麼一位母親能夠因為這堂課而有所幫助，變得有精神，變得很幸福，這樣就好了。<br><br>因為媽媽們的幸福，就是小孩的幸福。<br>而你們的幸福，也是我的願望。',
+  about_four_content: '給廣大的女性族群:<br><br>有時候，女生們常常會壓力大到連自己都沒有發現。在每天每天的疲勞與壓力囤積中，不知不覺習慣了，直到受不了時垮下去，已經為時已晚。<br>所以，我希望能帶給大家一些瑜珈課程，讓女生朋友們也能每天都有煥然一新的重生感。<br><br>瑜珈，能夠聯繫身體與心靈，並且給予我們自信。<br>把瑜珈形容成讓每個人都能幸福活下去，變得更像自己喜歡模樣的香料，可一點都不為過哦！<br>讓我們將生活撒入瑜珈這個香料吧！一起藉由瑜珈獲得平靜的心靈與自信的曼妙體態！<br><br>我誠摯地推薦大家嘗試看看，有了瑜珈後，找尋到合適自己的生活方式！',
+
+
+  course_time_text: '建議拍攝時間：',
+  course_tips_text: '動作步驟',
+
+  aiaiassistant_title_text: '正確的運動姿勢事半功倍，<br>優秀的AI教練幫助您改善姿勢！<br><br>立即上傳您的影片體驗。',
+  aiaiassistant_content_title: '所有動作',
+
+  record_content_title: '練習記錄',
+  record_content_text: '尚無拍攝紀錄',
+  record_btn_goback: '回到課程',
+
+  login_btn_login: '登入',
+  login_btn_signup: '註冊',
+  login_text_remind: '付款前需先註冊成為會員',
+  login_input_email: '電子信箱',
+  login_input_password: '密碼',
+  login_input_again: '確認密碼',
+  login_btn_pay: '立即付款',
+}

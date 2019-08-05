@@ -1,7 +1,7 @@
 FROM node:11.13-alpine
 
 ENV NODE_ENV production
-
+ENV RUNTIME_ENV production
 RUN mkdir -p /var/www/app
 WORKDIR /var/www/app
 
@@ -15,4 +15,5 @@ RUN npm run build
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
-CMD ["npm", "start"]
+RUN git config --global credential.helper 'store --file ./.git-credentials'
+CMD sh start.sh

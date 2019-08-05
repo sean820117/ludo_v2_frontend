@@ -11,3 +11,6 @@ npm-debug.log
 dist
 
 .DS_Store
+ecskey
+ecs-cli.asc
+ecs-deploy.sh

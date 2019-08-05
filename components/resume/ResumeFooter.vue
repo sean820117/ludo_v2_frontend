@@ -8,6 +8,7 @@
             <p>Copyright &copy; 2019 FlyingCrazyer Inc.</p>
             <p>All rights reserved</p>
             <router-link to='/privacy'><p>Privacy</p></router-link>
+            <router-link to='/refund-policy'><p>Refund Policy</p></router-link>
         </div>
     </div>
 </template>
@@ -47,6 +48,9 @@ export default {
 }
 .md-foot-block-copyright a {
     color: #D2D2D2;
+    display: inline-flex;
+    margin: 0 10px;
+    text-decoration: underline;
 }
 @media (max-width: 900px) {
     .md-foot-block-info{

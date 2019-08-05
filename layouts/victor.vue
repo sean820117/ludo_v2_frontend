@@ -1,7 +1,7 @@
 <template>
   <div :style="{visibility: is_ui_config_loaded ? 'visible':'hidden'} ">
     <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''">
-        <div v-if="is_login" slot="right-component" @click="$router.push('/logout')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
+        <div v-if="getSubscribeStatus" slot="right-component" @click="unSubscribe" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登出</div>
         <div v-else slot="right-component" @click="$router.push('/victor/signup')" :style="{ color : is_ui_config_loaded ? ui_config.base_color : '' }">登入</div>
     </titlebar>
     <nuxt/>
@@ -83,7 +83,7 @@ export default {
                 console.log("save redirect : " + localStorage.redirect);
                 this.is_ui_config_loaded = true;
             }
-            this.is_login = await this.$checkLogin(this.$store);
+            this.is_login = localStorage.victor == "true" ? true:false;
             this.$gtag('config', 'UA-137420846-2');
             if (process.env.NODE_ENV === "production") {
                 this.$fbq("init",this.ui_config.fbq_id);
@@ -91,6 +91,22 @@ export default {
             }
         }
     },
+    methods: {
+        unSubscribe() {
+            localStorage.victor = "false";
+            window.location.reload();
+        }
+    },
+    computed:{
+        getSubscribeStatus() {
+            if (process.client) {
+                return localStorage.victor == "true" ? true:false;    
+            } else {
+                return false;
+            }
+            
+        }
+    }
 }
 </script>
 

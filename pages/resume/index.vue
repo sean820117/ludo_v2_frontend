@@ -1417,7 +1417,7 @@ export default {
     background: #FFDE00;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
 }
-.ten-block-buy-button {
+.ten-block button{
     background: transparent;
     border: none;
 }
@@ -2045,6 +2045,10 @@ a{
     font-size: 32px;
     font-weight: bold;
     padding-top:60px; 
+}
+.md-tb-box button{
+    background: none;
+    border: none;
 }
 .md-tb-box img {
     width: 240px;

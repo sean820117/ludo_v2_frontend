@@ -269,7 +269,7 @@ export default {
     }
     .yoga-assay-content-time {
         font-weight: 500;
-        padding: 0 15px;
+        padding: 0 25px;
         min-width: 90px;
         border-right: 2px #fff solid;
         font-size: 14px;
