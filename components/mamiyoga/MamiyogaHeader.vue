@@ -74,7 +74,7 @@ export default {
     right: 6vw; */
 }
 .mamiyoga-header-login-btn {
-    width: 63px;
+    width: 80px;
     height: 25px;
     border-radius:20px;
     font-weight: 500;

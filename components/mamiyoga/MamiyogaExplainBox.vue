@@ -125,7 +125,7 @@ export default {
 }
 .mamiyoga-explain-content {
     width: 90vw;
-    height: 80vh;
+    height: 65vh;
     margin: 0 auto;
     padding-top: 45px;
 }
@@ -137,7 +137,7 @@ export default {
 .mamiyoga-explain-content img {
     display: block;
     margin: 3vh auto;
-    height: 45vh;
+    height: 35vh;
     width: auto;
 }
 .mamiyoga-explain-content p {
@@ -148,7 +148,7 @@ export default {
     margin: 5vh auto 0;
 }
 .mamiyoga-explain .hooper {
-    height: 75vh;
+    height: 60vh;
 }
 .mamiyoga-explain .hooper-indicator {
     width: 7px;

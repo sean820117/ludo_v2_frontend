@@ -79,6 +79,7 @@ export default {
     font-size: 14px;
     color: #51636F;
     font-weight: 400;
+    padding-left:20px;
 }
 .mamiyoga-teach-header-login {
     
@@ -97,7 +98,7 @@ export default {
     background-repeat: no-repeat;
 }
 .mamiyoga-header-login-btn {
-    width: 63px;
+    width: 80px;
     height: 25px;
     border-radius:20px;
     font-weight: 500;

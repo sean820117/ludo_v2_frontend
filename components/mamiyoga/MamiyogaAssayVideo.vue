@@ -24,10 +24,10 @@
             Your browser does not support the video tag.
         </video>
         <div class="mamiyoga-assay-box">
-            <!-- <div>
-                <p>上にスワイプして開く</p>
-                <hr style="width:50%;border:2px solid #8699A0;margin:0 auto;border-radius: 5px;">
-            </div> -->
+            <div>
+                <p class="mamiyoga-assay-prompt">上にスワイプして開く</p>
+                <hr class="mamiyoga-assay-prompt-line">
+            </div>
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
                 <!-- <div @click="showAssayContent" v-touch:swipe="showAssayContent"> -->
                 <div @click="showAssayContent" v-touch:swipe="showAssayContent">
@@ -346,8 +346,8 @@ export default {
 }
 .mamiyoga-assay-page .mamiyoga-assay-video {
     width: 100vw;
-    /* height: calc(100vh - 145px); */
-    height: calc(100vh - 115px);
+    height: calc(100vh - 150px);
+    /* height: calc(100vh - 115px); */
 }
 
 .mamiyoga-assay-page .mamiyoga-assay-box {
@@ -364,8 +364,8 @@ export default {
     border-radius:20px; 
     padding: 0 15px 5px 15px;
     position: absolute;
-    /* top: 30px; */
-    top:0;
+    top: 35px;
+    /* top:0; */
     left: 5vw;
     /* top: -50px; */
     /* animation: uptosee 10s; */
@@ -727,6 +727,33 @@ export default {
 .mamiyoga-open-icon, .mamiyoga-close-icon, .mamiyoga-open-background {
     display: none;
 }
+.mamiyoga-assay-prompt {
+    font-size: 12px;
+    text-align: center;
+    color:#8699A0;
+    margin-bottom: 5px;
+    overflow: hidden;
+    height: 18px;
+    padding-top: 15px;
+    animation: float-text 2s ease 2s infinite;
+    opacity: 0;
+}
+@keyframes float-text {
+    0%{ padding-top: 10px;opacity: 0;margin-bottom: 8px;}
+    /* 30%{ margin-bottom: 5px;} */
+    40% { margin-bottom: 5px;}
+    /* 60%{ padding-top: 0px;opacity: .7;} */
+    70%{ padding-top: 0px;opacity: .9;}
+    80%{ padding-top: 0;opacity: 1;}
+    100%{ padding-top: 0;opacity: 0;}
+}
+.mamiyoga-assay-prompt-line {
+    width: 40%;
+    border: 2px solid #8699A0;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
 @media (min-width: 769px) {
     .mamiyoga-assay-page,.mamiyoga-assay-page .mamiyoga-assay-header,
     .mamiyoga-assay-page .mamiyoga-assay-video,

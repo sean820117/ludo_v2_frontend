@@ -5,7 +5,7 @@
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
                 <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample"> -->
-                <video controls src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L13_action3.mp4" class="teach-video-sample"></video>
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4" class="teach-video-sample"></video>
                 <!-- <div class="teach-course-info">
                     <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
                     <div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="teacher-remind">
                     <router-link :to="goAbout+'/mamiyoga/about'">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png" alt="瑜珈">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-about.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
@@ -281,9 +281,19 @@ export default {
                 this.course_descriptions = this.courses[12].poses[2].pose_description;
             }
             let tip = document.getElementById('tip-video')
+            // if (tip.requestFullscreen) {
+            //     tip.requestFullscreen();
+            // } else if (tip.mozRequestFullScreen) {
+            //     tip.mozRequestFullScreen();
+            // } else if (tip.webkitRequestFullscreen) {
+            //     tip.webkitRequestFullscreen();
+            // } else if (tip.msRequestFullscreen) { 
+            //     tip.msRequestFullscreen();
+            // }
             tip.onended = function(){
                 this.first_show = false
             }.bind(this);
+
             // let bar = document.getElementById('bar');
             // let width = 1;
             // let id = setInterval(()=>{
@@ -306,6 +316,7 @@ export default {
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
+                this.isLoading = false;
             } else if(data.status == 102) {  
                 
                 // for(var i =0; i< data.reps_wrong_tags.length; i++){
@@ -329,19 +340,22 @@ export default {
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
                             console.log("未偵測到動作");
-                            alert('wrong pose')
+                            alert('動きを検知していません')
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);
-                            this.isLoading = false;
                         } else {
                             alert('unkrown error')
                             console.log(response);
+                            this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);
                         }
                     })
                     .catch((error) => {
                         console.log("fail");
+                        alert('unknown error')
+                        this.isLoading = false;
                         clearInterval(get_result_interval);
                         clearInterval(id);
                     })
@@ -943,6 +957,28 @@ export default {
         width: 100vw;
         height: 65vh;
         margin-left: 0;
+    }
+    
+}
+@media (max-width: 1001px) and  (orientation:landscape) {
+    .video-tips {
+        display: block;
+        left: 0;
+    }
+    .video-tips-box {
+        transform: rotate(0deg);
+        top: 0;
+        left: 2vw;
+    }
+    .close-tips-box {
+        transform: rotate(0deg);
+        bottom: 50vh;
+        right: 4vw;
+    }
+    #tip-video {
+        width: auto;
+        height: 85vh;
+        margin: 7.5vh 0;
     }
 }
 </style>
