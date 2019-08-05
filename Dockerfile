@@ -15,5 +15,5 @@ RUN npm run build
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
-RUN git config --global credential.helper 'store --file ./.git-credentials'
-CMD sh start.sh
+
+CMD npm start
