@@ -177,6 +177,13 @@ export default {
                             this.video_result = response.data.result;
                             this.isLoading = false;
                             this.is_loaded = true;
+                            for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
+                                for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
+                                    if(this.video_result.reps_wrong_tags[i][j] == "1") this.video_result.reps_wrong_tags[i][j] = "摆动过小";
+                                    else if (this.video_result.reps_wrong_tags[i][j] == "2") this.video_result.reps_wrong_tags[i][j] = "摆动过大";
+                                    else if (this.video_result.reps_wrong_tags[i][j] == "0") this.video_result.reps_wrong_tags[i][j] = "姿势正确";
+                                }
+                            }
                             clearInterval(get_result_interval);
                         } else if(response.data.result.status == 102) {
                             console.log("還沒跑完");

@@ -6,9 +6,9 @@
                 Your browser does not support the video tag.
         </video> -->
         <slot name="divide-video"></slot>
-        <div class="mamiyoga-divide-every-middle">
+        <!-- <div class="mamiyoga-divide-every-middle">
             <img src="/mamiyoga/eye.svg" alt=""><p>110</p>
-        </div>
+        </div> -->
         <div class="mamiyoga-divide-every-bottom-content">
             <h5>動作步驟</h5>
             <div class="mamiyoga-divide-every-bottom">

@@ -18,28 +18,12 @@
                 <slide>
                     <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
                     <div >
-                        <img style="height:55vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-pic.png" alt="">
-                        <!-- <div v-for="(line,i) in $t('sample_video_text')"
-                        :key="i" class="tips-text">
-                            <p>{{line}}</p>
-                            <img style="width:10px;height:8px;margin:5px auto" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/down-arrow.png" alt="">
-                        </div> -->
+                        <img style="height:55vh;" :src="$t('explain_tip_img')" alt="">
+                        
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
-            <!-- <carousel :perPageCustom="[[300,1]]">
-                <slide>
-                   <h5>{{$t('explain_title_first')}}</h5>
-                   <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
-                   <p>{{$t('explain_text_first')}}</p>
-                </slide>
-                <slide>
-                    <h5>{{$t('explain_title_secord')}}</h5>
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
-                    <p>{{$t('explain_text_secord')}}</p>
-                </slide>
-            </carousel> -->
         </div>
         <div style="margin-top:8vh;">
             <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
@@ -53,13 +37,7 @@
                 <p>Skip></p>
             </div>
         </div>
-        <!-- <mamiyoga-video-sample v-if="show_video" @closeVideo="closeVideo"></mamiyoga-video-sample> -->
-        <!-- <div class="explain-video-box-contain" v-if="show_video">
-            <div class="explain-video-box">
-                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-video-1.mp4" id="sample-video">
-                </video>
-            </div>
-        </div> -->
+        
     </div>
 </template>
 
@@ -85,8 +63,8 @@ export default {
         Hooper,
         Slide,
         HooperPagination,
-        // Carousel,
-        // Slide,
+        // Carousel :()=> import('vue-carousel'),
+        // Slide:()=> import('vue-carousel'),
     },
     async mounted(){
         if(process.client){
@@ -275,6 +253,19 @@ export default {
     }
     .mamiyoga-explain .hooper-pagination {
         bottom: 5vh;
+    }
+    .video-tips {
+        width: 450px;
+    }
+    .video-tips-box {
+        transform: rotate(0deg);
+    }
+    #tip-video {
+        width: 85vh;
+    }
+    .close-tips-box {
+        transform: rotate(0deg); 
+        bottom: 20vh;
     }
 }
 
