@@ -61,12 +61,9 @@ export default {
     props:{
         course_data:Object,
     },
-<<<<<<< HEAD
-=======
     data:()=>({
         is_switched: false,
     }),
->>>>>>> yoga_china
     components: {
         MamiyogaMailHeader,
         MamiyogaBtn,
@@ -101,8 +98,6 @@ export default {
                 return '';
             }
         },
-<<<<<<< HEAD
-=======
         getJpVideoUrl(){
             if (this.course_data) {
                 return this.course_data.video_url_jp;
@@ -110,7 +105,6 @@ export default {
                 return '';
             }
         },
->>>>>>> yoga_china
         getAiTeacher(){
             if(this.course_data) {
                 return this.course_data.ai_teacher;
@@ -183,8 +177,6 @@ export default {
     font-size: 12px;
     color: #5C5C5C;
 }
-<<<<<<< HEAD
-=======
 .switch-lang input {
     display: none;
 }
@@ -210,7 +202,6 @@ export default {
 #lang-jp:checked ~ .switch-lang-label .switch-lang-btn.btn-jp {
     background: #97A8AF;
 }
->>>>>>> yoga_china
 .mamiyoga-course-bottom {
     /* background: red; */
     width: 100vw;

@@ -37,17 +37,7 @@
                 <p>Skip></p>
             </div>
         </div>
-<<<<<<< HEAD
-        <!-- <mamiyoga-video-sample v-if="show_video" @closeVideo="closeVideo"></mamiyoga-video-sample> -->
-        <!-- <div class="explain-video-box-contain" v-if="show_video">
-            <div class="explain-video-box">
-                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-video-1.mp4" id="sample-video">
-                </video>
-            </div>
-        </div> -->
-=======
         
->>>>>>> yoga_china
     </div>
 </template>
 
@@ -73,13 +63,8 @@ export default {
         Hooper,
         Slide,
         HooperPagination,
-<<<<<<< HEAD
-        // Carousel,
-        // Slide,
-=======
         // Carousel :()=> import('vue-carousel'),
         // Slide:()=> import('vue-carousel'),
->>>>>>> yoga_china
     },
     async mounted(){
         if(process.client){
@@ -269,8 +254,6 @@ export default {
     .mamiyoga-explain .hooper-pagination {
         bottom: 5vh;
     }
-<<<<<<< HEAD
-=======
     .video-tips {
         width: 450px;
     }
@@ -284,7 +267,6 @@ export default {
         transform: rotate(0deg); 
         bottom: 20vh;
     }
->>>>>>> yoga_china
 }
 
     
