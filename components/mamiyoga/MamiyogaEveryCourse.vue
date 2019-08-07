@@ -8,16 +8,26 @@
                 Your browser does not support the video tag.
             </video> -->
             <div class="iframe-container">
-                <iframe :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <!-- <iframe :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+                <iframe v-if="!is_switched" :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <iframe v-if="is_switched" :src="getJpVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
             <div class="course-bookmark">
                 <img :src="getChapterFlag" alt="">
             </div>
         </div>
-        <div class="mamiyoga-course-middle">
+        <!-- <div class="mamiyoga-course-middle">
             <p>觀看次數&nbsp;110</p>
-        </div>
+        </div> -->
         <div class="mamiyoga-course-bottom">
+            <div class="switch-lang">
+                <input type="radio" name="lang" id="lang-ch" checked>
+                <input type="radio" name="lang" id="lang-jp">
+                <div class="switch-lang-label">
+                    <label @click="is_switched = false" class="switch-lang-btn btn-ch" for="lang-ch" style="float:left;margin-right:5px;">中文</label>
+                    <label @click="is_switched = true" class="switch-lang-btn btn-jp" for="lang-jp">日文</label>
+                </div>
+            </div>
             <div class="mamiyoga-course-bottom-content first">
                 <h5>課程簡介</h5>
                 <div class="mamiyoga-course-bottom-first">
@@ -51,6 +61,9 @@ export default {
     props:{
         course_data:Object,
     },
+    data:()=>({
+        is_switched: false,
+    }),
     components: {
         MamiyogaMailHeader,
         MamiyogaBtn,
@@ -81,6 +94,13 @@ export default {
         getVideoUrl(){
             if (this.course_data) {
                 return this.course_data.video_url;
+            } else {
+                return '';
+            }
+        },
+        getJpVideoUrl(){
+            if (this.course_data) {
+                return this.course_data.video_url_jp;
             } else {
                 return '';
             }
@@ -156,6 +176,31 @@ export default {
 .mamiyoga-course-middle p {
     font-size: 12px;
     color: #5C5C5C;
+}
+.switch-lang input {
+    display: none;
+}
+.switch-lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:40px;
+    height:20px;
+    background: #BFBDBD;
+    color:#fff;
+    padding:0;
+    font-size:12px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 6px rgba(0,0,0,.3);
+}
+.switch-lang-label {
+    width: 85px;
+    height: 25px;
+    float: right;
+}
+#lang-ch:checked ~ .switch-lang-label .switch-lang-btn.btn-ch,
+#lang-jp:checked ~ .switch-lang-label .switch-lang-btn.btn-jp {
+    background: #97A8AF;
 }
 .mamiyoga-course-bottom {
     /* background: red; */

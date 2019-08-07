@@ -1,7 +1,21 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
+            <mamiyoga-teach-header v-if="!is_beta" :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
+            <div class="mamiyoga-teach-header" v-if="is_beta">
+                <div class="mamiyoga-teach-header-goback-btn">
+                    <a @click="$router.push('/mamiyoga')">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
+                    </a>
+                </div>
+                <div class="mamiyoga-teach-header-title">
+                    <h3 v-html="$t('teach_title')"></h3>
+                </div>
+                <div class="mamiyoga-teach-header-login">
+                    <button  :style="{backgroundColor:'#9BAEB2',color:'#FFF'}" class="mamiyoga-header-login-btn" @click="openRemindBox()">{{$t('header_login')}}</button>
+                </div>
+            </div>
+            
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box">
                 <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
@@ -599,6 +613,73 @@ export default {
     height: 36px;
     cursor: pointer;
 }
+
+.mamiyoga-teach-header {
+    position: relative;
+    width: 100vw;
+    height: 60px;
+    /* background: red; */
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 990;
+}
+.mamiyoga-teach-header-goback-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.mamiyoga-teach-header-goback-btn img {
+    display: block;
+    width: 20px;
+    height: 13px;
+}
+.mamiyoga-teach-header-title h3 {
+    font-size: 14px;
+    color: #51636F;
+    font-weight: 400;
+    padding-left:20px;
+}
+.mamiyoga-teach-header-login {
+    
+    height: 25px;
+}
+.mamiyoga-teach-header-login-btn {
+    width: 55px;
+    height: 25px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-style: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.mamiyoga-header-login-btn {
+    width: 80px;
+    height: 25px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-style: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.3);
+    cursor:pointer;
+}
+@media (min-width: 769px) {
+    .mamiyoga-teach-header{
+        width: 100%;
+    }
+}
+
+
+
 @media (min-width: 769px) {
     .teach-page {
         width: 100%;

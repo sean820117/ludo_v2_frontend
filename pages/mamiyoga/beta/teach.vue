@@ -315,7 +315,7 @@ export default {
         async handleVideoUpload(e) {
             this.isLoading = true;
             this.show_value = '待ちます'
-            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','zh-cn')
+            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','jp')
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
