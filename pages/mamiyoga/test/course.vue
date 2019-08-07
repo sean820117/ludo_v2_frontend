@@ -8,7 +8,6 @@
                 Your browser does not support the video tag.
             </video> -->
             <div class="iframe-container">
-                <!-- <iframe :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
                 <iframe v-if="!is_switched" :src="getVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 <iframe v-if="is_switched" :src="getJpVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
@@ -45,28 +44,47 @@
                 </div>
             </div>
             <div class="mamiyoga-go-to-divide-btn">
-                <router-link :to="'/mamiyoga/course/practice/' + goPractice"   style="text-decoration:none;">
+                <router-link :to="selectLang+'/mamiyoga/test/pose'"   style="text-decoration:none;">
                     <mamiyoga-btn btnText="動作練習" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
                 </router-link>
-                <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher">
+                <!-- <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher"> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
+// import MamiyogaEveryCourse from '~/components/mamiyoga/MamiyogaEveryCourse.vue'
 import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
+
 export default {
-    props:{
-        course_data:Object,
-    },
+    layout: 'mommiyoga',
     data:()=>({
+        courses:[],
+        course_id:'',
+        course_data:{},
+        selectLang:'',
         is_switched: false,
     }),
     components: {
+        // MamiyogaEveryCourse,
         MamiyogaMailHeader,
         MamiyogaBtn,
+    },
+    async mounted() {
+        if (process.client) {
+            if(this.$i18n.locale == 'JP') {
+                this.courses = await require('~/config/mamiyoga-course-jp');
+                this.selectLang = '/jp'
+            } else {
+                this.courses = await require('~/config/mamiyoga-course');
+                this.selectLang = ''
+            }
+            this.course_id = 1;
+            this.course_data = this.courses.find(course => this.course_id == course.id);
+            console.log(this.course_id)
+        }
     },
     computed: {
         getTitle(){
@@ -112,13 +130,13 @@ export default {
                 return '';
             }
         },
-        goPractice(){
-            if(this.course_data) {
-                return this.course_data.id;
-            } else {
-                return '';
-            }
-        },
+        // goPractice(){
+        //     if(this.course_data) {
+        //         return this.course_data.id;
+        //     } else {
+        //         return '';
+        //     }
+        // },
         getCourseIntroduction(){
             if (this.course_data) {
                 return this.course_data.course_introduction;
@@ -138,7 +156,6 @@ export default {
 </script>
 
 <style>
-
 .mamiyoga-each-course {
     width: 100vw;
     min-height: 100vh;

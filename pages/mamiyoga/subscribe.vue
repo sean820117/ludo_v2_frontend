@@ -1,32 +1,9 @@
 <template>
     <div>
         <div class="teach-page" v-if="!is_loaded && !open_explain">
-            <mamiyoga-teach-header v-if="!is_beta" :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
-            <div class="mamiyoga-teach-header" v-if="is_beta">
-                <div class="mamiyoga-teach-header-goback-btn">
-                    <a @click="$router.push('/mamiyoga')">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
-                    </a>
-                </div>
-                <div class="mamiyoga-teach-header-title">
-                    <h3 v-html="$t('teach_title')"></h3>
-                </div>
-                <div class="mamiyoga-teach-header-login">
-                    <button  :style="{backgroundColor:'#9BAEB2',color:'#FFF'}" class="mamiyoga-header-login-btn" @click="openRemindBox()">{{$t('header_login')}}</button>
-                </div>
-            </div>
-            
-            <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
+            <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <div class="teach-title-video-box">
-                <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
-                <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
-                <div class="teach-course-info">
-                    <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
-                    <div>
-                        <h3>{{course_title}}</h3>
-                        <p v-html="$t('teach_text_time')"></p>
-                    </div>
-                </div> -->
+                <video controls autoplay playsinline src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4" class="teach-video-sample"></video>
             </div>
             <div class="teach-detail-box">
                 <h6>{{$t('teach_tip_title')}}</h6>
@@ -37,36 +14,6 @@
                         <p>{{description}}</p>
                     </div>
                 </div>
-                <!-- <div class="teach-content-text">
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">1</p>
-                        <p>我們正躺，望向天花板</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">2</p>
-                        <p>把左膝抬高，兩手抱膝</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">3</p>
-                        <p>雙掌托住膝蓋，將腿往外拉開，直到能盡量伸直手臂</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">4</p>
-                        <p>現在，將右腳抬起，慢慢從墊子伸起來</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">5</p>
-                        <p>讓腳跟盡量畫大圓弧形，越大越好，再慢慢地放下</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">6</p>
-                        <p>重複這個動作3~5次，讓腰部有一點點拱起來，呈現一個圓弧型</p>
-                    </div>
-                    <div class="teach-content-li">
-                        <p class="teach-content-num">7</p>
-                        <p>然後，換邊也進行一樣的動作</p>
-                    </div>
-                </div> -->
                 <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
                     <router-link :to="goAbout+'/mamiyoga/about'">
                         <h6 style="float:left;">{{$t('about_first_title')}}</h6><p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
@@ -78,10 +25,9 @@
                     </router-link>
                     <div class="teacher-remind-content">
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
-                        <p v-html="$t('teach_teacher_remind_content')"></p>
+                        <p>{{$t('teach_teacher_remind_content')}}</p>
                     </div>
                 </div>
-                <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
                 <div v-if="!is_beta" style="position:relative">
                     <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">{{$t('teach_button_upload')}}</button>
                     <button class="teach-assay-btn" v-else>
@@ -108,7 +54,6 @@
                     <div class="star-line-box">
                         <button class="mamiyoga-assay-contact-btn"  style="width:90px;height:30px;letter-space:0;margin-top:25px;cursor:pointer;" @click="open_explain = true">
                             {{$t('teach_button_ok')}}
-                            <!-- <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>   -->
                         </button>
                     </div>
                 </mamiyoga-window-alert-box>
@@ -117,7 +62,6 @@
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="肚皮舞" >
                     </div>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="有氧舞蹈" style="margin-top: 5px;margin-left:60px;">
-                    <!-- <p style="color:#8699A0;font-size:13px;width:190px;margin:30px auto 10px;" v-html="$t('teach_assay_text_development')"></p> -->
                     <p style="letter-spacing:3px;">獲取免費課程</p>
                     <input type="text" name="email" v-model="email" placeholder="輸入電子信箱" class="beta-input-email">
                     <div style="text-align:center;font-size:13px;margin:1vh auto 0;height:20px;width:80%;color:#ff9898;">{{errors}}</div>
@@ -145,13 +89,13 @@
             </div>
         </mamiyoga-window-alert-box>
         <mamiyoga-window-alert-box v-if="is_pushed" class="beta-result-box">
-            <div class="cancel-box" @click="is_pushed = false">
+            <div class="cancel-box" @click="$router.push('/mamiyoga/teach')">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             </div>
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-gift.png" alt="" style="margin-top:40px;width:40%;">
             <p style="letter-spacing:3px;">收到您的信箱！<br><br>我們將於3~5個工作天回覆您</p>
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_pushed = false">好的</button>
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="$router.push('/mamiyoga/teach')">好的</button>
             </div>
             <p>快和朋友們分享吧！</p>
             <div class="mamiyoga-assay-share-icon-box">
@@ -208,7 +152,7 @@ export default {
         
         goAbout: '',
         is_open: false,
-        is_pushed: false,
+        is_pushed: true,
         is_beta: true,
         email: '',
         errors: '',
@@ -272,16 +216,6 @@ export default {
             this.reps_wrong_tags = res.data.reps_wrong_tags;
             this.video_result = res.data;
             this.is_loaded = true;
-            // setTimeout(()=> {
-            //     clearInterval(this.interval);
-            //     this.is_uploading = false;
-            //     this.value = 0;
-            //     this.is_showing = true;
-            // }, 1000)
-            // setTimeout(()=> {
-            //     this.$scrollTo('#result-box',"start");
-            // },1500)
-            // window.alert('Done');
         },
         handleRetryEvent(e){
             console.log("ok");
@@ -613,73 +547,6 @@ export default {
     height: 36px;
     cursor: pointer;
 }
-
-.mamiyoga-teach-header {
-    position: relative;
-    width: 100vw;
-    height: 60px;
-    /* background: red; */
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 990;
-}
-.mamiyoga-teach-header-goback-btn {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.mamiyoga-teach-header-goback-btn img {
-    display: block;
-    width: 20px;
-    height: 13px;
-}
-.mamiyoga-teach-header-title h3 {
-    font-size: 14px;
-    color: #51636F;
-    font-weight: 400;
-    padding-left:20px;
-}
-.mamiyoga-teach-header-login {
-    
-    height: 25px;
-}
-.mamiyoga-teach-header-login-btn {
-    width: 55px;
-    height: 25px;
-    border-radius:20px;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: center;
-    border-style: none;
-    box-shadow: 0px 2px 4px rgba(0,0,0,.3);
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.mamiyoga-header-login-btn {
-    width: 80px;
-    height: 25px;
-    border-radius:20px;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: center;
-    border-style: none;
-    box-shadow: 0px 2px 4px rgba(0,0,0,.3);
-    cursor:pointer;
-}
-@media (min-width: 769px) {
-    .mamiyoga-teach-header{
-        width: 100%;
-    }
-}
-
-
-
 @media (min-width: 769px) {
     .teach-page {
         width: 100%;

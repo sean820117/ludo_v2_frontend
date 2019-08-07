@@ -90,7 +90,7 @@ export default {
     position: relative;
     width: 100vw;
     height: 30vh;
-    background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-menu-background.jpg');
+    background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-menu-background-1.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center center;

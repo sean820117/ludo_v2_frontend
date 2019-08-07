@@ -12,6 +12,7 @@ export default {
   index_agree_link_2: '隱私政策',
 
   teach_title:'體驗練習',
+  teach_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4',
   teach_tip_title: '姿勢步驟',
   teach_button_upload: '開始練習',
   teach_teacher_remind: '麻美老師貼心叮嚀',
@@ -43,6 +44,7 @@ export default {
   explain_text_first: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
   explain_text_secord: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
   explain_btn_video: '觀看教學',
+  explain_tip_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-cn.png',
 
   sample_video_title:'AI助教使用步驟教學',
   // sample_video_text_1: '步驟一、按下開始練習按鈕',

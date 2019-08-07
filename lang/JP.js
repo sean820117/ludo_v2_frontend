@@ -8,6 +8,7 @@ export default {
     index_agree_text: 'ログインして本サービスを利用することで、<br>LUDOのプライバシーポリシーに同意したものとします。',
 
     teach_title:'無料版・練習',
+    teach_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4',
     teach_tip_title: 'やりかた',
     teach_button_upload: 'スタート',
     teach_teacher_remind: 'Mami先生のワンポイントアドバイス',
@@ -29,12 +30,16 @@ export default {
     teach_assay_star_title: '今回の分析結果に<br>ご満足いただけましたか',
     teach_assay_text_development: 'コンプリートレッスンは<br>九月公開予定だよ！',
     teach_assay_button_development: 'お楽しみに！',
+
+    teach_assay_chat_text: '正在加紧脚步开发中！',
+    teach_assay_chat_content: '这是个可以分享影片<br>获得匿名学习夥伴回馈的功能',
     
     explain_title_first: '正面で撮影',
     explain_title_secord: '側面で撮影',
     explain_text_first: 'AIアシスタントが正確に分析できるように、体の「正面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
     explain_text_secord: 'AIアシスタントが正確に分析できるように、体の「側面」を自撮りモードにした携帯画面に向け、約２メートル離れたところで、全身が入るように撮影しましょう。',
     explain_btn_video: 'AIの使い方動画',
+    explain_tip_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-pic.png',
 
     sample_video_title:'AIアシスタントの使い方',
     // sample_video_text_1: 'スタートボタンを押す',
