@@ -4,6 +4,7 @@
             <h1 class="title green-color">马上练习</h1>
             <p class="practice-area-content">正确的运动姿势事半功倍，<br>优秀的AI教练帮助您改善姿势！<br><br>立即上传您的深蹲影片体验</p>
             <!-- <flat-button size="medium" bgColor="#76FF00" color="black" hover="hover-fill-yellow" borderColor="#76FF00" text="上傳影片" type="file" change="handleVideoUpload"/> -->
+            <input type="text" v-model="pose_id" class="pose-id-input"/>
             <button
                 :class="'flat-button btn-medium'"
                 :style="{background: '#76FF00', borderColor: '#76FF00', color:'black'}"
@@ -71,46 +72,65 @@ export default {
     },
     methods: {
         async handleVideoUpload(e) {
-            let form = new FormData();
-            form.append('file',e.target.files[0])
-            form.append('pose_id','squat')
             this.video_url = ""
             this.is_uploading = true;
-            this.interval = setInterval(() => {
-                if (this.value >= 95) {
-                    // return (this.value = 0)
-                    clearInterval(this.interval)
-                } else {
-                    this.value += 1
-                }
-            }, 500)
-            const res = await axios.post('/apis/video-upload',form)
-            console.log(res.data)
-            this.video_url = res.data.output_video_url;
-            for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-              for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-                  if(res.data.reps_wrong_tags[i][j] == "s_e_1") res.data.reps_wrong_tags[i][j] = "低头";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_2") res.data.reps_wrong_tags[i][j] = "抬头";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_3") res.data.reps_wrong_tags[i][j] = "弯腰";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_4") res.data.reps_wrong_tags[i][j] = "膝盖过前";
-                  else if (res.data.reps_wrong_tags[i][j] == "s_e_5") res.data.reps_wrong_tags[i][j] = "动作过快";
-                  else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿势正确";
-              }
+            console.log(this.pose_id);
+            var data = await this.$poseUpload(e.target.files[0],"test",this.pose_id,'jp')
+            console.log(data.status)
+            if(!data) {
+                alert('網路錯誤')
+                this.isLoading = false;
+            } else if(data.status == 102) {  
+                let timeout_limit = 0;
+                let get_result_interval = setInterval(() => {
+                axios.post('/apis/get-pose-result',{user_id:"test",pose_id:this.pose_id,createdAt:data.createdAt})
+                    .then((response) => {
+                        // console.log(response)
+                        console.log(response.data.result.status)
+                        if (response.data.result.status == 200) {
+                            console.log(response.data.result);
+                            this.video_url = response.data.result.video_url;
+                            this.value = 100;
+                            this.is_uploading = false;
+                            this.value = 0;
+                            this.is_showing = true;
+                            setTimeout(()=> {
+                                this.$scrollTo('#result-box',"start");
+                            },1500)
+                            clearInterval(get_result_interval);
+                        } else if(response.data.result.status == 102) { 
+                            console.log("還沒跑完");
+                        } else if(response.data.result.status == 204) {
+                            console.log("未偵測到動作");
+                            alert('未偵測到動作')
+                            this.isLoading = false;
+                            clearInterval(get_result_interval);
+                        } else {
+                            alert('unkrown error')
+                            console.log(response);
+                            this.isLoading = false;
+                            clearInterval(get_result_interval);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("fail");
+                        alert('unknown error')
+                        this.isLoading = false;
+                        clearInterval(get_result_interval);
+                    })
+                    timeout_limit += 1;
+                    if (timeout_limit >=100) {
+                        alert("timeout");
+                        clearInterval(get_result_interval);
+                    }
+                }, 3000);
+                console.log('上傳成功');
+            } else {
+                console.log(data.status)
+                alert('Network error')
             }
-            console.log(res.data)
-            this.reps_wrong_tags = res.data.reps_wrong_tags;
-            this.value = 100;
-
-            setTimeout(()=> {
-                clearInterval(this.interval);
-                this.is_uploading = false;
-                this.value = 0;
-                this.is_showing = true;
-            }, 1000)
-            setTimeout(()=> {
-                this.$scrollTo('#result-box',"start");
-            },1500)
-            // window.alert('Done');
+            // this.isLoading = false;
+            // this.is_loaded = true;
         },
     },
     computed: {
@@ -123,6 +143,7 @@ export default {
         is_uploading:false,
         is_showing: false,
         reps_wrong_tags:[],
+        pose_id:"yoga_27",
     }),
     beforeDestroy () {
         clearInterval(this.interval)
@@ -147,6 +168,11 @@ export default {
 </script>
 
 <style>
+.pose-id-input {
+  border-color: white;
+  color: white;
+  margin-bottom: 10px;
+}
 .practice-area-bg-container {
     /* width:100vw; */
     /* height: 100vh; */
