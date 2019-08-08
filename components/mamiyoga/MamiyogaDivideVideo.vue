@@ -1,29 +1,29 @@
 <template>
     <div class="mamiyoga-divide-block">
-        <input v-for="pose in getPoses" :key="pose.pose_id" :name="pose" :checked="pose.pose_id == 'first'"
-        type="radio" class="labels" :class="pose.pose_id+'-divide'" :id="pose.pose_id">
+        <input v-for="pose in getPoses" :key="pose.pose_id" :name="pose" :checked="pose.pose_id == current_pose_id"
+        type="radio" class="labels" :class="pose.pose_id+'-divide'" :id="pose.pose_id" v-model="current_pose_id" :value="pose.pose_id">
 
         <div class="mamiyoga-divide-select">
             <div class="divide-label-box">
-                <label :for="pose.pose_id" :class="pose.pose_id+'-label'" 
+                <label :for="pose.pose_id" :class="`${pose.pose_id}-label ${pose.pose_ai ? 'label-with-ai':''}`" 
                 v-for="(pose,i) in getPoses" :key="i" >
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" > 動作{{i+1}}
                 </label>
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
-            class="mamiyoga-divide-block-detail" :class="pose.pose_id" 
+            class="mamiyoga-divide-block-detail" :class="pose.pose_id" :current_pose_id="current_pose_id"
             @handleCourseVideoUpload="handleCourseVideoUpload" :ai_teacher="pose.pose_ai"
             :course_data="course_data">
                 <div slot="divide-title">
-                    <h4 v-if="!pose.pose_ai">{{pose.pose_brief}}</h4>
-                    <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div>
+                    <h4>{{pose.pose_brief}}</h4>
+                    <!-- <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div> -->
                 </div>
-                <div slot="divide-video" style="position:relative">
+                <div slot="divide-video" style="position:relative" @click="is_played = true">
                     <video class="mamiyoga-divide-every-video" controls>
                         <source :src="pose.pose_video" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="mamiyoga-course-intro-title" v-if="pose.pose_ai && !is_played">
+                    <!-- <div class="mamiyoga-course-intro-title" v-if="pose.pose_ai && !is_played">
                         <div class="mommiyoga-course-photo-img" v-if="!is_see">
                             <div class="mamiyoga-course-photo-by" v-show="!pose.is_front"></div>
                             <div class="mamiyoga-course-photo-by" v-show="pose.is_front"></div>
@@ -32,7 +32,7 @@
                             <h5>{{pose.pose_brief}}</h5>
                             <p>{{$t('course_time_text')}}</p><p>{{getRecordTime}}</p><p>&nbsp;秒</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div slot="divide-text">
                     <div class="mamiyoga-course-bottom-second-content-li" 
@@ -54,6 +54,28 @@
 import MamiyogaDivideEveryBlock from '~/components/mamiyoga/MamiyogaDivideEveryBlock.vue';
 
 export default {
+    mounted(){
+        if(process.client) {
+            if(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]){
+                this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+            }
+            console.log(this.current_pose_id);
+        }
+    },
+    data:()=>({
+        is_see: false,
+        is_played: false,
+        current_pose_id: 'first',
+        current_pose:[],
+    }),
+    watch: {
+        // 如果 `question` 发生改变，这个函数就会运行
+        current_pose_id: function (new_value, old_value) {
+            sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = this.current_pose_id;
+            console.log(`sessionStorage["course_${this.course_data.id}_current_pose_id"]`);
+            console.log(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]);
+        }
+    },
     props:{
         course_data:Object,
         have_ai: false,
@@ -63,8 +85,17 @@ export default {
     },
     methods:{
         handleCourseVideoUpload(e){
+            let target_pose = this.course_data.poses.find(pose => this.current_pose_id == pose.pose_id);
+            if(target_pose) {
+                if (target_pose.input_id) {
+                    e.input_id = target_pose.input_id;
+                }
+            }
             this.$emit('handleCourseVideoUpload',e)
-        }
+        },
+        // showRemind(){
+        //     this.$emit('showRemind')
+        // }
     },
     computed:{
         getPoses(){
@@ -103,6 +134,9 @@ export default {
     box-shadow: 2px 2px 7px rgba(0,0,0,.3);
     position: relative;
 }
+/* .label-with-ai {
+    background-color:#24798F;
+} */
 .divide-label-box img {
     position: absolute;
     top: -15px;
@@ -116,6 +150,11 @@ export default {
 .second-divide:checked ~ .mamiyoga-divide-select .second-label,
 .third-divide:checked ~ .mamiyoga-divide-select .third-label {
     background-color: #97A8AF;
+}
+.first-divide:checked ~ .mamiyoga-divide-select .first-label.label-with-ai,
+.second-divide:checked ~ .mamiyoga-divide-select .second-label.label-with-ai,
+.third-divide:checked ~ .mamiyoga-divide-select .third-label.label-with-ai {
+    background-color:#24798F;
 }
 .first-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.first,
 .second-divide:checked ~ .mamiyoga-divide-select .mamiyoga-divide-block-detail.second,

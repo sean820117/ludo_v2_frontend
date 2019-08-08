@@ -64,6 +64,7 @@ export default {
   start_experience_text: '觀看完教學是否更加清楚流程了呢<br><br>開啟相機<br>我們將記錄您的動作<br>並交給AI助教分析<br><br>準備好了就開始吧',
   start_experience_btn_1: '開啟相機',
   start_experience_btn_2: '再看一次',
+  start_experience_uptext:'分析中．．．<br>等待期間可以觀看麻美老師的瑜珈建議～',
   start_experience_btn_3: '觀看結果',
 
   menu_nav_text_teacher:'講師介紹',
