@@ -1,13 +1,7 @@
 <template>
 <div>
-    <div v-if="$mq === 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}">
+    <!-- <div v-if="$mq === 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}">
         <input type="radio" id="checkseemore" style="position: fixed;" :checked="seemore_check_or_not"/>
-        <!-- <div class="banner">
-            <img class="title" src="/resume/resume-logo.svg"/>
-            
-            <div v-if="is_login" class="login" @click="$router.push('/logout')" >登出</div>
-            <div v-else class="login" @click="$router.push('/resume/login')" >登入</div>
-        </div> -->
         <div class="first-block" v-touch:swipe="dragFirstBlock" @scroll="dragFirstBlock" v-touch:moved="dragFirstBlock" >
             <img class="earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
@@ -352,11 +346,6 @@
     </div>
     <div v-else :style="{display: $mq !== 'desktop' ? 'none' : 'block'}" class="md-body">
         <input type="radio" id="checkseemore" :checked="seemore_check_or_not" />
-        <!-- <div class="md-banner">
-            <img class="md-title" src="/resume/resume-logo.svg"/>
-            <img class="md-title-blue" src="/resume/resume-logo.svg"/>
-            <div class="md-login" @click="$router.push(is_login ? '/logout' : '/resume/login')" >{{ is_login ? '登出' : '登入'}}</div>
-        </div> -->
         <div class="md-first-block" @scroll="dragFirstBlock" >
             <img class="md-earphone" src="/resume/earphone.png" />
             <img class="earphone2" src="/resume/earphone2.png" />
@@ -585,9 +574,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="md-phone-block">
-                <div class="md-phoneimg"></div>
-            </div> -->
             <div class="md-ten-block">
                 <div class="md-nb-title">課程與評測規劃者</div>
                 <img class="md-nb-fly" src="/resume/Group 153-2.png" />
@@ -644,6 +630,261 @@
                 </footer>
             </router-link>
         </div>
+    </div> -->
+    <div v-if="$mq == 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}"></div>
+    <div v-else :style="{display: $mq !== 'desktop' ? 'none' : 'block'}" class="md-body">
+        <section class="md-first-block">
+            <div class="md-first-block-container">
+                <div class="md-first-title">
+                    <p class="md-blue-title">你的履歷<br>經得起考驗嗎？</p>
+                    <p class="md-blue-text" style="margin-top: 25px;">履歷盲點評測 + 60 分鐘求職教戰<br>讓你的履歷與求職，學完即做完</p>
+                    <button class="md-first-btn">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-btn.png" alt="">
+                    </button>
+                </div>
+            <img style="height:570px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-img-1.png" alt="">
+            </div>
+        </section>
+        <section class="md-second-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">在台灣，當你應徵一個職位<br>你必須要先能夠...</p>
+                <div class="md-second-li-block">
+                    <div class="md-second-li">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-second-img-1.png" alt="">
+                        <p class="md-gray-text">在 30 封履歷中<br>搶得目光、脫穎而出</p>
+                    </div>
+                    <div class="md-second-li">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-second-img-2.png" alt="">
+                        <p class="md-gray-text">在 180 秒內<br>讓面試官抓到你履歷重點</p>
+                    </div>
+                    <div class="md-second-li">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-second-img-3.png" alt="">
+                        <p class="md-gray-text">能夠耐看超過 5 分鐘<br>讓面試官對你產生足夠期待</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="md-third-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">你的履歷還能更好!<br>現在就馬上補足</p>
+                <p class="md-gray-text" style="margin-top:15px;line-height:35px;">我們分析了 200,000 份中文履歷，打造出台灣第一個<br>繁體中文履歷盲點評測 AI，現在就讓我們給你客製化建議!</p>
+                <p class="md-blue-text" style="margin-top:45px;margin-bottom:15px;"><b>立即試用</b>&nbsp;請在下方輸入一段你的工作經驗</p>
+                <ai-judgment :ai_id="true" :current_chapter="is_ui_config_loaded ? ui_config.chapters[3] : ''"/>
+                <div style="display: flex;justify-content:center;">
+                    <div>
+                        <p class="md-gray-text">｜<b>工作經歷評測</b></p>
+                    </div>
+                    <div>
+                        <p class="md-gray-text">｜自我介紹評測｜</p>
+                        <p class="md-third-text">(訂閱後即可使用)</p>
+                    </div>
+                    <div>
+                        <p class="md-gray-text">能力描述評測</p>
+                        <p class="md-third-text">(訂閱後即可使用)</p>
+                    </div>
+                    <div>
+                        <p class="md-gray-text">｜課外經歷評測｜</p>
+                        <p class="md-third-text">(訂閱後即可使用)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="md-four-block">
+
+        </section>
+        <section class="md-five-block">
+            <div class="md-first-block-container">
+                <img style="height: 550px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-five-img-1.png" alt="">
+                <div>
+                    <b style="color:#969696;font-size:31px;line-height:50px;">林佳瑾 顧問</b>
+                    <p style="color:#969696;font-size:24px;line-height:50px;">現任跨國信託機構<br>跨國餐飲機構人資專案顧問<br>多年來協助多種企業<br>評估上千人的面試與履歷<br>1,500 小時個案溝通與輔導經驗</p>
+                </div>
+            </div>
+        </section>
+        <section class="md-six-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">學習遇到瓶頸？<br>十堂課程，專家立刻幫你解惑！</p>
+                <p class="md-gray-text" style="margin-top:15px;line-height:40px;">讓狂人飛專業編輯團隊<br>來告訴你如何優化履歷與求職策略!</p>
+                <div style="margin-top: 110px;">
+                    <div class="md-six-block-line">
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第一堂課<br>面試官思維分析</p>
+                            <div class="md-six-block-line-text">
+                            1. 求職前，你該知道面試官如何看履歷！<br>
+                            2. 履歷隱藏四大指標：信度、價值、包容、願景<br>
+                            3. 如何透過舉例與經驗來呈現能力極限
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第二堂課<br>選擇正確平台與邏輯</p>
+                            <div class="md-six-block-line-text">
+                            1. 從選平台到職缺說明，教你做前期準備功課<br>
+                            2. 求職平台介紹與優劣解析<br>
+                            3. 目標產業的前景分析與薪水差異
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第三堂課<br>自我介紹標準公式</p>
+                            <div class="md-six-block-line-text">
+                            1. 價值觀的定義：你看見的問題與你如何改變<br>
+                            2. 自我介紹關鍵公式，四大元素留下深刻印象
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-six-block-line">
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第四堂課<br>有效撰寫工作經歷</p>
+                            <div class="md-six-block-line-text">
+                            1. 工作經驗的撰寫方式<br>
+                            2. 三條經歷撰寫，有效呈現經驗質與量<br>
+                            3. 寫出面試官心中，最有感的實際績效數字
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第五堂課<br>志工與社團經驗呈現</p>
+                            <div class="md-six-block-line-text">
+                            1. 將重心轉移到學習成效<br>
+                            2. 將社團經歷做為跳板，接軌職場需求
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第六堂課<br>寫出能力的公信力</p>
+                            <div class="md-six-block-line-text">
+                            1. 從職缺說明，找出職位能力需求<br>
+                            2. 從公司需求找出能力最佳操作定義
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-six-block-line">
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第七堂課<br>利用學歷與個人成就</p>
+                            <div class="md-six-block-line-text">
+                            1. 讓研究與主修科目強化價值觀與專業度<br>
+                            2. 強化關係鍊，讓校友人脈成為你的優勢<br>
+                            3. 如何有自信但不自傲的陳述成就
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第八堂課<br>自傳五大向度分析</p>
+                            <div class="md-six-block-line-text">
+                            1. 人資如何解讀自傳<br>
+                            2. 自傳需滿足的五大向度
+                            </div>
+                        </div>
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第九堂課<br>面試常見題目解析</p>
+                            <div class="md-six-block-line-text">
+                            1. 『最挫折經驗』挫折容忍與玻璃心<br>
+                            2. 『未來的願景』規劃與資源整合<br>
+                            3. 『優點與缺點』自我覺察與問題解決<br>
+                            4. 『情境題面試』分析與錯誤歸責<br>
+                            5. 『還有什麼想問的嗎』好奇心與主動性
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-six-block-line" style="border:none;">
+                        <div class="md-six-block-line-block">
+                            <p class="md-six-block-line-title">第十堂課<br>提高求職信開信率</p>
+                            <div class="md-six-block-line-text">
+                            1. 提高開信率的求職信撰寫<br>
+                            2. 求職信撰寫的四個段落<br>
+                            3. 求職信常見錯誤解析
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="md-seven-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">台灣第一堂智能回饋課程<br>為求職若渴的你打造!</p>
+                <div class="md-seven-block-line">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-1.png">
+                    <div>
+                        <p class="md-seven-block-line-title">想要找實習</p>
+                        <p class="md-seven-block-line-text">如果希望累積經驗，實習是個再好不過的選項，但要怎麼讓自己脫穎而出呢？<br>這堂課的內容，就是為了確保掌握所有得分的環節，用細節堆疊出你的價值跟潛力。</p>
+                    </div>
+                </div>
+                <div class="md-seven-block-line">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-2.png">
+                    <div>
+                        <p class="md-seven-block-line-title">新鮮人求職</p>
+                        <p class="md-seven-block-line-text">沒有光鮮亮麗的經歷，該如何在茫茫畢業生中脫穎而出呢？<br>使用我們課程裡的 AI 評分系統，讓你的履歷分數清晰的呈現在你面前！</p>
+                    </div>
+                </div>
+                <div class="md-seven-block-line">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-3.png">
+                    <div>
+                        <p class="md-seven-block-line-title">準備要轉職</p>
+                        <p class="md-seven-block-line-text">工作幾年後開始在物色下一段職涯，以及更好的薪資待遇嗎？<br>履歷評測系統可以幫你檢查你是否有好好的完整的闡述這幾年的工作成效！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="md-eight-block">
+
+        </section>
+        <section class="md-nine-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">有時候，選擇比努力更重要</p>
+                <p class="md-gray-text" style="margin-top:10px;">我們都願為求職努力，但看了很多教學<br>我們卻無法確認，自己是否真的學會</p>
+                <div style="display: flex;align-items:center;justify-content:space-between;margin-top:70px;">
+                    <div class="md-nine-block-box" style="background-color:#0090FF;">
+                        <div>
+                            <p class="md-nine-block-box-title" style="color:white;">履歷範本</p>
+                            <p class="md-gray-text" style="color:white;line-height:50px;font-weight: 500;">-顧問與履歷精華<br>-10 秒知道好壞<br>-每天不到 9 元</p>
+                        </div>
+                    </div>
+                    <div class="md-nine-block-box">
+                        <div>
+                            <p class="md-nine-block-box-title">面試顧問</p>
+                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-單一顧問老師<br>-取決於顧問時間<br>-NT 3,000/時↑</p>
+                        </div>
+                    </div>
+                    <div class="md-nine-block-box">
+                        <div>
+                            <p class="md-nine-block-box-title">線上課程</p>
+                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-單一專家老師<br>-回饋頻次不定<br>-NT 1,200/堂↑</p>
+                        </div>
+                    </div>
+                    <div class="md-nine-block-box">
+                        <div>
+                            <p class="md-nine-block-box-title">免費資源</p>
+                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-好壞參差不齊<br>-沒有回饋<br>-大量時間成本</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="md-ten-block">
+            <div class="md-first-block-container">
+                <div>
+                    <p style="font-size: 72px;color:#535353;font-weight:bolder;">每天不到 9 元</p>
+                    <p style="font-size: 34px;color:#535353;margin-top:15px;">三個月內讓你通過 HR 考驗<br>掌握未來不迷惘</p>
+                </div>
+                <div style="position:relative;height:550px;width:500px;">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-ten-img-1.png">
+                </div>
+            </div>
+        </section>
+        <section class="md-eleven-block">
+            <div style="max-width: 1100px;margin: 0 auto;">
+                <p class="md-gray-title">課程搶先看!</p>
+                <p class="md-gray-title">常見問題</p>
+                <p class="md-eleven-block-title">Q1: 請問履歷範本在哪上課？</p>
+                <p class="md-eleven-block-text">履歷範本為『線上課程』，當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。 </p>
+                <p class="md-eleven-block-title">Q2: 課程可以看幾次？</p>
+                <p class="md-eleven-block-text">課程為單季學習制，在訂購後的這一季內都可以一直重複觀看。 </p>
+                <p class="md-eleven-block-title">Q3： NT299 元/季學習服務之後會有更新內容嗎？</p>
+                <p class="md-eleven-block-text">會的，未來我們將會持續更新所有職場必備技能的線上學習服務（課程+評測），從商用書信到溝通表達等內容，完整包覆 360 天職場需求。為回饋狂人<br>飛鐵粉，即日起到 2019/8/3 前訂閱，即可以 NT299 元/季的價格訂購（原價為 NT499 元/季)。  </p>
+                <p class="md-eleven-block-title">Q4: 會有真人幫我把我的履歷改到好嗎？</p>
+                <p class="md-eleven-block-text">不會，給你魚吃，不如給你一把釣竿。我們將透過 AI 人工智能為您檢測，並針對不足之處，教你合適的撰寫方式。  </p>
+                <p class="md-eleven-block-title">Q5: 付款方式</p>
+                <p class="md-eleven-block-text">讓狂人飛與日商恩沛股份有限公司提供之「AFTEE」後支付服務獨家合作，是收到商品後才付款的支付方式。<br>不須輸入繁瑣的個人資料，也不須登錄會員即可立即免費使用！<br>將於下單後 24 小時內透過簡訊寄送繳費通知，您可透過便利商店代收服務或 ATM 繳費等方式完成付款手續。<br>瞭解更多>> https://lihi.vip/JpeZj </p>
+                <p class="md-eleven-block-title">Q6: 其他問題</p>
+                <p class="md-eleven-block-text">請來信至 contact@flyingcrazyer.com ，將有專人協助為您服務。 </p>
+            </div>
+        </section>
     </div>
 </div>
 </template>
@@ -653,6 +894,8 @@ import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import VueMq from 'vue-mq';
 import ResumeFooter from "~/components/resume/ResumeFooter.vue";
+import AiJudgment from '~/components/resume/AiJudgment.vue';
+
 
 Vue.use(Vue2TouchEvents);
 Vue.use(VueMq, {
@@ -936,11 +1179,183 @@ export default {
     },
     components: {
         ResumeFooter,
+        AiJudgment,
     },
 }
 </script>
 <style>
-.videoplay iframe {
+.md-blue-title {
+    font-size: 50px;
+    font-weight: bolder;
+    color: #0090FF;
+}
+.md-blue-text {
+    font-size: 24px;
+    color: #0090FF;
+}
+.md-gray-title {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #535353;
+}
+.md-gray-text {
+    font-size: 24px;
+    color: #535353;
+}
+.md-first-block {
+    margin-top: 55px;
+    width: 100vw;
+    height: 570px;
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-first-img.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.md-first-block-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+.md-first-btn {
+    border: none;
+    background: none;
+    margin-top: 45px;
+}
+
+.md-second-block {
+    height: 500px;
+    background: white;
+    padding-top: 60px;
+}
+.md-second-li-block {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+.md-second-li img {
+    height: 95px;
+    margin-bottom: 45px;
+}
+
+.md-third-block {
+    height: 860px;
+    background-color: #F7F7F7;
+    padding-top: 45px;
+}
+.md-third-text {
+    text-align: center;
+    color: #7E7E7E;
+    font-size: 16px;
+}
+.md-four-block {
+    height: 400px;
+}
+.md-five-block {
+    height: 550px;
+    background-color: #F7F7F7;
+}
+
+.md-six-block {
+    height: 1470px;
+    padding-top: 120px;
+    background-color: white;
+}
+.md-six-block-line {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    margin-top: 30px;
+    border-bottom: solid 1px #707070;
+}
+.md-six-block-line-block {
+    width: 30%;
+}
+.md-six-block-line-title {
+    color: #0090FF;
+    font-size: 21px;
+    font-weight: bolder;
+    margin-bottom: 35px;
+    line-height: 30px;
+}
+.md-six-block-line-text {
+    color: #7E7E7E;
+    font-size: 14px;
+    line-height: 25px;
+    
+}
+.md-seven-block {
+    height: 1000px;
+    padding-top: 100px;
+    background-color:#F7F7F7;
+}
+.md-seven-block-line {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.md-seven-block img {
+    height: 210px;
+}
+.md-seven-block-line-title {
+    font-size: 30px;
+    color: #0090FF;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+.md-seven-block-line-text {
+    font-size: 22px;
+    color: #7E7E7E;
+}
+.md-eight-block {
+    height: 400px;
+    background-color: #0090FF;
+}
+.md-nine-block {
+    height: 650px;
+    background-color: white;
+    padding-top: 85px;
+}
+.md-nine-block-box {
+    background-color: #fff;
+    width: 23%;
+    height: 230px;
+    /* border: 1px solid #F2F2F2; */
+    box-shadow: 0px 8px 30px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+.md-nine-block-box-title {
+    font-size: 30px;
+    color:#7E7E7E;
+    line-height: 50px;
+    font-weight: 500;
+}
+.md-ten-block {
+    height: 550px;
+    background: #FFDE00;
+    /* padding-top: 100px; */
+}
+.md-ten-block img {
+    height: 620px;
+    position: absolute;
+    bottom: 0;
+}
+.md-eleven-block {
+    height: 1500px;
+}
+.md-eleven-block-title {
+    font-size: 24px;
+    color:#0090FF;
+    margin:20px 0 15px;
+}
+.md-eleven-block-text {
+    font-size: 16px;
+    color: #535353;
+}
+/* .videoplay iframe {
     width: 90vw;
     height: 50.625vw;
 }
@@ -1029,7 +1444,6 @@ export default {
 .slogan{
     position: absolute;
     top: 36%;
-    /* width: 308px; */
     left: calc(50% - 154px);
 }
 .slogan div{
@@ -1082,17 +1496,6 @@ export default {
 #checkseemore:checked ~ .first-block .seemore{
     display: none;
 }
-/* #checkseemore:checked ~ .banner{
-    background: #FFF;
-    color:#0090FF;
-    box-shadow: unset;
-}
-#checkseemore:checked ~ .banner .login{
-    color:#0090FF;
-}
-#checkseemore:checked ~ .banner .title, .banner .title-blue{
-    display:none;
-} */
 #checkseemore:checked ~ .scrolldown{
     display:block;
 }
@@ -1100,7 +1503,6 @@ export default {
     position:relative;
     color:#007CDC;
     width: 100%;
-    /* height: 102px; */
     text-align: center;
     font-size: 27px;
     font-weight: 500;
@@ -1471,7 +1873,6 @@ a{
     position: absolute;
     width: 20px;
 	height: 20px;
-	/* background: #fff; */
     border-radius: 10px;
     top:40px;
     right: 50px;
@@ -1532,8 +1933,8 @@ a{
     font-size: 13px;
     font-weight:inherit;
     line-height: 20px;
-}
-.md-body {
+} */
+/* .md-body {
     display: none;
 }
 .md-banner{
@@ -1572,7 +1973,6 @@ a{
     background-repeat: no-repeat;
     overflow-x: hidden;
     transition: height 200ms linear;
-    /* overflow-y: hidden; */
 }
 .md-seemore{
     position: absolute;
@@ -1626,20 +2026,8 @@ a{
     font-weight: 100;
 }
 #checkseemore:checked ~ .md-first-block {
-    /* display: none; */
     height: 0px;
 }
-/* #checkseemore:checked ~ .md-banner{
-    background: #FFF;
-    color:#0090FF;
-    box-shadow: unset;
-}
-#checkseemore:checked ~ .md-banner .md-login{
-    color:#0090FF;
-}
-#checkseemore:checked ~ .md-banner .md-title{
-    display:none;
-} */
 #checkseemore:checked ~ #checkseemore {
     display: none !important;
 }
@@ -1647,7 +2035,6 @@ a{
     position:relative;
     color:#007CDC;
     width: 100%;
-    /* height: 102px; */
     text-align: center;
     font-size: 34px;
     font-weight: 500;
@@ -1934,7 +2321,6 @@ a{
 } 
 .md-nine-block{
     width: 750px;
-    /* height: 450px; */
     background: #0090FF;
     font-weight: 400;
     color: white;
@@ -1951,7 +2337,6 @@ a{
 }
 .md-eb-content-box {
     width: 88%;
-    /* height: 70%; */
     margin: 0 6%;
 }
 .md-eb-content-input-box {
@@ -2054,6 +2439,6 @@ a{
     width: 240px;
     height: auto;
     margin-top:10px; 
-}
+} */
 
 </style>
