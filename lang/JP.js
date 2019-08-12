@@ -55,7 +55,7 @@ export default {
     sample_video_remind_1: '※もう一度見たい時は',
     sample_video_remind_2: 'を押してね',
     sample_video_btn: '了解、始めよう',
-    start_experience_uptext: '分析中、、、<br>その間にママへの一言アドバイス',
+    start_experience_uptext: 'その間にママへの一言アドバイス<br><br>',
     start_experience_btn_3: '採点結果を見る',
 
     start_experience_text: '練習のやり方、わかった？<br><br>スマホのカメラを起動し<br>あなたの練習を今から記録します<br>ビデオをAIアシスタントが分析します<br><br>準備ができたらカメラを起動してね！',
