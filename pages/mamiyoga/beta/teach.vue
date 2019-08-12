@@ -314,7 +314,7 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            this.show_value = '待ちます'
+            this.show_value = 'チェック中'
             var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','jp')
             console.log(data.status)
             if(!data) {
