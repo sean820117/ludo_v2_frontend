@@ -23,9 +23,9 @@ export default {
     background: #FFF;
     height: 55px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 .project_header .login{
     float:right;
@@ -43,7 +43,7 @@ export default {
 @media (min-width: 900px) {
     .project_header .title-blue{
         margin-left: 12vw !important;
-        height: 60% !important ;
+        height: 100% !important ;
         margin-top: 0px !important;
     }
     .project_header .login{

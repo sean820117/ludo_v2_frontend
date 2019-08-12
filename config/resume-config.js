@@ -1,7 +1,7 @@
 module.exports = {
     project_name:'resume',
     title:'讓履歷飛 - ',
-    logo: "https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/header-logo.svg",
+    logo: "/resume/resume-logo.svg",
     base_color: '#0090FF',
     fbq_id: '438072703402139',
     view: {
