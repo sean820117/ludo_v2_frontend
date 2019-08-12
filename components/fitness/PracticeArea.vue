@@ -123,6 +123,7 @@ export default {
                         alert("timeout");
                         clearInterval(get_result_interval);
                     }
+                    this.value += 3;
                 }, 3000);
                 console.log('上傳成功');
             } else {
