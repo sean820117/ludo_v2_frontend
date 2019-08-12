@@ -14,7 +14,7 @@
             <div class="first-series-container mamiyoga-all-course">
                 <h5>{{$t('menu_content_text_first')}}</h5>
                 <mamiyoga-course-block v-for="rectify in getRectifys" :key="rectify.id"
-                :bgImage="rectify.preview_img" blockColor="white" 
+                :bgImage="rectify.preview_img" blockColor="white" :poseSrc="rectify.info_img"
                 :blockTitle="rectify.title" :unitSrc="rectify.chapter_flag" :selectCourse="rectify.id"
                 :goCourse="rectify.id"
                 ></mamiyoga-course-block>
@@ -23,7 +23,7 @@
             <div class="second-series-container mamiyoga-all-course">
                 <h5>{{$t('menu_content_text_second')}}</h5>
                 <mamiyoga-course-block v-for="alleviate in getAlleviates" :key="alleviate.id"
-                :bgImage="alleviate.preview_img" blockColor="white" 
+                :bgImage="alleviate.preview_img" blockColor="white" :poseSrc="alleviate.info_img"
                 :blockTitle="alleviate.title" :unitSrc="alleviate.chapter_flag" :goCourse="alleviate.id"
                 ></mamiyoga-course-block>
                 
@@ -31,7 +31,7 @@
             <div class="third-series-container mamiyoga-all-course">
                 <h5>{{$t('menu_content_text_third')}}</h5>
                 <mamiyoga-course-block v-for="beauty in getBeautys" :key="beauty.id"
-                :bgImage="beauty.preview_img" blockColor="white" 
+                :bgImage="beauty.preview_img" blockColor="white" :poseSrc="beauty.info_img"
                 :blockTitle="beauty.title" :unitSrc="beauty.chapter_flag" :goCourse="beauty.id"
                 ></mamiyoga-course-block>
                 
@@ -39,7 +39,7 @@
             <div class="four-series-container mamiyoga-all-course">
                 <h5>{{$t('menu_content_text_four')}}</h5>
                 <mamiyoga-course-block v-for="blend in getBlends" :key="blend.id"
-                :bgImage="blend.preview_img" blockColor="white" 
+                :bgImage="blend.preview_img" blockColor="white" :poseSrc="blend.info_img"
                 :blockTitle="blend.title" :unitSrc="blend.chapter_flag" :goCourse="blend.id"
                 ></mamiyoga-course-block>
                 

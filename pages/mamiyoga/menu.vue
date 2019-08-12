@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="course-mail-icon">
-                <img src="/mamiyoga/menu-envelope.svg" alt="">
+                <img style="width:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
             </div>
         </div>
         <div class="course-menu-box">

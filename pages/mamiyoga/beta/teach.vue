@@ -314,7 +314,7 @@ export default {
     methods: {
         async handleVideoUpload(e) {
             this.isLoading = true;
-            this.show_value = '待ちます'
+            this.show_value = 'チェック中'
             var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','jp')
             console.log(data.status)
             if(!data) {
@@ -343,7 +343,7 @@ export default {
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
                             console.log("未偵測到動作");
-                            alert('動きを検知していません')
+                            alert('動きを検知できません')
                             this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);

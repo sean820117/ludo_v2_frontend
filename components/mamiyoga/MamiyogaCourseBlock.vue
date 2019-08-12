@@ -7,7 +7,7 @@
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
                 <h4 v-html="blockTitle"></h4>
-                <div class="course-block-detail">
+                <div class="course-block-detail" :style="{backgroundImage:'url('+poseSrc+')'}">
                     <!-- <div class="course-block-icon">
                         <img src="/mamiyoga/course-block-icon-pose.svg" alt="">
                         <p>{{poseText}}個姿勢</p>
@@ -20,18 +20,18 @@
                         <img src="/mamiyoga/course-block-icon-ai.svg" alt="">
                         <p>{{aiText}}個AI練習</p>
                     </div> -->
-                    <div class="course-block-icon">
+                    <!-- <div class="course-block-icon">
                         <img :src="poseSrc" alt="">
                         
-                    </div>
-                    <div class="course-block-icon">
+                    </div> -->
+                    <!-- <div class="course-block-icon">
                         <img :src="timeSrc" alt="">
                         
                     </div>
                     <div class="course-block-icon">
                         <img :src="aiSrc" alt="">
                         
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -108,12 +108,15 @@ export default {
 }
 .course-block-detail {
     /* background: green; */
-    width: 45vw;
+    width: 35vw;
     height: 7vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
 }
 .course-block-icon {
     float: left;
@@ -150,9 +153,10 @@ export default {
     }
     .course-block-title {
         width: 90%;
+        height:100%;
     }
     .course-block-detail {
-        width: 50%;
+        width: 40%;
     }
 
 }

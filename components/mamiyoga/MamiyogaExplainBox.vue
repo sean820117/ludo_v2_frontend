@@ -19,11 +19,11 @@
                     <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
                     <div >
                         <img style="height:55vh;" :src="$t('explain_tip_img')" alt="">
-                        
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
+            
         </div>
         <div style="margin-top:8vh;">
             <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
@@ -56,6 +56,7 @@ import 'hooper/dist/hooper.css';
 export default {
     data:()=>({
         show_video: false,
+    
     }),
     components: {
         MamiyogaBtn,
