@@ -19,7 +19,8 @@
                 <!-- <button class="teach-assay-btn" v-if="ai_teacher">
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上傳影片</label>  
                 </button> -->
-                <button class="teach-assay-btn" v-if="ai_teacher" @click="show_remind = true">上傳影片</button> 
+                <button class="teach-assay-btn" v-if="ai_teacher" @click="show_remind = true">開始練習</button>
+                <button class="teach-assay-btn" v-if="ai_teacher" @click="openRecordBox">練習記錄</button> 
             </div>
         </div>
         <mamiyoga-window-alert-box v-if="show_remind">
@@ -29,7 +30,7 @@
             <p style="color:#FF9898;font-size:14px;font-weight:bold;">建議使用</p>
             <div class="upload-remind-box" :style="{backgroundImage:'url('+getBackground+')'}"></div>
             <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top:40px;width:40%;"> -->
-            <p style="color:#24798F;font-size:13px;font-weight:bold;margin:20px 0 15px;">{{getRemind}}</p>
+            <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
             <div class="star-line-box">
                 <!-- <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button> -->
                 <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
@@ -75,7 +76,9 @@ export default {
             this.$emit('handleCourseVideoUpload',e)
             this.show_remind = false
         },
-        
+        openRecordBox(){
+            this.$emit('openRecordBox')
+        }
         // showRemind(){
         //     this.$emit('showRemind')
         // }

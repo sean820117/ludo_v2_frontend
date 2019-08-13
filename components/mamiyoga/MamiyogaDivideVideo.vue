@@ -12,8 +12,8 @@
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
             class="mamiyoga-divide-block-detail" :class="pose.pose_id" :current_pose_id="current_pose_id"
-            @handleCourseVideoUpload="handleCourseVideoUpload" :ai_teacher="pose.pose_ai"
-            :course_data="course_data">
+            @handleCourseVideoUpload="handleCourseVideoUpload" @openRecordBox="openRecordBox"
+            :ai_teacher="pose.pose_ai" :course_data="course_data">
                 <div slot="divide-title">
                     <h4>{{pose.pose_brief}}</h4>
                     <!-- <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div> -->
@@ -93,6 +93,9 @@ export default {
             }
             this.$emit('handleCourseVideoUpload',e)
         },
+        openRecordBox(){
+            this.$emit('openRecordBox')
+        }
         // showRemind(){
         //     this.$emit('showRemind')
         // }

@@ -3,7 +3,7 @@
         <div class="divide-page" v-if="!is_loaded" >
             <mamiyoga-mail-header class="mamiyoga-divide-header"></mamiyoga-mail-header>
             <h3 v-html="getTitle"></h3>
-            <mamiyoga-divide-video :course_data="course_data"
+            <mamiyoga-divide-video :course_data="course_data" @openRecordBox="openRecordBox"
             @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
         </div>
         <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
@@ -35,6 +35,67 @@
             </div>
         </div>
         
+
+        <div class="record-background" :class="open_record ? 'open':''">
+            <div class="record-box" :class="open_record ? 'open':''">
+                <div @click="open_record = false">
+                    <div class="record-box-title"><h3>練習記錄</h3></div>
+                </div>
+                <div>
+                    <input type="radio" name="show_block" id="line" checked>
+                    <input type="radio" name="show_block" id="grid">
+                    <div class="select-block">
+                        <label for="line"  class="select-icon select-line">
+                            <div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-line-icon.png" alt="">
+                            </div>
+                        </label>
+                        <label for="grid"  class="select-icon select-grid">
+                            <div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-grid-icon.png" alt="">
+                            </div>
+                        </label>
+                    </div>
+                    <div class="practice-record-content-container">
+                        <div class="show-line-block">
+                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                        </div>
+                        <div class="show-grid-block">
+                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                        </div>
+                    </div>
+                    <!-- <div class="practice-record-no-content" v-else>
+                        <p>{{$t('record_content_text')}}</p>
+                    </div>  -->
+                </div>
+                    <!-- <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                    <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                    <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                    <mamiyoga-record-block-small></mamiyoga-record-block-small> -->
+
+                <!-- <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                <mamiyoga-record-block-middle></mamiyoga-record-block-middle> -->
+                
+                <!-- <div class="practice-record-content-container" v-if="record_data != ''">
+                    <mamiyoga-practice-record-block v-for="(record,i) in record_data"
+                    :key="i" :recordDate="setRecordDate(record.createdAt)" :video_url="record.video_url"
+                    :tags="switchTag(record)" :recordImg="record.preview_img"
+                    :score="record.score"></mamiyoga-practice-record-block>
+                </div>
+                <div class="practice-record-no-content" v-else>
+                    <p>{{$t('record_content_text')}}</p>
+                </div> -->
+            </div>
+        </div>
     </div>
 </template>
 
@@ -43,6 +104,8 @@ import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue';
 import MamiyogaDivideVideo from '~/components/mamiyoga/MamiyogaDivideVideo.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
+import MamiyogaRecordBlockMiddle from '~/components/mamiyoga/MamiyogaRecordBlockMiddle.vue'
+import MamiyogaRecordBlockSmall from '~/components/mamiyoga/MamiyogaRecordBlockSmall.vue'
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -67,6 +130,9 @@ export default {
         play_assay: false,
         current_pose_id:'first',
 
+        open_record: false,
+        record_data:{},
+        pose_id:'',
     }),
     components:{
         MamiyogaMailHeader,
@@ -74,6 +140,8 @@ export default {
         MamiyogaAssayVideo,
         MamiyogaWindowAlertBox,
         Loading,
+        MamiyogaRecordBlockMiddle,
+        MamiyogaRecordBlockSmall,
     },
     async mounted() {
         if (process.client) {
@@ -93,6 +161,24 @@ export default {
             console.log(this.course_data)
 
             this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+        
+            this.pose_id = 'yoga_'+this.course_data.upload_id;
+            try {
+                let send_data = {user_id:'0000',pose_id:this.pose_id};
+                const res = await axios.post('/apis/get-pose-results',send_data);
+                if (res.data.status == 200) {
+                    this.record_data = res.data.Items
+                    console.log(this.record_data)
+                } else {
+                    window.alert('读取失败')
+                }
+            } catch (error) {
+                
+            }
+        
+        
+        
+        
         }
     },
     methods:{
@@ -261,6 +347,9 @@ export default {
                 this.post_article = this.articles[x].post_article
                 // console.log(x)
             }
+        },
+        openRecordBox(){
+            this.open_record = true
         }
     },
     computed:{
@@ -358,9 +447,90 @@ export default {
     border-style: none;
     font-size: 14px;
 }
+.record-background {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: rgba(0,0,0,.6);
+    visibility: hidden
+}
+.record-background.open {
+    visibility: visible;
+}
+.record-box {
+    width: 90vw;
+    height: 95vh;
+    margin: 0 auto;
+    border-radius:20px; 
+    padding: 0 20px 5px;
+    position: absolute;
+    left: 5vw;
+    top: 100vh;
+    background-color: #fff;
+    transition: 1s;
+}
+.record-box input {
+    display: none;
+}
+.record-box.open {
+    top: 10vh;
+}
+.record-box-title {
+    width: 170px;
+    height: 45px;
+    background-color: #9BAEB2; 
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 0 0 25px 25px;
+    margin-bottom: 2vh;
+    text-align: center;
+    color: #fff;
+    cursor:pointer;
+}
+
+.select-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 2vh;
+}
+.select-icon {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid #97A8AF;
+}
+#line:checked ~ .select-block .select-icon.select-line,
+#grid:checked ~ .select-block .select-icon.select-grid {
+    border-bottom: 3px solid #BFBDBD;
+}
+.practice-record-content-container .show-line-block,.practice-record-content-container .show-grid-block {
+    display: none;
+}
+#line:checked ~ .practice-record-content-container .show-line-block,
+#grid:checked ~ .practice-record-content-container .show-grid-block {
+    display: block;
+}
+.select-icon img{
+    height:27px;
+}
+.practice-record-no-content {
+    text-align: center;
+}
 @media (min-width: 769px) {
     .divide-page {
         width: 100%;
+    }
+    .record-background {
+        width: 450px;
+    }
+    .record-box {
+        width: 90%;
+        left: 5%;
     }
 }
 </style>

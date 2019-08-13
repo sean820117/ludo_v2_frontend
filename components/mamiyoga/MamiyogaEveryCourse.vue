@@ -45,10 +45,17 @@
                 </div>
             </div>
             <div class="mamiyoga-go-to-divide-btn">
-                <router-link :to="'/mamiyoga/course/practice/' + goPractice"   style="text-decoration:none;">
-                    <mamiyoga-btn btnText="動作練習" bgColor="#97A8AF" ftColor="#EEEFEA" style="margin:5vh 0 2vh;" class="course-divide-btn"></mamiyoga-btn>
-                </router-link>
-                <img src="/mamiyoga/ai-badge.svg" alt="" v-if="getAiTeacher">
+                    <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn">
+                        <router-link :to="'/mamiyoga/course/practice/' + goPractice" style="text-decoration:none;display:block;height:100%;">
+                        動作教學
+                        </router-link>
+                    </div>
+                    <div style="margin:2vh auto;line-height:35px;" class="course-divide-btn">
+                        <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;display:block;height:100%;">
+                        AI助教
+                        </router-link>
+                    </div>
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher">
             </div>
         </div>
     </div>
@@ -230,8 +237,23 @@ export default {
     width: 90vw;
     padding: 3vw;
 }
-.course-divide-btn button {
-    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+.course-divide-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    cursor: pointer;
+    background-color: #97A8AF;
+    color: #EEEFEA;
+}
+.course-divide-btn a:visited {
+    color: #EEEFEA;
 }
 .mamiyoga-go-to-divide-btn {
     position: relative;
@@ -240,6 +262,7 @@ export default {
     position: absolute;
     top: -2vh;
     left: 27vw;
+    width: 40px;
 }
 .mamiyoga-course-bottom-second-content-li {
     min-height: 25px;
@@ -282,6 +305,7 @@ export default {
     .mamiyoga-go-to-divide-btn img {
         top: -15px;
         left: 130px;
+        width: 40px;
     }
     
 }
