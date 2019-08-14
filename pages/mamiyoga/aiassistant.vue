@@ -65,24 +65,24 @@ export default {
             let ai_course = this.courses.filter(course => course.poses.find(pose => pose.pose_ai === true))
             // let all_ai_pose = ai_course.poses
             
-            console.log(ai_course)
+            // console.log(ai_course)
             let ai_poses = []
     
             for(var i = 0; i<ai_course.length;i++){
                 ai_poses = ai_course[i].poses
-                console.log(ai_poses)
+                // console.log(ai_poses)
                 for(var j =0;j<ai_poses.length;j++){
                     let pose = ai_poses[j]
                     pose.chapter_flag = ai_course[i].chapter_flag
                     pose.course_id = ai_course[i].id
-                    console.log(pose)
+                    // console.log(pose)
                     if(pose.pose_ai === true) {
                         this.have_ai_pose.push(pose)
                     }
                 }
             }
-            
-            console.log(this.have_ai_pose)
+            // console.log(this.have_ai_pose)
+
             // let have_ai_pose = {}
             // for(var i=0;i< ai_course.length; i++) {
             //     let ai_poses = ai_course[i].poses

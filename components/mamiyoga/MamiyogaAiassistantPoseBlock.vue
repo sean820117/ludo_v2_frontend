@@ -1,7 +1,7 @@
 <template>
     <div>
-        <router-link :to="'/mamiyoga/course/practice/'+goPractice" style="text-decoration:none;">
-            <div class="aiassistant-pose-block" :style="{backgroundImage:'url('+bgImg+')'}">
+        <!-- <router-link :to="'/mamiyoga/course/practice/'+goPractice" style="text-decoration:none;"> -->
+            <div class="aiassistant-pose-block" :style="{backgroundImage:'url('+bgImg+')'}" @click="goPracticePage()">
                 <div class="course-bookmark">
                     <img :src="unitSrc" alt="">
                 </div>
@@ -10,7 +10,7 @@
                     <p style="font-size:12px">建議拍攝時間：20-45秒</p>
                 </div>
             </div>
-        </router-link>
+        <!-- </router-link> -->
     </div>
 </template>
 
@@ -21,7 +21,14 @@ export default {
         bgImg: String,
         unitSrc: String,
         goPractice: String,
+    },
+    methods:{
+        goPracticePage(){
+            sessionStorage['course_'+this.goPractice + '_current_pose_id'] = 'first'
+            this.$router.push('/mamiyoga/course/practice/'+ this.goPractice)
+        }
     }
+    
 }
 </script>
 

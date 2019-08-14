@@ -23,7 +23,7 @@
                 <button class="teach-assay-btn" v-if="ai_teacher" @click="openRecordBox">練習記錄</button> 
             </div>
         </div>
-        <mamiyoga-window-alert-box v-if="show_remind">
+        <mamiyoga-window-alert-box v-show="show_remind">
             <div class="cancel-box" @click="show_remind = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             </div>
@@ -89,7 +89,7 @@ export default {
                 let select_data = this.course_data.poses.find(pose => sessionStorage["course_" + this.course_data.id + "_current_pose_id"] == pose.pose_id)
                 return select_data.remind_text
             } else {
-                return []
+                return ''
             }
         },
         getBackground(){
@@ -174,6 +174,7 @@ export default {
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
 
 }
 @media (min-width: 769px) {

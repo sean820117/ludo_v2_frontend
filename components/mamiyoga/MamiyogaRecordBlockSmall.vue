@@ -10,15 +10,18 @@
             <div class="practice-record-bak" @click="is_playing = true"></div>
         </div>
         <div class="practice-record-video" v-if="is_playing">
-            <mommiyoga-record-video @closeRecordWindow="closeRecordWindow"
+            <!-- <mommiyoga-record-video @closeRecordWindow="closeRecordWindow"
             :video_url="video_url" :score="score" :reps_wrong_tags="tags"
-            ></mommiyoga-record-video>
+            ></mommiyoga-record-video> -->
+            <mamiyoga-show-record-video @closeRecordWindow="closeRecordWindow"
+            :video_url="video_url" :score="score" :reps_wrong_tags="tags"
+            ></mamiyoga-show-record-video>
         </div>
     </div>
 </template>
 
 <script>
-import MommiyogaRecordVideo from '~/components/mamiyoga/MommiyogaRecordVideo.vue'
+import MamiyogaShowRecordVideo from '~/components/mamiyoga/MamiyogaShowRecordVideo.vue'
 export default {
     data:()=>({
         have_notice: false,
@@ -27,7 +30,7 @@ export default {
         
     }),
     components:{
-        MommiyogaRecordVideo,
+        MamiyogaShowRecordVideo,
     },
     props: {
         recordDate: String,
@@ -128,6 +131,7 @@ export default {
     top: 0;
     width: 450px;
     z-index: 999;
+    left:0;
 }
 @media (min-width: 769px) {
     .practice-record-small {

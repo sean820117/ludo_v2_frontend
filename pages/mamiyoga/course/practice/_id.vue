@@ -56,34 +56,24 @@
                             </div>
                         </label>
                     </div>
-                    <div class="practice-record-content-container">
-                        <div class="show-line-block">
-                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                            <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
+                    <div class="practice-record-content-container" v-if="current_record_data">
+                        <div class="show-line-block" v-if="open_record">
+                            <mamiyoga-record-block-middle v-for="(record,i) in current_record_data"
+                            :key="i" :video_url="record.video_url" :recordImg="record.preview_img"
+                            :recordDate="setRecordDate(record.createdAt)"
+                            :score="record.score"></mamiyoga-record-block-middle>   
                         </div>
-                        <div class="show-grid-block">
-                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                            <mamiyoga-record-block-small></mamiyoga-record-block-small>
+                        <div class="show-grid-block" v-if="open_record">
+                            <mamiyoga-record-block-small v-for="(record,i) in current_record_data"
+                            :key="i" :video_url="record.video_url" :recordImg="record.preview_img"
+                            :recordDate="setRecordDate(record.createdAt)" :tags="record.reps_wrong_tags"
+                            :score="record.score"></mamiyoga-record-block-small>
                         </div>
                     </div>
-                    <!-- <div class="practice-record-no-content" v-else>
+                    <div class="practice-record-no-content" v-else>
                         <p>{{$t('record_content_text')}}</p>
-                    </div>  -->
+                    </div> 
                 </div>
-                    <!-- <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                    <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                    <mamiyoga-record-block-small></mamiyoga-record-block-small>
-                    <mamiyoga-record-block-small></mamiyoga-record-block-small> -->
-
-                <!-- <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                <mamiyoga-record-block-middle></mamiyoga-record-block-middle>
-                <mamiyoga-record-block-middle></mamiyoga-record-block-middle> -->
                 
                 <!-- <div class="practice-record-content-container" v-if="record_data != ''">
                     <mamiyoga-practice-record-block v-for="(record,i) in record_data"
@@ -132,7 +122,11 @@ export default {
 
         open_record: false,
         record_data:{},
+        current_record_data:{},
         pose_id:'',
+        every_pose: [],
+
+        assay_pose_data: {},
     }),
     components:{
         MamiyogaMailHeader,
@@ -147,7 +141,7 @@ export default {
         if (process.client) {
             if(this.$i18n.locale == 'JP') {
                 this.courses = await require('~/config/mamiyoga-course-jp');
-                this.articles = await require('~/config/mamiyoga-post');
+                this.articles = await require('~/config/mamiyoga-post-jp');
                 this.post_article = this.articles[0].post_article;
                 this.lang_click = 'jp'
             } else {
@@ -158,20 +152,32 @@ export default {
             }
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
-            console.log(this.course_data)
+            // console.log(this.course_data)
+            
+            if (sessionStorage["course_" + this.course_data.id + "_current_pose_id"]) {
+                this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"] ;
+            } else {
+                sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = this.current_pose_id;
+            }
+            
+            this.every_pose = this.course_data.poses
+            let ai_poses = this.every_pose.filter(pose => pose.pose_ai);
+            // console.log(ai_poses)
 
-            this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
-        
-            this.pose_id = 'yoga_'+this.course_data.upload_id;
+            // this.pose_id = 'yoga_'+this.course_data.upload_id;
             try {
-                let send_data = {user_id:'0000',pose_id:this.pose_id};
-                const res = await axios.post('/apis/get-pose-results',send_data);
-                if (res.data.status == 200) {
-                    this.record_data = res.data.Items
-                    console.log(this.record_data)
-                } else {
-                    window.alert('读取失败')
-                }
+                ai_poses.forEach(async(pose,index) => {
+                    let temp_pose_id = 'yoga_'+pose.input_id
+                    let send_data = {user_id:'0002',pose_id:temp_pose_id};
+                    const res = await axios.post('/apis/get-pose-results',send_data);
+                    if (res.data.status == 200) {
+                        this.record_data[pose.pose_id] = res.data.Items
+                        
+                        console.log(this.record_data[pose.pose_id])
+                    } else {
+                        window.alert('读取失败')
+                    }   
+                })
             } catch (error) {
                 
             }
@@ -186,6 +192,11 @@ export default {
             this.isLoading = true;
             const pose_id = "yoga_" + e.input_id;
             console.log(pose_id);
+            
+            this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+            this.assay_pose_data = this.every_pose.find(select => select.pose_id == this.current_pose_id)
+            console.log(this.assay_pose_data)
+            
             if(this.$i18n.locale == 'JP') {
                 this.show_value = '待ちます'
             } else {
@@ -201,14 +212,6 @@ export default {
                 }
                 this.isLoading = false;
             } else if(data.status == 102) {  
-                
-                // for(var i =0; i< data.reps_wrong_tags.length; i++){
-                //     for(var j = 0; j<data.reps_wrong_tags[i].length; j++){
-                //         if(data.reps_wrong_tags[i][j] == "1") data.reps_wrong_tags[i][j] = "摆动过小";
-                //         else if (data.reps_wrong_tags[i][j] == "2") data.reps_wrong_tags[i][j] = "摆动过大";
-                //         else if (data.reps_wrong_tags[i][j] == "0") data.reps_wrong_tags[i][j] = "姿势正确";
-                //     }
-                // }   
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
                 axios.post('/apis/get-pose-result',{user_id:'0002',pose_id:pose_id,createdAt:data.createdAt})
@@ -262,25 +265,9 @@ export default {
                         clearInterval(id)
                         for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
                             for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                                // if(data.reps_wrong_tags[i][j] == "1") data.reps_wrong_tags[i][j] = "摆动过小";
-                                // else if (data.reps_wrong_tags[i][j] == "2") data.reps_wrong_tags[i][j] = "摆动过大";
-                                // else if (data.reps_wrong_tags[i][j] == "0") data.reps_wrong_tags[i][j] = "姿势正确";
-                                data.reps_wrong_tags[i][j] = this.course_data.upload_notices[res.data.reps_wrong_tags[i][j]]
+                                this.video_result.reps_wrong_tags[i][j] = this.assay_pose_data.remind_tags[this.video_result.reps_wrong_tags[i][j]]
                             }
                         }   
-                        // for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
-                        //     for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                        //         if(this.video_result.reps_wrong_tags[i][j] == "1") this.video_result.reps_wrong_tags[i][j] = "肩が開いていない";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "2") this.video_result.reps_wrong_tags[i][j] = "体が後ろに傾いています";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "3") this.video_result.reps_wrong_tags[i][j] = "体が前に傾いています";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "4") this.video_result.reps_wrong_tags[i][j] = "背中が曲がっています";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "5") this.video_result.reps_wrong_tags[i][j] = "手がまっすぐ伸ばしていない";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "6") this.video_result.reps_wrong_tags[i][j] = "手を完全にあげていない";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "7") this.video_result.reps_wrong_tags[i][j] = "体が完全に伸ばしていません";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "8") this.video_result.reps_wrong_tags[i][j] = "座っていません";
-                        //         else if (this.video_result.reps_wrong_tags[i][j] == "0") this.video_result.reps_wrong_tags[i][j] = "正解";
-                        //     }
-                        // }
                     } else {
                         if(width <=95) width++;
                         document.getElementById('bar').style.width = width+'%';
@@ -291,28 +278,6 @@ export default {
                 console.log(data.status)
                 alert('Network error')
             }
-            // this.isLoading = true;
-            // let form = new FormData();
-            // form.append('file',e.target.files[0])
-            // form.append('pose_id','yoga_6')
-            // form.append('language','zh-tw')
-            // const res = await axios.post('/apis/video-upload',form)
-            // console.log(res.data)
-            // for(var i =0; i< res.data.reps_wrong_tags.length; i++){
-            //   for(var j = 0; j<res.data.reps_wrong_tags[i].length; j++){
-            //       if(res.data.reps_wrong_tags[i][j] == "y_6_1") res.data.reps_wrong_tags[i][j] = "膝蓋彎曲";
-            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_2") res.data.reps_wrong_tags[i][j] = "膝蓋彎曲";
-            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_3") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_4") res.data.reps_wrong_tags[i][j] = "抬腿速度太快";
-            //       else if (res.data.reps_wrong_tags[i][j] == "y_6_5") res.data.reps_wrong_tags[i][j] = "軸心不穩";
-            //       else if (res.data.reps_wrong_tags[i][j] == "correct") res.data.reps_wrong_tags[i][j] = "姿勢正確";
-            //   }
-            // }
-            // this.isLoading = false;
-            // console.log(res.data)
-            // this.reps_wrong_tags = res.data.reps_wrong_tags;
-            // this.video_result = res.data;
-            // this.is_loaded = true;
         },
         handleRetryEvent(e){
             console.log("ok");
@@ -349,7 +314,25 @@ export default {
             }
         },
         openRecordBox(){
-            this.open_record = true
+            this.open_record = true;
+            this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+            this.current_record_data = this.record_data[this.current_pose_id];
+        },
+        switchTag(record) {
+            for (var i =0; i<record.reps_wrong_tags.length; i++){
+                for(var j=0; j<record.reps_wrong_tags[i].length; j++)
+                if (record.reps_wrong_tags[i][j]){
+                    record.reps_wrong_tags[i][j] = this.current_record_data.remind_tags[record.reps_wrong_tags[i][j]]
+                }
+            }
+            console.log(record.reps_wrong_tags)
+            return record.reps_wrong_tags;
+        },
+        setRecordDate(date){
+            let update = new Date(date) 
+            let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
+            let month = update.getMonth() < 10 ? '0'+update.getMonth() : update.getMonth();
+            return update.getFullYear()+'/'+month+'/'+day;
         }
     },
     computed:{
@@ -519,7 +502,15 @@ export default {
     height:27px;
 }
 .practice-record-no-content {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
     text-align: center;
+}
+.show-line-block, .show-grid-block {
+    height: 69vh;
+    overflow-y: auto;
 }
 @media (min-width: 769px) {
     .divide-page {

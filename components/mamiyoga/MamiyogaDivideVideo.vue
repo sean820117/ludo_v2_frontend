@@ -59,7 +59,7 @@ export default {
             if(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]){
                 this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
             }
-            console.log(this.current_pose_id);
+            // console.log(this.current_pose_id);
         }
     },
     data:()=>({
@@ -72,8 +72,8 @@ export default {
         // 如果 `question` 发生改变，这个函数就会运行
         current_pose_id: function (new_value, old_value) {
             sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = this.current_pose_id;
-            console.log(`sessionStorage["course_${this.course_data.id}_current_pose_id"]`);
-            console.log(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]);
+            // console.log(`sessionStorage["course_${this.course_data.id}_current_pose_id"]`);
+            // console.log(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]);
         }
     },
     props:{

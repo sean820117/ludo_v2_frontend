@@ -45,10 +45,13 @@
                 </div>
             </div>
             <div class="mamiyoga-go-to-divide-btn">
-                    <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn">
+                    <!-- <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn">
                         <router-link :to="'/mamiyoga/course/practice/' + goPractice" style="text-decoration:none;display:block;height:100%;">
                         動作教學
                         </router-link>
+                    </div> -->
+                    <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn" @click="clickPractice">
+                        動作教學
                     </div>
                     <div style="margin:2vh auto;line-height:35px;" class="course-divide-btn">
                         <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;display:block;height:100%;">
@@ -74,6 +77,12 @@ export default {
     components: {
         MamiyogaMailHeader,
         MamiyogaBtn,
+    },
+    methods:{
+        clickPractice(){
+            sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
+            this.$router.push('/mamiyoga/course/practice/' + this.course_data.id)
+        }
     },
     computed: {
         getTitle(){

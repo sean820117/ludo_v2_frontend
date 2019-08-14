@@ -270,7 +270,7 @@ export default {
             if (this.$i18n.locale == 'JP') {
                 this.goAbout = '/jp'
                 this.courses = await require('~/config/mamiyoga-course-jp');
-                this.articles = await require('~/config/mamiyoga-post');
+                this.articles = await require('~/config/mamiyoga-post-jp');
                 this.post_article = this.articles[0].post_article;
                 this.course_title = this.courses[12].poses[2].pose_brief;
                 this.course_descriptions = this.courses[12].poses[2].pose_description;
