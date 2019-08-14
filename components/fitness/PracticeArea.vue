@@ -75,7 +75,7 @@ export default {
             this.video_url = ""
             this.is_uploading = true;
             console.log(this.pose_id);
-            var data = await this.$poseUpload(e.target.files[0],"test",this.pose_id,'jp')
+            var data = await this.$poseUpload(e.target.files[0],"test",this.pose_id,'jp',true)
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
