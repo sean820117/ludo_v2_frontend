@@ -47,6 +47,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    cursor: pointer;
 }
 .aiassistant-pose-block p {
     color: white;

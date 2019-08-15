@@ -40,9 +40,8 @@
             <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
         </div>
         <div class="privacy-btn">
-            <router-link to="/mamiyoga" style="text-decoration:none;">
-                <mamiyoga-btn btnText="返回" bgColor="#9BAEB2" ftColor="#ffffff"></mamiyoga-btn>
-            </router-link>
+                <!-- <mamiyoga-btn btnText="返回" bgColor="#9BAEB2" ftColor="#ffffff"></mamiyoga-btn> -->
+            <button class="mamiyoga-btn" @click="$router.push('/mamiyoga')">返回</button>
         </div>
     </div>
 </template>
@@ -51,6 +50,7 @@
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
+    layout: 'mommiyoga',
     components:{
         MamiyogaTeachHeader,
         MamiyogaBtn,
@@ -59,27 +59,59 @@ export default {
 </script>
 
 <style>
-@media (max-width: 899px) {
-    .privacy-header button {
-        display: none;
+.privacy-page {
+    padding-bottom: 20px;
+}
+.privacy-header button {
+    display: none;
+}
+.privacy-header .mamiyoga-teach-header-title h3 {
+    padding-right: 20px;
+    padding-left: 0;
+}
+.privacy-container {
+    width: 83vw;
+    margin: 0 8.5vw;
+    text-align: justify;
+}
+.privacy-container p {
+    font-size: 12px;
+    color: #707070;
+}
+.privacy-container h5 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 15px; 
+}
+.privacy-btn {
+    margin: 6vh 0 3vh;
+}
+
+.mamiyoga-btn {
+    width: 135px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 3px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    border-style: none;
+    cursor: pointer;
+    background-color: #9BAEB2;
+    color: #fff;
+}
+@media (min-width: 769px) {
+    .privacy-page {
+        background: white;
     }
     .privacy-container {
-        width: 83vw;
-        margin: 0 8.5vw;
-        text-align: justify;
-    }
-    .privacy-container p {
-        font-size: 12px;
-        color: #707070;
-    }
-    .privacy-container h5 {
-        font-size: 14px;
-        color: #000;
-        font-weight: 400;
-        margin-top: 15px; 
-    }
-    .privacy-btn {
-        margin: 6vh 0 3vh;
+       width: 400px; 
+       margin: 0 25px;
     }
 }
+
+
 </style>

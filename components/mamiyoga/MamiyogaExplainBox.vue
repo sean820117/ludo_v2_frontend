@@ -4,28 +4,38 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png" alt="">
         </div>
         <div class="mamiyoga-explain-content">
-            <hooper :autoPlay="true">
+            <!-- <hooper :autoPlay="true"> -->
+            <hooper>
+                <slide>
+                    <h5>AI助教使用服裝建議</h5>
+                    <p class="explain-light-text" style="margin-top: 5vh;">請盡量別穿著<b>全身寬鬆黑色</b>的衣物，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1.png" alt="">
+                    <p class="explain-light-text">請勿穿著<b>長裙類服飾</b>，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2.png" alt="">
+                    <p class="explain-light-text">請盡量別穿著<b>過於寬鬆</b>的衣物，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3.png" alt="">
+                </slide>
                 <slide>
                    <h5>{{$t('explain_title_first')}}</h5>
                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
-                   <p>{{$t('explain_text_first')}}</p>
+                   <p class="explain-bold-text">{{$t('explain_text_first')}}</p>
                 </slide>
                 <slide>
                     <h5>{{$t('explain_title_secord')}}</h5>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
-                    <p>{{$t('explain_text_secord')}}</p>
+                    <p class="explain-bold-text">{{$t('explain_text_secord')}}</p>
                 </slide>
                 <slide>
                     <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
                     <div >
-                        <img style="height:55vh;" :src="$t('explain_tip_img')" alt="">
+                        <img class="show-tip-img" :src="$t('explain_tip_img')" alt="">
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper>
             
         </div>
-        <div style="margin-top:8vh;">
+        <div class="open-teach-video-btn">
             <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
             <button class="mamiyoga-btn" style="letter-spacing:0;margin-bottom:5vh;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
         </div>
@@ -104,9 +114,9 @@ export default {
     cursor: pointer;
 }
 .mamiyoga-explain-content {
-    width: 90vw;
+    width: 100vw;
     height: 70vh;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding-top: 45px;
 }
 .mamiyoga-explain-content h5 {
@@ -120,15 +130,28 @@ export default {
     height: 35vh;
     width: auto;
 }
-.mamiyoga-explain-content p {
+.explain-suggest-wear-img {
+    display: block;
+    margin: 1vh auto 2vh!important;
+    height: 11vh !important;
+    width: auto;
+}
+.explain-light-text {
     color: white;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: lighter;
+    width: 55vw;
+    margin: 1vh auto 0;
+}
+.explain-bold-text {
+    color: white;
+    font-size: 14px;
     font-weight: bold;
     width: 66vw;
     margin: 5vh auto 0;
 }
 .mamiyoga-explain .hooper {
-    height: 65vh;
+    height: 75vh;
 }
 .mamiyoga-explain .hooper-indicator {
     width: 7px;
@@ -141,7 +164,7 @@ export default {
     background-color:#fff; 
 }
 .mamiyoga-explain .hooper-pagination {
-    bottom: -5vh;
+    bottom: 0;
 }
 .mamiyoga-explain-close img {
     width: 30px;
@@ -197,6 +220,12 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+.show-tip-img{
+    height: 55vh !important;
+}
+.open-teach-video-btn {
+    margin-top: 13vh;
 }
 @media (min-width: 769px) {
     .mamiyoga-explain {
@@ -267,6 +296,12 @@ export default {
     .close-tips-box {
         transform: rotate(0deg); 
         bottom: 20vh;
+    }
+    .show-tip-img{
+        height: 40vh !important;
+    }
+    .open-teach-video-btn {
+        margin-top: 5vh;
     }
 }
 

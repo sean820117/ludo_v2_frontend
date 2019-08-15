@@ -5,6 +5,12 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </div>
             <div style="display:flex;">
+                <a :href="video_result.video_url" download="pose">
+                    <div :style="{backgroundColor:'#9BAEB2',
+                    backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-download-btn.svg)',
+                    marginRight:'10px'}" class="mamiyoga-assay-header-login-btn">
+                    </div>
+                </a>
                 <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-assay-header-login-btn">
@@ -390,12 +396,15 @@ export default {
     height: 45px;
     background-color: #9BAEB2; 
     margin: 0 auto;
-    padding: 5px;
+    /* padding: 5px; */
     border-radius: 0 0 25px 25px;
     margin-bottom: 2vh;
     text-align: center;
     color: #fff;
     cursor:pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .mamiyoga-assay-content-box {
     width: auto;

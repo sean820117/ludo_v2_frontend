@@ -116,6 +116,7 @@ export default {
     padding: .5vh 2.8vw;
     border-radius: 30px;
     margin: 0 3px;
+    cursor: pointer;
 }
 .first-series:checked ~ .mamiyoga-course-select .first-label,
 .second-series:checked ~ .mamiyoga-course-select .second-label,
@@ -142,7 +143,7 @@ export default {
 }
 @media (min-width: 769px) {
     .label-box {
-        width: 100%;
+        width: 90%;
         margin: 20px auto;
     }
     .label-box label {

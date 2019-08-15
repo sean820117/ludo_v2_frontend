@@ -19,8 +19,10 @@
                 <!-- <button class="teach-assay-btn" v-if="ai_teacher">
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上傳影片</label>  
                 </button> -->
-                <button class="teach-assay-btn" v-if="ai_teacher" @click="show_remind = true">開始練習</button>
-                <button class="teach-assay-btn" v-if="ai_teacher" @click="openRecordBox">練習記錄</button> 
+                <div v-if="ai_teacher" style="display: flex;justify-content: center;">
+                    <button class="ai-use-btn" v-if="ai_teacher" @click="openRecordBox">練習記錄</button> 
+                    <button class="ai-use-btn" v-if="ai_teacher" @click="show_remind = true">開始練習</button>
+                </div>
             </div>
         </div>
         <mamiyoga-window-alert-box v-show="show_remind">
@@ -139,7 +141,7 @@ export default {
     /* background: gray; */
     width: 100vw;
     height: auto;
-    padding: 2vh 5vw;
+    padding: 2vh 5vw 3vh;
 }
 .mamiyoga-divide-every-bottom-content h5 {
     font-size: 14px;
@@ -152,6 +154,23 @@ export default {
 }
 .mamiyoga-divide-every-bottom {
     padding: 2vh 5vw 0;
+    
+}
+.ai-use-btn {
+    width: 100px;
+    height: 35px;
+    border-radius:20px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0; 
+    text-align: center;
+    display: block;
+    margin: 20px 10px 0;
+    border-style: none;
+    box-shadow:5px 5px 10px rgba(0,0,0,.2);
+    background: #9BAEB2;
+    color: #fff;
+    cursor: pointer;
 }
 .teach-assay-btn {
     width: 135px;
@@ -167,6 +186,7 @@ export default {
     box-shadow:5px 5px 10px rgba(0,0,0,.2);
     background: #9BAEB2;
     color: #fff;
+    cursor: pointer;
 }
 .upload-remind-box {
     width: 150px;

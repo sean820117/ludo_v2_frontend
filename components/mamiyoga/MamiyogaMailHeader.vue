@@ -1,10 +1,10 @@
 <template>
     <div class="mail-header">
         <div class="mail-line">
-            <div class="mail-header-goback">
-                <a @click="$router.go(-1)">
+            <div class="mail-header-goback" @click="$router.go(-1)">
+                <!-- <a @click="$router.go(-1)"> -->
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
-                </a>
+                <!-- </a> -->
             </div>
             <div class="mail-header-title">
                 <h3 v-html="headerTitle" :style="{color:mailheaderTitle}">{{headerTitle}}</h3>

@@ -67,8 +67,8 @@ export default {
 
 <style>
 .practice-record-small {
-    width: 48%;
-    height: 120px;
+    width: 31%;
+    height: 90px;
     margin: 1vh 1% 0;
     background: black;
     position: relative;
@@ -95,7 +95,7 @@ export default {
     left: 10px;
     font-size: 12px;
 }
-.starmark-box {
+.practice-record-small .starmark-box {
     width: 30px;
     height: 30px;
     /* background-image: url('/mamiyoga/star.svg');
@@ -103,12 +103,12 @@ export default {
     background-position: center;
     background-repeat: no-repeat; */
     position: absolute;
-    bottom: 10px;
-    right: 3vw;
+    bottom: 0px;
+    right: 0px;
     cursor: pointer;
 }
-.starmark-box img {
-    width: 25px;
+.practice-record-small .starmark-box img {
+    width: 20px;
 }
 .practice-record-bak {
     width: 100%;
@@ -134,10 +134,9 @@ export default {
     left:0;
 }
 @media (min-width: 769px) {
-    .practice-record-small {
-        /* width: 390px; */
+    /* .practice-record-small {
         margin: 1%;
-    }
+    } */
     .notice-box {
         bottom: -15px;
         right: 29px;
@@ -149,7 +148,7 @@ export default {
 }
 @media (max-width: 769px) and  (orientation:landscape) {
     .practice-record-small {
-        margin-top: 7vh; 
+        /* margin-top: 7vh;  */
     }
 }
 </style>

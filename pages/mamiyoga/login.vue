@@ -49,7 +49,7 @@ import { EMAIL_REGEX } from '~/components/regex.js'
 import axios from '~/config/axios-config'
 
 export default {
-    // layout: 'mamiyoga',
+    layout: 'mommiyoga',
     data() {
         return {
             errors: null,
@@ -174,134 +174,140 @@ export default {
 </script>
 
 <style>
-@media (max-width:899px) {
-    /* html, body, #__nuxt, #__layout, #__layout > div{
-        height: 100vh;
-        background: white;
-    } */
-    textarea:focus, input:focus{
-        outline: none;
-    }
-    .signup-page{
-        text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+textarea:focus, input:focus{
+    outline: none;
+}
+.signup-page{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.signup-page .mamiyoga-header {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+.signup-page .mamiyoga-header-logo {
+    width: 30px;
+    height: 30px;
+}
+.signup-page .mamiyoga-header .mamiyoga-header-login-btn {
+    color: #FFF;
+    width: 55px;
+    height: 25px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-style: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+}
+.mamiyoga-login-container {
+    height: 80vh;
+    margin-top: 60px;
+}
+.reg-text{
+    /* padding-top: 80px; */
+    font-size: 21px;
+}
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
+}
+.third-party{
+    margin-top: 8vh;
+}
+.mamiyoga-login-container .hr{
+    width: 63%;
+    height: 1px;
+    background: #D4D4D4;
+    margin:23px auto 0;
+    max-width: 320px;
+}
+.text-or{
+    font-size: 14px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+.signup-form{
+    text-align: left;
+    width: 100vw;
+    max-width: 475px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup-form input[type=text]{
+    padding:0px 10px;
+}
+.signup-form input[type=password]{
+    padding:0px 10px;
+}
+.signup-form .login-column{
+    margin-top: 11px;
+    width: 67%;
+    height: 53px;
+}
+.login-column-label{
+    text-align: left;
+    color: #707070;
+    font-size: 11px;
+    line-height: 20px;
+    margin-bottom: 6px; 
+    padding-left: 5px;
+}
+.login-column-input{
+    height: 27px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background: #F3F3F3;
+}
+.btn-login-and-signup-container {
+    display: flex;
+    margin-top: 3vh;
+    justify-content: flex-end;
+    width: 67%;
+    /* margin-left: 16.5vw; */
+}
+.switch-login-and-signup {
+    font-size: 13px;
+    color: #8F8F8F;
+    margin-top: 10px;
+}
+.mamiyoga-btn-login-and-signup{
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+    /* background: #1785db; */
+    color: #fff;
+    font-size: 14px;
+    /* margin-left: 60%; */
+    /* margin-top: 6vh; */
+    border: none;
+    border-radius: 15px;
+    padding: unset;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+}
+@media (min-width: 769px) {
+    .signup-page {
+        background-color: white; 
     }
     .signup-page .mamiyoga-header {
-        position: absolute;
-        top: 0;
-        width: 100vw;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        padding: 0 20px;
-        justify-content: space-between;
-    }
-    .signup-page .mamiyoga-header-logo {
-        width: 30px;
-        height: 30px;
-    }
-    .signup-page .mamiyoga-header .mamiyoga-header-login-btn {
-        color: #FFF;
-        width: 55px;
-        height: 25px;
-        border-radius: 20px;
-        font-weight: 500;
-        font-size: 12px;
-        text-align: center;
-        border-style: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-    }
-    .mamiyoga-login-container {
-        height: 80vh;
-    }
-    .reg-text{
-        /* padding-top: 80px; */
-        font-size: 21px;
-    }
-    .reg-text2{
-        margin-top: 11px;
-        font-size: 13px;
-        color: #8F8F8F;
-    }
-    .third-party{
-        margin-top: 8vh;
-    }
-    .mamiyoga-login-container .hr{
-        width: 63%;
-        height: 1px;
-        background: #D4D4D4;
-        margin:23px auto 0;
-        max-width: 320px;
-    }
-    .text-or{
-        font-size: 14px;
-        font-weight: 100;
-        margin-top: 10px;
-    }
-    .signup-form{
-        text-align: left;
-        width: 100vw;
-        max-width: 475px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .signup-form input[type=text]{
-        padding:0px 10px;
-    }
-    .signup-form input[type=password]{
-        padding:0px 10px;
-    }
-    .signup-form .login-column{
-        margin-top: 11px;
-        width: 67%;
-        height: 53px;
-    }
-    .login-column-label{
-        text-align: left;
-        color: #707070;
-        font-size: 11px;
-        line-height: 20px;
-        margin-bottom: 6px; 
-        padding-left: 5px;
-    }
-    .login-column-input{
-        height: 27px;
-        width: 100%;
-        border-radius: 8px;
-        border: none;
-        background: #F3F3F3;
+        width: 450px;
     }
     .btn-login-and-signup-container {
-        display: flex;
-        margin-top: 3vh;
-        justify-content: flex-end;
-        width: 67%;
-        /* margin-left: 16.5vw; */
-    }
-    .switch-login-and-signup {
-        font-size: 13px;
-        color: #8F8F8F;
-        margin-top: 10px;
-    }
-    .mamiyoga-btn-login-and-signup{
-        width: 90px;
-        height: 36px;
-        line-height: 36px;
-        /* background: #1785db; */
-        color: #fff;
-        font-size: 14px;
-        /* margin-left: 60%; */
-        /* margin-top: 6vh; */
-        border: none;
-        border-radius: 15px;
-        padding: unset;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+        padding-bottom: 15vh;
     }
 }
 

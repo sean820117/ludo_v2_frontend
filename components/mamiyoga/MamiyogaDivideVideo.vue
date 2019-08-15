@@ -19,8 +19,8 @@
                     <!-- <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div> -->
                 </div>
                 <div slot="divide-video" style="position:relative" @click="is_played = true">
-                    <video class="mamiyoga-divide-every-video" controls>
-                        <source :src="pose.pose_video" type="video/mp4">
+                    <video class="mamiyoga-divide-every-video" controls preload="auto">
+                        <source :src="pose.pose_video + '#t=0.1'" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <!-- <div class="mamiyoga-course-intro-title" v-if="pose.pose_ai && !is_played">
@@ -136,6 +136,7 @@ export default {
     margin: 0 3px;
     box-shadow: 2px 2px 7px rgba(0,0,0,.3);
     position: relative;
+    cursor: pointer;
 }
 /* .label-with-ai {
     background-color:#24798F;

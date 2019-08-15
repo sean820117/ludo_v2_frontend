@@ -12,8 +12,6 @@
                 :can-cancel="true" 
                 :is-full-page="fullPage"></loading>
         </div> -->
-        
-
         <div class="loading-bar" v-if="isLoading">
             <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
                 <div class="bar-back">
@@ -47,12 +45,12 @@
                     <div class="select-block">
                         <label for="line"  class="select-icon select-line">
                             <div>
-                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-line-icon.png" alt="">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-line-icon-2.png" alt="">
                             </div>
                         </label>
                         <label for="grid"  class="select-icon select-grid">
                             <div>
-                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-grid-icon.png" alt="">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/record-grid-icon-2.png" alt="">
                             </div>
                         </label>
                     </div>
@@ -60,14 +58,14 @@
                         <div class="show-line-block" v-if="open_record">
                             <mamiyoga-record-block-middle v-for="(record,i) in current_record_data"
                             :key="i" :video_url="record.video_url" :recordImg="record.preview_img"
-                            :recordDate="setRecordDate(record.createdAt)"
+                            :recordDate="setRecordDate(record.createdAt)" :tags="record.reps_wrong_tags"
                             :score="record.score"></mamiyoga-record-block-middle>   
                         </div>
                         <div class="show-grid-block" v-if="open_record">
                             <mamiyoga-record-block-small v-for="(record,i) in current_record_data"
                             :key="i" :video_url="record.video_url" :recordImg="record.preview_img"
-                            :recordDate="setRecordDate(record.createdAt)" :tags="record.reps_wrong_tags"
-                            :score="record.score"></mamiyoga-record-block-small>
+                            :tags="switchTag(record)" :score="record.score"></mamiyoga-record-block-small>
+                            
                         </div>
                     </div>
                     <div class="practice-record-no-content" v-else>
@@ -168,7 +166,7 @@ export default {
             try {
                 ai_poses.forEach(async(pose,index) => {
                     let temp_pose_id = 'yoga_'+pose.input_id
-                    let send_data = {user_id:'0002',pose_id:temp_pose_id};
+                    let send_data = {user_id:'0000',pose_id:temp_pose_id};
                     const res = await axios.post('/apis/get-pose-results',send_data);
                     if (res.data.status == 200) {
                         this.record_data[pose.pose_id] = res.data.Items
@@ -202,7 +200,7 @@ export default {
             } else {
                 this.show_value = '等待上傳'
             }
-            var data = await this.$poseUpload(e.target.files[0],'0002',pose_id,this.lang_click)
+            var data = await this.$poseUpload(e.target.files[0],'0000',pose_id,this.lang_click)
             console.log(data.status)
             if(!data) {
                 if(this.$i18n.locale == 'JP') {
@@ -214,7 +212,7 @@ export default {
             } else if(data.status == 102) {  
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:'0002',pose_id:pose_id,createdAt:data.createdAt})
+                axios.post('/apis/get-pose-result',{user_id:'0000',pose_id:pose_id,createdAt:data.createdAt})
                     .then((response) => {
                         // console.log(response)
                         console.log(response.data.result.status)
@@ -319,10 +317,12 @@ export default {
             this.current_record_data = this.record_data[this.current_pose_id];
         },
         switchTag(record) {
+            this.assay_pose_data = this.every_pose.find(select => select.pose_id == this.current_pose_id)
+            // console.log(record)
             for (var i =0; i<record.reps_wrong_tags.length; i++){
                 for(var j=0; j<record.reps_wrong_tags[i].length; j++)
                 if (record.reps_wrong_tags[i][j]){
-                    record.reps_wrong_tags[i][j] = this.current_record_data.remind_tags[record.reps_wrong_tags[i][j]]
+                    record.reps_wrong_tags[i][j] = this.assay_pose_data.remind_tags[record.reps_wrong_tags[i][j]]
                 }
             }
             console.log(record.reps_wrong_tags)
@@ -331,7 +331,7 @@ export default {
         setRecordDate(date){
             let update = new Date(date) 
             let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
-            let month = update.getMonth() < 10 ? '0'+update.getMonth() : update.getMonth();
+            let month = (update.getMonth()+1) < 10 ? '0'+(update.getMonth()+1) : (update.getMonth()+1);
             return update.getFullYear()+'/'+month+'/'+day;
         }
     },
@@ -367,9 +367,9 @@ export default {
     font-weight: 400; 
     margin-bottom: 2vh; 
 }
-.mamiyoga-divide-header button {
+/* .mamiyoga-divide-header button {
     display: none;
-}
+} */
 .loading-bar {
     width: 100vw;
     height: 100vh;
@@ -465,12 +465,15 @@ export default {
     height: 45px;
     background-color: #9BAEB2; 
     margin: 0 auto;
-    padding: 5px;
+    /* padding: 5px; */
     border-radius: 0 0 25px 25px;
     margin-bottom: 2vh;
     text-align: center;
     color: #fff;
     cursor:pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .select-block {
@@ -486,6 +489,7 @@ export default {
     justify-content: center;
     padding-bottom: 1vh;
     border-bottom: 1px solid #97A8AF;
+    cursor: pointer;
 }
 #line:checked ~ .select-block .select-icon.select-line,
 #grid:checked ~ .select-block .select-icon.select-grid {

@@ -53,12 +53,15 @@
                     <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn" @click="clickPractice">
                         動作教學
                     </div>
-                    <div style="margin:2vh auto;line-height:35px;" class="course-divide-btn">
-                        <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;display:block;height:100%;">
-                        AI助教
-                        </router-link>
+                    <div style="position: relative;">
+                        <div style="margin:2vh auto;line-height:35px;color:#EEEFEA;" @click="$router.push('/mamiyoga/aiassistant')" class="course-divide-btn">
+                            AI助教
+                        </div>
+                        <div class="course-teach-question-box" @click="openExplainBox">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
+                        </div>
                     </div>
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher">
+                <img @click="clickPractice" class="have-ai-icon" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher">
             </div>
         </div>
     </div>
@@ -82,6 +85,9 @@ export default {
         clickPractice(){
             sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
             this.$router.push('/mamiyoga/course/practice/' + this.course_data.id)
+        },
+        openExplainBox(){
+            this.$emit('openExplainBox')
         }
     },
     computed: {
@@ -101,7 +107,7 @@ export default {
         },
         getPoseAmount(){
             if (this.course_data.poses) {
-                console.log(this.course_data);
+                // console.log(this.course_data);
                 return this.course_data.poses.length;
             } else {
                 return '';
@@ -214,6 +220,9 @@ export default {
     height: 25px;
     float: right;
 }
+.switch-lang-label label {
+    cursor: pointer;
+}
 #lang-ch:checked ~ .switch-lang-label .switch-lang-btn.btn-ch,
 #lang-jp:checked ~ .switch-lang-label .switch-lang-btn.btn-jp {
     background: #97A8AF;
@@ -267,11 +276,12 @@ export default {
 .mamiyoga-go-to-divide-btn {
     position: relative;
 }
-.mamiyoga-go-to-divide-btn img {
+.have-ai-icon {
     position: absolute;
     top: -2vh;
     left: 27vw;
     width: 40px;
+    cursor: pointer;
 }
 .mamiyoga-course-bottom-second-content-li {
     min-height: 25px;
@@ -289,6 +299,18 @@ export default {
     height: 15px;
     margin: 2px 2px 0 0;
     float: left;
+}
+.course-teach-question-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    left: calc(55vw + 70px);
+}
+.course-teach-question-box img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 @media (min-width: 769px) {
     .mamiyoga-each-course,.mamiyoga-course-video,
@@ -311,10 +333,15 @@ export default {
         margin-top:30px;
         padding: 0 25px 10px;
     }
-    .mamiyoga-go-to-divide-btn img {
+    .have-ai-icon {
         top: -15px;
         left: 130px;
         width: 40px;
+    }
+    .course-teach-question-box {
+        /* right: 30px;
+        top: 270px; */
+        left:320px;
     }
     
 }

@@ -314,8 +314,8 @@ module.exports = [
                 pose_ai:true,
                 input_id:'22',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/8-2.png',
-                remind_text: '橫式拍攝、正面入鏡',
-                remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-front-1.png',
+                remind_text: '橫式拍攝、側面入鏡',
+                remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','骨盆穩定地坐在腳跟上','前面的手放在膝蓋上','後面的手放在地面'],
             },
 
@@ -387,8 +387,8 @@ module.exports = [
                 pose_ai:true,
                 input_id:'20',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-1.png',
-                remind_text: '直式拍攝、側面入鏡',
-                remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
+                remind_text: '直式拍攝、正面入鏡',
+                remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','穩定手肘','雙腳距離再遠一點','視線看向側面'],
             },
             {

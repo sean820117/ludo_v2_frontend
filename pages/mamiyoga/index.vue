@@ -16,9 +16,9 @@
                 <div class="mamiyoga-intro-btn" @click="is_open = true">
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;" ></mamiyoga-btn>
                 </div>
-                <mamiyoga-login-select :is_beta="false"></mamiyoga-login-select>
-                <!-- <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p> -->
-                <p class="mamiyoga-intro-agree" v-html="$t('index_agree_text')"></p>
+                <!-- <mamiyoga-login-select :is_beta="false"></mamiyoga-login-select> -->
+                <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/mamiyoga/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
+                <!-- <p class="mamiyoga-intro-agree" v-html="$t('index_agree_text')"></p> -->
             </div>
         </div>
 
@@ -210,42 +210,7 @@ export default {
         }
     },
     computed:{
-    //     getScrollTop(){
-    //         var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
-    //         if(document.body){
-    //             bodyScrollTop = document.body.scrollTop;
-    //         }
-    //         if(document.documentElement){
-    //             documentScrollTop = document.documentElement.scrollTop;
-    //         }
-    //         scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
-    //         return scrollTop;
-    //     },
-    //     getWindowHeight(){
-    //         var windowHeight = 0;
-    //         if(document.compatMode == "CSS1Compat"){
-    //             windowHeight = document.documentElement.clientHeight;
-    //         } else{
-    //             windowHeight = document.body.clientHeight;
-    //         }
-    //         return windowHeight;
-    //     },
-    //     getScrollHeight(){
-    //         var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
-    //         if(document.body){
-    //             bodyScrollHeight = document.body.scrollHeight;
-    //         }　　
-    //         if(document.documentElement){
-    //             documentScrollHeight = document.documentElement.scrollHeight;
-    //             }
-    //         scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-    //         return scrollHeight;
-    //     },
-    //     scrollFn(){
-    //         if(getScrollTop() + getWindowHeight() == getScrollHeight()){
-    //             return  document.getElementById('title-first').classList.add('slideInDown')
-    //         }
-    //     }
+
     }
 }
 </script>
@@ -295,6 +260,7 @@ export default {
 .background-video {
     /* position: fixed; */
     top: -3vh;
+    /* width: auto; */
     width: auto;
     min-height: 100vh;
 }
