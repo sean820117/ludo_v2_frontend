@@ -3,9 +3,9 @@
         <div class="mamiyoga-explain-close" @click="closeBox">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png" alt="">
         </div>
-        <div class="mamiyoga-explain-content">
+        <div class="mamiyoga-explain-content"  v-touch:swipe.left="nextSlides" v-touch:swipe.right="lastSlides">
             <!-- <hooper :autoPlay="true"> -->
-            <hooper>
+            <!-- <hooper>
                 <slide>
                     <h5>AI助教使用服裝建議</h5>
                     <p class="explain-light-text" style="margin-top: 5vh;">請盡量別穿著<b>全身寬鬆黑色</b>的衣物，以免導致無法判斷</p>
@@ -32,8 +32,40 @@
                     </div>
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
-            </hooper>
-            
+            </hooper> -->
+            <div class="hooper">
+                <div class="slides fade">
+                    <h5>AI助教使用服裝建議</h5>
+                    <p class="explain-light-text" style="margin-top: 5vh;">請盡量別穿著<b>全身寬鬆黑色</b>的衣物，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1.png" alt="">
+                    <p class="explain-light-text">請勿穿著<b>長裙類服飾</b>，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2.png" alt="">
+                    <p class="explain-light-text">請盡量別穿著<b>過於寬鬆</b>的衣物，以免導致無法判斷</p>
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3.png" alt="">
+                </div>
+                <div class="slides fade">
+                    <h5>{{$t('explain_title_first')}}</h5>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
+                    <p class="explain-bold-text">{{$t('explain_text_first')}}</p>
+                </div>
+                <div class="slides fade">
+                    <h5>{{$t('explain_title_secord')}}</h5>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
+                    <p class="explain-bold-text">{{$t('explain_text_secord')}}</p>
+                </div>
+                <div class="slides fade">
+                    <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
+                    <div >
+                        <img class="show-tip-img" :src="$t('explain_tip_img')" alt="">
+                    </div>
+                </div>
+                <div class="hooper-dot">
+                    <span class="dot" @click="currentSlide(1)"></span> 
+                    <span class="dot" @click="currentSlide(2)"></span> 
+                    <span class="dot" @click="currentSlide(3)"></span> 
+                    <span class="dot" @click="currentSlide(4)"></span> 
+                </div>
+            </div>
         </div>
         <div class="open-teach-video-btn">
             <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
@@ -58,15 +90,17 @@ import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 import MamiyogaVideoSample from '~/components/mamiyoga/MamiyogaVideoSample.vue'
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
+import Vue2TouchEvents from 'vue2-touch-events'
 
 // import VueCarousel from 'vue-carousel';
 // import { Carousel, Slide } from 'vue-carousel';
 
 // Vue.use(VueCarousel);
+Vue.use(Vue2TouchEvents)
 export default {
     data:()=>({
         show_video: false,
-    
+        slideIndex:0,
     }),
     components: {
         MamiyogaBtn,
@@ -79,6 +113,7 @@ export default {
     },
     async mounted(){
         if(process.client){
+            window.onload = this.showSlides()
             // let video = document.getElementById('sample-video')
             // if(video) {
             //     video.onended = ()=> {
@@ -93,6 +128,34 @@ export default {
         },
         closeVideo(){
             this.show_video = false
+        },
+        showSlides() {
+            var slides = document.getElementsByClassName("slides");
+            var dots = document.getElementsByClassName("dot");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            // console.log(this.slideIndex)
+            if (this.slideIndex > slides.length-1) {
+                this.slideIndex = 0
+            } else if( this.slideIndex < 0) {
+                this.slideIndex = 3
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dotactive", "");
+            }
+            slides[this.slideIndex].style.display = "block";  
+            dots[this.slideIndex].className += " dotactive";
+            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        },
+        nextSlides() {
+            this.showSlides(this.slideIndex += 1);
+        },
+        lastSlides() {
+            this.showSlides(this.slideIndex -= 1);
+        },
+        currentSlide(n) {
+            this.showSlides(this.slideIndex = n-1);
         }
     }
 }
@@ -152,6 +215,41 @@ export default {
 }
 .mamiyoga-explain .hooper {
     height: 75vh;
+}
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: .5s;
+  animation-name: fade;
+  animation-duration: .5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.mamiyoga-explain .dot {
+    width: 7px;
+    height: 7px;
+    background-color: rgba(255,255,255,.4); 
+    margin: 0 4px; 
+    display: inline-block;
+    border-radius: 4px;
+}
+.dotactive, .mamiyoga-explain .dot:hover {
+  background-color: #fff !important;
+}
+.mamiyoga-explain .hooper-dot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 5vh;
 }
 .mamiyoga-explain .hooper-indicator {
     width: 7px;
