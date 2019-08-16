@@ -638,7 +638,7 @@
                 <div class="md-first-title">
                     <p class="md-blue-title">你的履歷<br>經得起考驗嗎？</p>
                     <p class="md-blue-text" style="margin-top: 25px;">履歷盲點評測 + 60 分鐘求職教戰<br>讓你的履歷與求職，學完即做完</p>
-                    <button class="md-first-btn">
+                    <button class="md-first-btn" @click="$router.push('/resume/pay')">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-btn.png" alt="">
                     </button>
                 </div>
@@ -689,8 +689,17 @@
                 </div>
             </div>
         </section>
-        <section class="md-four-block">
-
+        <section class="md-four-block" v-touch:swipe.left="nextImgSlides" v-touch:swipe.right="lastImgSlides">
+            <div class="slide-img-container">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/sildeshow-1.png" alt="">
+            </div>
+            <div class="slide-img-container">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/slideshow-2.png" alt="">
+            </div>
+            <div class="dot-container">
+                <span class="img-dot" @click="currentImgSlide(1)"></span>
+                <span class="img-dot" @click="currentImgSlide(2)"></span>
+            </div>
         </section>
         <section class="md-five-block">
             <div class="md-first-block-container">
@@ -821,8 +830,29 @@
                 </div>
             </div>
         </section>
-        <section class="md-eight-block">
-
+        <section class="md-eight-block" v-touch:swipe.right="nextPeopSlides" v-touch:swipe.left="lastPeopSlides">
+            <div class="peop-slide">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-1.png" alt="">
+            </div>
+            <div class="peop-slide">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-2.png" alt="">
+            </div>
+            <div class="peop-slide">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-3-1.png" alt="">
+            </div>
+            <div class="peop-slide">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-4-1.png" alt="">
+            </div>
+            <div class="peop-slide">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-5-1.png" alt="">
+            </div>
+            <div class="peop-dot-container">
+                <span class="peop-dot" @click="currentPeopSlide(1)"></span>
+                <span class="peop-dot" @click="currentPeopSlide(2)"></span>
+                <span class="peop-dot" @click="currentPeopSlide(3)"></span>
+                <span class="peop-dot" @click="currentPeopSlide(4)"></span>
+                <span class="peop-dot" @click="currentPeopSlide(5)"></span>
+            </div>
         </section>
         <section class="md-nine-block">
             <div style="max-width: 1100px;margin: 0 auto;">
@@ -861,15 +891,19 @@
                 <div>
                     <p style="font-size: 72px;color:#535353;font-weight:bolder;">每天不到 9 元</p>
                     <p style="font-size: 34px;color:#535353;margin-top:15px;">三個月內讓你通過 HR 考驗<br>掌握未來不迷惘</p>
+                    <img @click="$router.push('/resume/pay')" class="md-ten-btn" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/resume-index-btn.png" alt="">
                 </div>
                 <div style="position:relative;height:550px;width:500px;">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-ten-img-1.png">
+                    <img class="md-ten-pic" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-ten-img-1.png">
                 </div>
             </div>
         </section>
         <section class="md-eleven-block">
             <div style="max-width: 1100px;margin: 0 auto;">
                 <p class="md-gray-title">課程搶先看!</p>
+                <div class="md-videoplay">
+                    <iframe id="demovideo" :src="'https://player.vimeo.com/video/338608971'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
                 <p class="md-gray-title">常見問題</p>
                 <p class="md-eleven-block-title">Q1: 請問履歷範本在哪上課？</p>
                 <p class="md-eleven-block-text">履歷範本為『線上課程』，當課程上線後，隨時隨地都可以透過手機、平板、與電腦上課。 </p>
@@ -920,6 +954,9 @@ export default {
         dv:{},
         show_list:[],
         dcPlayer: {},
+
+        slideImgIndex: 0,
+        slidePeopIndex: 0,
     }),
     computed: { 
         ...mapGetters({
@@ -1034,6 +1071,16 @@ export default {
             this.$gtag('config', 'UA-123332732-3', gtag_config);
             this.$fbq("init",this.ui_config.fbq_id);
             this.$fbq("track","PageView");
+        }
+    },
+    mounted(){
+        if(process.client) {
+            window.onload = this.showImgSlides()
+            window.onload = this.showPeopSlides()
+            setInterval(() => {
+                this.nextImgSlides()
+                this.nextPeopSlides()
+            }, 4000);
         }
     },
     methods: {
@@ -1176,6 +1223,65 @@ export default {
                 });
             }
         },
+        showImgSlides(){
+            var slides = document.getElementsByClassName("slide-img-container");
+            var dots = document.getElementsByClassName("img-dot");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            // this.slideImgIndex++;
+            // console.log(this.slideImgIndex)
+            if (this.slideImgIndex > slides.length-1) {
+                this.slideImgIndex = 0
+            } else if( this.slideImgIndex < 0) {
+                this.slideImgIndex = 1
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" img-dot-active", "");
+            }
+            slides[this.slideImgIndex].style.display = "flex";  
+            dots[this.slideImgIndex].className += " img-dot-active";
+            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        },
+        nextImgSlides() {
+            this.showImgSlides(this.slideImgIndex += 1);
+        },
+        lastImgSlides() {
+            this.showImgSlides(this.slideImgIndex -= 1);
+        },
+        currentImgSlide(n) {
+            this.showImgSlides(this.slideImgIndex = n-1);
+        },
+        showPeopSlides(){
+            var slides = document.getElementsByClassName("peop-slide");
+            var dots = document.getElementsByClassName("peop-dot");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            // this.slideImgIndex++;
+            // console.log(this.slideImgIndex)
+            if (this.slidePeopIndex > slides.length-1) {
+                this.slidePeopIndex = 0
+            } else if( this.slidePeopIndex < 0) {
+                this.slidePeopIndex = 4
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" peop-dot-active", "");
+            }
+            slides[this.slidePeopIndex].style.display = "flex";  
+            dots[this.slidePeopIndex].className += " peop-dot-active";
+            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        },
+        nextPeopSlides() {
+            this.showPeopSlides(this.slidePeopIndex += 1);
+        },
+        lastPeopSlides() {
+            this.showPeopSlides(this.slidePeopIndex -= 1);
+        },
+        currentPeopSlide(n) {
+            this.showPeopSlides(this.slidePeopIndex = n-1);
+        }
+
     },
     components: {
         ResumeFooter,
@@ -1251,6 +1357,35 @@ export default {
 }
 .md-four-block {
     height: 400px;
+    padding-top: 100px;
+}
+.slide-img-container {
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+.dot-container {
+    width: 32px;
+    height: 20px;
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.img-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 7px;
+    background: rgba(83,83,83,.5);
+    margin: 0 4px; 
+    display: inline-block;
+}
+.img-dot-active {
+    background: rgba(83,83,83,1);
+}
+.md-four-block .slide-img {
+    width: 90%;
+    max-width: 1100px;
 }
 .md-five-block {
     height: 550px;
@@ -1311,6 +1446,35 @@ export default {
 .md-eight-block {
     height: 400px;
     background-color: #0090FF;
+    position:relative;
+}
+.peop-slide {
+    align-items: center;
+    justify-content: center;
+}
+.peop-slide img {
+    height: 400px;
+}
+.peop-dot-container {
+    width: 100vw;
+    height: 20px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.peop-dot {
+    width: 7px;
+    height: 7px;
+    margin: 0 4px;
+    background: rgba(233,233,233,.5);
+    display: inline-block;
+    border-radius: 7px;
+}
+.peop-dot-active {
+    background: rgba(233,233,233,1);
 }
 .md-nine-block {
     height: 650px;
@@ -1338,13 +1502,25 @@ export default {
     background: #FFDE00;
     /* padding-top: 100px; */
 }
-.md-ten-block img {
+.md-ten-block .md-ten-pic {
     height: 620px;
     position: absolute;
     bottom: 0;
 }
+.md-ten-block .md-ten-btn {
+    width: 430px;
+    margin-top: 25px;
+}
 .md-eleven-block {
+    padding-top: 70px;
     height: 1500px;
+}
+.md-videoplay{
+    width:90vw;
+    max-width: 1100px;
+    height: 50vw;
+    margin: 50px auto;
+    display: flex;
 }
 .md-eleven-block-title {
     font-size: 24px;
