@@ -1,7 +1,7 @@
 <template>
     <div class="ai-judegment">
         <div v-if="ai_id" class="answer-for-ai" @click="focusTextArea">
-            <div class="load-history" @click="toggleHistory">輸入紀錄
+            <div class="load-history" @click="toggleHistory" v-if="!is_preview_course">輸入紀錄
                 <div class="resume-history" ref="historyList">
                 </div>
             </div>
@@ -176,6 +176,7 @@ export default {
     props:{
         ai_id:'',
         current_chapter: {},
+        is_preview_course:Boolean,
     },
 }
 </script>

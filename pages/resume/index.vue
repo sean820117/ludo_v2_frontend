@@ -631,8 +631,8 @@
             </router-link>
         </div>
     </div> -->
-    <div v-if="$mq == 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}"></div>
-    <div v-else :style="{display: $mq !== 'desktop' ? 'none' : 'block'}" class="md-body">
+    <!-- <div v-if="$mq == 'mobile'" :style="{height:'100%',display: $mq === 'desktop' ? 'none' : ''}"></div> -->
+    <div class="md-body">
         <section class="md-first-block">
             <div class="md-first-block-container">
                 <div class="md-first-title">
@@ -642,10 +642,10 @@
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-btn.png" alt="">
                     </button>
                 </div>
-            <img style="height:570px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-img-1.png" alt="">
+            <img class="md-first-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/first-img-1.png" alt="">
             </div>
         </section>
-        <section class="md-second-block">
+        <section class="md-second-block need-margin">
             <div style="max-width: 1100px;margin: 0 auto;">
                 <p class="md-gray-title">在台灣，當你應徵一個職位<br>你必須要先能夠...</p>
                 <div class="md-second-li-block">
@@ -665,25 +665,25 @@
             </div>
         </section>
         <section class="md-third-block">
-            <div style="max-width: 1100px;margin: 0 auto;">
+            <div style="max-width: 1100px;margin: 0 auto;" class="md-third-block-container">
                 <p class="md-gray-title">你的履歷還能更好!<br>現在就馬上補足</p>
                 <p class="md-gray-text" style="margin-top:15px;line-height:35px;">我們分析了 200,000 份中文履歷，打造出台灣第一個<br>繁體中文履歷盲點評測 AI，現在就讓我們給你客製化建議!</p>
-                <p class="md-blue-text" style="margin-top:45px;margin-bottom:15px;"><b>立即試用</b>&nbsp;請在下方輸入一段你的工作經驗</p>
-                <ai-judgment :ai_id="true" :current_chapter="is_ui_config_loaded ? ui_config.chapters[3] : ''"/>
+                <p class="md-blue-text" style="margin-top:45px;margin-bottom:15px;"><b>立即試用</b><br>請在下方輸入一段你的工作經驗</p>
+                <ai-judgment v-if="is_ui_config_loaded" :is_preview_course="true" :ai_id="'work_experience'" :current_chapter="is_ui_config_loaded ? ui_config.chapters[3] : {}"/>
                 <div style="display: flex;justify-content:center;">
                     <div>
-                        <p class="md-gray-text">｜<b>工作經歷評測</b></p>
+                        <p class="md-third-btn-title">｜<b>工作經歷評測</b></p>
                     </div>
                     <div>
-                        <p class="md-gray-text">｜自我介紹評測｜</p>
+                        <p class="md-third-btn-title">｜自我介紹評測</p>
                         <p class="md-third-text">(訂閱後即可使用)</p>
                     </div>
                     <div>
-                        <p class="md-gray-text">能力描述評測</p>
+                        <p class="md-third-btn-title">｜能力描述評測</p>
                         <p class="md-third-text">(訂閱後即可使用)</p>
                     </div>
-                    <div>
-                        <p class="md-gray-text">｜課外經歷評測｜</p>
+                    <div v-if="$mq != 'mobile'">
+                        <p class="md-third-btn-title">｜課外經歷評測｜</p>
                         <p class="md-third-text">(訂閱後即可使用)</p>
                     </div>
                 </div>
@@ -702,19 +702,24 @@
             </div>
         </section>
         <section class="md-five-block">
-            <div class="md-first-block-container">
-                <img style="height: 550px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-five-img-1.png" alt="">
-                <div>
+            <div class="md-five-block-container">
+                <img v-if="$mq == 'desktop'" style="height: 550px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-five-img-1.png" alt="">
+                <img v-else style="width:50vw;max-width:230px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-five-img-1.png" alt="">
+                <div v-if="$mq == 'desktop'">
                     <b style="color:#969696;font-size:31px;line-height:50px;">林佳瑾 顧問</b>
                     <p style="color:#969696;font-size:24px;line-height:50px;">現任跨國信託機構<br>跨國餐飲機構人資專案顧問<br>多年來協助多種企業<br>評估上千人的面試與履歷<br>1,500 小時個案溝通與輔導經驗</p>
                 </div>
+                <div v-else>
+                    <b style="color:#969696;font-size:14px;">林佳瑾 顧問</b>
+                    <p style="color:#969696;font-size:12px;">現任跨國信託機構<br>跨國餐飲機構人資專案顧問<br>多年來協助多種企業<br>評估上千人的面試與履歷<br>1,500 小時個案溝通與輔導經驗</p>
+                </div>
             </div>
         </section>
-        <section class="md-six-block">
+        <section class="md-six-block need-margin">
             <div style="max-width: 1100px;margin: 0 auto;">
                 <p class="md-gray-title">學習遇到瓶頸？<br>十堂課程，專家立刻幫你解惑！</p>
                 <p class="md-gray-text" style="margin-top:15px;line-height:40px;">讓狂人飛專業編輯團隊<br>來告訴你如何優化履歷與求職策略!</p>
-                <div style="margin-top: 110px;">
+                <div v-if="$mq == 'desktop'" style="margin-top: 110px;">
                     <div class="md-six-block-line">
                         <div class="md-six-block-line-block">
                             <p class="md-six-block-line-title">第一堂課<br>面試官思維分析</p>
@@ -802,32 +807,193 @@
                         </div>
                     </div>
                 </div>
+                <div v-else class="eight-block">
+                    <div class="eb-des-box" style="margin-top:20px;" :class="show_list[0]" @click="toggleClass(0)">
+                        <div class="eb-des-box-title">第一堂課<br>面試官思維分析<hr>
+                        <div class="eb-des-circle" :class="show_list[0]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>求職前，你該知道面試官如何看履歷！</li>
+                                <li>履歷隱藏四大指標：信度、價值、包容、願景</li>
+                                <li>如何透過舉例與經驗來呈現能力極限</li>
+                                </ol>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[1]" @click="toggleClass(1)">
+                        <div class="eb-des-box-title">第二堂課<br>選擇正確平台與邏輯<hr>
+                        <div class="eb-des-circle" :class="show_list[1]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                            <div class="eb-des-box-content">
+                                <ol>
+                                    <li>從選平台到職缺說明，教你做前期準備功課</li>
+                                    <li>求職平台介紹與優劣分析</li>
+                                    <li>目標產業的前景分析與薪水差異</li>
+                                </ol>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[2]" @click="toggleClass(2)">
+                        <div class="eb-des-box-title">第三堂課<br>自我介紹標準公式<hr>
+                        <div class="eb-des-circle" :class="show_list[2]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                            <div class="eb-des-box-content">
+                            <ol>
+                                <li>價值觀的定義：你看見的問題與你如何改變</li>
+                                <li>自我介紹關鍵公式，四大元素留下深刻印象</li>
+                            </ol>
+                            <hr> 
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[3]" @click="toggleClass(3)">
+                        <div class="eb-des-box-title">第四堂課<br>有效撰寫工作經歷<hr>
+                            <div class="eb-des-box-content">
+                                <div class="eb-des-circle" :class="show_list[3]">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            <ol>
+                                <li>工作經歷的撰寫方式</li>
+                                <li>三條經歷撰寫，有效呈現經驗質與量</li>
+                                <li>寫出面試官心中，最有感的實際績效數字</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[4]" @click="toggleClass(4)">
+                        <div class="eb-des-box-title">第五堂課<br>志工與社團經驗呈現<hr>
+                        <div class="eb-des-circle" :class="show_list[4]">
+                            <div></div>
+                            <div></div>
+                        </div>    
+                            <div class="eb-des-box-content">
+                            <ol>
+                                <li>將重心轉移到學習成效</li>
+                                <li>將社團經歷做為跳板，接軌職場需求</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[5]" @click="toggleClass(5)">
+                        <div class="eb-des-box-title">第六堂課<br>寫出能力的公信力<hr>
+                        <div class="eb-des-circle" :class="show_list[5]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>從職缺說明，找出職位能力需求</li>
+                                <li>從公司需求找出能力最佳操作定義</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[6]" @click="toggleClass(6)">
+                        <div class="eb-des-box-title">第七堂課<br>利用學歷與個人成就<hr>
+                        <div class="eb-des-circle" :class="show_list[6]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>讓研究與主修科目強化價值觀與專業度</li>
+                                <li>強化關係鍊，讓校友人脈成為你的優勢</li>
+                                <li>如何有自信但不自傲的陳述成就</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[7]" @click="toggleClass(7)">
+                        <div class="eb-des-box-title">第八堂課<br>自傳五大向度分析<hr>
+                        <div class="eb-des-circle" :class="show_list[7]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>人資如何解讀自傳</li>
+                                <li>自傳需滿足的五大向度</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[8]" @click="toggleClass(8)">
+                        <div class="eb-des-box-title">第九堂課<br>面試常見題目解析<hr>
+                        <div class="eb-des-circle" :class="show_list[8]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content">
+                            <ol>
+                                <li>『最挫折經驗』挫折容忍與玻璃心</li>
+                                <li>『未來的願景』規劃與資源整合</li>
+                                <li>『優點與缺點』自我覺察與問題解決</li>
+                                <li>『情境題面試』分析與錯誤歸責</li>
+                                <li>『還有什麼想問的嗎』好奇心與主動性</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eb-des-box" :class="show_list[9]" @click="toggleClass(9)">
+                        <div class="eb-des-box-title">第十堂課<br>提高求職信開信率<hr>
+                        <div class="eb-des-circle" :class="show_list[9]">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="eb-des-box-content" style="margin-top:20px;">
+                            <ol>
+                                <li>提高開信率的求職信撰寫</li>
+                                <li>求職信撰寫的四個段落</li>
+                                <li>求職信常見的錯誤解析</li>
+                            </ol>
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="md-seven-block">
-            <div style="max-width: 1100px;margin: 0 auto;">
+            <div class="md-seven-block-container" style="max-width: 1100px;margin: 0 auto; min-width: 90vw;">
                 <p class="md-gray-title">台灣第一堂智能回饋課程<br>為求職若渴的你打造!</p>
-                <div class="md-seven-block-line">
+                <div v-if="$mq == 'desktop'" class="md-seven-block-line">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-1.png">
                     <div>
                         <p class="md-seven-block-line-title">想要找實習</p>
                         <p class="md-seven-block-line-text">如果希望累積經驗，實習是個再好不過的選項，但要怎麼讓自己脫穎而出呢？<br>這堂課的內容，就是為了確保掌握所有得分的環節，用細節堆疊出你的價值跟潛力。</p>
                     </div>
                 </div>
-                <div class="md-seven-block-line">
+                <div v-if="$mq == 'desktop'" class="md-seven-block-line">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-2.png">
                     <div>
                         <p class="md-seven-block-line-title">新鮮人求職</p>
                         <p class="md-seven-block-line-text">沒有光鮮亮麗的經歷，該如何在茫茫畢業生中脫穎而出呢？<br>使用我們課程裡的 AI 評分系統，讓你的履歷分數清晰的呈現在你面前！</p>
                     </div>
                 </div>
-                <div class="md-seven-block-line">
+                <div v-if="$mq == 'desktop'" class="md-seven-block-line">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-seven-img-3.png">
                     <div>
                         <p class="md-seven-block-line-title">準備要轉職</p>
                         <p class="md-seven-block-line-text">工作幾年後開始在物色下一段職涯，以及更好的薪資待遇嗎？<br>履歷評測系統可以幫你檢查你是否有好好的完整的闡述這幾年的工作成效！</p>
                     </div>
                 </div>
+                <img v-if="$mq == 'mobile'" src="/resume/Group 945.png" alt="">
             </div>
         </section>
         <section class="md-eight-block" v-touch:swipe.right="nextPeopSlides" v-touch:swipe.left="lastPeopSlides">
@@ -854,33 +1020,33 @@
                 <span class="peop-dot" @click="currentPeopSlide(5)"></span>
             </div>
         </section>
-        <section class="md-nine-block">
+        <section class="md-nine-block need-margin">
             <div style="max-width: 1100px;margin: 0 auto;">
                 <p class="md-gray-title">有時候，選擇比努力更重要</p>
                 <p class="md-gray-text" style="margin-top:10px;">我們都願為求職努力，但看了很多教學<br>我們卻無法確認，自己是否真的學會</p>
-                <div style="display: flex;align-items:center;justify-content:space-between;margin-top:70px;">
-                    <div class="md-nine-block-box" style="background-color:#0090FF;">
+                <div style="display: flex;align-items:center;justify-content:space-between;margin-top:70px;flex-wrap:wrap;">
+                    <div class="md-nine-block-box" style="background-color:#0090FF;margin-bottom: 20px;">
                         <div>
                             <p class="md-nine-block-box-title" style="color:white;">履歷範本</p>
-                            <p class="md-gray-text" style="color:white;line-height:50px;font-weight: 500;">-顧問與履歷精華<br>-10 秒知道好壞<br>-每天不到 9 元</p>
+                            <p class="md-nine-block-text" style="color:white;">-顧問與履歷精華<br>-10 秒知道好壞<br>-每天不到 9 元</p>
                         </div>
                     </div>
                     <div class="md-nine-block-box">
                         <div>
                             <p class="md-nine-block-box-title">面試顧問</p>
-                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-單一顧問老師<br>-取決於顧問時間<br>-NT 3,000/時↑</p>
+                            <p class="md-nine-block-text">-單一顧問老師<br>-取決於顧問時間<br>-NT 3,000/時↑</p>
                         </div>
                     </div>
                     <div class="md-nine-block-box">
                         <div>
                             <p class="md-nine-block-box-title">線上課程</p>
-                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-單一專家老師<br>-回饋頻次不定<br>-NT 1,200/堂↑</p>
+                            <p class="md-nine-block-text">-單一專家老師<br>-回饋頻次不定<br>-NT 1,200/堂↑</p>
                         </div>
                     </div>
                     <div class="md-nine-block-box">
                         <div>
                             <p class="md-nine-block-box-title">免費資源</p>
-                            <p class="md-gray-text" style="color:#7E7E7E;line-height:50px;font-weight: 500;">-好壞參差不齊<br>-沒有回饋<br>-大量時間成本</p>
+                            <p class="md-nine-block-text">-好壞參差不齊<br>-沒有回饋<br>-大量時間成本</p>
                         </div>
                     </div>
                 </div>
@@ -888,19 +1054,27 @@
         </section>
         <section class="md-ten-block">
             <div class="md-first-block-container">
-                <div>
-                    <p style="font-size: 72px;color:#535353;font-weight:bolder;">每天不到 9 元</p>
+                <div v-if="$mq == 'desktop'" style="padding-left:50px;">
+                    <p style="font-size: 64px;color:#535353;font-weight:bolder;">每天不到 9 元</p>
                     <p style="font-size: 34px;color:#535353;margin-top:15px;">三個月內讓你通過 HR 考驗<br>掌握未來不迷惘</p>
                     <img @click="$router.push('/resume/pay')" class="md-ten-btn" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/resume-index-btn.png" alt="">
                 </div>
-                <div style="position:relative;height:550px;width:500px;">
+                <div v-else>
+                    <p style="font-size: 35px;color:#535353;font-weight:bolder;margin-top:50px;">每天不到 9 元</p>
+                    <p style="font-size: 17px;color:#535353;margin-top:15px;">三個月內讓你通過 HR 考驗<br>掌握未來不迷惘</p>
+                    <img @click="$router.push('/resume/pay')" class="md-ten-btn" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/resume-index-btn.png" alt="">
+                </div>
+                <div v-if="$mq == 'desktop'" style="position:relative;height:550px;width:500px;">
+                    <img class="md-ten-pic" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-ten-img-1.png">
+                </div>
+                <div v-else>
                     <img class="md-ten-pic" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-ten-img-1.png">
                 </div>
             </div>
         </section>
-        <section class="md-eleven-block">
+        <section class="md-eleven-block need-margin">
             <div style="max-width: 1100px;margin: 0 auto;">
-                <p class="md-gray-title">課程搶先看!</p>
+                <p class="md-blue-title">課程搶先看!</p>
                 <div class="md-videoplay">
                     <iframe id="demovideo" :src="'https://player.vimeo.com/video/338608971'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen width="100%" height="100%"></iframe>
                 </div>
@@ -935,7 +1109,7 @@ Vue.use(Vue2TouchEvents);
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
-    mobile: 900,
+    mobile: 720,
     desktop: Infinity,
   }
 });
@@ -1009,43 +1183,6 @@ export default {
             });
             setTimeout(() => {
                 loader.hide();
-                this.dv = document.getElementById("demovideo");
-                this.dcPlayer = new Vimeo.Player(this.dv);
-                this.dcPlayer.loadVideo(getChapterData01.video_id);
-                var shareurl = "https://www.ludonow.com/resume";
-                var sharelink = "https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u="+encodeURIComponent(shareurl)+"&display=popup&ref=plugin&src=share_button"
-                // document.getElementById("democourses").onclick = function(){
-                //     document.getElementById("fbshare").style.display = "block";
-                // }
-                function openShareWindow(){
-                    localStorage.isShared = 'true';
-                    window.open(sharelink,"share","width=1000,height=600");
-                    document.getElementById("share-mask").style.display = "none";
-                }
-                document.getElementById("clickshare").onclick = openShareWindow;
-                document.getElementById("share-mask").onclick = openShareWindow;
-
-                this.dcPlayer.on('ended', this.onEndCallback);
-                this.dcPlayer.on('play',this.onPlayCallback);
-                this.dcPlayer.on('pause',this.onPauseCallback);
-                this.dcPlayer.on('timeupdate',this.onTimeUpdateCallback);
-
-                if (this.$mq === "mobile") {
-                    var imgContainer = document.getElementById("ss-container");
-                
-                    var slideTimer = null, imgIndex = 0, slideInterval = 4000;
-                    $(imgContainer.children[0]).show();
-                    slideTimer = setTimeout(()=>switchImg(1,imgContainer,slideTimer,imgIndex), slideInterval);
-                }
-                function switchImg(factor,element,stimer,theImgIndex){
-                    clearTimeout(stimer);
-                    $(element.children[theImgIndex]).fadeOut(500,function(){
-                        var imgLength = element.children.length;
-                        theImgIndex = (theImgIndex+imgLength+1*factor)%imgLength;
-                        $(element.children[theImgIndex]).fadeIn(500);
-                        stimer = setTimeout(()=>switchImg(1,element,stimer,theImgIndex), slideInterval);
-                    });
-                }
             }, 2000);
             
             
@@ -1290,6 +1427,10 @@ export default {
 }
 </script>
 <style>
+.need-margin {
+    max-width: 90vw !important;
+    margin: 0 auto;
+}
 .md-blue-title {
     font-size: 50px;
     font-weight: bolder;
@@ -1308,10 +1449,26 @@ export default {
     font-size: 24px;
     color: #535353;
 }
+@media (max-width:720px) {
+    .md-blue-title {
+        margin-top:40px; 
+        font-size: 35px !important;
+    }
+    .md-blue-text {
+        font-size: 17px !important;
+    }
+    .md-gray-title {
+        font-size: 35px !important;
+    }
+    .md-gray-text {
+        font-size: 17px !important;
+        margin-top: 10px;
+    }
+}
 .md-first-block {
     margin-top: 55px;
     width: 100vw;
-    height: 570px;
+    /* padding-bottom: 50px; */
     background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/md-first-img.jpg');
     background-size: cover;
     background-position: center center;
@@ -1324,14 +1481,37 @@ export default {
     max-width: 1450px;
     margin: 0 auto;
 }
+.md-first-title {
+    padding-left: 100px;
+}
 .md-first-btn {
     border: none;
     background: none;
     margin-top: 45px;
 }
-
+.md-first-block-img {
+    height: 570px;
+}
+@media (max-width:720px) {
+    .md-first-block {
+        height: auto !important;
+    }
+    .md-first-block-container {
+        flex-direction: column;
+        max-width: 274px !important;
+        width: 80vw !important;
+    }
+    .md-first-title {
+        padding-left: 0px;
+    }
+    .md-first-block-img {
+        height: auto;
+        max-width: 311px !important;
+        width: 85vw !important;
+    }
+}
 .md-second-block {
-    height: 500px;
+    padding-bottom: 50px;
     background: white;
     padding-top: 60px;
 }
@@ -1344,20 +1524,67 @@ export default {
     height: 95px;
     margin-bottom: 45px;
 }
+@media (max-width:720px) {
+    .md-second-block {
+        height: auto !important;
+        padding-top: 50px !important;
+        max-width: 274px !important;
+        width: 80vw !important;
+    }
+    .md-second-li-block {
+        flex-direction: column;
+    }
+    .md-second-li {
+        display: flex;
+    }
+    .md-second-li img {
+        width:70px;
+        height: auto !important;
+        max-height: 67px;
+        margin-right: 25px;
+    }
+}
 
 .md-third-block {
-    height: 860px;
+    padding-bottom: 50px;
     background-color: #F7F7F7;
     padding-top: 45px;
+}
+.md-third-block-container {
+    width: 90vw;
 }
 .md-third-text {
     text-align: center;
     color: #7E7E7E;
-    font-size: 16px;
+    font-size: 15px;
+}
+.md-third-btn-title {
+    font-size: 24px;
+    color: #535353;
 }
 .md-four-block {
-    height: 400px;
+    padding-bottom: 50px;
     padding-top: 100px;
+}
+@media (max-width:720px) {
+    .md-third-block-container {
+        height: auto !important;
+        max-width: 300px !important;
+        width: 90vw !important;
+    }
+    .md-third-block {
+        height: auto !important;  
+        background-color: #F7F7F7;
+        padding-top: 45px;
+    }
+    .md-third-text {
+        text-align: center;
+        color: #7E7E7E;
+        font-size: 12px !important;
+    }
+    .md-third-btn-title {
+        font-size: 14px !important;
+    }
 }
 .slide-img-container {
     align-items: center;
@@ -1391,11 +1618,131 @@ export default {
     height: 550px;
     background-color: #F7F7F7;
 }
-
+.md-five-block-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+@media (max-width:720px) {
+    .md-five-block {
+        height: auto;
+    }
+    .md-five-block-container {
+        max-width: 350px;
+        width: 100vw;
+    }
+}
 .md-six-block {
-    height: 1470px;
+    padding-bottom: 50px;
     padding-top: 120px;
     background-color: white;
+}
+@media (max-width:720px) {
+    .md-six-block {
+        padding-top: 45px;
+        background-color: white;
+    }
+    .eight-block{
+        width: 100%;
+        font-weight: 400;
+        color: #969696;
+    }
+    .eb-title{
+        font-size: 42px;
+        text-align: center;
+        padding-top: 24px;
+    }
+    .eb-des{
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 33px;
+        margin-top: -3px;
+        font-weight: 100;
+    }
+    .eb-content{
+        font-size: 15px;
+        width: 87vw;
+        margin: auto;
+        padding-left: 3px;
+        padding-bottom: 82px;
+    }
+    .eb-des-box {
+        position: relative;
+        /* margin:0 35px;  */
+        padding: 20px 0; 
+        height: 90px;
+        transition-duration:.4s;
+        transition-timing-function: ease;
+        overflow-y: hidden;
+    }
+    .eb-des-circle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        top:40px;
+        right: 50px;
+        transition-duration:.4s;
+        transition-timing-function: ease;
+    }
+    .eb-des-circle.open {
+        transform: rotate(-180deg);
+    }
+    .eb-des-circle div:first-child {
+        width: 3px;
+        height: 12px;
+        background-color: #969696;
+        transform: rotate(45deg);
+        position: absolute;
+        top:5px;
+        right: 6px;
+    }
+    .eb-des-circle div:last-child {
+        width: 3px;
+        height: 12px;
+        background-color: #969696;
+        transform: rotate(135deg);
+        position: absolute;
+        top:5px;
+        right: 13px;
+    }
+    .eb-des-box:nth-child(11) {
+        height: 105px;
+    }
+    .eb-des-box.open {
+        height:180px ;
+    }
+    .eb-des-box:nth-child(4).open,.eb-des-box:nth-child(6).open,.eb-des-box:nth-child(7).open,.eb-des-box:nth-child(9).open {
+        height: 160px;
+    }
+    .eb-des-box:nth-child(10).open {
+        height: 220px;
+    }
+    .eb-des-box:nth-child(11).open {
+        height: 205px;
+    }
+    .eb-des-box-title {
+        color: #969696;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center; 
+    }
+    .eb-des-box-title hr,.eb-des-box-content.open hr {
+        color:#969696;
+        margin: 15px 20px;
+        border-style: solid;
+        border-width: .5px;
+    }
+    .eb-des-box-content li {
+        color: #969696;
+        text-align:left;
+        font-size: 13px;
+        font-weight:inherit;
+        line-height: 20px;
+    }
 }
 .md-six-block-line {
     display: flex;
@@ -1421,7 +1768,7 @@ export default {
     
 }
 .md-seven-block {
-    height: 1000px;
+    padding-bottom: 50px;
     padding-top: 100px;
     background-color:#F7F7F7;
 }
@@ -1443,8 +1790,28 @@ export default {
     font-size: 22px;
     color: #7E7E7E;
 }
+.md-seven-block-container {
+    margin: 0 auto;
+    width: 90vw;
+}
+@media (max-width:720px) {
+    .md-seven-block {
+        padding-top: 50px;
+    }
+    .md-seven-block-container {
+        margin: 0 auto;
+        width: 90vw;
+        max-width: 300px;
+    }
+    .md-seven-block img {
+        height: auto;
+        width: 90vw;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
 .md-eight-block {
-    height: 400px;
+    padding-bottom: 50px;
     background-color: #0090FF;
     position:relative;
 }
@@ -1477,7 +1844,7 @@ export default {
     background: rgba(233,233,233,1);
 }
 .md-nine-block {
-    height: 650px;
+    padding-bottom: 50px;
     background-color: white;
     padding-top: 85px;
 }
@@ -1497,8 +1864,35 @@ export default {
     line-height: 50px;
     font-weight: 500;
 }
+.md-nine-block-text{
+    color: #7E7E7E;
+    line-height:50px;
+    font-weight: 500;
+    font-size: 17px;
+}
+@media (max-width:720px) {
+    .md-nine-block {
+        padding-top: 50px;
+    }
+    .md-nine-block-box {
+        background-color: #fff;
+        height: 132px;
+        width: 151px;
+        flex: 0 0 48%;
+        margin-bottom: 10px;
+        padding-bottom: 20px;
+    }
+    .md-nine-block-box-title {
+        font-size: 16px;
+    }
+    .md-nine-block-text{
+        line-height:1;
+        font-weight: 500;
+        font-size: 13px;
+    }
+}
+
 .md-ten-block {
-    height: 550px;
     background: #FFDE00;
     /* padding-top: 100px; */
 }
@@ -1510,10 +1904,28 @@ export default {
 .md-ten-block .md-ten-btn {
     width: 430px;
     margin-top: 25px;
+    cursor: pointer;
 }
+@media (max-width:720px) {
+    .md-ten-block {
+        width: 100vw;
+    }
+    .md-ten-block .md-ten-btn {
+        width: 90vw;
+        max-width: 300px;
+    }
+    .md-ten-block .md-ten-pic {
+        height: auto;
+        position: relative;
+        width: 100vw;
+        max-width: 350px;
+        bottom: -5px;
+    }
+}
+
 .md-eleven-block {
     padding-top: 70px;
-    height: 1500px;
+    padding-bottom: 100px;
 }
 .md-videoplay{
     width:90vw;
@@ -1530,6 +1942,25 @@ export default {
 .md-eleven-block-text {
     font-size: 16px;
     color: #535353;
+}
+@media (max-width:720px) {
+    .md-eleven-block-title {
+        font-size: 17px;
+    }
+    .md-eleven-block-text {
+        font-size: 15px;
+        color: #535353;
+    }
+    .md-eleven-block {
+        padding-top: 0px;
+        width: 80vw;
+        max-width: 300px;
+    }
+    .md-videoplay{
+        width: 80vw;
+        max-width: 300px;
+        height: 45vw;
+    }
 }
 /* .videoplay iframe {
     width: 90vw;
