@@ -689,7 +689,7 @@
                 </div>
             </div>
         </section>
-        <section class="md-four-block" v-touch:swipe.left="nextImgSlides" v-touch:swipe.right="lastImgSlides">
+        <section v-if="$mq == 'desktop'" class="md-four-block" v-touch:swipe.left="nextImgSlides" v-touch:swipe.right="lastImgSlides">
             <div class="slide-img-container">
                 <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/sildeshow-1.png" alt="">
             </div>
@@ -699,6 +699,26 @@
             <div class="dot-container">
                 <span class="img-dot" @click="currentImgSlide(1)"></span>
                 <span class="img-dot" @click="currentImgSlide(2)"></span>
+            </div>
+        </section>
+        <section v-else class="md-four-block" v-touch:swipe.left="nextImgSlides" v-touch:swipe.right="lastImgSlides">
+            <div class="slide-img-container">
+                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+            </div>
+            <div class="slide-img-container">
+                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+            </div>
+            <div class="slide-img-container">
+                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+            </div>
+            <div class="slide-img-container">
+                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+            </div>
+            <div class="dot-container">
+                <span class="img-dot" @click="currentImgSlide(1)"></span>
+                <span class="img-dot" @click="currentImgSlide(2)"></span>
+                <span class="img-dot" @click="currentImgSlide(3)"></span>
+                <span class="img-dot" @click="currentImgSlide(4)"></span>
             </div>
         </section>
         <section class="md-five-block">
@@ -998,19 +1018,24 @@
         </section>
         <section class="md-eight-block" v-touch:swipe.right="nextPeopSlides" v-touch:swipe.left="lastPeopSlides">
             <div class="peop-slide">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-1.png" alt="">
+                <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-1.png" alt="">
+                <img v-else src="/resume/Group 946.png" alt="">
             </div>
             <div class="peop-slide">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-2.png" alt="">
+                <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-2.png" alt="">
+                <img v-else src="/resume/Group 946.png" alt="">
             </div>
             <div class="peop-slide">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-3-1.png" alt="">
+                <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-3-1.png" alt="">
+                <img v-else src="/resume/Group 946.png" alt="">
             </div>
             <div class="peop-slide">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-4-1.png" alt="">
+                <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-4-1.png" alt="">
+                <img v-else src="/resume/Group 946.png" alt="">
             </div>
             <div class="peop-slide">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-5-1.png" alt="">
+                <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-5-1.png" alt="">
+                <img v-else src="/resume/Group 946.png" alt="">
             </div>
             <div class="peop-dot-container">
                 <span class="peop-dot" @click="currentPeopSlide(1)"></span>
@@ -1592,7 +1617,7 @@ export default {
     height: 200px;
 }
 .dot-container {
-    width: 32px;
+    width: fit-content;
     height: 20px;
     display: block;
     margin: 0 auto;
@@ -1871,6 +1896,11 @@ export default {
     font-size: 17px;
 }
 @media (max-width:720px) {
+    .peop-slide img {
+        height: auto;
+        width: 100vw;
+        max-width: 350px;
+    }
     .md-nine-block {
         padding-top: 50px;
     }
