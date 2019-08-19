@@ -299,6 +299,10 @@ export default {
             this.$gtag('event', 'Virtual', {
                 'event_category': 'EC',
             });
+            this.$gtag('event', 'conversion', {
+                'send_to': 'AW-739537538/CgTcCITJ66EBEILl0eAC',
+                'transaction_id': this.aftee_data.shop_transaction_no,
+            });
             this.$fbq('track', 'Purchase', {
                 currency: "TWD", 
                 value: 299.00,

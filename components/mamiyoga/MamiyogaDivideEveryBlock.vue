@@ -197,6 +197,14 @@ export default {
     background-size: contain;
 
 }
+.upload-remind-box {
+    width: 150px;
+    height: 135px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
 @media (min-width: 769px) {
     .mamiyoga-divide-every-video {
         width: 100%;
