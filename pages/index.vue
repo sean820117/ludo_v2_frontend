@@ -14,13 +14,8 @@
 </template>
 
 <script>
-import LudoHeader from '~/components/desktop/LudoHeader.vue'
-import CategoryButtonMedium from '~/components/CategoryButtonMedium.vue'
-
 export default {
     components: {
-        LudoHeader,
-        CategoryButtonMedium,
     },
     data:() => ({
         categoryButtonList:[
@@ -83,7 +78,7 @@ export default {
             console.log(localStorage.redirect);
             this.$router.push(localStorage.redirect);
         } else {
-            window.location.href = "http://intro.ludonow.com"
+            window.location.href = "http://mamiyoga.ludonow.com/mamiyoga"
         }
       }
     },
