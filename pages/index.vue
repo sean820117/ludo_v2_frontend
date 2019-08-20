@@ -83,7 +83,7 @@ export default {
             console.log(localStorage.redirect);
             this.$router.push(localStorage.redirect);
         } else {
-            window.location.href = "http://intro.ludonow.com"
+            window.location.href = "http://mamiyoga.ludonow.com/mamiyoga"
         }
       }
     },
