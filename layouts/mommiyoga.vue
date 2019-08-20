@@ -11,8 +11,6 @@
 </template>
 
 <script>
-// import Titlebar from "~/components/resume/Titlebar"
-// import ResumeFooter from "~/components/resume/ResumeFooter.vue";
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';

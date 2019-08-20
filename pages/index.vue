@@ -14,13 +14,8 @@
 </template>
 
 <script>
-import LudoHeader from '~/components/desktop/LudoHeader.vue'
-import CategoryButtonMedium from '~/components/CategoryButtonMedium.vue'
-
 export default {
     components: {
-        LudoHeader,
-        CategoryButtonMedium,
     },
     data:() => ({
         categoryButtonList:[

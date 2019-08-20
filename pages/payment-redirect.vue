@@ -1,18 +1,13 @@
 <template>
     <div>
-        <course-header/>
         <div class="redirect-body">
             <h1 class="redirect-title">{{ result }}</h1>
             <router-link to="/go2university" class="redirect-button">返回首頁</router-link>
         </div>
-        <course-footer/>
     </div>
 </template>
 
 <script>
-import CourseHeader from '~/components/CourseHeader.vue'
-import CourseFooter from '~/components/CourseFooter.vue'
-
 export default {
     data:() => ({
         result:"",
@@ -24,8 +19,6 @@ export default {
         ]
     }),
     components: {
-		CourseHeader,
-		CourseFooter,
     },
     created() {
         const query_result = this.$route.query.result;
