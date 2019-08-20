@@ -35,23 +35,23 @@
             </hooper> -->
             <div class="hooper">
                 <div class="slides fade">
-                    <h5>AI助教使用服裝建議</h5>
-                    <p class="explain-light-text" style="margin-top: 5vh;">請盡量別穿著<b>全身寬鬆黑色</b>的衣物，以免導致無法判斷</p>
+                    <h5>{{$t('explain_title_first')}}</h5>
+                    <p class="explain-light-text first-explain" style="margin-top: 5vh;" v-html="$t('explain_text_first_1')"></p>
                     <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1.png" alt="">
-                    <p class="explain-light-text">請勿穿著<b>長裙類服飾</b>，以免導致無法判斷</p>
+                    <p class="explain-light-text first-explain" v-html="$t('explain_text_first_2')"></p>
                     <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2.png" alt="">
-                    <p class="explain-light-text">請盡量別穿著<b>過於寬鬆</b>的衣物，以免導致無法判斷</p>
+                    <p class="explain-light-text first-explain" v-html="$t('explain_text_first_3')"></p>
                     <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3.png" alt="">
                 </div>
                 <div class="slides fade">
-                    <h5>{{$t('explain_title_first')}}</h5>
+                    <h5>{{$t('explain_title_secord')}}</h5>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
-                    <p class="explain-bold-text">{{$t('explain_text_first')}}</p>
+                    <p class="explain-bold-text">{{$t('explain_text_secord')}}</p>
                 </div>
                 <div class="slides fade">
-                    <h5>{{$t('explain_title_secord')}}</h5>
+                    <h5>{{$t('explain_title_third')}}</h5>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
-                    <p class="explain-bold-text">{{$t('explain_text_secord')}}</p>
+                    <p class="explain-bold-text">{{$t('explain_text_third')}}</p>
                 </div>
                 <div class="slides fade">
                     <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
@@ -400,6 +400,18 @@ export default {
     }
     .open-teach-video-btn {
         margin-top: 5vh;
+    }
+    .first-explain {
+        width: 240px !important;
+    }
+    .video-tips {
+        width: 450px;
+    }
+    .video-tips-box {
+        transform: rotate(0deg);
+    }
+    .close-tips-box {
+        transform: rotate(0deg);
     }
 }
 

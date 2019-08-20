@@ -21,11 +21,20 @@ export default {
         bgImg: String,
         unitSrc: String,
         goPractice: String,
+        getCurrentPoseId: String
     },
     methods:{
         goPracticePage(){
-            sessionStorage['course_'+this.goPractice + '_current_pose_id'] = 'first'
-            this.$router.push('/mamiyoga/course/practice/'+ this.goPractice)
+            sessionStorage['course_'+this.goPractice + '_current_pose_id'] = this.getCurrentPoseId
+            if(this.$i18n.locale == 'jp') {
+                this.$router.push('/jp/mamiyoga/course/practice/'+ this.goPractice)
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.$router.push('/zh-CN/mamiyoga/course/practice/'+ this.goPractice)
+            } else {
+                this.$router.push('/mamiyoga/course/practice/'+ this.goPractice)
+            }
+            
+            
         }
     }
     
@@ -42,7 +51,7 @@ export default {
     border-radius: 10px; 
     display: flex;
     align-items: flex-end;
-    padding: 10px;
+    padding: 10px 20px 20px;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

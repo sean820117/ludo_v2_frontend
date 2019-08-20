@@ -29,14 +29,14 @@
                 </div>
             </div>
             <div class="mamiyoga-course-bottom-content first">
-                <h5>課程簡介</h5>
+                <h5>{{$t('course_little_title_1')}}</h5>
                 <div class="mamiyoga-course-bottom-first">
                     <p v-html="getCourseIntroduction">{{getCourseIntroduction}}</p>
                 </div>
             </div>
             <div class="mamiyoga-course-bottom-content second">
-                <h5>動作簡介</h5>
-                <p>{{getPoseAmount}}個動作</p>
+                <h5>{{$t('course_little_title_2')}}</h5>
+                <p>{{getPoseAmount + $t('course_little_text')}}</p>
                 <div class="mamiyoga-course-bottom-second">
                     <div class="mamiyoga-course-bottom-second-content-li" v-for="(pose ,i) in getPoses" :key="i">
                         <!-- <img src="/mamiyoga/num/num01.svg" alt=""><p>{{pose_brief}}</p> -->
@@ -51,11 +51,11 @@
                         </router-link>
                     </div> -->
                     <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn" @click="clickPractice">
-                        動作教學
+                        {{$t('course_pose_btn')}}
                     </div>
                     <div style="position: relative;">
                         <div style="margin:2vh auto;line-height:35px;color:#EEEFEA;" @click="$router.push('/mamiyoga/aiassistant')" class="course-divide-btn">
-                            AI助教
+                            {{$t('menu_nav_text_record')}}
                         </div>
                         <div class="course-teach-question-box" @click="openExplainBox">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
@@ -84,7 +84,13 @@ export default {
     methods:{
         clickPractice(){
             sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
-            this.$router.push('/mamiyoga/course/practice/' + this.course_data.id)
+            if(this.$i18n.locale == 'JP') {
+                this.$router.push('/jp/mamiyoga/course/practice/' + this.course_data.id)
+            } else if(this.$i18n.locale == 'zh-CN') {
+                this.$router.push('/zh-CN/mamiyoga/course/practice/' + this.course_data.id)
+            } else {
+                this.$router.push('/mamiyoga/course/practice/' + this.course_data.id)
+            }
         },
         openExplainBox(){
             this.$emit('openExplainBox')

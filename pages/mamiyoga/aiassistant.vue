@@ -14,10 +14,10 @@
                 <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
                 <div class="course-information-select">
                     <div class="course-information-content">
-                        <router-link to="/mamiyoga/about" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
+                        <router-link :to="check_lang + '/mamiyoga/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
                     </div>
                     <div class="course-information-content">
-                        <router-link to="/mamiyoga/menu" style="text-decoration:none;"><p>所有課程</p></router-link>
+                        <router-link :to="check_lang +'/mamiyoga/menu'" style="text-decoration:none;"><p>{{$t('menu_nav_text_course')}}</p></router-link>
                     </div>
                     <div class="course-information-content">
                         <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
@@ -29,10 +29,10 @@
             </div>
             
             <div class="aiassistant-container">
-                <h4>所有動作</h4>
+                <h4>{{$t('aiaiassistant_content_title')}}</h4>
                 <mamiyoga-aiassistant-pose-block v-for="(pose,i) in have_ai_pose" :key="i"
                 :poseText="pose.pose_brief" :unitSrc="pose.chapter_flag" :bgImg="pose.ai_preview_img"
-                :goPractice="pose.course_id"
+                :goPractice="pose.course_id" :getCurrentPoseId="pose.pose_id"
                 ></mamiyoga-aiassistant-pose-block>
             </div>
         </div>
@@ -57,6 +57,7 @@ import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 import MamiyogaAiassistantPoseBlock from '~/components/mamiyoga/MamiyogaAiassistantPoseBlock.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout:'mommiyoga',
     data:()=>({
@@ -64,35 +65,41 @@ export default {
         have_ai_course: [],
         have_ai_pose: [],
         not_online: false,
+        check_lang: '',
         // have_ai_pose: {},
     }),
-    // async beforeCreate() {
-    //     if (process.client) {
-    //         this.ui_config = await require('~/config/mommiyoga-config')
-    //         this.is_ui_config_loaded = true;
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mommiyoga-config')
+            // this.is_ui_config_loaded = true;
 
-    //         let login_or_not = await this.$checkLogin(this.$store);
-    //         if (login_or_not == false) {
-    //             window.alert("尚未登入帳號，請先前往登入～");
-    //             this.$router.push('/mommiyoga/login');
-    //         } else {
-    //             let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-    //             if (!payed_or_not) {
-    //                 console.log("not payed");
-    //                 window.alert("尚未開通課程，請先前往購買～");
-    //                 this.$router.push('/resume/pay');
-    //             } else {
-    //                 console.log("payed")
-    //             }
-    //         }
-    //     }
-    // },
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/mamiyoga/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/mamiyoga/pay');
+                } else {
+                    console.log("payed")
+                }
+            }
+        }
+    },
     async mounted(){
         if (process.client) {
             if (this.$i18n.locale == 'JP') {
                 this.courses = await require('~/config/mamiyoga-course-jp');
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mamiyoga-course-zhcn');
+                this.check_lang = '/zh-CN'
             } else {
                 this.courses = await require('~/config/mamiyoga-course');
+                this.check_lang = ''
             }
             let ai_course = this.courses.filter(course => course.poses.find(pose => pose.pose_ai === true))
             // let all_ai_pose = ai_course.poses
@@ -138,6 +145,11 @@ export default {
         MamiyogaBtn,
         MamiyogaAiassistantPoseBlock,
         MamiyogaWindowAlertBox,
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
     },
     methods: {
         

@@ -11,7 +11,7 @@
                 <img src="/mamiyoga/eye.svg" alt=""><p>110</p>
             </div> -->
             <div class="mamiyoga-divide-every-bottom-content">
-                <h5>動作步驟</h5>
+                <h5>{{$t('course_tips_text')}}</h5>
                 <div class="mamiyoga-divide-every-bottom">
                     <!-- <p v-for="pose in getPoseExplain" :key="pose.pose_id" >{{pose.pose_description}}</p> -->
                     <slot name="divide-text"></slot>
@@ -20,8 +20,8 @@
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上傳影片</label>  
                 </button> -->
                 <div v-if="ai_teacher" style="display: flex;justify-content: center;">
-                    <button class="ai-use-btn" v-if="ai_teacher" @click="openRecordBox">練習記錄</button> 
-                    <button class="ai-use-btn" v-if="ai_teacher" @click="show_remind = true">開始練習</button>
+                    <button class="ai-use-btn" v-if="ai_teacher" @click="openRecordBox">{{$t('course_practice_btn')}}</button> 
+                    <button class="ai-use-btn" v-if="ai_teacher" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
                 </div>
             </div>
         </div>
@@ -29,14 +29,14 @@
             <div class="cancel-box" @click="show_remind = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             </div>
-            <p style="color:#FF9898;font-size:14px;font-weight:bold;">建議使用</p>
+            <p style="color:#FF9898;font-size:14px;font-weight:bold;">{{$t('course_practice_remind_title')}}</p>
             <div class="upload-remind-box" :style="{backgroundImage:'url('+getBackground+')'}"></div>
             <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top:40px;width:40%;"> -->
             <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
             <div class="star-line-box">
                 <!-- <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button> -->
                 <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
-                    <label style="width:70px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">好</label>  
+                    <label style="width:70px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('teach_button_ok')}}</label>  
                 </button>
             </div>
         </mamiyoga-window-alert-box>

@@ -12,6 +12,7 @@ export default {
   index_agree_link_2: '隱私政策',
 
   teach_title:'體驗練習',
+  teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video-zhtw.mp4',
   teach_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4',
   teach_tip_title: '姿勢步驟',
   teach_button_upload: '開始練習',
@@ -39,10 +40,14 @@ export default {
   teach_assay_text_development: '課程尚未開放<br>預計八月上線',
   teach_assay_button_development: '期待',
 
-  explain_title_first: '正面拍攝',
-  explain_title_secord: '側面拍攝',
-  explain_text_first: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
-  explain_text_secord: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
+  explain_title_first: 'AI助教使用服裝建議',
+  explain_title_secord: '正面拍攝',
+  explain_title_third: '側面拍攝',
+  explain_text_first_1: '請盡量別穿著<b>全身寬鬆黑色</b>的衣物，以免導致無法判斷',
+  explain_text_first_2: '請勿穿著<b>長裙類服飾</b>，以免導致無法判斷',
+  explain_text_first_3: '請盡量別穿著<b>過於寬鬆</b>的衣物，以免導致無法判斷',
+  explain_text_secord: '將您的身體『正面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
+  explain_text_third: '將您的身體『側面』面向手機，拍攝距離約2公尺，讓全身入鏡，這樣AI助教才能精準分析成果。',
   explain_btn_video: '觀看教學',
   explain_tip_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tips-cn.png',
 
@@ -70,6 +75,7 @@ export default {
   menu_nav_text_teacher:'講師介紹',
   menu_nav_text_record:'AI助教',
   menu_nav_text_friend:'學習夥伴',
+  menu_nav_text_course: '所有課程',
 
   menu_tag_mommiyoga_first: '初級課程',
   menu_tag_mommiyoga_second: '中級課程',
@@ -116,4 +122,14 @@ export default {
   login_input_password: '密碼',
   login_input_again: '確認密碼',
   login_btn_pay: '立即付款',
+
+  course_little_title_1: '課程簡介',
+  course_little_title_2: '動作簡介',
+  course_little_text: '個動作',
+  course_pose_btn: '動作教學',
+
+  course_practice_label: '動作',
+  course_practice_btn: '練習記錄',
+  course_practice_remind_title: '建議使用',
+
 }

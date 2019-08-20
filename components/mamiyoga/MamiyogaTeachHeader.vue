@@ -11,9 +11,11 @@
         <div class="mamiyoga-teach-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
             <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button> -->
-            <div v-if="!is_beta">
+            <!-- <div v-if="!is_beta">
             <button  :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox()">{{$t('header_login')}}</button>
-            </div>
+            </div> -->
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="logout" v-else >{{$t('header_logout')}}</button>
         </div>
     </div>
 </template>
@@ -36,14 +38,18 @@ export default {
     components: {
         MamiyogaSmallBtn,
     },
-    // async mounted() {
-    //     if (process.client) {
-    //         this.is_login = await this.$checkLogin(this.$store);
-    //     }
-    // },
+    async mounted() {
+        if (process.client) {
+            this.is_login = await this.$checkLogin(this.$store);
+        }
+    },
     methods:{
         openRemindBox(){
             this.$emit('openRemindBox')
+        },
+        logout() {
+            localStorage.redirect = "/mamiyoga";
+            this.$router.push('/logout');
         }
     }
 }
@@ -107,6 +113,9 @@ export default {
     border-style: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,.3);
     cursor:pointer;
+}
+.mamiyoga-header-login-btn.mommiyoga-header-login-btn {
+    width: 80px;
 }
 @media (min-width: 769px) {
     .mamiyoga-teach-header{

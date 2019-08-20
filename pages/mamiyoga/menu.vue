@@ -5,10 +5,10 @@
                 <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
                 <div class="course-information-select">
                     <div class="course-information-content">
-                        <router-link to="/mamiyoga/about" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
+                        <router-link :to="check_lang + '/mamiyoga/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
                     </div>
                     <div class="course-information-content">
-                        <router-link to="/mamiyoga/aiassistant" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
+                        <router-link :to="check_lang + '/mamiyoga/aiassistant'" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
                     </div>
                     <div class="course-information-content">
                         <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
@@ -49,6 +49,7 @@ export default {
     data:()=>({
         courses:[],
         not_online: false,
+        check_lang: '',
     }),
     components: {
         MamiyogaHeader,
@@ -59,8 +60,13 @@ export default {
         if (process.client) {
             if (this.$i18n.locale == 'JP') {
                 this.courses = await require('~/config/mamiyoga-course-jp');
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mamiyoga-course-zhcn');
+                this.check_lang = '/zh-CN'
             } else {
                 this.courses = await require('~/config/mamiyoga-course');
+                this.check_lang = ''
             }
 
         }
@@ -73,27 +79,27 @@ export default {
             user : 'user/getData',
         }),
     },
-    // async beforeCreate() {
-    //     if (process.client) {
-    //         // this.ui_config = await require('~/config/mamiyoga-config')
-    //         // this.is_ui_config_loaded = true;
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mamiyoga-config')
+            // this.is_ui_config_loaded = true;
 
-    //         let login_or_not = await this.$checkLogin(this.$store);
-    //         if (login_or_not == false) {
-    //             window.alert("尚未登入帳號，請先前往登入～");
-    //             this.$router.push('/mamiyoga/login');
-    //         } else {
-    //             let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-    //             if (!payed_or_not) {
-    //                 console.log("not payed");
-    //                 window.alert("尚未開通課程，請先前往購買～");
-    //                 this.$router.push('/mamiyoga/pay');
-    //             } else {
-    //                 console.log("payed")
-    //             }
-    //         }
-    //     }
-    // }
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/mamiyoga/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/mamiyoga/pay');
+                } else {
+                    console.log("payed")
+                }
+            }
+        }
+    }
 }
 </script>
 

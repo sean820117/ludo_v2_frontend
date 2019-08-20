@@ -1,5 +1,5 @@
 <template>
-<div><router-link :to="'/mamiyoga/course/' + goCourse" style="color:#000;">
+<div><router-link :to="check_lang + '/mamiyoga/course/' + goCourse" style="color:#000;">
     <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
         <div class="course-bookmark">
             <img :src="unitSrc" alt="">
@@ -41,6 +41,9 @@
 
 <script>
 export default {
+    data:()=> ({
+        check_lang : '',
+    }),
     props: {
         bgImage: String,
         blockColor: String,
@@ -54,6 +57,18 @@ export default {
         unitSrc: String,
         goCourse: String,
     },
+    mounted(){
+        if(process.client) {
+            if(this.$i18n.locale == 'JP') {
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.check_lang = '/zh-CN'
+            } else {
+                this.check_lang = ''
+            }
+            
+        }
+    }
 }
 </script>
 

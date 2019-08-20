@@ -9,6 +9,7 @@
 <script>
 import MamiyogaEveryCourse from '~/components/mamiyoga/MamiyogaEveryCourse.vue'
 import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout: 'mommiyoga',
     data:()=>({
@@ -25,6 +26,8 @@ export default {
         if (process.client) {
             if(this.$i18n.locale == 'JP') {
                 this.courses = await require('~/config/mamiyoga-course-jp');
+            } else if(this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mamiyoga-course-zhcn');
             } else {
                 this.courses = await require('~/config/mamiyoga-course');
             }
@@ -32,6 +35,32 @@ export default {
             this.course_data = this.courses.find(course => this.course_id == course.id);
             // console.log(this.course_id)
         }
+    },
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mommiyoga-config')
+            // this.is_ui_config_loaded = true;
+
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/mamiyoga/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/mamiyoga/pay');
+                } else {
+                    console.log("payed")
+                }
+            }
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
     },
     methods:{
         closeExplain(){

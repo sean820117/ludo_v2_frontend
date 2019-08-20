@@ -145,6 +145,9 @@ export default {
         bottom: 15px;
         right: 25px;
     }
+    .middle-record-block .practice-record-video {
+        left: calc( 50vw - 225px);
+    }
 }
 @media (max-width: 769px) and  (orientation:landscape) {
     .middle-record-block .practice-record-block {

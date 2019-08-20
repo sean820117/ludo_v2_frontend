@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-header">
-        <router-link to="/mamiyoga">
+        <router-link :to="check_lang + '/mamiyoga'">
         <div class="mamiyoga-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="瑜伽課程">
         </div>
@@ -9,8 +9,10 @@
         <div class="mamiyoga-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button> -->
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox">{{$t('header_login')}}</button>
+            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox">{{$t('header_login')}}</button> -->
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button> -->
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="logout" v-else >{{$t('header_logout')}}</button>
         </div>
         <!-- </router-link> -->
     </div>
@@ -21,6 +23,7 @@ import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
     data:()=>({
         is_login:false,
+        check_lang: '',
     }),
     props: {
         bgColor: String,
@@ -31,14 +34,25 @@ export default {
     components: {
         MamiyogaSmallBtn,
     },
-    // async mounted() {
-    //     if (process.client) {
-    //         this.is_login = await this.$checkLogin(this.$store);
-    //     }
-    // },
+    async mounted() {
+        if (process.client) {
+            this.is_login = await this.$checkLogin(this.$store);
+            if(this.$i18n.locale == 'JP') {
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.check_lang = '/zh-CN';
+            } else {
+                this.check_lang = '';
+            }
+        }
+    },
     methods:{
         openRemindBox(){
             this.$emit('openRemindBox');
+        },
+        logout() {
+            localStorage.redirect = "/mamiyoga";
+            this.$router.push('/logout');
         }
     }
 }
@@ -83,6 +97,9 @@ export default {
     border-style: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,.3);
     cursor: pointer;
+}
+.mamiyoga-header-login-btn.mommiyoga-header-login-btn {
+    width: 80px;
 }
 @media (min-width: 769px) {
     .mamiyoga-header {

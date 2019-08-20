@@ -37,7 +37,7 @@
         <div class="record-background" :class="open_record ? 'open':''">
             <div class="record-box" :class="open_record ? 'open':''">
                 <div @click="open_record = false">
-                    <div class="record-box-title"><h3>練習記錄</h3></div>
+                    <div class="record-box-title"><h3>{{$t('course_practice_btn')}}</h3></div>
                 </div>
                 <div>
                     <input type="radio" name="show_block" id="line" checked>
@@ -54,11 +54,11 @@
                             </div>
                         </label>
                     </div>
-                    <div class="practice-record-content-container" v-if="current_record_data">
+                    <div class="practice-record-content-container" v-if="current_record_data != ''">
                         <div class="show-line-block" v-if="open_record">
                             <mamiyoga-record-block-middle v-for="(record,i) in current_record_data"
                             :key="i" :video_url="record.video_url" :recordImg="record.preview_img"
-                            :recordDate="setRecordDate(record.createdAt)" :tags="record.reps_wrong_tags"
+                            :recordDate="setRecordDate(record.createdAt)" :tags="switchTag(record)"
                             :score="record.score"></mamiyoga-record-block-middle>   
                         </div>
                         <div class="show-grid-block" v-if="open_record">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="practice-record-no-content" v-else>
-                        <p>{{$t('record_content_text')}}</p>
+                        <p style="color:#97A8AF;">{{$t('record_content_text')}}</p>
                     </div> 
                 </div>
                 
@@ -97,6 +97,7 @@ import MamiyogaRecordBlockSmall from '~/components/mamiyoga/MamiyogaRecordBlockS
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
     layout: 'mommiyoga',
@@ -125,6 +126,7 @@ export default {
         every_pose: [],
 
         assay_pose_data: {},
+        is_switched: false,
     }),
     components:{
         MamiyogaMailHeader,
@@ -142,6 +144,11 @@ export default {
                 this.articles = await require('~/config/mamiyoga-post-jp');
                 this.post_article = this.articles[0].post_article;
                 this.lang_click = 'jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.courses = await require('~/config/mamiyoga-course-zhcn');
+                this.articles = await require('~/config/mamiyoga-post-zhcn');
+                this.post_article = this.articles[0].post_article;
+                this.lang_click = 'zh-CN'
             } else {
                 this.courses = await require('~/config/mamiyoga-course');
                 this.articles = await require('~/config/mamiyoga-post');
@@ -152,6 +159,7 @@ export default {
             this.course_data = this.courses.find(course => this.course_id == course.id);
             // console.log(this.course_data)
             
+
             if (sessionStorage["course_" + this.course_data.id + "_current_pose_id"]) {
                 this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"] ;
             } else {
@@ -173,16 +181,33 @@ export default {
                         
                         console.log(this.record_data[pose.pose_id])
                     } else {
-                        window.alert('读取失败')
+                        window.alert('讀取失敗')
                     }   
                 })
             } catch (error) {
                 
             }
-        
-        
-        
-        
+        }
+    },
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mommiyoga-config')
+            // this.is_ui_config_loaded = true;
+
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/mommiyoga/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    console.log("not payed");
+                    window.alert("尚未開通課程，請先前往購買～");
+                    this.$router.push('/resume/pay');
+                } else {
+                    console.log("payed")
+                }
+            }
         }
     },
     methods:{
@@ -308,21 +333,24 @@ export default {
                 }
                 this.last_article_id = x
                 this.post_article = this.articles[x].post_article
-                // console.log(x)
+                // console.log(x)  
             }
         },
         openRecordBox(){
             this.open_record = true;
             this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+            console.log(this.current_pose_id)
             this.current_record_data = this.record_data[this.current_pose_id];
         },
         switchTag(record) {
             this.assay_pose_data = this.every_pose.find(select => select.pose_id == this.current_pose_id)
             // console.log(record)
             for (var i =0; i<record.reps_wrong_tags.length; i++){
-                for(var j=0; j<record.reps_wrong_tags[i].length; j++)
-                if (record.reps_wrong_tags[i][j]){
-                    record.reps_wrong_tags[i][j] = this.assay_pose_data.remind_tags[record.reps_wrong_tags[i][j]]
+                for(var j=0; j<record.reps_wrong_tags[i].length; j++) {
+                    if (!isNaN(Number(record.reps_wrong_tags[i][j]))){
+                        record.reps_wrong_tags[i][j] = this.assay_pose_data.remind_tags[record.reps_wrong_tags[i][j]]
+                        // debugger
+                    }
                 }
             }
             console.log(record.reps_wrong_tags)
@@ -336,6 +364,9 @@ export default {
         }
     },
     computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         getTitle(){
             if (this.course_data) {
                 return this.course_data.title;

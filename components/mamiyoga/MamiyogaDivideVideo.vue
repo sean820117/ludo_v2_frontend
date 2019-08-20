@@ -7,7 +7,7 @@
             <div class="divide-label-box">
                 <label :for="pose.pose_id" :class="`${pose.pose_id}-label ${pose.pose_ai ? 'label-with-ai':''}`" 
                 v-for="(pose,i) in getPoses" :key="i" >
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" > 動作{{i+1}}
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" > {{$t('course_practice_label')+(i+1)}}
                 </label>
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
@@ -19,7 +19,7 @@
                     <!-- <div v-if="pose.pose_ai" style="width:100%;height:30px;"></div> -->
                 </div>
                 <div slot="divide-video" style="position:relative" @click="is_played = true">
-                    <video class="mamiyoga-divide-every-video" controls preload="auto">
+                    <video class="mamiyoga-divide-every-video" controls preload="auto" playsinline>
                         <source :src="pose.pose_video + '#t=0.1'" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -56,10 +56,10 @@ import MamiyogaDivideEveryBlock from '~/components/mamiyoga/MamiyogaDivideEveryB
 export default {
     mounted(){
         if(process.client) {
-            if(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]){
-                this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
-            }
-            // console.log(this.current_pose_id);
+            // if(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]){
+            //     this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+            //     // console.log(this.current_pose_id);
+            // }
         }
     },
     data:()=>({
@@ -74,7 +74,16 @@ export default {
             sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = this.current_pose_id;
             // console.log(`sessionStorage["course_${this.course_data.id}_current_pose_id"]`);
             // console.log(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]);
-        }
+        },
+        course_data: function(new_value, old_value) {
+            if(this.course_data){
+                if(sessionStorage["course_" + this.course_data.id + "_current_pose_id"]){
+                    this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
+                    // console.log(this.current_pose_id);
+                }
+            }
+            // debugger
+        },
     },
     props:{
         course_data:Object,
