@@ -245,7 +245,11 @@
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
-
+                        <p class="intro-wrap-block-title" style="margin:0;padding-top:100px;color:#24798F;font-weight:600;">練習課表</p>
+                        <p class="index-article-text" style="margin-top:15px;">我們為媽媽們設計了一套練習課表，交錯練習不同部位能有效地刺激肌肉的恢復狀況，早上、下午、晚上設想了媽媽與寶寶的生活步調，讓媽媽在家照顧寶寶時能夠一起做瑜珈。</p>
+                    
+                        <p class="intro-wrap-block-title" style="margin:0;padding-top:100px;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
+                        <p class="index-article-text" style="margin-top:15px;">1、收緊骨盆<br>2、修復腹肌<br>3、減輕壓力<br>4、平衡自律神經<br>5、改善肩頸壓力<br>6、消除浮腫<br>7、改善骨頭密度</p>
                     </div>
                     <div class="intro-wrap-block-five" style="padding: 0 40px;">
                         <h4 class="intro-wrap-block-title" style="margin:0;padding-top:35px;">獨家文章</h4>
