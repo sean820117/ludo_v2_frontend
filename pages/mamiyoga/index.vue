@@ -34,36 +34,38 @@
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <input type="radio" id="about-course" name="index-select" checked>
                 <input type="radio" id="love-feedback" name="index-select">
-                <div class="label-box">
+                <div class="index-label-box" id="index-fixed-nav">
                     <label class="about-course-btn" for="about-course">課程介紹</label>
                     <label class="love-feedback-btn" for="love-feedback">愛心回饋</label>
                 </div>
                 <div class="about-course-block">
                     <div style="background: #24798F;padding-bottom:50px;">
                         <div class="intro-wrap-block-first">
-                            <video loop controls autoplay playsinline muted class="index-wrap-video" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
+                            <video loop controls autoplay playsinline muted id="index-first-video" class="index-wrap-video" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
                                 <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
                             </video>
                             <div class="intro-wrap-block-first-content">
                                 <h1>Mami yoga日本人氣瑜珈</h1>
-                                <p style="font-size:14px;font-weight:lighter;margin:5px 0;">講師 橋本麻美</p>
+                                <p style="font-size:14px;margin:5px 0;">講師 橋本麻美</p>
                                 <div style="margin: 20px 0;">
                                     <select name="pay-program" class="select-pay-program">
                                         <option value="for-one">獨享愛自己&nbsp;&nbsp;NTD.1590</option>
-                                        <option value="for-four">姊妹揪起來(4人以上)&nbsp;NTD.5160</option>
-                                        <option value="Hsinchu">企業方案(30人以上)&nbsp;NTD.29700</option>
+                                        <option value="for-four">姊妹揪起來(4人)&nbsp;NTD.5160</option>
+                                        <option value="Hsinchu">企業方案(30人)&nbsp;專人服務</option>
                                     </select>
                                     <button>立即購買</button>
                                 </div>
                             </div>
-                            <img style="width:90%;display:block;margin:20px auto 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ntro-wrap-img-data.png" alt="">
+                            <img style="width:90%;display:block;margin:20px auto 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-data.png" alt="">
                             <div style="width:77%;margin: 0 auto;">
                                 <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
-                                <h6 class="index-article-little-title">生完小孩後感到身體不斷發熱嗎？<br>過了一週還是覺得骨盆依然沒有開始收緊嗎？</h6>
-                                <p class="index-article-text">產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
+                                <p class="index-article-text" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>過了一週還是覺得骨盆依然沒有開始收緊嗎？</p>
+                                <!-- <p class="index-article-text">產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p> -->
                                 <h3 class="index-article-title">妳知道日本媽媽<br>從來沒有坐月子嗎？</h3>
-                                <h6 class="index-article-little-title">日本是完全沒有坐月子習慣的，但這並不代表台灣的媽媽不需要！我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
-                                <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                                <p class="index-article-text" style="color:#272727;margin-top:10px;margin-bottom:0;">日本是完全沒有坐月子習慣的，但這並不代表台灣的媽媽不需要！我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</p>
+                                <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:10px;margin-bottom:10px;" @click="$router.push('/mamiyoga/information')">了解更多&nbsp;</p>
+                                <!-- <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p> -->
+                                <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt="">
                                 <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。</h6>
                                 <p class="index-article-text">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
                             </div>
@@ -74,7 +76,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="">
                             </div>
                             <p class="index-article-out-text">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，只要對動作有疑惑、不確定是否做得正確。只要上傳你的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
-                            <button class="index-article-out-btn">馬上體驗</button>
+                            <button @click="$router.push('/mamiyoga/teach')" class="index-article-out-btn">馬上體驗</button>
                         </div>
                     </div>
                     <!-- <div class="intro-wrap-block-children">
@@ -84,7 +86,7 @@
                     <div class="intro-wrap-block-second" v-touch:swipe.left="nextSlides" v-touch:swipe.right="lastSlides">
                         <h4 class="intro-wrap-block-title">課程預覽</h4>
                         <div class="intro-wrap-block-second-hooper">
-                            <div class="intro-wrap-block-second-slide fade">
+                            <div class="intro-wrap-block-second-slide ">
                                 <div class="intro-wrap-block-second-content">
                                     <p>課程皆有雙語發音，動作分段練習<br>&nbsp;</p>
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-new-2.png" alt="">
@@ -168,12 +170,62 @@
                             <p style="color:#707070;font-size: 14px;letter-spacing:3px;">使用平均分數</p>
                             <img style="height: 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
                         </div>
+                        <div v-touch:swipe.left="nextComments" v-touch:swipe.right="lastComments">
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    想成為溫柔的媽媽超人
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">30歲前生下大寶之後，隔了幾年懷了二寶，在這中間都有保持運動的良好習慣，平時除了跑步也參雜一些重訓在鍛鍊自己。產後運動選擇瑜伽，是因為瑜伽的道理是覺察身體有沒有回歸本位，35歲的我已經可以感覺到體力逐漸改變，雖然有運動的習慣支撐，但我想藉著這個機會好好的了解現在的身體，重新地學會呼吸，強悍又溫柔的照顧兩個孩子！</p>
+                                <p class="intro-wrap-block-third-comment-from">陳太太 35歲 運動習慣者</p>
+                            </div>
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    讓我重新體驗到走路跟呼吸可以這麼舒服！
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">本來在懷孕之前工作很忙的時候就不太照顧自己的身體，常常在外飲食，高油高糖常常熬夜。因為這樣所以非常害怕產後憂鬱跟身體狀況，也害怕平常沒有運動習慣的我無法在產後自律的鍛鍊身材。朋友推薦我媽咪瑜伽是一個非常舒適且放鬆的方式。實際做了之後，我發現真的沒什麼壓力，只要照著老師的話去做，了解身體的結構，放鬆地去呼吸，感受身體，讓我覺得靠著一件簡單的方式，就重新調整生活。我也有信心可以一直維持做瑜伽的好習慣！</p>
+                                <p class="intro-wrap-block-third-comment-from">Yuna 29歲 科技業上班族</p>
+                            </div>
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    想要把所有好的事情都給老婆
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">看著老婆從妊娠初期就吃盡苦頭，身為男性實在不知道自己能夠幫上什麼忙，可以幫她一些小事，可以關心她，可以陪伴她，但卻不能代替她痛，她身形的改變、她在意的生理變化，我都沒辦法經歷。在網路上查了許多資料，瑜伽是最好恢復身形的方法，安排完大小事情之後，送他這個小小的禮物，希望送給她自己的時間，讓她好好的放鬆。</p>
+                                <p class="intro-wrap-block-third-comment-from">陳先生 34歲 </p>
+                            </div>
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    除了鼓足勇氣迎接我的第一個寶寶以外，<br>也迎接人生第一次的深層了解自我！
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">跟老公規劃好大寶的出生之後，一直非常焦慮自己能不能有耐心的去照顧好我們的寶貝，能不能健健康康的親餵他。從來沒有當過媽媽，自然非常緊張。老公一直用心地跟我溝通，給予我鼓勵，我們溝通之後，評估我的狀況，決定選一個最舒適的運動跟環境。生產後在月子中心的日子，每天學著照顧寶寶，等待餵奶的時間，其實也有點壓力，增加了運動的習慣，反而讓我可以好好靜下心來放鬆跟傾聽自己的情緒，我相信這個運動的過程可以幫助我沈澱自己，好好面對人生的新角色！</p>
+                                <p class="intro-wrap-block-third-comment-from">欣鈺 25歲 頭胎</p>
+                            </div>
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    把保養身體變成習慣！
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
+                                <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
+                            </div>
+                            <div class="intro-wrap-block-third-comment">
+                                <div class="intro-wrap-block-third-comment-title">
+                                    舒服完美的使用者介面，良好的體驗
+                                </div>
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
+                                <p class="intro-wrap-block-third-comment-text">學校的體育學分修完之後，我跟我的室友就沒有繼續保持運動的習慣，所以我們買了媽咪瑜伽，每天約定好時間一起運動。雖然沒有生過寶寶（笑），但媽咪瑜伽其實整合了瑜伽最基本的概念，每天輕輕鬆鬆地做就可以把痠痛的筋骨伸展開。有那麼多的選擇，媽咪瑜伽最fit我們的需求，介面也很好看，使用起來非常方便，整體來說，讓整個做瑜伽的過程都很舒服(oﾟωﾟo)！</p>
+                                <p class="intro-wrap-block-third-comment-from">Claire 20歲 大學生</p>
+                            </div>
+                        </div>
                     </div>
-                    <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
-                    <div class="intro-wrap-block-four" style="height: 550px;" v-touch:swipe.left="nextPrice" v-touch:swipe.right="lastPrice">
+                    <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
+                    <div class="intro-wrap-block-four" style="height: 550px;">
                         <h4 class="intro-wrap-block-title" style="margin-left: 40px;">收費方式</h4>
-                        <div>
-                            <div class="intro-wrap-four-pay fade">
+                        <!-- <div class="owl-carousel">
+                            <div class="intro-wrap-four-pay float-left">
                                 <h4>獨享愛自己</h4>
                                 <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
                                 <div class="intro-wrap-four-pay-price">
@@ -189,7 +241,7 @@
                                     <div class="intro-wrap-four-pay-circle"  @click="$router.push('/mamiyoga/pay')"></div>
                                 </div>
                             </div>
-                            <div class="intro-wrap-four-pay fade">
+                            <div class="intro-wrap-four-pay ">
                                 <h4>姊妹揪起來</h4>
                                 <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
                                 <div class="intro-wrap-four-pay-price">
@@ -204,8 +256,9 @@
                                 <div class="intro-wrap-four-pay-bottom">
                                     <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
                                 </div>
+                                <div class="intro-wrap-four-pay-cost">-20%</div>
                             </div>
-                            <div class="intro-wrap-four-pay fade">
+                            <div class="intro-wrap-four-pay ">
                                 <h4>企業方案</h4>
                                 <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                                 <div class="intro-wrap-four-pay-price">
@@ -220,19 +273,23 @@
                                 <div class="intro-wrap-four-pay-bottom">
                                     <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
                                 </div>
+                                <div class="intro-wrap-four-pay-cost">-40%</div>
                             </div>
                             <div class="intro-pay-dot-line">
                                 <span class="intro-pay-dot" @click="currentPrice(1)"></span>
                                 <span class="intro-pay-dot" @click="currentPrice(2)"></span>
                                 <span class="intro-pay-dot" @click="currentPrice(3)"></span>
                             </div>
-                        </div>
+                        </div> -->
+                        
+                        <mamiyoga-carousel></mamiyoga-carousel>
+
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
                         <h4 class="intro-wrap-block-title" style="margin:0;padding-top:35px;">講師介紹</h4>
-                        <h5 class="index-article-title" style="text-align:left;font-weight:bold;margin-top: 60px;">{{$t('about_first_content_name')}}</h5>
-                        <p class="index-article-title" style="color:#707070;text-align:left;font-weight:bold;font-size:20px;">{{$t('about_first_content_name_en')}}</p>
+                        <h5 class="index-article-title" style="font-weight:bold;margin-top: 60px;">{{$t('about_first_content_name')}}</h5>
+                        <p class="index-article-title" style="font-weight:bold;font-size:20px;">{{$t('about_first_content_name_en')}}</p>
                         <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;">{{$t('about_first_content_have')}}</p>
                         <p class="about-articele-text" style="margin-bottom: 10px;">Yoga Aliance RYT200<br>
                             maternity yoga instructor<br>
@@ -241,16 +298,25 @@
                         </p>
                         <p class="about-articele-text" style="font-weight: bold; margin-bottom: 5px;">{{$t('about_first_content_course')}}</p>
                         <p class="about-articele-text">{{$t('about_first_content_course_text')}}</p>
-                        
+                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">擔任日本屈指頂尖舞蹈跟唱歌<br>少女團體E-girl的私家貼身瑜珈指導</p>
+                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">一週的固定班底課程20堂以上<br>Instagram的追蹤人數兩萬人以上</p>
+                        <div class="about-teacher-pic"></div>
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
-                        <p class="intro-wrap-block-title" style="margin:0;padding-top:100px;color:#24798F;font-weight:600;">練習課表</p>
+                        <p class="intro-wrap-block-title" style="margin:0;padding-top:40px;color:#24798F;font-weight:600;">練習課表</p>
                         <p class="index-article-text" style="margin-top:15px;">我們為媽媽們設計了一套練習課表，交錯練習不同部位能有效地刺激肌肉的恢復狀況，早上、下午、晚上設想了媽媽與寶寶的生活步調，讓媽媽在家照顧寶寶時能夠一起做瑜珈。</p>
                     
-                        <p class="intro-wrap-block-title" style="margin:0;padding-top:100px;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
-                        <p class="index-article-text" style="margin-top:15px;">1、收緊骨盆<br>2、修復腹肌<br>3、減輕壓力<br>4、平衡自律神經<br>5、改善肩頸壓力<br>6、消除浮腫<br>7、改善骨頭密度</p>
+                        <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
+                        <p class="index-article-text" style="margin-top:15px;font-weight: bold;">1、收緊骨盆<br>2、修復腹肌<br>3、減輕壓力<br>4、平衡自律神經<br>5、改善肩頸壓力<br>6、消除浮腫<br>7、改善骨頭密度</p>
+                        <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">上課準備與提醒</p>
+                        <p class="index-article-text" style="margin-top:15px;font-weight: bold;">這堂課需要準備：<br><br>1、舒適的居家運動衣物（例如：無/短袖、寬鬆長/短褲，瑜珈服）<br>2、緩衝地面的地墊、訓練墊或瑜珈墊<br>3、一顆積極想改變自己的心情</p>
+                        <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">課程目標</p>
+                        <p class="index-article-text" style="margin-top:15px;font-weight: bold;">在產後的黃金180天修復腹部肌肉、消除水腫、並且縮小骨盆。</p>
+                        <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">適合對象</p>
+                        <p class="index-article-text" style="margin-top:15px;font-weight: bold;">１、適合產後兩週~五年的女性。<br>２、</p>
                     </div>
+                    <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-five" style="padding: 0 40px;">
                         <h4 class="intro-wrap-block-title" style="margin:0;padding-top:35px;">獨家文章</h4>
                         <p style="font-size:12px;color:#707070;font-weight:lighter;">LUDO身體科學誌</p>
@@ -318,6 +384,7 @@
                     <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
                 </div>
             </div>
+            <div class="index-footer" id="index-fixed-footer">立即付款</div>
          </div>
         <div class="index-contain" v-if="is_beta" style="min-height:300vh;overflow:visible;" >
             <div class="background-video-contain">
@@ -436,18 +503,19 @@ import Vue from 'vue'
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
-import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
-import 'hooper/dist/hooper.css';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
-
  
 Vue.use(Vue2TouchEvents)
 export default {
     // head(){
-    //     return  {
+        // return  {
+        //     script: [
+        //         {src: 'https://code.jquery.com/jquery-3.4.1.min.js'},
+        //         {src: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/owl.carousel.min.js'},
+        //     ],
     //         title: 'MAMI YOGA',
     //         meta: [
     //             { charset: 'utf-8' },
@@ -459,7 +527,7 @@ export default {
     //             { property : 'og:description' , content:"yoga"},
     //             { property : 'og:site_name' , content:"www.ludonow.com"},
     //         ],
-    //     }
+        // }
     // },
     layout:'mamiyoga',
     data:()=>({
@@ -467,19 +535,19 @@ export default {
         is_open: false,
         slideIndex: 0,
         priceIndex: 0,
+        commentIndex: 0,
         is_ui_config_loaded:false,
         ui_config: Object,
         course_data: Object,
         show_list: [],
+        window_height: '',
     }),
     components: {
         MamiyogaHeader,
         MamiyogaBtn,
         MamiyogaLoginSelect,
-        Hooper,
-        Slide,
-        HooperPagination,
         MamiyogaWindowAlertBox,
+        // MamiyogaCarousel:()=>import('~/components/mamiyoga/MamiyogaCarousel.vue')
     },
     props: {
         title: String,
@@ -487,12 +555,18 @@ export default {
     async mounted(){
         if(process.client) {
             window.onload = this.showSlides()
-            window.onload = this.showPrice()
-
+            window.onload = this.showComment()
+            // window.onload = this.showPrice()
+            // window.addEventListener('scroll',this.scrollHeight)
+            window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
             this.course_data = await require('~/config/mamiyoga-course')
             localStorage.redirect = '/mamiyoga/menu';
+
+            
+            // $(".owl-carousel").owlCarousel();
+            
         }
         // window.addEventListener('scroll',function(){
         // let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
@@ -532,7 +606,10 @@ export default {
             var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
             var dots = document.getElementsByClassName("dot");
             for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
+                slides[i].classList.remove('slideInLeft');
+                slides[i].classList.remove('slideIn');
+                slides[i].classList.add('fade');  
+                // slides[i].style.display = "none";  
             }
             // console.log(this.slideIndex)
             if (this.slideIndex > slides.length-1) {
@@ -543,7 +620,33 @@ export default {
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" index-dotactive", "");
             }
-            slides[this.slideIndex].style.display = "block";  
+            slides[this.slideIndex].classList.add('slideIn');  
+            slides[this.slideIndex].classList.remove('fade'); 
+            // slides[this.slideIndex].style.display = "block";  
+            dots[this.slideIndex].className += " index-dotactive";
+            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        },
+        showSlidesLeft() {
+            var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
+            var dots = document.getElementsByClassName("dot");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('slideInLeft');
+                slides[i].classList.remove('slideIn');
+                slides[i].classList.add('fade');  
+                // slides[i].style.display = "none";  
+            }
+            // console.log(this.slideIndex)
+            if (this.slideIndex > slides.length-1) {
+                this.slideIndex = 0
+            } else if( this.slideIndex < 0) {
+                this.slideIndex = 4
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" index-dotactive", "");
+            }
+            slides[this.slideIndex].classList.add('slideInLeft');  
+            slides[this.slideIndex].classList.remove('fade'); 
+            // slides[this.slideIndex].style.display = "block";  
             dots[this.slideIndex].className += " index-dotactive";
             // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
         },
@@ -551,38 +654,122 @@ export default {
             this.showSlides(this.slideIndex += 1);
         },
         lastSlides() {
-            this.showSlides(this.slideIndex -= 1);
+            this.showSlidesLeft(this.slideIndex -= 1);
         },
         currentSlide(n) {
             this.showSlides(this.slideIndex = n-1);
         },
-        showPrice(){
-            var slides = document.getElementsByClassName("intro-wrap-four-pay");
-            var dots = document.getElementsByClassName("intro-pay-dot");
+        showComment() {
+            var slides = document.getElementsByClassName("intro-wrap-block-third-comment");
+            // var dots = document.getElementsByClassName("dot");
             for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
+                slides[i].classList.remove('slideInLeft');
+                slides[i].classList.remove('slideIn');
+                slides[i].classList.add('fade');  
+                // slides[i].style.display = "none";  
             }
-            console.log(this.priceIndex)
-            if (this.priceIndex > slides.length-1) {
-                this.priceIndex = 0
-            } else if( this.priceIndex < 0) {
-                this.priceIndex = 2
+            // console.log(this.slideIndex)
+            if (this.commentIndex > slides.length-1) {
+                this.commentIndex = 0
+            } else if( this.commentIndex < 0) {
+                this.commentIndex = 5
             }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" intro-pay-dotactive", "");
+            // for (i = 0; i < dots.length; i++) {
+            //     dots[i].className = dots[i].className.replace(" index-dotactive", "");
+            // }
+            slides[this.commentIndex].classList.add('slideIn');  
+            slides[this.commentIndex].classList.remove('fade'); 
+            // dots[this.commentIndex].className += " index-dotactive";
+        },
+        showCommentLeft() {
+            var slides = document.getElementsByClassName("intro-wrap-block-third-comment");
+            // var dots = document.getElementsByClassName("dot");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('slideInLeft');
+                slides[i].classList.remove('slideIn');
+                slides[i].classList.add('fade');  
+                // slides[i].style.display = "none";  
             }
-            slides[this.priceIndex].style.display = "block";  
-            dots[this.priceIndex].className += " intro-pay-dotactive";
+            // console.log(this.slideIndex)
+            if (this.commentIndex > slides.length-1) {
+                this.commentIndex = 0
+            } else if( this.commentIndex < 0) {
+                this.commentIndex = 5
+            }
+            // for (i = 0; i < dots.length; i++) {
+            //     dots[i].className = dots[i].className.replace(" index-dotactive", "");
+            // }
+            slides[this.commentIndex].classList.add('slideInLeft');  
+            slides[this.commentIndex].classList.remove('fade'); 
+            // dots[this.commentIndex].className += " index-dotactive";
         },
-        nextPrice() {
-            this.showPrice(this.priceIndex += 1);
+        nextComments() {
+            this.showComment(this.commentIndex += 1);
         },
-        lastPrice() {
-            this.showPrice(this.priceIndex -= 1);
+        lastComments() {
+            this.showCommentLeft(this.commentIndex -= 1);
         },
-        currentPrice(n) {
-            this.showPrice(this.priceIndex = n-1);
-        },
+        // currentSlide(n) {
+        //     this.showSlides(this.commentIndex = n-1);
+        // },
+        // showPrice(){
+        //     var slides = document.getElementsByClassName("intro-wrap-four-pay");
+        //     var dots = document.getElementsByClassName("intro-pay-dot");
+        //     for (var i = 0; i < slides.length; i++) {
+        //         slides[i].classList.remove('slideInLeft');
+        //         slides[i].classList.remove('slideIn');
+        //         slides[i].classList.remove('float-left'); 
+        //         // slides[i].classList.add('fade');  
+        //     }
+        //     // console.log(this.priceIndex)
+        //     if (this.priceIndex > slides.length-1) {
+        //         this.priceIndex = 0
+        //     } else if( this.priceIndex < 0) {
+        //         this.priceIndex = 2
+        //     }
+        //     for (i = 0; i < dots.length; i++) {
+        //         dots[i].className = dots[i].className.replace(" intro-pay-dotactive", "");
+        //     }
+        //     console.log(this.priceIndex)
+        //     slides[this.priceIndex].classList.add('slideIn');  
+            
+        //     slides[this.priceIndex].classList.add('float-left'); 
+            
+        //     // slides[this.priceIndex+1].classList.remove('fade');
+           
+            
+        //     dots[this.priceIndex].className += " intro-pay-dotactive";
+        // },
+        // showPriceLeft(){
+        //     var slides = document.getElementsByClassName("intro-wrap-four-pay");
+        //     var dots = document.getElementsByClassName("intro-pay-dot");
+        //     for (var i = 0; i < slides.length; i++) {
+        //         slides[i].classList.remove('slideInLeft');
+        //         slides[i].classList.remove('slideIn');
+        //         slides[i].classList.add('fade');  
+        //     }
+        //     console.log(this.priceIndex)
+        //     if (this.priceIndex > slides.length-1) {
+        //         this.priceIndex = 0
+        //     } else if( this.priceIndex < 0) {
+        //         this.priceIndex = 2
+        //     }
+        //     for (i = 0; i < dots.length; i++) {
+        //         dots[i].className = dots[i].className.replace(" intro-pay-dotactive", "");
+        //     }
+        //     slides[this.priceIndex].classList.add('slideInLeft');  
+        //     slides[this.priceIndex].classList.remove('fade'); 
+        //     dots[this.priceIndex].className += " intro-pay-dotactive";
+        // },
+        // nextPrice() {
+        //     this.showPrice(this.priceIndex += 1);
+        // },
+        // lastPrice() {
+        //     this.showPriceLeft(this.priceIndex -= 1);
+        // },
+        // currentPrice(n) {
+        //     this.showPrice(this.priceIndex = n-1);
+        // },
         toggleClass(index) {
             if (this.show_list[index] === 'open') {
                 this.show_list = [];
@@ -591,11 +778,34 @@ export default {
                 this.show_list[index] = 'open'
             }
         },
+        // scrollHeight(){
+        //     this.window_height = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        // },
+        fixNav(){
+            let v_offset_top = document.getElementById('index-first-video').offsetTop;
+            if(window.pageYOffset > v_offset_top) {
+                document.getElementById('index-fixed-nav').classList.add('sticky')
+                document.getElementById('index-fixed-footer').classList.add('footer-sticky')
+            } else if (window.pageYOffset < v_offset_top) {
+                document.getElementById('index-fixed-nav').classList.remove('sticky')
+                document.getElementById('index-fixed-footer').classList.remove('footer-sticky')
+            } 
+        }
     },
     computed:{
         ...mapGetters({
             user : 'user/getData',
         }),
+    },
+    watch:{
+        // window_height: function(oldValue,newValue){
+        //     let sticky = document.getElementById('index-fixed-nav').offsetTop;
+        //     if(window.offsetTop >= sticky) {
+        //         document.getElementById('index-fixed-nav').classList.add('sticky')
+        //     } else {
+        //         document.getElementById('index-fixed-nav').classList.remove('sticky')
+        //     }
+        // }
     }
 }
 </script>
@@ -697,7 +907,7 @@ export default {
 .mamiyoga-intro-wrap input {
     display: none;
 }
-.label-box {
+.index-label-box {
     width: 100vw;
     height: 50px;
     background-color: #F7F7F7;
@@ -705,7 +915,13 @@ export default {
     align-items: center;
     justify-content: space-evenly;
 }
-.label-box label {
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+.index-label-box label {
     color: #24798F;
     font-size: 16px;
     font-weight: bold;
@@ -713,9 +929,10 @@ export default {
 }
 .about-course-block {
     display: none;
+    padding-bottom: 45px;
 }
-#about-course:checked ~ .label-box .about-course-btn,
-#love-feedback:checked ~ .label-box .love-feedback-btn {
+#about-course:checked ~ .index-label-box .about-course-btn,
+#love-feedback:checked ~ .index-label-box .love-feedback-btn {
     opacity: 1;
 }
 #about-course:checked ~ .about-course-block {
@@ -760,7 +977,7 @@ export default {
 .index-article-title {
     color: #24798F;
     font-size: 24px;
-    text-align: center;
+    text-align:left;
 }
 .index-article-little-title {
     font-size: 14px;
@@ -770,6 +987,22 @@ export default {
     color: #707070;
     font-size: 14px;
     margin-bottom: 40px;
+}
+.have-finger {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.have-finger::after {
+    width: 25px;
+    height: 25px;
+    display: block;
+    content: '';
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tap.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    float: right;
 }
 .index-article-out-container {
     width: 70%;
@@ -823,6 +1056,9 @@ export default {
     height: 750px;
     padding: 20px 0;
 }
+.intro-wrap-block-third {
+    height: 630px;
+}
 .intro-wrap-block-new-second {
     width: 100vw;
     min-height: 750px;
@@ -830,9 +1066,20 @@ export default {
 }
 .intro-wrap-block-new-five {
     width: 100vw;
-    min-height: 750px;
+    min-height: 500px;
     padding: 20px 0;
     background: url('');
+    position: relative;
+}
+.about-teacher-pic {
+    position: absolute;
+    width: 200px;
+    height: 400px;
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-intro-about-back.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    bottom: -5px;
+    right: 0px;
 }
 .about-course-data-wrap {
     width: 90%;
@@ -916,7 +1163,7 @@ export default {
     list-style-type: none;
     text-align: left;
     color: #707070;
-    font-weight: lighter;
+    /* font-weight: lighter; */
     font-size: 12px;
 }
 .intro-wrap-block-second {
@@ -967,11 +1214,30 @@ export default {
 .intro-wrap-block-second-hooper .hooper-indicator:hover {
     background: #707070;
 } */
+.slideIn {
+    animation: slidein .5s ;
+}
+@keyframes slidein {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* .float-left {
+    float: left !important;
+} */
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: .5s;
   animation-name: fade;
   animation-duration: .5s;
+  display: none;
 }
 
 @-webkit-keyframes fade {
@@ -983,6 +1249,23 @@ export default {
   from {opacity: .4} 
   to {opacity: 1}
 }
+.slideInLeft {
+  animation: slideInLeft .5s;
+}
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
 
 .intro-wrap-block-second .dot {
     width: 7px;
@@ -1010,64 +1293,38 @@ export default {
     justify-content: space-between;
     margin-top: 15px;
 }
-
-.intro-wrap-four-pay{
+.intro-wrap-block-third-comment {
+    width: 85%;
+    height: 300px;
     background: #F7F7F7;
-    width: 300px;
-    height: 370px;
+    border-radius: 10px;
     margin: 30px auto;
-    border-radius: 5px 100px 50px 50px ;
-    border: solid 5px #24798F;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+    padding: 20px;
     position: relative;
 }
-.intro-wrap-four-pay p {
+.intro-wrap-block-third-comment-title {
     color: #24798F;
+    font-size: 13px;
+    font-weight: bold;
 }
-.intro-wrap-four-pay h4 {
+.intro-wrap-block-third-comment img {
+    height: 15px;
+    margin: 10px 0;
+}
+.intro-wrap-block-third-comment-text {
     color: #24798F;
-    text-align: center;
-    margin-top: 50px;
+    font-size: 13px;
+    font-weight: 400;
 }
-.intro-wrap-four-pay-price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    margin: 10px auto;
-    color: #24798F;
-}
-.intro-wrap-four-pay-btn {
-    width: 200px;
-    height: 50px;
-    border: solid 2px #24798F;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 50px auto 0;
-    color: #24798F;
-    letter-spacing: 5px;
-    font-size: 22px;
-}
-.intro-wrap-four-pay-bottom {
+.intro-wrap-block-third-comment-from {
+    font-size: 12px;
+    color: #707070;
+    font-weight: 300;
     position: absolute;
-    bottom: -30px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 20px;
+    right: 20px;
 }
-.intro-wrap-four-pay-circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    background-color:#24798F;
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-circle-btn.png');
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
-}
+
 .intro-pay-dot-line {
     width: 100%;
     height: 20px;
@@ -1124,6 +1381,24 @@ export default {
     right: -10%;
     top: 50%;
     height: 15px;
+}
+.index-footer {
+    height: 55px;
+    width: 100%;
+    background: #24798F;
+    color: #EEEFEA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 5px;
+    font-size: 20px;
+    visibility: hidden;
+}
+.footer-sticky {
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    visibility: visible;
 }
 /*行銷變更內容*/
 .background-video-contain {
