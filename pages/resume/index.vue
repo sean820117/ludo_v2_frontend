@@ -71,16 +71,16 @@
         </section>
         <section v-else class="md-four-block" v-touch:swipe.left="nextImgSlides" v-touch:swipe.right="lastImgSlides">
             <div class="slide-img-container">
-                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+55%402x.png" alt="">
             </div>
             <div class="slide-img-container">
-                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+56%402x.png" alt="">
             </div>
             <div class="slide-img-container">
-                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+57%402x.png" alt="">
             </div>
             <div class="slide-img-container">
-                <img class="slide-img" src="/resume/Group 944.jpg" alt="">
+                <img class="slide-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+58%402x.png" alt="">
             </div>
             <div class="dot-container">
                 <span class="img-dot" @click="currentImgSlide(1)"></span>
@@ -387,23 +387,23 @@
         <section class="md-eight-block" v-touch:swipe.right="nextPeopSlides" v-touch:swipe.left="lastPeopSlides">
             <div class="peop-slide">
                 <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-1.png" alt="">
-                <img v-else src="/resume/Group 946.png" alt="">
+                <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+59%402x.png" alt="">
             </div>
             <div class="peop-slide">
                 <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-2.png" alt="">
-                <img v-else src="/resume/Group 946.png" alt="">
+                <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+60%402x.png" alt="">
             </div>
             <div class="peop-slide">
                 <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-3-1.png" alt="">
-                <img v-else src="/resume/Group 946.png" alt="">
+                <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+61%402x.png" alt="">
             </div>
             <div class="peop-slide">
                 <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-4-1.png" alt="">
-                <img v-else src="/resume/Group 946.png" alt="">
+                <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+62%402x.png" alt="">
             </div>
             <div class="peop-slide">
                 <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/peop-list-5-1.png" alt="">
-                <img v-else src="/resume/Group 946.png" alt="">
+                <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/resume/Mask+Group+63%402x.png" alt="">
             </div>
             <div class="peop-dot-container">
                 <span class="peop-dot" @click="currentPeopSlide(1)"></span>
