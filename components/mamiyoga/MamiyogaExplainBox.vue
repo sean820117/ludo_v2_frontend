@@ -37,11 +37,11 @@
                 <div class="slides fade">
                     <h5>{{$t('explain_title_first')}}</h5>
                     <p class="explain-light-text first-explain" style="margin-top: 5vh;" v-html="$t('explain_text_first_1')"></p>
-                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1.png" alt="">
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1-1.png" alt="">
                     <p class="explain-light-text first-explain" v-html="$t('explain_text_first_2')"></p>
-                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2.png" alt="">
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2-1.png" alt="">
                     <p class="explain-light-text first-explain" v-html="$t('explain_text_first_3')"></p>
-                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3.png" alt="">
+                    <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3-1.png" alt="">
                 </div>
                 <div class="slides fade">
                     <h5>{{$t('explain_title_secord')}}</h5>

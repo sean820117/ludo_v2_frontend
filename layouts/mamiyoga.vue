@@ -61,6 +61,11 @@ export default {
         if (process.client) {
             
             this.is_login = await this.$checkLogin(this.$store);
+
+            if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+                localStorage.redirect = this.$route.path;
+                console.log("save redirect : " + localStorage.redirect);
+            }
         }
     },
 }

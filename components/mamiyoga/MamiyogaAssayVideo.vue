@@ -11,10 +11,10 @@
                     marginRight:'10px'}" class="mamiyoga-assay-header-login-btn">
                     </div>
                 </a>
-                <div :style="{backgroundColor:'#9BAEB2',
+                <!-- <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-assay-header-login-btn">
-                </div>
+                </div> -->
                 <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-assay-header-login-btn">
                     <label style="width:55px;height:25px;display:block;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
                 </div>

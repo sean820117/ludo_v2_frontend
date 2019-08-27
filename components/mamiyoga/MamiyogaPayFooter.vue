@@ -1,7 +1,7 @@
 <template>
     <div class="pay-footer">
         <div class="pay-footer-cost">共計　 新台幣　    1590 元</div>
-        <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}">前往付款</div>
+        <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}" @click="$router.push('/mamiyoga/order')">{{payFt}}</div>
     </div>
 </template>
 
@@ -10,13 +10,14 @@
 export default {
     props: {
         ftBtn: String,
+        payFt: String,
     }
 }
 </script>
 
 <style>
 .pay-footer {
-    width: 100vw;
+    width: 100%;
     height: 50px;
     background: #FFFFFF;
     position: fixed;
@@ -42,5 +43,11 @@ export default {
     justify-content: center;
     color: white;
     font-size: 17px;
+    cursor: pointer;
+}
+@media (min-width: 769px) {
+    .pay-footer {
+        max-width: 450px;
+    }
 }
 </style>

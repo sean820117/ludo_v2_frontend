@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="intro-wrap-four-pay">
+    <div style="height: 450px;">
+        <!-- <div class="intro-wrap-four-pay">
             <h4>獨享愛自己</h4>
             <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
             <div class="intro-wrap-four-pay-price">
@@ -49,12 +49,79 @@
                 <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
             </div>
             <div class="intro-wrap-four-pay-cost">-40%</div>
+        </div> -->
+        <flicking
+    :options="{ gap: 10}"
+    :tag="'div'"
+  >
+    <div class="intro-wrap-four-pay">
+            <h4>獨享愛自己</h4>
+            <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+            <div class="intro-wrap-four-pay-price">
+                <p style="font-size:14px;">一年</p>
+                <p style="font-size:47px;">1590</p>
+                <p style="font-size:14px;">NTD/人</p>
+            </div>
+            <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+                立即購買
+            </div>
+            <div class="intro-wrap-four-pay-bottom">
+                <div class="intro-wrap-four-pay-circle"  @click="$router.push('/mamiyoga/pay')"></div>
+            </div>
         </div>
+        <div class="intro-wrap-four-pay ">
+            <h4>姊妹揪起來</h4>
+            <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
+            <div class="intro-wrap-four-pay-price">
+                <p style="font-size:14px;">一年</p>
+                <p style="font-size:47px;">1290</p>
+                <p style="font-size:14px;">NTD/人</p>
+            </div>
+            <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+                立即購買
+            </div>
+            <div class="intro-wrap-four-pay-bottom">
+                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
+            </div>
+            <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+        </div>
+        <div class="intro-wrap-four-pay ">
+            <h4>企業方案</h4>
+            <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
+            <div class="intro-wrap-four-pay-price">
+                <p style="font-size:14px;">一年</p>
+                <p style="font-size:47px;">990</p>
+                <p style="font-size:14px;">NTD/人</p>
+            </div>
+            <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+                立即購買
+            </div>
+            <div class="intro-wrap-four-pay-bottom">
+                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
+            </div>
+            <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+        </div>
+  </flicking>
+
     </div>
 </template>
 <script>
-import Vue from 'vue';
+import Vue from "vue";
+import VueFlicking from "@egjs/vue-flicking";
+Vue.use(VueFlicking);
 export default {
+    components: { 
+
+    },
+    mounted(){
+        if (process.browser) {
+            const VueFlicking = require("@egjs/vue-flicking");
+            Vue.use(VueFlicking);
+        }
+    }
     // head(){
     //     return  {
     //         script: [
@@ -133,7 +200,6 @@ export default {
 .intro-wrap-four-pay-cost {
     width: 100px;
     height: 100px;
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost.png');
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
@@ -143,5 +209,10 @@ export default {
     color: #F1F2F2;
     font-size: 26px;
     padding: 30px 0 0 15px;
+}
+.eg-flick-viewport {
+    height: 450px !important;
+    padding-top: 15px;
+    z-index: 900 !important;
 }
 </style>

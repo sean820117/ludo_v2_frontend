@@ -1,6 +1,7 @@
 export default {
   header_login:'登入',
   header_logout: '登出',
+  header_menu: '選單',
 
   index_button_free: '體驗課程',
   index_button_pay: '完整課程', 

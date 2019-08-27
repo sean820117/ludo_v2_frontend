@@ -19,13 +19,16 @@
                     <div class="course-information-content">
                         <router-link :to="check_lang +'/mamiyoga/menu'" style="text-decoration:none;"><p>{{$t('menu_nav_text_course')}}</p></router-link>
                     </div>
-                    <div class="course-information-content">
+                    <!-- <div class="course-information-content">
                         <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
+                    </div> -->
+                    <div class="course-information-content">
+                        <p style="cursor:pointer;">練習課表</p>
                     </div>
                 </div>
-                <div class="course-mail-icon" @click="not_online = true">
+                <!-- <div class="course-mail-icon" @click="not_online = true">
                     <img style="width:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
-                </div>
+                </div> -->
             </div>
             
             <div class="aiassistant-container">

@@ -1,6 +1,7 @@
 export default {
   header_login:'密码登录',
   header_logout: '登出',
+  header_menu: '选单',
 
   index_button_free: '马上体验',
   index_button_pay: '立即购买', 

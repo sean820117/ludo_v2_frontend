@@ -1,9 +1,9 @@
 <template>
     <div class="mamiyoga-course-content">
-        <input type="radio" class="labels first-series" id="first" name="series" checked>
-        <input type="radio" class="labels second-series" id="second" name="series">
-        <input type="radio" class="labels third-series" id="third" name="series">
-        <input type="radio" class="labels four-series" id="four" name="series">
+        <input type="radio" class="labels first-series" id="first" name="series" v-model="check_series" value="first" >
+        <input type="radio" class="labels second-series" id="second" name="series" v-model="check_series" value="second" >
+        <input type="radio" class="labels third-series" id="third" name="series" v-model="check_series" value="third" >
+        <input type="radio" class="labels four-series" id="four" name="series" v-model="check_series" value="four" >
         <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
             <div class="label-box">
                 <label for="first" class="first-label">{{$t('menu_tag_text_first')}}</label>
@@ -55,7 +55,15 @@ export default {
         MamiyogaCourseBlock,
     },
     data:()=>({
+        check_series: 'first',
     }),
+    mounted(){
+        if(sessionStorage['menu_current_series']) {
+            this.check_series = sessionStorage['menu_current_series']
+        } else {
+            sessionStorage['menu_current_series'] = this.check_series
+        }
+    },
     computed:{
         getRectifys(){
             if (this.courses) {
@@ -94,6 +102,12 @@ export default {
     props:{
         courses:Array,
     },
+    watch:{
+        check_series: function(new_value,old_value) {
+            sessionStorage['menu_current_series'] = this.check_series
+            // debugger
+        }
+    }
 
 }
 </script>

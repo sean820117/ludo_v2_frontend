@@ -1,0 +1,77 @@
+<template>
+    <div>
+        <mamiyoga-pay-header></mamiyoga-pay-header>
+        <div class="contactus-main">
+            <div class="pay-little-title">聯絡我們</div>
+            <hr style="margin: 5px 0;opacity: .5;">
+            <img class="contactus-logo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-ludo-logo.png" alt="">
+            <a href="https://www.facebook.com/ludonow/" style="text-decoration:none;">
+                <div class="contactus-big-btn">
+                    <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-fb.png')"></div>
+                    LUDO Now如荼生活
+                </div>
+            </a>
+            <a href="mailto:contacts@ludonow.com" style="text-decoration:none;">
+                <div class="contactus-big-btn">
+                    <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-mail.png')"></div>
+                    contacts@ludonow.com
+                </div>
+            </a>
+        </div>
+        <mamiyoga-member-bottom-btn></mamiyoga-member-bottom-btn>
+    </div>
+</template>
+
+<script>
+import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
+import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
+export default {
+    layout: 'mommiyoga',
+    components:{
+        MamiyogaPayHeader,
+        MamiyogaMemberBottomBtn,
+    }
+}
+</script>
+
+<style>
+.contactus-main {
+    padding-top: 45px;
+    margin: 0 auto;
+    width: 90%;
+}
+.pay-little-title {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #000;
+}
+.contactus-logo {
+    width: 40vw;
+    display: block;
+    margin: 5vh auto;
+}
+.contactus-big-btn {
+    width: 60vw;
+    height: 45px;
+    color: #272727;
+    margin: 15px auto;
+    border: #272727 1px solid;
+    /* background: #24798F; */
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    /* letter-spacing: 2px; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    cursor: pointer;
+}
+.contactus-big-btn-img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+</style>

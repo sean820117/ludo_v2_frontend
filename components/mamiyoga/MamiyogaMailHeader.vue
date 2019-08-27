@@ -9,10 +9,10 @@
             <div class="mail-header-title">
                 <h3 v-html="headerTitle" :style="{color:mailheaderTitle}">{{headerTitle}}</h3>
             </div>
-            <div class="mail-header-goback" @click="not_online = true" v-if="!is_beta">
+            <!-- <div class="mail-header-goback" @click="not_online = true" v-if="!is_beta">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
                 <div v-if="have_mail"></div>
-            </div>
+            </div> -->
         </div>
         <div class="not_online_box" :class="showThisBox">
             <mamiyoga-window-alert-box>

@@ -170,7 +170,7 @@
                             <p style="color:#707070;font-size: 14px;letter-spacing:3px;">使用平均分數</p>
                             <img style="height: 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
                         </div>
-                        <div v-touch:swipe.left="nextComments" v-touch:swipe.right="lastComments">
+                        <div v-touch:swipe.left="nextComments" v-touch:swipe.right="lastComments" style="overflow:hidden;">
                             <div class="intro-wrap-block-third-comment">
                                 <div class="intro-wrap-block-third-comment-title">
                                     想成為溫柔的媽媽超人
@@ -218,6 +218,14 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
                                 <p class="intro-wrap-block-third-comment-text">學校的體育學分修完之後，我跟我的室友就沒有繼續保持運動的習慣，所以我們買了媽咪瑜伽，每天約定好時間一起運動。雖然沒有生過寶寶（笑），但媽咪瑜伽其實整合了瑜伽最基本的概念，每天輕輕鬆鬆地做就可以把痠痛的筋骨伸展開。有那麼多的選擇，媽咪瑜伽最fit我們的需求，介面也很好看，使用起來非常方便，整體來說，讓整個做瑜伽的過程都很舒服(oﾟωﾟo)！</p>
                                 <p class="intro-wrap-block-third-comment-from">Claire 20歲 大學生</p>
+                            </div>
+                            <div class="hooper-comment-dot">
+                                <span class="comment-dot" @click="currentComment(1)"></span> 
+                                <span class="comment-dot" @click="currentComment(2)"></span> 
+                                <span class="comment-dot" @click="currentComment(3)"></span> 
+                                <span class="comment-dot" @click="currentComment(4)"></span> 
+                                <span class="comment-dot" @click="currentComment(5)"></span> 
+                                <span class="comment-dot" @click="currentComment(6)"></span> 
                             </div>
                         </div>
                     </div>
@@ -281,9 +289,7 @@
                                 <span class="intro-pay-dot" @click="currentPrice(3)"></span>
                             </div>
                         </div> -->
-                        
                         <mamiyoga-carousel></mamiyoga-carousel>
-
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
@@ -504,6 +510,7 @@ import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
+import MamiyogaCarousel from '~/components/mamiyoga/MamiyogaCarousel.vue'
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
@@ -547,6 +554,7 @@ export default {
         MamiyogaBtn,
         MamiyogaLoginSelect,
         MamiyogaWindowAlertBox,
+        MamiyogaCarousel
         // MamiyogaCarousel:()=>import('~/components/mamiyoga/MamiyogaCarousel.vue')
     },
     props: {
@@ -661,7 +669,7 @@ export default {
         },
         showComment() {
             var slides = document.getElementsByClassName("intro-wrap-block-third-comment");
-            // var dots = document.getElementsByClassName("dot");
+            var dots = document.getElementsByClassName("comment-dot");
             for (var i = 0; i < slides.length; i++) {
                 slides[i].classList.remove('slideInLeft');
                 slides[i].classList.remove('slideIn');
@@ -674,16 +682,16 @@ export default {
             } else if( this.commentIndex < 0) {
                 this.commentIndex = 5
             }
-            // for (i = 0; i < dots.length; i++) {
-            //     dots[i].className = dots[i].className.replace(" index-dotactive", "");
-            // }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" comment-dotactive", "");
+            }
             slides[this.commentIndex].classList.add('slideIn');  
             slides[this.commentIndex].classList.remove('fade'); 
-            // dots[this.commentIndex].className += " index-dotactive";
+            dots[this.commentIndex].className += " comment-dotactive";
         },
         showCommentLeft() {
             var slides = document.getElementsByClassName("intro-wrap-block-third-comment");
-            // var dots = document.getElementsByClassName("dot");
+            var dots = document.getElementsByClassName("comment-dot");
             for (var i = 0; i < slides.length; i++) {
                 slides[i].classList.remove('slideInLeft');
                 slides[i].classList.remove('slideIn');
@@ -696,12 +704,12 @@ export default {
             } else if( this.commentIndex < 0) {
                 this.commentIndex = 5
             }
-            // for (i = 0; i < dots.length; i++) {
-            //     dots[i].className = dots[i].className.replace(" index-dotactive", "");
-            // }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" comment-dotactive", "");
+            }
             slides[this.commentIndex].classList.add('slideInLeft');  
             slides[this.commentIndex].classList.remove('fade'); 
-            // dots[this.commentIndex].className += " index-dotactive";
+            dots[this.commentIndex].className += " comment-dotactive";
         },
         nextComments() {
             this.showComment(this.commentIndex += 1);
@@ -908,7 +916,7 @@ export default {
     display: none;
 }
 .index-label-box {
-    width: 100vw;
+    width: 100%;
     height: 50px;
     background-color: #F7F7F7;
     display: flex;
@@ -916,6 +924,7 @@ export default {
     justify-content: space-evenly;
 }
 .sticky {
+    width: 450px;
     position: fixed;
     top: 0;
     z-index: 999;
@@ -1060,12 +1069,12 @@ export default {
     height: 630px;
 }
 .intro-wrap-block-new-second {
-    width: 100vw;
+    width: 100%;
     min-height: 750px;
     padding: 20px 0;
 }
 .intro-wrap-block-new-five {
-    width: 100vw;
+    width: 100%;
     min-height: 500px;
     padding: 20px 0;
     background: url('');
@@ -1175,6 +1184,7 @@ export default {
 .intro-wrap-block-second-hooper {
     width: 100%;
     height: 690px;
+    overflow: hidden;
 }
 .intro-wrap-block-second-content {
     width: 80%;
@@ -1324,7 +1334,21 @@ export default {
     bottom: 20px;
     right: 20px;
 }
-
+.hooper-comment-dot {
+    display: flex;
+    justify-content: center;
+}
+.comment-dot {
+    width: 7px;
+    height: 7px;
+    background-color:#D1D1D1; 
+    margin: 0 4px; 
+    display: inline-block;
+    border-radius: 4px;
+}
+.comment-dotactive {
+    background: #707070 !important;
+}
 .intro-pay-dot-line {
     width: 100%;
     height: 20px;
@@ -1395,6 +1419,7 @@ export default {
     visibility: hidden;
 }
 .footer-sticky {
+    width: 450px;
     position: fixed;
     bottom: 0;
     z-index: 999;

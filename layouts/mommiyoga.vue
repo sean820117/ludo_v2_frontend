@@ -40,14 +40,14 @@ export default {
     },
     head() {
         return  {
-            title: 'MOMMI YOGA',
+            title: 'MAMI YOGA',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
                 { hid: 'description', name: 'description', content: '' },
                 { property : 'og:title' , content:""},
                 { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.ludonow.com/mommiyoga"},
+                { property : 'og:url' , content:"https://www.ludonow.com/mamiyoga"},
                 // { property : 'og:image' , content:"https://www.ludonow.com/resume/resume-og-img.jpg"},
                 { property : 'og:description' , content:"yoga"},
                 { property : 'og:site_name' , content:"www.ludonow.com"},
@@ -59,12 +59,18 @@ export default {
                 // { src: 'https://player.vimeo.com/api/player.js' },
                 // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
             ],
+            
         }
     },
     async mounted() {
         if (process.client) {
             
             this.is_login = await this.$checkLogin(this.$store);
+
+            if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+                localStorage.redirect = this.$route.path;
+                console.log("save redirect : " + localStorage.redirect);
+            }
         }
     },
 }

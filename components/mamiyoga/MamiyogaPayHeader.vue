@@ -1,19 +1,24 @@
 <template>
     <div class="pay-header">
-        <div class="pay-header-logo"></div>
-        <div class="pay-header-login-btn">登出</div>
+        <div class="pay-header-logo" @click="$router.push('/mamiyoga')"></div>
+        <div class="pay-header-login-btn" @click="logout">登出</div>
     </div>
 </template>
 
 <script>
 export default {
-
+    methods: {
+        logout() {
+            localStorage.redirect = "/mamiyoga";
+            this.$router.push('/logout');
+        }
+    }
 }
 </script>
 
 <style>
 .pay-header {
-    width: 100vw;
+    width: 100%;
     height: 45px;
     background: #F7F7F7;
     box-shadow: 0 5px 10px rgba(0,0,0,.1);
@@ -31,10 +36,17 @@ export default {
     background-repeat: no-repeat;
     width: 80px;
     height: 40px;
+    cursor: pointer;
 }
 .pay-header-login-btn {
     color: #24798F;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
+}
+@media (min-width: 769px) {
+    .pay-header {
+        max-width: 450px;
+    }
 }
 </style>

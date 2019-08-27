@@ -1,121 +1,160 @@
 <template>
     <div>
-        <mamiyoga-pay-header></mamiyoga-pay-header>
-        <div class="pay-main-block">
-            <div class="pay-little-title">付款資訊</div>
-            <hr style="margin: 10px 0;opacity: .5;">
-            <div style="height: 500px;overflow: overlay;">
-                <input type="radio" name="pay-way" id="one-peop" class="pay-way-input">
-                <input type="radio" name="pay-way" id="four-peop" class="pay-way-input">
-                <input type="radio" name="pay-way" id="company-peop" class="pay-way-input">
-                <label class="select-pay-label for-one-peop" for="one-peop">
-                    <div class="select-pay-way">
-                        <span class="select-pay-circle"></span>
-                        <div class="select-pay-data">
-                            <p class="select-pay-title"><b>獨享愛自己</b></p>
-                            <p class="select-pay-title"><b>NTD.1,590</b></p>
-                        </div>
-                    </div>
-                    <div class="select-pay-content">
-                        <div class="select-pay-content-box">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
-                            <div>
-                                <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
-                                <p style="font-weight:lighter;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+        <div style="background:#fff;">
+            <mamiyoga-pay-header></mamiyoga-pay-header>
+            <div class="pay-main-block">
+                <div class="pay-little-title">付款資訊</div>
+                <hr style="margin: 10px 0;opacity: .5;">
+                <div style="height: calc(100vh - 165px);overflow: overlay;">
+                    <input type="radio" name="pay-way" id="one-peop" class="pay-way-input">
+                    <input type="radio" name="pay-way" id="four-peop" class="pay-way-input">
+                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input">
+                    <label class="select-pay-label for-one-peop" for="one-peop">
+                        <div class="select-pay-way">
+                            <span class="select-pay-circle"></span>
+                            <div class="select-pay-data">
+                                <p class="select-pay-title"><b>獨享愛自己</b></p>
+                                <p class="select-pay-title"><b>NTD.1,590</b></p>
                             </div>
                         </div>
-                        <hr class="select-pay-content-line">
-                        <div class="select-pay-content-box">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
-                            <div>
-                                <p class="select-pay-content-title">2.送禮及寵妻達人</p>
-                                <p style="font-weight:lighter;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                        <div class="select-pay-content">
+                            <div class="select-pay-content-box">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
+                                <div>
+                                    <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
+                                    <p style="font-weight:lighter;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+                                </div>
+                            </div>
+                            <hr class="select-pay-content-line">
+                            <div class="select-pay-content-box">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
+                                <div>
+                                    <p class="select-pay-content-title">2.送禮及寵妻達人</p>
+                                    <p style="font-weight:lighter;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </label>
-                <label class="select-pay-label  for-four-peop" for="four-peop">
-                    <div class="select-pay-way">
-                        <span class="select-pay-circle"></span>
-                        <div class="select-pay-data">
-                            <p class="select-pay-title"><b>姊妹揪起來（4人以上）</b><br>一人NTD.1290</p>
-                            <p class="select-pay-title"><b>NTD.5,160</b></p>
-                        </div>
-                    </div>
-                    <div class="select-pay-content">
-                        <div class="select-pay-content-box">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
-                            <div>
-                                <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                <p style="font-weight:lighter;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                    </label>
+                    <label class="select-pay-label  for-four-peop" for="four-peop">
+                        <div class="select-pay-way">
+                            <span class="select-pay-circle"></span>
+                            <div class="select-pay-data">
+                                <p class="select-pay-title"><b>姊妹揪起來（4人以上）</b><br>一人NTD.1290</p>
+                                <p class="select-pay-title"><b>NTD.5,160</b></p>
                             </div>
                         </div>
-                        <hr class="select-pay-content-line">
-                        <div class="select-pay-content-box">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
-                            <div>
-                                <p class="select-pay-content-title">2.加價購兌換方式</p>
-                                <p style="font-weight:lighter;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                        <div class="select-pay-content">
+                            <div class="select-pay-content-box">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
+                                <div>
+                                    <p class="select-pay-content-title">1.收取課程序號並分享</p>
+                                    <p style="font-weight:lighter;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="select-pay-content-line">
-                        <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
-                        <p style="font-weight:lighter;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
+                            <hr class="select-pay-content-line">
+                            <div class="select-pay-content-box">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
+                                <div>
+                                    <p class="select-pay-content-title">2.加價購兌換方式</p>
+                                    <p style="font-weight:lighter;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                </div>
+                            </div>
+                            <hr class="select-pay-content-line">
+                            <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
+                            <p style="font-weight:lighter;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
 
-                    </div>
-                </label>
-                <label class="select-pay-label for-company-peop" for="company-peop">
-                    <div class="select-pay-way">
-                        <span class="select-pay-circle"></span>
-                        <div class="select-pay-data">
-                            <p class="select-pay-title"><b>企業方案（30人以上）</b><br>一人NTD.790起</p>
-                            <p class="select-pay-title"><b>專人服務</b></p>
                         </div>
-                    </div>
-                    <div class="select-pay-content">
-                        <div class="select-pay-content-box">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
-                            <div>
-                                <p class="select-pay-content-title">愛護職員的好方法</p>
-                                <p style="font-weight:lighter;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
+                    </label>
+                    <label class="select-pay-label for-company-peop" for="company-peop">
+                        <div class="select-pay-way">
+                            <span class="select-pay-circle"></span>
+                            <div class="select-pay-data">
+                                <p class="select-pay-title"><b>企業方案（30人以上）</b><br>一人NTD.790起</p>
+                                <p class="select-pay-title"><b>專人服務</b></p>
                             </div>
                         </div>
-                        <hr class="select-pay-content-line">
-                        <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name">
-                        <div class="company-input-box">
-                            <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name">
-                            <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position">
+                        <div class="select-pay-content">
+                            <div class="select-pay-content-box">
+                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
+                                <div>
+                                    <p class="select-pay-content-title">愛護職員的好方法</p>
+                                    <p style="font-weight:lighter;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
+                                </div>
+                            </div>
+                            <hr class="select-pay-content-line">
+                            <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name">
+                            <div class="company-input-box">
+                                <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name">
+                                <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position">
+                            </div>
+                            <div class="company-input-box">
+                                <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel">
+                                <input class="company-input" placeholder="工作郵箱" type="email" name="contact-phone" id="contact-phone">
+                            </div>
+                            <div class="company-input-box" style="justify-content: flex-end;">
+                                <div class="company-input-submit-btn" @click="submitData">送出資料</div>
+                            </div>
                         </div>
-                        <div class="company-input-box">
-                            <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel">
-                            <input class="company-input" placeholder="工作郵箱" type="email" name="contact-phone" id="contact-phone">
+                    </label>
+                </div>
+            </div>
+            <!-- <div class="additional-select">
+                <p class="additional-select-title">獨家加價購</p>
+                <hr style="opacity:.5;">
+                <div style="display: flex;align-items:center;height:90px;">
+                    <input type="checkbox" name="additional" id="additional-box">
+                    <label for="additional-box" class="additional-box-label">
+                        <div class="additional-box-label-icon">
+                            <span></span>
+                            <span></span>
                         </div>
-                        <div class="company-input-box" style="justify-content: flex-end;">
-                            <div class="company-input-submit-btn">送出資料</div>
+                    </label>
+                    <div style="width:50px;height:50px;background: #fff;margin-right: 15px;"></div>
+                    <div>
+                        <p style="font-size:12px;color: #F7F7F7;font-weight: bold;margin-bottom: 10px;">『Easyoga』專業時尚花草瑜伽墊</p>
+                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                            <div class="additional-calculation-box">
+                                <span class="additional-calculatio-before"></span>
+                                <div>1</div>
+                                <span class="additional-calculatio-after"></span>
+                            </div>
+                            <p style="padding-right: 15px;color:#FF9898;font-size:14px;font-weight:bold;">$880</p>
                         </div>
                     </div>
-                </label>
-            </div>
+                </div>
+                <hr style="opacity:.5;">
+            </div> -->
+            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步"></mamiyoga-pay-footer>
         </div>
-        <div class="additional-select">
-            <p class="additional-select-title">獨家加價購</p>
-            <hr style="opacity:.5;">
-            <div>
-                
+        <mamiyoga-window-alert-box v-if="company_method">
+            <div class="cancel-box" @click="company_method = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <hr style="opacity:.5;">
-        </div>
-        <mamiyoga-pay-footer ftBtn="#FF9898"></mamiyoga-pay-footer>
+            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">收到您的資訊！<br>我們將於1~3個工作天聯絡您！</div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="" style="margin-top:20px;width:30%;">
+            <div class="company-input-submit-btn" style="margin:30px auto 0;" @click="company_method = false">好的</div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
 <script>
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaPayFooter from '~/components/mamiyoga/MamiyogaPayFooter.vue'
+import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 export default {
+    layout:'mommiyoga',
+    data:()=>({
+        company_method: false,
+    }),
     components: {
         MamiyogaPayHeader,
         MamiyogaPayFooter,
+        MamiyogaWindowAlertBox,
+    },
+    methods:{
+        submitData(){
+            this.company_method = true;
+        }
     }
 }
 </script>
@@ -276,7 +315,7 @@ export default {
     margin-top: 15px;
 }
 .additional-select {
-    width: 100vw;
+    width: 100%;
     height: 150px;
     background-color: #24798F;
     position: fixed;
@@ -287,5 +326,103 @@ export default {
     font-size: 12px;
     font-weight: bold;
     padding: 5px 0 5px 20px;
+}
+.additional-box-label {
+    width: 25px;
+    height: 25px;
+    display:block;
+    background: #fff;
+    border: 2px solid #BFBDBD;
+    border-radius: 5px;
+    margin: 0 15px;
+}
+#additional-box {
+    display: none;
+}
+.additional-box-label-icon {
+    position: relative;
+    display: none;
+}
+#additional-box:checked ~ .additional-box-label .additional-box-label-icon {
+    display: block;
+}
+.additional-box-label span{
+    background: #24798F;
+    height: 4px;
+    display: block;
+    position: absolute;
+    border-radius: 1px;
+}
+.additional-box-label span:first-child {
+    width: 10px;
+    transform: rotate(45deg);
+    top: 11px;
+    left: 1px;
+}
+.additional-box-label span:last-child {
+    width: 15px;
+    transform: rotate(135deg);
+    top: 9px;
+    left: 5px;
+}
+.additional-calculation-box {
+    width: 80px;
+    height: 25px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: #BFBDBD 1px solid;
+    border-radius: 5px;
+}
+.additional-calculatio-before {
+    width: 10px;
+    height: 3px;
+    background: #707070;
+    border-radius: 3px;
+}
+.additional-calculatio-after {
+    width: 12px;
+    height: 3px;
+    background: #707070;
+    border-radius: 3px;
+    position: relative;
+}
+.additional-calculatio-after::after {
+    width: 2px;
+    height: 12px;
+    background: #707070;
+    border-radius: 3px;
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 5px;
+}
+
+
+
+
+.cancel-box {
+    /* background: red; */
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.cancel-box img {
+    width: 65%;
+}
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
+}
+@media (min-width: 769px) {
+    .additional-select {
+        max-width: 450px;
+    }
 }
 </style>
