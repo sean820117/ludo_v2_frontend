@@ -286,8 +286,17 @@ export default {
                         } else if(response.data.result.status == 102) { 
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
+                            // if(response.data.result.error_code == -1) {
+
+                            // }
                             console.log("未偵測到動作");
                             alert('動きを検知できません')
+                            this.isLoading = false;
+                            clearInterval(get_result_interval);
+                            clearInterval(id);
+                        } else if(response.data.result.status == 404){
+                            console.log("網路錯誤");
+                            alert('網路錯誤')
                             this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);

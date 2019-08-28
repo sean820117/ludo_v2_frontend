@@ -7,7 +7,7 @@
             </video> -->
              <div class="background-video-contain">
                 <video muted loop autoplay playsinline class="background-video" >
-                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-new-3.mp4" type="video/mp4">      
                 </video>
             </div>
             <div class="mamiyoga-index-intro" style="position: absolute;">
@@ -46,14 +46,15 @@
                             </video>
                             <div class="intro-wrap-block-first-content">
                                 <h1>Mami yoga日本人氣瑜珈</h1>
-                                <p style="font-size:14px;margin:5px 0;">講師 橋本麻美</p>
-                                <div style="margin: 20px 0;">
+                                <p style="font-size:14px;margin:5px 0 0;font-weight:500;">講師 橋本麻美</p>
+                                <p>使用期限：影片永久/AI助教一年</p>
+                                <div style="margin: 20px 0;display:flex;align-items: center;justify-content:space-between;">
                                     <select name="pay-program" class="select-pay-program">
                                         <option value="for-one">獨享愛自己&nbsp;&nbsp;NTD.1590</option>
                                         <option value="for-four">姊妹揪起來(4人)&nbsp;NTD.5160</option>
                                         <option value="Hsinchu">企業方案(30人)&nbsp;專人服務</option>
                                     </select>
-                                    <button>立即購買</button>
+                                    <button class="goto-buy-btn" @click="$router.push('/mamiyoga/pay')">立即購買</button>
                                 </div>
                             </div>
                             <img style="width:90%;display:block;margin:20px auto 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-data.png" alt="">
@@ -63,7 +64,9 @@
                                 <!-- <p class="index-article-text">產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p> -->
                                 <h3 class="index-article-title">妳知道日本媽媽<br>從來沒有坐月子嗎？</h3>
                                 <p class="index-article-text" style="color:#272727;margin-top:10px;margin-bottom:0;">日本是完全沒有坐月子習慣的，但這並不代表台灣的媽媽不需要！我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</p>
-                                <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:10px;margin-bottom:10px;" @click="$router.push('/mamiyoga/information')">了解更多&nbsp;</p>
+                                <router-link to="/mamiyoga/information" style="text-decoration:none;">
+                                    <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:10px;margin-bottom:10px;">了解更多&nbsp;</p>
+                                </router-link>
                                 <!-- <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p> -->
                                 <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt="">
                                 <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。</h6>
@@ -453,9 +456,9 @@
                     </router-link>
                 </div>
                 <div class="mamiyoga-intro-btn">
-                    <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+                    <a href="/mamiyoga/teach" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="體驗課程"></mamiyoga-btn>
-                    </router-link>
+                    </a>
                 </div>
                 <p style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">快和朋友分享吧！</p>
                 <div class="mamiyoga-assay-share-icon-box">
@@ -590,6 +593,9 @@ export default {
         // })
         
         
+    },
+    beforeDestroy(){
+        window.onscroll = null
     },
     methods:{
         goTeach(){
@@ -924,7 +930,7 @@ export default {
     justify-content: space-evenly;
 }
 .sticky {
-    width: 450px;
+    
     position: fixed;
     top: 0;
     z-index: 999;
@@ -943,6 +949,7 @@ export default {
 #about-course:checked ~ .index-label-box .about-course-btn,
 #love-feedback:checked ~ .index-label-box .love-feedback-btn {
     opacity: 1;
+    border-bottom: 2px solid #24798F;
 }
 #about-course:checked ~ .about-course-block {
     display: block;
@@ -978,10 +985,19 @@ export default {
     border: 1px solid #24798F;
     background: white;
     border-radius: 5px;
+    width: 60%;
     height: 30px;
     color: #24798F;
     font-size: 13px;
     font-weight: 600;
+}
+.goto-buy-btn {
+    width: 38%;
+    height: 30px;
+    border-style: none;
+    border-radius: 5px;
+    color: #f7f7f7;
+    background: #FF9898;
 }
 .index-article-title {
     color: #24798F;
@@ -1419,7 +1435,6 @@ export default {
     visibility: hidden;
 }
 .footer-sticky {
-    width: 450px;
     position: fixed;
     bottom: 0;
     z-index: 999;
@@ -1562,7 +1577,9 @@ export default {
     .intro-wrap-block-five {
         width: 450px;
     }
-    
+    .sticky, .footer-sticky {
+        max-width: 450px;
+    }
 
     /*行銷網頁版*/
     .mamiyoga-intro-wrap-block h5 {

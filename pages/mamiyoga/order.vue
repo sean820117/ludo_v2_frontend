@@ -16,8 +16,8 @@
                     <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
                 </div>
             </div>
-            <div class="order-base-info">
-                <div class="order-little-title" style="display:flex;align-items: flex-end;">寄送方式<span style="font-size: 12px;">（加價購必填）</span></div>
+            <div class="order-base-info" style="margin-top:8vh;">
+                <!-- <div class="order-little-title" style="display:flex;align-items: flex-end;">寄送方式<span style="font-size: 12px;">（加價購必填）</span></div>
                 <select class="order-select-how-to" v-model="select_how">
                     <option value="1">貨到付款 $60</option>
                     <option value="2">7-11超商店到店 $60</option>
@@ -41,9 +41,6 @@
                     <div style="display: flex;align-items: center;margin: 10px 0 5px;">
                         <label class="order-form-label" for="recipient-address-code" style="margin-right:5px;">居住城市</label>
                         <select class="order-form-input order-form-zipcode" name="recipient-address-code" id="recipient-address-code" v-model="select_county">
-                            <!-- <option v-for="(zipcode,index) in zipcode" :key="index" :value="zipcode.id">
-                                {{zipcode.id + zipcode.county}}
-                            </option> -->
                             <option v-for="(city,index) in city" :key="index" :value="city.id">
                                 {{city.id}}
                             </option>
@@ -65,7 +62,7 @@
                     <input class="order-form-input" type="text" name="shop-recipient-name" id="shop-recipient-name" placeholder="請輸入收貨人名稱">
                     <label class="order-form-label" for="shop-recipient-tel">聯絡電話</label>
                     <input class="order-form-input" type="tel" name="shop-recipient-tel" id="shop-recipient-tel" placeholder="（+886）953 840 329">
-                </div>
+                </div> -->
                 <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
                 <input type="checkbox" name="agree" id="agree" style="display:none;">
                 <label for="agree" class="agree-checkbox-label-label">
@@ -74,7 +71,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <p style="margin-left: 5px;">我同意LUDO退款政策</p>
+                        <p style="margin-left: 5px;">我同意LUDO<router-link to="/mamiyoga/refund" style="color:#000;">退款政策</router-link></p>
                     </div>
                 </label>
             </div>

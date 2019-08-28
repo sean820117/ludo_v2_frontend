@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contactus-page">
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <div class="contactus-main">
             <div class="pay-little-title">聯絡我們</div>
@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style>
+.contactus-page {
+    min-height: 100vh;
+}
 .contactus-main {
     padding-top: 45px;
     margin: 0 auto;
@@ -73,5 +76,16 @@ export default {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+@media (min-width: 769px) {
+    .contactus-page {
+        background: #fff;
+    }
+    .contactus-logo {
+        max-width: 200px;
+    }
+    .contactus-big-btn {
+        width: 67%;
+    }
 }
 </style>

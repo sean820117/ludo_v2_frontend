@@ -2,40 +2,40 @@
     <div>
         <main>
             <article class="bmi-index-content">
-                <h2 style="margin-top:4vh;">BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)</h2>
-                <p style="font-weight:400;">例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2</p>
-                <p style="color:#000;margin-top:3vh;">體重正常範圍為 BMI=18.5~24</p>
+                <h2 style="margin-top:4vh;" v-html="$t('bmi_index_text_1')"></h2>
+                <p style="font-weight:400;" v-html="$t('bmi_index_text_2')"></p>
+                <p style="color:#000;margin-top:3vh;">{{$t('bmi_index_text_3')}}</p>
             </article>
             <article class="bmi-index-content">
-                <p style="color:#000;font-weight:400;margin-top:3vh;">快看看自己的BMI是否在理想範圍內吧！</p>
-                <h3 style="color:#3855A3;font-weight:400;text-decoration:underline;cursor:pointer;width:80px;margin:10px auto 0;" @click="have_consult = true">點我數值參考</h3>
+                <p style="color:#000;font-weight:400;margin-top:3vh;">{{$t('bmi_index_text_4')}}</p>
+                <h3 style="color:#3855A3;font-weight:400;text-decoration:underline;cursor:pointer;width:80px;margin:10px auto 0;" @click="have_consult = true">{{$t('bmi_index_btn_1')}}</h3>
             </article>
             <section class="bmi-index-content">
                 <form class="bmi-index-form">
                     <div class="bmi-index-form-input-li sexual">
-                        <p>性別：</p>
+                        <p>{{$t('bmi_input_1')}}</p>
                         <div class="bmi-index-form-input-label">
                             <input type="radio" id="girl" value="girl" name="sexual" v-model="sexual">
-                            <label for="girl" class="first-label">女</label>
+                            <label for="girl" class="first-label">{{$t('bmi_input_1_1')}}</label>
                             <input type="radio" id="boy" value="boy" name="sexual" v-model="sexual">
-                            <label for="boy" class="second-label">男</label>
+                            <label for="boy" class="second-label">{{$t('bmi_input_1_2')}}</label>
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
-                        <p>身高（公分）：</p>
+                        <p>{{$t('bmi_input_2')}}</p>
                         <div class="bmi-index-form-input-value">
                             <input type="number" id="height" name="height" :placeholder="heightText" :value="input_height">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li human-height">
-                        <p>體重（公斤）：</p>
+                        <p>{{$t('bmi_input_2')}}</p>
                         <div class="bmi-index-form-input-value">
                             <input type="number" id="weight" :placeholder="weightText" name="weight" :value="input_weight">
                         </div>
                     </div>
                     <div class="bmi-index-form-input-li">
-                        <p style="text-align:center;margin:5vh 0 1vh;">計算後得知BMI，您可以隨時調整數值<br>我們將幫您計算出需要改變的重量！</p>
-                        <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getBmi">開始計算</div>
+                        <p style="text-align:center;margin:5vh 0 1vh;" v-html="$t('bmi_index_text_5')"></p>
+                        <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getBmi">{{$t('bmi_index_btn_2')}}</div>
                     </div>
                 </form>
             </section>
@@ -43,7 +43,7 @@
         <section class="bmi-consult-box" :class="have_consult ? 'open':''">
             <div class="bmi-consult-container" :class="have_consult ? 'open':''" v-touch:swipe="function(){have_consult = false}">
                 <div class="bmi-share-close" @click="have_consult = false"></div>
-                <h5>數值參考</h5>
+                <h5>{{$t('bmi_index_btn_1')}}</h5>
                 <figure>
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/bmi-new.png" alt="BMI 標準值">
                 </figure>
@@ -310,21 +310,31 @@ export default {
             let weight = document.getElementById('weight').value;
             let bmi = 0;
 
-            if( weight == '' || height == '') {
-                // this.have_result = false;
-                this.heightText = '請幫我輸入身高呦～';
-                this.weightText = '不好意思...請幫我輸入體重喔><';
+            if(this.$i18n.locale == 'JP') {
+                if( weight == '' || height == '') {
+                    this.heightText = 'あなたの身長教えてね！';
+                    this.weightText = '体重、入力してね⭐';
+                } else {
+                    localStorage.input_height = height
+                    localStorage.input_weight = weight
+
+                    bmi = (weight/[(height/100)*(height/100)]).toFixed(1);
+                    localStorage.to_bmi = bmi
+                    this.$router.push('/jp/bmi/result')
+                }
             } else {
-                localStorage.input_height = height
-                localStorage.input_weight = weight
+                if( weight == '' || height == '') {
+                    this.heightText = '請幫我輸入身高呦～';
+                    this.weightText = '不好意思...請幫我輸入體重喔><';
+                } else {
+                    localStorage.input_height = height
+                    localStorage.input_weight = weight
 
-                bmi = (weight/[(height/100)*(height/100)]).toFixed(1);
-                localStorage.to_bmi = bmi
-                // console.log(localStorage.to_bmi)
-                this.$router.push('/bmi/result')
+                    bmi = (weight/[(height/100)*(height/100)]).toFixed(1);
+                    localStorage.to_bmi = bmi
+                    this.$router.push('/bmi/result')
+                }
             }
-
-            
         },
         // getBmi(){
         //     this.bmi_result = '';

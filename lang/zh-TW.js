@@ -3,6 +3,15 @@ export default {
   header_logout: '登出',
   header_menu: '選單',
 
+  member_title: '學員中心',
+  member_text_btn_1: '我的序號',
+  member_text_btn_2: '購買課程',
+  member_text_btn_3: '學員點數',
+  member_text_btn_4: '文章投稿',
+  member_text_btn_5: '基本設定',
+  member_text_btn_6: '聯絡我們',
+  member_text_btn_7: '回到課程',
+
   index_button_free: '體驗課程',
   index_button_pay: '完整課程', 
   index_button_after: '歡迎回來',
@@ -25,6 +34,7 @@ export default {
   teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.svg',
   teach_text_time: '建議拍攝時間：&nbsp;<i>20-45</i>&nbsp;秒',
 
+  teach_assay_open_text: '向上滑動打開',
   teach_assay_title: '分析成果',
   teach_assay_correct: '準確率',
   teach_assay_share_friend: '快和朋友們分享這次的練習成果吧！',
@@ -101,7 +111,7 @@ export default {
   about_first_content_course: '曾修習完畢相關課程',
   about_first_content_course_text: '骨頭導覽指導著養成課程修習完畢',
 
-  about_second_content: '&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，所以花了不少力氣尋尋覓覓。<br>&nbsp;&nbsp;&nbsp;&nbsp;沒想到，在經歷過多次嘗試後，讓我有機會接觸到了瑜珈。因此身體健康也漸漸獲得改善，這促使了我變得更加專注練習，產生了良性循環還有更大的興趣，不知不覺間，也獲得了執照認證與教學資格。<br>&nbsp;&nbsp;&nbsp;&nbsp;我平時擔任專業自由瑜珈的指導教練，一週至少固定開班20堂，不過往往會更超過這數字。<br>&nbsp;&nbsp;&nbsp;&nbsp;除此之外，也擔任過日本屈指頂尖舞蹈跟唱歌少女團體「E-girl」的貼身瑜珈指導哦！而且我不但協助許許多多演藝圈人士的體態健康維護，也曾擔任過名人的私人瑜珈課程指導。<br>&nbsp;&nbsp;&nbsp;&nbsp;就算是在懷孕的時候，我也持續進行瑜珈教學，而且，我現在也還是個懷孕媽媽哦！所以，我有特別設計產後恢復的相關課程。當然，也還有其他針對不一樣煩惱需求的瑜珈課程，用來幫助不一樣的你！<br>&nbsp;&nbsp;&nbsp;&nbsp;我最擅長的領域是治癒身體和心靈的放鬆瑜珈。<br>&nbsp;&nbsp;&nbsp;&nbsp;在Instagram上也可看到我哦！目前追蹤人數已經突破了兩萬！',
+  about_second_content: '&nbsp;&nbsp;&nbsp;&nbsp;隨著這些年壓力的累積，我的身體狀況並不是很好，原本只是想要找到改善的方法，所以花了不少力氣尋尋覓覓。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;沒想到，在經歷過多次嘗試後，讓我有機會接觸到了瑜珈。因此身體健康也漸漸獲得改善，這促使了我變得更加專注練習，產生了良性循環還有更大的興趣，不知不覺間，也獲得了執照認證與教學資格。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;我平時擔任專業自由瑜珈的指導教練，一週至少固定開班20堂，不過往往會更超過這數字。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;除此之外，也擔任過日本屈指頂尖舞蹈跟唱歌少女團體「E-girl」的貼身瑜珈指導哦！而且我不但協助許許多多演藝圈人士的體態健康維護，也曾擔任過名人的私人瑜珈課程指導。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;就算是在懷孕的時候，我也持續進行瑜珈教學，而且，我現在也還是個懷孕媽媽哦！所以，我有特別設計產後恢復的相關課程。當然，也還有其他針對不一樣煩惱需求的瑜珈課程，用來幫助不一樣的你！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;我最擅長的領域是治癒身體和心靈的放鬆瑜珈。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;在Instagram上也可看到我哦！目前追蹤人數已經突破了兩萬！',
   about_third_content:'給產後的女性：<br><br>一般來說，女性要回復生產前的良好狀態，是需要十個月以上，這真的是段非常辛苦的日子。<br>而且，產後也無暇休息，還要照顧寶寶們。這常會導致骨盤變得岌岌可危，有鬆脫現象，或者子宮持續不斷出血。<br>若是不顧自己的身體，總是把自己放在最後一位，又因為環境變化、家庭的壓力、甚至是缺乏支持，就會衍生出很多後遺症。<br><br>而這是我最不樂見的，希望媽媽們，能為了自己，也為了小寶寶，好好保養照顧。因此我設計了一套program.即使是沒有辦法直接到瑜珈教室的媽媽們，或者是有著重重苦衷抽不開身的人，都可以透過這套在家能自己實施的瑜珈動作練習，讓心情得到放鬆，身體得到休息。<br><br>那怕只能盡到微薄的照料媽媽們的責任，我也願意認真設計，只要多那麼一位母親能夠因為這堂課而有所幫助，變得有精神，變得很幸福，這樣就好了。<br><br>因為媽媽們的幸福，就是小孩的幸福。<br>而你們的幸福，也是我的願望。',
   about_four_content: '給廣大的女性族群:<br><br>有時候，女生們常常會壓力大到連自己都沒有發現。在每天每天的疲勞與壓力囤積中，不知不覺習慣了，直到受不了時垮下去，已經為時已晚。<br>所以，我希望能帶給大家一些瑜珈課程，讓女生朋友們也能每天都有煥然一新的重生感。<br><br>瑜珈，能夠聯繫身體與心靈，並且給予我們自信。<br>把瑜珈形容成讓每個人都能幸福活下去，變得更像自己喜歡模樣的香料，可一點都不為過哦！<br>讓我們將生活撒入瑜珈這個香料吧！一起藉由瑜珈獲得平靜的心靈與自信的曼妙體態！<br><br>我誠摯地推薦大家嘗試看看，有了瑜珈後，找尋到合適自己的生活方式！',
 
@@ -133,4 +143,70 @@ export default {
   course_practice_btn: '練習記錄',
   course_practice_remind_title: '建議使用',
 
+
+
+
+
+
+
+  //bmi
+  bmi_header_label_1: 'BMI值計算機',
+  bmi_header_label_2: 'TDEE值計算機',
+  bmi_index_text_1: 'BMI值計算公式： BMI = 體重(公斤)/身高²(公尺²)',
+  bmi_index_text_2: '例如：一個50公斤的人，身高是161公分，則BMI為：<br>50(公斤)/1.61²(公尺²)=19.2',
+  bmi_index_text_3: '體重正常範圍為 BMI=18.5~24',
+  bmi_index_text_4: '快看看自己的BMI是否在理想範圍內吧！',
+  bmi_index_text_5: '計算後得知BMI，您可以隨時調整數值<br>我們將幫您計算出需要改變的重量！',
+  bmi_input_1:'性別：',
+  bmi_input_1_1: '女',
+  bmi_input_1_2: '男',
+  bmi_input_2:'身高（公分）：',
+  bmi_input_3:'體重（公斤）：',
+  bmi_input_placeholder_1: '請幫我輸入身高呦～',
+  bmi_input_placeholder_2: '不好意思...請幫我輸入體重喔><',
+  bmi_index_btn_1: '數值參考',
+  bmi_index_btn_2: '開始計算',
+  bmi_index_copyright: '&copy;2019 LUDO All Rights Reserved',
+
+
+  bmi_result_title: '計算結果',
+  bmi_result_label_1: 'BMI值',
+  bmi_result_label_2: '目前體重',
+  bmi_result_label_3: '還需要',
+  bmi_result_little_text: '公斤',
+  bmi_result_tag_1: '體重過輕',
+  bmi_result_tag_2: '正常範圍',
+  bmi_result_tag_3: '過重',
+  bmi_result_tag_4: '輕度肥胖',
+  bmi_result_tag_5: '中度肥胖',
+  bmi_result_tag_6: '重度肥胖',
+  bmi_result_text_1: '拉動滑桿可以自動計算喔！',
+  bmi_result_text_2: '想得到專屬於你的健康菜單嗎？<br>試試看TDEE值計算機吧！',
+  bmi_result_btn: '基礎熱量計算機',
+
+  tdee_index_text_1: '透過基礎代謝率（BMR）以及運動習慣，我們能夠透過公式得出每日消耗熱量（TDEE）。TDEE可以幫助妳/你掌握每天的營養攝取量以及運動量。',
+  tdee_index_text_2: '計算後得知TDEE，我們將提供您<br>免費的健康菜單與運動喔！',
+  tdee_index_input_1: '年齡：',
+  tdee_index_input_2: '活動量：',
+  tdee_index_option_1: '久坐，幾乎不運動',
+  tdee_index_option_2: '一週輕鬆運動3-5天',
+  tdee_index_option_3: '一週中等強度運動3-5天',
+  tdee_index_option_4: '一週高強度運動3-5天',
+  tdee_index_option_5: '每天高強度訓練、或一天訓練兩次以上',
+  tdee_index_option_6: '勞力密集的工作',
+  tdee_input_placeholder: '噓！！我不會告訴別人的～',
+
+  tdee_result_title: '運動與飲食建議',
+  tdee_result_label_1: '增肌',
+  tdee_result_label_2: '減脂',
+  tdee_result_label_3: '便利健康菜單建議',
+  tdee_result_label_4: '便利自我訓練菜單',
+  tdee_result_little_text_1: '基礎代謝BMR',
+  tdee_result_little_text_2: '每日總消耗TDEE',
+  tdee_result_little_text_3: '大卡',
+  tdee_result_tag_1: '早餐',
+  tdee_result_tag_2: '午餐',
+  tdee_result_tag_3: '晚餐',
+  tdee_result_text: '徒手運動30分鐘，消耗250-300大卡',
+  tdee_result_btn: '立即體驗瑜珈課程',
 }

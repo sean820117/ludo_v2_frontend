@@ -1,6 +1,6 @@
 <template>
     <div class="info-page">
-        <mamiyoga-teach-header class="privacy-header"></mamiyoga-teach-header>
+        <mamiyoga-teach-header class="privacy-header" id="information-top"></mamiyoga-teach-header>
         <div class="info-wrap-block-first">
             <div style="width:77%;margin: 0 auto;">
                 <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
@@ -60,6 +60,11 @@ export default {
     layout: 'mommiyoga',
     components: {
         MamiyogaTeachHeader,
+    },
+    mounted(){
+        if(process.client) {
+            location.href = '#';
+        }
     }
 }
 </script>
@@ -72,7 +77,7 @@ export default {
     display: none;
 }
 .info-wrap-block-first {
-    width: 100vw;
+    width: 100%;
     min-height: 610px;
     background-color: #F7F7F7;
     padding: 0 0 20px;
@@ -98,7 +103,7 @@ export default {
     margin-left: 40px; 
 }
 .intro-wrap-block-five {
-    width: 100vw;
+    width: 100%;
     height: 750px;
     padding: 20px 0;
     height: 1050px;
@@ -150,5 +155,9 @@ export default {
     bottom: 0;
     z-index: 999;
 }
-
+@media(min-width: 769px) {
+    .info-footer {
+        max-width: 450px;
+    }
+}
 </style>

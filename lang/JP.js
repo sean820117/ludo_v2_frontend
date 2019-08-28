@@ -8,6 +8,7 @@ export default {
     index_agree_text: 'ログインして本サービスを利用することで、<br>LUDOのプライバシーポリシーに同意したものとします。',
 
     teach_title:'無料版・練習',
+    teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video.mp4',
     teach_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3.mp4',
     teach_tip_title: 'やりかた',
     teach_button_upload: 'スタート',
@@ -19,6 +20,7 @@ export default {
     teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-jp-2.svg',
     teach_text_time: '撮影時間の目安：&nbsp;<i>20-45</i>&nbsp;秒',
 
+    teach_assay_open_text: '上にスワイプして開く',
     teach_assay_title: '結果を分析',
     teach_assay_correct: '正確率',
     teach_assay_share_friend: '今回の練習成果をシェア！',
@@ -89,4 +91,69 @@ export default {
     about_third_content:'産後の女性向け：<br><br>女性の方は、産後元の体に戻るまで、全治10ヶ月と言われるくらい、とても傷ついた状態で、休む間もなく赤ちゃんのお世話をしなくてはいけません。<br>骨盤はガタガタ、子宮からは出血をして重症。体をいたわらないといけない時期に、時間がなく、自分のことは後回しになりがちです。<br>また環境などにもより、家族や周りのサポートが受けれなかったり、色んな方がいます。そんな中でも赤ちゃんのためにも、自分の体を大切にしてほしい。<br>このプログラムは、スタジオに行けない方でも、どんな境遇の方でも、このヨガを通じて少しでも心休まり、体がほぐれ、リラックスできる、そんな環境を作れることが出来たらいいなと思い、考えたものです。<br>一人でも多くのお母さんが自分の時間を少しでも作れるきっかけになることが願いです。お母さんが元気で幸せであることが子供の幸せだと思っています。',
     about_four_content: 'もっと広い女性向け：<br><br>日々の生活の中で、自分でも気づかないうちに溜まった疲れや、ストレスを、このプログラムを通してリフレッシュしてほしいと思います。ヨガは心と体を繋げ、自分に自信を与えてくれます。<br>より自分らしく、幸せに生きていけるためのスパイスだとも言えます。<br>自分のライフスタイルの中にこのヨガを取り入れて、心の安定や、自信のつくボディメイク、それぞれの自分に合ったヨガライフを見つけてほしいと思います。',
 
+
+
+
+
+
+      //bmi
+  bmi_header_label_1: 'BMI計算機',
+  bmi_header_label_2: 'TDEE計算機',
+  bmi_index_text_1: 'BMIの計算式は以下のとおりで、身長はcmではなくmで計算します。<br>[体重(kg)]÷[身長(m)の2乗]',
+  bmi_index_text_2: '計算の一例：体重：50kg 、身長161cmの人<br>50kg　/ 1.612（(m)の2乗）= BMIが19.2',
+  bmi_index_text_3: '通常はBMI = 18.5〜24です',
+  bmi_index_text_4: 'まずは自分のBMIが標準範囲かチェック！',
+  bmi_index_text_5: 'BMIから見た標準体重<br>を計算するね！',
+  bmi_input_1:'性別：',
+  bmi_input_1_1: '女',
+  bmi_input_1_2: '男',
+  bmi_input_2:'身長（cm）：',
+  bmi_input_3:'体重（kg）：',
+  bmi_input_placeholder_1: 'あなたの身長教えてね！',
+  bmi_input_placeholder_2: '体重、入力してね⭐',
+  bmi_index_btn_1: '参考值',
+  bmi_index_btn_2: '計算中…',
+  bmi_index_copyright: '&copy;2019 LUDO All Rights Reserved',
+
+
+  bmi_result_title: '計算結果',
+  bmi_result_label_1: 'BMI',
+  bmi_result_label_2: '今の体重',
+  bmi_result_label_3: 'まだ必要',
+  bmi_result_little_text: 'kg',
+  bmi_result_tag_1: '痩せぎみ',
+  bmi_result_tag_2: '普通体重',
+  bmi_result_tag_3: '肥満予備軍',
+  bmi_result_tag_4: '肥満（1度）',
+  bmi_result_tag_5: '肥満（2度）',
+  bmi_result_tag_6: '肥満（3度）',
+  bmi_result_text_1: 'スワイプすると自動で計算できるよ！',
+  bmi_result_text_2: 'あなた専用のダイエットメニューはこちら！<br>TDEE計算機を試してみてね',
+  bmi_result_btn: '基礎熱量計算機',
+
+  tdee_index_text_1: '基礎代謝率（BMR）と運動習慣により、計算式から1日のカロリー消費（TDEE）を導き出すことができます。 TDEEは、一日に必要なエネルギー量と運動量を把握するのに役立ちます。',
+  tdee_index_text_2: 'TDEEを計算して、無料ヘルシーメニューとおすすめエクササイズをゲットしよう！',
+  tdee_index_input_1: '年齢：',
+  tdee_index_input_2: '身体活動レベル：',
+  tdee_index_option_1: '座位が中心の生活、運動はほぼなし',
+  tdee_index_option_2: 'ゆっくりした歩行や家事など低強度の活動を週に３−５回している',
+  tdee_index_option_3: '長時間持続可能な運動・労働など中強度の活動（普通歩行を含む）を週に３−５回している',
+  tdee_index_option_4: '頻繁に休みが必要な運動・労働など高強度の活動を週に３−５回している',
+  tdee_index_option_5: '毎日１、２回は高強度の活動・運動をしている',
+  tdee_index_option_6: '仕事内容が、頻繁に休みが必要な高強度労働',
+  tdee_input_placeholder: '噓！！我不會告訴別人的～',
+
+  tdee_result_title: 'エクササイズとスポーツとダイエットのワンポイントアドバイス',
+  tdee_result_label_1: '筋肉を増やす',
+  tdee_result_label_2: '脂肪を減らす',
+  tdee_result_label_3: 'おすすめコンビニ健康メニュー',
+  tdee_result_label_4: '便利自我訓練菜單',
+  tdee_result_little_text_1: '基礎代謝BMR',
+  tdee_result_little_text_2: 'TDEEの1日の総消費量',
+  tdee_result_little_text_3: 'kcal',
+  tdee_result_tag_1: '朝ごはん',
+  tdee_result_tag_2: '昼ごはん',
+  tdee_result_tag_3: '晩ご飯',
+  tdee_result_text: '30分エクササイズで、250〜300 kcalを消費できます',
+  tdee_result_btn: '立即體驗瑜珈課程',
 }

@@ -2,7 +2,7 @@
     <div>
         <div class="order-footer">
             <div class="order-footer-see" @click="open_order = true">訂單明細</div>
-            <div class="order-footer-cost">共計  NTD.5,060</div>
+            <div class="order-footer-cost">共計  <b>&nbsp;&nbsp;NTD.5,060</b></div>
             <div class="order-footer-btn" :style="{backgroundColor:ftBtn}">{{payFt}}</div>
         </div>
         <mamiyoga-window-alert-box v-if="open_order">
@@ -56,7 +56,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 .order-footer-see {
     font-size: 14px;
@@ -67,8 +67,15 @@ export default {
     border-radius: 3px;
     cursor: pointer;
 }
+.order-footer-cost {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #535353;
+    font-weight: lighter;
+}
 .order-footer-btn {
-    width: 100px;
+    width: 30%;
     height: 50px;
     display: flex;
     align-items: center;

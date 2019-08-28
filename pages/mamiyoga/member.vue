@@ -1,17 +1,17 @@
 <template>
     <div class="member-page" style="padding-bottom: 5vh;background: #fff;">
         <mamiyoga-pay-header></mamiyoga-pay-header>
-        <p class="member-title">學員中心</p>
+        <p class="member-title">{{$t('member_title')}}</p>
         
-        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push('/mamiyoga/serialno')">我的序號</div>
-        <div class="member-big-btn" @click="$router.push('/mamiyoga/pay')">購買課程</div>
-        <div class="member-big-btn" >學員點數</div>
+        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/mamiyoga/serialno')">{{$t('member_text_btn_1')}}</div>
+        <div class="member-big-btn" @click="$router.push(check_lang + '/mamiyoga/pay')">{{$t('member_text_btn_2')}}</div>
+        <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div>
         <hr class="member-line">
-        <div class="member-big-btn" @click="$router.push('/mamiyoga/writing')">文章投稿</div>
-        <div class="member-big-btn" @click="$router.push('/mamiyoga/setting')">基本設定</div>
-        <div class="member-big-btn" @click="$router.push('/mamiyoga/contactus')">聯絡我們</div>
+        <div class="member-big-btn" @click="$router.push(check_lang + '/mamiyoga/writing')">{{$t('member_text_btn_4')}}</div>
+        <div class="member-big-btn" @click="$router.push(check_lang + '/mamiyoga/setting')">{{$t('member_text_btn_5')}}</div>
+        <div class="member-big-btn" @click="$router.push(check_lang + '/mamiyoga/contactus')">{{$t('member_text_btn_6')}}</div>
 
-        <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/mamiyoga/menu')">回到課程</div>
+        <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/mamiyoga/menu')">{{$t('member_text_btn_7')}}</div>
     </div>
 </template>
 
@@ -19,9 +19,23 @@
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 export default {
     layout: 'mommiyoga',
+    data:()=>({
+        check_lang: '',
+    }),
     components:{
         MamiyogaPayHeader,
-    }
+    },
+    mounted(){
+        if(process.client) {
+            if(this.$i18n.locale == 'jp') {
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.check_lang = '/zh-CN'
+            } else {
+                this.check_lang = ''
+            }
+        }
+    },
 }
 </script>
 

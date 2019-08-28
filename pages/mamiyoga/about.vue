@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
-        <mamiyoga-mail-header nextTo="/mamiyoga/menu"
-        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF" :is_beta="true"></mamiyoga-mail-header>
+        <mamiyoga-about-header nextTo="/mamiyoga/menu"
+        btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF" :is_beta="true"></mamiyoga-about-header>
         <hooper>
             <slide class="about-teacher about-slide">
                 <div class="about-title"><h3>{{$t('about_first_title')}}</h3></div>
@@ -21,27 +21,28 @@
                 </div>
             </slide>
             <slide class="about-teacher about-slide" style="overflow:hidden;">
-                <video muted loop autoplay playsinline  class="background-video" >
+                <!-- <video muted loop autoplay playsinline  class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-1.mp4" type="video/mp4">      
-                </video>
+                </video> -->
                 <div class="about-title"><h3 style="color:#FFF;">{{$t('about_first_title')}}</h3></div>
                 <div class="about-teacher-content">
                     <p style="color:#FFF;font-size:14px;" v-html="$t('about_second_content')"></p>
                 </div>
+                <!-- <div class="about-background-mask"></div> -->
             </slide>
             <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
-                <video muted loop autoplay playsinline class="background-video" >
+                <!-- <video muted loop autoplay playsinline class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-2.mp4" type="video/mp4">      
-                </video>
+                </video> -->
                 <div class="about-title"><h3>{{$t('about_third_title')}}</h3></div>
                 <div class="about-teacher-content">
                     <p v-html="$t('about_third_content')"></p>
                 </div>
             </slide>
             <slide class="about-teacher about-for-mammy" style="overflow:hidden;">
-                <video muted loop autoplay playsinline  class="background-video" >
+                <!-- <video muted loop autoplay playsinline  class="background-video" >
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-3.mp4" type="video/mp4">      
-                </video>
+                </video> -->
                 <div class="about-title"><h3>{{$t('about_four_title')}}</h3></div>
                 <div class="about-teacher-content">
                     <p v-html="$t('about_four_content')"></p>
@@ -53,13 +54,13 @@
 </template>
 
 <script>
-import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue';
+import MamiyogaAboutHeader from '~/components/mamiyoga/MamiyogaAboutHeader.vue';
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
     layout:'mommiyoga',
     components: {
-        MamiyogaMailHeader,
+        MamiyogaAboutHeader,
         Hooper,
         Slide,
         HooperPagination,
@@ -86,10 +87,12 @@ export default {
     align-items: center;
     position: fixed;
     width: 100vw;
+    z-index: 999;
     /* text-align: center; */
 }
 .about-teacher.about-slide .about-title {
-    color: #97A8AF;
+    color: #F7F7F7;
+    z-index: 999;
 }
 .about-teacher {
     background-color: white;
@@ -99,35 +102,60 @@ export default {
     background-size: cover;
 }
 .about-teacher:first-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-1.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-1.png');
+    background-position: center;
+}
+.about-teacher:nth-child(2) {
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-2.png');
+    background-position: center;
 }
 .about-teacher:nth-child(3) {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-2.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-3.png');
     background-position: 40%;
 }
 .about-teacher:last-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-about-back-3.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-4.png');
 }
+.about-teacher:nth-child(2)::after,
+.about-teacher:nth-child(3)::after,
+.about-teacher:nth-child(4)::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,.2);
+}
+
+/* .about-background-mask {
+    width: 100%;
+    height: 100%;
+} */
 .about-teacher-content {
     font-size: 14px;
     width: 80vw;
     height: auto;
     position: absolute;
     bottom: 10vh;
-    color: #97A8AF;
+    color: #F7F7F7;
+    z-index: 999;
+}
+.about-teacher:nth-child(2) .about-teacher-content {
+    top: 15vh;
 }
 .about-for-mammy .about-teacher-content {
     width: 90vw;
     padding: 5vw;
     color: #F7F7F7;
+    top: 15vh;
     /* background-color: rgba(0,0,0,.3); */
 }
 .about-teacher-content h3 {
-    color: #97A8AF;
+    color: #F7F7F7;
     font-size: 24px;
 }
 .about-teacher-content h4 {
-    color: #97A8AF;
+    color: #F7F7F7;
     font-size: 20px;
 }
 .about-page .hooper {

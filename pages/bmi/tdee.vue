@@ -1,53 +1,53 @@
 <template>
     <main>
         <article class="bmi-index-content">
-            <p class="tdee-text-content">透過基礎代謝率（BMR）以及運動習慣，我們能夠透過公式得出每日消耗熱量（TDEE）。TDEE可以幫助妳/你掌握每天的營養攝取量以及運動量。</p>
+            <p class="tdee-text-content">{{$t('tdee_index_text_1')}}</p>
         </article>
         <section class="bmi-index-content">
             <form class="bmi-index-form">
                 <div class="bmi-index-form-input-li sexual">
-                    <p>性別：</p>
+                    <p>{{$t('bmi_input_1')}}</p>
                     <div class="bmi-index-form-input-label">
                         <input type="radio" id="girl" value="girl" name="tdeesexual" v-model="tdeesexual">
-                        <label for="girl" class="first-label">女</label>
+                        <label for="girl" class="first-label">{{$t('bmi_input_1_1')}}</label>
                         <input type="radio" id="boy" value="boy" name="tdeesexual" v-model="tdeesexual">
-                        <label for="boy" class="second-label">男</label>
+                        <label for="boy" class="second-label">{{$t('bmi_input_1_2')}}</label>
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
-                    <p>年齡：</p>
+                    <p>{{$t('tdee_index_input_1')}}</p>
                     <div class="bmi-index-form-input-value">
                         <input type="number" id="tdeeyear" name="tdeeyear" :placeholder="tyearText" v-model="input_year">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
-                    <p>身高（公分）：</p>
+                    <p>{{$t('bmi_input_2')}}</p>
                     <div class="bmi-index-form-input-value">
                         <input type="number" id="tdeeheight" name="height" :placeholder="theightText" v-model="input_height">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
-                    <p>體重（公斤）：</p>
+                    <p>{{$t('bmi_input_3')}}</p>
                     <div class="bmi-index-form-input-value">
                         <input type="number" id="tdeeweight"  name="weight" :placeholder="tweightText" v-model="input_weight">
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li human-height">
-                    <p>活動量：</p>
+                    <p>{{$t('tdee_index_input_2')}}</p>
                     <div class="bmi-index-form-input-value">
                         <select v-model="selected">
-                            <option value="1">久坐，幾乎不運動</option>
-                            <option value="2">一週輕鬆運動3-5天</option>
-                            <option value="3">一週中等強度運動3-5天</option>
-                            <option value="4">一週高強度運動3-5天</option>
-                            <option value="5">每天高強度訓練，或一天訓練兩次以上</option>
-                            <option value="6">勞力密集的工作</option>
+                            <option value="1">{{$t('tdee_index_option_1')}}</option>
+                            <option value="2">{{$t('tdee_index_option_2')}}-5天</option>
+                            <option value="3">{{$t('tdee_index_option_3')}}-5天</option>
+                            <option value="4">{{$t('tdee_index_option_4')}}-5天</option>
+                            <option value="5">{{$t('tdee_index_option_5')}}</option>
+                            <option value="6">{{$t('tdee_index_option_6')}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="bmi-index-form-input-li">
-                    <p style="text-align:center;margin:5vh 0 1vh;">計算後得知TDEE，我們將提供您<br>免費的健康菜單與運動喔！</p>
-                    <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getTdee()">開始計算</div>
+                    <p style="text-align:center;margin:5vh 0 1vh;" v-html="$t('tdee_index_text_2')"></p>
+                    <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin-bottom: 5px;" @click="getTdee()">{{$t('bmi_index_btn_2')}}</div>
                 </div>
             </form>
         </section>
@@ -208,12 +208,23 @@ export default {
                 }
                 localStorage.to_tdee = tdee
                 
-                this.$router.push('/bmi/tdeeresult')
+                if(this.$i18n.locale == 'JP') {
+                    this.$router.push('/jp/bmi/tdeeresult')
+                } else {
+                    this.$router.push('/bmi/tdeeresult')
+                }
+                
 
             } else if (height == '' || weight == '' || year == '') {
-                this.theightText = '請幫我輸入身高呦～';
-                this.tweightText = '不好意思...請幫我輸入體重喔><';
-                this.tyearText = '噓！！我不會告訴別人的～'
+                if(this.$i18n.locale == 'JP') {
+                    this.theightText = 'あなたの身長教えてね！';
+                    this.tweightText = '体重、入力してね⭐';
+                    this.tyearText = '噓！！我不會告訴別人的～'
+                } else {
+                    this.theightText = '請幫我輸入身高呦～';
+                    this.tweightText = '不好意思...請幫我輸入體重喔><';
+                    this.tyearText = '噓！！我不會告訴別人的～'
+                }
             }
         }
         // getTdee(){

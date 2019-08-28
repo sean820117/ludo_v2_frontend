@@ -12,7 +12,7 @@
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox">{{$t('header_login')}}</button> -->
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button> -->
             <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
-            <button class="mamiyoga-header-login-btn" style="background:#24798F;" :style="{color:ftColor}" @click="$router.push('/mamiyoga/member')" v-else >{{$t('header_menu')}}</button>
+            <button class="mamiyoga-header-login-btn" style="background:#24798F;" :style="{color:ftColor}" @click="$router.push(check_lang + '/mamiyoga/member')" v-else >{{$t('header_menu')}}</button>
         </div>
         <!-- </router-link> -->
     </div>

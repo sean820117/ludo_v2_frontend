@@ -1,12 +1,26 @@
 <template>
     <div class="pay-header">
-        <div class="pay-header-logo" @click="$router.push('/mamiyoga')"></div>
+        <div class="pay-header-logo" @click="$router.push(check_lang + '/mamiyoga')"></div>
         <div class="pay-header-login-btn" @click="logout">登出</div>
     </div>
 </template>
 
 <script>
 export default {
+    data:()=>({
+        check_lang: '',
+    }),
+    mounted(){
+        if(process.client) {
+            if(this.$i18n.locale == 'jp') {
+                this.check_lang = '/jp'
+            } else if (this.$i18n.locale == 'zh-CN') {
+                this.check_lang = '/zh-CN'
+            } else {
+                this.check_lang = ''
+            }
+        }
+    },
     methods: {
         logout() {
             localStorage.redirect = "/mamiyoga";
