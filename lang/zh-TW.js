@@ -48,7 +48,7 @@ export default {
   teach_assay_chat_text: '正在加緊腳步開發中！',
   teach_assay_chat_content: '這是個可以分享影片<br>獲得匿名學習夥伴回饋的功能',
 
-  teach_assay_text_development: '課程尚未開放<br>預計八月上線',
+  teach_assay_text_development: '課程尚未開放<br>預計九月上線',
   teach_assay_button_development: '期待',
 
   explain_title_first: 'AI助教使用服裝建議',

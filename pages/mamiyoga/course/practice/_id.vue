@@ -84,6 +84,30 @@
                 </div> -->
             </div>
         </div>
+        <mamiyoga-window-alert-box v-if="is_error">
+            <div class="cancel-box" @click="is_error = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            </div>
+            <p style="margin-top:40px;" v-html="errorText"></p>
+            <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
+            <div class="star-line-box">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
+                </button>
+            </div>
+        </mamiyoga-window-alert-box>
+        <mamiyoga-window-alert-box v-if="need_resee">
+            <div class="cancel-box" @click="need_resee = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            </div>
+            <p style="margin-top:40px;" v-html="errorText"></p>
+            <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
+            <div class="star-line-box">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;" @click="need_resee = false">
+                   再看一次
+                </button>
+            </div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
@@ -127,6 +151,10 @@ export default {
 
         assay_pose_data: {},
         is_switched: false,
+        is_error: false,
+        errorImg: '',
+        errorText: '',
+        need_resee: false,
     }),
     components:{
         MamiyogaMailHeader,
@@ -248,8 +276,85 @@ export default {
                         } else if(response.data.result.status == 102) { 
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
-                            console.log("未偵測到動作");
-                            alert('動きを検知していません')
+                            if(response.data.result.error_code == -1) {
+                                console.log(response)
+                                this.need_resee = true;
+                                this.errorText = '動作做錯囉！讓我們在複習一次！';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-1.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -5) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '請勿超過一人以上入鏡';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-5.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -6) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '沒有偵測到人';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-6.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -7) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '請將身體從正面轉到側面拍攝';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-7.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -8) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '請將身體從側面轉到正面拍攝';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-8.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -9) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '請將手機從橫式轉成直式拍攝';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-9.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -10) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '請將手機從直式轉成橫式拍攝';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-10.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            } else if(response.data.result.error_code == -11) {
+                                console.log(response)
+                                this.is_error = true;
+                                this.errorText = '注意周邊是否有反光、鏡射材質<br>導致影子或鏡像入鏡！';
+                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-11.png';
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            }  else {
+                                console.log("未偵測到動作");
+                                alert('動きを検知できません')
+                                this.isLoading = false;
+                                clearInterval(get_result_interval);
+                                clearInterval(id);
+                            }
+                            // console.log("未偵測到動作");
+                            // alert('動きを検知していません')
+                            // this.isLoading = false;
+                            // clearInterval(get_result_interval);
+                            // clearInterval(id);
+                        } else if(response.data.result.status == 404){
+                            console.log("網路錯誤");
+                            alert('網路錯誤')
                             this.isLoading = false;
                             clearInterval(get_result_interval);
                             clearInterval(id);
@@ -305,6 +410,18 @@ export default {
         handleRetryEvent(e){
             console.log("ok");
             this.is_loaded = false;
+            this.handleVideoUpload(e);
+        },
+        retryVideoUpload(e) {
+            let target_pose = this.course_data.poses.find(pose => this.current_pose_id == pose.pose_id);
+            if(target_pose) {
+                if (target_pose.input_id) {
+                    e.input_id = target_pose.input_id;
+                }
+            }
+            // console.log(target_pose)
+            // console.log(e)
+            this.is_error = false;
             this.handleVideoUpload(e);
         },
         closeAssayWindow(){

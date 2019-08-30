@@ -4,18 +4,26 @@
         <div class="pay-main-block">
             <div class="pay-order-title">訂單結帳</div>
             <hr style="margin: 10px 0;opacity: .5;">
-            <div class="order-base-info">
+            <form class="order-base-info" id="order-form" method="post" :action="form_action">
                 <div class="order-little-title">基本資訊</div>
-                <label class="order-form-label" for="name">姓名</label>
-                <input class="order-form-input" type="text" name="name" id="name" placeholder="請輸入使用者名稱">
+                
+                <label class="order-form-label" for="name" >姓名</label>
+                <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
                 <label class="order-form-label" for="tel">聯絡電話</label>
-                <input class="order-form-input" type="tel" name="tel" id="tel" placeholder="（+886）953 840 329">
+                <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="（+886）953 840 329">
                 <div class="order-verify-block">
                     <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
                     <div class="order-verify-btn" style="margin:0 5px;">認證</div>
                     <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
                 </div>
-            </div>
+                <label class="order-form-label" for="tel">電子信箱</label>
+                <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
+                <input type="hidden" name="item_id" :value="picked_plan.item_id">
+                <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
+                <input type="hidden" name="payment_type" v-model="order_payment" value="">
+                <input type="hidden" name="return_url" :value="order_return">
+                <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
+            </form>
             <div class="order-base-info" style="margin-top:8vh;">
                 <!-- <div class="order-little-title" style="display:flex;align-items: flex-end;">寄送方式<span style="font-size: 12px;">（加價購必填）</span></div>
                 <select class="order-select-how-to" v-model="select_how">
@@ -77,7 +85,8 @@
             </div>
         </div>
         <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
-        <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-order-footer>
+        <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  discount="100" @goPay="goPay"
+        :selectPrice="picked_plan.price" :selectDescription="picked_plan.description"></mamiyoga-order-footer>
     </div>
 </template>
 
@@ -88,6 +97,8 @@ import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue';
 import MamiyogaOrderFooter from '~/components/mamiyoga/MamiyogaOrderFooter.vue';
 import MamiyogaReceiptType from '~/components/mamiyoga/MamiyogaReceiptType.vue'
 import twzipcode from 'twzipcode-data'
+import axios from '~/config/axios-config'
+import { EMAIL_REGEX } from '~/components/regex.js'
 export default {
     layout: 'mommiyoga',
     data:()=>({
@@ -97,6 +108,27 @@ export default {
         zipcode: [],
         city: [],
         current_county: '',
+        products: [
+            {
+                item_id: 'MY01',
+            },
+            {
+                item_id: 'MY02',
+            }
+        ],
+        single_plan: {},
+        four_person_program: {},
+        picked_plan:{},
+        order_name: '',
+        order_phone: '',
+        order_email: '',
+        order_coupon: '',
+        order_payment: '',
+        form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        order_return: 'https://mamiyoga.ludonow.com/',
+
+        hint:'',
+        hint_color:'',
     }),
     components: {
         MamiyogaPayHeader,
@@ -105,8 +137,21 @@ export default {
         MamiyogaReceiptType,
 
     },
-    mounted(){
+    async mounted(){
         if(process.client) {
+            for (let i = 0; i < this.products.length; i++) {
+                let send_data = {item_id: this.products[i].item_id};
+                const response = await axios.post('/apis/get-shop-item',send_data);
+                this.products[i].item_name = response.data.item_name
+                this.products[i].price = response.data.price
+                this.products[i].slogan = response.data.slogan
+                this.products[i].description = response.data.description
+                
+            }
+            // this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
+            // this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+            this.picked_plan = this.products.find(plan => plan.price == sessionStorage['picked_plan'])
+            console.log(this.picked_plan)
             this.zipcode_data = twzipcode()
             // console.log(this.zipcode_data)
 
@@ -116,6 +161,31 @@ export default {
 
             // console.log(this.zipcode)
             // console.log(this.city)
+        }
+    },
+    methods:{
+        goPay(){
+            console.log(this.order_name)
+            console.log(this.order_phone)
+            console.log(this.order_email)
+            if (this.order_email.length === 0) {
+                this.hint = '請填寫電子信箱欄位'
+                this.hint_color = "red"
+                return
+            } else if (!EMAIL_REGEX.test(this.order_email)) {
+                this.hint = '電子信箱格式錯誤'
+                this.hint_color = "red"
+                return
+            } else if (this.order_phone.length != 10) {
+                this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
+                this.hint_color = "red"
+                return
+            } else if (!this.order_name) {
+                this.hint = '請填寫姓名'
+                this.hint_color = "red"
+                return
+            }
+            document.getElementById('order-form').submit();
         }
     },
     watch:{
@@ -299,5 +369,10 @@ export default {
 }
 #agree:checked ~ .agree-checkbox-label-label .agree-checkbox span {
     display: block;
+}
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
 }
 </style>

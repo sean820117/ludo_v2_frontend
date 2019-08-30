@@ -1,7 +1,7 @@
 <template>
     <div class="pay-footer">
         <div class="pay-footer-tag"></div>
-        <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD. 1,272</b></div>
+        <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
         <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}" @click="$router.push('/mamiyoga/order')">{{payFt}}</div>
     </div>
 </template>
@@ -12,6 +12,7 @@ export default {
     props: {
         ftBtn: String,
         payFt: String,
+        selectPrice: Number,
     }
 }
 </script>
