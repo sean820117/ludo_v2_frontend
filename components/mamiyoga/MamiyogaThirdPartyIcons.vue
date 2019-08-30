@@ -16,17 +16,8 @@ export default {
     },
     methods: {
         handleFBClick() {
-            
-            if (this.$route.path == "/victor/signup") {
-                console.log("/victor/signup");
-                this.$gtag('event', 'conversion', {
-                    'send_to': 'AW-744113367/TiSjCLOMw54BENeJ6eIC',
-                    'event_callback': function () {},
-                });
-                this.$fbq("track","CompleteRegistration");
-            }
-            
             window.location.href = 'https://api.ludonow.com/auth/facebook?from=' + this.$route.path;
+            // window.location.href = 'http://localhost:8080/auth/facebook?from=' + this.$route.path;
         },
         handleGoogleClick() {
             window.location.href = 'https://api.ludonow.com/auth/google?from=' + this.$route.path;
