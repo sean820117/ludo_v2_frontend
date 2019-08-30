@@ -8,7 +8,7 @@
                 <div style="height: calc(100vh - 165px);overflow: overlay;">
                     <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
                     <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
-                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input">
+                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value="3">
                     <label class="select-pay-label for-one-peop" for="one-peop">
                         <div class="select-pay-way">
                             <span class="select-pay-circle"></span>
@@ -172,7 +172,6 @@ export default {
                 this.products[i].price = response.data.price
                 this.products[i].slogan = response.data.slogan
                 this.products[i].description = response.data.description
-                
             }
             // await this.products.forEach(async (product) => {
             //     let send_data = {item_id: product.item_id};
@@ -184,6 +183,9 @@ export default {
             //     product.description = response.data.description
             // });
             console.log(this.products)
+            if(sessionStorage['picked_plan']){
+                this.picked = parseInt(sessionStorage['picked_plan'])
+            }
 
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')

@@ -56,26 +56,26 @@
                                     </div>
                                 </div>
                                 <div style="margin: 20px 0;display:flex;align-items: center;justify-content:space-between;">
-                                    <select name="pay-program" class="select-pay-program">
-                                        <option value="for-one">獨享愛自己&nbsp;&nbsp;NTD.1590</option>
-                                        <option value="for-four">姊妹揪起來(4人)&nbsp;NTD.5160</option>
-                                        <option value="Hsinchu">企業方案(30人)&nbsp;專人服務</option>
+                                    <select name="pay-program" class="select-pay-program" v-model="select_plan">
+                                        <option selected :value="single_plan.price">{{single_plan.slogan}}&nbsp;&nbsp;NTD&nbsp;{{single_plan.price}}</option>
+                                        <option :value="four_person_program.price">{{four_person_program.slogan}}(4人)&nbsp;NTD&nbsp;{{four_person_program.price}}</option>
+                                        <option value="3">企業方案(30人)&nbsp;專人服務</option>
                                     </select>
-                                    <button class="goto-buy-btn" @click="$router.push('/mamiyoga/pay')">立即購買</button>
+                                    <button class="goto-buy-btn" @click="goPay">立即購買</button>
                                 </div>
                             </div>
                             <img style="width:90%;display:block;margin:10px auto 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-data.png" alt="">
                             <div style="width:77%;margin: 0 auto;">
                                 <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
-                                <p class="index-article-text" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>過了一週還是覺得骨盆依然沒有開始收緊嗎？</p>
-                                <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
-                                <p class="index-article-text" style="color:#272727;margin-top:10px;margin-bottom:0;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復....</p>
+                                <p class="index-article-text" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？<br>妳知道，這可能是一輩子病痛的開始嗎？</p>
+                                <h3 class="index-article-title">日本媽媽<br>快速恢復身材的秘密</h3>
+                                <p class="index-article-text" style="color:#272727;margin-top:10px;margin-bottom:0;">我們深入研究了日本媽媽，發現日本媽媽的產後休息時間平均只有兩週，而臺灣媽媽卻要....</p>
                                 <router-link to="/mamiyoga/information" style="text-decoration:none;">
                                     <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:20px;margin-bottom:40px;">了解更多&nbsp;</p>
                                 </router-link>
                                 <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt="">
-                                <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。</h6>
-                                <p class="index-article-text">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                                <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。</h6>
+                                <p class="index-article-text">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢校正，解決妳無暇外出上課的問題。</p>
                             </div>
                         </div>
                         <div class="index-article-use-video">
@@ -85,7 +85,7 @@
                                 </video>
                             <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，只要對動作有疑惑、不確定是否做得正確。</p>
                             <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳你的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
-                            <button @click="$router.push('/mamiyoga/teach')" class="index-article-out-btn">馬上體驗</button>
+                            <button @click="$router.push('/mamiyoga/teach')" class="index-article-out-btn">免費體驗</button>
                         </div>
                     </div>
                     <div class="intro-wrap-block-second">
@@ -281,7 +281,7 @@
                         </div>
                         <div class="mamiyoga-assay-share-icon">
                             <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
-                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat.png" alt="">
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat-1.png" alt="">
                             </a>
                         </div>
                         <div class="mamiyoga-assay-share-icon">
@@ -343,7 +343,7 @@
                     </div>
                 </div>
             </div>
-            <div class="index-footer" id="index-fixed-footer">立即付款</div>
+            <div class="index-footer" id="index-fixed-footer">前往付款</div>
          </div>
         <div class="index-contain" v-if="is_beta" style="min-height:300vh;overflow:visible;" >
             <div class="background-video-contain">
@@ -419,7 +419,7 @@
                     </div>
                     <div class="mamiyoga-assay-share-icon">
                         <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=http%3A%2F%2Fwww.ludonow.com%2Fmamiyoga&amp;linkname=" target="_blank">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat.png" alt="">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-fb-icon-chat-1.png" alt="">
                         </a>
                     </div>
                     <div class="mamiyoga-assay-share-icon">
@@ -506,6 +506,17 @@ export default {
         previewCourse: {},
         is_switched: false,
         switchBlock: true,
+        select_plan: 0,
+        products: [
+            {
+                item_id: 'MY01',
+            },
+            {
+                item_id: 'MY02',
+            }
+        ],
+        single_plan: {},
+        four_person_program: {},
     }),
     components: {
         MamiyogaHeader,
@@ -533,9 +544,21 @@ export default {
             localStorage.redirect = '/mamiyoga/menu';
             
             this.previewCourse = this.course_data[0]
-            console.log(this.previewCourse)
-            // $(".owl-carousel").owlCarousel();
+            // console.log(this.previewCourse)
             
+            for (let i = 0; i < this.products.length; i++) {
+                let send_data = {item_id: this.products[i].item_id};
+                const response = await axios.post('/apis/get-shop-item',send_data);
+                this.products[i].item_name = response.data.item_name
+                this.products[i].price = response.data.price
+                this.products[i].slogan = response.data.slogan
+                this.products[i].description = response.data.description
+                
+            }
+            this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
+            this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+            this.select_plan = this.single_plan.price
+            console.log(this.products)
         }
         // window.addEventListener('scroll',function(){
         // let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
@@ -572,63 +595,63 @@ export default {
         goDownWrap(){
             this.$scrollTo('#wrap','start')
         },
-        showSlides() {
-            var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
-            var dots = document.getElementsByClassName("dot");
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].classList.remove('slideInLeft');
-                slides[i].classList.remove('slideIn');
-                slides[i].classList.add('fade');  
-                // slides[i].style.display = "none";  
-            }
-            // console.log(this.slideIndex)
-            if (this.slideIndex > slides.length-1) {
-                this.slideIndex = 0
-            } else if( this.slideIndex < 0) {
-                this.slideIndex = 4
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" index-dotactive", "");
-            }
-            slides[this.slideIndex].classList.add('slideIn');  
-            slides[this.slideIndex].classList.remove('fade'); 
-            // slides[this.slideIndex].style.display = "block";  
-            dots[this.slideIndex].className += " index-dotactive";
-            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
-        },
-        showSlidesLeft() {
-            var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
-            var dots = document.getElementsByClassName("dot");
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].classList.remove('slideInLeft');
-                slides[i].classList.remove('slideIn');
-                slides[i].classList.add('fade');  
-                // slides[i].style.display = "none";  
-            }
-            // console.log(this.slideIndex)
-            if (this.slideIndex > slides.length-1) {
-                this.slideIndex = 0
-            } else if( this.slideIndex < 0) {
-                this.slideIndex = 4
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" index-dotactive", "");
-            }
-            slides[this.slideIndex].classList.add('slideInLeft');  
-            slides[this.slideIndex].classList.remove('fade'); 
-            // slides[this.slideIndex].style.display = "block";  
-            dots[this.slideIndex].className += " index-dotactive";
-            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
-        },
-        nextSlides() {
-            this.showSlides(this.slideIndex += 1);
-        },
-        lastSlides() {
-            this.showSlidesLeft(this.slideIndex -= 1);
-        },
-        currentSlide(n) {
-            this.showSlides(this.slideIndex = n-1);
-        },
+        // showSlides() {
+        //     var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
+        //     var dots = document.getElementsByClassName("dot");
+        //     for (var i = 0; i < slides.length; i++) {
+        //         slides[i].classList.remove('slideInLeft');
+        //         slides[i].classList.remove('slideIn');
+        //         slides[i].classList.add('fade');  
+        //         // slides[i].style.display = "none";  
+        //     }
+        //     // console.log(this.slideIndex)
+        //     if (this.slideIndex > slides.length-1) {
+        //         this.slideIndex = 0
+        //     } else if( this.slideIndex < 0) {
+        //         this.slideIndex = 4
+        //     }
+        //     for (i = 0; i < dots.length; i++) {
+        //         dots[i].className = dots[i].className.replace(" index-dotactive", "");
+        //     }
+        //     slides[this.slideIndex].classList.add('slideIn');  
+        //     slides[this.slideIndex].classList.remove('fade'); 
+        //     // slides[this.slideIndex].style.display = "block";  
+        //     dots[this.slideIndex].className += " index-dotactive";
+        //     // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        // },
+        // showSlidesLeft() {
+        //     var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
+        //     var dots = document.getElementsByClassName("dot");
+        //     for (var i = 0; i < slides.length; i++) {
+        //         slides[i].classList.remove('slideInLeft');
+        //         slides[i].classList.remove('slideIn');
+        //         slides[i].classList.add('fade');  
+        //         // slides[i].style.display = "none";  
+        //     }
+        //     // console.log(this.slideIndex)
+        //     if (this.slideIndex > slides.length-1) {
+        //         this.slideIndex = 0
+        //     } else if( this.slideIndex < 0) {
+        //         this.slideIndex = 4
+        //     }
+        //     for (i = 0; i < dots.length; i++) {
+        //         dots[i].className = dots[i].className.replace(" index-dotactive", "");
+        //     }
+        //     slides[this.slideIndex].classList.add('slideInLeft');  
+        //     slides[this.slideIndex].classList.remove('fade'); 
+        //     // slides[this.slideIndex].style.display = "block";  
+        //     dots[this.slideIndex].className += " index-dotactive";
+        //     // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        // },
+        // nextSlides() {
+        //     this.showSlides(this.slideIndex += 1);
+        // },
+        // lastSlides() {
+        //     this.showSlidesLeft(this.slideIndex -= 1);
+        // },
+        // currentSlide(n) {
+        //     this.showSlides(this.slideIndex = n-1);
+        // },
         toggleClass(index) {
             if (this.show_list[index] === 'open') {
                 this.show_list = [];
@@ -659,6 +682,10 @@ export default {
         goPreview(){
             sessionStorage["course_1_current_pose_id"] = 'first'
             this.$router.push('/mamiyoga/test/pose')
+        },
+        goPay(){
+            sessionStorage['picked_plan'] = this.select_plan;
+            this.$router.push('/mamiyoga/pay')
         }
     },
     computed:{
@@ -705,7 +732,7 @@ export default {
     font-size: 35px; 
     text-shadow: 0 5px 10px rgba(0,0,0,.5) */
     display: block;
-    margin: 10vh auto 25vh;
+    margin: 5vh auto 25vh;
     width: 70vw;
 
 }

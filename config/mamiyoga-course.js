@@ -9,7 +9,7 @@ module.exports = [
         info_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-info-1.png',
         video_url:'https://player.vimeo.com/video/349924443',
         video_url_jp:'https://player.vimeo.com/video/350479253',
-        course_introduction:'產時造成的韌帶變鬆，一般要回復，通常最快得要需要三到四個月，最慢也得要耗上六個月。而這時候，骨盆是處在較鬆弛狀態，也同時是做骨盆矯正的絕佳時候，所以，當媽媽們子宮收縮情形開始比較緩和的時候，大概是產後一個月，就可以慢慢開始矯正骨盆。<br>除此之外，矯正骨盆的歪斜還有另外一項很棒的效果哦！那就是可以讓腰部周圍較難附著脂肪，讓新陳代謝向上，這些都有非常顯著的減肥效果喔！所以，這麼棒的機會，我們一起好好努力，來把骨盆矯正到最佳狀況吧！',
+        course_introduction:'產時造成的韌帶鬆弛，一般來說需要三到六個月恢復。這時候骨盆處在較鬆弛狀態，同時也是骨盆矯正的絕佳時機，所以在產後一個月，當媽媽們子宮收縮情形開始比較緩和的時候，就可以慢慢開始矯正骨盆囉！<br>除了韌帶回復之外，矯正骨盆的歪斜還有另外一項很棒的效果哦！那就是可以讓腰部周圍較難附著脂肪，加速新陳代謝，達到非常顯著的減肥效果！<br>接下來，讓我們一起好好努力，來把骨盆調整到最佳狀態吧！',
         poses:[
             {
                 pose_id: 'first',
