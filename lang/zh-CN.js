@@ -3,6 +3,15 @@ export default {
   header_logout: '登出',
   header_menu: '选单',
 
+  member_title: '学员中心',
+  member_text_btn_1: '我的序号',
+  member_text_btn_2: '购买课程',
+  member_text_btn_3: '学员点数',
+  member_text_btn_4: '文章投稿',
+  member_text_btn_5: '基本设定',
+  member_text_btn_6: '联络我们',
+  member_text_btn_7: '回到课程',
+
   index_button_free: '马上体验',
   index_button_pay: '立即购买', 
   index_button_after: '欢迎回来',
@@ -13,7 +22,7 @@ export default {
   index_agree_link_2: '隐私政策',
 
   teach_title:'体验练习',
-  teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video-zhtw.mp4',
+  teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video-zhcn.mp4',
   teach_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4',
   teach_tip_title: '姿势步骤',
   teach_button_upload: '开始练习',
@@ -25,6 +34,7 @@ export default {
   teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.svg',
   teach_text_time: '建议拍摄时间：&nbsp;<i>20-45</i>&nbsp;秒',
 
+  teach_assay_open_text: '向上滑动打开',
   teach_assay_title: '分析成果',
   teach_assay_correct: '准确率',
   teach_assay_share_friend: '快和朋友们分享这次的练习成果吧！',

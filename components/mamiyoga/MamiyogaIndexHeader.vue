@@ -2,17 +2,17 @@
     <div class="mamiyoga-header">
         <router-link :to="check_lang + '/mamiyoga'">
         <div class="mamiyoga-header-logo">
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="瑜伽課程">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-header-logo.png" alt="瑜伽課程">
         </div>
         </router-link>
         <!-- <router-link :to="{path:loginTo}" style="text-decoration:none;"> -->
         <div class="mamiyoga-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn">{{is_login === false ? '登入':'登出'}}</button> -->
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button> -->
-            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="openRemindBox">{{$t('header_login')}}</button>
+            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="openRemindBox">{{$t('header_login')}}</button> -->
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" @click="$router.push('/logout')" v-else >登出</button> -->
-            <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
-            <button class="mamiyoga-header-login-btn" style="background:#24798F;" :style="{color:ftColor}" @click="$router.push(check_lang + '/mamiyoga/member')" v-else >{{$t('header_menu')}}</button> -->
+            <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn mommiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
+            <button class="mamiyoga-header-login-btn" style="background:#24798F;" :style="{color:ftColor}" @click="$router.push(check_lang + '/mamiyoga/member')" v-else >{{$t('header_menu')}}</button>
         </div>
         <!-- </router-link> -->
     </div>

@@ -2,12 +2,12 @@
   <div class="bmi_layout">
     <bmi-header></bmi-header>
     <nav class="bmi-tag">
-        <h1 class="nav-label" id="label-bmi"  @click="$router.push('/bmi')">BMI值計算機</h1>
-        <h5 class="nav-label" id="label-tdee"  @click="$router.push('/bmi/tdee')">TDEE值計算機</h5>
+        <h1 class="nav-label" id="label-bmi"  @click="$router.push(check_lang + '/bmi')">{{$t('bmi_header_label_1')}}</h1>
+        <h5 class="nav-label" id="label-tdee"  @click="$router.push(check_lang + '/bmi/tdee')">{{$t('bmi_header_label_2')}}</h5>
     </nav>
     <nuxt/>
     <footer class="bmi-index-content">
-        <p style="margin:5vh 0 1vh;font-weight:300;color:#969696;">&copy;2019 LUDO All Rights Reserved</p>
+        <p style="margin:5vh 0 1vh;font-weight:300;color:#969696;" v-html="$t('bmi_index_copyright')"></p>
     </footer>
   </div>
   
@@ -33,6 +33,7 @@ export default {
         BmiHeader,
     },
     data:() => ({
+        check_lang: '',
         // ui_config:Object,
         // is_ui_config_loaded:false,
         // is_login:false,
@@ -66,6 +67,15 @@ export default {
             ],
         }
     },
+    mounted(){
+        if(process.client) {
+            if(this.$i18n.locale == 'JP') {
+                this.check_lang = '/jp'
+            } else {
+                this.check_lang = ''
+            }
+        }
+    }
     // async mounted() {
     //     if (process.client) {
             

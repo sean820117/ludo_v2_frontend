@@ -38,4 +38,9 @@ export default {
     background: #fff !important;
     color: #24798F !important;
 }
+@media (min-width: 769px) {
+    .member-bottom-btn {
+        max-width: 450px;
+    }
+}
 </style>

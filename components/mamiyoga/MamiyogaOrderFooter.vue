@@ -2,8 +2,8 @@
     <div>
         <div class="order-footer">
             <div class="order-footer-see" @click="open_order = true">訂單明細</div>
-            <div class="order-footer-cost">共計  NTD.5,060</div>
-            <div class="order-footer-btn" :style="{backgroundColor:ftBtn}">{{payFt}}</div>
+            <div class="order-footer-cost">共計  <b>&nbsp;&nbsp;NTD&nbsp;{{getPrice}}</b></div>
+            <div class="order-footer-btn" :style="{backgroundColor:ftBtn}" @click="triggerPayEvent">{{payFt}}</div>
         </div>
         <mamiyoga-window-alert-box v-if="open_order">
             <div class="cancel-box" @click="open_order = false">
@@ -12,17 +12,17 @@
             <div style="padding: 0 20px;">
                 <p style="color:#24798F;font-size:14px;font-weight:500;text-align:left;margin-bottom: 3px;">訂單明細</p>
                 <hr style="width: 100%;height:2px;background: #24798F;border-style:none;">
-                <p class="order-footer-show">『Mami yoga』日本人氣瑜珈-姊妹揪起來方案</p>
+                <p class="order-footer-show">{{selectDescription}}</p>
                 <div class="order-footer-show-pay">
                     <p>課程售價</p>
-                    <p>NTD.5,160</p>
+                    <p>NTD&nbsp;{{selectPrice}}</p>
                 </div>
                 <div class="order-footer-show-pay order-pink">
                     <p>優惠折扣</p>
-                    <p>－NTD.160</p>
+                    <p>－NTD&nbsp;{{discount}}</p>
                 </div>
                  <hr style="border-style:none;height:1px;background:#707070;opacity:.5;margin-top:40px;">
-                 <p style="color:#24798F;font-size:14px;font-weight:bold;text-align:right;margin-top: 10px;">NTD.5,000</p>
+                 <p style="color:#24798F;font-size:14px;font-weight:bold;text-align:right;margin-top: 10px;">NTD&nbsp;{{getPrice}}</p>
             </div>
            
         </mamiyoga-window-alert-box>
@@ -38,9 +38,22 @@ export default {
     props: {
         ftBtn: String,
         payFt: String,
+        selectPrice: Number,
+        discount: String,
+        selectDescription: String,
     },
     components: {
         MamiyogaWindowAlertBox,
+    },
+    methods:{
+        triggerPayEvent(){
+            this.$emit('goPay')
+        }
+    },
+    computed:{
+        getPrice(){
+            return this.selectPrice - this.discount
+        }
     }
 }
 </script>
@@ -56,7 +69,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 .order-footer-see {
     font-size: 14px;
@@ -67,8 +80,15 @@ export default {
     border-radius: 3px;
     cursor: pointer;
 }
+.order-footer-cost {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #535353;
+    font-weight: lighter;
+}
 .order-footer-btn {
-    width: 100px;
+    width: 30%;
     height: 50px;
     display: flex;
     align-items: center;

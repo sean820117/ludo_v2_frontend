@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="setting-page">
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <div class="writing-main">
             <div class="pay-little-title">基本設定</div>
@@ -88,5 +88,11 @@ export default {
     color: #24798F;
     font-weight: 600;
     width: 30%;
+}
+@media (min-width:769px) {
+    .setting-page {
+        background: #fff;
+        min-height: 100vh;
+    }
 }
 </style>

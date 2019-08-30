@@ -1,23 +1,23 @@
 <template>
     <div style="background-color: white;min-height:100vh;padding-bottom:1vh;">
-        <result-header title="計算結果"></result-header>
+        <result-header :title="$t('bmi_result_title')"></result-header>
         <main>
             <section class="bmi-result-block" style="margin:5vh auto;">
-                <h6>BMI值</h6>
+                <h6>{{$t('bmi_result_label_1')}}</h6>
                 <p id="show_bmi">{{change_bmi}}</p>
             </section>
             
             <section class="bmi-result-block" style="display: flex;">
                 <div class="bmi-result-block-li">
-                    <h6>目前體重</h6>
+                    <h6>{{$t('bmi_result_label_2')}}</h6>
                     <p style="color:#3855A3;">{{input_weight}}</p>
                 </div>
                 <div class="bmi-result-block-li">
-                    <h6>還需要</h6>
+                    <h6>{{$t('bmi_result_label_3')}}</h6>
                     <div style="display:flex;align-items:baseline;justify-content:center;">
                         <p style="color:#1EA1AC;font-size:50px;" v-if="is_true">+</p>
                         <p id="show_need">{{getNeed}}</p>
-                        <p id="need_text" style="font-size:17px;">公斤</p>
+                        <p id="need_text" style="font-size:17px;">{{$t('bmi_result_little_text')}}</p>
                     </div>
                 </div>
             </section>
@@ -29,11 +29,11 @@
                 <span id="range-bullet" class="range-label">{{range_text}}</span>
             </section>
             <section class="bmi-result-block">
-                <p style="color:#8B8B8B;font-size:12px;">拉動滑桿可以自動計算喔！</p>
+                <p style="color:#8B8B8B;font-size:12px;">{{$t('bmi_result_text_1')}}</p>
             </section>
             <section class="bmi-result-block">
-                <p style="color:#5D5759;font-size:14px;margin:5vh 0px 1vh;">想得到專屬於你的健康菜單嗎？<br>試試看TDEE值計算機吧！</p>
-                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push('/bmi/tdee')">基礎熱量計算機</div>
+                <p style="color:#5D5759;font-size:14px;margin:5vh 0px 1vh;" v-html="$t('bmi_result_text_2')"></p>
+                <div class="bmi-index-form-input-button" style="background-color: #3855A3;margin:0 auto 5px;" @click="$router.push(check_lang + '/bmi/tdee')">{{$t('bmi_result_btn')}}</div>
             </section>
         </main>
     </div>
@@ -47,6 +47,7 @@ export default {
         input_weight: 0,
         range_text: '',
         is_true: false,
+        check_lang: '',
     }),
     head() {
         return  {
@@ -80,8 +81,11 @@ export default {
                 this.input_height = localStorage.input_height
             } 
 
-
-
+            if(this.$i18n.locale == 'JP') {
+                this.check_lang = '/jp'
+            } else {
+                this.check_lang = ''
+            }
             let range_slider = document.getElementById('range_bar')
             let range_bullet = document.getElementById('range-bullet')
             let bullet_pos = this.change_bmi /range_slider.max;
@@ -146,20 +150,37 @@ export default {
                 }
             }
 
-
-            if(this.change_bmi >= 35){
-                this.range_text = '重度肥胖'
-            } else if (this.change_bmi < 35 && this.change_bmi >= 30 ) {
-                this.range_text = '中度肥胖'
-            } else if (this.change_bmi < 30 && this.change_bmi >= 27) {
-                this.range_text = '輕度肥胖'
-            } else if (this.change_bmi < 27 && this.change_bmi >= 24) {
-                this.range_text = '過重'
-            } else if (this.change_bmi < 24 && this.change_bmi >= 18.5) {
-                this.range_text = '正常範圍'
+            if(this.$i18n.locale == 'JP') {
+                if(this.change_bmi >= 35){
+                    this.range_text = '肥満(3度)'
+                } else if (this.change_bmi < 35 && this.change_bmi >= 30 ) {
+                    this.range_text = '肥満(2度)'
+                } else if (this.change_bmi < 30 && this.change_bmi >= 27) {
+                    this.range_text = '肥満(1度)'
+                } else if (this.change_bmi < 27 && this.change_bmi >= 24) {
+                    this.range_text = '肥満予備軍'
+                } else if (this.change_bmi < 24 && this.change_bmi >= 18.5) {
+                    this.range_text = '普通体重'
+                } else {
+                    this.range_text = '痩せぎみ'
+                }
             } else {
-                this.range_text = '體重過輕'
+                if(this.change_bmi >= 35){
+                    this.range_text = '重度肥胖'
+                } else if (this.change_bmi < 35 && this.change_bmi >= 30 ) {
+                    this.range_text = '中度肥胖'
+                } else if (this.change_bmi < 30 && this.change_bmi >= 27) {
+                    this.range_text = '輕度肥胖'
+                } else if (this.change_bmi < 27 && this.change_bmi >= 24) {
+                    this.range_text = '過重'
+                } else if (this.change_bmi < 24 && this.change_bmi >= 18.5) {
+                    this.range_text = '正常範圍'
+                } else {
+                    this.range_text = '體重過輕'
+                }
             }
+
+            
         },
         getNeed: function(){
             if(this.getNeed > 0) {

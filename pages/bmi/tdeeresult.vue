@@ -1,43 +1,43 @@
 <template>
     <div style="background-color: white;min-height:100vh;padding-bottom:10vh;">
-        <result-header title="運動與飲食建議"></result-header>
+        <result-header :title="$t('tdee_result_title')"></result-header>
         <main>
             <section class="bmi-tdeeresult-block" style="max-width: 550px;">
                 <input type="radio" name="select-need" id="increase" checked>
                 <input type="radio" name="select-need" id="reduce">
                 <div class="bmi-tdeeresult-labelbox">
-                    <label for="increase" class="bmi-tdeeresult-switch need-increase" style="border:solid 1px #DE396C;">增肌</label>
-                    <label for="reduce" class="bmi-tdeeresult-switch need-reduce" style="border:solid 1px #1EA1AC;">減脂</label>
+                    <label for="increase" class="bmi-tdeeresult-switch need-increase" style="border:solid 1px #DE396C;">{{$t('tdee_result_label_1')}}</label>
+                    <label for="reduce" class="bmi-tdeeresult-switch need-reduce" style="border:solid 1px #1EA1AC;">{{$t('tdee_result_label_2')}}</label>
                 </div>
                 <div class="bmi-tdeeresult-block show-increase" style="width:90%">
                     <div class="bmi-tdeeresult-number">
-                        <h6>基礎代謝BMR</h6>
-                        <div><p>{{base_bmr}}</p>大卡</div>
+                        <h6>{{$t('tdee_result_little_text_1')}}</h6>
+                        <div><p>{{base_bmr}}</p>{{$t('tdee_result_little_text_3')}}</div>
                     </div>
                     <div class="bmi-tdeeresult-number">
-                        <h6>每日總消耗TDEE</h6>
-                        <div><p>{{increase_tdee}}</p>大卡</div>
+                        <h6>{{$t('tdee_result_little_text_2')}}</h6>
+                        <div><p>{{increase_tdee}}</p>{{$t('tdee_result_little_text_3')}}</div>
                     </div>
                 </div>
                 <div class="bmi-tdeeresult-block show-reduce" style="width:90%">
                     <div class="bmi-tdeeresult-number">
-                        <h6>基礎代謝BMR</h6>
-                        <div><p>{{base_bmr}}</p>大卡</div>
+                        <h6>{{$t('tdee_result_little_text_1')}}</h6>
+                        <div><p>{{base_bmr}}</p>{{$t('tdee_result_little_text_3')}}</div>
                     </div>
                     <div class="bmi-tdeeresult-number">
-                        <h6>每日總消耗TDEE</h6>
-                        <div><p>{{reduce_tdee}}</p>大卡</div>
+                        <h6>{{$t('tdee_result_little_text_2')}}</h6>
+                        <div><p>{{reduce_tdee}}</p>{{$t('tdee_result_little_text_3')}}</div>
                     </div>
                 </div>
             <!-- </section> -->
             
             <hr>
             <div class="bmi-tdeeresult-block" style="max-width:600px;">
-                <div class="bmi-tdeeresult-title">便利健康菜單建議</div>
+                <div class="bmi-tdeeresult-title">{{$t('tdee_result_label_3')}}</div>
                 <div class="bmi-tdeeresult-select">
-                    <li style="color:#1EA1AC;border:#1EA1AC 3px solid;" @click="openBreakfast()">早餐</li>
-                    <li style="color:#DE396C;border:#DE396C 3px solid;" @click="openLunch()">午餐</li>
-                    <li style="color:#3855A3;border:#3855A3 3px solid;" @click="openDinner()">晚餐</li>
+                    <li style="color:#1EA1AC;border:#1EA1AC 3px solid;" @click="openBreakfast()">{{$t('tdee_result_tag_1')}}</li>
+                    <li style="color:#DE396C;border:#DE396C 3px solid;" @click="openLunch()">{{$t('tdee_result_tag_2')}}</li>
+                    <li style="color:#3855A3;border:#3855A3 3px solid;" @click="openDinner()">{{$t('tdee_result_tag_3')}}</li>
                 </div>
                 <div class="bmi-tdee-menu breakfast" :class="breakfast_open ? 'open':''">
                     <div style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/bmi/tdeeresult-line.png')"></div>
@@ -54,14 +54,14 @@
             </div>
             <hr>
             <div class="bmi-tdeeresult-block" style="max-width: 600px;">
-                <div class="bmi-tdeeresult-title">便利自我訓練菜單</div>
+                <div class="bmi-tdeeresult-title">{{$t('tdee_result_label_4')}}</div>
                 <iframe id="increase-video" src="https://www.youtube.com/embed/XhQjMkcPRV0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:30vh;"></iframe>
                 <iframe id="reduce-video" width="560" height="315" src="https://www.youtube.com/embed/ml6cT4AZdqI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:30vh;"></iframe>
-                <p style="color:#707070;font-size:13px;margin-top:1vh;">徒手運動30分鐘，消耗250-300大卡</p>
+                <p style="color:#707070;font-size:13px;margin-top:1vh;">{{$t('tdee_result_text')}}</p>
             </div>
             <div style="position:fixed;bottom:3vh;display:flex;width:100vw;justify-content:center;align-items:center;">
                 <a href="https://www.ludonow.com/mamiyoga" style="text-decoration:none;">
-                    <div class="bmi-index-form-input-button" style="background-color:#DE396C;">立即體驗瑜珈課程</div>
+                    <div class="bmi-index-form-input-button" style="background-color:#DE396C;">{{$t('tdee_result_btn')}}</div>
                 </a>
             </div>
             </section>
@@ -228,7 +228,7 @@ hr {
     margin: 2vh auto 1vh;
 }
 .bmi-tdeeresult-switch {
-    width: 80px;
+    min-width: 80px;
     padding: 0 10px;
     border-radius: 15px;
     color:white;
@@ -263,7 +263,7 @@ hr {
 
 }
 .bmi-tdeeresult-title {
-    width: 130px;
+    min-width: 130px;
     padding: 2px 10px;
     background: #8B8B8B;
     border-radius: 15px;
@@ -283,10 +283,15 @@ hr {
     list-style-type: none;
     background: white;
     border: 1px solid;
-    padding: 5px 20px;
+    padding: 5px 0;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
     cursor: pointer;
+
+    width: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

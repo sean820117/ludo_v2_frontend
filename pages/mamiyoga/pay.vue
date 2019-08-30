@@ -6,15 +6,15 @@
                 <div class="pay-little-title">付款資訊</div>
                 <hr style="margin: 10px 0;opacity: .5;">
                 <div style="height: calc(100vh - 165px);overflow: overlay;">
-                    <input type="radio" name="pay-way" id="one-peop" class="pay-way-input">
-                    <input type="radio" name="pay-way" id="four-peop" class="pay-way-input">
-                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input">
+                    <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
+                    <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
+                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value="3">
                     <label class="select-pay-label for-one-peop" for="one-peop">
                         <div class="select-pay-way">
                             <span class="select-pay-circle"></span>
                             <div class="select-pay-data">
-                                <p class="select-pay-title"><b>獨享愛自己</b></p>
-                                <p class="select-pay-title"><b>NTD.1,590</b></p>
+                                <p class="select-pay-title"><b>{{single_plan.slogan}}</b></p>
+                                <p class="select-pay-title"><b>NTD&nbsp;{{single_plan.price}}</b></p>
                             </div>
                         </div>
                         <div class="select-pay-content">
@@ -39,8 +39,8 @@
                         <div class="select-pay-way">
                             <span class="select-pay-circle"></span>
                             <div class="select-pay-data">
-                                <p class="select-pay-title"><b>姊妹揪起來（4人以上）</b><br>一人NTD.1290</p>
-                                <p class="select-pay-title"><b>NTD.5,160</b></p>
+                                <p class="select-pay-title"><b>{{four_person_program.slogan}}（4人以上）</b><br>一人NTD.1290</p>
+                                <p class="select-pay-title"><b>NTD&nbsp;{{four_person_program.price}}</b></p>
                             </div>
                         </div>
                         <div class="select-pay-content">
@@ -124,7 +124,7 @@
                 </div>
                 <hr style="opacity:.5;">
             </div> -->
-            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步"></mamiyoga-pay-footer>
+            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" :selectPrice="picked"></mamiyoga-pay-footer>
         </div>
         <mamiyoga-window-alert-box v-if="company_method">
             <div class="cancel-box" @click="company_method = false">
@@ -141,19 +141,66 @@
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaPayFooter from '~/components/mamiyoga/MamiyogaPayFooter.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
+import axios from '~/config/axios-config'
 export default {
     layout:'mommiyoga',
     data:()=>({
         company_method: false,
+        products: [
+            {
+                item_id: 'MY01',
+            },
+            {
+                item_id: 'MY02',
+            }
+        ],
+        single_plan: {},
+        four_person_program: {},
+        picked: 0,
     }),
     components: {
         MamiyogaPayHeader,
         MamiyogaPayFooter,
         MamiyogaWindowAlertBox,
     },
+    async mounted(){
+        if(process.client) {
+            for (let i = 0; i < this.products.length; i++) {
+                let send_data = {item_id: this.products[i].item_id};
+                const response = await axios.post('/apis/get-shop-item',send_data);
+                this.products[i].item_name = response.data.item_name
+                this.products[i].price = response.data.price
+                this.products[i].slogan = response.data.slogan
+                this.products[i].description = response.data.description
+            }
+            // await this.products.forEach(async (product) => {
+            //     let send_data = {item_id: product.item_id};
+            //     const response = await axios.post('/apis/get-shop-item',send_data);
+            //     console.log(response);
+            //     product.item_name = response.data.item_name
+            //     product.price = response.data.price
+            //     product.slogan = response.data.slogan
+            //     product.description = response.data.description
+            // });
+            console.log(this.products)
+            if(sessionStorage['picked_plan']){
+                this.picked = parseInt(sessionStorage['picked_plan'])
+            }
+
+            this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
+            this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+        }
+
+    },
     methods:{
         submitData(){
             this.company_method = true;
+        }
+    },
+    watch: {
+        picked: function(new_value,old_value) {
+            sessionStorage['picked_plan'] = this.picked
+            // debugger
         }
     }
 }

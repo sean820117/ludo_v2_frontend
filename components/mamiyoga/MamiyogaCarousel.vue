@@ -55,35 +55,35 @@
     :tag="'div'"
   >
     <div class="intro-wrap-four-pay">
-            <h4>獨享愛自己</h4>
+            <h4>{{single_plan.slogan}}</h4>
             <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
             <div class="intro-wrap-four-pay-price">
                 <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">1590</p>
+                <p style="font-size:47px;">{{single_plan.price}}</p>
                 <p style="font-size:14px;">NTD/人</p>
             </div>
             <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+            <div class="intro-wrap-four-pay-btn" @click="goPlan1">
                 立即購買
             </div>
             <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle"  @click="$router.push('/mamiyoga/pay')"></div>
+                <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
             </div>
         </div>
         <div class="intro-wrap-four-pay ">
-            <h4>姊妹揪起來</h4>
+            <h4>{{four_person_program.slogan}}</h4>
             <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
             <div class="intro-wrap-four-pay-price">
                 <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">1290</p>
+                <p style="font-size:47px;">{{four_person_program.price}}</p>
                 <p style="font-size:14px;">NTD/人</p>
             </div>
             <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+            <div class="intro-wrap-four-pay-btn" @click="goPlan2">
                 立即購買
             </div>
             <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
+                <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
             </div>
             <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
         </div>
@@ -96,11 +96,11 @@
                 <p style="font-size:14px;">NTD/人</p>
             </div>
             <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
+            <div class="intro-wrap-four-pay-btn" @click="goPlan3">
                 立即購買
             </div>
             <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
+                <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
             </div>
             <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
         </div>
@@ -111,15 +111,51 @@
 <script>
 import Vue from "vue";
 import VueFlicking from "@egjs/vue-flicking";
+import axios from '~/config/axios-config'
 Vue.use(VueFlicking);
 export default {
-    components: { 
-
-    },
-    mounted(){
+    data:()=>({
+        products: [
+            {
+                item_id: 'MY01',
+            },
+            {
+                item_id: 'MY02',
+            }
+        ],
+        single_plan: {},
+        four_person_program: {},
+    }),
+    async mounted(){
         if (process.browser) {
             const VueFlicking = require("@egjs/vue-flicking");
             Vue.use(VueFlicking);
+
+            for (let i = 0; i < this.products.length; i++) {
+                let send_data = {item_id: this.products[i].item_id};
+                const response = await axios.post('/apis/get-shop-item',send_data);
+                this.products[i].item_name = response.data.item_name
+                this.products[i].price = response.data.price
+                this.products[i].slogan = response.data.slogan
+                this.products[i].description = response.data.description
+                
+            }
+            this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
+            this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+        }
+    },
+    methods:{
+        goPlan1(){
+            sessionStorage['picked_plan'] = this.single_plan.price;
+            this.$router.push('/mamiyoga/pay')
+        },
+        goPlan2(){
+            sessionStorage['picked_plan'] = this.four_person_program.price;
+            this.$router.push('/mamiyoga/pay')
+        },
+        goPlan3(){
+            sessionStorage['picked_plan'] = 3;
+            this.$router.push('/mamiyoga/pay')
         }
     }
     // head(){
@@ -177,6 +213,7 @@ export default {
     color: #24798F;
     letter-spacing: 5px;
     font-size: 22px;
+    cursor: pointer;
 }
 .intro-wrap-four-pay-bottom {
     position: absolute;
@@ -196,6 +233,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 .intro-wrap-four-pay-cost {
     width: 100px;

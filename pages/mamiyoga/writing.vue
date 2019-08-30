@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="writing-page">
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <div class="writing-main">
             <div class="pay-little-title">文章投稿</div>
@@ -76,5 +76,14 @@ export default {
     border-radius: 13px;
     letter-spacing: 2px;
     margin-top: 15px;
+}
+@media (min-width: 769px) {
+    .writing-page {
+        background: #fff;
+        min-height: 100vh;
+    }
+    .writing-baby {
+        max-width: 150px; 
+    }
 }
 </style>

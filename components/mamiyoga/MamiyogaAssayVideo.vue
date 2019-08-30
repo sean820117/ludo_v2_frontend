@@ -31,7 +31,7 @@
         </video>
         <div class="mamiyoga-assay-box">
             <div style="margin-top:5px;">
-                <p class="mamiyoga-assay-prompt">上にスワイプして開く</p>
+                <p class="mamiyoga-assay-prompt">{{$t('teach_assay_open_text')}}</p>
                 <hr class="mamiyoga-assay-prompt-line">
             </div>
             <div class="mamiyoga-assay-content"  :class="showContentOrNot"  >
