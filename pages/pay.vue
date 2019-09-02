@@ -22,7 +22,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
-                                    <p style="font-weight:lighter;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+                                    <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
                                 </div>
                             </div>
                             <hr class="select-pay-content-line">
@@ -30,7 +30,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">2.送禮及寵妻達人</p>
-                                    <p style="font-weight:lighter;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                    <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
                                 </div>
                             </div>
                         </div>
@@ -48,20 +48,20 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                    <p style="font-weight:lighter;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                    <p style="font-weight:300;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
                                 </div>
                             </div>
-                            <hr class="select-pay-content-line">
+                            <!-- <hr class="select-pay-content-line">
                             <div class="select-pay-content-box">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">2.加價購兌換方式</p>
-                                    <p style="font-weight:lighter;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                    <p style="font-weight:300;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <hr class="select-pay-content-line">
                             <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
-                            <p style="font-weight:lighter;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
+                            <p style="font-weight:300;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
 
                         </div>
                     </label>
@@ -78,7 +78,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">愛護職員的好方法</p>
-                                    <p style="font-weight:lighter;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
+                                    <p style="font-weight:300;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
                                 </div>
                             </div>
                             <hr class="select-pay-content-line">
@@ -142,6 +142,7 @@ import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaPayFooter from '~/components/mamiyoga/MamiyogaPayFooter.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import axios from '~/config/axios-config'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout:'mommiyoga',
     data:()=>({
@@ -202,7 +203,33 @@ export default {
             sessionStorage['picked_plan'] = this.picked
             // debugger
         }
-    }
+    },
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mommiyoga-config')
+            // this.is_ui_config_loaded = true;
+
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                // if (!payed_or_not) {
+                //     console.log("not payed");
+                //     window.alert("尚未開通課程，請先前往購買～");
+                //     this.$router.push('/mamiyoga/pay');
+                // } else {
+                //     console.log("payed")
+                // }
+            }
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
 }
 </script>
 
@@ -290,7 +317,7 @@ export default {
     height: 300px;
 }
 #four-peop:checked ~ .for-four-peop {
-    height: 440px;
+    height: 350px;
 }
 #company-peop:checked ~ .for-company-peop {
     height: 400px;
