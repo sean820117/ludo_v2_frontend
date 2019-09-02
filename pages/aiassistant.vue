@@ -14,16 +14,16 @@
                 <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
                 <div class="course-information-select">
                     <div class="course-information-content">
-                        <router-link :to="check_lang + '/mamiyoga/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
+                        <router-link :to="check_lang + '/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
                     </div>
                     <div class="course-information-content">
-                        <router-link :to="check_lang +'/mamiyoga/menu'" style="text-decoration:none;"><p>{{$t('menu_nav_text_course')}}</p></router-link>
+                        <router-link :to="check_lang +'/menu'" style="text-decoration:none;"><p>{{$t('menu_nav_text_course')}}</p></router-link>
                     </div>
                     <!-- <div class="course-information-content">
                         <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
                     </div> -->
                     <div class="course-information-content">
-                        <p style="cursor:pointer;">練習課表</p>
+                        <router-link :to="check_lang +'/syllabus'" style="text-decoration:none;"><p style="cursor:pointer;">練習課表</p></router-link>
                     </div>
                 </div>
                 <!-- <div class="course-mail-icon" @click="not_online = true">
@@ -79,13 +79,13 @@ export default {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/mamiyoga/login');
+                this.$router.push('/login');
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
                 if (!payed_or_not) {
                     console.log("not payed");
                     window.alert("尚未開通課程，請先前往購買～");
-                    this.$router.push('/mamiyoga/pay');
+                    this.$router.push('/pay');
                 } else {
                     console.log("payed")
                 }

@@ -50,13 +50,14 @@ module.exports = {
     { src: '~/plugins/scrollTo.js', ssr: false },
     { src: '~/plugins/fbq.js', ssr: false },
     { src: '~/plugins/poseUpload.js', ssr: false },
+    { src: '~/plugins/carousel.js', ssr: false }
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],
   modules: [
     [
       '@nuxtjs/google-tag-manager', 
       {
-        id: 'GTM-W7M9MNN',
+        id: 'GTM-5J82DHT',
         layer: 'dataLayer',
         pageTracking: true,
         dev: process.env.NODE_ENV == 'development' ? true : false, // set to false to disable in dev mode

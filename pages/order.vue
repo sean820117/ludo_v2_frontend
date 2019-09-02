@@ -10,12 +10,12 @@
                 <label class="order-form-label" for="name" >姓名</label>
                 <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
                 <label class="order-form-label" for="tel">聯絡電話</label>
-                <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="（+886）953 840 329">
-                <div class="order-verify-block">
+                <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
+                <!-- <div class="order-verify-block">
                     <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
                     <div class="order-verify-btn" style="margin:0 5px;">認證</div>
                     <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
-                </div>
+                </div> -->
                 <label class="order-form-label" for="tel">電子信箱</label>
                 <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
                 <input type="hidden" name="item_id" :value="picked_plan.item_id">
@@ -79,7 +79,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <p style="margin-left: 5px;">我同意LUDO<router-link to="/mamiyoga/refund" style="color:#000;">退款政策</router-link></p>
+                        <p style="margin-left: 5px;">我同意LUDO<router-link to="/refund" style="color:#000;">退款政策</router-link></p>
                     </div>
                 </label>
             </div>

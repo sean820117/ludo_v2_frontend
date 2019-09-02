@@ -1,6 +1,6 @@
 <template>
     <div class="pay-header">
-        <div class="pay-header-logo" @click="$router.push(check_lang + '/mamiyoga')"></div>
+        <div class="pay-header-logo" @click="$router.push(check_lang + '/')"></div>
         <div class="pay-header-login-btn" @click="logout">登出</div>
     </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.redirect = "/mamiyoga";
+            localStorage.redirect = "/";
             this.$router.push('/logout');
         }
     }

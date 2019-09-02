@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-each-course">
-        <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
+        <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/menu"></mamiyoga-mail-header>
         <h3 v-html="getTitle"></h3>
         <div style="position:relative;">
             <!-- <video class="mamiyoga-course-video" controls>
@@ -54,7 +54,7 @@
                         {{$t('course_pose_btn')}}
                     </div>
                     <div style="position: relative;">
-                        <div style="margin:2vh auto;line-height:35px;color:#EEEFEA;" @click="$router.push('/mamiyoga/aiassistant')" class="course-divide-btn">
+                        <div style="margin:2vh auto;line-height:35px;color:#EEEFEA;" @click="$router.push('/aiassistant')" class="course-divide-btn">
                             {{$t('menu_nav_text_record')}}
                         </div>
                         <div class="course-teach-question-box" @click="openExplainBox">
@@ -85,11 +85,11 @@ export default {
         clickPractice(){
             sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
             if(this.$i18n.locale == 'JP') {
-                this.$router.push('/jp/mamiyoga/course/practice/' + this.course_data.id)
+                this.$router.push('/jp/course/practice/' + this.course_data.id)
             } else if(this.$i18n.locale == 'zh-CN') {
-                this.$router.push('/zh-CN/mamiyoga/course/practice/' + this.course_data.id)
+                this.$router.push('/zh-CN/course/practice/' + this.course_data.id)
             } else {
-                this.$router.push('/mamiyoga/course/practice/' + this.course_data.id)
+                this.$router.push('/course/practice/' + this.course_data.id)
             }
         },
         openExplainBox(){
