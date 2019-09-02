@@ -2,7 +2,7 @@
     <div class="pay-footer">
         <div class="pay-footer-tag"></div>
         <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
-        <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}" @click="$router.push('/mamiyoga/order')">{{payFt}}</div>
+        <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}" @click="$router.push('/order')">{{payFt}}</div>
     </div>
 </template>
 

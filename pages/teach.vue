@@ -4,7 +4,7 @@
             <mamiyoga-teach-header v-if="!is_beta" :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <div class="mamiyoga-teach-header" v-if="is_beta">
                 <div class="mamiyoga-teach-header-goback-btn">
-                    <a @click="$router.push('/mamiyoga')">
+                    <a @click="$router.push('/')">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
                     </a>
                 </div>
@@ -38,12 +38,12 @@
                     </div>
                 </div>
                 <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
-                    <router-link :to="goAbout+'/mamiyoga/about'">
+                    <router-link :to="goAbout+'/about'">
                         <h6 style="float:left;">{{$t('about_first_title')}}</h6><p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
                     </router-link>
                 </div>
                 <div class="teacher-remind">
-                    <router-link :to="goAbout+'/mamiyoga/about'">
+                    <router-link :to="goAbout+'/about'">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-about.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
@@ -296,7 +296,7 @@ export default {
                 this.show_value = '正在上傳'
             }
             
-            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','jp')
+            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','zh-tw')
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
@@ -509,7 +509,7 @@ export default {
                 this.show_remind = false;
                 // this.is_pushed = true;
                 const res = await axios.post('/apis/subscribe-mamiyoga',send_data);
-                this.$router.push('/mamiyoga/subscribe')
+                this.$router.push('/subscribe')
             }
         }, 
     },

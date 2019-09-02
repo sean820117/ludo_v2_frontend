@@ -1,118 +1,193 @@
 <template>
     <div style="height: 450px;">
-        <!-- <div class="intro-wrap-four-pay">
-            <h4>獨享愛自己</h4>
-            <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">1590</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle"  @click="$router.push('/mamiyoga/pay')"></div>
-            </div>
+        <div v-if="$mq == 'iphone'">
+            <carousel :perPage="1" :centerMode="true"  :autoplay="false"
+            :spacePadding="35" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{single_plan.slogan}}</h4>
+                    <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{single_plan.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                    </div>
+                </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{four_person_program.slogan}}</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{four_person_program.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                    </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>企業方案</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">990</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                    </div>
+                </slide>
+            </carousel>
         </div>
-        <div class="intro-wrap-four-pay ">
-            <h4>姊妹揪起來</h4>
-            <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">1290</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
-            </div>
-            <div class="intro-wrap-four-pay-cost">-20%</div>
+        <div v-if="$mq == 'mobile'">
+            <carousel :perPage="1" :centerMode="true"  :autoplay="false"
+            :spacePadding="40" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{single_plan.slogan}}</h4>
+                    <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{single_plan.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                    </div>
+                </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{four_person_program.slogan}}</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{four_person_program.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                    </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>企業方案</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">990</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                    </div>
+                </slide>
+            </carousel>
         </div>
-        <div class="intro-wrap-four-pay ">
-            <h4>企業方案</h4>
-            <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">990</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="$router.push('/mamiyoga/pay')">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="$router.push('/mamiyoga/pay')"></div>
-            </div>
-            <div class="intro-wrap-four-pay-cost">-40%</div>
-        </div> -->
-        <flicking
-    :options="{ gap: 10}"
-    :tag="'div'"
-  >
-    <div class="intro-wrap-four-pay">
-            <h4>{{single_plan.slogan}}</h4>
-            <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">{{single_plan.price}}</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="goPlan1">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
-            </div>
+        <div v-if="$mq == 'desktop'">
+            <carousel :perPage="1" :centerMode="true"  :autoplay="false"
+            :spacePadding="40" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{single_plan.slogan}}</h4>
+                    <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{single_plan.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                    </div>
+                </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>{{four_person_program.slogan}}</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">{{four_person_program.price}}</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                    </div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                    <h4>企業方案</h4>
+                    <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
+                    <div class="intro-wrap-four-pay-price">
+                        <p style="font-size:14px;">一年</p>
+                        <p style="font-size:47px;">990</p>
+                        <p style="font-size:14px;">NTD/人</p>
+                    </div>
+                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                        立即購買
+                    </div>
+                    <div class="intro-wrap-four-pay-bottom">
+                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                    </div>
+                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                    </div>
+                </slide>
+            </carousel>
         </div>
-        <div class="intro-wrap-four-pay ">
-            <h4>{{four_person_program.slogan}}</h4>
-            <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">{{four_person_program.price}}</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="goPlan2">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
-            </div>
-            <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
-        </div>
-        <div class="intro-wrap-four-pay ">
-            <h4>企業方案</h4>
-            <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
-            <div class="intro-wrap-four-pay-price">
-                <p style="font-size:14px;">一年</p>
-                <p style="font-size:47px;">990</p>
-                <p style="font-size:14px;">NTD/人</p>
-            </div>
-            <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
-            <div class="intro-wrap-four-pay-btn" @click="goPlan3">
-                立即購買
-            </div>
-            <div class="intro-wrap-four-pay-bottom">
-                <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
-            </div>
-            <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
-        </div>
-  </flicking>
-
     </div>
 </template>
 <script>
 import Vue from "vue";
-import VueFlicking from "@egjs/vue-flicking";
 import axios from '~/config/axios-config'
-Vue.use(VueFlicking);
 export default {
     data:()=>({
         products: [
@@ -128,8 +203,8 @@ export default {
     }),
     async mounted(){
         if (process.browser) {
-            const VueFlicking = require("@egjs/vue-flicking");
-            Vue.use(VueFlicking);
+            // const VueFlicking = require("@egjs/vue-flicking");
+            // Vue.use(VueFlicking);
 
             for (let i = 0; i < this.products.length; i++) {
                 let send_data = {item_id: this.products[i].item_id};
@@ -147,17 +222,17 @@ export default {
     methods:{
         goPlan1(){
             sessionStorage['picked_plan'] = this.single_plan.price;
-            this.$router.push('/mamiyoga/pay')
+            this.$router.push('/pay')
         },
         goPlan2(){
             sessionStorage['picked_plan'] = this.four_person_program.price;
-            this.$router.push('/mamiyoga/pay')
+            this.$router.push('/pay')
         },
         goPlan3(){
             sessionStorage['picked_plan'] = 3;
-            this.$router.push('/mamiyoga/pay')
+            this.$router.push('/pay')
         }
-    }
+    },
     // head(){
     //     return  {
     //         script: [
@@ -169,22 +244,30 @@ export default {
     // created(){
     //    $('.owl-carousel').owlCarousel();
     // },
-    // components: {
-        
-    // }
+    components: {
+
+    }   
 }
 </script>
 <style>
+.intro-wrap-four-pay-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .intro-wrap-four-pay{
     background: #F7F7F7;
-    width: 300px;
+    width: 90%;
     height: 370px;
-    margin: 30px 15px;
+    margin: 30px 0px;
     border-radius: 5px 100px 50px 50px ;
-    border: solid 5px #24798F;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+    border: solid 2px #24798F;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
     position: relative;
     float: right;
+}
+.VueCarousel-slide-active .intro-wrap-four-pay{
+    border: solid 9px #24798F;
 }
 .intro-wrap-four-pay p {
     color: #24798F;

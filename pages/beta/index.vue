@@ -209,9 +209,9 @@ export default {
     methods:{
         goTeach(){
             if (this.$i18n.locale == 'JP') {
-                this.$router.push({path:'/jp/mamiyoga/teach'})
+                this.$router.push({path:'/jp/teach'})
             } else {
-                this.$router.push({path:'/mamiyoga/teach'})
+                this.$router.push({path:'/teach'})
             }
         },
         openRemindBox(){

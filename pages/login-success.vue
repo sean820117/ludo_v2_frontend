@@ -4,7 +4,7 @@
             <div class="mamiyoga-header">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
-                    <div class="mamiyoga-header-cancel-btn" @click="$router.push('/mamiyoga/menu')"></div>
+                    <div class="mamiyoga-header-cancel-btn" @click="$router.push('/menu')"></div>
                 </div>
             </div>
             <div class="reg-text" style="margin-top:5vh;">註冊成功</div>
@@ -12,7 +12,7 @@
             <div class="reg-text2" style="width:67%;max-width: 320px;font-size:13px;margin:0 0 2vh;color:#24798F;">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
         
             <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                <div class="mamiyoga-login-btn-to-signin" @click="$router.push('/mamiyoga/pay')">購買課程</div>
+                <div class="mamiyoga-login-btn-to-signin" @click="$router.push('/pay')">購買課程</div>
                 <div class="mamiyoga-login-btn-to-signin" style="margin-top:2vh;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="exchange = true">我有序號</div>  
             </div>
         </div>

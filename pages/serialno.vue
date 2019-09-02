@@ -6,16 +6,16 @@
             <hr style="margin: 5px 0;opacity: .5;">
             <div class="serialno-number-block">
                 <div class="serialno-number-base-data">
-                    <p class="serialno-number-date">2019/09/05</p>
-                    <p class="serialno-number-text">寄送手機：0953******</p>
-                    <p class="serialno-number-text">訂單號碼：09000003434532553840329</p>
+                    <p class="serialno-number-date"></p>
+                    <p class="serialno-number-text"></p>
+                    <p class="serialno-number-text"></p>
                     <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
                     <div class="serialno-every-number">
                         <div class="serialno-number">
-                            <p style="color:#24798F;">dvfsbkrgm14t45</p>
-                            <p style="color:#FF9898;">已啟用</p>
+                            <p style="color:#24798F;"></p>
+                            <p style="color:#FF9898;"></p>
                         </div>
-                        <p style="font-size: 12px;font-weight:lighter;">AI助教使用到期日期 : 2020/9/5</p>
+                        <p style="font-size: 12px;font-weight:lighter;"></p>
                     </div>
                 </div>
             </div>
@@ -27,12 +27,39 @@
 <script>
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout: 'mommiyoga',
     components: {
         MamiyogaPayHeader,
         MamiyogaMemberBottomBtn,
-    }
+    },
+    async beforeCreate() {
+        if (process.client) {
+            // this.ui_config = await require('~/config/mommiyoga-config')
+            // this.is_ui_config_loaded = true;
+
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                window.alert("尚未登入帳號，請先前往登入～");
+                this.$router.push('/login');
+            } else {
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                // if (!payed_or_not) {
+                //     console.log("not payed");
+                //     window.alert("尚未開通課程，請先前往購買～");
+                //     this.$router.push('/mamiyoga/pay');
+                // } else {
+                //     console.log("payed")
+                // }
+            }
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
 }
 </script>
 

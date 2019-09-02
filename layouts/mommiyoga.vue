@@ -18,7 +18,8 @@ import { mapMutations, mapGetters } from 'vuex';
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
-    mobile: 400,
+    iphone: 400,
+    mobile: 500,
     desktop: Infinity,
   }
 });

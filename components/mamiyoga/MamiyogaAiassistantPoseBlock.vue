@@ -27,11 +27,11 @@ export default {
         goPracticePage(){
             sessionStorage['course_'+this.goPractice + '_current_pose_id'] = this.getCurrentPoseId
             if(this.$i18n.locale == 'jp') {
-                this.$router.push('/jp/mamiyoga/course/practice/'+ this.goPractice)
+                this.$router.push('/jp/course/practice/'+ this.goPractice)
             } else if (this.$i18n.locale == 'zh-CN') {
-                this.$router.push('/zh-CN/mamiyoga/course/practice/'+ this.goPractice)
+                this.$router.push('/zh-CN/course/practice/'+ this.goPractice)
             } else {
-                this.$router.push('/mamiyoga/course/practice/'+ this.goPractice)
+                this.$router.push('/course/practice/'+ this.goPractice)
             }
             
             
