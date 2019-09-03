@@ -8,7 +8,7 @@
                 <div style="height: calc(100vh - 165px);overflow: overlay;">
                     <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
                     <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
-                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value="3">
+                    <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value=0>
                     <label class="select-pay-label for-one-peop" for="one-peop">
                         <div class="select-pay-way">
                             <span class="select-pay-circle"></span>
@@ -124,7 +124,7 @@
                 </div>
                 <hr style="opacity:.5;">
             </div> -->
-            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" :selectPrice="picked"></mamiyoga-pay-footer>
+            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" :selectPrice="picked" :can_pay="can_pay"></mamiyoga-pay-footer>
         </div>
         <mamiyoga-window-alert-box v-if="company_method">
             <div class="cancel-box" @click="company_method = false">
@@ -157,7 +157,8 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
-        picked: 0,
+        picked:0,
+        can_pay: true,
     }),
     components: {
         MamiyogaPayHeader,
@@ -187,20 +188,23 @@ export default {
             if(sessionStorage['picked_plan']){
                 this.picked = parseInt(sessionStorage['picked_plan'])
             }
-
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+            // if(this.picked = 0) {
+            //     this.can_pay = false
+            // }
         }
 
     },
     methods:{
         submitData(){
             this.company_method = true;
-        }
+        },
     },
     watch: {
         picked: function(new_value,old_value) {
             sessionStorage['picked_plan'] = this.picked
+            console.log(this.picked)
             // debugger
         }
     },
@@ -229,6 +233,7 @@ export default {
         ...mapGetters({
             user : 'user/getData',
         }),
+        
     },
 }
 </script>
@@ -387,6 +392,7 @@ export default {
     border-radius: 13px;
     letter-spacing: 2px;
     margin-top: 15px;
+    cursor:pointer;
 }
 .additional-select {
     width: 100%;

@@ -1,6 +1,6 @@
 <template>
     <div class="about-page">
-        <mamiyoga-about-header nextTo="/mamiyoga/menu"
+        <mamiyoga-about-header nextTo="/menu"
         btnText="登出" bgColor="#9BAEB2" ftColor="#FFFFFF" :is_beta="true"></mamiyoga-about-header>
         <hooper>
             <slide class="about-teacher about-slide">

@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-header">
-        <router-link :to="check_lang + '/mamiyoga'">
+        <router-link :to="check_lang + '/'">
         <div class="mamiyoga-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-header-logo.png" alt="瑜伽課程">
         </div>
@@ -51,7 +51,7 @@ export default {
             this.$emit('openRemindBox');
         },
         logout() {
-            localStorage.redirect = "/mamiyoga";
+            localStorage.redirect = "/";
             this.$router.push('/logout');
         }
     }
