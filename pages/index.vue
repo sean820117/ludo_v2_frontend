@@ -100,7 +100,7 @@
                     <div class="intro-wrap-block-second">
                         <h4 class="intro-wrap-block-title">課程預覽</h4>         
                         <div class="intro-wrap-block-second-hooper">
-                            <mamiyoga-carousel-preview></mamiyoga-carousel-preview>
+                            <no-ssr><mamiyoga-carousel-preview></mamiyoga-carousel-preview></no-ssr>
                             <!-- <div class="intro-wrap-block-second-slide ">
                                 <div class="intro-wrap-block-second-content">
                                     <p>課程皆有雙語發音，動作分段練習<br>&nbsp;</p>
@@ -173,13 +173,13 @@
                             <img style="height: 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
                         </div>
                         <div style="overflow:hidden;">
-                            <mamiyoga-carousel-comments></mamiyoga-carousel-comments>
+                            <no-ssr><mamiyoga-carousel-comments></mamiyoga-carousel-comments></no-ssr>
                         </div>
                     </div>
                     <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
                     <div class="intro-wrap-block-four" style="height: 550px;">
                         <h4 class="intro-wrap-block-title" style="margin-left: 40px;">收費方式</h4>
-                        <mamiyoga-carousel></mamiyoga-carousel>
+                        <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
@@ -228,7 +228,7 @@
                                 <span class="curriculum-dot" @click="curriculumSlide(3)"></span> 
                                 <span class="curriculum-dot" @click="curriculumSlide(4)"></span> 
                             </div> -->
-                            <mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum>
+                            <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
                         <div style="padding: 0 40px;">
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
@@ -473,7 +473,7 @@ import MamiyogaIndexHeader from '~/components/mamiyoga/MamiyogaIndexHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
-// import MamiyogaCarousel from '~/components/mamiyoga/MamiyogaCarousel.vue';
+import MamiyogaCarousel from '~/components/mamiyoga/MamiyogaCarousel.vue';
 import MamiyogaCarouselPreview from '~/components/mamiyoga/MamiyogaCarouselPreview.vue'
 import MamiyogaCarouselComments from '~/components/mamiyoga/MamiyogaCarouselComments.vue'
 import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCurriculum.vue'
@@ -534,7 +534,7 @@ export default {
         MamiyogaBtn,
         MamiyogaLoginSelect,
         MamiyogaWindowAlertBox,
-        MamiyogaCarousel:()=>import('~/components/mamiyoga/MamiyogaCarousel.vue'),
+        MamiyogaCarousel,
         MamiyogaCarouselPreview,
         MamiyogaCarouselComments,
         MamiyogaCarouselCurriculum
