@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-each-course">
-        <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/mamiyoga/menu"></mamiyoga-mail-header>
+        <mamiyoga-mail-header btnText="紀錄" bgColor="#9BAEB2" ftColor="white" nextTo="/menu"></mamiyoga-mail-header>
         <h3>{{getTitle}}</h3>
         <div style="position:relative;" @click="is_opened = true">
             <video class="mamiyoga-course-video" controls @click="is_opened = true"

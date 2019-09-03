@@ -68,7 +68,7 @@
                                     <select name="pay-program" class="select-pay-program" v-model="select_plan">
                                         <option selected :value="single_plan.price">{{single_plan.slogan}}&nbsp;&nbsp;NTD&nbsp;{{single_plan.price}}</option>
                                         <option :value="four_person_program.price">{{four_person_program.slogan}}(4人)&nbsp;NTD&nbsp;{{four_person_program.price}}</option>
-                                        <option value="3">企業方案(30人)&nbsp;專人服務</option>
+                                        <option value="0">企業方案(30人)&nbsp;專人服務</option>
                                     </select>
                                     <button class="goto-buy-btn" @click="goPay">立即購買</button>
                                 </div>
@@ -90,7 +90,7 @@
                         <div class="index-article-use-video">
                                 <p class="index-article-out-container-text">獨家線上瑜珈助教</p>
                                 <video class="index-article-use-video-sample" loop autoplay playsinline muted>
-                                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video.mp4">
+                                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video-1.mp4">
                                 </video>
                             <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，只要對動作有疑惑、不確定是否做得正確。</p>
                             <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳你的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
@@ -100,7 +100,7 @@
                     <div class="intro-wrap-block-second">
                         <h4 class="intro-wrap-block-title">課程預覽</h4>         
                         <div class="intro-wrap-block-second-hooper">
-                            <mamiyoga-carousel-preview></mamiyoga-carousel-preview>
+                            <no-ssr><mamiyoga-carousel-preview></mamiyoga-carousel-preview></no-ssr>
                             <!-- <div class="intro-wrap-block-second-slide ">
                                 <div class="intro-wrap-block-second-content">
                                     <p>課程皆有雙語發音，動作分段練習<br>&nbsp;</p>
@@ -173,13 +173,13 @@
                             <img style="height: 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
                         </div>
                         <div style="overflow:hidden;">
-                            <mamiyoga-carousel-comments></mamiyoga-carousel-comments>
+                            <no-ssr><mamiyoga-carousel-comments></mamiyoga-carousel-comments></no-ssr>
                         </div>
                     </div>
                     <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
                     <div class="intro-wrap-block-four" style="height: 550px;">
                         <h4 class="intro-wrap-block-title" style="margin-left: 40px;">收費方式</h4>
-                        <mamiyoga-carousel></mamiyoga-carousel>
+                        <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
                     <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
@@ -228,7 +228,7 @@
                                 <span class="curriculum-dot" @click="curriculumSlide(3)"></span> 
                                 <span class="curriculum-dot" @click="curriculumSlide(4)"></span> 
                             </div> -->
-                            <mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum>
+                            <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
                         <div style="padding: 0 40px;">
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
@@ -364,7 +364,7 @@
                 </h2> -->
                 <img :src="$t('index_img_title')" alt="瑜珈" class="mamiyoga-intro-title" style="margin:10vh auto 19vh;">
                 <div class="mamiyoga-intro-btn">
-                    <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+                    <router-link to="/teach" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
                     </router-link>
                 </div>
@@ -372,7 +372,7 @@
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;"></mamiyoga-btn>
                 </div>
                 <mamiyoga-login-select :is_beta="true"></mamiyoga-login-select>
-                <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
+                <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p> -->
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDown">了解更多</p>
@@ -412,7 +412,7 @@
                     </router-link>
                 </div>
                 <div class="mamiyoga-intro-btn">
-                    <a href="/mamiyoga/teach" style="text-decoration: none;">
+                    <a href="/teach" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="體驗課程"></mamiyoga-btn>
                     </a>
                 </div>
@@ -473,7 +473,7 @@ import MamiyogaIndexHeader from '~/components/mamiyoga/MamiyogaIndexHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
-// import MamiyogaCarousel from '~/components/mamiyoga/MamiyogaCarousel.vue';
+import MamiyogaCarousel from '~/components/mamiyoga/MamiyogaCarousel.vue';
 import MamiyogaCarouselPreview from '~/components/mamiyoga/MamiyogaCarouselPreview.vue'
 import MamiyogaCarouselComments from '~/components/mamiyoga/MamiyogaCarouselComments.vue'
 import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCurriculum.vue'
@@ -534,7 +534,7 @@ export default {
         MamiyogaBtn,
         MamiyogaLoginSelect,
         MamiyogaWindowAlertBox,
-        MamiyogaCarousel:()=>import('~/components/mamiyoga/MamiyogaCarousel.vue'),
+        MamiyogaCarousel,
         MamiyogaCarouselPreview,
         MamiyogaCarouselComments,
         MamiyogaCarouselCurriculum

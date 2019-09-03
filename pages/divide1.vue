@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="divide-page" v-if="!is_loaded" >
-            <mamiyoga-teach-header class="mamiyoga-divide-header" nextTo="/mamiyoga/course1"></mamiyoga-teach-header>
+            <mamiyoga-teach-header class="mamiyoga-divide-header" nextTo="/"></mamiyoga-teach-header>
             <h3>骨盆矯正</h3>
             <mamiyoga-divide-video @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
         </div>

@@ -1,92 +1,102 @@
 <template>
-    <div style="background: #fff;">
-        <mamiyoga-pay-header></mamiyoga-pay-header>
-        <div class="pay-main-block">
-            <div class="pay-order-title">訂單結帳</div>
-            <hr style="margin: 10px 0;opacity: .5;">
-            <form class="order-base-info" id="order-form" method="post" :action="form_action">
-                <div class="order-little-title">基本資訊</div>
-                
-                <label class="order-form-label" for="name" >姓名</label>
-                <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
-                <label class="order-form-label" for="tel">聯絡電話</label>
-                <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
-                <!-- <div class="order-verify-block">
-                    <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
-                    <div class="order-verify-btn" style="margin:0 5px;">認證</div>
-                    <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
-                </div> -->
-                <label class="order-form-label" for="tel">電子信箱</label>
-                <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
-                <input type="hidden" name="item_id" :value="picked_plan.item_id">
-                <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
-                <input type="hidden" name="payment_type" v-model="order_payment" value="">
-                <input type="hidden" name="return_url" :value="order_return">
-                <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
-            </form>
-            <div class="order-base-info" style="margin-top:8vh;">
-                <!-- <div class="order-little-title" style="display:flex;align-items: flex-end;">寄送方式<span style="font-size: 12px;">（加價購必填）</span></div>
-                <select class="order-select-how-to" v-model="select_how">
-                    <option value="1">貨到付款 $60</option>
-                    <option value="2">7-11超商店到店 $60</option>
-                </select>
-                <input type="checkbox" name="same" id="same">
-                <label for="same" class="order-same-label">
-                    <div class="order-same-checkbox">
-                        <div class="order-same-checkbox-content">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                    <p class="order-same-text">同購買人資訊</p>
-                </label>
-                <div v-if="select_how == '1'">
-                    <label class="order-form-label" for="recipient-name">收貨人姓名</label>
-                    <input class="order-form-input" type="text" name="recipient-name" id="recipient-name" placeholder="請輸入收貨人名稱">
-                    <label class="order-form-label" for="recipient-tel">聯絡電話</label>
-                    <input class="order-form-input" type="tel" name="recipient-tel" id="recipient-tel" placeholder="（+886）953 840 329">
+    <div>
+        <div style="background: #fff;">
+            <mamiyoga-pay-header></mamiyoga-pay-header>
+            <div class="pay-main-block">
+                <div class="pay-order-title">訂單結帳</div>
+                <hr style="margin: 10px 0;opacity: .5;">
+                <form class="order-base-info" id="order-form" method="post" :action="form_action">
+                    <div class="order-little-title">基本資訊</div>
                     
-                    <div style="display: flex;align-items: center;margin: 10px 0 5px;">
-                        <label class="order-form-label" for="recipient-address-code" style="margin-right:5px;">居住城市</label>
-                        <select class="order-form-input order-form-zipcode" name="recipient-address-code" id="recipient-address-code" v-model="select_county">
-                            <option v-for="(city,index) in city" :key="index" :value="city.id">
-                                {{city.id}}
-                            </option>
-                        </select>
-                        <label class="order-form-label" for="recipient-address-code" style="margin-right:5px;margin-left:15px;">區域</label>
-                        <select class="order-form-input order-form-zipcode" name="recipient-address-city" id="recipient-address-city">
-                            <option v-for="(county,index) in current_county" :key="index" :value="county.id">
-                                {{county.id +'&nbsp;'+ county.city}}
-                            </option>
-                        </select>
-                    </div>
-                    <label class="order-form-label" for="recipient-address">詳細地址</label>
-                    <input class="order-form-input" type="text" name="recipient-address" id="recipient-address">
-                </div>
-                <div v-if="select_how == '2'">
-                    <label class="order-form-label" for="shop-name">店到店名稱</label>
-                    <input class="order-form-input" type="text" name="shop-name" id="shop-name" placeholder="">
-                    <label class="order-form-label" for="shop-recipient-name">收貨人姓名</label>
-                    <input class="order-form-input" type="text" name="shop-recipient-name" id="shop-recipient-name" placeholder="請輸入收貨人名稱">
-                    <label class="order-form-label" for="shop-recipient-tel">聯絡電話</label>
-                    <input class="order-form-input" type="tel" name="shop-recipient-tel" id="shop-recipient-tel" placeholder="（+886）953 840 329">
-                </div> -->
-                <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
-                <input type="checkbox" name="agree" id="agree" style="display:none;">
-                <label for="agree" class="agree-checkbox-label-label">
-                    <div class="agree-checkbox-label">
-                        <div class="agree-checkbox">
-                            <span></span>
-                            <span></span>
+                    <label class="order-form-label" for="name" >姓名</label>
+                    <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
+                    <label class="order-form-label" for="tel">聯絡電話</label>
+                    <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
+                    <!-- <div class="order-verify-block">
+                        <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
+                        <div class="order-verify-btn" style="margin:0 5px;">認證</div>
+                        <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
+                    </div> -->
+                    <label class="order-form-label" for="tel">電子信箱</label>
+                    <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
+                    <input type="hidden" name="item_id" :value="picked_plan.item_id">
+                    <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
+                    <input type="hidden" name="payment_type" v-model="order_payment" value="">
+                    <input type="hidden" name="return_url" :value="order_return">
+                    <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
+                </form>
+                <div class="order-base-info" style="margin-top:8vh;">
+                    <!-- <div class="order-little-title" style="display:flex;align-items: flex-end;">寄送方式<span style="font-size: 12px;">（加價購必填）</span></div>
+                    <select class="order-select-how-to" v-model="select_how">
+                        <option value="1">貨到付款 $60</option>
+                        <option value="2">7-11超商店到店 $60</option>
+                    </select>
+                    <input type="checkbox" name="same" id="same">
+                    <label for="same" class="order-same-label">
+                        <div class="order-same-checkbox">
+                            <div class="order-same-checkbox-content">
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
-                        <p style="margin-left: 5px;">我同意LUDO<router-link to="/refund" style="color:#000;">退款政策</router-link></p>
+                        <p class="order-same-text">同購買人資訊</p>
+                    </label>
+                    <div v-if="select_how == '1'">
+                        <label class="order-form-label" for="recipient-name">收貨人姓名</label>
+                        <input class="order-form-input" type="text" name="recipient-name" id="recipient-name" placeholder="請輸入收貨人名稱">
+                        <label class="order-form-label" for="recipient-tel">聯絡電話</label>
+                        <input class="order-form-input" type="tel" name="recipient-tel" id="recipient-tel" placeholder="（+886）953 840 329">
+                        
+                        <div style="display: flex;align-items: center;margin: 10px 0 5px;">
+                            <label class="order-form-label" for="recipient-address-code" style="margin-right:5px;">居住城市</label>
+                            <select class="order-form-input order-form-zipcode" name="recipient-address-code" id="recipient-address-code" v-model="select_county">
+                                <option v-for="(city,index) in city" :key="index" :value="city.id">
+                                    {{city.id}}
+                                </option>
+                            </select>
+                            <label class="order-form-label" for="recipient-address-code" style="margin-right:5px;margin-left:15px;">區域</label>
+                            <select class="order-form-input order-form-zipcode" name="recipient-address-city" id="recipient-address-city">
+                                <option v-for="(county,index) in current_county" :key="index" :value="county.id">
+                                    {{county.id +'&nbsp;'+ county.city}}
+                                </option>
+                            </select>
+                        </div>
+                        <label class="order-form-label" for="recipient-address">詳細地址</label>
+                        <input class="order-form-input" type="text" name="recipient-address" id="recipient-address">
                     </div>
-                </label>
+                    <div v-if="select_how == '2'">
+                        <label class="order-form-label" for="shop-name">店到店名稱</label>
+                        <input class="order-form-input" type="text" name="shop-name" id="shop-name" placeholder="">
+                        <label class="order-form-label" for="shop-recipient-name">收貨人姓名</label>
+                        <input class="order-form-input" type="text" name="shop-recipient-name" id="shop-recipient-name" placeholder="請輸入收貨人名稱">
+                        <label class="order-form-label" for="shop-recipient-tel">聯絡電話</label>
+                        <input class="order-form-input" type="tel" name="shop-recipient-tel" id="shop-recipient-tel" placeholder="（+886）953 840 329">
+                    </div> -->
+                    <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
+                    <input type="checkbox" name="agree" id="agree" style="display:none;">
+                    <label for="agree" class="agree-checkbox-label-label">
+                        <div class="agree-checkbox-label">
+                            <div class="agree-checkbox">
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p style="margin-left: 5px;">我同意LUDO<router-link to="/refund" style="color:#000;">退款政策</router-link></p>
+                        </div>
+                    </label>
+                </div>
             </div>
+            <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
+            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  discount="0" @goPay="goPay"
+            :selectPrice="picked_plan.price" :selectDescription="picked_plan.description"></mamiyoga-order-footer>
         </div>
-        <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
-        <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  discount="100" @goPay="goPay"
-        :selectPrice="picked_plan.price" :selectDescription="picked_plan.description"></mamiyoga-order-footer>
+        <mamiyoga-window-alert-box v-if="is_payed">
+            <div class="cancel-box" @click="is_payed = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
+            </div>
+            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">已將付款交易通知書寄至您的信箱！<br>請查收！</div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="" style="margin-top:20px;width:30%;">
+            <div class="company-input-submit-btn" style="margin:30px auto 0;" @click="is_payed = false">好的</div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
@@ -96,6 +106,7 @@ import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue';
 // import MamiyogaPayFooter from '~/components/mamiyoga/MamiyogaPayFooter.vue';
 import MamiyogaOrderFooter from '~/components/mamiyoga/MamiyogaOrderFooter.vue';
 import MamiyogaReceiptType from '~/components/mamiyoga/MamiyogaReceiptType.vue'
+import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import twzipcode from 'twzipcode-data'
 import axios from '~/config/axios-config'
 import { EMAIL_REGEX } from '~/components/regex.js'
@@ -124,17 +135,19 @@ export default {
         order_email: '',
         order_coupon: '',
         order_payment: '',
-        form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        form_action: 'http://localhost:8080/apis/send-to-MPG-gateway',
         order_return: 'https://mamiyoga.ludonow.com/',
 
         hint:'',
         hint_color:'',
+        is_payed: false,
     }),
     components: {
         MamiyogaPayHeader,
         // MamiyogaPayFooter,
         MamiyogaOrderFooter,
         MamiyogaReceiptType,
+        MamiyogaWindowAlertBox,
 
     },
     async mounted(){
@@ -374,5 +387,33 @@ export default {
     margin-top: 11px;
     font-size: 13px;
     color: #8F8F8F;
+}
+.cancel-box {
+    /* background: red; */
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.cancel-box img {
+    width: 65%;
+}
+.company-input-submit-btn {
+    width: 80px;
+    height: 30px;
+    background: #24798F;
+    color: #F7F7F7;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    cursor: pointer;
 }
 </style>

@@ -229,7 +229,7 @@ export default {
             this.$router.push('/pay')
         },
         goPlan3(){
-            sessionStorage['picked_plan'] = 3;
+            sessionStorage['picked_plan'] = 0;
             this.$router.push('/pay')
         }
     },
