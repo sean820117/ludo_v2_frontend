@@ -5,14 +5,14 @@
             {{title}}
         </h2> -->
         <img src="/mamiyoga/mamiyoga-title.png" alt="" class="mamiyoga-intro-title">
-        <router-link to="/mamiyoga/teach" style="text-decoration: none;">
+        <router-link to="/teach" style="text-decoration: none;">
             <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" btnText="馬上體驗" class="mamiyoga-intro-btn"></mamiyoga-btn>
         </router-link>
         <router-link to="/" style="text-decoration: none;">
             <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" btnText="立即購買" style="margin-bottom:5vh;"></mamiyoga-btn>
         </router-link>
         <mamiyoga-login-select></mamiyoga-login-select>
-        <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/mamiyoga/privacy">隱私政策</a></p>
+        <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
     </div>
 </template>
 

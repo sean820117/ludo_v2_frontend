@@ -48,7 +48,7 @@ export default {
             this.$emit('openRemindBox')
         },
         logout() {
-            localStorage.redirect = "/mamiyoga";
+            localStorage.redirect = "/";
             this.$router.push('/logout');
         }
     }

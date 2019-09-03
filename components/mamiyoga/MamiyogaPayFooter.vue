@@ -2,7 +2,8 @@
     <div class="pay-footer">
         <div class="pay-footer-tag"></div>
         <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
-        <div class="pay-footer-btn" :style="{backgroundColor:ftBtn}" @click="$router.push('/order')">{{payFt}}</div>
+        <div class="pay-footer-btn" v-if="can_pay" :style="{backgroundColor:ftBtn}" @click="$router.push('/order')">{{payFt}}</div>
+        <div class="pay-footer-btn" v-else style="background-color: #707070">{{payFt}}</div>
     </div>
 </template>
 
@@ -13,6 +14,7 @@ export default {
         ftBtn: String,
         payFt: String,
         selectPrice: Number,
+        can_pay: Boolean,
     }
 }
 </script>
