@@ -20,7 +20,7 @@
                 <div class="mamiyoga-intro-btn" @click="goTeach">
                     <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
                 </div>
-                <div class="mamiyoga-intro-btn" @click="is_open = true">
+                <div class="mamiyoga-intro-btn" @click="$router.push(check_log)">
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;" ></mamiyoga-btn>
                 </div>
                 <!-- <mamiyoga-login-select :is_beta="false"></mamiyoga-login-select> -->
@@ -84,7 +84,7 @@
                                 </router-link>
                                 <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt="">
                                 <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。</h6>
-                                <p class="index-article-text">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢校正，解決妳無暇外出上課的問題。</p>
+                                <p class="index-article-text" style="color:#272727;">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢校正，解決妳無暇外出上課的問題。</p>
                             </div>
                         </div>
                         <div class="index-article-use-video">
@@ -92,8 +92,8 @@
                                 <video class="index-article-use-video-sample" loop autoplay playsinline muted>
                                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video-1.mp4">
                                 </video>
-                            <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，只要對動作有疑惑、不確定是否做得正確。</p>
-                            <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳你的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
+                            <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，對動作有疑惑、不確定是否做得正確</p>
+                            <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳妳的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
                             <button @click="$router.push('/teach')" class="index-article-out-btn">免費體驗</button>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                         </p>
                         <p class="about-articele-text" style="font-weight: bold; margin-bottom: 5px;">{{$t('about_first_content_course')}}</p>
                         <p class="about-articele-text">{{$t('about_first_content_course_text')}}</p>
-                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">擔任日本屈指頂尖舞蹈跟唱歌<br>少女團體E-girl的私家貼身瑜珈指導</p>
+                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">擔任日本屈指頂尖女子歌舞團體<br>E-girls的私家貼身瑜珈指導</p>
                         <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">一週的固定班底課程20堂以上<br>Instagram的追蹤人數兩萬人以上</p>
                         <div class="about-teacher-pic"></div>
                     </div>
@@ -234,9 +234,9 @@
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">這堂課能夠幫助妳...</p>
                             <p class="index-article-text" style="margin-top:15px;font-weight: bold;">1、收緊骨盆<br>2、修復腹肌<br>3、減輕壓力<br>4、平衡自律神經<br>5、改善肩頸壓力<br>6、消除浮腫<br>7、改善骨頭密度</p>
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">上課準備與提醒</p>
-                            <p class="index-article-text" style="margin-top:15px;font-weight: 300;"><b>這堂課需要準備：</b><br><br><b>1、舒適的居家運動衣物</b><br>&nbsp;&nbsp;（例如：無/短袖、寬鬆長/短褲，瑜珈服）<br><b>2、緩衝地面的地墊、訓練墊或瑜珈墊<br>3、一顆積極想改變自己的心情</b></p>
+                            <p class="index-article-text" style="margin-top:15px;font-weight: 300;"><b>這堂課需要準備：</b><br><br><b>1、舒適的居家運動衣物</b><br>&nbsp;&nbsp;（例如：無/短袖、寬鬆長/短褲或瑜珈服）<br><b>2、緩衝地面的地墊、訓練墊或瑜珈墊<br>3、一顆積極想改變自己的心情</b></p>
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">課程目標</p>
-                            <p class="index-article-text" style="margin-top:15px;font-weight: bold;">在產後的黃金180天修復腹部肌肉、消除水腫、並且縮小骨盆。<br>修復媽媽生產後的身體、恢復完美體態。</p>
+                            <p class="index-article-text" style="margin-top:15px;font-weight: bold;">在產後的黃金180天修復腹部肌肉、消除水腫，並且縮小骨盆。<br>修復媽媽生產後的身體、恢復完美體態。</p>
                             <p class="intro-wrap-block-title" style="margin:0;color:#24798F;font-weight:600;">適合對象</p>
                             <p class="index-article-text" style="margin-top:15px;font-weight: bold;">１、產後恢復的媽媽<br>２、任何想要保養體態的人</p>
                         </div>
@@ -527,6 +527,7 @@ export default {
         single_plan: {},
         four_person_program: {},
         go_to_where: '/login',
+        check_log: '/login',
     }),
     components: {
         MamiyogaHeader,
@@ -568,7 +569,7 @@ export default {
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
-            console.log(this.products)
+            // console.log(this.products)
         }
         // window.addEventListener('scroll',function(){
         // let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
@@ -594,8 +595,16 @@ export default {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 this.go_to_where = '/login'
+                this.check_log = '/login'
             } else {
                 this.go_to_where = '/pay'
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    this.check_log = '/pay'
+                } else {
+                    this.check_log = '/menu'
+                }
+                
             }
         }
     },
@@ -713,7 +722,7 @@ export default {
         copyUrl(){
             let Url = document.getElementById("urlCopied");
             Url.innerHTML = window.location.href;
-            console.log(Url.innerHTML)
+            // console.log(Url.innerHTML)
             Url.select();
             document.execCommand("copy");
             window.alert('已複製連結')

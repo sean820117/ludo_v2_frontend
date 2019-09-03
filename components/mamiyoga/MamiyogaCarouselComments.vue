@@ -84,7 +84,7 @@
                             讓我重新體驗到走路跟呼吸可以這麼舒服！
                         </div>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">本來在懷孕之前工作很忙的時候就不太照顧自己的身體，常常在外飲食，高油高糖常常熬夜。因為這樣所以非常害怕產後憂鬱跟身體狀況，也害怕平常沒有運動習慣的我無法在產後自律的鍛鍊身材。朋友推薦我媽咪瑜伽是一個非常舒適且放鬆的方式。實際做了之後，我發現真的沒什麼壓力，只要照著老師的話去做，了解身體的結構，放鬆地去呼吸，感受身體，讓我覺得靠著一件簡單的方式，就重新調整生活。我也有信心可以一直維持做瑜伽的好習慣！</p>
+                        <p class="intro-wrap-block-third-comment-text">本來在懷孕之前工作很忙的時候就不太照顧自己的身體，常常在外飲食，高油高糖常常熬夜。因為這樣所以非常害怕產後憂鬱跟身體狀況，也害怕平常沒有運動習慣的我無法在產後自律的鍛鍊身材。朋友推薦我媽咪瑜伽是一個非常舒適且放鬆的方式。實際做了之後，我發現真的沒什麼壓力，只要照著老師的話去做，了解身體的結構，放鬆地去呼吸，感受身體，讓我覺得靠著一個簡單的方式，就重新調整生活。我也有信心可以一直維持做瑜伽的好習慣！</p>
                         <p class="intro-wrap-block-third-comment-from">Yuna 29歲 科技業上班族</p>
                     </div>
                 </slide>
@@ -94,7 +94,7 @@
                             想要把所有好的事情都給老婆
                         </div>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">看著老婆從妊娠初期就吃盡苦頭，身為男性實在不知道自己能夠幫上什麼忙，可以幫她一些小事，可以關心她，可以陪伴她，但卻不能代替她痛，她身形的改變、她在意的生理變化，我都沒辦法經歷。在網路上查了許多資料，瑜伽是最好恢復身形的方法，安排完大小事情之後，送他這個小小的禮物，希望送給她自己的時間，讓她好好的放鬆。</p>
+                        <p class="intro-wrap-block-third-comment-text">看著老婆從妊娠初期就吃盡苦頭，身為男性實在不知道自己能夠幫上什麼忙，可以幫她一些小事，可以關心她，可以陪伴她，但卻不能代替她痛，她身形的改變、她在意的生理變化，我都沒辦法經歷。在網路上查了許多資料，瑜伽是最好恢復身形的方法，安排完大小事情之後，送她這個小小的禮物，希望送給她自己的時間，讓她好好的放鬆。</p>
                         <p class="intro-wrap-block-third-comment-from">陳先生 34歲 </p>
                     </div>
                 </slide>
@@ -114,7 +114,7 @@
                             把保養身體變成習慣！
                         </div>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
+                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但做了之後發現道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂得如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
                         <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
                     </div>
                 </slide>

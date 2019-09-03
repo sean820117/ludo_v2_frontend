@@ -17,7 +17,7 @@
             </div>
             
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
-            <div class="teach-title-video-box">
+            <div class="teach-title-video-box" v-if="!show_remind">
                 <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
                 <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
                 <div class="teach-course-info">
@@ -74,10 +74,11 @@
                         <img style="display:block;margin:0 auto 2vh;width:50%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/before-remind-img-1.png" alt="">
                         <p style="color:#24798F;text-align:center;font-size:14px;" v-html="$t('start_experience_text')"></p>
                         <div class="star-line-box">
-                            <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:25px;cursor:pointer;background-color:#FF9898;color:#F7F7F7;letter-spacing:0;">
-                                <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('start_experience_btn_1')}}</label>  
+                            <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:25px;cursor:pointer;background-color:#FF9898;color:#F7F7F7;letter-spacing:0;" @click="photo_remind = true">
+                                {{$t('start_experience_btn_1')}}
+                                <!-- <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('start_experience_btn_1')}}</label>   -->
                             </button>
-                            <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:10px;cursor:pointer;background-color:#24798F;color:#F7F7F7;letter-spacing:0;" @click="first_show = true">{{$t('start_experience_btn_2')}}</button>
+                            <button class="mamiyoga-assay-contact-btn" style="padding:0;margin-top:10px;cursor:pointer;background-color:#24798F;color:#F7F7F7;letter-spacing:0;" @click="show_remind = false">{{$t('start_experience_btn_2')}}</button>
                         </div>
                     </div>
                 </div>
@@ -193,6 +194,21 @@
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+        <mamiyoga-window-alert-box v-if="photo_remind">
+            <div class="cancel-box" @click="photo_remind = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            </div>
+            <p style="color:#FF9898;font-size:14px;font-weight:bold;">{{$t('course_practice_remind_title')}}</p>
+            <div class="upload-remind-box" :style="{backgroundImage:'url('+getBackground+')'}"></div>
+            
+            <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
+            <div class="star-line-box">
+    
+                <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
+                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
+                </button>
+            </div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
@@ -244,7 +260,9 @@ export default {
         need_resee: false,
         errorImg: '',
         errorText: '',
-
+        photo_remind: false,
+        getBackground: '',
+        getRemind: '',
     }),
     components: {
         MamiyogaTeachHeader,
@@ -278,6 +296,8 @@ export default {
                 this.post_article = this.articles[0].post_article;
                 this.course_descriptions = this.courses[12].poses[2].pose_description;
                 this.goAbout = ''
+                this.getBackground = this.courses[12].poses[2].remind_img;
+                this.getRemind = this.courses[12].poses[2].remind_text
             }
             let tip = document.getElementById('tip-video')
             tip.onended = function(){
@@ -469,6 +489,7 @@ export default {
             this.show_remind = true;
         },
         beforeRemind(e){
+            this.photo_remind = false;
             this.show_remind = false;
             this.handleVideoUpload(e);
         },
@@ -952,6 +973,15 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+.upload-remind-box {
+    width: 150px;
+    height: 135px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+
 }
 @media (min-width: 769px) {
     .mamiyoga-teach-header{

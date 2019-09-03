@@ -48,7 +48,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                    <p style="font-weight:300;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                    <p style="font-weight:300;">另外三組課程序號將寄到妳的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
                                 </div>
                             </div>
                             <!-- <hr class="select-pay-content-line">
@@ -82,14 +82,14 @@
                                 </div>
                             </div>
                             <hr class="select-pay-content-line">
-                            <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name">
+                            <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name" v-model="company_name">
                             <div class="company-input-box">
-                                <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name">
-                                <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position">
+                                <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name" v-model="contact_name">
+                                <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position" v-model="contact_position">
                             </div>
                             <div class="company-input-box">
-                                <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel">
-                                <input class="company-input" placeholder="工作郵箱" type="email" name="contact-phone" id="contact-phone">
+                                <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
+                                <input class="company-input" placeholder="工作信箱" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
                             </div>
                             <div class="company-input-box" style="justify-content: flex-end;">
                                 <div class="company-input-submit-btn" @click="submitData">送出資料</div>
@@ -159,6 +159,12 @@ export default {
         four_person_program: {},
         picked:0,
         can_pay: true,
+
+        company_name: '',
+        contact_name: '',
+        contact_position: '',
+        contact_tel: '',
+        contact_mail: '',
     }),
     components: {
         MamiyogaPayHeader,
@@ -190,14 +196,23 @@ export default {
             }
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
-            // if(this.picked = 0) {
-            //     this.can_pay = false
-            // }
+            if(this.picked == 0) {
+                this.can_pay = false
+            } else {
+                this.can_pay = true
+            }
         }
 
     },
     methods:{
-        submitData(){
+        async submitData(){
+            let send_user_id = '0000'
+            let contact_data = '公司名稱：' + this.company_name + '／聯絡人姓名：' + this.contact_name + '／工作職稱：' + this.contact_position + '／聯絡電話：' + this.contact_tel + '／聯絡信箱：' + this.contact_mail
+            if(this.user.user_id) {
+                send_user_id = this.user.user_id
+            }
+            let send_data = {user_id:send_user_id,question_id:'企業方案聯絡',message: contact_data};
+            const form_res = await axios.post('/apis/send-feedback',send_data);
             this.company_method = true;
         },
     },
@@ -205,6 +220,11 @@ export default {
         picked: function(new_value,old_value) {
             sessionStorage['picked_plan'] = this.picked
             console.log(this.picked)
+            if(this.picked == 0) {
+                this.can_pay = false
+            } else {
+                this.can_pay = true
+            }
             // debugger
         }
     },

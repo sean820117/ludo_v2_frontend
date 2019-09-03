@@ -93,8 +93,8 @@
             <div class="cancel-box" @click="is_payed = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">已將付款交易通知書寄至您的信箱！<br>請查收！</div>
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="" style="margin-top:20px;width:30%;">
+            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">已將<b>付款交易通知</b>寄至您的<b>信箱</b>！<br>付款成功後將<b>寄送序號至您的手機！</b></div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-order-success.png" alt="" style="margin-top:20px;width:30%;">
             <div class="company-input-submit-btn" style="margin:30px auto 0;" @click="is_payed = false">好的</div>
         </mamiyoga-window-alert-box>
     </div>
@@ -164,7 +164,7 @@ export default {
             // this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             // this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.picked_plan = this.products.find(plan => plan.price == sessionStorage['picked_plan'])
-            console.log(this.picked_plan)
+            // console.log(this.picked_plan)
             this.zipcode_data = twzipcode()
             // console.log(this.zipcode_data)
 
