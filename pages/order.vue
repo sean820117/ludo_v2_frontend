@@ -23,6 +23,7 @@
                     <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
                     <input type="hidden" name="payment_type" v-model="order_payment" value="">
                     <input type="hidden" name="return_url" :value="order_return">
+                    <input type="hidden" name="user_id" :value="user.user_id">
                     <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
                 </form>
                 <div class="order-base-info" style="margin-top:8vh;">
@@ -110,6 +111,8 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import twzipcode from 'twzipcode-data'
 import axios from '~/config/axios-config'
 import { EMAIL_REGEX } from '~/components/regex.js'
+import { mapMutations, mapGetters } from 'vuex';
+
 export default {
     layout: 'mommiyoga',
     data:()=>({
@@ -212,7 +215,12 @@ export default {
             // console.log(this.current_county)
             // debugger
         }
-    }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
 }
 </script>
 
