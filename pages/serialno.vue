@@ -1,39 +1,60 @@
 <template>
-    <div class="serialno-page" style="background:#fff;">
-        <mamiyoga-pay-header></mamiyoga-pay-header>
-        <div class="serialno-main">
-            <div class="pay-little-title">序號資訊</div>
-            <hr style="margin: 5px 0;opacity: .5;">
-            <div class="serialno-number-block">
-                <div class="serialno-number-base-data">
-                    <p class="serialno-number-date"></p>
-                    <p class="serialno-number-text"></p>
-                    <p class="serialno-number-text"></p>
-                    <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
-                    <div class="serialno-every-number">
-                        <div class="serialno-number">
-                            <p style="color:#24798F;"></p>
-                            <p style="color:#FF9898;"></p>
+    <div>
+        <div class="serialno-page" style="background:#fff;">
+            <mamiyoga-pay-header></mamiyoga-pay-header>
+            <div class="serialno-main">
+                <div class="pay-little-title">序號資訊</div>
+                <hr style="margin: 5px 0;opacity: .5;">
+                <div class="serialno-number-block" v-if="serialno_data != ''">
+                    <div class="serialno-number-base-data" v-for="(serialno,i) in serialno_data" :key="i">
+                        <p class="serialno-number-date">{{setRecordDate(serialno.created_timestamp)}}</p>
+                        <p class="serialno-number-text">寄送手機：{{serialno.phone}}</p>
+                        <p class="serialno-number-text">訂單號碼：{{serialno.order_id}}</p>
+                        <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
+                        <div class="serialno-every-number" v-for="(code , index) in serialno.codes" :key="index">
+                            <div class="serialno-number">
+                                <p style="color:#24798F;font-weight:600;">{{code}}</p>
+                                <p style="color:#FF9898;"></p>
+                            </div>
+                            <p style="font-size: 12px;font-weight:lighter;"></p>
                         </div>
-                        <p style="font-size: 12px;font-weight:lighter;"></p>
                     </div>
                 </div>
+                <div class="serialno-number-block" v-else>
+                    <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
+                </div>
             </div>
+            <mamiyoga-member-bottom-btn :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn>
         </div>
-        <mamiyoga-member-bottom-btn></mamiyoga-member-bottom-btn>
+        <mamiyoga-window-alert-box v-if="open_exchange">
+            <div class="cancel-box" @click="open_exchange = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
+            </div>
+            <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">兌換序號</div>
+            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入折扣序號</div>
+            <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字">
+            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="open_exchange = false">兌換</div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
 <script>
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
+import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
+import axios from '~/config/axios-config';
 export default {
     layout: 'mommiyoga',
     components: {
         MamiyogaPayHeader,
         MamiyogaMemberBottomBtn,
+        MamiyogaWindowAlertBox,
     },
+    data:()=>({
+        serialno_data: [],
+        open_exchange: false,
+    }),
     async beforeCreate() {
         if (process.client) {
             // this.ui_config = await require('~/config/mommiyoga-config')
@@ -44,15 +65,30 @@ export default {
                 window.alert("尚未登入帳號，請先前往登入～");
                 this.$router.push('/login');
             } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                // if (!payed_or_not) {
-                //     console.log("not payed");
-                //     window.alert("尚未開通課程，請先前往購買～");
-                //     this.$router.push('/mamiyoga/pay');
-                // } else {
-                //     console.log("payed")
-                // }
+                // let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                let send_data = {user_id:this.user.user_id,item_id:'MY01'}
+                const form_res = await axios.post('/apis/get-order-info',send_data);
+                console.log(send_data)
+                console.log(form_res)
+                if(form_res.status == 200) {
+                    for(var i = 0;i < form_res.data.length; i++) {
+                        this.serialno_data = form_res.data
+                        
+                    }
+                    console.log(this.serialno_data)
+                } else {
+                    alert('unknown error')
+                }
+
             }
+        }
+    },
+    methods:{
+        setRecordDate(date){
+            let update = new Date(date) 
+            let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
+            let month = (update.getMonth()+1) < 10 ? '0'+(update.getMonth()+1) : (update.getMonth()+1);
+            return update.getFullYear()+'/'+month+'/'+day;
         }
     },
     computed:{
@@ -104,7 +140,53 @@ export default {
     justify-content: space-between;
     margin: 5px 0;
 }
-
+.cancel-box {
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.cancel-box img {
+    width: 65%;
+}
+#exchange-input{
+    width: 90%;
+    height: 45px;
+    border-radius: 5px;
+    border: #707070 solid 1px;
+    display: block;
+    margin: 30px auto 15px;
+    padding-left: 5px;
+}
+.reg-text{
+    /* padding-top: 80px; */
+    font-size: 21px;
+    font-weight: 500;
+}
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
+}
+.mamiyoga-login-btn-to-signin {
+    width: 100%;
+    height: 45px;
+    color: #F8F7F8;
+    margin: 0 auto;
+    background: #24798F;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media (min-width: 769px) {
     .serialno-page {
         min-height: 100vh;

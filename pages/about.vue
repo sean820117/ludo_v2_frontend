@@ -49,7 +49,7 @@
             </slide>
             <hooper-pagination slot="hooper-addons"></hooper-pagination>
         </hooper> -->
-        <mamiyoga-about-carousel></mamiyoga-about-carousel>
+        <no-ssr><mamiyoga-about-carousel></mamiyoga-about-carousel></no-ssr>
     </div>
 </template>
 

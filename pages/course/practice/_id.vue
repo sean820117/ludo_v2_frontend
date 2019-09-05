@@ -253,7 +253,12 @@ export default {
             } else {
                 this.show_value = '等待上傳'
             }
-            var data = await this.$poseUpload(e.target.files[0],'0000',pose_id,this.lang_click)
+
+            let send_user_id = '0000'
+            if(this.user.user_id) {
+                send_user_id = this.user.user_id
+            }
+            var data = await this.$poseUpload(e.target.files[0],send_user_id,pose_id,this.lang_click)
             console.log(data.status)
             if(!data) {
                 if(this.$i18n.locale == 'JP') {
@@ -265,7 +270,7 @@ export default {
             } else if(data.status == 102) {  
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:'0000',pose_id:pose_id,createdAt:data.createdAt})
+                axios.post('/apis/get-pose-result',{user_id:send_user_id,pose_id:pose_id,createdAt:data.createdAt})
                     .then((response) => {
                         // console.log(response)
                         console.log(response.data.result.status)
@@ -674,6 +679,12 @@ export default {
     .record-box {
         width: 90%;
         left: 5%;
+    }
+    .loading-bar {
+        width: 450px;
+    }
+    .mamiyoga-show-article {
+        width: 80%;
     }
 }
 </style>

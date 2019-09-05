@@ -45,7 +45,7 @@
             <div class="mamiyoga-header">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
-                    <div class="mamiyoga-header-cancel-btn" @click="$router.go(-1)"></div>
+                    <div class="mamiyoga-header-cancel-btn" @click="$router.push('/')"></div>
                 </div>
             </div>
             <div class="reg-text" style="margin-top:5vh;">登入</div>
@@ -55,7 +55,7 @@
                         <div style="width: 65px;">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
                         </div>
-                        <p>使用Facebook登入</p>
+                        <p style="font-weight: 500;">使用Facebook登入</p>
                     </div>
                 </a>
             </div>
@@ -65,14 +65,14 @@
                         <div style="width: 62px;">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
                         </div>
-                        <p>使用Google登入</p>
+                        <p style="font-weight: 500;padding-left:5px;">使用Google登入</p>
                     </div>
                 </a>
             </div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:14px;text-align:left;margin:5vh 0 1vh;">使用LUDO帳號登入</div>
             <form class="signup-form">
                 <div class="login-column">
-                    <div class="login-column-label">帳號</div>
+                    <div class="login-column-label">電子信箱</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                 </div>
                 <div class="login-column">
@@ -88,12 +88,12 @@
                 <!-- <div class="login-column" v-if="login_or_signup === 'login'">
                     <div style="height:53 px"></div>
                 </div> -->
-                <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
+                <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
                 <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
                     <!-- <button class="mamiyoga-btn-login-and-signup" type="submit" :style="{background: is_ui_config_loaded ? ui_config.view.signup_page.submit_button.background_color : '' }" @click.prevent="login_or_signup === 'signup' ? onSubmit('signup') : onSubmit('login')">{{ login_or_signup === 'signup' ? '立即付款' : '登入' }}</button> -->
                     <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">登入</button>
-                    <div style="display:flex;align-items: center;justify-content:space-between;width:100%;">
-                        <div class="reg-text2">忘記帳號 / 忘記密碼</div>
+                    <div style="display:flex;align-items: center;justify-content:flex-end;width:100%;">
+                        <!-- <div class="reg-text2">忘記帳號 / 忘記密碼</div> -->
                         <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push('/signup')">快速註冊</div>
                     </div>
                 </div>
@@ -412,6 +412,7 @@ textarea:focus, input:focus{
     font-weight: 500;
     letter-spacing: 2px;
     border-style: none;
+    cursor: pointer;
 }
 .third-party-login {
     color: #24798F;

@@ -3,7 +3,8 @@
         <div class="order-footer">
             <div class="order-footer-see" @click="open_order = true">訂單明細</div>
             <div class="order-footer-cost">共計  <b>&nbsp;&nbsp;NTD&nbsp;{{getPrice}}</b></div>
-            <div class="order-footer-btn" :style="{backgroundColor:ftBtn}" @click="triggerPayEvent">{{payFt}}</div>
+            <div class="order-footer-btn" v-if="data_ok" :style="{backgroundColor:ftBtn}" @click="triggerPayEvent">{{payFt}}</div>
+            <div class="order-footer-btn" v-else style="background-color: #707070;">{{payFt}}</div>
         </div>
         <mamiyoga-window-alert-box v-if="open_order">
             <div class="cancel-box" @click="open_order = false">
@@ -24,7 +25,6 @@
                  <hr style="border-style:none;height:1px;background:#707070;opacity:.5;margin-top:40px;">
                  <p style="color:#24798F;font-size:14px;font-weight:bold;text-align:right;margin-top: 10px;">NTD&nbsp;{{getPrice}}</p>
             </div>
-           
         </mamiyoga-window-alert-box>
     </div>
 </template>
@@ -39,8 +39,10 @@ export default {
         ftBtn: String,
         payFt: String,
         selectPrice: Number,
-        discount: String,
+        discount: Number,
         selectDescription: String,
+        data_ok: Boolean,
+        getPrice: Number,
     },
     components: {
         MamiyogaWindowAlertBox,
@@ -51,9 +53,9 @@ export default {
         }
     },
     computed:{
-        getPrice(){
-            return this.selectPrice - this.discount
-        }
+        // getPrice(){
+        //     return this.selectPrice - this.discount
+        // }
     }
 }
 </script>

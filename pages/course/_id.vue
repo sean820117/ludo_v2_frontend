@@ -2,7 +2,7 @@
     <div>
         <mamiyoga-every-course v-if="!open_explain" @openExplainBox="openExplainBox"
         :course_data="course_data"></mamiyoga-every-course>
-        <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
+        <no-ssr><mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box></no-ssr>
     </div>
 </template>
 

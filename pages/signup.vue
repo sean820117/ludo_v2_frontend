@@ -11,7 +11,7 @@
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">付款前需先註冊成為會員</div>
             <form class="signup-form">
                 <div class="login-column">
-                    <div class="login-column-label">帳號</div>
+                    <div class="login-column-label">使用者暱稱</div>
                     <input name="account" class="login-column-input" type="text" v-model="account" placeholder=""/>
                 </div>
                 <div class="login-column">
@@ -28,7 +28,7 @@
                         <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
                     </div>
                 </div>
-                <div class="reg-text2" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
+                <div class="reg-text2" style="height: 18px;" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
                 <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:left;margin:1vh 0 2vh;color:#24798F;">社群帳號註冊</div>
                 <div class="btn-login-and-signup-container" style="margin-top:0;">
                     <a href="/" style="width:100%;text-decoration:none;">
@@ -46,7 +46,7 @@
                             <div style="width: 62px;display:flex;justify-content:center;">
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
                             </div>
-                            <p>使用Google註冊</p>
+                            <p style="padding-left:5px;">使用Google註冊</p>
                         </div>
                     </a>
                 </div>
@@ -154,7 +154,8 @@ export default {
               if (response.data.status == '200') {
                   console.log("signup success")
                   let login_result = await this.$checkLogin(this.$store);
-                  this.$router.push('/login-redirect')
+                //   this.$router.push('/login-redirect')
+                  this.$router.push('/login-success')
               } else {
                   this.hint = '註冊失敗 - ' + response.data.message;
                   this.hint_color = "red"
@@ -212,8 +213,9 @@ textarea:focus, input:focus{
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    min-height: 100vh;
 }
 .signup-page .mamiyoga-header {
     position: absolute;
@@ -351,6 +353,7 @@ textarea:focus, input:focus{
     font-weight: 500;
     letter-spacing: 2px;
     border-style: none;
+    cursor: pointer;
 }
 .third-party-login {
     color: #24798F;

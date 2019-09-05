@@ -8,7 +8,7 @@
         <!-- <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div> -->
         <hr class="member-line">
         <div class="member-big-btn" @click="$router.push(check_lang + '/writing')">{{$t('member_text_btn_4')}}</div>
-        <div class="member-big-btn" @click="$router.push(check_lang + '/setting')">{{$t('member_text_btn_5')}}</div>
+        <!-- <div class="member-big-btn" @click="$router.push(check_lang + '/setting')">{{$t('member_text_btn_5')}}</div> -->
         <div class="member-big-btn" @click="$router.push(check_lang + '/contactus')">{{$t('member_text_btn_6')}}</div>
 
         <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/menu')">{{$t('member_text_btn_7')}}</div>

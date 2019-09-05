@@ -17,7 +17,7 @@
             </div>
             
             <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
-            <div class="teach-title-video-box" v-if="!show_remind">
+            <div class="teach-title-video-box" v-if="!show_remind && !isLoading">
                 <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
                 <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
                 <div class="teach-course-info">
@@ -29,6 +29,7 @@
                 </div> -->
             </div>
             <div class="teach-detail-box">
+                <!-- <p style="text-align: right; font-size:12px;padding-right:25px;font-weight:300;">觀看次數：320次</p> -->
                 <h6>{{$t('teach_tip_title')}}</h6>
                 <div class="teach-content-text">
                     <div class="teach-content-li" :key="i"
@@ -52,11 +53,14 @@
                     </div>
                 </div>
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
-                <div v-if="!is_beta" style="position:relative">
-                    <button class="teach-assay-btn" v-if="!is_shown_remind"  @click="openRemind()">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" v-else>
+                <div v-if="!is_beta" style="position:relative;margin-top:3vh;">
+                    <p style="color:#FF9898;font-size:12px;font-weight:500;text-align:center;">體驗練習次數為三次</p>
+                    <button class="teach-assay-btn" style="margin-top:1vh;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn" style="margin-top:1vh;" v-if="is_login && can_experience" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn" style="margin-top:1vh;background:#BFBFBF;" v-if="is_login && !can_experience">{{$t('teach_button_upload')}}</button>
+                    <!-- <button class="teach-assay-btn" v-else>
                         <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
-                    </button>
+                    </button> -->
                     <div class="teach-question-box" @click="open_explain = true">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
                     </div>
@@ -123,7 +127,7 @@
                 <button v-show="play_assay" class="see-assay-btn" @click="isLoading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
         </div>
-        <mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box>
+        <no-ssr><mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box></no-ssr>
         <mamiyoga-window-alert-box v-if="is_open">
             <div class="cancel-box" @click="is_open = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -209,6 +213,18 @@
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <mamiyoga-window-alert-box v-if="not_login">
+            <div class="cancel-box" @click="not_login = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
+            </div>
+            <p style="margin-top:40px;color:#FF9898;font-size:14px;font-weight:500;">體驗課程請先登入</p>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-notlogin.png" alt="" style="margin:30px auto 20px;height:25%;width:auto;">
+            <p style="color:#24798F;font-size:13px;">體驗練習次數為三次</p>
+            <div class="star-line-box">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:1px;margin-top:20px;padding:0;background:#24798F;" @click="$router.push('/login')">前往登入</button>
+            </div>
+        </mamiyoga-window-alert-box>
     </div>
 </template>
 
@@ -224,6 +240,7 @@ import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { EMAIL_REGEX } from '~/components/regex.js'
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
     layout:'mamiyoga',
@@ -263,6 +280,11 @@ export default {
         photo_remind: false,
         getBackground: '',
         getRemind: '',
+
+        is_login: false,
+        not_login: false,
+        use_count: 0,
+        can_experience: true,
     }),
     components: {
         MamiyogaTeachHeader,
@@ -303,6 +325,35 @@ export default {
             tip.onended = function(){
                 this.first_show = false
             }.bind(this);
+
+            if(localStorage['use_count']) {
+                this.use_count = localStorage['use_count']
+                if(this.use_count >= 3){
+                    this.can_experience = false
+                }
+            }
+            console.log(this.use_count)
+        }
+    },
+    async beforeCreate() {
+        if (process.client) {
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                this.is_login = false
+                // console.log(login_or_not)
+                // window.alert("尚未登入帳號，請先前往登入～");
+                // this.$router.push('/login');
+            } else {
+                this.is_login = true
+                // let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                // if (!payed_or_not) {
+                //     console.log("not payed");
+                //     window.alert("尚未開通課程，請先前往購買～");
+                //     this.$router.push('/pay');
+                // } else {
+                //     console.log("payed")
+                // }
+            }
         }
     },
     methods: {
@@ -315,8 +366,11 @@ export default {
             } else {
                 this.show_value = '正在上傳'
             }
-            
-            var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','zh-tw')
+            let send_user_id = '0000'
+            if(this.user.user_id) {
+                send_user_id = this.user.user_id
+            }
+            var data = await this.$poseUpload(e.target.files[0],send_user_id,'yoga_27','zh-tw')
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
@@ -324,13 +378,15 @@ export default {
             } else if(data.status == 102) {  
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:"0002",pose_id:"yoga_27",createdAt:data.createdAt})
+                axios.post('/apis/get-pose-result',{user_id:send_user_id,pose_id:"yoga_27",createdAt:data.createdAt})
                     .then((response) => {
                         // console.log(response)
                         console.log(response.data.result.status)
                         if (response.data.result.status == 200) {
                             console.log(response.data.result);
                             this.video_result = response.data.result;
+                            this.use_count++
+                            localStorage['use_count'] = this.use_count
                             clearInterval(get_result_interval);
                         } else if(response.data.result.status == 102) { 
                             console.log("還沒跑完");
@@ -535,10 +591,21 @@ export default {
         }, 
     },
     computed: {
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         showRemindBox(){
             return this.show_remind ? 'open':'';
         }
+    },
+    watch:{
+        use_count(){
+            if(this.use_count >= 3) {
+                this.can_experience = false
+            }
+        }
     }
+    
 }
 </script>
 
@@ -626,7 +693,7 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 5px;
+    top: calc(1vh + 21px);
     left: calc(55vw + 70px);
 }
 .teach-detail-box {
@@ -973,6 +1040,7 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    user-select: none;
 }
 .upload-remind-box {
     width: 150px;
@@ -1018,6 +1086,7 @@ export default {
     .teach-question-box {
         /* right: 30px;
         top: 270px; */
+        /* top: 3vh; */
         left:320px;
     }
     .teach-video-sample {

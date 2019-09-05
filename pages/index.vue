@@ -1,4 +1,5 @@
 <template>
+    <!-- <div v-show="!show_loading"> -->
     <div>
         <div class="index-contain" v-if="!is_beta" style="min-height:100vh;overflow:visible;">
             <!-- <video muted loop autoplay playsinline class="background-video" >
@@ -7,7 +8,7 @@
             </video> -->
              <div class="background-video-contain">
                 <video muted loop autoplay playsinline class="background-video" >
-                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-new-4.mp4" type="video/mp4">      
+                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-new-title-1.mp4" type="video/mp4">      
                 </video>
             </div>
             <div class="mamiyoga-index-intro" style="position: absolute;">
@@ -28,7 +29,7 @@
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree" v-html="$t('index_agree_text')"></p> -->
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
-                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;" @click="goDownWrap">了解更多</p>
+                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
             </div>
@@ -45,12 +46,15 @@
                             <video loop controls autoplay playsinline muted  class="index-wrap-video" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
                                 <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
                             </video>
+                            <!-- <div class="iframe-container">
+                                <iframe src="https://player.vimeo.com/video/347109517?muted=1&loop=1&autoplay=1" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                            </div> -->
                             <div class="intro-wrap-block-first-content">
                                 <div style="display:flex;align-items:center;justify-content: space-between;">
                                     <h1>Mami yoga日本人氣瑜珈</h1>
                                     <div style="display: flex;align-items: center;">
                                         
-                                        <img @click="copyUrl" style="width: 23px;margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-link.png" alt="">
+                                        <img @click="copyUrl()" style="width: 23px;margin-right:5px;cursor:pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-link.png" alt="">
                                         <a style="display:block;width: 23px;height: 23px;margin-right:5px;" href="https://www.addtoany.com/add_to/line?linkurl=https%3A%2F%2Fmamiyoga.ludonow.com%2F&amp;linkname=" target="_blank">
                                             <img style="width: 23px;margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-line.png" alt="">
                                         </a>
@@ -80,7 +84,7 @@
                                 <h3 class="index-article-title">日本媽媽<br>快速恢復身材的秘密</h3>
                                 <p class="index-article-text" style="color:#272727;margin-top:10px;margin-bottom:0;">我們深入研究了日本媽媽，發現日本媽媽的產後休息時間平均只有兩週，而臺灣媽媽卻要....</p>
                                 <router-link to="/information" style="text-decoration:none;">
-                                    <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:20px;margin-bottom:40px;">了解更多&nbsp;</p>
+                                    <p class="index-article-text have-finger" style="color:#FF9898;text-align:right;font-weight:bold;margin-top:20px;margin-bottom:40px;user-select:none;">了解更多&nbsp;</p>
                                 </router-link>
                                 <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt="">
                                 <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。</h6>
@@ -90,7 +94,7 @@
                         <div class="index-article-use-video">
                                 <p class="index-article-out-container-text">獨家線上瑜珈助教</p>
                                 <video class="index-article-use-video-sample" loop autoplay playsinline muted>
-                                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video-1.mp4">
+                                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video-2.mp4">
                                 </video>
                             <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，對動作有疑惑、不確定是否做得正確</p>
                             <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳妳的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
@@ -461,7 +465,7 @@
             </div>
         </mamiyoga-window-alert-box>
         <div class="item">
-            <input type="text" value="https://mamiyoga.ludonow.com/" class="copy-area" id="urlCopied"> 
+            <input type="text" value="https://mamiyoga.ludonow.com" class="copy-area" id="urlCopied"> 
         </div>
     </div>
 </template>
@@ -528,6 +532,7 @@ export default {
         four_person_program: {},
         go_to_where: '/login',
         check_log: '/login',
+        // show_loading: true,
     }),
     components: {
         MamiyogaHeader,
@@ -548,6 +553,22 @@ export default {
         if(process.client) {
             // window.onload = this.showSlides()
             // window.addEventListener('scroll',this.scrollHeight)
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                this.go_to_where = '/login'
+                this.check_log = '/login'
+            } else {
+                this.go_to_where = '/pay'
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                if (!payed_or_not) {
+                    this.check_log = '/pay'
+                } else {
+                    this.check_log = '/menu'
+                }
+                
+            }
+
+
             window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
@@ -569,6 +590,8 @@ export default {
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
+
+            this.$gtag('config', 'UA-136264503-1');
             // console.log(this.products)
         }
         // window.addEventListener('scroll',function(){
@@ -587,28 +610,27 @@ export default {
     beforeDestroy(){
         window.onscroll = null
     },
-    async beforeCreate() {
-        if (process.client) {
-            // this.ui_config = await require('~/config/mommiyoga-config')
-            // this.is_ui_config_loaded = true;
-
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
-                this.go_to_where = '/login'
-                this.check_log = '/login'
-            } else {
-                this.go_to_where = '/pay'
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                if (!payed_or_not) {
-                    this.check_log = '/pay'
-                } else {
-                    this.check_log = '/menu'
-                }
-                
-            }
-        }
-    },
+    // async beforeCreate() {
+    //     if (process.client) {
+    //         // this.ui_config = await require('~/config/mommiyoga-config')
+    //         // this.is_ui_config_loaded = true;
+    //         let loader = await this.$loading.show({
+    //             color:"#1785db",
+    //             loader:"dots",
+    //             opacity: 0.8,
+    //         });
+    //         let show_loading = this.show_loading;
+    //         window.onload = this.onloadEventHandler
+    //         setTimeout(() => {
+    //             loader.hide();
+    //         }, 2000);
+    //     }
+    // },
     methods:{
+        onloadEventHandler(){
+            console.log('ya')
+            this.show_loading = false
+        },
         goTeach(){
             if (this.$i18n.locale == 'JP') {
                 this.$router.push({path:'/jp/teach'})
@@ -720,12 +742,21 @@ export default {
             this.$router.push('/pay')
         },
         copyUrl(){
+            // document.body.appendChild(input);
+            // document.body.removeChild(input);
             let Url = document.getElementById("urlCopied");
-            Url.innerHTML = window.location.href;
-            // console.log(Url.innerHTML)
+            // Url.value = message;
+            console.log(Url)
+            console.log(Url.value.length)
             Url.select();
-            document.execCommand("copy");
+            Url.setSelectionRange(0, Url.value.length)
+            document.execCommand('Copy');
+            // Url.innerHTML = window.location.href;
+            // console.log(Url.innerHTML)
+            // Url.select();
+            // document.execCommand("copy");
             window.alert('已複製連結')
+            this.$scrollTo('#wrap','start')
         },
         clickToPay(){
             this.$router.push(this.go_to_where)
@@ -865,6 +896,7 @@ export default {
     font-size: 16px;
     font-weight: bold;
     opacity: .5;
+    user-select: none;
 }
 .about-course-block,.love-feedback-block  {
     /* display: none; */
@@ -964,6 +996,7 @@ export default {
     position: relative;
     padding-top: 40px;
     background: #1b7184;
+    /* background: #33838f; */
     padding-bottom: 50px;
 }
 .index-article-use-video-sample {
@@ -1609,7 +1642,7 @@ export default {
         max-width: 450px;
     }
     .index-article-use-video {
-        background: #1f7d91;
+        background: #33838f;
     }
     .mamiyoga-each-course,.mamiyoga-course-video,
     .mamiyoga-course-middle,.mamiyoga-course-bottom,

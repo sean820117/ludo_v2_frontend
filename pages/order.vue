@@ -73,7 +73,7 @@
                         <input class="order-form-input" type="tel" name="shop-recipient-tel" id="shop-recipient-tel" placeholder="（+886）953 840 329">
                     </div> -->
                     <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
-                    <input type="checkbox" name="agree" id="agree" style="display:none;">
+                    <input type="checkbox" name="agree" id="agree" style="display:none;" v-model="check_agree">
                     <label for="agree" class="agree-checkbox-label-label">
                         <div class="agree-checkbox-label">
                             <div class="agree-checkbox">
@@ -86,8 +86,10 @@
                 </div>
             </div>
             <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
-            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  discount="0" @goPay="goPay"
-            :selectPrice="picked_plan.price" :selectDescription="picked_plan.description"></mamiyoga-order-footer>
+            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  
+            :discount="getDiscount(picked_plan.price)" @goPay="goPay" :data_ok="data_ok"
+            :getPrice="checkPrice(picked_plan.price)" :selectPrice="picked_plan.price"
+             :selectDescription="picked_plan.description"></mamiyoga-order-footer>
         </div>
         <mamiyoga-window-alert-box v-if="is_payed">
             <div class="cancel-box" @click="is_payed = false">
@@ -141,6 +143,7 @@ export default {
         hint:'',
         hint_color:'',
         is_payed: false,
+        check_agree: false,
     }),
     components: {
         MamiyogaPayHeader,
@@ -199,6 +202,20 @@ export default {
                 return
             }
             document.getElementById('order-form').submit();
+        },
+        checkPrice(price){
+            if(sessionStorage['count_picked_plan']) {
+                return parseInt(sessionStorage['count_picked_plan'])
+            } else {
+                return price
+            }
+        },
+        getDiscount(price){
+            if(sessionStorage['count_picked_plan']) {
+                return price - parseInt(sessionStorage['count_picked_plan'])
+            } else {
+                return 0
+            }
         }
     },
     watch:{
@@ -211,6 +228,13 @@ export default {
             // this.current_county = this.zipcode.filter(current => current.county == c.county)
             // console.log(this.current_county)
             // debugger
+        }
+    },
+    computed:{
+        data_ok(){
+            if(this.order_name && this.order_phone && this.order_email && this.check_agree == true) {
+                return true
+            }
         }
     }
 }

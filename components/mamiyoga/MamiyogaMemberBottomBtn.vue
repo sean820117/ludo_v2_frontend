@@ -1,13 +1,21 @@
 <template>
     <div class="member-bottom-btn">
-        <div class="member-big-btn" style="background:#97A8AF;" @click="$router.push('/menu')">回到課程</div>
+        <div class="member-big-btn" style="background:#97A8AF;" v-if="!is_serialno" @click="$router.push('/menu')">回到課程</div>
+        <div class="member-big-btn" style="background:#24798F;" v-else @click="openExchange">兌換序號</div>
         <div class="member-big-btn member-big-btn-center" style="margin-top:1vh;" @click="$router.push('/member')">學員中心</div>
     </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        is_serialno: false
+    },
+    methods:{
+        openExchange(){
+            this.$emit('openExchange');
+        }
+    }
 }
 </script>
 

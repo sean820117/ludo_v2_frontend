@@ -67,7 +67,6 @@
                 </div>
             </div> -->
             <div class="hooper">
-                <no-ssr>
                     <carousel :perPage="1" :centerMode="true"  :autoplay="false" :paginationPadding="3"
                     :paginationSize="8" :paginationColor="'#8DB9C5'" :paginationActiveColor="'#FFFFFF'" 
                     :loop="true"
@@ -101,7 +100,6 @@
                             </div>
                         </slide>
                     </carousel>
-                </no-ssr>
             </div>
         </div>
         <div class="open-teach-video-btn">
@@ -358,7 +356,7 @@ export default {
     height: 55vh !important;
 }
 .open-teach-video-btn {
-    margin-top: 13vh;
+    margin-top: 11vh;
 }
 .explain-bottom-btn {
     margin-top:1vh;

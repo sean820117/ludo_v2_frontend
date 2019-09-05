@@ -198,7 +198,7 @@
             聯系方式電子信箱：contact@ludonow.com<br></p>
         </div>
         <div class="privacy-btn">
-            <button class="mamiyoga-btn" @click="$router.push('/')">返回</button>
+            <button class="mamiyoga-btn" @click="$router.go(-1)">返回</button>
         </div>
     </div>
 </template>

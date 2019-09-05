@@ -41,7 +41,7 @@
         </div>
         <div class="privacy-btn">
                 <!-- <mamiyoga-btn btnText="返回" bgColor="#9BAEB2" ftColor="#ffffff"></mamiyoga-btn> -->
-            <button class="mamiyoga-btn" @click="$router.push('/')">返回</button>
+            <button class="mamiyoga-btn" @click="$router.go(-1)">返回</button>
         </div>
     </div>
 </template>

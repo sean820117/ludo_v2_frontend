@@ -4,7 +4,7 @@
             <div class="mamiyoga-header">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
-                    <div class="mamiyoga-header-cancel-btn" @click="$router.push('/menu')"></div>
+                    <div class="mamiyoga-header-cancel-btn" @click="goIndex()"></div>
                 </div>
             </div>
             <div class="reg-text" style="margin-top:5vh;">註冊成功</div>
@@ -12,7 +12,7 @@
             <div class="reg-text2" style="width:67%;max-width: 320px;font-size:13px;margin:0 0 2vh;color:#24798F;">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
         
             <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                <div class="mamiyoga-login-btn-to-signin" @click="$router.push('/pay')">購買課程</div>
+                <div class="mamiyoga-login-btn-to-signin" @click="goPay()">購買課程</div>
                 <div class="mamiyoga-login-btn-to-signin" style="margin-top:2vh;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="exchange = true">我有序號</div>  
             </div>
         </div>
@@ -36,16 +36,35 @@ export default {
     }),
     components:{
         MamiyogaWindowAlertBox,
+    },
+    async beforeCreate() {
+        if (process.client) {
+            if(localStorage['is_signup_success']){
+                    window.alert("你已經註冊了");
+                    this.$router.push('/menu')
+            }
+        }
+    },
+    methods:{
+        goIndex(){
+            localStorage['is_signup_success'] = true
+            this.$router.push('/menu')
+        },
+        goPay(){
+            localStorage['is_signup_success'] = true
+            $router.push('/pay')
+        }
     }
 }
 </script>
 <style>
 .login-success-page {
     text-align: center;
-    height: 100%;
+    min-height: 100vh;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 .login-success-page .mamiyoga-header {
@@ -135,5 +154,10 @@ export default {
     display: block;
     margin: 30px auto 15px;
     padding-left: 5px;
+}
+@media (min-width: 769px) {
+    .login-success-page .mamiyoga-header {
+        width: 450px;
+    }
 }
 </style>
