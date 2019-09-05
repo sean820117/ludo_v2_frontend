@@ -69,21 +69,6 @@ module.exports = {
         // scriptURL: '//example.com'
       },
     ],
-    ['@nuxtjs/google-gtag',{
-      id: 'UA-136264503-2',
-      config: {
-        'send_page_view': true,
-        'anonymize_ip': false,  
-      },
-      debug: true,
-      disableAutoPageTrack: true,
-      // additionalAccounts: [{
-      //   id: 'UA-137420846-2',
-      //   config: {
-      //     'send_page_view': false
-      //   }
-      // }]
-    }],
     [
       'nuxt-i18n', {
         locales: [
