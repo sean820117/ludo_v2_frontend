@@ -464,7 +464,7 @@
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button>
             </div>
         </mamiyoga-window-alert-box>
-        <div class="item">
+        <div class="item" style="position:fixed;bottom:-100px;">
             <input type="text" value="https://mamiyoga.ludonow.com" class="copy-area" id="urlCopied"> 
         </div>
     </div>
@@ -591,7 +591,7 @@ export default {
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
 
-            this.$gtag('config', 'UA-136264503-1');
+            // this.$gtag('config', 'UA-136264503-1');
             // console.log(this.products)
         }
         // window.addEventListener('scroll',function(){

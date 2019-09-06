@@ -13,7 +13,7 @@
                     <div class="company-input-submit-btn" style="float:right;" @click="submitText">送出</div>
                 </div>
             </div>
-            <mamiyoga-member-bottom-btn></mamiyoga-member-bottom-btn>
+            <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;"></mamiyoga-member-bottom-btn>
         </div>
         <mamiyoga-window-alert-box v-if="is_submited">
             <div class="cancel-box" @click="is_submited = false">

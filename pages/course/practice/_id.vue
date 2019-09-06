@@ -340,7 +340,7 @@ export default {
                             } else if(response.data.result.error_code == -11) {
                                 console.log(response)
                                 this.is_error = true;
-                                this.errorText = '注意周邊是否有反光、鏡射材質<br>導致影子或鏡像入鏡！';
+                                this.errorText = '無法偵測動作過程<br>注意是否倒影入鏡或穿著過於寬鬆';
                                 this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-11.png';
                                 this.isLoading = false;
                                 clearInterval(get_result_interval);

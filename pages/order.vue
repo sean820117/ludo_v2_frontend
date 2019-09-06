@@ -20,7 +20,7 @@
                     <label class="order-form-label" for="tel">電子信箱</label>
                     <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
                     <input type="hidden" name="item_id" :value="picked_plan.item_id">
-                    <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
+                    <input type="hidden" name="coupon_id" :value="coupon_id">
                     <input type="hidden" name="payment_type" v-model="order_payment" value="">
                     <input type="hidden" name="return_url" :value="order_return">
                     <input type="hidden" name="user_id" :value="user.user_id">
@@ -147,6 +147,9 @@ export default {
         hint_color:'',
         is_payed: false,
         check_agree: false,
+
+        coupon_id: 'null',
+        coupon_count: '',
     }),
     components: {
         MamiyogaPayHeader,
@@ -165,12 +168,11 @@ export default {
                 this.products[i].price = response.data.price
                 this.products[i].slogan = response.data.slogan
                 this.products[i].description = response.data.description
-                
             }
             // this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             // this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.picked_plan = this.products.find(plan => plan.price == sessionStorage['picked_plan'])
-            // console.log(this.picked_plan)
+            console.log(this.picked_plan)
             this.zipcode_data = twzipcode()
             // console.log(this.zipcode_data)
 
@@ -178,15 +180,19 @@ export default {
             this.city = this.zipcode_data.counties
             this.current_county  = this.zipcode.filter(c => c.county == this.select_county)
 
+            if(sessionStorage['current_coupon']) {
+                this.coupon_id = sessionStorage['current_coupon']
+            }
+
+            if(sessionStorage['count_picked_plan']) {
+                this.coupon_count = sessionStorage['count_picked_plan']
+            }
             // console.log(this.zipcode)
             // console.log(this.city)
         }
     },
     methods:{
         goPay(){
-            console.log(this.order_name)
-            console.log(this.order_phone)
-            console.log(this.order_email)
             if (this.order_email.length === 0) {
                 this.hint = '請填寫電子信箱欄位'
                 this.hint_color = "red"
@@ -204,22 +210,38 @@ export default {
                 this.hint_color = "red"
                 return
             }
+            // let form = new FormData();
+            // form.append('name',this.order_name)
+            // form.append('phone',this.order_phone)
+            // form.append('email',this.order_email)
+            // form.append('item_id',this.picked_plan.item_id);
+            // form.append('coupon_id',this.coupon_id)
+            // form.append('return_url',this.order_return)
+            // form.append('user_id',this.user.user_id)
             document.getElementById('order-form').submit();
         },
         checkPrice(price){
-            if(sessionStorage['count_picked_plan']) {
-                return parseInt(sessionStorage['count_picked_plan'])
+            if(this.coupon_count) {
+                return parseInt(this.coupon_count)
             } else {
                 return price
             }
         },
         getDiscount(price){
-            if(sessionStorage['count_picked_plan']) {
-                return price - parseInt(sessionStorage['count_picked_plan'])
+            if(this.coupon_count) {
+                return price - parseInt(this.coupon_count)
             } else {
                 return 0
             }
-        }
+        },
+        // getCoupon(){
+        //     if(sessionStorage['count_picked_plan']) {
+        //         return sessionStorage['count_picked_plan']
+        //     } else {
+        //         return ''
+        //     }
+        //     console.log(sessionStorage['count_picked_plan'])
+        // }
     },
     watch:{
         select_county: function(new_value,old_value) {

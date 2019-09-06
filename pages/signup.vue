@@ -100,15 +100,6 @@ export default {
                 window.alert('你已經登入了')
                 this.$router.push('/menu')
             }
-            //ga
-            // let gtag_config = {}
-            // gtag_config.page_title = 'login';
-            // gtag_config.page_path = this.$route.path;
-            // this.$gtag('js', new Date());
-            // this.$gtag('config', 'AW-739537538');
-            // this.$gtag('config', 'UA-123332732-3', gtag_config);
-            // this.$fbq("init",this.ui_config.fbq_id);
-            // this.$fbq("track","PageView");
         }
     },
     components: {

@@ -6,15 +6,16 @@
                 <div class="pay-little-title">序號資訊</div>
                 <hr style="margin: 5px 0;opacity: .5;">
                 <div class="serialno-number-block" v-if="serialno_data != ''">
-                    <div class="serialno-number-base-data" v-for="(serialno,i) in serialno_data" :key="i">
+                    <div class="serialno-number-base-data" v-for="(serialno,i) in serialno_data" :key="i" stagger="150" >
                         <p class="serialno-number-date">{{setRecordDate(serialno.created_timestamp)}}</p>
                         <p class="serialno-number-text">寄送手機：{{serialno.phone}}</p>
                         <p class="serialno-number-text">訂單號碼：{{serialno.order_id}}</p>
                         <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
-                        <div class="serialno-every-number" v-for="(code , index) in serialno.codes" :key="index">
+                        <div class="serialno-every-number" v-for="(code, index) in serialno.codes" :key="index">
                             <div class="serialno-number">
-                                <p style="color:#24798F;font-weight:600;">{{code}}</p>
-                                <p style="color:#FF9898;"></p>
+                                <p style="color:#24798F;font-weight:600;">{{code.code}}</p>
+                                <p style="color:#FF9898;" v-if="!code.available">已啟用</p>
+                                <p style="color:#707070;" v-else>尚未啟用</p>
                             </div>
                             <p style="font-size: 12px;font-weight:lighter;"></p>
                         </div>
@@ -24,7 +25,7 @@
                     <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
                 </div>
             </div>
-            <mamiyoga-member-bottom-btn :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn>
+            <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;" :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn>
         </div>
         <mamiyoga-window-alert-box v-if="open_exchange">
             <div class="cancel-box" @click="open_exchange = false">
@@ -32,13 +33,14 @@
             </div>
             <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">兌換序號</div>
             <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入折扣序號</div>
-            <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字">
-            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="open_exchange = false">兌換</div>
+            <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字" v-model="input_serialno">
+            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="checkInputSerialno">兌換</div>
         </mamiyoga-window-alert-box>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
@@ -52,8 +54,18 @@ export default {
         MamiyogaWindowAlertBox,
     },
     data:()=>({
-        serialno_data: [],
+        serialno_data: [
+            {
+                codes: [
+                    {
+                        code: '',
+                        available: false,
+                    }
+                ],
+            }
+        ],
         open_exchange: false,
+        input_serialno: '',
     }),
     async beforeCreate() {
         if (process.client) {
@@ -68,18 +80,25 @@ export default {
                 // let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
                 let send_data = {user_id:this.user.user_id,item_id:'MY01'}
                 const form_res = await axios.post('/apis/get-order-info',send_data);
-                console.log(send_data)
-                console.log(form_res)
                 if(form_res.status == 200) {
-                    for(var i = 0;i < form_res.data.length; i++) {
-                        this.serialno_data = form_res.data
-                        
+                    this.serialno_data = form_res.data
+                    console.log(form_res.data)
+                    for(var i = 0;i < this.serialno_data.length; i++) {
+                        // let codes = this.serialno_data[i].codes//['juju'] => [{code:'juju',available:true},]
+                        for(var j = 0;j <this.serialno_data[i].codes.length;j++) {
+                            // let code = this.serialno_data[i].codes[j]
+                            try {
+                                const code_res = await axios.post('/apis/get-activation-code', {code_id: this.serialno_data[i].codes[j]})
+                                this.serialno_data[i].codes[j] = {code: this.serialno_data[i].codes[j], available: code_res.data.available}
+                            } catch (error) {
+                                
+                            }
+                        }
                     }
-                    console.log(this.serialno_data)
+                    
                 } else {
                     alert('unknown error')
                 }
-
             }
         }
     },
@@ -89,13 +108,28 @@ export default {
             let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
             let month = (update.getMonth()+1) < 10 ? '0'+(update.getMonth()+1) : (update.getMonth()+1);
             return update.getFullYear()+'/'+month+'/'+day;
+        },
+        async checkInputSerialno(){
+            if(this.input_serialno != '') {
+                let send_data = {user_id: this.user.user_id, code_id: this.input_serialno, course_id: 'mamiyoga'}
+                console.log(send_data)
+                try {
+                    const serialno_code = await axios.post('/apis/redeem-activation-code',send_data)
+                } catch(error) {
+                    
+                }    
+            } else {
+                alert('請輸入序號！')
+            }
         }
     },
     computed:{
         ...mapGetters({
             user : 'user/getData',
         }),
+        
     },
+    
 }
 </script>
 
@@ -104,6 +138,8 @@ export default {
     padding-top: 45px;
     margin: 0 auto;
     width: 90%;
+    /* min-height: 100vh; */
+    background: white;
     /* height: 100vh;  */
 }
 .pay-little-title {
@@ -113,8 +149,11 @@ export default {
 }
 .serialno-number-block {
     width: 80%;
-    height: 45vh;
-    margin: 6vh auto 0;
+    /* height: 45vh; */
+    margin: 2vh auto 0;
+}
+.serialno-number-base-data {
+    margin-top: 3vh;
 }
 .serialno-number-date {
     font-size: 14px;

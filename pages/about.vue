@@ -108,19 +108,19 @@ export default {
     height: 100vh;
 }
 .about-teacher:first-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-1.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-new-1.png');
     background-position: center;
 }
 .about-teacher:nth-child(2) {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-2.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-new-2.png');
     background-position: center;
 }
 .about-teacher:nth-child(3) {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-3.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-new-3.png');
     background-position: 40%;
 }
 .about-teacher:last-child {
-    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-4.png');
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-background-new-4.png');
 }
 .about-teacher:nth-child(2)::after,
 .about-teacher:nth-child(3)::after,

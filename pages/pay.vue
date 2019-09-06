@@ -206,11 +206,14 @@ export default {
             //     product.slogan = response.data.slogan
             //     product.description = response.data.description
             // });
-            
+
             // console.log(this.products)
             if(sessionStorage['picked_plan']){
                 this.picked = parseInt(sessionStorage['picked_plan'])
             }
+            
+            sessionStorage['current_coupon'] = null; // unset coupon
+
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             if(this.picked == 0) {
@@ -243,17 +246,22 @@ export default {
             if(this.get_coupon) {
                 let picked_plan = this.products.find(plan => plan.price == this.picked)
                 let send_data = {coupon_id:this.get_coupon}
-                const coupon_data = await axios.post('/apis/check-coupon',send_data);
+                
                 // if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) {
-                if(coupon_data.status == 200) { 
-                    alert('輸入成功')
-                    this.discount = coupon_data.data.discount
-                    sessionStorage['count_picked_plan'] = this.countPrice(this.picked)
-                    this.$router.push('/order')
-                } else {
+                
+                try {
+                    const coupon_data = await axios.post('/apis/check-coupon',send_data);
+                    if(coupon_data.status == 200) { 
+                        alert('輸入成功')
+                        this.discount = coupon_data.data.discount
+                        sessionStorage['count_picked_plan'] = this.countPrice(this.picked)
+                        sessionStorage['current_coupon'] = this.get_coupon;
+                        this.$router.push('/order')
+                    }
+                } catch (error) {
+                    sessionStorage['current_coupon'] = null;
                     alert('折扣碼錯誤')
                 }
-                console.log(coupon_data)
             } else {
                 window.alert('請輸入折扣序號！')
             }
