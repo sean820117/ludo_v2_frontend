@@ -387,7 +387,7 @@ export default {
                             this.video_result = response.data.result;
                             this.use_count++
                             localStorage['use_count'] = this.use_count
-                            clearInterval(get_result_interval);
+                            clearInterval( );
                         } else if(response.data.result.status == 102) { 
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
