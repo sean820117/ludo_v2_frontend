@@ -445,6 +445,7 @@
                     </div>
                 </div>
                 <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
+                <p class="mamiyoga-intro-agree">contact us: contact@ludonow.com</p>
             </div>
         </div>
 

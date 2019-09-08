@@ -295,7 +295,7 @@ export default {
             } else {
                 this.show_value = '正在上傳'
             }
-            
+            this.video_result = {};
             var data = await this.$poseUpload(e.target.files[0],"0002",'yoga_27','zh-tw')
             console.log(data.status)
             if(!data) {

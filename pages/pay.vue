@@ -169,11 +169,16 @@ export default {
         if(process.client) {
             for (let i = 0; i < this.products.length; i++) {
                 let send_data = {item_id: this.products[i].item_id};
-                const response = await axios.post('/apis/get-shop-item',send_data);
-                this.products[i].item_name = response.data.item_name
-                this.products[i].price = response.data.price
-                this.products[i].slogan = response.data.slogan
-                this.products[i].description = response.data.description
+                try {
+                    const response = await axios.post('/apis/get-shop-item',send_data);
+                    this.products[i].item_name = response.data.item_name
+                    this.products[i].price = response.data.price
+                    this.products[i].slogan = response.data.slogan
+                    this.products[i].description = response.data.description
+                } catch (error) {
+                    alert('無法取得商品資訊')
+                }
+                
             }
             // await this.products.forEach(async (product) => {
             //     let send_data = {item_id: product.item_id};

@@ -253,6 +253,7 @@ export default {
             } else {
                 this.show_value = '等待上傳'
             }
+            this.video_result = {};
             var data = await this.$poseUpload(e.target.files[0],'0000',pose_id,this.lang_click)
             console.log(data.status)
             if(!data) {
