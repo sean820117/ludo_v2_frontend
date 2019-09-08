@@ -3,7 +3,7 @@
         <div class="mamiyoga-explain-close" @click="closeBox">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/close-box.png" alt="">
         </div>
-        <div class="mamiyoga-explain-content"  v-touch:swipe.left="nextSlides" v-touch:swipe.right="lastSlides">
+        <div class="mamiyoga-explain-content">
             <!-- <hooper :autoPlay="true"> -->
             <!-- <hooper>
                 <slide>
@@ -33,7 +33,7 @@
                 </slide>
                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
             </hooper> -->
-            <div class="hooper">
+            <!-- <div class="hooper">
                 <div class="slides fade">
                     <h5>{{$t('explain_title_first')}}</h5>
                     <p class="explain-light-text first-explain" style="margin-top: 5vh;" v-html="$t('explain_text_first_1')"></p>
@@ -65,11 +65,45 @@
                     <span class="dot" @click="currentSlide(3)"></span> 
                     <span class="dot" @click="currentSlide(4)"></span> 
                 </div>
+            </div> -->
+            <div class="hooper">
+                    <carousel :perPage="1" :centerMode="true"  :autoplay="false" :paginationPadding="3"
+                    :paginationSize="8" :paginationColor="'#8DB9C5'" :paginationActiveColor="'#FFFFFF'" 
+                    :loop="true"
+                    :spacePadding="10" :paginationEnabled="true" :scrollPerPage="false">
+                        <slide class="slides ">
+                            <h5>{{$t('explain_title_first')}}</h5>
+                            <div >
+                                <img class="show-tip-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-explain-remind-1.png" alt="">
+                            </div>
+                            <!-- <p class="explain-light-text first-explain" style="margin-top:10px;" v-html="$t('explain_text_first_1')"></p>
+                            <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-1-1.png" alt="">
+                            <p class="explain-light-text first-explain" v-html="$t('explain_text_first_2')"></p>
+                            <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-2-1.png" alt="">
+                            <p class="explain-light-text first-explain" v-html="$t('explain_text_first_3')"></p>
+                            <img class="explain-suggest-wear-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-suggest-3-1.png" alt=""> -->
+                        </slide>
+                        <slide class="slides ">
+                            <h5>{{$t('explain_title_secord')}}</h5>
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-1.png" alt="">
+                            <p class="explain-bold-text">{{$t('explain_text_secord')}}</p>
+                        </slide>
+                        <slide class="slides ">
+                            <h5>{{$t('explain_title_third')}}</h5>
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/explain-2.png" alt="">
+                            <p class="explain-bold-text">{{$t('explain_text_third')}}</p>
+                        </slide>
+                        <slide class="slides ">
+                            <h5 style="margin-bottom:4vh">{{$t('sample_video_title')}}</h5>
+                            <div >
+                                <img class="show-tip-img" :src="$t('explain_tip_img')" alt="">
+                            </div>
+                        </slide>
+                    </carousel>
             </div>
         </div>
         <div class="open-teach-video-btn">
-            <!-- <mamiyoga-btn bgColor="#FF9898" ftColor="#F7F7F7" :btnText="$t('explain_btn_video')" style="margin-bottom:5vh;"></mamiyoga-btn> -->
-            <button class="mamiyoga-btn" style="letter-spacing:0;margin-bottom:5vh;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
+            <button class="mamiyoga-btn explain-bottom-btn" style="letter-spacing:0;background-color:#FF9898;color:#f7f7f7;" @click="show_video = true">{{$t('explain_btn_video')}}</button>    
         </div>
         <div class="video-tips" v-if="show_video">
             <div class="video-tips-box">
@@ -78,8 +112,7 @@
             <div class="close-tips-box" @click="show_video = false">
                 <p>Skip></p>
             </div>
-        </div>
-        
+        </div> 
     </div>
 </template>
 
@@ -88,15 +121,15 @@ import Vue from 'vue';
 
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 import MamiyogaVideoSample from '~/components/mamiyoga/MamiyogaVideoSample.vue'
-import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
-import 'hooper/dist/hooper.css';
-import Vue2TouchEvents from 'vue2-touch-events'
+// import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
+// import 'hooper/dist/hooper.css';
+// import Vue2TouchEvents from 'vue2-touch-events'
 
 // import VueCarousel from 'vue-carousel';
 // import { Carousel, Slide } from 'vue-carousel';
 
 // Vue.use(VueCarousel);
-Vue.use(Vue2TouchEvents)
+// Vue.use(Vue2TouchEvents)
 export default {
     data:()=>({
         show_video: false,
@@ -105,15 +138,15 @@ export default {
     components: {
         MamiyogaBtn,
         MamiyogaVideoSample,
-        Hooper,
-        Slide,
-        HooperPagination,
+        // Hooper,
+        // Slide,
+        // HooperPagination,
         // Carousel :()=> import('vue-carousel'),
         // Slide:()=> import('vue-carousel'),
     },
     async mounted(){
         if(process.client){
-            window.onload = this.showSlides()
+            // window.onload = this.showSlides()
             // let video = document.getElementById('sample-video')
             // if(video) {
             //     video.onended = ()=> {
@@ -129,34 +162,34 @@ export default {
         closeVideo(){
             this.show_video = false
         },
-        showSlides() {
-            var slides = document.getElementsByClassName("slides");
-            var dots = document.getElementsByClassName("dot");
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            // console.log(this.slideIndex)
-            if (this.slideIndex > slides.length-1) {
-                this.slideIndex = 0
-            } else if( this.slideIndex < 0) {
-                this.slideIndex = 3
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" dotactive", "");
-            }
-            slides[this.slideIndex].style.display = "block";  
-            dots[this.slideIndex].className += " dotactive";
-            // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
-        },
-        nextSlides() {
-            this.showSlides(this.slideIndex += 1);
-        },
-        lastSlides() {
-            this.showSlides(this.slideIndex -= 1);
-        },
-        currentSlide(n) {
-            this.showSlides(this.slideIndex = n-1);
-        }
+        // showSlides() {
+        //     var slides = document.getElementsByClassName("slides");
+        //     var dots = document.getElementsByClassName("dot");
+        //     for (var i = 0; i < slides.length; i++) {
+        //         slides[i].style.display = "none";  
+        //     }
+        //     // console.log(this.slideIndex)
+        //     if (this.slideIndex > slides.length-1) {
+        //         this.slideIndex = 0
+        //     } else if( this.slideIndex < 0) {
+        //         this.slideIndex = 3
+        //     }
+        //     for (i = 0; i < dots.length; i++) {
+        //         dots[i].className = dots[i].className.replace(" dotactive", "");
+        //     }
+        //     slides[this.slideIndex].style.display = "block";  
+        //     dots[this.slideIndex].className += " dotactive";
+        //     // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
+        // },
+        // nextSlides() {
+        //     this.showSlides(this.slideIndex += 1);
+        // },
+        // lastSlides() {
+        //     this.showSlides(this.slideIndex -= 1);
+        // },
+        // currentSlide(n) {
+        //     this.showSlides(this.slideIndex = n-1);
+        // }
     }
 }
 </script>
@@ -323,7 +356,10 @@ export default {
     height: 55vh !important;
 }
 .open-teach-video-btn {
-    margin-top: 13vh;
+    margin-top: 11vh;
+}
+.explain-bottom-btn {
+    margin-top:1vh;
 }
 @media (min-width: 769px) {
     .mamiyoga-explain {
@@ -343,7 +379,7 @@ export default {
         width: 100%;
         height: 80vh;
         margin: 0 auto;
-        padding-top: 10vh;
+        padding-top: 5vh;
     }
     .mamiyoga-explain-content h5 {
         text-align: center;
@@ -362,7 +398,7 @@ export default {
         font-size: 14px;
         font-weight: bold;
         width: 80%;
-        margin: 5vh auto 0;
+        margin: 4vh auto 0;
     }
     .mamiyoga-explain .hooper {
         width: 100%;
@@ -396,10 +432,11 @@ export default {
         bottom: 20vh;
     }
     .show-tip-img{
-        height: 40vh !important;
+        height: 45vh !important;
+        min-height: 420px;
     }
     .open-teach-video-btn {
-        margin-top: 5vh;
+        margin-top: 8vh;
     }
     .first-explain {
         width: 240px !important;
@@ -412,6 +449,9 @@ export default {
     }
     .close-tips-box {
         transform: rotate(0deg);
+    }
+    .explain-bottom-btn {
+        margin-top:0;
     }
 }
 

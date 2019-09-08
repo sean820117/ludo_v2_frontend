@@ -11,10 +11,10 @@
                     LUDO Now如荼生活
                 </div>
             </a>
-            <a href="mailto:contacts@ludonow.com" style="text-decoration:none;">
+            <a href="mailto:contact@ludonow.com" style="text-decoration:none;">
                 <div class="contactus-big-btn">
                     <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-mail.png')"></div>
-                    contacts@ludonow.com
+                    contact@ludonow.com
                 </div>
             </a>
         </div>

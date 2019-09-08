@@ -1,17 +1,36 @@
 <template>
     <div>
-        <!-- <mamiyoga-course-menu bgImage="/mamiyoga/background-menu.png" menuTitle="日本mami人氣課程"></mamiyoga-course-menu> -->
-        <mamiyoga-carousel-comments></mamiyoga-carousel-comments>
+        <button style="width:100px;height:50px;" @click="getFrequency">test</button>
     </div>
 </template>
 
 <script>
-import MamiyogaCourseMenu from '~/components/mamiyoga/MamiyogaCourseMenu.vue';
-import MamiyogaCarouselComments from '~/components/mamiyoga/MamiyogaCarouselComments.vue'
+
 export default {
+    data:()=>({
+        count: 0,
+    }),
     components: {
-        MamiyogaCourseMenu,
-        MamiyogaCarouselComments,
+        
+    },
+    mounted(){
+        if(localStorage['user_use_count']) {
+            this.count = localStorage['user_use_count']
+        }
+    },
+    methods: {
+        getFrequency(){
+            this.count++
+            console.log(this.count)
+            localStorage['user_use_count'] = this.count
+        }
+    },
+    watch:{
+        count(){
+            if(this.count >= 3) {
+                console.log('error')
+            }
+        }
     }
 }
 </script>

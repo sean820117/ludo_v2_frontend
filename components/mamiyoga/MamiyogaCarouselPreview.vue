@@ -1,6 +1,5 @@
 <template>
     <div>
-        <no-ssr>
         <carousel :perPage="1" :centerMode="true"  :autoplay="false" :paginationPadding="5"
         :paginationSize="8" :paginationColor="'#D1D1D1'" :paginationActiveColor="'#707070'" 
         :loop="true"
@@ -46,7 +45,6 @@
                 </div>
             </slide>
         </carousel>
-        </no-ssr>
     </div>
 </template>
 

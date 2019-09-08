@@ -34,10 +34,6 @@ export default {
     methods: {
         showReceipt(){
             this.displayReceipt = true;
-            this.$gtag('event', 'Click', {
-                'event_category': 'EC',
-                'event_label': '電子發票_更多',
-            });
         },
         onReceiptTypeChange(type) {
             this.receipt.receipt_type = type;

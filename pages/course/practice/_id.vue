@@ -254,7 +254,11 @@ export default {
                 this.show_value = '等待上傳'
             }
             this.video_result = {};
-            var data = await this.$poseUpload(e.target.files[0],'0000',pose_id,this.lang_click)
+            let send_user_id = '0000'
+            if(this.user.user_id) {
+                send_user_id = this.user.user_id
+            }
+            var data = await this.$poseUpload(e.target.files[0],send_user_id,pose_id,this.lang_click)
             console.log(data.status)
             if(!data) {
                 if(this.$i18n.locale == 'JP') {
@@ -266,7 +270,7 @@ export default {
             } else if(data.status == 102) {  
                 let timeout_limit = 0;
                 let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:'0000',pose_id:pose_id,createdAt:data.createdAt})
+                axios.post('/apis/get-pose-result',{user_id:send_user_id,pose_id:pose_id,createdAt:data.createdAt})
                     .then((response) => {
                         // console.log(response)
                         console.log(response.data.result.status)
@@ -336,7 +340,7 @@ export default {
                             } else if(response.data.result.error_code == -11) {
                                 console.log(response)
                                 this.is_error = true;
-                                this.errorText = '注意周邊是否有反光、鏡射材質<br>導致影子或鏡像入鏡！';
+                                this.errorText = '無法偵測動作過程<br>注意是否倒影入鏡或穿著過於寬鬆';
                                 this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-11.png';
                                 this.isLoading = false;
                                 clearInterval(get_result_interval);
@@ -675,6 +679,12 @@ export default {
     .record-box {
         width: 90%;
         left: 5%;
+    }
+    .loading-bar {
+        width: 450px;
+    }
+    .mamiyoga-show-article {
+        width: 80%;
     }
 }
 </style>

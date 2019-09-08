@@ -48,7 +48,7 @@
                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
                                 <div>
                                     <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                    <p style="font-weight:300;">另外三組課程序號將寄到你的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                    <p style="font-weight:300;">另外三組課程序號將寄到妳的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
                                 </div>
                             </div>
                             <!-- <hr class="select-pay-content-line">
@@ -82,14 +82,14 @@
                                 </div>
                             </div>
                             <hr class="select-pay-content-line">
-                            <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name">
+                            <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name" v-model="company_name">
                             <div class="company-input-box">
-                                <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name">
-                                <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position">
+                                <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name" v-model="contact_name">
+                                <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position" v-model="contact_position">
                             </div>
                             <div class="company-input-box">
-                                <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel">
-                                <input class="company-input" placeholder="工作郵箱" type="email" name="contact-phone" id="contact-phone">
+                                <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
+                                <input class="company-input" placeholder="工作信箱" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
                             </div>
                             <div class="company-input-box" style="justify-content: flex-end;">
                                 <div class="company-input-submit-btn" @click="submitData">送出資料</div>
@@ -124,7 +124,8 @@
                 </div>
                 <hr style="opacity:.5;">
             </div> -->
-            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" :selectPrice="picked" :can_pay="can_pay"></mamiyoga-pay-footer>
+            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" @openExchange="openExchange"
+            :have_cost="check_coupon_ok" :selectPrice="countPrice(picked)" :can_pay="can_pay"></mamiyoga-pay-footer>
         </div>
         <mamiyoga-window-alert-box v-if="company_method">
             <div class="cancel-box" @click="company_method = false">
@@ -133,6 +134,16 @@
             <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">收到您的資訊！<br>我們將於1~3個工作天聯絡您！</div>
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="" style="margin-top:20px;width:30%;">
             <div class="company-input-submit-btn" style="margin:30px auto 0;" @click="company_method = false">好的</div>
+        </mamiyoga-window-alert-box>
+
+        <mamiyoga-window-alert-box v-if="open_exchange_box">
+            <div class="cancel-box" @click="open_exchange_box = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
+            </div>
+            <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">兌換序號</div>
+            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入折扣序號</div>
+            <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字" v-model="get_coupon">
+            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="inputCoupon">兌換</div>
         </mamiyoga-window-alert-box>
     </div>
 </template>
@@ -159,6 +170,17 @@ export default {
         four_person_program: {},
         picked:0,
         can_pay: true,
+
+        company_name: '',
+        contact_name: '',
+        contact_position: '',
+        contact_tel: '',
+        contact_mail: '',
+
+        open_exchange_box: false,
+        check_coupon_ok: false,
+        get_coupon: '',
+        discount: 0,
     }),
     components: {
         MamiyogaPayHeader,
@@ -189,27 +211,89 @@ export default {
             //     product.slogan = response.data.slogan
             //     product.description = response.data.description
             // });
-            console.log(this.products)
+
+            // console.log(this.products)
             if(sessionStorage['picked_plan']){
                 this.picked = parseInt(sessionStorage['picked_plan'])
             }
+            
+            sessionStorage['current_coupon'] = null; // unset coupon
+
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
-            // if(this.picked = 0) {
-            //     this.can_pay = false
-            // }
+            if(this.picked == 0) {
+                this.can_pay = false
+            } else {
+                this.can_pay = true
+            }
         }
 
     },
     methods:{
-        submitData(){
-            this.company_method = true;
+        async submitData(){
+            if(this.company_name && this.contact_name && this.contact_position && this.contact_tel && this.contact_mail) {
+                let send_user_id = '0000'
+                let contact_data = '公司名稱：' + this.company_name + '／聯絡人姓名：' + this.contact_name + '／工作職稱：' + this.contact_position + '／聯絡電話：' + this.contact_tel + '／聯絡信箱：' + this.contact_mail
+                if(this.user.user_id) {
+                    send_user_id = this.user.user_id
+                }
+                let send_data = {user_id:send_user_id,question_id:'企業方案聯絡',message: contact_data};
+                const form_res = await axios.post('/apis/send-feedback',send_data);
+                this.company_method = true;
+            } else {
+                window.alert('請填入所有項目！')
+            }
         },
+        openExchange(){
+            this.open_exchange_box = true;
+        },
+        async inputCoupon (){
+            if(this.get_coupon) {
+                let picked_plan = this.products.find(plan => plan.price == this.picked)
+                let send_data = {coupon_id:this.get_coupon}
+                
+                // if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) {
+                
+                try {
+                    const coupon_data = await axios.post('/apis/check-coupon',send_data);
+                    if(coupon_data.status == 200) { 
+                        alert('輸入成功')
+                        this.discount = coupon_data.data.discount
+                        sessionStorage['count_picked_plan'] = this.countPrice(this.picked)
+                        sessionStorage['current_coupon'] = this.get_coupon;
+                        this.$router.push('/order')
+                    }
+                } catch (error) {
+                    sessionStorage['current_coupon'] = null;
+                    alert('折扣碼錯誤')
+                }
+            } else {
+                window.alert('請輸入折扣序號！')
+            }
+            // console.log('check')
+            
+            // const coupon_data = await axios.post('/apis/check-coupon',send_data);
+        
+        },
+        countPrice(price) {
+            if(this.discount != 0 && this.discount <= 1) {
+                return price * (1 - this.discount)
+            } else if(this.discount != 0 && this.discount > 1) {
+                return price - this.discount
+            } else {
+                return price
+            }
+        }
     },
     watch: {
         picked: function(new_value,old_value) {
             sessionStorage['picked_plan'] = this.picked
             console.log(this.picked)
+            if(this.picked == 0) {
+                this.can_pay = false
+            } else {
+                this.can_pay = true
+            }
             // debugger
         }
     },
@@ -504,6 +588,31 @@ export default {
     margin-top: 11px;
     font-size: 13px;
     color: #8F8F8F;
+}
+#exchange-input{
+    width: 90%;
+    height: 45px;
+    border-radius: 5px;
+    border: #707070 solid 1px;
+    display: block;
+    margin: 30px auto 15px;
+    padding-left: 5px;
+}
+.mamiyoga-login-btn-to-signin {
+    width: 100%;
+    height: 45px;
+    color: #F8F7F8;
+    margin: 0 auto;
+    background: #24798F;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media (min-width: 769px) {
     .additional-select {
