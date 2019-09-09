@@ -182,7 +182,7 @@
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
-                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
+                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
                 </button>
             </div>
         </mamiyoga-window-alert-box>
@@ -193,7 +193,7 @@
             <p style="margin-top:40px;" v-html="errorText"></p>
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;" @click="need_resee = false">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;cursor:pointer;" @click="need_resee = false">
                    再看一次
                 </button>
             </div>
@@ -209,7 +209,7 @@
             <div class="star-line-box">
     
                 <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
-                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
+                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
                 </button>
             </div>
         </mamiyoga-window-alert-box>
@@ -358,6 +358,8 @@ export default {
     },
     methods: {
         async handleVideoUpload(e) {
+            this.video_result = {};
+            this.play_assay = false;
             this.isLoading = true;
             if(this.$i18n.locale == 'JP') {
                 this.show_value = 'チェック中'
@@ -387,7 +389,7 @@ export default {
                             this.video_result = response.data.result;
                             this.use_count++
                             localStorage['use_count'] = this.use_count
-                            clearInterval( );
+                            clearInterval(get_result_interval);
                         } else if(response.data.result.status == 102) { 
                             console.log("還沒跑完");
                         } else if(response.data.result.status == 204) {
@@ -1009,6 +1011,7 @@ export default {
     color: #fff;
     border-style: none;
     font-size: 14px;
+    cursor: pointer;
 }
 .video-tips {
     position: fixed;

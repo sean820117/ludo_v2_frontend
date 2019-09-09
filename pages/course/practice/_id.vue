@@ -92,7 +92,7 @@
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
-                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
+                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
                 </button>
             </div>
         </mamiyoga-window-alert-box>
@@ -103,7 +103,7 @@
             <p style="margin-top:40px;" v-html="errorText"></p>
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;" @click="need_resee = false">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;cursor:pointer;" @click="need_resee = false">
                    再看一次
                 </button>
             </div>
@@ -202,7 +202,11 @@ export default {
             try {
                 ai_poses.forEach(async(pose,index) => {
                     let temp_pose_id = 'yoga_'+pose.input_id
-                    let send_data = {user_id:'0000',pose_id:temp_pose_id};
+                    let get_user_id = '0000';
+                    if(this.user.user_id) {
+                        get_user_id = this.user.user_id
+                    }
+                    let send_data = {user_id:get_user_id,pose_id:temp_pose_id};
                     const res = await axios.post('/apis/get-pose-results',send_data);
                     if (res.data.status == 200) {
                         this.record_data[pose.pose_id] = res.data.Items
@@ -240,6 +244,8 @@ export default {
     },
     methods:{
         async handleVideoUpload(e) {
+            this.video_result = {};
+            this.play_assay = false;
             this.isLoading = true;
             const pose_id = "yoga_" + e.input_id;
             console.log(pose_id);
@@ -385,6 +391,7 @@ export default {
                         clearInterval(id);
                     }
                 }, 3000);
+                
                 console.log('上傳成功');
                 let bar = document.getElementById('bar');
                 let width = 0;
@@ -582,6 +589,7 @@ export default {
     color: #fff;
     border-style: none;
     font-size: 14px;
+    cursor: pointer;
 }
 .record-background {
     width: 100vw;
