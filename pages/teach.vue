@@ -398,7 +398,7 @@ export default {
                             if(response.data.result.error_code == -1) {
                                 console.log(response)
                                 this.need_resee = true;
-                                this.errorText = '動作做錯囉！讓我們在複習一次！';
+                                this.errorText = '動作做錯囉！讓我們再複習一次！';
                                 this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-1.png';
                                 this.isLoading = false;
                                 clearInterval(get_result_interval);
