@@ -25,7 +25,11 @@
                     <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
                 </div>
             </div>
-            <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;" :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn>
+            <!-- <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;" :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn> -->
+            <div class="member-bottom-btn" style="margin-top:10vh;position:unset;">
+                <div class="member-big-btn" style="background:#24798F;" v-if="is_not_payed" @click="open_exchange = true">兌換序號</div>
+                <div class="member-big-btn member-big-btn-center" style="margin-top:1vh;" @click="$router.push('/member')">學員中心</div>
+            </div>
         </div>
         <mamiyoga-window-alert-box v-if="open_exchange">
             <div class="cancel-box" @click="open_exchange = false">
@@ -66,6 +70,7 @@ export default {
         ],
         open_exchange: false,
         input_serialno: '',
+        is_not_payed: true,
     }),
     async beforeCreate() {
         if (process.client) {
@@ -77,13 +82,17 @@ export default {
                 window.alert("尚未登入帳號，請先前往登入～");
                 this.$router.push('/login');
             } else {
-                // let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                let send_data = {user_id:this.user.user_id,item_id:'MY01'}
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                if(payed_or_not){
+                    this.is_not_payed = false
+                }
+
+                let send_data = {user_id:this.user.user_id,course_id:'mamiyoga'}
                 const form_res = await axios.post('/apis/get-order-info',send_data);
                 if(form_res.status == 200) {
                     let temp_data = form_res.data
                     // this.serialno_data = form_res.data
-                    console.log(form_res.data)
+                    // console.log(form_res.data)
                     for(var i = 0;i < temp_data.length; i++) {
                         // let codes = this.serialno_data[i].codes//['juju'] => [{code:'juju',available:true},]
                         for(var j = 0;j <temp_data[i].codes.length;j++) {
@@ -97,6 +106,7 @@ export default {
                         }
                     }
                     this.serialno_data = temp_data
+                    console.log(this.serialno_data)
                 } else {
                     alert('unknown error')
                 }
@@ -229,9 +239,38 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.member-bottom-btn {
+    width: 100%;
+    position: fixed;
+    bottom: 5vh;
+}
+.member-big-btn {
+    width: 60%;
+    height: 45px;
+    color: #F8F7F8;
+    margin: 15px auto;
+    background: #24798F;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.member-big-btn-center {
+    border: #24798F 2px solid !important;
+    background: #fff !important;
+    color: #24798F !important;
+}
 @media (min-width: 769px) {
     .serialno-page {
         min-height: 100vh;
+    }
+    .member-bottom-btn {
+        max-width: 450px;
     }
 }
 </style>

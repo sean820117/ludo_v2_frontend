@@ -54,7 +54,8 @@ export default {
                 { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' },
+                { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
