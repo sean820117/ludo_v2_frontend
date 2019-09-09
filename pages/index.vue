@@ -25,7 +25,7 @@
                     <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;" ></mamiyoga-btn>
                 </div>
                 <!-- <mamiyoga-login-select :is_beta="false"></mamiyoga-login-select> -->
-                <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select>
+                <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded && !is_android" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select>
                 <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
                 <!-- <p class="mamiyoga-intro-agree" v-html="$t('index_agree_text')"></p> -->
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
@@ -453,14 +453,15 @@
             </div>
         </div>
 
-        <mamiyoga-window-alert-box v-if="is_android">
-            <div class="cancel-box" @click="is_android = false">
+        <mamiyoga-window-alert-box v-if="is_android && show_android_box">
+            <div class="cancel-box" @click="show_android_box = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-submit.png" alt="" style="margin-top:40px;width:60%;">
-            <p>目前AI助教功能僅支援iOS系統<br><br>Android用戶敬請期待</p>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-submit.png" alt="" style="margin-top:30px;width:60%;">
+            <p ><strong style="line-height:20px;">AI助教優先支援 iOS 手機顯示<br>其他裝置持續努力中，敬請期待！</strong><br><br>輸入電子信箱，我們會在準備好時邀請您</p>
+            <input class="android-input" style="width:90%;" placeholder="輸入電子信箱" type="email" name="android-mail" id="android-mail" v-model="android_mail">
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_android = false">{{$t('teach_assay_button_development')}}</button>
+                <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-spacing:0;margin-top:20px;background:#24798F;" @click="subscriber">{{$t('teach_assay_button_development')}}</button>
             </div>
         </mamiyoga-window-alert-box>
 
@@ -494,6 +495,7 @@ import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCu
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
+import { EMAIL_REGEX } from '~/components/regex.js'
  
 Vue.use(Vue2TouchEvents)
 export default {
@@ -543,7 +545,9 @@ export default {
         go_to_where: '/login',
         check_log: '/login',
 
-        is_android: false
+        is_android: false,
+        show_android_box: false,
+        android_mail: '',
         // show_loading: true,
     }),
     components: {
@@ -563,11 +567,10 @@ export default {
     },
     async mounted(){
         if(process.client) {
-            // if(navigator.userAgent.match(/android/i)){
-            //     this.is_android = true
-            // } else {
-            //     this.is_android = false
-            // }
+            if(navigator.userAgent.match(/android/i)){
+                this.is_android = true
+                this.show_android_box = true
+            }
             // window.onload = this.showSlides()
             // window.addEventListener('scroll',this.scrollHeight)
             let login_or_not = await this.$checkLogin(this.$store);
@@ -666,63 +669,6 @@ export default {
         goDownWrap(){
             this.$scrollTo('#wrap','start')
         },
-        // showSlides() {
-        //     var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
-        //     var dots = document.getElementsByClassName("dot");
-        //     for (var i = 0; i < slides.length; i++) {
-        //         slides[i].classList.remove('slideInLeft');
-        //         slides[i].classList.remove('slideIn');
-        //         slides[i].classList.add('fade');  
-        //         // slides[i].style.display = "none";  
-        //     }
-        //     // console.log(this.slideIndex)
-        //     if (this.slideIndex > slides.length-1) {
-        //         this.slideIndex = 0
-        //     } else if( this.slideIndex < 0) {
-        //         this.slideIndex = 4
-        //     }
-        //     for (i = 0; i < dots.length; i++) {
-        //         dots[i].className = dots[i].className.replace(" index-dotactive", "");
-        //     }
-        //     slides[this.slideIndex].classList.add('slideIn');  
-        //     slides[this.slideIndex].classList.remove('fade'); 
-        //     // slides[this.slideIndex].style.display = "block";  
-        //     dots[this.slideIndex].className += " index-dotactive";
-        //     // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
-        // },
-        // showSlidesLeft() {
-        //     var slides = document.getElementsByClassName("intro-wrap-block-second-slide");
-        //     var dots = document.getElementsByClassName("dot");
-        //     for (var i = 0; i < slides.length; i++) {
-        //         slides[i].classList.remove('slideInLeft');
-        //         slides[i].classList.remove('slideIn');
-        //         slides[i].classList.add('fade');  
-        //         // slides[i].style.display = "none";  
-        //     }
-        //     // console.log(this.slideIndex)
-        //     if (this.slideIndex > slides.length-1) {
-        //         this.slideIndex = 0
-        //     } else if( this.slideIndex < 0) {
-        //         this.slideIndex = 4
-        //     }
-        //     for (i = 0; i < dots.length; i++) {
-        //         dots[i].className = dots[i].className.replace(" index-dotactive", "");
-        //     }
-        //     slides[this.slideIndex].classList.add('slideInLeft');  
-        //     slides[this.slideIndex].classList.remove('fade'); 
-        //     // slides[this.slideIndex].style.display = "block";  
-        //     dots[this.slideIndex].className += " index-dotactive";
-        //     // setTimeout(this.showSlides.bind(this), 2000); // Change image every 2 seconds
-        // },
-        // nextSlides() {
-        //     this.showSlides(this.slideIndex += 1);
-        // },
-        // lastSlides() {
-        //     this.showSlidesLeft(this.slideIndex -= 1);
-        // },
-        // currentSlide(n) {
-        //     this.showSlides(this.slideIndex = n-1);
-        // },
         toggleClass(index) {
             if (this.show_list[index] === 'open') {
                 this.show_list = [];
@@ -777,6 +723,18 @@ export default {
         },
         clickToPay(){
             this.$router.push(this.go_to_where)
+        },
+        async subscriber(){
+            let send_data = {email:this.android_mail,name: 'Android用戶'}
+            if(this.android_mail == '') {
+                alert('請輸入電子信箱')
+            } else if(!EMAIL_REGEX.test(this.android_mail)){
+                alert('電子信箱格式錯誤')
+            } else {
+                const res = await axios.post('/apis/subscribe-mamiyoga',send_data);
+                alert('已收到您的電子信箱！敬請期待～')
+                this.show_android_box = false
+            }
         }
     },
     computed:{
@@ -1516,7 +1474,16 @@ export default {
 .intro-wrap-block-second-hooper .eg-flick-viewport {
     height: 700px !important;
 }
-
+.android-input {
+    display: block;
+    margin: 0 auto;
+    /* width: 90%; */
+    height: 35px;
+    border: #BFBDBD 1px solid;
+    border-radius: 8px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,.1);
+    text-align: center;
+}
 
 
 /*行銷變更內容*/

@@ -243,7 +243,7 @@ import { EMAIL_REGEX } from '~/components/regex.js'
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
-    layout:'mamiyoga',
+    layout:'mommiyoga',
     data:()=> ({
         is_loaded: false,
         isLoading: false,

@@ -57,7 +57,7 @@
 <script>
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 export default {
-    layout: 'mommiyoga',
+    layout: 'mamiyoga',
     components: {
         MamiyogaTeachHeader,
     },
