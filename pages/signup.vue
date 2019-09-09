@@ -10,10 +10,10 @@
             <div class="reg-text" style="margin-top:5vh;">註冊</div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">付款前需先註冊成為會員</div>
             <form class="signup-form">
-                <div class="login-column">
+                <!-- <div class="login-column">
                     <div class="login-column-label">使用者暱稱</div>
                     <input name="account" class="login-column-input" type="text" v-model="account" placeholder=""/>
-                </div>
+                </div> -->
                 <div class="login-column">
                     <div class="login-column-label">電子信箱</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
@@ -50,7 +50,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="reg-text2" style="margin-top:30px;">註冊即同意<a href="/privacy">隱私政策</a>及<a href="/agreement">用戶協議</a></div>
+                <div class="reg-text2" style="margin-top:30px;">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
                 <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
                     <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('signup')">註冊</button>
                     <!-- <div style="display:flex;align-items: center;justify-content:space-between;width:100%;">

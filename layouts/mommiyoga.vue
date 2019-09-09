@@ -63,6 +63,14 @@ export default {
             
         }
     },
+    beforeCreate(){
+        if(process.client) {
+            if(navigator.userAgent.match(/android/i)){
+                alert('目前僅開放iOS系統使用，Android系統敬請期待！')
+                this.$router.push('/')
+            }
+        }
+    },
     async mounted() {
         if (process.client) {
             
