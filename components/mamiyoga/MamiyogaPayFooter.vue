@@ -1,6 +1,7 @@
 <template>
     <div class="pay-footer">
-        <div class="pay-footer-tag"></div>
+        <div class="pay-footer-tag" style="background:#24798F;cursor:pointer;" v-if="!have_cost" @click="openExchange">折扣碼輸入</div>
+        <div class="pay-footer-tag" v-else></div>
         <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
         <div class="pay-footer-btn" v-if="can_pay" :style="{backgroundColor:ftBtn}" @click="$router.push('/order')">{{payFt}}</div>
         <div class="pay-footer-btn" v-else style="background-color: #707070">{{payFt}}</div>
@@ -15,6 +16,12 @@ export default {
         payFt: String,
         selectPrice: Number,
         can_pay: Boolean,
+        have_cost: Boolean,
+    },
+    methods:{
+        openExchange(){
+            this.$emit('openExchange');
+        }
     }
 }
 </script>
@@ -37,6 +44,13 @@ export default {
     height: 30px;
     background: linear-gradient(#FF9A7B,#FF9898);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #F8F7F8;
+    user-select: none;
 }
 .pay-footer-cost {
     /* float: left; */

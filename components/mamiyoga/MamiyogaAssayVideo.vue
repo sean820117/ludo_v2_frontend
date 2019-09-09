@@ -5,12 +5,12 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
             </div>
             <div style="display:flex;">
-                <a :href="video_result.video_url" download="pose">
+                <!-- <a :href="video_result.video_url" download="pose">
                     <div :style="{backgroundColor:'#9BAEB2',
                     backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-download-btn.svg)',
                     marginRight:'10px'}" class="mamiyoga-assay-header-login-btn">
                     </div>
-                </a>
+                </a> -->
                 <!-- <div :style="{backgroundColor:'#9BAEB2',
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-assay-header-login-btn">

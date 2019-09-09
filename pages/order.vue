@@ -20,7 +20,7 @@
                     <label class="order-form-label" for="tel">電子信箱</label>
                     <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
                     <input type="hidden" name="item_id" :value="picked_plan.item_id">
-                    <input type="hidden" name="coupon_id" v-model="order_coupon" value="">
+                    <input type="hidden" name="coupon_id" :value="coupon_id">
                     <input type="hidden" name="payment_type" v-model="order_payment" value="">
                     <input type="hidden" name="return_url" :value="order_return">
                     <input type="hidden" name="user_id" :value="user.user_id">
@@ -74,7 +74,7 @@
                         <input class="order-form-input" type="tel" name="shop-recipient-tel" id="shop-recipient-tel" placeholder="（+886）953 840 329">
                     </div> -->
                     <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
-                    <input type="checkbox" name="agree" id="agree" style="display:none;">
+                    <input type="checkbox" name="agree" id="agree" style="display:none;" v-model="check_agree">
                     <label for="agree" class="agree-checkbox-label-label">
                         <div class="agree-checkbox-label">
                             <div class="agree-checkbox">
@@ -87,15 +87,17 @@
                 </div>
             </div>
             <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
-            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  discount="0" @goPay="goPay"
-            :selectPrice="picked_plan.price" :selectDescription="picked_plan.description"></mamiyoga-order-footer>
+            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  
+            :discount="getDiscount(picked_plan.price)" @goPay="goPay" :data_ok="data_ok"
+            :getPrice="checkPrice(picked_plan.price)" :selectPrice="picked_plan.price"
+             :selectDescription="picked_plan.description"></mamiyoga-order-footer>
         </div>
         <mamiyoga-window-alert-box v-if="is_payed">
             <div class="cancel-box" @click="is_payed = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">已將付款交易通知書寄至您的信箱！<br>請查收！</div>
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="" style="margin-top:20px;width:30%;">
+            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">已將<b>付款交易通知</b>寄至您的<b>信箱</b>！<br>付款成功後將<b>寄送序號至您的手機！</b></div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-order-success.png" alt="" style="margin-top:20px;width:30%;">
             <div class="company-input-submit-btn" style="margin:30px auto 0;" @click="is_payed = false">好的</div>
         </mamiyoga-window-alert-box>
     </div>
@@ -139,11 +141,16 @@ export default {
         order_coupon: '',
         order_payment: '',
         form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        // form_action: 'http://localhost:8080/apis/send-to-MPG-gateway',
         order_return: 'https://mamiyoga.ludonow.com/',
 
         hint:'',
         hint_color:'',
         is_payed: false,
+        check_agree: false,
+
+        coupon_id: 'null',
+        coupon_count: '',
     }),
     components: {
         MamiyogaPayHeader,
@@ -162,7 +169,6 @@ export default {
                 this.products[i].price = response.data.price
                 this.products[i].slogan = response.data.slogan
                 this.products[i].description = response.data.description
-                
             }
             // this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             // this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
@@ -175,15 +181,19 @@ export default {
             this.city = this.zipcode_data.counties
             this.current_county  = this.zipcode.filter(c => c.county == this.select_county)
 
+            if(sessionStorage['current_coupon']) {
+                this.coupon_id = sessionStorage['current_coupon']
+            }
+
+            if(sessionStorage['count_picked_plan']) {
+                this.coupon_count = sessionStorage['count_picked_plan']
+            }
             // console.log(this.zipcode)
             // console.log(this.city)
         }
     },
     methods:{
         goPay(){
-            console.log(this.order_name)
-            console.log(this.order_phone)
-            console.log(this.order_email)
             if (this.order_email.length === 0) {
                 this.hint = '請填寫電子信箱欄位'
                 this.hint_color = "red"
@@ -201,8 +211,38 @@ export default {
                 this.hint_color = "red"
                 return
             }
+            // let form = new FormData();
+            // form.append('name',this.order_name)
+            // form.append('phone',this.order_phone)
+            // form.append('email',this.order_email)
+            // form.append('item_id',this.picked_plan.item_id);
+            // form.append('coupon_id',this.coupon_id)
+            // form.append('return_url',this.order_return)
+            // form.append('user_id',this.user.user_id)
             document.getElementById('order-form').submit();
-        }
+        },
+        checkPrice(price){
+            if(this.coupon_count) {
+                return parseInt(this.coupon_count)
+            } else {
+                return price
+            }
+        },
+        getDiscount(price){
+            if(this.coupon_count) {
+                return price - parseInt(this.coupon_count)
+            } else {
+                return 0
+            }
+        },
+        // getCoupon(){
+        //     if(sessionStorage['count_picked_plan']) {
+        //         return sessionStorage['count_picked_plan']
+        //     } else {
+        //         return ''
+        //     }
+        //     console.log(sessionStorage['count_picked_plan'])
+        // }
     },
     watch:{
         select_county: function(new_value,old_value) {
@@ -217,6 +257,11 @@ export default {
         }
     },
     computed:{
+        data_ok(){
+            if(this.order_name && this.order_phone && this.order_email && this.check_agree == true) {
+                return true
+            }
+        },
         ...mapGetters({
             user : 'user/getData',
         }),

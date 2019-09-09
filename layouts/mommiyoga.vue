@@ -45,13 +45,13 @@ export default {
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
-                { hid: 'description', name: 'description', content: '' },
+                { hid: 'description', name: 'description', content: '以教學影片結合動作校正AI，開設的互動式線上課程。與日本人氣瑜珈老師橋本麻美合作，推出14堂課程包含33個動作，針對產後2~6個月黃金修復期的課程。使用者能夠觀看教學影片，並透過手機鏡頭拍攝自己的練習動作，取得分析與修正建議。' },
                 { property : 'og:title' , content:"Mami Yoga 日本人氣瑜珈"},
                 { property : 'og:type' , content:"education tech."},
-                { property : 'og:url' , content:"https://www.mamiyoga.ludonow.com"},
-                { property : 'og:image' , content:"https://www.ludonow.com/resume/facebook-share-preview.jpg"},
+                { property : 'og:url' , content:"https://mamiyoga.ludonow.com"},
+                { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/facebook-share-preview.jpg"},
                 { property : 'og:description' , content:"以教學影片結合動作校正AI，開設的互動式線上課程。與日本人氣瑜珈老師橋本麻美合作，推出14堂課程包含33個動作，針對產後2~6個月黃金修復期的課程。使用者能夠觀看教學影片，並透過手機鏡頭拍攝自己的練習動作，取得分析與修正建議。"},
-                { property : 'og:site_name' , content:"www.ludonow.com"},
+                { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' }

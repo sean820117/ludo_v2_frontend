@@ -36,7 +36,7 @@
             <div class="star-line-box">
                 <!-- <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button> -->
                 <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
-                    <label style="width:70px;height:35px;display:flex;align-items:center;justify-content:center;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('teach_button_ok')}}</label>  
+                    <label style="width:70px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('teach_button_ok')}}</label>  
                 </button>
             </div>
         </mamiyoga-window-alert-box>

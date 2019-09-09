@@ -3,12 +3,12 @@
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <p class="member-title">{{$t('member_title')}}</p>
         
-        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/serialno')">{{$t('member_text_btn_1')}}</div>
+        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/activation-code')">{{$t('member_text_btn_1')}}</div>
         <div class="member-big-btn" @click="$router.push(check_lang + '/pay')">{{$t('member_text_btn_2')}}</div>
         <!-- <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div> -->
         <hr class="member-line">
         <div class="member-big-btn" @click="$router.push(check_lang + '/writing')">{{$t('member_text_btn_4')}}</div>
-        <div class="member-big-btn" @click="$router.push(check_lang + '/setting')">{{$t('member_text_btn_5')}}</div>
+        <!-- <div class="member-big-btn" @click="$router.push(check_lang + '/setting')">{{$t('member_text_btn_5')}}</div> -->
         <div class="member-big-btn" @click="$router.push(check_lang + '/contactus')">{{$t('member_text_btn_6')}}</div>
 
         <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/menu')">{{$t('member_text_btn_7')}}</div>
@@ -47,11 +47,11 @@ export default {
                 window.alert("尚未登入帳號，請先前往登入～");
                 this.$router.push('/login');
             } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 // if (!payed_or_not) {
                 //     console.log("not payed");
                 //     window.alert("尚未開通課程，請先前往購買～");
-                //     this.$router.push('/mamiyoga/pay');
+                //     this.$router.push('/pay');
                 // } else {
                 //     console.log("payed")
                 // }
