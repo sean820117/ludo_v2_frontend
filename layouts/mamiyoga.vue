@@ -61,7 +61,7 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            
+            window.location.href = "https://mamiyoga.ludonow.com"
             this.is_login = await this.$checkLogin(this.$store);
         }
     },

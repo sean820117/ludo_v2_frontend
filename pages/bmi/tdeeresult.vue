@@ -60,7 +60,7 @@
                 <p style="color:#707070;font-size:13px;margin-top:1vh;">徒手運動30分鐘，消耗250-300大卡</p>
             </div>
             <div style="position:fixed;bottom:3vh;display:flex;width:100vw;justify-content:center;align-items:center;">
-                <a href="https://www.ludonow.com/mamiyoga" style="text-decoration:none;">
+                <a href="https://mamiyoga.ludonow.com" style="text-decoration:none;">
                     <div class="bmi-index-form-input-button" style="background-color:#DE396C;">立即體驗瑜珈課程</div>
                 </a>
             </div>
