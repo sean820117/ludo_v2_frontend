@@ -191,11 +191,16 @@ export default {
         if(process.client) {
             for (let i = 0; i < this.products.length; i++) {
                 let send_data = {item_id: this.products[i].item_id};
-                const response = await axios.post('/apis/get-shop-item',send_data);
-                this.products[i].item_name = response.data.item_name
-                this.products[i].price = response.data.price
-                this.products[i].slogan = response.data.slogan
-                this.products[i].description = response.data.description
+                try {
+                    const response = await axios.post('/apis/get-shop-item',send_data);
+                    this.products[i].item_name = response.data.item_name
+                    this.products[i].price = response.data.price
+                    this.products[i].slogan = response.data.slogan
+                    this.products[i].description = response.data.description
+                } catch (error) {
+                    alert('無法取得商品資訊')
+                }
+                
             }
             // await this.products.forEach(async (product) => {
             //     let send_data = {item_id: product.item_id};
@@ -302,7 +307,7 @@ export default {
                 window.alert("尚未登入帳號，請先前往登入～");
                 this.$router.push('/login');
             } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 // if (!payed_or_not) {
                 //     console.log("not payed");
                 //     window.alert("尚未開通課程，請先前往購買～");

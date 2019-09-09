@@ -368,6 +368,8 @@ export default {
             } else {
                 this.show_value = '正在上傳'
             }
+
+            this.video_result = {};
             let send_user_id = '0000'
             if(this.user.user_id) {
                 send_user_id = this.user.user_id

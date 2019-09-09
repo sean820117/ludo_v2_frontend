@@ -141,6 +141,7 @@ export default {
         order_coupon: '',
         order_payment: '',
         form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        // form_action: 'http://localhost:8080/apis/send-to-MPG-gateway',
         order_return: 'https://mamiyoga.ludonow.com/',
 
         hint:'',

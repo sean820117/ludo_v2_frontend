@@ -449,6 +449,7 @@
                     </div>
                 </div>
                 <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
+                <p class="mamiyoga-intro-agree">contact us: contact@ludonow.com</p>
             </div>
         </div>
 
@@ -559,7 +560,7 @@ export default {
                 this.check_log = '/login'
             } else {
                 this.go_to_where = '/pay'
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 if (!payed_or_not) {
                     this.check_log = '/pay'
                 } else {

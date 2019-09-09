@@ -330,6 +330,7 @@ export default {
                 //     }
                 // }   
                 let timeout_limit = 0;
+                this.video_result = {};
                 let get_result_interval = setInterval(() => {
                 axios.post('/apis/get-pose-result',{user_id:"0002",pose_id:"yoga_27",createdAt:data.createdAt})
                     .then((response) => {
