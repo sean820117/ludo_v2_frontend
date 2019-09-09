@@ -227,7 +227,7 @@ export default {
                 window.alert("尚未登入帳號，請先前往登入～");
                 this.$router.push('/login');
             } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
+                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 if (!payed_or_not) {
                     console.log("not payed");
                     window.alert("尚未開通課程，請先前往購買～");

@@ -1,23 +1,20 @@
 import axios from '../config/axios-config'
 
-async function checkPayed(u_id,p_id) {  
+async function checkPayed(u_id,c_id) {  
     let user_id = u_id;
-    let product_id = p_id;
+    let course_id = c_id;
 
     try {
-        let response = await axios.post('/apis/check-is-payed',{product_id:product_id,user_id:user_id})
-        if (response.data.status == '200') {
-            console.log("check-payed success")
-            if(response.data.result == 1) {
-                return true;
-            } else {
-                return false;
-            }
+        let response = await axios.post('/apis/check-user-engagement',{course_id:course_id,user_id:user_id})
+        if (response.data.result == true) {
+            console.log("already engagement")
+            return true;
         } else {
-            console.log(response)
+            console.log("not engagement")
             return false;
         }
     } catch(error) {
+        console.log("wrong params for check engagement")
         console.log(error)
         return false;
     }
