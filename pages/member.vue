@@ -3,7 +3,7 @@
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <p class="member-title">{{$t('member_title')}}</p>
         
-        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/serialno')">{{$t('member_text_btn_1')}}</div>
+        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/activation-code')">{{$t('member_text_btn_1')}}</div>
         <div class="member-big-btn" @click="$router.push(check_lang + '/pay')">{{$t('member_text_btn_2')}}</div>
         <!-- <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div> -->
         <hr class="member-line">

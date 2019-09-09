@@ -32,7 +32,7 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
             <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">兌換序號</div>
-            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入折扣序號</div>
+            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入課程兌換序號</div>
             <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字" v-model="input_serialno">
             <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="checkInputSerialno">兌換</div>
         </mamiyoga-window-alert-box>
@@ -81,21 +81,22 @@ export default {
                 let send_data = {user_id:this.user.user_id,item_id:'MY01'}
                 const form_res = await axios.post('/apis/get-order-info',send_data);
                 if(form_res.status == 200) {
-                    this.serialno_data = form_res.data
+                    let temp_data = form_res.data
+                    // this.serialno_data = form_res.data
                     console.log(form_res.data)
-                    for(var i = 0;i < this.serialno_data.length; i++) {
+                    for(var i = 0;i < temp_data.length; i++) {
                         // let codes = this.serialno_data[i].codes//['juju'] => [{code:'juju',available:true},]
-                        for(var j = 0;j <this.serialno_data[i].codes.length;j++) {
+                        for(var j = 0;j <temp_data[i].codes.length;j++) {
                             // let code = this.serialno_data[i].codes[j]
                             try {
-                                const code_res = await axios.post('/apis/get-activation-code', {code_id: this.serialno_data[i].codes[j]})
-                                this.serialno_data[i].codes[j] = {code: this.serialno_data[i].codes[j], available: code_res.data.available}
+                                const code_res = await axios.post('/apis/get-activation-code', {code_id: temp_data[i].codes[j]})
+                                temp_data[i].codes[j] = {code: temp_data[i].codes[j], available: code_res.data.available}
                             } catch (error) {
                                 
                             }
                         }
                     }
-            
+                    this.serialno_data = temp_data
                 } else {
                     alert('unknown error')
                 }
@@ -115,8 +116,10 @@ export default {
                 console.log(send_data)
                 try {
                     const serialno_code = await axios.post('/apis/redeem-activation-code',send_data)
+                    alert('輸入成功！已為您開通課程～')
+                    this.$router.push('/menu')
                 } catch(error) {
-                    
+                    alert('序號錯誤或已開通，請確認是否輸入正確值')
                 }    
             } else {
                 alert('請輸入序號！')

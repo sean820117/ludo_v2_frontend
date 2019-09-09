@@ -241,7 +241,7 @@ export default {
                 const form_res = await axios.post('/apis/send-feedback',send_data);
                 this.company_method = true;
             } else {
-                window.alert('請填入所有項目！')
+                window.alert('請填入所有欄位！')
             }
         },
         openExchange(){
@@ -256,12 +256,15 @@ export default {
                 
                 try {
                     const coupon_data = await axios.post('/apis/check-coupon',send_data);
-                    if(coupon_data.status == 200) { 
+                    if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) { 
                         alert('輸入成功')
                         this.discount = coupon_data.data.discount
                         sessionStorage['count_picked_plan'] = this.countPrice(this.picked)
                         sessionStorage['current_coupon'] = this.get_coupon;
                         this.$router.push('/order')
+                    } else {
+                        sessionStorage['current_coupon'] = null;
+                        alert('折扣碼錯誤，請確認方案是否選擇正確')
                     }
                 } catch (error) {
                     sessionStorage['current_coupon'] = null;

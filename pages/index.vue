@@ -310,7 +310,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
+                    <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved<br>contact@ludonow.com</p>
                 </div>
                 <div class="love-feedback-block" id="index-love-feedback" v-if="!switchBlock">
                     <h3 v-html="previewCourse.title"></h3>
@@ -453,7 +453,16 @@
             </div>
         </div>
 
-
+        <mamiyoga-window-alert-box v-if="is_android">
+            <div class="cancel-box" @click="is_android = false">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
+            </div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-submit.png" alt="" style="margin-top:40px;width:60%;">
+            <p>目前AI助教功能僅支援iOS系統<br><br>Android用戶敬請期待</p>
+            <div class="star-line-box">
+                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_android = false">{{$t('teach_assay_button_development')}}</button>
+            </div>
+        </mamiyoga-window-alert-box>
 
         <mamiyoga-window-alert-box v-if="is_open">
             <div class="cancel-box" @click="is_open = false">
@@ -533,6 +542,8 @@ export default {
         four_person_program: {},
         go_to_where: '/login',
         check_log: '/login',
+
+        is_android: false
         // show_loading: true,
     }),
     components: {
@@ -552,6 +563,11 @@ export default {
     },
     async mounted(){
         if(process.client) {
+            // if(navigator.userAgent.match(/android/i)){
+            //     this.is_android = true
+            // } else {
+            //     this.is_android = false
+            // }
             // window.onload = this.showSlides()
             // window.addEventListener('scroll',this.scrollHeight)
             let login_or_not = await this.$checkLogin(this.$store);
@@ -820,6 +836,7 @@ export default {
     color: #DCD8CF;
     text-align: center;
     padding-bottom: 10px;
+    line-height: 20px;
 }
 .mamiyoga-intro-agree a,.mamiyoga-intro-agree a:visited {
     color: #DCD8CF;
