@@ -971,7 +971,7 @@ export default {
     border-radius: 40px 40px 0 0;
     position: relative;
     padding-top: 40px;
-    background: #33838f;
+    background: #1C7A81;
     /* background: #33838f; */
     padding-bottom: 50px;
 }
