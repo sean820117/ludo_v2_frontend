@@ -478,7 +478,7 @@ export default {
                             clearInterval(get_result_interval);
                             clearInterval(id);
                         } else {
-                            alert('unkrown error')
+                            alert('上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次')
                             console.log(response);
                             this.isLoading = false;
                             clearInterval(get_result_interval);
@@ -487,14 +487,14 @@ export default {
                     })
                     .catch((error) => {
                         console.log("fail");
-                        alert('unknown error')
+                        alert('上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次')
                         this.isLoading = false;
                         clearInterval(get_result_interval);
                         clearInterval(id);
                     })
                     timeout_limit += 1;
                     if (timeout_limit >=100) {
-                        console.log("unknown error, contact developers~");
+                        console.log("上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次");
                         clearInterval(get_result_interval);
                         clearInterval(id);
                     }
