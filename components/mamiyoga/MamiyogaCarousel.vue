@@ -27,7 +27,7 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{four_person_program.price}}</p>
+                        <p style="font-size:47px;">{{four_person_every}}</p>
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
@@ -149,7 +149,7 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{four_person_program.price}}</p>
+                        <p style="font-size:47px;">{{four_person_every}}</p>
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
@@ -200,6 +200,8 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
+
+        four_person_every: '',
     }),
     async mounted(){
         if (process.browser) {
@@ -217,6 +219,10 @@ export default {
             }
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+
+            let every_price = (this.four_person_program.price)/4
+            this.four_person_every = every_price
+            console.log(this.four_person_every)
         }
     },
     methods:{

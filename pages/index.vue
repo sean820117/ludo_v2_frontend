@@ -43,12 +43,12 @@
                 <div class="about-course-block" id="index-first-video" v-if="switchBlock">
                     <div style="background: #F8F7F8;">
                         <div class="intro-wrap-block-first">
-                            <video loop controls autoplay playsinline muted  class="index-wrap-video" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
+                            <!-- <video loop controls autoplay playsinline muted  class="index-wrap-video" poster="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video-preview.png">
                                 <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-video.mp4">
-                            </video>
-                            <!-- <div class="iframe-container">
+                            </video> -->
+                            <div class="iframe-container">
                                 <iframe src="https://player.vimeo.com/video/347109517?muted=1&loop=1&autoplay=1" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                            </div> -->
+                            </div>
                             <div class="intro-wrap-block-first-content">
                                 <div style="display:flex;align-items:center;justify-content: space-between;">
                                     <h1>Mami yoga日本人氣瑜珈</h1>
@@ -971,7 +971,7 @@ export default {
     border-radius: 40px 40px 0 0;
     position: relative;
     padding-top: 40px;
-    background: #1b7184;
+    background: #33838f;
     /* background: #33838f; */
     padding-bottom: 50px;
 }
@@ -1377,7 +1377,7 @@ export default {
     padding-top: 30px;
     margin-bottom: 2vh; 
 }
-.love-feedback-block .iframe-container {
+.love-feedback-block .iframe-container, .about-course-block .iframe-container {
     width: 100%;
     min-height:31vh;
     position:relative;

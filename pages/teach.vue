@@ -117,10 +117,14 @@
                 </div>
             </div>
             <div style="margin:5vh auto;">
-                <p style="color:#fff;text-align:center;margin:0 auto 10px;width:80%;font-size:13px;" v-html="$t('start_experience_uptext')"></p>
+                <p style="color:#24798F;font-weight:bold;text-align:center;margin:0 auto 10px;width:80%;font-size:14px;" v-html="$t('start_experience_uptext')"></p>
                 <div class="mamiyoga-show-article" @click="changeArticle">
                     <p v-html="post_article"></p>
-                    <img style="position:absolute;width:30px;bottom:20px;right:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tap.png" alt="">
+                    
+                    <div style="position:absolute;bottom:20px;right:25px;display:flex;align-items:center;" >
+                        <p style="color:#24798F;font-size:14px;padding-right:5px;">點擊觀看</p>
+                        <img style="width:30px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tap.png" alt="">
+                    </div>
                 </div>
             </div>
             <div style="width:100%;height:50px;display:flex;justify-content:center;">
