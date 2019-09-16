@@ -272,11 +272,13 @@ export default {
         async sendStarValue(){
             this.show_star_box = false;
             let send_user_id = '0000'
-            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q1',rating:this.picked_star};
+            // let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q1',rating:this.picked_star};
             if (this.user.user_id != '') {
                 send_user_id = this.user.user_id
             }
-            const form_res = await axios.post('/apis/send-feedback',send_data);
+            this.pose_id = this.video_result.pose_id
+            // const form_res = await axios.post('/apis/send-feedback',send_data);
+            this.$sendData('/apis/send-feedback',{user_id:send_user_id,question_id:this.pose_id+'_q1',rating:this.picked_star})
         },
         async sendIdea(){
             this.show_contact_box = false;
@@ -284,8 +286,10 @@ export default {
             if (this.user.user_id != '') {
                 send_user_id = this.user.user_id
             }
-            let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,message:this.input_text};
-            const form_res = await axios.post('/apis/send-feedback',send_data);
+            this.pose_id = this.video_result.pose_id
+            // let send_data = {user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,message:this.input_text};
+            // const form_res = await axios.post('/apis/send-feedback',send_data);
+            this.$sendData('/apis/send-feedback',{user_id:send_user_id,question_id:this.pose_id+'_q2',rating:this.impress,message:this.input_text})
             
         }
     },

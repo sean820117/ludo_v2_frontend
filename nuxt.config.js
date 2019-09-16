@@ -50,6 +50,7 @@ module.exports = {
     { src: '~/plugins/scrollTo.js', ssr: false },
     { src: '~/plugins/fbq.js', ssr: false },
     { src: '~/plugins/poseUpload.js', ssr: false },
+    { src: '~/plugins/sendData.js', ssr: false },
     { src: '~/plugins/carousel.js', ssr: false }
     // { src: "~/plugins/vue-swiper.js", ssr: false }   
   ],

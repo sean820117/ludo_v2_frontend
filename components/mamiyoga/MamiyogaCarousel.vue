@@ -275,6 +275,20 @@ export default {
 .VueCarousel-slide-active .intro-wrap-four-pay{
     border: solid 9px #24798F;
 }
+.VueCarousel-slide-active .intro-wrap-four-pay .intro-wrap-four-pay-circle {
+    background-color: #F7F7F7;
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-circle-btn-2.png');
+    background-size: 60%;
+    border: solid #24798F 3.5px;
+}
+.VueCarousel-slide-active .intro-wrap-four-pay .intro-wrap-four-pay-btn {
+    /* background: linear-gradient(180deg,#FF9A7B,#FF9898); */
+    background: #24798F;
+    color: #f7f7f7;
+    /* border: none; */
+    font-weight: bold;
+
+}
 .intro-wrap-four-pay p {
     color: #24798F;
 }

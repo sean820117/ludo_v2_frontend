@@ -141,7 +141,7 @@ export default {
         order_email: '',
         order_coupon: '',
         order_payment: '',
-        form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        form_action: 'https://api.ludonow.com/apis/send-to-ecpay',
         // form_action: 'http://localhost:8080/apis/send-to-MPG-gateway',
         order_return: 'https://mamiyoga.ludonow.com/activation-code',
         client_back_url: 'https://mamiyoga.ludonow.com/order',

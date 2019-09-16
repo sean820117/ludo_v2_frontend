@@ -141,7 +141,8 @@ export default {
         if (process.client) {
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            localStorage.redirect = '/menu';
+            
+            // localStorage.redirect = '/menu';
             
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
@@ -216,7 +217,11 @@ export default {
                     console.log(response)
                     let login_result = await this.$checkLogin(this.$store);
                     // this.$router.push('/login-redirect')
-                    this.$router.push('/menu')
+                    if(localStorage.redirect == '/teach') {
+                        this.$router.push(localStorage.redirect)
+                    } else {
+                        this.$router.push('/menu')
+                    }
                 } else {
                     console.log(response)
                     this.hint = response.data.message;
