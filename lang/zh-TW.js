@@ -25,7 +25,7 @@ export default {
   teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video-zhtw.mp4',
   teach_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4',
   teach_tip_title: '姿勢步驟',
-  teach_button_upload: '開始練習',
+  teach_button_upload: '開 始 練 習',
   teach_teacher_remind: '麻美老師貼心叮嚀',
   teach_teacher_remind_content: '盡量將力氣集中在腰部，如果動作做起來有點吃力的同學，可以把毛巾捲起來放進腰下。',
   teach_remind_text: '我們將記錄您的動作<br>並交給AI助教分析',

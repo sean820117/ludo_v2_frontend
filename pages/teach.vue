@@ -28,7 +28,20 @@
                     </div>
                 </div> -->
             </div>
+            
             <div class="teach-detail-box">
+                <div v-if="!is_beta" style="position:relative;">
+                    <p style="color:#FF9898;font-size:12px;font-weight:500;text-align:center;">體驗練習次數為三次</p>
+                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="is_login && can_experience" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn" style="margin-top:5px;background:#BFBFBF;" v-if="is_login && !can_experience">{{$t('teach_button_upload')}}</button>
+                    <!-- <button class="teach-assay-btn" v-else>
+                        <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
+                    </button> -->
+                    <div class="teach-question-box" @click="open_explain = true">
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
+                    </div>
+                </div>
                 <!-- <p style="text-align: right; font-size:12px;padding-right:25px;font-weight:300;">觀看次數：320次</p> -->
                 <h6>{{$t('teach_tip_title')}}</h6>
                 <div class="teach-content-text">
@@ -40,7 +53,8 @@
                 </div>
                 <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
                     <router-link :to="goAbout+'/about'">
-                        <h6 style="float:left;">{{$t('about_first_title')}}</h6><p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
+                        <h6 style="float:left;">{{$t('about_first_title')}}</h6>
+                        <!-- <p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p> -->
                     </router-link>
                 </div>
                 <div class="teacher-remind">
@@ -53,18 +67,7 @@
                     </div>
                 </div>
                 <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
-                <div v-if="!is_beta" style="position:relative;margin-top:3vh;">
-                    <p style="color:#FF9898;font-size:12px;font-weight:500;text-align:center;">體驗練習次數為三次</p>
-                    <button class="teach-assay-btn" style="margin-top:1vh;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" style="margin-top:1vh;" v-if="is_login && can_experience" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" style="margin-top:1vh;background:#BFBFBF;" v-if="is_login && !can_experience">{{$t('teach_button_upload')}}</button>
-                    <!-- <button class="teach-assay-btn" v-else>
-                        <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
-                    </button> -->
-                    <div class="teach-question-box" @click="open_explain = true">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
-                    </div>
-                </div>
+                
                 <div v-if="is_beta" style="position:relative">
                     <button class="teach-assay-btn" @click="openRemind()">{{$t('teach_button_upload')}}</button>
                     <div class="teach-question-box" @click="open_explain = true">
@@ -701,15 +704,16 @@ export default {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: calc(1vh + 21px);
-    left: calc(55vw + 70px);
+    top: calc(5px + 21px);
+    left: calc(55vw + 100px);
 }
 .teach-detail-box {
     width: 100vw;
-    margin-top: 35vh;
+    margin-top: 30vh;
     padding-bottom: 5vh;
 }
 .teach-detail-box h6 {
+    margin-top: 15px; 
     font-size: 14px;
     color: #707070;
     font-weight: 400;
@@ -767,11 +771,11 @@ export default {
     color: #5A5A5A;
 }
 .teach-assay-btn {
-    width: 135px;
+    width: 200px;
     height: 35px;
-    border-radius:20px;
-    font-weight: 500;
-    font-size: 14px;
+    border-radius:10px;
+    /* font-weight: bold; */
+    font-size: 18px;
     
     text-align: center;
     display: block;
@@ -782,6 +786,7 @@ export default {
     color: #fff;
     cursor: pointer;
     padding:0;
+
 }
 .vld-overlay .vld-background {
     background-color:black;
@@ -1096,7 +1101,7 @@ export default {
         /* right: 30px;
         top: 270px; */
         /* top: 3vh; */
-        left:320px;
+        left:340px;
     }
     .teach-video-sample {
         width: 450px;
