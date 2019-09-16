@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
-                    <button @click="$router.push('/teach')" class="index-article-out-btn" style="margin-top:10px;width: 70%;font-size:26px;height: 60px;background:#24798F;">前 往 體 驗</button>
+                    <button @click="$router.push('/teach')" class="index-article-out-btn" style="margin-top:10px;width: 70%;font-size:26px;height: 60px;background:#24798F;" id="free-watch-3">前 往 體 驗</button>
                     <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
                     
                     <div>

@@ -7,14 +7,14 @@
                    <div class="intro-wrap-block-help">
                        <p>這堂課能幫助妳</p>
                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-3.png" alt="">
-                       <div class="intro-wrap-block-help-btn" @click="getFreeCourse">免費觀看</div>
+                       <div class="intro-wrap-block-help-btn" id="free-watch-1" @click="getFreeCourse">免費觀看</div>
                    </div>
                 </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-help">
                         <p>上課準備與提醒</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-4.png" alt="">
-                        <div class="intro-wrap-block-help-btn" @click="$router.push('/teach')">馬上體驗</div>
+                        <div class="intro-wrap-block-help-btn" id="free-watch-2" @click="$router.push('/teach')">馬上體驗</div>
                    </div>
                 </slide>
             </carousel>
@@ -26,14 +26,14 @@
                    <div class="intro-wrap-block-help">
                        <p>這堂課能幫助妳</p>
                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-3.png" alt="">
-                       <div class="intro-wrap-block-help-btn" @click="getFreeCourse">免費觀看</div>
+                       <div class="intro-wrap-block-help-btn" id="free-watch-1" @click="getFreeCourse">免費觀看</div>
                    </div>
                 </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-help">
                         <p>上課準備與提醒</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-4.png" alt="">
-                        <div class="intro-wrap-block-help-btn" @click="$router.push('/teach')">馬上體驗</div>
+                        <div class="intro-wrap-block-help-btn" id="free-watch-2" @click="$router.push('/teach')">馬上體驗</div>
                    </div>
                 </slide>
             </carousel>
@@ -45,14 +45,14 @@
                    <div class="intro-wrap-block-help">
                        <p>這堂課能幫助妳</p>
                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-3.png" alt="">
-                       <div class="intro-wrap-block-help-btn" @click="getFreeCourse">免費觀看</div>
+                       <div class="intro-wrap-block-help-btn" id="free-watch-1" @click="getFreeCourse">免費觀看</div>
                    </div>
                 </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-help">
                         <p>上課準備與提醒</p>
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course-help-img-4.png" alt="">
-                        <div class="intro-wrap-block-help-btn" @click="$router.push('/teach')">馬上體驗</div>
+                        <div class="intro-wrap-block-help-btn" id="free-watch-2" @click="$router.push('/teach')">馬上體驗</div>
                    </div>
                 </slide>
             </carousel>
