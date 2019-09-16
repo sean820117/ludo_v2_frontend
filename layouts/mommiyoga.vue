@@ -59,7 +59,7 @@ export default {
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
-                // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
             
         }
