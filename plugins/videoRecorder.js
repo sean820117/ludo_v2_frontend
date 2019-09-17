@@ -10,6 +10,7 @@ class VideoRecorder {
         this.startRecording = this.startRecording.bind(this);
         this.stopRecording = this.stopRecording.bind(this);
         this.openCamera = this.openCamera.bind(this);
+        this.closeCamera = this.closeCamera.bind(this);
         this.mediaRecorderOnDataAvailable = this.mediaRecorderOnDataAvailable.bind(this);
         this.onStreamingStart = this.onStreamingStart.bind(this);
         this.onGetUserMediaError = this.onGetUserMediaError.bind(this);
@@ -25,6 +26,13 @@ class VideoRecorder {
             .getUserMedia(this.constraints)
             .then(this.onStreamingStart)
             .catch(this.onGetUserMediaError)
+    }
+
+    closeCamera() {
+        // 停止所有的輸入或輸出的串流裝置（例如，關攝影機）
+        this.stream.getTracks().forEach(function (track) {
+            track.stop()    
+        })
     }
 
     startRecording() {
@@ -64,11 +72,6 @@ class VideoRecorder {
         }
 
         // this.saveData()
-
-        // 停止所有的輸入或輸出的串流裝置（例如，關攝影機）
-        this.stream.getTracks().forEach(function (track) {
-            track.stop()    
-        })
     }
 
     saveData () {
