@@ -19,7 +19,7 @@
             <div class="btn-style">
                 <button @click="recordVideo" id="startBtn" class="btn btn-sm btn-outline-primary">▶</button>
                 <button @click="stopRecord" id="stopBtn" class="btn btn-sm btn-outline-danger">■</button>
-                <button @click="retryRecord" id="resetBtn" class="btn btn-sm btn-outline-info">⏎</button>
+                <button @click="retryRecord" id="resetBtn" class="btn btn-sm btn-outline-info">⇩</button>
             </div>
             </div>
 
@@ -87,15 +87,15 @@ export default {
     },
     methods:{
         recordVideo(){
-            this.video_recorder.startRecording
+            this.video_recorder.startRecording()
             console.log('recording')
         },
         stopRecord(){
-            this.video_recorder.stopRecording
+            this.video_recorder.stopRecording()
             console.log('stop')
         },
         retryRecord(){
-            this.video_recorder.closeCamera;
+            this.video_recorder.saveData();
             console.log('retry')
         }
 
@@ -115,10 +115,10 @@ export default {
     /* width: 100vh;
     height: 100vw; */
     margin-top: 8vh;
-    transform: rotate(90deg);
+    transform: scaleX(-1);
 }
 #inputVideo {
-    height:100vw;
+    height:100vh;
 }
 
 
