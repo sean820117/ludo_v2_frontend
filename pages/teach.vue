@@ -173,6 +173,14 @@
                     </div>
                 </div>
         </mamiyoga-window-alert-box>
+        <!-- <div class="video-tips" v-if="first_show">
+            <div class="video-tips-box">
+                <video controls autoplay playsinline muted :src="$t('teach_tip_video')" id="tip-video"></video>
+            </div>
+            <div class="close-tips-box" @click="first_show = false">
+                <p>Skip></p>
+            </div>
+        </div> -->
         <div class="video-tips" v-if="first_show">
             <div class="video-tips-box">
                 <video controls autoplay playsinline muted :src="$t('teach_tip_video')" id="tip-video"></video>
@@ -1036,20 +1044,22 @@ export default {
     z-index: 999;
 }
 .video-tips-box {
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
     position:fixed;
     top: 21vh;
 }
 #tip-video {
-    width: 85vh;
+    /* width: 85vh; */
+    width: 100vw;
 }
 .close-tips-box {
     width: 45px;
     height: 30px;
     position: fixed;
     color: #fff;
-    transform: rotate(90deg);
-    bottom: 5vh;
+    /* transform: rotate(90deg); */
+    /* bottom: 5vh; */
+    bottom: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1107,6 +1117,9 @@ export default {
         width: 450px;
         height: 270px;
         margin-left: 0;
+    }
+    #tip-video {
+        width: 85vh;
     }
     .video-tips {
         width: 450px;
