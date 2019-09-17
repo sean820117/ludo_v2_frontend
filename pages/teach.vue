@@ -33,8 +33,8 @@
                 <div v-if="!is_beta" style="position:relative;">
                     <p style="color:#FF9898;font-size:12px;font-weight:500;text-align:center;">體驗練習次數為三次</p>
                     <!-- <button class="teach-assay-btn" style="margin-top:5px;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button> -->
-                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="can_experience" @click="first_show = true">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" style="margin-top:5px;background:#BFBFBF;" v-if="!can_experience">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn square" style="margin-top:5px;" v-if="can_experience" @click="first_show = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn square" style="margin-top:5px;background:#BFBFBF;" v-if="!can_experience">{{$t('teach_button_upload')}}</button>
                     <!-- <button class="teach-assay-btn" v-else>
                         <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button> -->
@@ -790,7 +790,7 @@ export default {
 .teach-assay-btn {
     width: 200px;
     height: 35px;
-    border-radius:10px;
+    border-radius:20px;
     /* font-weight: bold; */
     font-size: 18px;
     
@@ -803,7 +803,9 @@ export default {
     color: #fff;
     cursor: pointer;
     padding:0;
-
+}
+.teach-assay-btn.square {
+    border-radius:10px !important;
 }
 .vld-overlay .vld-background {
     background-color:black;
