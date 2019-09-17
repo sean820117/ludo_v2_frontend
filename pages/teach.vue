@@ -32,9 +32,9 @@
             <div class="teach-detail-box">
                 <div v-if="!is_beta" style="position:relative;">
                     <p style="color:#FF9898;font-size:12px;font-weight:500;text-align:center;">體驗練習次數為三次</p>
-                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="is_login && can_experience" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
-                    <button class="teach-assay-btn" style="margin-top:5px;background:#BFBFBF;" v-if="is_login && !can_experience">{{$t('teach_button_upload')}}</button>
+                    <!-- <button class="teach-assay-btn" style="margin-top:5px;" v-if="!is_login" @click="not_login = true">{{$t('teach_button_upload')}}</button> -->
+                    <button class="teach-assay-btn" style="margin-top:5px;" v-if="can_experience" @click="first_show = true">{{$t('teach_button_upload')}}</button>
+                    <button class="teach-assay-btn" style="margin-top:5px;background:#BFBFBF;" v-if="!can_experience">{{$t('teach_button_upload')}}</button>
                     <!-- <button class="teach-assay-btn" v-else>
                         <label style="width:135px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="handleVideoUpload">{{$t('teach_button_upload')}}</label>  
                     </button> -->
@@ -51,10 +51,10 @@
                         <p>{{description}}</p>
                     </div>
                 </div>
-                <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
+                <!-- <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
                     <router-link :to="goAbout+'/about'">
                         <h6 style="float:left;">{{$t('about_first_title')}}</h6>
-                        <!-- <p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p> -->
+                        <p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
                     </router-link>
                 </div>
                 <div class="teacher-remind">
@@ -65,8 +65,7 @@
                         <p style="color:#8699A0;">{{$t('teach_teacher_remind')}}</p>
                         <p v-html="$t('teach_teacher_remind_content')"></p>
                     </div>
-                </div>
-                <!-- <mamiyoga-btn btnText="講師介紹" bgColor="#EEEFEA" ftColor="#6E6E6E" style="margin-top:5vh;margin-bottom:15px" class="teach-upload"></mamiyoga-btn> -->
+                </div> -->
                 
                 <div v-if="is_beta" style="position:relative">
                     <button class="teach-assay-btn" @click="openRemind()">{{$t('teach_button_upload')}}</button>
@@ -183,9 +182,9 @@
         </div> -->
         <div class="video-tips" v-if="first_show">
             <div class="video-tips-box">
-                <video controls autoplay playsinline muted :src="$t('teach_tip_video')" id="tip-video"></video>
+                <video @timeupdate="videoEnd" controls autoplay playsinline muted :src="$t('teach_tip_video')" id="tip-video"></video>
             </div>
-            <div class="close-tips-box" @click="first_show = false">
+            <div class="close-tips-box" @click="seeRemind">
                 <p>Skip></p>
             </div>
         </div>
@@ -286,7 +285,7 @@ export default {
         articles:[],
         post_article:'',
         last_article_id:'',
-        first_show: true,
+        first_show: false,
 
         is_error: false,
         need_resee: false,
@@ -337,9 +336,9 @@ export default {
                 this.getRemind = this.courses[12].poses[2].remind_text
             }
             let tip = document.getElementById('tip-video')
-            tip.onended = function(){
-                this.first_show = false
-            }.bind(this);
+            // tip.onended = function(){
+            //     this.first_show = false
+            // }.bind(this);
 
             if(localStorage['use_count']) {
                 this.use_count = localStorage['use_count']
@@ -608,6 +607,16 @@ export default {
                 this.$router.push('/subscribe')
             }
         }, 
+        seeRemind(){
+            this.first_show = false
+            this.show_remind = true
+        },
+        videoEnd(e){
+            // console.log(e.target.currentTime)
+            if(e.target.currentTime > 96){
+                this.seeRemind()
+            }
+        }
     },
     computed: {
         ...mapGetters({
