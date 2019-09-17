@@ -590,8 +590,8 @@ export default {
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
 
-            // this.$gtag('config', 'UA-136264503-1');
-            // console.log(this.products)
+            this.$scrollTo('#index-fixed-nav',"start");
+            
         }
         // window.addEventListener('scroll',function(){
         // let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
