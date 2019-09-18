@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show">
+        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show && !open_camera">
             <mamiyoga-teach-header v-if="!is_beta" :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <div class="mamiyoga-teach-header" v-if="is_beta">
                 <div class="mamiyoga-teach-header-goback-btn">
@@ -182,7 +182,9 @@
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
-                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
+                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}
+                    </label>
                 </button>
             </div>
         </mamiyoga-window-alert-box>
@@ -208,8 +210,11 @@
             <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
             <div class="star-line-box">
     
-                <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
-                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
+                <button @click="openCamera" class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
+                    {{$t('teach_button_ok')}}
+                    <!-- <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;cursor:pointer;">
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}
+                    </label>   -->
                 </button>
             </div>
         </mamiyoga-window-alert-box>
@@ -225,6 +230,8 @@
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:1px;margin-top:20px;padding:0;background:#24798F;" @click="$router.push('/login')">前往登入</button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload"></mamiyoga-camera>
     </div>
 </template>
 
@@ -236,6 +243,10 @@ import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
+import MamiyogaCamera from '~/components/mamiyoga/MamiyogaCamera.vue';
+
+
+
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -245,6 +256,7 @@ import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout:'mamiyoga',
     data:()=> ({
+        open_camera: false,
         is_loaded: false,
         isLoading: false,
         fullPage: true,
@@ -294,6 +306,7 @@ export default {
         MamiyogaAssayVideo,
         MamiyogaExplainBox,
         MamiyogaWindowAlertBox,
+        MamiyogaCamera,
     },
     async mounted() {
         if (process.client) {
@@ -374,7 +387,8 @@ export default {
             if(this.user.user_id) {
                 send_user_id = this.user.user_id
             }
-            var data = await this.$poseUpload(e.target.files[0],send_user_id,'yoga_27','zh-tw')
+            // var data = await this.$poseUpload(e.target.files[0],send_user_id,'yoga_27','zh-tw')
+            var data = await this.$poseUpload(e,send_user_id,'yoga_27','zh-tw')
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
@@ -576,6 +590,12 @@ export default {
                 // console.log(x)
             }
         },
+        openCamera(){
+            this.photo_remind = false;
+            this.open_camera = true;
+            this.show_remind = false;
+            
+        },
         async sendEmail(e){
             let send_data = {email:this.email};
             if (this.email.length === 0) {
@@ -593,6 +613,12 @@ export default {
                 this.$router.push('/subscribe')
             }
         }, 
+        newVideoUpload(e){
+            console.log(e)
+            this.open_camera = false;
+            this.isLoading = true;
+            this.handleVideoUpload(e);
+        }
     },
     computed: {
         ...mapGetters({

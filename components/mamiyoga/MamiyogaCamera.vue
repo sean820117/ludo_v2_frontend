@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div id="input-video-container">
-            <video id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
+            <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
         </div>
         <div class="btn-style">
             <button @click="playAudio" v-if="!show_recording && !is_stop" id="startBtn" class="btn btn-sm btn-outline-primary"></button>
@@ -9,7 +9,7 @@
             <button v-if="is_stop" @click="reloadPage" id="resetBtn" class="btn btn-sm btn-outline-info"></button>
         </div>
         <p class="upload-btn" v-if="!is_finish">{{current_time}}</p>
-        <p class="upload-btn" v-if="is_finish" @click="saveRecord" >上傳影片</p>
+        <p class="upload-btn" v-if="is_finish" @click="uploadVideo" >上傳影片</p>
         <audio @timeupdate="checkTime" controls id="music" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/Ludo_BGM_1.wav"></audio>
     </div>
 </template>
@@ -35,6 +35,10 @@ export default {
         is_finish: false,
         current_time: 0,
         show_recording: false,
+        recorded_video: {},
+
+        pose_start_time: 5,
+        pose_end_time: 15,
     }),
     async mounted() {
         if (process.client) {
@@ -60,11 +64,20 @@ export default {
         pauseAudio(){
             let m = document.querySelector('#music')
             m.pause();
-            this.video_recorder.stopRecording()
             this.is_stop = true;
+            
+            console.log(this.is_recording)
         },
         reloadPage(){
-            location.reload()
+            // location.reload()
+            let m = document.querySelector('#music')
+            m.currentTime = 0;
+            m.play();
+            this.is_stop = false;
+            if(this.is_recording = true) {
+                this.is_recording = false
+                this.video_recorder.stopRecording()
+            }
         },
         recordVideo(){
             this.video_recorder.startRecording()
@@ -72,11 +85,16 @@ export default {
         },
         stopRecord(){
             let video_recorder = this.video_recorder;
-            this.video_recorder.setOnRecordingFinish(()=>{ video_recorder.saveData(); });
+            this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
             this.video_recorder.stopRecording()
             this.is_stop = true;
             this.is_finish = true;
             console.log('stop')
+        },
+        processRecordedVideo(file) {
+            // console.log(file);
+            this.recorded_video = file; 
+            console.log(this.recorded_video);
         },
         saveRecord(){
             this.video_recorder.saveData();
@@ -90,24 +108,23 @@ export default {
             //     console.log('start')
             //     this.recordVideo();
             // } 
-            if(this.current_time >= 5 && this.current_time < 6 && !this.is_recording) {
+            if(this.current_time >= this.pose_start_time && this.current_time < this.pose_start_time+1 && !this.is_recording) {
                 this.is_recording = true;
                 console.log('start')
                 this.recordVideo();
             } 
 
-            if(this.current_time >= 15 && this.current_time < 16 && this.is_recording) {
+            if(this.current_time >= this.pose_end_time && this.current_time < this.pose_end_time+1 && this.is_recording) {
                 e.target.pause();
                 this.is_recording = false;
                 this.is_finish = true;
                 this.stopRecord();
             }
-            // if(this.current_time > 15) {
-                
-            //     console.log('finish')
-            //     this.stopRecord();
-            //     this.saveRecord();
-            // }
+        },
+        uploadVideo(){
+            let e = this.recorded_video
+            this.video_recorder.closeCamera();
+            this.$emit('uploadVideo',e);
         }
 
     },
@@ -117,13 +134,15 @@ export default {
 <style>
 .container {
     background: #000;
-    min-height: 100vh;
+    height: 100vh;
 }
 #input-video-container {
     transform: scaleX(-1);
+    height: 100vh;
+    overflow: hidden;
 }
 #inputVideo {
-    height:80vh;
+    height:100vh;
 }
 #course-video-container {
     margin-top: 8vh;
@@ -137,12 +156,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: 5vh;
-    left: calc(50% - 50px);
+    bottom: 8vh;
+    left: calc(50% - 40px);
 }
 .btn-style .btn {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-style: none;
     background-position: center center;
     background-size: contain;
@@ -170,5 +189,8 @@ export default {
 }
 #music {
     opacity: 0;
+    position: fixed;
+    top: 0;
+    
 }
 </style>

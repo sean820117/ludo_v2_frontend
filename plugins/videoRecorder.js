@@ -16,6 +16,7 @@ class VideoRecorder {
         this.onGetUserMediaError = this.onGetUserMediaError.bind(this);
         this.mediaRecorderOnStop = this.mediaRecorderOnStop.bind(this);
         this.saveData = this.saveData.bind(this);
+        this.setOnRecordingFinish = this.setOnRecordingFinish.bind(this);
     }
 
     openCamera(constraints,realTimeVideoPlayer = null) {
@@ -62,7 +63,7 @@ class VideoRecorder {
 
     mediaRecorderOnStop(e) {
         var blob = new Blob(this.chunks, { type: 'video/webm' })
-        
+        this.recorded_video = new File([blob], Math.random().toString(16).slice(-4)+Date.now()+ ".webm", {lastModified: Date.now()});
         this.outputVideoURL = URL.createObjectURL(blob)
         // URL.revokeObjectURL(inputVideoURL)
         // URL.revokeObjectURL(outputVideoURL)
@@ -70,8 +71,14 @@ class VideoRecorder {
             this.outputVideo.controls = true
             this.outputVideo.src = this.outputVideoURL
         }
-
+        if (this.onRecordingFinish) {
+            this.onRecordingFinish(this.recorded_video);
+        }
         // this.saveData()
+    }
+
+    setOnRecordingFinish(callback) {
+        this.onRecordingFinish = callback;
     }
 
     saveData () {
@@ -86,7 +93,7 @@ class VideoRecorder {
 
     onStreamingStart(stream) {
         this.stream = stream;
-        
+        // debugger;
         if (this.realTimeVideoPlayer) {
             console.log("play");
             if ('srcObject' in this.realTimeVideoPlayer) {
@@ -100,6 +107,7 @@ class VideoRecorder {
 
     mediaRecorderOnDataAvailable (e) {
         console.log('mediaRecorder on dataavailable', e.data)
+        // debugger;
         this.chunks.push(e.data)
     }
 
