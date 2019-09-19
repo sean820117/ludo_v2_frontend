@@ -23,6 +23,7 @@
                     <input type="hidden" name="coupon_id" :value="coupon_id">
                     <input type="hidden" name="payment_type" v-model="order_payment" value="">
                     <input type="hidden" name="return_url" :value="order_return">
+                    <input type="hidden" name="client_back_url" :value="client_back_url">
                     <input type="hidden" name="user_id" :value="user.user_id">
                     <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
                 </form>
@@ -140,10 +141,10 @@ export default {
         order_email: '',
         order_coupon: '',
         order_payment: '',
-        form_action: 'https://api.ludonow.com/apis/send-to-MPG-gateway',
+        form_action: 'https://api.ludonow.com/apis/send-to-ecpay',
         // form_action: 'http://localhost:8080/apis/send-to-MPG-gateway',
-        order_return: 'https://mamiyoga.ludonow.com/',
-
+        order_return: 'https://mamiyoga.ludonow.com/activation-code',
+        client_back_url: 'https://mamiyoga.ludonow.com/order',
         hint:'',
         hint_color:'',
         is_payed: false,
@@ -188,6 +189,17 @@ export default {
             if(sessionStorage['count_picked_plan']) {
                 this.coupon_count = sessionStorage['count_picked_plan']
             }
+
+            if(localStorage['order_name']) {
+                this.order_name = localStorage['order_name']
+            }
+            if(localStorage['order_phone']) {
+                this.order_phone = localStorage['order_phone']
+            }
+            if(localStorage['order_email']) {
+                this.order_email = localStorage['order_email']
+            }
+
             // console.log(this.zipcode)
             // console.log(this.city)
         }
@@ -211,6 +223,12 @@ export default {
                 this.hint_color = "red"
                 return
             }
+
+            localStorage['order_name'] = this.order_name
+            localStorage['order_phone'] = this.order_phone
+            localStorage['order_email'] = this.order_email
+
+            document.getElementById('order-form').submit();
             // let form = new FormData();
             // form.append('name',this.order_name)
             // form.append('phone',this.order_phone)
@@ -219,7 +237,7 @@ export default {
             // form.append('coupon_id',this.coupon_id)
             // form.append('return_url',this.order_return)
             // form.append('user_id',this.user.user_id)
-            document.getElementById('order-form').submit();
+            
         },
         checkPrice(price){
             if(this.coupon_count) {

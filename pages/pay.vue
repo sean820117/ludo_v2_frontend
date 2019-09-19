@@ -237,8 +237,9 @@ export default {
                 if(this.user.user_id) {
                     send_user_id = this.user.user_id
                 }
-                let send_data = {user_id:send_user_id,question_id:'企業方案聯絡',message: contact_data};
-                const form_res = await axios.post('/apis/send-feedback',send_data);
+                // let send_data = {user_id:send_user_id,question_id:'企業方案聯絡',message: contact_data};
+                // const form_res = await axios.post('/apis/send-feedback',send_data);
+                this.$sendData('/apis/send-feedback',{user_id:send_user_id,question_id:'企業方案聯絡',message: contact_data})
                 this.company_method = true;
             } else {
                 window.alert('請填入所有欄位！')
@@ -256,6 +257,8 @@ export default {
                 
                 try {
                     const coupon_data = await axios.post('/apis/check-coupon',send_data);
+                    // const coupon_data = this.$sendData('/apis/check-coupon',send_data)
+                    console.log(coupon_data)
                     if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) { 
                         alert('輸入成功')
                         this.discount = coupon_data.data.discount

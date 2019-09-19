@@ -2,7 +2,17 @@
     <div>
         <div v-if="$mq == 'iphone'">
             <carousel :perPage="1" :centerMode="true"  :autoplay="false"
-            :spacePadding="25" :paginationEnabled="false" :scrollPerPage="false">
+            :spacePadding="34" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-block-third-comment-block">
+                    <div class="intro-wrap-block-third-comment">
+                        <div class="intro-wrap-block-third-comment-title">
+                            把保養身體變成習慣！
+                        </div>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
+                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
+                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
+                    </div>
+                </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">
@@ -43,16 +53,7 @@
                         <p class="intro-wrap-block-third-comment-from">欣鈺 25歲 頭胎</p>
                     </div>
                 </slide>
-                <slide class="intro-wrap-block-third-comment-block">
-                    <div class="intro-wrap-block-third-comment">
-                        <div class="intro-wrap-block-third-comment-title">
-                            把保養身體變成習慣！
-                        </div>
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
-                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
-                    </div>
-                </slide>
+                
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">
@@ -68,6 +69,16 @@
         <div v-if="$mq == 'mobile'">
             <carousel :perPage="1" :centerMode="true"  :autoplay="false"
             :spacePadding="50" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-block-third-comment-block">
+                    <div class="intro-wrap-block-third-comment">
+                        <div class="intro-wrap-block-third-comment-title">
+                            把保養身體變成習慣！
+                        </div>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
+                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但做了之後發現道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂得如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
+                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
+                    </div>
+                </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">
@@ -108,16 +119,7 @@
                         <p class="intro-wrap-block-third-comment-from">欣鈺 25歲 頭胎</p>
                     </div>
                 </slide>
-                <slide class="intro-wrap-block-third-comment-block">
-                    <div class="intro-wrap-block-third-comment">
-                        <div class="intro-wrap-block-third-comment-title">
-                            把保養身體變成習慣！
-                        </div>
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但做了之後發現道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂得如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
-                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
-                    </div>
-                </slide>
+                
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">
@@ -133,6 +135,16 @@
         <div v-if="$mq == 'desktop'">
             <carousel :perPage="1" :centerMode="true"  :autoplay="false"
             :spacePadding="60" :paginationEnabled="false" :scrollPerPage="false">
+                <slide class="intro-wrap-block-third-comment-block">
+                    <div class="intro-wrap-block-third-comment">
+                        <div class="intro-wrap-block-third-comment-title">
+                            把保養身體變成習慣！
+                        </div>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
+                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
+                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
+                    </div>
+                </slide>
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">
@@ -173,16 +185,7 @@
                         <p class="intro-wrap-block-third-comment-from">欣鈺 25歲 頭胎</p>
                     </div>
                 </slide>
-                <slide class="intro-wrap-block-third-comment-block">
-                    <div class="intro-wrap-block-third-comment">
-                        <div class="intro-wrap-block-third-comment-title">
-                            把保養身體變成習慣！
-                        </div>
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8-2.png" alt="">
-                        <p class="intro-wrap-block-third-comment-text">身為單身全職女性，常常會忽略忙碌的生活以及隨便的飲食給身體帶來的負擔。這些生活中的負擔就好像對自己欠了債，在經期來時讓身體疲累不堪、皮膚也狀況百出。雖然這個運動是標榜產後瑜伽，但其實做了之後發道理其實非常簡單，還沒有生育過的女性也受用無窮。掌握著這個基本的養生之道之後，懂的如何休息，就算面對高壓的工作，也可以好好照顧自己！</p>
-                        <p class="intro-wrap-block-third-comment-from">B 23歲 上班族</p>
-                    </div>
-                </slide>
+                
                 <slide class="intro-wrap-block-third-comment-block">
                     <div class="intro-wrap-block-third-comment">
                         <div class="intro-wrap-block-third-comment-title">

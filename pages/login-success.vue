@@ -51,7 +51,11 @@ export default {
     methods:{
         goIndex(){
             // localStorage['is_signup_success'] = true
-            this.$router.push('/menu')
+            if(localStorage.redirect == '/teach') {
+                this.$router.push(localStorage.redirect)
+            } else {
+                this.$router.push('/menu')
+            }
         },
         goPay(){
             // localStorage['is_signup_success'] = true

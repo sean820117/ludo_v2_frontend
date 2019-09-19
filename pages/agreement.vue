@@ -207,7 +207,7 @@
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue'
 export default {
-    layout: 'mommiyoga',
+    layout: 'mamiyoga',
     data:()=>({
         is_open: false,
     }),

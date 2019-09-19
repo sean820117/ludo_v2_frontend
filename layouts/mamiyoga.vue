@@ -50,11 +50,12 @@ export default {
                 { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/head_logo.ico' },
+                { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
-                // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=1254e916-e473-4d23-904e-63c6886e6497' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
         }
     },
@@ -63,9 +64,14 @@ export default {
             
             this.is_login = await this.$checkLogin(this.$store);
 
-            if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+            // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+            //     localStorage.redirect = this.$route.path;
+            //     console.log("save redirect : " + localStorage.redirect);
+            // }
+            if(this.$route.path == '/teach') {
                 localStorage.redirect = this.$route.path;
-                console.log("save redirect : " + localStorage.redirect);
+            } else {
+                localStorage.redirect = '/menu'
             }
         }
     },

@@ -77,8 +77,9 @@ export default {
                 if(this.user.user_id) {
                     send_user_id = this.user.user_id
                 }
-                let send_data = {user_id:send_user_id,question_id:'文章投稿',message: writing_data};
-                const form_res = await axios.post('/apis/send-feedback',send_data);
+                // let send_data = {user_id:send_user_id,question_id:'文章投稿',message: writing_data};
+                // const form_res = await axios.post('/apis/send-feedback',send_data);
+                this.$sendData('/apis/send-feedback',{user_id:send_user_id,question_id:'文章投稿',message: writing_data})
                 this.is_submited = true
             }
         }

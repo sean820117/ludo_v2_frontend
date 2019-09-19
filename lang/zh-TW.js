@@ -25,7 +25,7 @@ export default {
   teach_tip_video: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/tip-video-zhtw.mp4',
   teach_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4',
   teach_tip_title: '姿勢步驟',
-  teach_button_upload: '開始練習',
+  teach_button_upload: '開 始 練 習',
   teach_teacher_remind: '麻美老師貼心叮嚀',
   teach_teacher_remind_content: '盡量將力氣集中在腰部，如果動作做起來有點吃力的同學，可以把毛巾捲起來放進腰下。',
   teach_remind_text: '我們將記錄您的動作<br>並交給AI助教分析',
@@ -34,7 +34,7 @@ export default {
   teach_photoby_2:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-photoby-2.svg',
   teach_text_time: '建議拍攝時間：&nbsp;<i>20-45</i>&nbsp;秒',
 
-  teach_assay_open_text: '向上滑動打開',
+  teach_assay_open_text: '向上點擊打開',
   teach_assay_title: '分析成果',
   teach_assay_correct: '準確率',
   teach_assay_share_friend: '快和朋友們分享這次的練習成果吧！',
@@ -80,7 +80,7 @@ export default {
   start_experience_text: '觀看完教學是否更加清楚流程了呢<br><br>開啟相機<br>我們將記錄您的動作<br>並交給AI助教分析<br><br>準備好了就開始吧',
   start_experience_btn_1: '開啟相機',
   start_experience_btn_2: '再看一次',
-  start_experience_uptext:'分析中．．．<br>等待期間可以觀看麻美老師的瑜珈建議～',
+  start_experience_uptext:'AI助教分析中<br>請保持螢幕開啟，並停留在此頁面',
   start_experience_btn_3: '觀看結果',
 
   menu_nav_text_teacher:'講師介紹',
