@@ -15,8 +15,10 @@
                 backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-comment-btn.svg)',
                 marginRight:'10px'}" @click="openCommentBlock" class="mamiyoga-assay-header-login-btn">
                 </div> -->
-                <div :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-assay-header-login-btn">
+                <div v-if="!is_android" :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-assay-header-login-btn">
                     <label style="width:55px;height:25px;display:block;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickRetryButton"></label>
+                </div>
+                <div v-if="is_android" @click="clickRetryButtonAndroid" :style="{backgroundColor:'#9BAEB2',backgroundImage:'url(https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-repeat-btn.svg)'}" class="mamiyoga-assay-header-login-btn">
                 </div>
             </div>
         </div>
@@ -231,6 +233,8 @@ export default {
         show_comment_box:false,
         picked_star:'',
         impress: '', 
+
+        is_android: false,
     }),
     components: {
         Hooper,
@@ -239,6 +243,15 @@ export default {
         MamiyogaBtn,
         MamiyogaTeachHeader,
         MamiyogaWindowAlertBox,
+    },
+    mounted(){
+        if(process.client) {
+             if(navigator.userAgent.match(/android/i)){
+                this.is_android = true;
+            }  else {
+                this.is_android = false;
+            }
+        }
     },
     methods:{
         showAssayContent(){
@@ -256,6 +269,9 @@ export default {
         },
         clickRetryButton(e){
             this.$emit('handleRetryEvent',e)
+        },
+        clickRetryButtonAndroid(){
+            this.$emit('retryRecordAndroid')
         },
         clickCloseAssay(){
             this.$emit('closeAssayWindow')

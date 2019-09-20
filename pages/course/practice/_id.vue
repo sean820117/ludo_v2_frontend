@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="divide-page" v-if="!is_loaded" >
+        <div class="divide-page" v-if="!is_loaded && !isLoading && !open_camera" >
             <mamiyoga-mail-header class="mamiyoga-divide-header"></mamiyoga-mail-header>
             <h3 v-html="getTitle"></h3>
             <mamiyoga-divide-video :course_data="course_data" @openRecordBox="openRecordBox"
-            @handleCourseVideoUpload="handleCourseVideoUpload"></mamiyoga-divide-video>
+            @handleCourseVideoUpload="handleCourseVideoUpload"
+            @handleCourseVideoUploadAndroid="handleCourseVideoUploadAndroid"
+            ></mamiyoga-divide-video>
         </div>
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
-        <!-- <div class="vld-parent" >
-                <loading :active.sync="isLoading" 
-                :can-cancel="true" 
-                :is-full-page="fullPage"></loading>
-        </div> -->
+
+        <mamiyoga-assay-video @handleRetryEvent="retryVideoUpload" @retryRecordAndroid="retryRecordAndroid"
+        @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
+
         <div class="loading-bar" v-if="isLoading">
             <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
                 <div class="bar-back">
@@ -35,8 +35,7 @@
                 <button v-show="play_assay" class="see-assay-btn" @click="isLoading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
         </div>
-        
-
+        <!-- 動作紀錄 -->
         <div class="record-background" :class="open_record ? 'open':''">
             <div class="record-box" :class="open_record ? 'open':''">
                 <div @click="open_record = false">
@@ -75,7 +74,6 @@
                         <p style="color:#97A8AF;">{{$t('record_content_text')}}</p>
                     </div> 
                 </div>
-                
                 <!-- <div class="practice-record-content-container" v-if="record_data != ''">
                     <mamiyoga-practice-record-block v-for="(record,i) in record_data"
                     :key="i" :recordDate="setRecordDate(record.createdAt)" :video_url="record.video_url"
@@ -87,6 +85,7 @@
                 </div> -->
             </div>
         </div>
+        <!-- 錯誤訊息回饋視窗(重新上傳) -->
         <mamiyoga-window-alert-box v-if="is_error">
             <div class="cancel-box" @click="is_error = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -94,11 +93,16 @@
             <p style="margin-top:40px;" v-html="errorText"></p>
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                <button v-if="is_android" @click="retryRecordAndroid" class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                    {{$t('teach_button_upload')}}
+                </button>
+                <button v-else class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
                     <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
                 </button>
+                
             </div>
         </mamiyoga-window-alert-box>
+        <!-- 動作錯誤，需重新觀看課程 -->
         <mamiyoga-window-alert-box v-if="need_resee">
             <div class="cancel-box" @click="need_resee = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -111,6 +115,8 @@
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+        <!-- androia錄影視窗 -->
+        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload"></mamiyoga-camera>
     </div>
 </template>
 
@@ -121,13 +127,14 @@ import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import MamiyogaRecordBlockMiddle from '~/components/mamiyoga/MamiyogaRecordBlockMiddle.vue'
 import MamiyogaRecordBlockSmall from '~/components/mamiyoga/MamiyogaRecordBlockSmall.vue'
+import MamiyogaCamera from '~/components/mamiyoga/MamiyogaCamera.vue';
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
-    layout: 'mommiyoga',
+    layout: 'mamiyoga',
     data:()=>({
         is_loaded: false,
         video_result: {},
@@ -158,6 +165,10 @@ export default {
         errorImg: '',
         errorText: '',
         need_resee: false,
+
+        open_camera: false,
+        is_android: false,
+        android_input_id: '',
     }),
     components:{
         MamiyogaMailHeader,
@@ -167,6 +178,7 @@ export default {
         Loading,
         MamiyogaRecordBlockMiddle,
         MamiyogaRecordBlockSmall,
+        MamiyogaCamera,
     },
     async mounted() {
         if (process.client) {
@@ -190,6 +202,11 @@ export default {
             this.course_data = this.courses.find(course => this.course_id == course.id);
             // console.log(this.course_data)
             
+            if(navigator.userAgent.match(/android/i)){
+                this.is_android = true;
+            }  else {
+                this.is_android = false;
+            }
 
             if (sessionStorage["course_" + this.course_data.id + "_current_pose_id"]) {
                 this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"] ;
@@ -226,9 +243,6 @@ export default {
     },
     async beforeCreate() {
         if (process.client) {
-            // this.ui_config = await require('~/config/mommiyoga-config')
-            // this.is_ui_config_loaded = true;
-
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 window.alert("尚未登入帳號，請先前往登入～");
@@ -267,7 +281,11 @@ export default {
             if(this.user.user_id) {
                 send_user_id = this.user.user_id
             }
-            var data = await this.$poseUpload(e.target.files[0],send_user_id,pose_id,this.lang_click)
+            if(this.is_android){
+                var data = await this.$poseUpload(e,send_user_id,pose_id,'zh-tw')
+            } else {
+                var data = await this.$poseUpload(e.target.files[0],send_user_id,pose_id,'zh-tw')
+            }
             console.log(data.status)
             if(!data) {
                 if(this.$i18n.locale == 'JP') {
@@ -451,6 +469,30 @@ export default {
             console.log('OK');
             this.handleVideoUpload(e);
         },
+        handleCourseVideoUploadAndroid(e){
+            this.open_camera = true;
+            this.android_input_id = e.input_id
+            console.log('_third' + this.android_input_id);
+        },
+        newVideoUpload(e){
+            console.log(e)
+            this.open_camera = false;
+            this.isLoading = true;
+            e.input_id = this.android_input_id
+            console.log('_four' + e.input_id)
+            this.handleVideoUpload(e);
+        },
+        retryRecordAndroid(){
+            let target_pose = this.course_data.poses.find(pose => this.current_pose_id == pose.pose_id);
+            if(target_pose) {
+                if (target_pose.input_id) {
+                    this.android_input_id = target_pose.input_id;
+                }
+            }
+            this.is_loaded = false;
+            this.is_error = false;
+            this.open_camera = true;
+        },
         changeArticle(){
             let x = 0;
             x = Math.floor(Math.random()*10)
@@ -493,7 +535,7 @@ export default {
             let day = update.getDate() < 10 ? '0'+update.getDate() : update.getDate();
             let month = (update.getMonth()+1) < 10 ? '0'+(update.getMonth()+1) : (update.getMonth()+1);
             return update.getFullYear()+'/'+month+'/'+day;
-        }
+        },
     },
     computed:{
         ...mapGetters({
