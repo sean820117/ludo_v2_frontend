@@ -25,11 +25,14 @@ export default {
         constraints : {
             // audio: true,
             video: {
-                "mandatory": {
-                    // "maxWidth": 480,
-                    // "maxHeight": 320,
-                    "maxFrameRate": 30,
-                },
+                width:480,
+                height:320,
+                frameRate:30,
+                // "mandatory": {
+                //     "maxWidth": 480,
+                //     "maxHeight": 320,
+                //     "maxFrameRate": 30,
+                // },
             }
         },
         video_recorder:'',

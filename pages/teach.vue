@@ -362,7 +362,7 @@ export default {
                 this.getBackground = this.courses[12].poses[2].remind_img;
                 this.getRemind = this.courses[12].poses[2].remind_text
             }
-            if(navigator.userAgent.match(/android/i)){
+            if(navigator.userAgent.match(/android/i) || navigator.userAgent.match(/Macintosh/i)){
                 this.is_android = true;
             }  else {
                 this.is_android = false;
