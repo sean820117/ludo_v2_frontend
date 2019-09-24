@@ -25,7 +25,7 @@
             <div v-if="count_over" class="count-over">
                 <div class="count-over-all-btn">
                     <div class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
-                    <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
+                    <div @click="saveRecord" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
                 </div>
             </div>
             <video playsinline id="course-video" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/mami_yoga_L13-3_cn.mp4"></video>
@@ -121,6 +121,7 @@ export default {
             let height = 0
             this.video_length = co_vid.duration
             co_vid.play();
+            this.recordVideo();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
                 if(height < 100) {
@@ -133,7 +134,15 @@ export default {
                     clearInterval(id)
                 }
             }, t*1000);
-        }
+        },
+        recordVideo(){
+            this.video_recorder.startRecording()
+            console.log('recording')
+        },
+        saveRecord(){
+            this.video_recorder.saveData();
+            console.log('save')
+        },
     },
 }
 </script>

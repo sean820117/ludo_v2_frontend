@@ -116,7 +116,7 @@
             </div>
         </mamiyoga-window-alert-box>
         <!-- androia錄影視窗 -->
-        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload"></mamiyoga-camera>
+        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload" @closeCamera="closeCamera"></mamiyoga-camera>
     </div>
 </template>
 
@@ -515,6 +515,9 @@ export default {
             this.current_pose_id = sessionStorage["course_" + this.course_data.id + "_current_pose_id"];
             console.log(this.current_pose_id)
             this.current_record_data = this.record_data[this.current_pose_id];
+        },
+        closeCamera(){
+            this.open_camera = false;
         },
         switchTag(record) {
             this.assay_pose_data = this.every_pose.find(select => select.pose_id == this.current_pose_id)
