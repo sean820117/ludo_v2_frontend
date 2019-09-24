@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <div class="input-video-upimg-container">
+        <!-- <div class="input-video-upimg-container">
             <p class="input-video-upimg-text">請將身體對準動作起始位置</p>
             <img class="input-video-upimg" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/camera-upimg-1.png" alt="">
-        </div>
+        </div> -->
         <div id="input-video-container">
             <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
         </div>
@@ -28,6 +28,7 @@ export default {
                 width:480,
                 height:320,
                 frameRate:30,
+                facingMode: 'user',
                 // "mandatory": {
                 //     "maxWidth": 480,
                 //     "maxHeight": 320,

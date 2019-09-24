@@ -547,10 +547,13 @@ export default {
     },
     async mounted(){
         if(process.client) {
-            if(navigator.userAgent.match(/android/i)){
-                this.is_android = true
-                this.show_android_box = true
-            }
+            //  Android用戶顯示視窗
+            // if(navigator.userAgent.match(/android/i)){
+            //     this.is_android = true
+            //     this.show_android_box = true
+            // }
+
+
             // window.onload = this.showSlides()
             // window.addEventListener('scroll',this.scrollHeight)
             let login_or_not = await this.$checkLogin(this.$store);
