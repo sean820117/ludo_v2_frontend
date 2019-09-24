@@ -24,7 +24,7 @@
             </div>
             <div v-if="count_over" class="count-over">
                 <div class="count-over-all-btn">
-                    <div class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
+                    <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
                     <div @click="saveRecord" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
                 </div>
             </div>
@@ -62,6 +62,7 @@ export default {
 
         current_time: 0,
         video_length: 0,
+        recorded_video: {},
     }),
     async mounted(){
         if (process.client) {
@@ -120,8 +121,8 @@ export default {
             let co_vid = document.querySelector('#course-video')
             let height = 0
             this.video_length = co_vid.duration
-            co_vid.play();
             this.recordVideo();
+            co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
                 if(height < 100) {
@@ -131,6 +132,9 @@ export default {
                 } else if (height = 100) {
                     this.show_exhale = false
                     this.count_over = true
+                    this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
+                    this.video_recorder.stopRecording()
+                    console.log('stop')
                     clearInterval(id)
                 }
             }, t*1000);
@@ -140,9 +144,21 @@ export default {
             console.log('recording')
         },
         saveRecord(){
+            let video_recorder = this.video_recorder;
+            
+            console.log(this.recorded_video);
             this.video_recorder.saveData();
             console.log('save')
         },
+        processRecordedVideo(file) {
+            this.recorded_video = file; 
+            console.log(this.recorded_video);
+        },
+        replay(){
+            this.count_over = false;
+            this.show_inhale = true;
+            this.startPractice();
+        }
     },
 }
 </script>
