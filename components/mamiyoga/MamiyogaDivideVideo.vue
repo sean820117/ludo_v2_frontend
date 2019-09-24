@@ -12,6 +12,7 @@
             </div>
             <mamiyoga-divide-every-block v-for="pose in getPoses" :key="pose.pose_id"
             class="mamiyoga-divide-block-detail" :class="pose.pose_id" :current_pose_id="current_pose_id"
+            @handleCourseVideoUploadAndroid="handleCourseVideoUploadAndroid"
             @handleCourseVideoUpload="handleCourseVideoUpload" @openRecordBox="openRecordBox"
             :ai_teacher="pose.pose_ai" :course_data="course_data">
                 <div slot="divide-title">
@@ -101,6 +102,16 @@ export default {
                 }
             }
             this.$emit('handleCourseVideoUpload',e)
+        },
+        handleCourseVideoUploadAndroid(e){
+            let target_pose = this.course_data.poses.find(pose => this.current_pose_id == pose.pose_id);
+            if(target_pose) {
+                if (target_pose.input_id) {
+                    e.input_id = target_pose.input_id;           
+                }
+            }
+            console.log('_second' + e.input_id);
+            this.$emit('handleCourseVideoUploadAndroid',e);
         },
         openRecordBox(){
             this.$emit('openRecordBox')

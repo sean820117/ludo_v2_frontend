@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show">
+        <div class="teach-page" v-if="!is_loaded && !open_explain && !first_show && !open_camera">
             <mamiyoga-teach-header v-if="!is_beta" :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-teach-header>
             <div class="mamiyoga-teach-header" v-if="is_beta">
                 <div class="mamiyoga-teach-header-goback-btn">
@@ -15,8 +15,6 @@
                     <button  :style="{backgroundColor:'#9BAEB2',color:'#FFF'}" class="mamiyoga-header-login-btn" @click="openRemindBox()">{{$t('header_login')}}</button>
                 </div>
             </div>
-            
-            <!-- <mamiyoga-teach-header :headerTitle="$t('teach_title')" btnText="登入" bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox" v-if="is_beta" :is_beta="true"></mamiyoga-teach-header> -->
             <div class="teach-title-video-box" v-if="!show_remind && !isLoading">
                 <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
                 <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
@@ -103,12 +101,8 @@
                 </mamiyoga-window-alert-box>
             </div>
         </div>
-        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent"  @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
-        <!-- <div class="vld-parent" >
-                <loading :active.sync="isLoading" 
-                :can-cancel="true" 
-                :is-full-page="fullPage"></loading>
-        </div> -->
+
+        <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent" @retryRecordAndroid="retryRecordAndroid" @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>
         <div class="loading-bar" v-if="isLoading">
             <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
                 <div class="bar-back">
@@ -133,7 +127,10 @@
                 <button v-show="play_assay" class="see-assay-btn" @click="isLoading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
         </div>
+
         <no-ssr><mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box></no-ssr>
+        
+        <!-- 九月上線公告 -->
         <mamiyoga-window-alert-box v-if="is_open">
             <div class="cancel-box" @click="is_open = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -144,6 +141,8 @@
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <!-- 請輸入信箱 -->
         <mamiyoga-window-alert-box v-if="is_pushed" class="beta-result-box">
             <div class="cancel-box" @click="is_pushed = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -180,6 +179,7 @@
                 <p>Skip></p>
             </div>
         </div> -->
+
         <div class="video-tips" v-if="first_show">
             <div class="video-tips-box">
                 <video @timeupdate="videoEnd" controls autoplay playsinline muted :src="$t('teach_tip_video')" id="tip-video"></video>
@@ -188,6 +188,8 @@
                 <p>Skip></p>
             </div>
         </div>
+
+        <!-- 影片錯誤回饋視窗(重新拍攝) -->
         <mamiyoga-window-alert-box v-if="is_error">
             <div class="cancel-box" @click="is_error = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -195,11 +197,18 @@
             <p style="margin-top:40px;" v-html="errorText"></p>
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
-                <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
-                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}</label>
+                <button @click="reopenCamera" v-if="is_android" class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                    {{$t('teach_button_upload')}}
+                </button>
+                <button class="mamiyoga-assay-contact-btn" v-else style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                    <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}
+                    </label>
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <!-- 動作做錯時回饋視窗(需重新開啟練習畫面) -->
         <mamiyoga-window-alert-box v-if="need_resee">
             <div class="cancel-box" @click="need_resee = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -212,6 +221,8 @@
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <!-- 建議使用拍攝角度 -->
         <mamiyoga-window-alert-box v-if="photo_remind">
             <div class="cancel-box" @click="photo_remind = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
@@ -222,12 +233,18 @@
             <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
             <div class="star-line-box">
     
-                <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
-                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}</label>  
+                <button @click="openCamera" v-if="is_android" class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
+                    {{$t('teach_button_ok')}}
+                </button>
+                <button class="teach-assay-btn" v-else style="width:70px;padding:0;background-color:#24798F;">
+                    <label style="height:35px;display:flex;justify-content:center;align-items:center;cursor:pointer;cursor:pointer;">
+                        <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="beforeRemind">{{$t('teach_button_ok')}}
+                    </label>  
                 </button>
             </div>
         </mamiyoga-window-alert-box>
 
+        <!-- 限制登入後體驗 -->
         <mamiyoga-window-alert-box v-if="not_login">
             <div class="cancel-box" @click="not_login = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
@@ -239,6 +256,8 @@
                 <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:1px;margin-top:20px;padding:0;background:#24798F;" @click="$router.push('/login')">前往登入</button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload"></mamiyoga-camera>
     </div>
 </template>
 
@@ -250,6 +269,10 @@ import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
+import MamiyogaCamera from '~/components/mamiyoga/MamiyogaCamera.vue';
+
+
+
 import axios from '~/config/axios-config';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -257,8 +280,9 @@ import { EMAIL_REGEX } from '~/components/regex.js'
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
-    layout:'mommiyoga',
+    layout:'mamiyoga',
     data:()=> ({
+        open_camera: false,
         is_loaded: false,
         isLoading: false,
         fullPage: true,
@@ -299,6 +323,8 @@ export default {
         not_login: false,
         use_count: 0,
         can_experience: true,
+
+        is_android: false,
     }),
     components: {
         MamiyogaTeachHeader,
@@ -308,6 +334,7 @@ export default {
         MamiyogaAssayVideo,
         MamiyogaExplainBox,
         MamiyogaWindowAlertBox,
+        MamiyogaCamera,
     },
     async mounted() {
         if (process.client) {
@@ -335,6 +362,12 @@ export default {
                 this.getBackground = this.courses[12].poses[2].remind_img;
                 this.getRemind = this.courses[12].poses[2].remind_text
             }
+            if(navigator.userAgent.match(/android/i) || navigator.userAgent.match(/Macintosh/i)){
+                this.is_android = true;
+            }  else {
+                this.is_android = false;
+            }
+
             let tip = document.getElementById('tip-video')
             // tip.onended = function(){
             //     this.first_show = false
@@ -354,19 +387,8 @@ export default {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 this.is_login = false
-                // console.log(login_or_not)
-                // window.alert("尚未登入帳號，請先前往登入～");
-                // this.$router.push('/login');
             } else {
                 this.is_login = true
-                // let payed_or_not = await this.$checkPayed(this.user.user_id,"resume_01");
-                // if (!payed_or_not) {
-                //     console.log("not payed");
-                //     window.alert("尚未開通課程，請先前往購買～");
-                //     this.$router.push('/pay');
-                // } else {
-                //     console.log("payed")
-                // }
             }
         }
     },
@@ -388,7 +410,12 @@ export default {
             if(this.user.user_id) {
                 send_user_id = this.user.user_id
             }
-            var data = await this.$poseUpload(e.target.files[0],send_user_id,'yoga_27','zh-tw')
+            if(this.is_android){
+                var data = await this.$poseUpload(e,send_user_id,'yoga_27','zh-tw')
+            } else {
+                var data = await this.$poseUpload(e.target.files[0],send_user_id,'yoga_27','zh-tw')
+            }
+
             console.log(data.status)
             if(!data) {
                 alert('網路錯誤')
@@ -523,15 +550,15 @@ export default {
 
                         for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
                             for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                                if(this.video_result.reps_wrong_tags[i][j] == "1") this.video_result.reps_wrong_tags[i][j] = "肩が開いていない";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "2") this.video_result.reps_wrong_tags[i][j] = "体が後ろに傾いています";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "3") this.video_result.reps_wrong_tags[i][j] = "体が前に傾いています";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "4") this.video_result.reps_wrong_tags[i][j] = "背中が曲がっています";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "5") this.video_result.reps_wrong_tags[i][j] = "手がまっすぐ伸ばしていない";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "6") this.video_result.reps_wrong_tags[i][j] = "手を完全にあげていない";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "7") this.video_result.reps_wrong_tags[i][j] = "体が完全に伸ばしていません";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "8") this.video_result.reps_wrong_tags[i][j] = "座っていません";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "0") this.video_result.reps_wrong_tags[i][j] = "正解";
+                                if(this.video_result.reps_wrong_tags[i][j] == "1") this.video_result.reps_wrong_tags[i][j] = "不要聳肩";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "2") this.video_result.reps_wrong_tags[i][j] = "身體太往前";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "3") this.video_result.reps_wrong_tags[i][j] = "身體太往後";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "4") this.video_result.reps_wrong_tags[i][j] = "用背部出力會更好";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "5") this.video_result.reps_wrong_tags[i][j] = "手臂不彎曲";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "6") this.video_result.reps_wrong_tags[i][j] = "抬手不完全";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "7") this.video_result.reps_wrong_tags[i][j] = "更往上伸展";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "8") this.video_result.reps_wrong_tags[i][j] = "屁股離地了";
+                                else if (this.video_result.reps_wrong_tags[i][j] == "0") this.video_result.reps_wrong_tags[i][j] = "姿勢正確";
                             }
                         }
                     } else {
@@ -554,6 +581,10 @@ export default {
         retryVideoUpload(){
             this.is_error = false;
             this.handleVideoUpload(e);
+        },
+        retryRecordAndroid(){
+            this.is_loaded = false;
+            this.open_camera = true;
         },
         closeAssayWindow(){
             this.is_loaded = false;
@@ -590,6 +621,16 @@ export default {
                 // console.log(x)
             }
         },
+        reopenCamera(){
+            this.is_error = false;
+            this.open_camera = true;
+        },
+        openCamera(){
+            this.photo_remind = false;
+            this.open_camera = true;
+            this.show_remind = false;
+            
+        },
         async sendEmail(e){
             let send_data = {email:this.email};
             if (this.email.length === 0) {
@@ -607,6 +648,12 @@ export default {
                 this.$router.push('/subscribe')
             }
         }, 
+        newVideoUpload(e){
+            console.log(e)
+            this.open_camera = false;
+            this.isLoading = true;
+            this.handleVideoUpload(e);
+        },
         seeRemind(){
             this.first_show = false
             this.show_remind = true

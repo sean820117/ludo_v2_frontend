@@ -34,10 +34,13 @@
             <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top:40px;width:40%;"> -->
             <p style="color:#24798F;font-size:13px;font-weight:bold;margin:10px 0 20px;">{{getRemind}}</p>
             <div class="star-line-box">
-                <!-- <button class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px" @click="is_open = false">{{$t('teach_assay_button_development')}}</button> -->
-                <button class="teach-assay-btn" style="width:70px;padding:0;background-color:#24798F;">
+                <button class="teach-assay-btn" v-if="is_android" style="width:70px;padding:0;background-color:#24798F;" @click="clickCourseVideoUploadAndroid">
+                    {{$t('teach_button_ok')}}
+                </button>
+                <button class="teach-assay-btn" v-else style="width:70px;padding:0;background-color:#24798F;">
                     <label style="width:70px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('teach_button_ok')}}</label>  
                 </button>
+
             </div>
         </mamiyoga-window-alert-box>
     </div>
@@ -53,6 +56,7 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 export default {
     data:()=>({
         show_remind: false,
+        is_android: false,
         // select_data:[],
     }),
     props:{
@@ -64,8 +68,11 @@ export default {
     },
     mounted(){
         if(process.client) {
-            
-
+            if(navigator.userAgent.match(/android/i)){
+                this.is_android = true;
+            }  else {
+                this.is_android = false;
+            }
         }
     },
     components: {
@@ -77,6 +84,11 @@ export default {
         clickCourseVideoUpload(e){
             this.$emit('handleCourseVideoUpload',e)
             this.show_remind = false
+        },
+        clickCourseVideoUploadAndroid(e){
+            this.$emit('handleCourseVideoUploadAndroid',e)
+            this.show_remind = false
+            console.log('_first');
         },
         openRecordBox(){
             this.$emit('openRecordBox')
