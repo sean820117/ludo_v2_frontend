@@ -257,7 +257,7 @@
             </div>
         </mamiyoga-window-alert-box>
 
-        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload"></mamiyoga-camera>
+        <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload" @closeCamera="closeCamera"></mamiyoga-camera>
     </div>
 </template>
 
@@ -630,6 +630,9 @@ export default {
             this.open_camera = true;
             this.show_remind = false;
             
+        },
+        closeCamera(){
+            this.open_camera = false;
         },
         async sendEmail(e){
             let send_data = {email:this.email};

@@ -33,7 +33,7 @@ class VideoRecorder {
         // 停止所有的輸入或輸出的串流裝置（例如，關攝影機）
         this.stream.getTracks().forEach(function (track) {
             track.stop()    
-        })
+        });
     }
 
     startRecording() {

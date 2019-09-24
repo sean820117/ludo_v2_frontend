@@ -77,7 +77,9 @@ export default {
             console.log(this.is_recording)
         },
         reloadPage(){
-            this.saveRecord();
+            this.video_recorder.closeCamera();
+            this.$emit('closeCamera');
+            // this.saveRecord();
             // location.reload()
             // let m = document.querySelector('#music')
             // m.currentTime = 0;
