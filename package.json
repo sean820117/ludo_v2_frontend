@@ -64,7 +64,8 @@
     "vue2-touch-events": "^2.0.0",
     "vuejs-progress-bar": "^1.0.9",
     "vueperslides": "^1.20.1",
-    "vuetify": "^1.5.14"
+    "vuetify": "^1.5.14",
+    "ws": "^7.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

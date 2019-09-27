@@ -2,7 +2,7 @@ module.exports = [
     { 
         des: '使用方法',
         title: '上課地點、上課時間？',
-        content: 'Mami yoga 為互動式線上運動課程，一支手機即可不限時間、地點觀看課程影片。',
+        content: 'Mami yoga 為互動式線上瑜珈課程，一支手機即可不限時間、地點觀看課程影片。',
     },
     { 
         des: '使用期限',
@@ -17,12 +17,12 @@ module.exports = [
     { 
         des: '兌換序號',
         title: '如何使用折扣碼？',
-        content: '進入購買頁面後，選擇欲購買之方案後，點擊左下角「折扣碼輸入」，輸入您的折扣序號即可使用。',
+        content: '進入購買頁面後，選擇欲購買之方案，點擊左下角「折扣碼輸入」，輸入您的折扣序號即可使用。',
     },
     { 
         des: '購買流程',
         title: '我要如何購買？',
-        content: '<img src="">',
+        content: '<img style="width: 100%;display: block;margin: 20px auto;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/qa-img-3.png">',
     },
     { 
         des: '發票',

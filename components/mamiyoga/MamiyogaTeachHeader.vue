@@ -1,12 +1,10 @@
 <template>
     <div class="mamiyoga-teach-header">
         <div class="mamiyoga-teach-header-goback-btn" @click="$router.go(-1)">
-            <!-- <a @click="$router.go(-1)"> -->
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
-            <!-- </a> -->
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-goback.png" alt="">
         </div>
         <div class="mamiyoga-teach-header-title">
-            <h3 v-html="headerTitle">{{headerTitle}}</h3>
+            <h3 :style="{color:textFtColor}" v-html="headerTitle">{{headerTitle}}</h3>
         </div>
         <div class="mamiyoga-teach-header-login">
             <!-- <button :style="{backgroundColor:bgColor,color:ftColor}" class="mamiyoga-header-login-btn" v-if="!is_login" @click="$router.push('/mamiyoga/login')">{{$t('header_login')}}</button>
@@ -32,6 +30,7 @@ export default {
         btnText: String,
         nextTo: String,
         bgImg: String,
+        textFtColor: String,
         headerTitle: String,
         is_beta: false,
     },
