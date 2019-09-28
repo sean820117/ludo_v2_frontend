@@ -86,13 +86,21 @@ export default {
             this.is_loading = true;
             let send_user_id = 'guest'
             let cur_pose_id = 'yoga_skeleton_img'            
+            const MAX_TRY_TIME = 10;
             var data = await this.$poseUpload(e.target.files[0],send_user_id,cur_pose_id,'zh-tw')
             console.log(data)
 
             if(!data) {
                 alert('網路錯誤')
             } else if(data.status == 102) {
+                let try_time = 0;
+                
                 let get_result = setInterval(() => {
+                    try_time += 1;
+                    if (try_time > MAX_TRY_TIME) {
+                        this.error_text = '嗚～魔鏡只接收<br>單人全身照片'
+                        clearInterval(get_result);
+                    }
                     axios.post('/apis/get-pose-result',{user_id:send_user_id,pose_id:cur_pose_id,createdAt:data.createdAt})
                     .then((response) =>{
                         if(response.data.result.status == 200) {
