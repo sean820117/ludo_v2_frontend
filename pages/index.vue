@@ -27,8 +27,8 @@
                 </div> -->
 
                 <!-- <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select> -->
-                <!-- <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
-                <p class="mamiyoga-intro-agree">© 2019 LUDO All Rights Reserved</p> -->
+                <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
+                <p class="mamiyoga-intro-agree">© 2019 LUDO All Rights Reserved</p>
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
@@ -425,6 +425,22 @@
                     </div> -->
                     
                     <!-- 三段式常見問題 -->
+                    <!-- <div class="intro-wrap-block-new-second">
+                        <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
+                        <div class="about-course-data-wrap qa" :class="show_qa">
+                            <div class="about-course-data-block" @click="toggleQA()">
+                                <div class="about-course-data-num" :class="show_qa">探索內容</div>
+                                <div class="about-course-data-title" :class="show_qa">點擊打開常見問題</div>
+                                <div class="about-course-data-circle outside" :class="show_qa">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <hr class="about-course-data-line" style="display:none;" :class="show_qa">
+                            </div>
+                        </div>
+
+
+                    </div> -->
                     <div class="intro-wrap-block-new-second">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
                         <div class="about-course-data-wrap qa" :class="show_qa"  >
@@ -516,7 +532,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
+                    <!-- <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p> -->
                     <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved<br>contact@ludonow.com</p>
                 </div>
                 <div class="love-feedback-block" id="index-love-feedback" v-if="!switchBlock">

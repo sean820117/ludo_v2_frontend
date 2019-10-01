@@ -51,7 +51,12 @@
                 </div>
             </a>
         </div>
-        <div class="info-footer">立即付款</div>
+        <div class="info-footer">
+            <div class="index-footer-content">
+                <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
+                <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -142,9 +147,9 @@ export default {
     height: 15px;
 }
 .info-footer {
-    height: 55px;
+    height: 60px;
     width: 100%;
-    background: #24798F;
+    background: #F7F7F7;
     color: #EEEFEA;
     display: flex;
     align-items: center;
@@ -154,6 +159,17 @@ export default {
     position: fixed;
     bottom: 0;
     z-index: 999;
+}
+.index-footer-btn {
+    width: 48%;
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid #24798F;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media(min-width: 769px) {
     .info-footer {

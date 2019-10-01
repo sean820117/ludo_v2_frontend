@@ -32,7 +32,7 @@
                 </div>
                 <div class="mirror-li">
                     <p class="mirror-num">3</p>
-                    <p>專屬骨架製作完成 ٩(●˙▿˙●)۶</p>
+                    <p>專屬骨架製作完成</p>
                 </div>
             </div>
             <label class="mirror-long-btn" style="margin-top:5vh;">打 開 魔 鏡
