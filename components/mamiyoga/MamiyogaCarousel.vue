@@ -46,12 +46,12 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">990</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:14px;">NTD/人起</p>
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <p style="font-size:16px;text-align: center;">專人服務</p>
                     <div class="intro-wrap-four-pay-btn" @click="goPlan3">
-                        立即購買
+                        立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
@@ -107,12 +107,12 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">990</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:14px;">NTD/人起</p>
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <p style="font-size:16px;text-align: center;">專人服務</p>
                     <div class="intro-wrap-four-pay-btn" @click="goPlan3">
-                        立即購買
+                        立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
@@ -168,12 +168,12 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">990</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:14px;">NTD/人起</p>
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD82/月</p>
+                    <p style="font-size:16px;text-align: center;">專人服務</p>
                     <div class="intro-wrap-four-pay-btn" @click="goPlan3">
-                        立即購買
+                        立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
