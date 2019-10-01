@@ -168,7 +168,7 @@
                         <div class="intro-wrap-block-new-five-curriculum" style="height:400px;overflow:hidden;">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
-                        <img @click="goOtherPage('https://lihi1.cc/NTdc2')" style="cursor:pointer;width: 80%;display: block;margin: 0 auto 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-5-1.png" alt="">
+                        <img id="get-course-link" @click="goOtherPage('https://lihi1.cc/NTdc2')" style="cursor:pointer;width: 80%;display: block;margin: 0 auto 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-5-1.png" alt="">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="intro-wrap-block-title" style="color:#24798F;">主題式單元</h4>
@@ -293,7 +293,7 @@
                         <p class="index-article-text" style="margin: 0 auto 50px;width: 90%;font-size:16px;">媽咪新手村提供從產前到產後全方位知識攻略，<br>陪媽咪們一起解任務！</p>
                         <div class="go-new-mamimura">
                             <!-- <p class="index-article-out-container-text" style="right: 8vw;font-size:24px;font-weight:300;position:absolute;color:#24798F;text-shadow:none;">快加入與村民們<br>互相交流吧！</p> -->
-                            <img @click="goOtherPage('https://lihi1.cc/UaaJ6')" style="cursor:pointer;width: 40%;position: absolute;bottom: 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-btn.png" alt="">
+                            <img id="go-to-club" @click="goOtherPage('https://lihi1.cc/UaaJ6')" style="cursor:pointer;width: 40%;position: absolute;bottom: 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-btn.png" alt="">
                         </div>
                         <hr style="color:#E8E8E8;margin: 0 10% 50px;opacity:.2;">
                     </div>
