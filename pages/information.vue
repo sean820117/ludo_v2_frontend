@@ -52,10 +52,10 @@
             </a>
         </div>
         <div class="info-footer">
-            <div class="index-footer-content">
-                <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
-                <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
-            </div>
+            
+            <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
+            <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
+
         </div>
     </div>
 </template>
@@ -152,9 +152,9 @@ export default {
     background: #F7F7F7;
     color: #EEEFEA;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    letter-spacing: 5px;
+    justify-content: space-evenly;
     font-size: 20px;
     position: fixed;
     bottom: 0;
