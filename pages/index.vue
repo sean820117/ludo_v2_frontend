@@ -999,7 +999,7 @@ export default {
 #mamiyoga-index-title-des {
     width: 85vw;
     margin: 0 auto 1vh;
-    font-size: 22px;
+    font-size: 19px;
     color: #F7F7F7;
     font-weight: 500;
 }

@@ -66,16 +66,17 @@ export default {
                 webWidget: {
                     offset: {
                         mobile: {
-                            horizontal: '0px',
-                            vertical: '100px'
+                            // horizontal: '0px',
+                            // vertical: '100px'
                         }
                     }
                 }
             });
-            setTimeout(() => {
-                console.log('hide zE');
-                this.$hideZendesk();
-            }, 10000);
+            // this.$showZendesk();
+            // setTimeout(() => {
+            //     console.log('hide zE');
+            //     this.$hideZendesk();
+            // }, 10000);
             this.is_login = await this.$checkLogin(this.$store);
 
             // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {

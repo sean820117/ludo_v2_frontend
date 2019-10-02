@@ -59,7 +59,7 @@ export default {
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
-                // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
+                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
             
         }
@@ -75,7 +75,16 @@ export default {
     // },
     async mounted() {
         if (process.client) {
-            
+            this.$setZendesk({
+                webWidget: {
+                    offset: {
+                        mobile: {
+                            // horizontal: '0px',
+                            // vertical: '100px'
+                        }
+                    }
+                }
+            });
             this.is_login = await this.$checkLogin(this.$store);
 
             // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {

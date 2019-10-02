@@ -163,6 +163,11 @@ export default {
     },
     async mounted(){
         if(process.client) {
+            setTimeout(() => {
+                console.log('hide zE');
+                this.$hideZendesk();
+            }, 10000);
+            
             for (let i = 0; i < this.products.length; i++) {
                 let send_data = {item_id: this.products[i].item_id};
                 const response = await axios.post('/apis/get-shop-item',send_data);
