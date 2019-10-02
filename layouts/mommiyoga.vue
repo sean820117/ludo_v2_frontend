@@ -59,7 +59,7 @@ export default {
             ],
             script: [
                 // { src: 'https://player.vimeo.com/api/player.js' },
-                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
+                // { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
             
         }
@@ -87,6 +87,8 @@ export default {
             }
             console.log("save redirect : " + localStorage.redirect);
             // }
+
+            
         }
     },
 }

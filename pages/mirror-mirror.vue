@@ -66,7 +66,7 @@ import axios from '~/config/axios-config';
 export default {
     layout: 'mamiyoga',
     data:()=>({
-        upload_pic:false,
+        upload_pic: false,
         is_loading: false,
         is_error: false,
         error_text: '',
@@ -78,7 +78,7 @@ export default {
     },
     mounted(){
         if(process.client) {
-            // this.setCanvas();
+  
         }
     },
     methods: {
@@ -137,10 +137,9 @@ export default {
                     })
                 }, 3000);
             }
-            
         },
         // setCanvas(){
-        //     let m = document.getElementById('mirror').getContext('2d');
+        //     let m = document.getElementById('put-pic').getContext('2d');
         //     let img = new Image();
         //     img.onload = function(){
         //         m.drawImage(img,0,0);
@@ -151,7 +150,7 @@ export default {
         //         m.lineTo(170,15);
         //         m.stroke();
         //     };
-        //     img.src = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-landscape-close.png';
+        //     img.src = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/training/sport/output/guest/20abnpsnhi-3-1.jpg';
         // }
     }
 }

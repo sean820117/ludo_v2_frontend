@@ -11,6 +11,7 @@ import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
 
+
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
@@ -73,6 +74,19 @@ export default {
             } else {
                 localStorage.redirect = '/menu'
             }
+
+            
+
+            // if (this.$route.path !== '/teach') {
+            //     let script = document.createElement('script')
+            //     script.id = 'ze-snippet'
+            //     script.type = 'text/javascript'
+            //     script.src = 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc'
+            //     document.getElementsByTagName('head')[0].appendChild(script)
+            //     console.log(script)
+            // } else {
+                
+            // }
         }
     },
 }

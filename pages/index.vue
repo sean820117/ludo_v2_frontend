@@ -27,8 +27,7 @@
                 </div> -->
 
                 <!-- <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select> -->
-                <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
-                <p class="mamiyoga-intro-agree">© 2019 LUDO All Rights Reserved</p>
+
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
@@ -183,7 +182,7 @@
                                     <hr class="about-course-data-line" style="display:none;" :class="show_menu">
                                 </div>
                                 <div class="about-course-series-data-block" :class="show_series[0]">
-                                    <div class="about-course-data-block" style="margin-top:0;" @click="toggleSeries(0)">
+                                    <div class="about-course-data-block"  @click="toggleSeries(0)">
                                         <div class="about-course-data-title series">矯正疼痛</div>
                                         <div class="about-course-data-circle outside series" :class="show_series[0]">
                                             <span></span>
@@ -208,7 +207,7 @@
                                     </div>
                                 </div>
                                 <div class="about-course-series-data-block" :class="show_series[1]">
-                                    <div class="about-course-data-block" style="margin-top:0;" @click="toggleSeries(1)">
+                                    <div class="about-course-data-block"  @click="toggleSeries(1)">
                                         <div class="about-course-data-title series">舒壓安眠</div>
                                         <div class="about-course-data-circle outside series" :class="show_series[1]">
                                             <span></span>
@@ -233,7 +232,7 @@
                                     </div>
                                 </div>
                                 <div class="about-course-series-data-block" :class="show_series[2]">
-                                    <div class="about-course-data-block" style="margin-top:0;" @click="toggleSeries(2)">
+                                    <div class="about-course-data-block"  @click="toggleSeries(2)">
                                         <div class="about-course-data-title series">美體塑身</div>
                                         <div class="about-course-data-circle outside series" :class="show_series[2]">
                                             <span></span>
@@ -258,7 +257,7 @@
                                     </div>
                                 </div>
                                 <div class="about-course-series-data-block" :class="show_series[3]">
-                                    <div class="about-course-data-block" @click="toggleSeries(3)">
+                                    <div class="about-course-data-block"  @click="toggleSeries(3)">
                                         <div class="about-course-data-title series">調和心靈</div>
                                         <div class="about-course-data-circle outside series" :class="show_series[3]">
                                             <span></span>
@@ -425,25 +424,9 @@
                     </div> -->
                     
                     <!-- 三段式常見問題 -->
-                    <!-- <div class="intro-wrap-block-new-second">
-                        <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
-                        <div class="about-course-data-wrap qa" :class="show_qa">
-                            <div class="about-course-data-block" @click="toggleQA()">
-                                <div class="about-course-data-num" :class="show_qa">探索內容</div>
-                                <div class="about-course-data-title" :class="show_qa">點擊打開常見問題</div>
-                                <div class="about-course-data-circle outside" :class="show_qa">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <hr class="about-course-data-line" style="display:none;" :class="show_qa">
-                            </div>
-                        </div>
-
-
-                    </div> -->
                     <div class="intro-wrap-block-new-second">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
-                        <div class="about-course-data-wrap qa" :class="show_qa"  >
+                        <div class="about-course-data-wrap qa" :class="show_qa">
                             <div class="about-course-data-block" @click="toggleQA()">
                                 <div class="about-course-data-num" :class="show_qa">探索內容</div>
                                 <div class="about-course-data-title" :class="show_qa">點擊打開常見問題</div>
@@ -532,7 +515,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p> -->
+                    <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
                     <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved<br>contact@ludonow.com</p>
                 </div>
                 <div class="love-feedback-block" id="index-love-feedback" v-if="!switchBlock">
@@ -1422,16 +1405,17 @@ export default {
 }
 .about-course-series-data-block {
     overflow: hidden;
-    max-height: 50px;
+    max-height: 70px;
     min-height: 0;
     transition: ease .4s;
 }
-.about-course-series-data-block:nth-child(2),
+/* .about-course-series-data-block:nth-child(2),
 .about-course-series-data-block:nth-child(3) {
     max-height:70px;
 }
-.about-course-series-data-block:nth-child(5) {
-    max-height: 90px;
+ */
+ .about-course-series-data-block:nth-child(5) {
+    max-height: 80px;
 }
 .about-course-series-data-block.open {
     min-height: 260px;
@@ -1446,14 +1430,14 @@ export default {
     max-height: 500px;
 }
 .about-course-series-data-block:nth-child(5).open {
-    min-height: 250px;
+    min-height: 430px;
     max-height: 520px;
 }
 .about-course-data-block {
     width: 85%;
-    height: 50px;
+    height: 55px;
     overflow: hidden;
-    margin: 20px auto;
+    margin: 15px auto 0;
     text-align: center;
     transition: ease .4s;
     position: relative;
@@ -1468,13 +1452,15 @@ export default {
 .about-course-series-data-block:nth-child(5).open .about-course-data-block:nth-child(5).open {
     height: 130px !important;
 }
+.about-course-series-data-block:nth-child(5).open .about-course-data-block:nth-child(6).open {
+    height: 140px !important;
+}
 .about-course-data-block.qa.open {
     height: 110px;
 }
 .about-course-data-block:nth-child(4).qa.open {
     height: 190px;
 }
-.about-course-data-block:nth-child(2).qa.open,
 .about-course-data-block:nth-child(5).qa.open,
 .about-course-data-block:nth-child(9).qa.open {
     height: 130px;
@@ -1482,8 +1468,14 @@ export default {
 .about-course-data-block:nth-child(6).qa.open {
     height: 470px;
 }
+.about-course-data-block.qa .about-course-data-content {
+    width: 85%;
+}
 .about-course-data-block:nth-child(6).qa .about-course-data-content {
     width: 100%;
+}
+.about-course-data-block.qa:last-child{
+    margin-bottom: 15px;
 }
 .about-course-data-num {
     font-size: 12px;
