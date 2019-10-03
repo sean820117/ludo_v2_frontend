@@ -167,7 +167,7 @@
                         <div class="intro-wrap-block-new-five-curriculum" style="height:400px;overflow:hidden;">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
-                        <img id="get-course-link" @click="goOtherPage('https://lihi1.cc/NTdc2')" style="cursor:pointer;width: 80%;display: block;margin: 0 auto 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-5-1.png" alt="">
+                        <img id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')" style="cursor:pointer;width: 80%;display: block;margin: 0 auto 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-5-1.png" alt="">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="intro-wrap-block-title" style="color:#24798F;">主題式單元</h4>
