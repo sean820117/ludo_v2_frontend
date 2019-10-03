@@ -17,14 +17,6 @@
             </div>
             <div class="teach-title-video-box" v-if="!show_remind && !isLoading">
                 <video controls autoplay playsinline :src="$t('teach_video')" class="teach-video-sample"></video>
-                <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-sample.gif" alt="瑜伽動作" class="teach-video-sample">
-                <div class="teach-course-info">
-                    <div :style="{backgroundImage:'url('+$t('teach_photoby_2')+')'}"></div>
-                    <div>
-                        <h3>{{course_title}}</h3>
-                        <p v-html="$t('teach_text_time')"></p>
-                    </div>
-                </div> -->
             </div>
             
             <div class="teach-detail-box">

@@ -75,7 +75,16 @@ export default {
     // },
     async mounted() {
         if (process.client) {
-            
+            this.$setZendesk({
+                webWidget: {
+                    offset: {
+                        mobile: {
+                            // horizontal: '0px',
+                            // vertical: '100px'
+                        }
+                    }
+                }
+            });
             this.is_login = await this.$checkLogin(this.$store);
 
             // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
@@ -87,6 +96,8 @@ export default {
             }
             console.log("save redirect : " + localStorage.redirect);
             // }
+
+            
         }
     },
 }

@@ -7,7 +7,10 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-phone-1.png" alt="">
                 <div id="show-mirror-img" :style="{backgroundImage: 'url('+receipt_img+')'}"></div>
             </div>
-            <a style="text-decoration: none;" :href="receipt_img" target="_blank"><div class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div></a>
+            <!-- <a style="text-decoration: none;" :href="receipt_img" target="_blank"> -->
+            <!-- <a :href="'https://www.addtoany.com/share#url=https://beta.ludonow.com/mirror/'+receipt_link+'&amp;title='" target="_blank"> -->
+                <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div>
+            <!-- </a> -->
             <div class="mirror-long-btn" @click="$router.push('/teach')">體 驗 課 程</div>
         </div>
         <div v-if="!upload_pic">
@@ -66,11 +69,12 @@ import axios from '~/config/axios-config';
 export default {
     layout: 'mamiyoga',
     data:()=>({
-        upload_pic:false,
+        upload_pic: false,
         is_loading: false,
         is_error: false,
         error_text: '',
         receipt_img: '',
+        receipt_link: '',
     }),
     components: {
         MamiyogaTeachHeader,
@@ -78,7 +82,7 @@ export default {
     },
     mounted(){
         if(process.client) {
-            // this.setCanvas();
+  
         }
     },
     methods: {
@@ -106,6 +110,10 @@ export default {
                         if(response.data.result.status == 200) {
                             console.log(response.data.result)
                             this.receipt_img = response.data.result.video_url
+                            this.receipt_link = this.receipt_img.replace('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/training/sport/output/guest/','')
+                            this.receipt_link = this.receipt_link.replace('.jpg','');
+                            console.log(this.receipt_link);
+                            sessionStorage['get_receipt_link'] = this.receipt_link
                             this.is_loading = false;
                             this.upload_pic = true;
                             clearInterval(get_result);
@@ -137,10 +145,21 @@ export default {
                     })
                 }, 3000);
             }
-            
         },
+        shareUrl(){
+            if(navigator.share) {
+                navigator.share({
+                    url: 'https://mamiyoga.ludonow.com/mirror/' + this.receipt_link,
+                })
+                console.log('ok')
+            } else {
+                console.log('error')
+                window.open(`https://www.addtoany.com/share#url=https://mamiyoga.ludonow.com/mirror/${this.receipt_link}&amp;title=`)
+            }
+        },
+
         // setCanvas(){
-        //     let m = document.getElementById('mirror').getContext('2d');
+        //     let m = document.getElementById('put-pic').getContext('2d');
         //     let img = new Image();
         //     img.onload = function(){
         //         m.drawImage(img,0,0);
@@ -151,7 +170,7 @@ export default {
         //         m.lineTo(170,15);
         //         m.stroke();
         //     };
-        //     img.src = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/assay-landscape-close.png';
+        //     img.src = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/training/sport/output/guest/20abnpsnhi-3-1.jpg';
         // }
     }
 }

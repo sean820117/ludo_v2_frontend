@@ -13,11 +13,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
                     </div>
                 </div>
                 </slide>
@@ -31,11 +31,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
@@ -50,11 +50,11 @@
                         <p style="font-size:14px;">NTD/人起</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="goPlan3">
                         立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="goPlan3"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
@@ -74,11 +74,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
                     </div>
                 </div>
                 </slide>
@@ -92,11 +92,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
@@ -111,11 +111,11 @@
                         <p style="font-size:14px;">NTD/人起</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="goPlan3">
                         立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="goPlan3"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
@@ -135,11 +135,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan1">
+                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle"  @click="goPlan1"></div>
+                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1" @click="goPlan1"></div>
                     </div>
                 </div>
                 </slide>
@@ -153,11 +153,11 @@
                         <p style="font-size:14px;">NTD/人</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan2">
+                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan2"></div>
+                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
@@ -172,11 +172,11 @@
                         <p style="font-size:14px;">NTD/人起</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" @click="goPlan3">
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="goPlan3">
                         立即填寫
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" @click="goPlan3"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="goPlan3"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>

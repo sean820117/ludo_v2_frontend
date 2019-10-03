@@ -11,6 +11,7 @@ import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
 
+
 Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
@@ -61,7 +62,21 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            
+            this.$setZendesk({
+                webWidget: {
+                    offset: {
+                        mobile: {
+                            // horizontal: '0px',
+                            // vertical: '100px'
+                        }
+                    }
+                }
+            });
+            // this.$showZendesk();
+            // setTimeout(() => {
+            //     console.log('hide zE');
+            //     this.$hideZendesk();
+            // }, 10000);
             this.is_login = await this.$checkLogin(this.$store);
 
             // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
@@ -73,6 +88,19 @@ export default {
             } else {
                 localStorage.redirect = '/menu'
             }
+
+            
+
+            // if (this.$route.path !== '/teach') {
+            //     let script = document.createElement('script')
+            //     script.id = 'ze-snippet'
+            //     script.type = 'text/javascript'
+            //     script.src = 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc'
+            //     document.getElementsByTagName('head')[0].appendChild(script)
+            //     console.log(script)
+            // } else {
+                
+            // }
         }
     },
 }
