@@ -2,20 +2,22 @@
     <div>
         <div id="experience-page" v-if="!is_loading && !is_loaded">
             <div id="top-show">
-                <div id="go-back-btn">
+                <div v-if="!show_nam" id="go-back-btn">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-header-next.png" alt="">
                 </div>
-                <div id="start-video" @click="startPractice">
+                <div v-if="!show_nam" id="start-video" @click="startReady">
                     開始
                 </div>
             </div>
             <div id="input-video-container">
                 <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
-                <div class="preview-img"></div>
+                <div class="preview-img">
+                    <div v-if="show_nam">{{ready_go}}</div>
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                </div>
             </div>
-            
             <div id="show-course" :class="is_studying ? 'show':''">
-                <div id="repeat-nam" v-if="!count_over">{{nam}}</div>
+                <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
                 <div v-if="show_inhale && !show_exhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''">
                     <div class="repeat-bar-text">吸氣</div>
                 </div>
@@ -81,14 +83,14 @@
             <p style="margin-top:40px;" v-html="errorText"></p>
             <img :src="errorImg" alt="" style="margin:30px auto 45px;height:35%;width:auto;">
             <div class="star-line-box">
-                <button @click="reopenCamera" v-if="is_android" class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
+                <!-- <button @click="reopenCamera" v-if="is_android" class="mamiyoga-assay-contact-btn" style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
                     {{$t('teach_button_upload')}}
                 </button>
                 <button class="mamiyoga-assay-contact-btn" v-else style="width:120px;letter-spacing:0;margin-top:20px;padding:0;">
                     <label style="width:120px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
                         <input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="retryVideoUpload">{{$t('teach_button_upload')}}
                     </label>
-                </button>
+                </button> -->
             </div>
         </mamiyoga-window-alert-box>
 
@@ -124,15 +126,15 @@ export default {
         constraints : {
             // audio: true,
             video: {
-                width:480,
-                height:320,
-                frameRate:30,
-                facingMode: 'user',
-                // "mandatory": {
-                //     "maxWidth": 480,
-                //     "maxHeight": 320,
-                //     "maxFrameRate": 30,
-                // },
+                // width:480,
+                // height:320,
+                // frameRate:12,
+                // facingMode: 'user',
+                "mandatory": {
+                    "maxWidth": 480,
+                    "maxHeight": 320,
+                    "maxFrameRate": 30,
+                },
             }
         },
         video_recorder:'',
@@ -160,7 +162,8 @@ export default {
         errorImg: '',
         play_assay: false,
 
-
+        show_nam: false,
+        ready_go: 5,
     }),
     async mounted(){
         if (process.client) {
@@ -174,6 +177,16 @@ export default {
         }
     },
     methods: {
+        startReady(){
+            this.show_nam = true
+            let id = setInterval(() => {
+                this.ready_go--
+                if(this.ready_go == 0){
+                    this.startPractice();
+                    clearInterval(id)
+                }
+            }, 1000);
+        },
         startPractice(){
             this.is_studying = true;
             
@@ -184,24 +197,24 @@ export default {
             let nt_vid_2 = document.querySelector('#course-video-3')
             nt_vid.style.display = 'none';
             nt_vid_2.style.display = 'none';
-            let height = 0
+            // let height = 0
             this.video_length = co_vid.duration
+            console.log(this.video_length)
             bgm.play();
             co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
-                if(height < 100) {
-                    height++
-                    console.log(height)
-                    document.getElementById('video-process-bar-inside-1').style.height = height+'%'; 
-                } else if (height = 100) {
+                let bar_percentage = co_vid.currentTime / this.video_length
+                console.log(bar_percentage)
+                document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
+                if (bar_percentage == 1) {
                     nt_vid.style.display = 'block';
                     co_vid.style.display = 'none';
                     this.startPractice1();
                     console.log('stop')
                     clearInterval(id)
                 }
-            }, t*1000);
+            }, 100);
         },
         startPractice1(){
             this.show_inhale = true
@@ -246,11 +259,10 @@ export default {
             co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
-                if(height < 100) {
-                    height++
-                    console.log(height)
-                    document.getElementById('video-process-bar-inside-2').style.height = height+'%'; 
-                } else if (height = 100) {
+                let bar_percentage = co_vid.currentTime / this.video_length
+                console.log(bar_percentage)
+                document.getElementById('video-process-bar-inside-2').style.height = (bar_percentage * 100)+'%'; 
+                 if (bar_percentage == 1) {
                     this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
                     this.video_recorder.stopRecording()
                     nt_vid.style.display = 'block';
@@ -259,7 +271,7 @@ export default {
                     console.log('stop')
                     clearInterval(id)
                 }
-            }, t*1000);
+            }, 100);
         },
         startPractice2(){
             let co_vid = document.querySelector('#course-video-3')
@@ -269,16 +281,15 @@ export default {
             co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
-                if(height < 100) {
-                    height++
-                    console.log(height)
-                    document.getElementById('video-process-bar-inside-3').style.height = height+'%'; 
-                } else if (height = 100) {
+                let bar_percentage = co_vid.currentTime / this.video_length
+                console.log(bar_percentage)
+                document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage*100)+'%'; 
+                if (bar_percentage == 1) {
                     this.count_over = true
                     console.log('stop')
                     clearInterval(id)
                 }
-            }, t*1000);
+            }, 100);
         },
         recordVideo(){
             this.video_recorder.startRecording()
@@ -498,15 +509,36 @@ export default {
     height: 100vh;
 }
 #input-video-container {
-    transform: scaleX(-1);
+    /* transform: scaleX(-1); */
     /* width: 100vw; */
     height: 100vh;
     overflow: hidden;
 }
 .preview-img {
-    background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_preview.png');
+    /* width: 100vh;
+    height: 100%; */
+    /* background: rgba(0,0,0,.5); */
+    transform: rotate(90deg);
+    position: fixed;
+    top: 30vh;
+    left: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_preview.png'); */
+}
+.preview-img div {
+    color: #fff;
+    font-size: 120px;
+    position: fixed;
+    top: -20px;
+    left: 45vh;
+}
+.preview-img img {
+    height: 90vw;
 }
 #inputVideo {
+    transform: scaleX(-1);
     height:100vh;
 }
 #top-show {
@@ -523,8 +555,8 @@ export default {
     width: 40px;
 }
 #start-video {
-    width: 30vw;
-    height: 10vh;
+    width: 25vw;
+    height: 7vh;
     background: #24798F;
     transform: rotate(90deg);
     position: absolute;
@@ -535,6 +567,7 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+    font-size: 20px;
 }
 #show-course {
     z-index: 0;
