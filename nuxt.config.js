@@ -52,6 +52,7 @@ module.exports = {
     { src: '~/plugins/poseUpload.js', ssr: false },
     { src: '~/plugins/carousel.js', ssr: false },
     { src: '~/plugins/videoRecorder.js', ssr: false },
+    { src: '~/plugins/ludoSocket.js', ssr: false },
     { src: '~/plugins/sendData.js', ssr: false },
     { src: "~/plugins/zendesk.js", ssr: false }   
   ],
