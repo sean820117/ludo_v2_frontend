@@ -1,10 +1,6 @@
 <template>
     <div>
         <div class="index-contain" style="min-height:100vh;overflow:visible;">
-            <!-- <video muted loop autoplay playsinline class="background-video" >
-                <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-1.mp4" type="video/mp4">      
-                <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-2.mp4" type="video/mp4">      
-            </video> -->
              <div class="background-video-contain" >
                 <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;"></div>
                 <video muted loop autoplay playsinline class="background-video" >
@@ -17,25 +13,13 @@
                 <h2 id="mamiyoga-index-title-des">更美好的日常，從照顧自己開始</h2>
                 <p id="mamiyoga-index-title-eng">The Daily Life we love, Mami yoga</p>
                 <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title">
-
-                <!-- 體驗&課程按鈕 -->
-                <!-- <div class="mamiyoga-intro-btn" @click="goTeach">
-                    <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
-                </div>
-                <div class="mamiyoga-intro-btn" @click="$router.push(check_log)">
-                    <mamiyoga-btn bgColor="#97A8AF" ftColor="#E8EAE6" :btnText="$t('index_button_pay')" style="margin-bottom:5vh;" ></mamiyoga-btn>
-                </div> -->
-
-                <!-- <mamiyoga-login-select v-if="!is_open && is_ui_config_loaded" :login_method="ui_config.view.signup_page.login_method"></mamiyoga-login-select> -->
-
                 <div  style="display:flex;justify-content:center;flex-direction: column;align-items:center;margin:2vh auto 0;width: 15%;cursor:pointer;"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
             </div>
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
-                <!-- <input type="radio" id="about-course" name="index-select" checked>
-                <input type="radio" id="love-feedback" name="index-select"> -->
+
                 <div class="index-label-box" id="index-fixed-nav">
                     <div style="display: flex;align-items: center;justify-content: space-evenly;width: 100%;">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
@@ -45,8 +29,6 @@
                         <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
                         <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
                     </div>
-                    <!-- <label class="about-course-btn" for="about-course" @click="switchBlock = true">課程介紹</label>
-                    <label class="love-feedback-btn" for="love-feedback" id="love-feedback-label" @click="switchBlock = false">免費觀看</label> -->
                 </div>
                 <div class="about-course-block" id="index-first-video" v-if="switchBlock">
                     <div style="background: linear-gradient(180deg,#FCF8ED, white);">
@@ -80,53 +62,6 @@
                              <p class="index-article-text" style="margin-top:15px;margin-bottom: 40px;">為了寶貝 24 小時待命，無暇出門運動的妳，<br>每日居家舒緩方案，對抗身體不適和負面情緒！</p>
                         </div>
                             <img style="width:90%;margin: 0 auto 45px;display: block;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
-                        <!-- <div class="intro-wrap-block-first">
-                            <div class="iframe-container">
-                                <iframe src="https://player.vimeo.com/video/347109517?muted=1&loop=1&autoplay=1" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                            </div>
-                            <div class="intro-wrap-block-first-content">
-                                <div style="display:flex;align-items:center;justify-content: space-between;">
-                                    <h1>Mami yoga日本人氣瑜珈</h1>
-                                    <div style="display: flex;align-items: center;">
-                                        
-                                        <img @click="copyUrl()" style="width: 23px;margin-right:5px;cursor:pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-link.png" alt="">
-                                        <a style="display:block;width: 23px;height: 23px;margin-right:5px;" href="https://www.addtoany.com/add_to/line?linkurl=https%3A%2F%2Fmamiyoga.ludonow.com%2F&amp;linkname=" target="_blank">
-                                            <img style="width: 23px;margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-line.png" alt="">
-                                        </a>
-                                        <a style="display:block;width: 23px;height: 23px;margin-right:5px;" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fmamiyoga.ludonow.com%2F&amp;linkname=" target="_blank">
-                                            <img style="width: 23px;margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-index-share-fb.png" alt="">
-                                        </a>
-                                        <p style="color:#24798F;">分享</p>
-                                    </div>
-                                </div>
-                                <p style="font-size:14px;margin:5px 0 0;font-weight:500;">講師 橋本麻美</p>
-                                <div style="display:flex;align-items:center;justify-content: space-between;">
-                                    <p>使用期限：影片永久/AI助教一年</p>
-                                    <div style="display:flex;align-items:center;">
-                                        <img style="width:20px;margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-buy-icon.png" alt="">
-                                        <p style="color:#FF9A7B;font-size:13px;font-weight:600;">146</p>
-                                    </div>
-                                </div>
-                                <div style="margin: 20px 0 15px;display:flex;align-items: center;justify-content:space-between;">
-                                    <select name="pay-program" class="select-pay-program" v-model="select_plan">
-                                        <option selected :value="single_plan.price">{{single_plan.slogan}}&nbsp;&nbsp;NTD&nbsp;{{single_plan.price}}</option>
-                                        <option :value="four_person_program.price">{{four_person_program.slogan}}(4人)&nbsp;NTD&nbsp;{{four_person_program.price}}</option>
-                                        <option value="0">企業方案(30人)&nbsp;專人服務</option>
-                                    </select>
-                                    <button class="goto-buy-btn" @click="goPay">立即購買</button>
-                                </div>
-                            </div>
-                            <img style="width:90%;display:block;margin:0 auto;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-data-1.png" alt="">
-                        </div> -->
-                        <!-- <div class="index-article-use-video">
-                                <p class="index-article-out-container-text">獨家線上瑜珈助教</p>
-                                <video class="index-article-use-video-sample" loop autoplay playsinline muted>
-                                    <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-show-sample-video-2.mp4">
-                                </video>
-                            <p class="index-article-out-text" style="text-align: center;font-size: 12px;">我們特地將12項重點動作製作了線上輔助媽媽的瑜珈助教，對動作有疑惑、不確定是否做得正確</p>
-                            <p class="index-article-out-text" style="text-align: center;margin-top: 35px;font-size: 16px;">只要上傳妳的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
-                            <button @click="$router.push('/teach')" class="index-article-out-btn">免費體驗</button>
-                        </div> -->
                     </div>
                     <hr style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div style="background: linear-gradient(180deg, rgba(255,247,247,.49),rgba(212,222,227,.41),rgba(36,121,143,.08),rgba(36,121,143,.08),rgba(36,121,143,.08));">
@@ -291,42 +226,12 @@
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size:20px;">初為人母一定有非常多驚喜與疑惑吧！</h6>
                         <p class="index-article-text" style="margin: 0 auto 50px;width: 90%;font-size:16px;">媽咪新手村提供從產前到產後全方位知識攻略，<br>陪媽咪們一起解任務！</p>
                         <div class="go-new-mamimura">
-                            <!-- <p class="index-article-out-container-text" style="right: 8vw;font-size:24px;font-weight:300;position:absolute;color:#24798F;text-shadow:none;">快加入與村民們<br>互相交流吧！</p> -->
+                            
                             <img id="go-to-club" @click="goOtherPage('https://lihi1.cc/UaaJ6')" style="cursor:pointer;width: 40%;position: absolute;bottom: 40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-btn.png" alt="">
                         </div>
                         <hr style="color:#E8E8E8;margin: 0 10% 50px;opacity:.2;">
                     </div>
-                    <!-- <div>
-                        <h4 class="intro-wrap-block-title" style="margin: 0 0 15px;padding: 15px 40px 0;">課堂資訊</h4>
-                        <no-ssr><mamiyoga-course-help-carousel @getFreeCourse="getFreeCourse"></mamiyoga-course-help-carousel></no-ssr>
-                    </div>
-                    <div class="intro-wrap-block-new-five" style="padding: 0 40px;">
-                        <h4 class="intro-wrap-block-title" style="margin:0;padding-top:45px;">講師介紹</h4>
-                        <h5 class="index-article-title" style="font-weight:bold;margin-top: 40px;">{{$t('about_first_content_name')}}</h5>
-                        <p class="index-article-title" style="font-weight:bold;font-size:20px;">{{$t('about_first_content_name_en')}}</p>
-                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;">{{$t('about_first_content_have')}}</p>
-                        <p class="about-articele-text" style="margin-bottom: 10px;">Yoga Aliance RYT200<br>
-                            maternity yoga instructor<br>
-                            aerial yoga instructor<br>
-                            Body Care professional course
-                        </p>
-                        <p class="about-articele-text" style="font-weight: bold; margin-bottom: 5px;">{{$t('about_first_content_course')}}</p>
-                        <p class="about-articele-text">{{$t('about_first_content_course_text')}}</p>
-                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">擔任日本屈指頂尖女子歌舞團體<br>E-girls的私家貼身瑜珈指導</p>
-                        <p class="about-articele-text" style="font-weight: bold;margin-top: 30px; margin-bottom: 5px;color:#24798F;">一週的固定班底課程20堂以上<br>Instagram的追蹤人數兩萬人以上</p>
-                        <div class="about-teacher-pic"></div>
-                    </div>
-                    <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
-                    <div class="intro-wrap-block-second">
-                        <p class="index-article-out-container-text" style="margin:30px 0 0;">獨家線上瑜珈助教</p>
-                        <div class="intro-wrap-block-second-hooper">
-                            <no-ssr><mamiyoga-carousel-preview></mamiyoga-carousel-preview></no-ssr>
-                        </div>
-                    </div> -->
-                    <!-- <div>
-                        <p class="index-article-out-text" style="color:#707070;text-align: center;margin-top: 5px;font-size: 16px;">只要上傳妳的練習影片，助教就會將錯誤的部分標示並且回傳給妳喔！</p>
-                        <button @click="$router.push('/teach')" class="index-article-out-btn">馬上體驗</button>
-                    </div> -->
+
                     <div>
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
                         <img style="width: 90%;display: block;margin: 20px auto 50px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-9-1.png" alt="">
@@ -361,68 +266,7 @@
                     <div style="margin-top:40px;">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;margin-left: 40px;">收費方式</h4>
                         <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
-                    </div>
-                    
-                    <!-- <div class="intro-wrap-block-third">
-                        <div style="display:flex;justify-content:space-between;padding:20px 60px 0 50px;">
-                            <div>
-                                <h4 class="intro-wrap-block-title" style="margin:0;padding-top:35px;">評分與評論</h4>
-                                <p style="color:#24798F;font-size:80px;font-weight:bold;margin-top:15px;height:80px;">4.8</p>
-                            </div>
-                            <img style="height:170px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-7.png" alt="">
-                        </div>
-                        <div class="intro-wrap-block-third-score">
-                            <p style="color:#707070;font-size: 14px;letter-spacing:3px;">使用平均分數</p>
-                            <img style="height: 20px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-8.png" alt="">
-                        </div>
-                        <div style="overflow:hidden;">
-                            <no-ssr><mamiyoga-carousel-comments></mamiyoga-carousel-comments></no-ssr>
-                        </div>
-                    </div>
-                    <button @click="$router.push('/teach')" class="index-article-out-btn" style="margin-top:10px;width: 70%;font-size:26px;height: 60px;background:#24798F;" id="free-watch-3">前 往 體 驗</button> -->
-                    <!-- <div>
-                        <div style="padding: 0 40px;">
-                            <p class="intro-wrap-block-title" style="margin:0;padding-top:40px;color:#24798F;font-weight:600;">練習課表</p>
-                            <p class="index-article-text" style="font-size:14px;font-weight:bold;margin-top:15px;margin-bottom: 5px;">我們為妳設計了一套練習課表</p>
-                            <p class="index-article-text" style="font-weight:300;margin-bottom: 10px;">交錯練習不同部位能有效地刺激肌肉的恢復狀況，早上、下午、晚上設想了媽媽與寶寶的生活步調，讓媽媽在家照顧寶寶時能夠一起做瑜珈。</p>
-                        </div>
-                        <div class="intro-wrap-block-new-five-curriculum" style="height:400px;overflow:hidden;">
-                            <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
-                        </div>
-                    </div> -->
-
-
-                    <!-- 三段式課程大綱 -->
-                    <!-- <div class="intro-wrap-block-new-second">
-                        <h4 class="intro-wrap-block-title" style="color:#24798F;">課程大綱</h4>
-                        <div class="about-course-data-wrap" :class="show_menu"  >
-                            <div class="about-course-data-block" @click="toggleMenu()">
-                                <div class="about-course-data-num" :class="show_menu">探索課程</div>
-                                <div class="about-course-data-title" :class="show_menu"> 點擊打開課程大綱</div>
-                                <div class="about-course-data-circle outside" :class="show_menu">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <hr class="about-course-data-line" style="display:none;" :class="show_menu">
-                            </div>
-                            <div class="about-course-data-block" v-for="(course,i) in course_data" 
-                            :key="i" @click="toggleClass(i)" :class="show_list[i]">
-                                <div class="about-course-data-num">單元{{i+1}}</div>
-                                <div class="about-course-data-title">{{course.title}}</div>
-                                <div class="about-course-data-circle" :class="show_list[i]">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <hr class="about-course-data-line">
-                                <div class="about-course-data-content">
-                                    <li  v-for="(pose,j) in course.poses" :key="j"
-                                    >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                </div>
-                                <hr class="about-course-data-line">
-                            </div>
-                        </div>
-                    </div> -->
-                    
+                    </div>  
                     <!-- 三段式常見問題 -->
                     <div class="intro-wrap-block-new-second">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
@@ -450,43 +294,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;"> -->
-                    <!-- <div class="intro-wrap-block-five" style="padding: 0 40px;">
-                        <h4 class="intro-wrap-block-title" style="margin:0;padding-top:35px;">獨家文章</h4>
-                        <p style="font-size:12px;color:#707070;font-weight:300;">LUDO身體科學誌</p>
-                        <a href="https://link.medium.com/X8MbmFeEaZ" style="text-decoration:none;">
-                            <div class="intro-wrap-block-five-every">
-                                <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-1.png');"></div>
-                                <h4 class="intro-wrap-block-five-every-title">令人擔憂的骨盆疼痛</h4>
-                                <p class="intro-wrap-block-five-every-text">尺骨的功能與重要性<br>恥骨是骨盆之一。恥骨位於骨盆中央，尾骨位於骨盆下方，髖骨（髂骨、坐骨神經和恥骨）位於恥骨左側和右側。骨盆是這五塊&nbsp;....</p>
-                                <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
-                            </div>
-                        </a>
-                        <a href="https://link.medium.com/CBFlHbjEaZ" style="text-decoration:none;">
-                            <div class="intro-wrap-block-five-every">
-                                <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-2.png');"></div>
-                                <h4 class="intro-wrap-block-five-every-title">產後憂鬱之路：找回身體的秩序</h4>
-                                <p class="intro-wrap-block-five-every-text">生產後的媽媽們由於荷爾蒙與激素的緣故，有可能發生產後憂鬱的症狀：憂鬱、情緒不穩、焦慮、食慾不振等等，而爸爸們有時只能盡可能地安撫、陪伴與包容。&nbsp;....</p>
-                                <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
-                            </div>
-                        </a>
-                        <a href="https://link.medium.com/InWnu5rEaZ" style="text-decoration:none;">
-                            <div class="intro-wrap-block-five-every">
-                                <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-3.png');"></div>
-                                <h4 class="intro-wrap-block-five-every-title">產後最重要的一件事：骨盆正位</h4>
-                                <p class="intro-wrap-block-five-every-text">在孕期當中身形會逐漸改變，為了讓胎兒能夠有足夠的空間生長，母體的下半身會開始擴張，最明顯的是「骨盆變大」與「腹部皮膚延展」。&nbsp;....</p>
-                                <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
-                            </div>
-                        </a>
-                        <a href="https://link.medium.com/RtAiXVtEaZ" style="text-decoration:none;">
-                            <div class="intro-wrap-block-five-every">
-                                <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-4.png');"></div>
-                                <h4 class="intro-wrap-block-five-every-title">產後修復瘦身180天秘技</h4>
-                                <p class="intro-wrap-block-five-every-text">從胚型理論開始分析每個人適合的飲食與訓練來經營健康外，身邊紛紛出現許多女性朋友提出已經開始『變形』的身體該如何搶救。&nbsp;....</p>
-                                <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
-                            </div>
-                        </a>
-                    </div> -->
                     <p style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">快和朋友分享吧！</p>
                     <div class="mamiyoga-assay-share-icon-box">
                         <div class="mamiyoga-assay-share-icon">
@@ -560,10 +367,6 @@
                 </div>
             </div>
             <div class="index-footer" id="index-fixed-footer">
-                <!-- <div class="index-footer-content">
-                    <div class="index-footer-btn" style="background: #24798F;" @click="clickToPay">我要購買</div>
-                    <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體驗魔鏡</div>
-                </div> -->
             </div>
          </div>
         <!-- 電腦版提示 -->
