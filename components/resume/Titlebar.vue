@@ -1,6 +1,6 @@
 <template>
     <div class="project_header" id="header">
-        <router-link :to="'/' + project_name"><img class="title-blue" :src="logo_src"/></router-link>
+        <router-link style="height:100%;" :to="'/' + project_name"><img class="title-blue" :src="logo_src"/></router-link>
         <div class="login"><slot name="right-component"></slot></div>
     </div>
 </template>
@@ -43,7 +43,7 @@ export default {
 @media (min-width: 900px) {
     .project_header .title-blue{
         margin-left: 12vw !important;
-        height: 60% !important ;
+        height: 100% !important ;
         margin-top: 0px !important;
     }
     .project_header .login{

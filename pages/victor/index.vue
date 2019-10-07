@@ -522,7 +522,7 @@ p.content {
     height: fit-content !important;
 }
 .eight-block {
-    padding:10px 0 30px 0;
+    padding:10px 0 100px 0;
     margin:0px;
     background: #F5F5F5 !important;
     flex-direction: column;
