@@ -112,11 +112,10 @@
                 </slide>
             </carousel>
         </div>
-        <div v-if="$mq == 'desktop'">
-            <carousel :perPage="1" :centerMode="true"  :autoplay="false" :paginationPadding="5"
+        <div v-if="$mq == 'desktop'" id="desktop-ins">
+            <carousel :perPage="3" :paginationPadding="5" 
             :paginationSize="8" :paginationColor="'#D1D1D1'" :paginationActiveColor="'#707070'" 
-            :loop="true"
-            :spacePadding="10" :paginationEnabled="false" :scrollPerPage="false">
+             :paginationEnabled="true" :scrollPerPage="true">
                 <slide class="intro-wrap-block-second-slide-block">
                     <div class="intro-wrap-block-second-slide">
                     <div class="intro-wrap-block-second-content">
@@ -211,5 +210,21 @@ export default {
     /* margin: 0 0 20px 15%; */
     text-align: center;
 }
-
+@media (min-width: 769px) {
+    #desktop-ins {
+        width: 80%;
+        margin: 5vh auto 0;
+    }
+    .intro-wrap-block-second-slide-block {
+        display: unset;
+        height: 70vh;
+    }
+    .intro-wrap-block-second-content {
+        width: auto;
+        height: 65vh;
+    }
+    .intro-wrap-block-second-content img {
+        height: 90%;
+    }
+}
 </style>

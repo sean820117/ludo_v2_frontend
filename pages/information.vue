@@ -1,7 +1,7 @@
 <template>
     <div class="info-page">
-        <mamiyoga-teach-header class="privacy-header" id="information-top"></mamiyoga-teach-header>
-        <div class="info-wrap-block-first">
+        <!-- <mamiyoga-teach-header class="privacy-header" id="information-top"></mamiyoga-teach-header> -->
+        <div class="info-wrap-block-first" v-if="$mq !== 'desktop'">
             <div style="width:77%;margin: 0 auto;">
                 <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
                 <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？<br>妳知道，這可能是一輩子病痛的開始嗎？</h6>
@@ -9,10 +9,19 @@
                 <h3 class="index-article-title">日本媽媽<br>快速恢復身材的秘密</h3>
                 <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">我們深入研究了日本媽媽，發現日本媽媽的產後休息時間平均只有兩週，而臺灣媽媽卻要四週。從孕期體重管理到產後的修復，日本媽媽們貫徹了產後黃金修復的行動；而現在最流行也最有效的就是：『產後瑜珈』。</h6>
                 <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速重拾對身材的自信、也能帶來身心的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢矯正，解決妳無暇外出上課的問題。</p>
-                <!-- <img style="width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-img-mami.png" alt=""> -->
-                <!-- <h6 class="index-article-little-title">這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。</h6>
-                <p class="index-article-text">課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p> -->
             </div>
+        </div>
+        <div class="info-wrap-block-first" v-else>
+            <div class="info-page-first-outside">
+                <div class="info-page-first-block">
+                    <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
+                    <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？</h6>
+                </div>
+                <div class="info-page-second-block">
+                    <p>產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
+                </div>
+            </div>
+             <img style="display: block;margin: 10vh auto 0;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
         </div>
         <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
         <div class="intro-wrap-block-five" style="padding: 0 40px;">
@@ -62,7 +71,6 @@
 <script>
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 export default {
-    layout: 'mamiyoga',
     components: {
         MamiyogaTeachHeader,
     },
@@ -172,8 +180,38 @@ export default {
     justify-content: center;
 }
 @media(min-width: 769px) {
+    .info-page {
+        background: #fff;
+    }
     .info-footer {
         max-width: 450px;
+    }
+    .info-page .info-wrap-block-first {
+        min-height: 85vh;
+        background: #F8F7F8;
+        padding: 25vh 10vw 0;
+    }
+    .info-page-first-outside {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+    .info-page .index-article-title {
+        font-size: 48px;
+        font-weight: bold;
+    }
+    .info-page .index-article-little-title {
+        font-size: 25px;
+    }
+    .info-page-first-block {
+        width: 100%;
+    }
+    .info-page-second-block {
+        width: 60%;
+    }
+    .info-page-second-block p {
+        color: #707070;
+        font-size: 18px;
     }
 }
 </style>
