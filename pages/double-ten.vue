@@ -1,5 +1,20 @@
 <template>
     <div class="double-ten-container">
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1348393898653044'); 
+            fbq('track', 'PageView');
+        </script>
+        <noscript inline-template>
+            <img height="1" width="1" src="https://www.facebook.com/tr?id=1348393898653044&ev=PageView&noscript=1"/>
+        </noscript>
         <div class="count-down-banner single-block">限時倒數 <p>{{ `${d}天${h}小時${m}分${s}秒` }}</p></div>
         <div v-if="$mq == 'desktop'">
             <div class="single-block" v-for="i in pic_list" :key="i">
@@ -16,7 +31,7 @@
             </div>
         </div>
         <div class="single-block">
-            <form class="order-base-info" id="order-form" method="post" :action="form_action">
+            <form v-if="is_waiting_loading" class="order-base-info" id="order-form" method="post" :action="form_action">
                 <div class="order-little-title">購買資訊</div>
                 <div class="order-little-title">Mamiyoga 雙十連假愛自己x1 NT.1010 </div>
                 <label class="order-form-label" for="name" >姓名</label>
@@ -96,6 +111,7 @@ export default {
         hint:'',
         hint_color:'red',
         check_agree:false,
+        is_waiting_loading:false,
         d:0,
         h:0,
         m:0,
@@ -113,6 +129,10 @@ export default {
                 this.h = parseInt(cur_left_time / 1000 / 60 / 60) % 24;
                 this.d = parseInt(cur_left_time / 1000 / 60 / 60 / 24);
             }, 1000);
+
+            setTimeout(() => {
+                this.is_waiting_loading = true;
+            }, 5000);
         }
     },
     methods : {
@@ -134,6 +154,7 @@ export default {
                 this.hint_color = "red"
                 return
             }
+            fbq('track', 'Purchase');
             localStorage['order_name'] = this.order_name;
             localStorage['order_email'] = this.order_email;
             localStorage['order_phone'] = this.order_phone;
