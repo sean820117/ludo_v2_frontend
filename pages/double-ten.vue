@@ -4,12 +4,14 @@
         <div v-if="$mq == 'desktop'">
             <div class="single-block" v-for="i in pic_list" :key="i">
                 <img :id="`block-img-${i}`" v-if="i != 1 && i != 10 && i != 15 && i != 16" :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/>
+                <a v-else-if="i == 10" href="https://lihi1.com/b1A2i" @click="scrollToBottom"><img :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/></a>
                 <a v-else href="#block-img-16" @click="scrollToBottom"><img :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/></a>
             </div>
         </div>
         <div v-if="$mq == 'mobile'">
             <div class="single-block" v-for="i in pic_list_mobile" :key="i">
                 <img :id="`block-img-${i}`" v-if="i != 1 && i != 7 && i != 16 && i != 17 && i != 18" :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/>
+                <a v-else-if="i == 7" href="https://lihi1.com/b1A2i" @click="scrollToBottom"><img :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/></a>
                 <a v-else href="#block-img-16" @click="scrollToBottom"><img :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/></a>
             </div>
         </div>
