@@ -3,20 +3,20 @@
         <div class="count-down-banner single-block">限時倒數 <p>{{ `${d}天${h}小時${m}分${s}秒` }}</p></div>
         <div v-if="$mq == 'desktop'">
             <div class="single-block" v-for="i in pic_list" :key="i">
-                <img :id="`block-img-${i}`" v-if="i != 1 && i != 10 && i != 16" :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/>
+                <img :id="`block-img-${i}`" v-if="i != 1 && i != 10 && i != 15 && i != 16" :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/>
                 <a v-else href="#block-img-16" @click="scrollToBottom"><img :src="`/double-ten/快銷業面電腦版@2x ${i}.jpg`"/></a>
             </div>
         </div>
         <div v-if="$mq == 'mobile'">
             <div class="single-block" v-for="i in pic_list_mobile" :key="i">
-                <img :id="`block-img-${i}`" v-if="i != 1 && i != 7 && i != 18" :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/>
+                <img :id="`block-img-${i}`" v-if="i != 1 && i != 7 && i != 16 && i != 17 && i != 18" :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/>
                 <a v-else href="#block-img-16" @click="scrollToBottom"><img :src="`/double-ten/Mamiyoga@2x ${i}.jpg`"/></a>
             </div>
         </div>
         <div class="single-block">
             <form class="order-base-info" id="order-form" method="post" :action="form_action">
                 <div class="order-little-title">購買資訊</div>
-                
+                <div class="order-little-title">Mamiyoga 雙十連假愛自己x1 NT.1010 </div>
                 <label class="order-form-label" for="name" >姓名</label>
                 <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸用戶名稱">
                 <label class="order-form-label" for="tel">聯絡電話</label>
