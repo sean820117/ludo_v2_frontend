@@ -374,7 +374,7 @@ export default {
                                 clearInterval(id);
                             }  else {
                                 console.log("未偵測到動作");
-                                alert('動きを検知できません')
+                                alert('未偵測到動作')
                                 this.isLoading = false;
                                 clearInterval(get_result_interval);
                                 clearInterval(id);
