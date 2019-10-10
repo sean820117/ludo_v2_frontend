@@ -16,9 +16,9 @@ module.exports = {
   },
   head: {
     script: [
-      { src: 'https://sdk.accountkit.com/en_US/sdk.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
-      { src: 'https://player.vimeo.com/api/player.js' },
+      // { src: 'https://sdk.accountkit.com/en_US/sdk.js' },
+      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+      // { src: 'https://player.vimeo.com/api/player.js' },
     ],
   },
   /*

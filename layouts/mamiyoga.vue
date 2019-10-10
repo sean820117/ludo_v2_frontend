@@ -55,7 +55,6 @@ export default {
                 { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
             ],
             script: [
-                // { src: 'https://player.vimeo.com/api/player.js' },
                 { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
         }
