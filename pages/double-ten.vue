@@ -35,14 +35,14 @@
         <div class="single-block">
             <form v-if="is_waiting_loading" class="order-base-info" id="order-form" method="post" :action="form_action">
                 <div class="order-little-title">購買資訊</div>
-                <div class="order-little-title">Mamiyoga 雙十連假愛自己x1 NT.1010 </div>
+                <div class="order-little-title">Mamiyoga 雙十連假愛自己x1 NT.1290 </div>
                 <label class="order-form-label" for="name" >姓名</label>
                 <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸用戶名稱">
                 <label class="order-form-label" for="tel">聯絡電話</label>
                 <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
                 <label class="order-form-label" for="email">電子信箱</label>
                 <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
-                <input type="hidden" name="item_id" :value="'MY03'">
+                <input type="hidden" name="item_id" :value="'MY04'">
                 <input type="hidden" name="return_url" :value="client_back_url">
                 <input type="hidden" name="client_back_url" :value="client_back_url">
                 <input type="hidden" name="user_id" :value="'temp_user_1010'">
@@ -122,7 +122,7 @@ export default {
     }),
     mounted() {
         if (process.client) {
-            let target_date = Date.parse("2019/10/11");
+            let target_date = Date.parse("2019/10/14");
             let count_downter = setInterval(() => {
                 let cur_left_time = target_date - Date.now();
                 this.s = parseInt(cur_left_time / 1000) % 60;
