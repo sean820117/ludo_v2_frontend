@@ -60,7 +60,7 @@ export default {
 }
 @media (min-width: 769px) {
     .pay-header {
-        max-width: 450px;
+        padding: 0 7vw;
     }
 }
 </style>

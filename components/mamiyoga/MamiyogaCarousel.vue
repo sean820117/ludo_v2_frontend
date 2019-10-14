@@ -229,15 +229,15 @@ export default {
     },
     methods:{
         goPlan1(){
-            sessionStorage['picked_plan'] = this.single_plan.price;
+            sessionStorage['method_picked_plan'] = this.single_plan.price;
             this.$router.push('/pay')
         },
         goPlan2(){
-            sessionStorage['picked_plan'] = this.four_person_program.price;
+            sessionStorage['method_picked_plan'] = this.four_person_program.price;
             this.$router.push('/pay')
         },
         goPlan3(){
-            sessionStorage['picked_plan'] = 0;
+            sessionStorage['method_picked_plan'] = 0;
             this.$router.push('/pay')
         }
     },

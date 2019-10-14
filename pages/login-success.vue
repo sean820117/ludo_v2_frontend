@@ -1,19 +1,19 @@
 <template>
     <div>
         <div class="login-success-page">
-            <div class="mamiyoga-header">
+            <div class="mamiyoga-header" v-if="$mq !== 'desktop'">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
                     <div class="mamiyoga-header-cancel-btn" @click="goIndex()"></div>
                 </div>
             </div>
             <div class="reg-text" style="margin-top:5vh;">註冊成功</div>
-            <img style="width:40%;margin: 4vh 0;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-login-success.png" alt="">
-            <div class="reg-text2" style="width:67%;max-width: 320px;font-size:13px;margin:0 0 2vh;color:#24798F;">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
+            <img class="login-success-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-login-success.png" alt="">
+            <div class="reg-text2 login-success-welcome">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
         
-            <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
+            <div class="btn-login-and-signup-container"> 
                 <div class="mamiyoga-login-btn-to-signin" @click="goPay()">購買課程</div>
-                <div class="mamiyoga-login-btn-to-signin" style="margin-top:2vh;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="exchange = true">我有序號</div>  
+                <div class="mamiyoga-login-btn-to-signin" style="margin-top:10px;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="$router.push('/activation-code')">我有序號</div>  
             </div>
         </div>
         <mamiyoga-window-alert-box v-if="exchange">
@@ -32,7 +32,7 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config';
 export default {
-    layout: 'mommiyoga',
+    
     data:()=>({
         exchange: false,
         input_serialno: '',
@@ -50,7 +50,6 @@ export default {
     },
     methods:{
         goIndex(){
-            // localStorage['is_signup_success'] = true
             if(localStorage.redirect == '/teach') {
                 this.$router.push(localStorage.redirect)
             } else {
@@ -58,7 +57,6 @@ export default {
             }
         },
         goPay(){
-            // localStorage['is_signup_success'] = true
             this.$router.push('/pay')
         },
         async checkInputSerialno(){
@@ -92,7 +90,6 @@ export default {
     background: #fff;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 .login-success-page .mamiyoga-header {
@@ -129,8 +126,11 @@ export default {
     background-position: center center;
     cursor: pointer;
 }
+.login-success-img {
+    width:40%;
+    margin: 4vh 0;
+}
 .reg-text{
-    /* padding-top: 80px; */
     font-size: 21px;
     font-weight: 500;
 }
@@ -139,12 +139,19 @@ export default {
     font-size: 13px;
     color: #8F8F8F;
 }
+.login-success-welcome {
+    width: 67%;
+    max-width: 320px;
+    font-size: 13px;
+    margin: 0 0 2vh;
+    color: #24798F;
+}
 .btn-login-and-signup-container {
     display: flex;
     margin-top: 3vh;
     justify-content: flex-end;
     width: 67%;
-    /* margin-left: 16.5vw; */
+    flex-direction: column;
 }
 .mamiyoga-login-btn-to-signin {
     width: 100%;
@@ -184,8 +191,17 @@ export default {
     padding-left: 5px;
 }
 @media (min-width: 769px) {
-    .login-success-page .mamiyoga-header {
-        width: 450px;
+    .login-success-img {
+        width: 180px;
+        margin: 80px 0 40px;
+    }
+    .login-success-welcome {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 80px;
+    }
+    .mamiyoga-login-btn-to-signin {
+        width: 260px !important;
     }
 }
 </style>

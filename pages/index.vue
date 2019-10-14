@@ -679,7 +679,7 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
-        go_to_where: '/login',
+        go_to_where: '/signup',
         check_log: '/login',
 
         is_android: false,
@@ -712,7 +712,7 @@ export default {
         if(process.client) {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                this.go_to_where = '/login'
+                this.go_to_where = '/signup'
                 this.check_log = '/login'
             } else {
                 this.go_to_where = '/pay'
@@ -724,8 +724,6 @@ export default {
                 }
                 
             }
-
-
             window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
@@ -865,7 +863,7 @@ export default {
             this.$router.push('/test/pose')
         },
         goPay(){
-            sessionStorage['picked_plan'] = this.select_plan;
+            sessionStorage['method_picked_plan'] = this.select_plan;
             this.$router.push('/pay')
         },
         copyUrl(){
@@ -1881,6 +1879,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 .footer-sticky {
     position: fixed;
@@ -2088,7 +2087,7 @@ export default {
 
 @media (min-width:769px) {
     .about-course-block {
-        padding-bottom: 120px;
+        /* padding-bottom: 120px; */
     }
     .mamiyoga-origin-header {
         display: none !important;
@@ -2112,7 +2111,7 @@ export default {
     }
     .index-login-block {
         width: 340px;
-        height: 450px;
+        height: 460px;
         background: #fff;
         border-radius: 20px;
         position: absolute;

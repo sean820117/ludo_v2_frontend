@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="signup-page" style="padding-bottom:5vh;">
+        <div class="signup-page" style="padding-bottom:5vh;" v-if="$mq !== 'desktop'">
             <div class="mamiyoga-header">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
@@ -10,10 +10,6 @@
             <div class="reg-text" style="margin-top:5vh;">註冊</div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">付款前需先註冊成為會員</div>
             <form class="signup-form">
-                <!-- <div class="login-column">
-                    <div class="login-column-label">使用者暱稱</div>
-                    <input name="account" class="login-column-input" type="text" v-model="account" placeholder=""/>
-                </div> -->
                 <div class="login-column">
                     <div class="login-column-label">電子信箱</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
@@ -53,16 +49,69 @@
                 <div class="reg-text2" style="margin-top:30px;">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
                 <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
                     <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('signup')">註冊</button>
-                    <!-- <div style="display:flex;align-items: center;justify-content:space-between;width:100%;">
-                        <div class="reg-text2">忘記帳號 / 忘記密碼</div>
-                        <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;">快速註冊</div>
-                    </div> -->
                 </div>
             </form>
+        </div>
+        <div class="signup-page" style="padding-bottom:5vh;" v-else>
+            <!-- <div class="mamiyoga-header">
+                <div class="mamiyoga-header-logo"></div>
+                <div class="mamiyoga-header-login">
+                    <div class="mamiyoga-header-cancel-btn" @click="$router.go(-1)"></div>
+                </div>
+            </div> -->
+            <div class="reg-text" style="margin-top:5vh;">註冊</div>
+            <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">付款前需先註冊成為會員</div>
+            <div class="signup-flex-box">
+                <form class="signup-form">
+                    <div class="login-column">
+                        <div class="login-column-label">電子信箱</div>
+                        <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
+                    </div>
+                    <div class="login-column">
+                        <div class="login-column-label">密碼</div>
+                        <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
+                    </div>
+                    <div class="login-column">
+                        <div>
+                            <div class="login-column-label">確認密碼</div>
+                            <input name="confirmPassword" class="login-column-input" type="password" v-model="confirmPassword"/>
+                        </div>
+                    </div>
+                    <div class="reg-text2" style="height: 18px;" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
+                    <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
+                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('signup')">註冊</button>
+                    </div>
+                     <div class="reg-text2">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
+                </form>
+                <div class="signup-three-flex-box"> 
+                    <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:left;margin:1vh 0 2vh;color:#24798F;">社群帳號註冊</div>
+                    <div class="btn-login-and-signup-container" style="margin-top:0;">
+                        <a href="/" style="width:100%;text-decoration:none;">
+                            <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#ABCCD4;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.FB" @click.prevent="handleFBClick">
+                                <div style="width: 65px;display:flex;justify-content:center;">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
+                                </div>
+                                <p>使用Facebook註冊</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="btn-login-and-signup-container" style="margin-top:0;">
+                        <a href="/" style="width:100%;text-decoration:none;">
+                            <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#FFF;border:#ABCCD4 solid 3px;margin-top:10px;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.google" @click.prevent="handleGoogleClick">
+                                <div style="width: 62px;display:flex;justify-content:center;">
+                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
+                                </div>
+                                <p style="padding-left:5px;">使用Google註冊</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script >
+import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue';
 import MamiyogaThirdPartyIcons from "~/components/mamiyoga/MamiyogaThirdPartyIcons.vue"
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { EMAIL_REGEX } from '~/components/regex.js'
@@ -70,7 +119,6 @@ import { EMAIL_REGEX } from '~/components/regex.js'
 import axios from '~/config/axios-config'
 
 export default {
-    layout: 'mommiyoga',
     data() {
         return {
             errors: null,
@@ -103,6 +151,7 @@ export default {
         }
     },
     components: {
+        MamiyogaTeachHeader,
         MamiyogaThirdPartyIcons,
         MamiyogaWindowAlertBox,
     },
@@ -371,7 +420,7 @@ textarea:focus, input:focus{
     width: 65%;
 }
 @media (min-width: 769px) {
-    .signup-page {
+    /* .signup-page {
         background-color: white; 
     }
     .signup-page .mamiyoga-header {
@@ -379,6 +428,22 @@ textarea:focus, input:focus{
     }
     .btn-login-and-signup-container {
         padding-bottom: 0;
+    } */
+    .signup-form {
+        border-right: 2px #D1D1D1 solid; 
+    }
+    .signup-flex-box {
+        margin-top: 15vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .signup-three-flex-box {
+        width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction:column;
     }
 }
 
