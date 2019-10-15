@@ -22,7 +22,7 @@
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div>
             </div>
-            <div v-if="$mq == 'desktop'" class="index-login-block">
+            <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
                 <div class="index-login-block-inside">
                     <p class="index-login-block-text">使用LUDO帳號登入</p>
                     <div class="login-column">
@@ -65,6 +65,7 @@
             </div>
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <div class="index-label-box" id="index-fixed-nav">
+                    
                     <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
                         <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
@@ -73,6 +74,7 @@
                         <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
                         <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
                     </div>
+                    
                 </div>
                 <div class="about-course-block" id="index-first-video">
                     <div class="course-info-block-1" v-if="$mq !== 'desktop'">
@@ -114,7 +116,7 @@
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
                             <h6 class="index-article-little-title" style="margin-top: 50px;">一堂不需要出門的輕運動課程</h6>
                              <p class="index-article-text">為了寶貝 24 小時待命，無暇出門運動的妳，<br>每日居家舒緩方案，對抗身體不適和負面情緒！</p>
-                            <div style="position: absolute;top: 15vh; right: 15%;">
+                            <div style="position: absolute;top: 15vh; right: 0;">
                                 <div style="display:flex;align-items:center;margin:0 0 4vh;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">每日壓力歸零</p>
@@ -134,38 +136,44 @@
                                 </div>
                             </div>
                         </div>
-                        <img style="width:45%;position:absolute;bottom: -9vh;right: 5vw;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
+                        <img style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2">
                         <div class="course-info-content-2">
                             <h3 class="index-article-title" style="width:85%;margin:0 auto;">妳知道日本媽咪<br>快速恢復身材的秘訣嗎？</h3>
-                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，為臺灣媽咪們準備了一堂不用出門的輕運動課程</p>
+                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪們準備了一堂不用出門的輕運動課程</p>
                             <img class="about-course-teach-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png" alt="">
                             <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
                             </router-link>
                         </div>
                         <div class="index-article-use-video">
-                            <p class="index-article-out-container-text">「自拍魔鏡」</p>
-                            <p class="index-article-out-container-text-li">媽咪們最貼心的練習夥伴</p>
-                            <img class="mirror-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png" alt="">
-                            <p class="index-article-out-text mirror-text">用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！</p>
-                            <div class="index-article-out-icon-block">
-                                <div class="index-article-out-icon">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-1.png" alt="">
-                                    <p>隨時練習</p>
-                                </div>
-                                <div class="index-article-out-icon">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-2.png" alt="">
-                                    <p>專業分析</p>
-                                </div>
-                                <div class="index-article-out-icon">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-3.png" alt="">
-                                    <p>練習記錄</p>
+                            <div class="course-info-block-mirror">
+                                <p class="index-article-out-container-text">「自拍魔鏡」</p>
+                                <p class="index-article-out-container-text-li">媽咪們最貼心的練習夥伴</p>
+                                <div class="course-flex-block-mirror">
+                                    <img class="mirror-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png" alt="">
+                                    <div class="course-flex-block-mirror-2">
+                                        <p class="index-article-out-text index-mirror-text">用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！</p>
+                                        <div class="index-article-out-icon-block">
+                                            <div class="index-article-out-icon">
+                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-1.png" alt="">
+                                                <p>隨時練習</p>
+                                            </div>
+                                            <div class="index-article-out-icon">
+                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-2.png" alt="">
+                                                <p>專業分析</p>
+                                            </div>
+                                            <div class="index-article-out-icon">
+                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-3.png" alt="">
+                                                <p>練習記錄</p>
+                                            </div>
+                                        </div>
+                                        <button @click="$router.push('/mirror-mirror')" class="index-article-out-btn mirror-btn">免費檢測</button>
+                                    </div>
                                 </div>
                             </div>
-                            <button @click="$router.push('/mirror-mirror')" class="index-article-out-btn mirror-btn">免費檢測</button>
                         </div>
                     </div>
                     <div class="course-info-block-3" v-if="$mq !== 'desktop'">
@@ -293,18 +301,20 @@
                         </div>
                     </div>
                     <div class="course-info-block-3" v-else>
-                        <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
-                        <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">每天十分鐘，讓心情跟身體重新開機！</h6>
-                        
-                        <div class="intro-wrap-block-new-five-curriculum">
-                            <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
+                        <div class="course-info-block-3-content">
+                            <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
+                            <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">每天十分鐘，讓心情跟身體重新開機！</h6>
+                            
+                            <div class="intro-wrap-block-new-five-curriculum">
+                                <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
+                            </div>
+                            <div class="get-course-block">
+                                <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
+                                <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
+                            </div>
+                            
+                            <div id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">取得專屬課表</div>
                         </div>
-                        <div class="get-course-block">
-                            <div class="index-article-text" style="margin-bottom: 5vh;font-size: 25px;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
-                            <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
-                        </div>
-                        
-                        <div id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">取得專屬課表</div>
                     </div>
                     <div class="course-info-content-3" v-if="$mq == 'desktop'">
                         <!-- 四段式課程大綱 -->
@@ -443,7 +453,7 @@
                     <div v-else>
                         <div style="padding-top: 15vh;min-height: 60vh;">
                             <p class="index-article-out-container-text" style="color:#24798F;font-weight: bold;text-shadow: none;">官方認證</p>
-                            <div style="display: flex; align-items: center;justify-content: center; margin-top: 5vh;">
+                            <div style="display: flex; align-items: center;justify-content: space-around;max-width: 1366px;margin: 5vh auto 0;">
                                 <div class="index-official-certification">
                                     <p>Kokorokarada Anshin Lab</p>
                                     <p>日本銷售 No.1 孕婦保健品牌</p>
@@ -465,16 +475,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="min-height: 80vh;background: #FCFCFC;display:flex;justify-content: space-evenly;padding-top: 13vh;">
-                            <div>
-                                <h5 class="index-article-out-container-text" style="color: rgb(36, 121, 143);font-weight: bold;text-shadow: none;">為什麼選Mamiyoga？</h5>
-                                <h4 class="intro-wrap-block-title" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
+                        <div style="min-height: 80vh;background: #FCFCFC;padding-top: 13vh;">
+                            <div style="display:flex;justify-content: space-evenly;max-width: 1366px;margin: 0 auto;">
+                                <div style="padding-left: 30px;">
+                                    <h5 class="index-article-out-container-text why-to-select-title">為什麼選Mamiyoga？</h5>
+                                    <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
+                                </div>
+                                <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast.png" alt="">
                             </div>
-                            <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast.png" alt="">
                         </div>
                     </div>
                     <div class="course-info-block-5">
-                        <p class="intro-wrap-block-title last-title" style="color:#24798F;font-weight: bold;">使用者回饋</p>
+                        <p class="intro-wrap-block-title last-title">使用者回饋</p>
                         <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
                     </div>
                     <div class="course-info-block-6">
@@ -510,7 +522,7 @@
                     </div>
                     <div class="course-info-block-7" v-else>
                          <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;">常見問題</h4>
-                         <div style="display: flex;align-items:baseline;justify-content: space-evenly;">
+                         <div style="display: flex;align-items:baseline;justify-content: space-evenly;max-width: 1366px;margin: 0 auto;">
                             <div class="about-course-data-wrap qa long-style">
                                 <div class="about-course-data-block qa" v-for="(qa,i) in ds_qa_data_1" 
                                 :key="i" @click="toggleQAClass(i)" :class="show_qa_list[i]">
@@ -646,6 +658,8 @@ Vue.use(Vue2TouchEvents)
 export default {
 
     data:()=>({
+        login_or_not: false,
+
         is_open: false,
         slideIndex: 0,
         is_ui_config_loaded:false,
@@ -710,8 +724,8 @@ export default {
     },
     async mounted(){
         if(process.client) {
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if (this.login_or_not == false) {
                 this.go_to_where = '/signup'
                 this.check_log = '/login'
             } else {
@@ -1305,7 +1319,7 @@ export default {
     margin:35px 0;
     width: 100%;
 }
-.mirror-text {
+.index-mirror-text {
     text-align: center;
     font-size: 16px !important;
 }
@@ -1578,10 +1592,10 @@ export default {
 .about-course-series-data-block:nth-child(4).open .about-course-data-block:nth-child(3).open,
 .about-course-series-data-block:nth-child(4).open .about-course-data-block:nth-child(5).open,
 .about-course-series-data-block:nth-child(5).open .about-course-data-block:nth-child(5).open {
-    height: 130px !important;
+    height: 130px;
 }
 .about-course-series-data-block:nth-child(5).open .about-course-data-block:nth-child(6).open {
-    height: 140px !important;
+    height: 140px;
 }
 .about-course-data-block.qa.open {
     height: 110px;
@@ -2095,6 +2109,7 @@ export default {
     .mamiyoga-index-header img {
         width: 60px;
         margin: 20px 0 0 30px;
+        cursor: pointer;
     }
     .background-video-contain {
         background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-background.jpg');
@@ -2155,8 +2170,11 @@ export default {
         flex-wrap: unset;
         padding: 0 10vw;
     }
+    .index-nav-flex-box {
+        flex-wrap: unset;
+    }
     .index-footer-title {
-        font-size: 25px;
+        font-size: 1.5em;
     }
     .index-footer-content {
         justify-content: space-evenly;
@@ -2173,9 +2191,18 @@ export default {
     .course-info-block-5,.course-info-block-6,.course-info-block-7 {
         padding-top: 10vh;
     }
+    .course-info-content-1,.course-info-content-2,.course-info-block-mirror,
+    .course-info-block-3-content {
+        max-width: 1366px;
+        position: relative;
+        margin: 0 auto;
+    }
     .course-info-block-2,.course-info-content-2,.course-info-block-3,
     .course-info-block-4 {
         min-height: 100vh;
+    }
+    .course-info-content-3 {
+        margin-top: 10vh;
     }
     .course-info-content-3,.course-info-block-7 {
         min-height: 80vh;
@@ -2184,38 +2211,49 @@ export default {
         position: relative;
     }
     .course-info-block-5 {
-        min-height: 110vh;
+        /* min-height: 110vh; */
+        padding-bottom: 10vh;
     }
     .course-info-block-6 {
         margin: 0;
         min-height: 90vh;
         background: #FCFCFC;
     }
-
+    .course-flex-block-mirror {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .course-flex-block-mirror-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
     .index-article-title {
         width: fit-content;
-        font-size: 43px;
+        font-size: 2.5em;
     }
     .index-article-little-title {
-        font-size: 25px;
+        font-size: 1.5em;
     }
     .before-after-img{
         width: 40%;
         margin: 3vh 0 0;
     }
     .index-article-text {
-        font-size: 20px;
+        font-size: 1.4em;
     }
     .index-article-text.about-course-teach {
-        font-size: 25px;
-        width: 35%;
+        font-size: 1.4em;
         margin: 3vh 0 0 7.5%;
     }
     .about-course-teach-img {
-        width: 60%;
+        width: 80%;
         position: absolute;
         right: 3vw;
         bottom: 5vh;
+        max-width: 900px;
     }
     .index-article-text.have-finger {
         position: absolute;
@@ -2241,23 +2279,21 @@ export default {
     .index-article-use-video {
         padding-top: 5vh;
         border-radius: 0;
-        min-height: 100vh;
     }
     .mirror-img {
-        width: 45%;
-        margin: 10vh 5% 0;
+        width: 48%;
+        margin: 10vh 1% 0;
         float: left;
     }
-    .index-article-out-text.mirror-text {
-        width: 30%;
-        font-size: 25px !important;
+    .index-article-out-text.index-mirror-text {
+        font-size: 1.2em !important;
         float: left;
-        margin: 15vh auto 5vh;
+        margin: 15vh 0 5vh;
     }
     .index-article-out-icon-block {
         float: left;
         margin: 0 auto;
-        width: 30%;
+        /* width: 30%; */
     }
     .index-article-out-container-text {
         font-size: 48px;
@@ -2266,9 +2302,15 @@ export default {
         font-size: 35px;
         font-weight: 300;
     }
+    .index-article-out-container-text.why-to-select-title {
+        color: rgb(36, 121, 143);
+        font-weight: bold;
+        text-shadow: none;
+        text-align: left;
+    }
     .index-article-out-btn.mirror-btn {
         float: left;
-        width: 20%;
+        /* width: 20%; */
         margin: 10vh 5%;
         cursor: pointer;
     }
@@ -2278,8 +2320,8 @@ export default {
     .get-course-block {
         position: absolute;
         top: 35vh;
-        right: 7vw;
-        width: 35%;
+        right: 5%;
+        width: 40%;
     }
     #get-course-link {
         width: 260px;
@@ -2356,7 +2398,10 @@ export default {
     }
     .last-title {
         font-size: 48px;
-        margin-left: 10vw;
+        color:#24798F;
+        font-weight: bold;
+        margin: 0 auto;
+        max-width: 1366px;
     }
     .last-pay-title {
         font-size: 48px;
@@ -2370,7 +2415,7 @@ export default {
         align-items: center;
         justify-content: center;
         margin:5vh auto 0;
-        width: 50%;
+        width: 60%;
     }
     .agree-block .mamiyoga-intro-agree {
         margin: 0 1vw;
@@ -2400,11 +2445,13 @@ export default {
     }
     .about-course-data-wrap.qa.long-style:first-child .about-course-data-block.qa.open:nth-child(3) img {
         max-height: 120px;
-        width: auto !important;
+        min-height: 95px;
+        /* width: auto !important; */
     }
     .about-course-data-wrap.qa.long-style:last-child .about-course-data-block.qa.open:first-child img {
         max-height: 430px;
-        width: auto !important;
+        min-height: 430px;
+        /* width: auto !important; */
     }
     /* 登入面板 */
     .login-column{
@@ -2506,19 +2553,78 @@ export default {
         width: 17vw;
         left: 22vw;
         bottom: 7vh;
-    }
-
-
-    
-}
-@media (max-width: 400px) {
-    .background-video {
-        top: -4vh;
+        min-width: 230px;
+        max-width: 300px;
     }
 }
-@media (max-width: 350px) {
+@media (min-width: 480px) and (max-width: 600px) {
     .background-video {
-        margin-top: -22vh;
+        width: 100vw;
+        position: absolute;
+        z-index: -10;
+        top: 0vh;
+    }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+    .background-video {
+        width: 100vw;
+        position: absolute;
+        z-index: -10;
+        top: -25vh;
+    }
+}
+@media (min-width: 769px) and (max-width: 860px) {
+    #mamiyoga-index-title {
+        width: 45%;
+    }
+    #mamiyoga-index-title-des,#mamiyoga-index-title-eng {
+        width: 37%;
+    }
+    .index-footer-title {
+        font-size: 1.3em;
+        width: 39%;
+    }
+    .index-official-certification p {
+        font-size: 12px;
+    }
+    .index-article-out-container-text.why-to-select-title {
+        font-size: 2.5em;
+    }
+    .intro-wrap-block-title.why-to-select-text {
+        font-size: 16px;
+    }
+    .last-title {
+        margin-left: 30px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1174px) {
+    .about-course-data-title {
+        font-size:  13px;
+    }
+    .about-course-data-circle {
+        top: 0;
+    }
+    /* .about-course-series-data-block:nth-child(1) .about-course-data-block:nth-child(3),
+    .about-course-series-data-block:nth-child(3) .about-course-data-block:nth-child(2) {
+        height: 65px;
+    } */
+    .intro-wrap-block-new-second .about-course-data-block.open {
+        height: 175px !important;
+    }
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(1) .about-course-data-block.open:nth-child(4),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(2) .about-course-data-block.open:nth-child(2),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(2) .about-course-data-block.open:nth-child(3),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(3) .about-course-data-block.open:nth-child(2),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(3) .about-course-data-block.open:nth-child(4),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(3) .about-course-data-block.open:nth-child(5),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(4) .about-course-data-block.open:nth-child(2),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(4) .about-course-data-block.open:nth-child(3),
+    .intro-wrap-block-new-second .about-course-series-data-block.open:nth-child(4) .about-course-data-block.open:nth-child(4)   {
+        height: 150px !important;
+    }
+    .intro-wrap-block-new-second .about-course-series-data-block:nth-child(4).open {
+        min-height: 260px !important;
+        max-height: 550px !important;
     }
 }
 @media (max-width: 830px) and  (orientation:landscape) {
@@ -2528,5 +2634,6 @@ export default {
     .mamiyoga-index-intro {
         position: absolute;
     }
+    
 }
 </style>

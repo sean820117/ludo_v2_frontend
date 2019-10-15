@@ -296,6 +296,12 @@ export default {
     .privacy-container {
         margin: 0;
     }
+    .privacy-container p {
+        font-size: 15px;
+    }
+    .privacy-container h5 {
+        font-size: 17px;
+    }
     .privacy-title {
         display: block;
         font-size: 21px;
@@ -320,7 +326,7 @@ export default {
         list-style: none;
         color: #97A8AF;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 17px;
         margin-bottom: 25px;
         cursor: pointer;
     }

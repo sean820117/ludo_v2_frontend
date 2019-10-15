@@ -1,7 +1,9 @@
 <template>
     <div class="pay-header">
-        <div class="pay-header-logo" @click="$router.push(check_lang + '/')"></div>
-        <div class="pay-header-login-btn" @click="logout">登出</div>
+        <div class="pay-flex-header">
+            <div class="pay-header-logo" @click="$router.push(check_lang + '/')"></div>
+            <div class="pay-header-login-btn" @click="logout">登出</div>
+        </div>
     </div>
 </template>
 
@@ -38,10 +40,13 @@ export default {
     box-shadow: 0 5px 10px rgba(0,0,0,.1);
     position: fixed;
     top:0;
+    padding: 0 20px;
+}
+.pay-flex-header {
+    height: 45px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
 }
 .pay-header-logo {
     background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-header-logo.png');
@@ -61,6 +66,10 @@ export default {
 @media (min-width: 769px) {
     .pay-header {
         padding: 0 7vw;
+    }
+    .pay-flex-header {
+        max-width: 1366px;
+        margin: 0 auto;
     }
 }
 </style>

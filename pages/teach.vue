@@ -730,7 +730,8 @@ export default {
 }
 .teach-detail-box {
     width: 100vw;
-    margin-top: 30vh;
+    /* margin-top: 30vh; */
+    margin-top: 235px;
     padding-bottom: 5vh;
 }
 .teach-detail-box h6 {
@@ -1077,6 +1078,11 @@ export default {
 #index-fixed-nav {
     display:none;
 }
+@media (max-width: 768px) {
+    .teach-video-sample {
+        max-height: 230px;
+    }
+}
 @media (min-width: 769px) {
     .teach-desktop-title {
         display: block;
@@ -1090,6 +1096,8 @@ export default {
         display: flex;
         align-items: flex-start;
         justify-content: center;
+        max-width: 1366px;
+        margin: 0 auto;
     }
     .teach-detail-box {
         width: auto;
@@ -1235,6 +1243,18 @@ export default {
     }
     .mamiyoga-show-article {
         width: 360px;
+    }
+}
+@media (min-width: 769px) and (max-width: 860px) {
+    .index-footer-title {
+        font-size: 1.3em;
+        width: 39%;
+    }
+    .teach-title-video-box {
+        margin-right: 0;
+    }
+    .teach-question-box {
+        left: 240px;
     }
 }
 @media (max-width: 769px) and  (orientation:landscape) {

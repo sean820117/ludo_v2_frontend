@@ -14,7 +14,7 @@ Vue.use(VueMq, {
   breakpoints: {
     // small: 400,
     iphone: 400,
-    mobile: 768,
+    mobile: 769,
     desktop: Infinity,
   }
 });

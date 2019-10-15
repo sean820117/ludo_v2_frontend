@@ -12,6 +12,9 @@
             </div>
         </div>
         <div v-else>
+            <div class="info-header">
+                <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/info-header-logo.png" alt="">
+            </div>
             <div class="info-wrap-block-first">
                 <div class="info-page-first-outside">
                     <div class="info-page-first-block">
@@ -22,9 +25,9 @@
                         <p>產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
                     </div>
                 </div>
-                <img style="display: block;margin: 10vh auto 0;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
+                <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
             </div>
-            <div class="info-wrap-block-first" style="background:#fff;padding: 10vh 10vw 5vh;min-height: 45vh;">
+            <div class="info-wrap-block-first desktop-two" id="two-article">
                 <div class="info-page-first-outside">
                     <div class="info-page-first-block">
                         <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
@@ -78,9 +81,20 @@
             </div>
         </div>
         <div class="info-footer">
-            
-            <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
-            <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
+            <div class="index-label-box" id="index-fixed-nav">
+                    
+                <div class="index-label-inside-box">
+                    <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
+                    <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
+                </div>
+                <div class="index-footer-content">
+                    <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
+                    <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
+                </div>
+                
+            </div>
+            <!-- <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
+            <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div> -->
 
         </div>
     </div>
@@ -116,17 +130,26 @@ export default {
             }
         }
     },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+        
+    },
     methods: {
         clickToPay(){
             this.$router.push(this.go_to_where)
         },
+        goDown(){
+            this.$scrollTo('#two-article',"start");
+        }
     }
 }
 </script>
 <style>
 .info-page {
     background: #F8F7F8;
-    padding-bottom: 85px;
+    padding-bottom: 95px;
 }
 .privacy-header button {
     display: none;
@@ -203,7 +226,7 @@ export default {
     height: 15px;
 }
 .info-footer {
-    height: 60px;
+    /* height: 60px; */
     width: 100%;
     background: #F7F7F7;
     color: #EEEFEA;
@@ -216,6 +239,29 @@ export default {
     bottom: 0;
     z-index: 999;
 }
+.index-label-box {
+    width: 100%;
+    height: 85px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+    padding: 5px 0;
+}
+.index-label-inside-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
 .index-footer-btn {
     width: 48%;
     height: 40px;
@@ -227,13 +273,41 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.index-footer-content {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.index-footer-title {
+    font-size: 16px;
+    font-weight: bold;
+    color:#24798F;
+    letter-spacing: 0;
+}
+.delect-text {
+    color:#FF9898;
+    font-size: 16px;
+}
+.index-footer-tag {
+    font-size: 14px;
+    background: #24798F;
+    font-weight: 400;
+    padding: 5px 15px;
+    letter-spacing: 0;
+}
 @media(min-width: 769px) {
+    .info-header {
+        background: #F8F7F8;
+    }
+    .info-header img {
+        width: 60px;
+        margin: 20px 0 0 30px;
+        cursor: pointer;
+    }
     .info-page {
         background: #fff;
-    }
-    .info-footer {
-        /* max-width: 450px; */
-        display: none;
+        padding-bottom: 110px;
     }
     .info-page .intro-wrap-block-five {
         height: auto;
@@ -241,7 +315,7 @@ export default {
     .info-page .info-wrap-block-first {
         min-height: 85vh;
         background: #F8F7F8;
-        padding: 25vh 10vw 0;
+        padding: 25vh 10vw 5vh;
     }
     .info-page-first-outside {
         display: flex;
@@ -282,9 +356,98 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        max-width: 1366px;
+        margin: 0 auto;
     }
     .info-page .article-flex-box a {
         max-width: 400px;
+    }
+    .intro-wrap-block-five-every {
+        width: 85%;
+    }
+    .info-page .info-wrap-block-first.desktop-two {
+        background:#fff;
+        padding: 10vh 10vw 10vh;
+        min-height: 45vh;
+    }
+    #index-fixed-nav {
+        display: flex;
+    }
+    .index-label-box {
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: unset;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+        padding: 0 10vw;
+    }
+    .index-label-inside-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .index-footer-title {
+        font-size: 25px;
+        font-weight: bold;
+        color:#24798F;
+        letter-spacing: 0;
+    }
+    .delect-text {
+        color:#FF9898;
+        font-size: 25px;
+    }
+    .index-footer-tag {
+        font-size: 14px;
+        background: #24798F;
+        font-weight: 400;
+        padding: 5px 15px;
+        letter-spacing: 0;
+    }
+    .index-footer-btn {
+        width: 40%;
+        height: 40px;
+        border-radius: 10px;
+        border: 3px solid #24798F;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .footer-sticky {
+        position: fixed;
+        bottom: 0;
+        z-index: 999;
+    }
+    .index-footer-content {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+}
+@media (min-width: 769px) and (max-width: 860px) {
+    .info-page .info-wrap-block-first {
+        padding: 25vh 5vw 5vh;
+    }
+    .info-page .info-wrap-block-first.desktop-two {
+        padding: 10vh 5vw 10vh;
+    }
+    .info-page .index-article-title {
+        font-size: 2.5em;
+    }
+    .info-page .index-article-little-title {
+        width: 95%;
+        font-size: 1.5em;
+    }
+    .index-footer-title {
+        font-size: 21px;
     }
 }
 </style>

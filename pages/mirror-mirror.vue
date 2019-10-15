@@ -332,24 +332,27 @@ export default {
         min-height: 100vh;
     }
     .mirror-text {
-        width: 200px;
+        width: 250px;
         right: 25%;
+    }
+    .mirror-text div {
+        font-size: 20px;
     }
     .mirror-flex-block {
         display: flex;
         align-items: center;
-        margin-top: 5vh;
+        max-width: 1366px;
+        margin: 7vh auto 0;
     }
     .mirror-flex-inside-block {
         display: flex;
-        /* align-items: center; */
         flex-direction: column;
-        width: 50%;
+        width: 35%;
     }
     .mirror-phone {
         width: 65%;
         float: left;
-        margin-left: 10%;
+        min-width: 470px;
     }
     .mirror-phone img {
         width: 80%;
@@ -371,22 +374,25 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50%;
+        width: 60%;
         float:left;
         margin: 0 0 2vh;
         font-size: 21px;
         height: 50px;
+        min-width: 220px;
     }
     .mirror-little-text {
         float: left;
         margin: 0;
-        width: 50%;
+        width: 60%;
+        min-width: 220px;
     }
     #loading-icon {
         transform: scale(1.5);
     }
     #show-mirror {
-        width: 30%;
+        width: 40%;
+        max-width: 400px;
     }
     .mirror-flex-btn-block {
         display: flex;
@@ -395,6 +401,7 @@ export default {
     }
     .mirror-flex-btn-block .mirror-long-btn {
         width: 19%;
+        max-width: 250px;
         margin: 0 1vw;
     }
 }

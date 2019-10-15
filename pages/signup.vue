@@ -430,6 +430,8 @@ textarea:focus, input:focus{
         padding-bottom: 0;
     } */
     .signup-form {
+        width: 50vw;
+        max-width: 475px;
         border-right: 2px #D1D1D1 solid; 
     }
     .signup-flex-box {
@@ -439,7 +441,8 @@ textarea:focus, input:focus{
         justify-content: center;
     }
     .signup-three-flex-box {
-        width: 400px;
+        width: 50vw;
+        max-width: 400px;
         display: flex;
         align-items: center;
         justify-content: center;

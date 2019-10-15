@@ -2,135 +2,137 @@
     <div>
         <div style="background:#fff;">
             <mamiyoga-pay-header></mamiyoga-pay-header>
-            <div class="desktop-pay-main-block">
-                <div class="pay-main-block">
-                    <div class="pay-little-title">{{$mq === 'desktop' ? '選擇方案':'付款資訊'}}</div>
-                    <hr style="margin: 10px 0;opacity: .5;">
-                    <div class="select-method-block">
-                        <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
-                        <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
-                        <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value=0>
-                        <label class="select-pay-label for-one-peop" for="one-peop">
-                            <div class="select-pay-way">
-                                <span class="select-pay-circle"></span>
-                                <div class="select-pay-data">
-                                    <p class="select-pay-title"><b>{{single_plan.slogan}}</b></p>
-                                    <p class="select-pay-title"><b>NTD&nbsp;{{single_plan.price}}</b></p>
-                                </div>
-                            </div>
-                            <div class="select-pay-content">
-                                <div class="select-pay-content-box">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
-                                    <div>
-                                        <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
-                                        <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+            <div class="desktop-pay-flex-main-block">
+                <div class="desktop-pay-main-block">
+                    <div class="pay-main-block">
+                        <div class="pay-little-title">{{$mq === 'desktop' ? '選擇方案':'付款資訊'}}</div>
+                        <hr style="margin: 10px 0;opacity: .5;">
+                        <div class="select-method-block">
+                            <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
+                            <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
+                            <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value=0>
+                            <label class="select-pay-label for-one-peop" for="one-peop">
+                                <div class="select-pay-way">
+                                    <span class="select-pay-circle"></span>
+                                    <div class="select-pay-data">
+                                        <p class="select-pay-title"><b>{{single_plan.slogan}}</b></p>
+                                        <p class="select-pay-title"><b>NTD&nbsp;{{single_plan.price}}</b></p>
                                     </div>
                                 </div>
-                                <hr class="select-pay-content-line">
-                                <div class="select-pay-content-box">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
-                                    <div>
-                                        <p class="select-pay-content-title">2.送禮及寵妻達人</p>
-                                        <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                <div class="select-pay-content">
+                                    <div class="select-pay-content-box">
+                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
+                                        <div>
+                                            <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
+                                            <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+                                        </div>
+                                    </div>
+                                    <hr class="select-pay-content-line">
+                                    <div class="select-pay-content-box">
+                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
+                                        <div>
+                                            <p class="select-pay-content-title">2.送禮及寵妻達人</p>
+                                            <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </label>
-                        <label class="select-pay-label  for-four-peop" for="four-peop">
-                            <div class="select-pay-way">
-                                <span class="select-pay-circle"></span>
-                                <div class="select-pay-data">
-                                    <p class="select-pay-title"><b>{{four_person_program.slogan}}（4人以上）</b><br>一人NTD.1290</p>
-                                    <p class="select-pay-title"><b>NTD&nbsp;{{four_person_program.price}}</b></p>
-                                </div>
-                            </div>
-                            <div class="select-pay-content">
-                                <div class="select-pay-content-box">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
-                                    <div>
-                                        <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                        <p style="font-weight:300;">另外三組課程序號將寄到妳的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                            </label>
+                            <label class="select-pay-label  for-four-peop" for="four-peop">
+                                <div class="select-pay-way">
+                                    <span class="select-pay-circle"></span>
+                                    <div class="select-pay-data">
+                                        <p class="select-pay-title"><b>{{four_person_program.slogan}}（4人以上）</b><br>一人NTD.1290</p>
+                                        <p class="select-pay-title"><b>NTD&nbsp;{{four_person_program.price}}</b></p>
                                     </div>
                                 </div>
-                                <!-- <hr class="select-pay-content-line">
-                                <div class="select-pay-content-box">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
-                                    <div>
-                                        <p class="select-pay-content-title">2.加價購兌換方式</p>
-                                        <p style="font-weight:300;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                <div class="select-pay-content">
+                                    <div class="select-pay-content-box">
+                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
+                                        <div>
+                                            <p class="select-pay-content-title">1.收取課程序號並分享</p>
+                                            <p style="font-weight:300;">另外三組課程序號將寄到妳的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                        </div>
                                     </div>
-                                </div> -->
-                                <hr class="select-pay-content-line">
-                                <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
-                                <p style="font-weight:300;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
+                                    <!-- <hr class="select-pay-content-line">
+                                    <div class="select-pay-content-box">
+                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
+                                        <div>
+                                            <p class="select-pay-content-title">2.加價購兌換方式</p>
+                                            <p style="font-weight:300;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                        </div>
+                                    </div> -->
+                                    <hr class="select-pay-content-line">
+                                    <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
+                                    <p style="font-weight:300;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
 
-                            </div>
-                        </label>
-                        <label class="select-pay-label for-company-peop" for="company-peop">
-                            <div class="select-pay-way">
-                                <span class="select-pay-circle"></span>
-                                <div class="select-pay-data">
-                                    <p class="select-pay-title"><b>企業方案（30人以上）</b><br>一人NTD.790起</p>
-                                    <p class="select-pay-title"><b>專人服務</b></p>
                                 </div>
-                            </div>
-                            <div class="select-pay-content">
-                                <div class="select-pay-content-box">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
-                                    <div>
-                                        <p class="select-pay-content-title">愛護職員的好方法</p>
-                                        <p style="font-weight:300;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
+                            </label>
+                            <label class="select-pay-label for-company-peop" for="company-peop">
+                                <div class="select-pay-way">
+                                    <span class="select-pay-circle"></span>
+                                    <div class="select-pay-data">
+                                        <p class="select-pay-title"><b>企業方案（30人以上）</b><br>一人NTD.790起</p>
+                                        <p class="select-pay-title"><b>專人服務</b></p>
                                     </div>
                                 </div>
-                                <hr class="select-pay-content-line">
-                                <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name" v-model="company_name">
-                                <div class="company-input-box">
-                                    <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name" v-model="contact_name">
-                                    <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position" v-model="contact_position">
+                                <div class="select-pay-content">
+                                    <div class="select-pay-content-box">
+                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
+                                        <div>
+                                            <p class="select-pay-content-title">愛護職員的好方法</p>
+                                            <p style="font-weight:300;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
+                                        </div>
+                                    </div>
+                                    <hr class="select-pay-content-line">
+                                    <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name" v-model="company_name">
+                                    <div class="company-input-box">
+                                        <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name" v-model="contact_name">
+                                        <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position" v-model="contact_position">
+                                    </div>
+                                    <div class="company-input-box">
+                                        <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
+                                        <input class="company-input" placeholder="工作信箱" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
+                                    </div>
+                                    <div class="company-input-box" style="justify-content: flex-end;">
+                                        <div class="company-input-submit-btn" @click="submitData">送出資料</div>
+                                    </div>
                                 </div>
-                                <div class="company-input-box">
-                                    <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
-                                    <input class="company-input" placeholder="工作信箱" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
-                                </div>
-                                <div class="company-input-box" style="justify-content: flex-end;">
-                                    <div class="company-input-submit-btn" @click="submitData">送出資料</div>
-                                </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
-                    <div class="pay-little-title">折扣序號</div>
-                    <hr style="margin: 10px 0;opacity: .5;">
-                    <input id="desktop-exchange-input" name="desktop-exchange-input" type="text" placeholder="請輸入折扣序號" v-model="get_coupon" @change="check_coupon">
-                    <div class="reg-text2" :style="{color: coupon_hint_color, height: '20px'}">{{coupon_hint}}</div>
-                    <!-- <div class="pay-little-title">付款方式</div>
-                    <hr style="margin: 10px 0;opacity: .5;"> -->
-                </div>
-                <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
-                    <div class="pay-little-title">基本資訊</div>
-                    <hr style="margin: 10px 0;opacity: .5;">
-                    <form class="order-base-info" id="order-form" method="post" :action="form_action">
-                        <label class="order-form-label" for="name" >姓名</label>
-                        <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
-                        <label class="order-form-label" for="tel">聯絡電話</label>
-                        <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
-                        <!-- <div class="order-verify-block">
-                            <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
-                            <div class="order-verify-btn" style="margin:0 5px;">認證</div>
-                            <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
-                        </div> -->
-                        <label class="order-form-label" for="tel">電子信箱</label>
-                        <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
-                        <input type="hidden" name="item_id" :value="select_plan.item_id">
-                        <input type="hidden" name="coupon_id" :value="coupon_id">
-                        <input type="hidden" name="payment_type" v-model="order_payment" value="">
-                        <input type="hidden" name="return_url" :value="order_return">
-                        <input type="hidden" name="client_back_url" :value="client_back_url">
-                        <input type="hidden" name="user_id" :value="user.user_id">
-                        <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
-                    </form>
-                    <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
+                    <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
+                        <div class="pay-little-title">折扣序號</div>
+                        <hr style="margin: 10px 0;opacity: .5;">
+                        <input id="desktop-exchange-input" name="desktop-exchange-input" type="text" placeholder="請輸入折扣序號" v-model="get_coupon" @change="check_coupon">
+                        <div class="reg-text2" :style="{color: coupon_hint_color, height: '20px'}">{{coupon_hint}}</div>
+                        <!-- <div class="pay-little-title">付款方式</div>
+                        <hr style="margin: 10px 0;opacity: .5;"> -->
+                    </div>
+                    <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
+                        <div class="pay-little-title">基本資訊</div>
+                        <hr style="margin: 10px 0;opacity: .5;">
+                        <form class="order-base-info" id="order-form" method="post" :action="form_action">
+                            <label class="order-form-label" for="name" >姓名</label>
+                            <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
+                            <label class="order-form-label" for="tel">聯絡電話</label>
+                            <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
+                            <!-- <div class="order-verify-block">
+                                <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
+                                <div class="order-verify-btn" style="margin:0 5px;">認證</div>
+                                <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
+                            </div> -->
+                            <label class="order-form-label" for="tel">電子信箱</label>
+                            <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
+                            <input type="hidden" name="item_id" :value="select_plan.item_id">
+                            <input type="hidden" name="coupon_id" :value="coupon_id">
+                            <input type="hidden" name="payment_type" v-model="order_payment" value="">
+                            <input type="hidden" name="return_url" :value="order_return">
+                            <input type="hidden" name="client_back_url" :value="client_back_url">
+                            <input type="hidden" name="user_id" :value="user.user_id">
+                            <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
+                        </form>
+                        <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
+                    </div>
                 </div>
             </div>
             <div class="go-outside-page-block">
@@ -413,6 +415,9 @@ export default {
             }
         },
         goPay(){
+            if(this.picked == 0 && this.check_agree) {
+                this.submitData();
+            } else {
             if(this.check_agree) {
                 if (this.order_email.length === 0) {
                     this.hint = '請填寫電子信箱欄位'
@@ -437,6 +442,7 @@ export default {
                 localStorage['order_email'] = this.order_email
 
                 document.getElementById('order-form').submit();
+                }
             }    
         },
     },
@@ -792,11 +798,15 @@ export default {
     .pay-main-block.show-desktop {
         display: block;
     }
+    .desktop-pay-flex-main-block {
+        padding: 25px 7vw 0;
+    }
     .desktop-pay-main-block {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        padding: 25px 7vw 0;
+        max-width: 1366px;
+        margin: 0 auto;
     }
     .pay-little-title {
         font-weight: bold;
@@ -905,6 +915,20 @@ export default {
     }
     #desktop-exchange-input:focus {
         border-bottom: 1px solid #24798F;
+    }
+}
+@media (min-width: 769px) and (max-width: 1149px) {
+    #four-peop:checked ~ .for-four-peop{
+        height: 390px;
+    }
+    .select-pay-content {
+        padding: 5px 0 0;
+    }
+    .desktop-pay-footer-title {
+        font-size: 15px !important;
+    }
+    .desktop-pay-footer-little-text {
+        font-size: 12px !important;
     }
 }
 </style>

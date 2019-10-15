@@ -123,8 +123,6 @@
             </carousel>
         </div>
         <div v-if="$mq == 'desktop'">
-            <!-- <carousel :perPage="1" :centerMode="true"  :autoplay="false"
-            :spacePadding="40" :paginationEnabled="false" :scrollPerPage="false"> -->
             <div style="display: flex; align-items: center; justify-content: center;margin-top: 10vh;">
                 <div class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
@@ -360,9 +358,10 @@ export default {
 }
 @media (min-width: 769px) {
     .intro-wrap-four-pay {
-        width: 330px;
-        height: 410px;
+        max-width: 330px;
+        width: 28vw;
         margin: 0 2vw;
+        height: 410px;
         border: 4px solid #24798f;
     }
     .intro-wrap-four-pay h4 {
@@ -375,6 +374,8 @@ export default {
         margin: 5vh auto 0;
         background: #24798f;
         color: #F7F7F7;
+        width: 75%;
+        max-width: 200px;
     }
     .intro-wrap-four-pay-circle {
         background-color: #f7f7f7;

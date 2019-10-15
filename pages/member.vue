@@ -19,7 +19,6 @@
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
-    layout: 'mommiyoga',
     data:()=>({
         check_lang: '',
     }),
@@ -101,6 +100,9 @@ export default {
 @media (min-width: 769px) {
     .member-page {
         min-height: 100vh; 
+    }
+    .member-page .member-big-btn {
+        max-width: 270px;
     }
 }
 </style>

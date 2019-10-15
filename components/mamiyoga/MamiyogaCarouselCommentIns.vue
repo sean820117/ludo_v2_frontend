@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="comment-ins-block">
         <div v-if="$mq == 'iphone'">
             <carousel :perPage="1" :autoplay="false" :paginationPadding="5"
             :paginationSize="8" :paginationColor="'#D1D1D1'" :paginationActiveColor="'#707070'" 
@@ -211,8 +211,12 @@ export default {
     text-align: center;
 }
 @media (min-width: 769px) {
+    .comment-ins-block {
+        max-width: 1366px;
+        margin: 0 auto;
+    }
     #desktop-ins {
-        width: 80%;
+        width: 100%;
         margin: 5vh auto 0;
     }
     .intro-wrap-block-second-slide-block {
@@ -224,7 +228,17 @@ export default {
         height: 65vh;
     }
     .intro-wrap-block-second-content img {
-        height: 90%;
+        height: 95%;
+        
+    }
+}
+@media (min-width: 769px) and (max-width: 1080px) {
+    .intro-wrap-block-second-content img {
+        height: auto;
+        width: 95%;
+    }
+    .intro-wrap-block-second-content,.intro-wrap-block-second-slide-block {
+        height: auto;
     }
 }
 </style>

@@ -770,12 +770,16 @@ export default {
 @media (min-width: 769px) {
     #desktop-curriculum {
         width: calc(30vw + 100px);
+        min-width: 380px;
+        max-width: 550px;
         margin-left: 5%; 
         margin-top: 5vh;
     }
     .intro-wrap-block-new-five-curriculum-block {
         width: 30vw;
-        height: 55vh;
+        height: 56vh;
+        min-width: 330px;
+        max-width: 500px;
     }
     .intro-wrap-block-new-five-curriculum-block p {
         font-size: 22px;
@@ -783,6 +787,8 @@ export default {
     .index-curriculum-block {
         width: 30vw;
         height: 48vh;
+        min-width: 330px;
+        max-width: 500px;
     }
     .index-curriculum-block-every {
         cursor: pointer;
@@ -793,11 +799,13 @@ export default {
     }
     .block-back,.block-rest {
         width: 4vw;
+        min-width: 40px;
+        max-width: 60px;
         height: 5vh;
         font-size: 15px;
     }
     .index-curriculum-block-title {
-        font-size: 17px !important;
+        font-size: 0.9em !important;
     }
     .index-curriculum-block-text {
         font-size: 15px !important;
