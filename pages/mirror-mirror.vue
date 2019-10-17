@@ -9,9 +9,9 @@
             </div>
             <!-- <a style="text-decoration: none;" :href="receipt_img" target="_blank"> -->
             <!-- <a :href="'https://www.addtoany.com/share#url=https://beta.ludonow.com/mirror/'+receipt_link+'&amp;title='" target="_blank"> -->
-                <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div>
+                <!-- <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div> -->
             <!-- </a> -->
-            <div class="mirror-long-btn" @click="$router.push('/teach')">體 驗 課 程</div>
+            <div class="mirror-long-btn" @click="$router.push('/teach')">開 始 上 課</div>
         </div>
         <div v-if="!upload_pic">
             <mamiyoga-teach-header headerTitle="製作專屬骨架" textFtColor="#fff" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-teach-header>
@@ -69,7 +69,7 @@ import axios from '~/config/axios-config';
 export default {
     layout: 'mamiyoga',
     data:()=>({
-        upload_pic: false,
+        upload_pic: true,
         is_loading: false,
         is_error: false,
         error_text: '',
