@@ -8,11 +8,11 @@
                 </video>
             </div>
             <div class="mamiyoga-index-intro" style="position: absolute;">
-                <mamiyoga-header class="mamiyoga-origin-header"  bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
+                <mamiyoga-header v-if="$mq === 'desktop'" class="mamiyoga-origin-header"  bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
+                <mamiyoga-hamburger-header v-else></mamiyoga-hamburger-header>
                 <div class="mamiyoga-index-header" v-if="$mq == 'desktop'">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="">
                 </div>
-                
                 <h1 id="mamiyoga-index-title">互動式<br>線上瑜珈課程</h1>
                 <h2 id="mamiyoga-index-title-des">更美好的日常，從照顧自己開始</h2>
                 <p id="mamiyoga-index-title-eng">The Daily Life we love, Mami yoga</p>
@@ -170,10 +170,11 @@
                                                 <p>練習記錄</p>
                                             </div>
                                         </div>
-                                        <button @click="$router.push('/mirror-mirror')" class="index-article-out-btn mirror-btn">免費檢測</button>
+                                        <button  @click="$router.push('/mirror-mirror')" class="index-article-out-btn mirror-btn">進入課程 </button>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
                         </div>
                     </div>
                     <div class="course-info-block-3" v-if="$mq !== 'desktop'">
@@ -639,6 +640,7 @@
 <script>
 import Vue from 'vue'
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
+import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue';
 import MamiyogaIndexHeader from '~/components/mamiyoga/MamiyogaIndexHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
@@ -708,6 +710,7 @@ export default {
     }),
     components: {
         MamiyogaHeader,
+        MamiyogaHamburgerHeader,
         MamiyogaIndexHeader,
         MamiyogaBtn,
         MamiyogaLoginSelect,

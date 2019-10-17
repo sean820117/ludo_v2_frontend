@@ -6,10 +6,11 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-phone-1.png" alt="">
                 <div id="show-mirror-img" :style="{backgroundImage: 'url('+receipt_img+')'}"></div>
             </div>
-            <div class="mirror-flex-btn-block">
-                <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">分 享 結 果</div>
-                <div class="mirror-long-btn" @click="$router.push('/teach')">體 驗 課 程</div>
-            </div>
+            <!-- <a style="text-decoration: none;" :href="receipt_img" target="_blank"> -->
+            <!-- <a :href="'https://www.addtoany.com/share#url=https://beta.ludonow.com/mirror/'+receipt_link+'&amp;title='" target="_blank"> -->
+                <!-- <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div> -->
+            <!-- </a> -->
+            <div class="mirror-long-btn" @click="$router.push('/teach')">開 始 上 課</div>
         </div>
         <div v-if="!upload_pic">
             <mamiyoga-teach-header headerTitle="製作專屬骨架" textFtColor="#fff" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-teach-header>
@@ -369,6 +370,9 @@ export default {
     }
     .mirror-li p:last-child {
         font-size: 18px;
+    }
+    .mirror-long-btn {
+        max-width: 280px;
     }
     .mirror-long-btn.first-show-btn {
         display: flex;
