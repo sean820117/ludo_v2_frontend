@@ -8,11 +8,9 @@
                 </video>
             </div>
             <div class="mamiyoga-index-intro" style="position: absolute;">
-                <mamiyoga-header v-if="$mq === 'desktop'" class="mamiyoga-origin-header"  bgColor="#9BAEB2" ftColor="#FFF" @openRemindBox="openRemindBox"></mamiyoga-header>
-                <mamiyoga-hamburger-header v-else></mamiyoga-hamburger-header>
-                <div class="mamiyoga-index-header" v-if="$mq == 'desktop'">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="">
-                </div>
+                <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
+                <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798F':'transparent'"></mamiyoga-desktop-nav-header>
+
                 <h1 id="mamiyoga-index-title">互動式<br>線上瑜珈課程</h1>
                 <h2 id="mamiyoga-index-title-des">更美好的日常，從照顧自己開始</h2>
                 <p id="mamiyoga-index-title-eng">The Daily Life we love, Mami yoga</p>
@@ -65,15 +63,18 @@
             </div>
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <div class="index-label-box" id="index-fixed-nav">
-                    
-                    <div class="index-label-inside-box">
+     
+                    <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
+                    <div class="index-label-pink-btn" @click="$router.push('/free-trial')">免費7天體驗</div>
+            
+                    <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
                         <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
                     </div>
                     <div class="index-footer-content">
                         <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
                         <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
-                    </div>
+                    </div> -->
                     
                 </div>
                 <div class="about-course-block" id="index-first-video">
@@ -641,6 +642,7 @@
 import Vue from 'vue'
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue';
+import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue';
 import MamiyogaIndexHeader from '~/components/mamiyoga/MamiyogaIndexHeader.vue';
 import MamiyogaBtn from '~/components/mamiyoga/MamiyogaBtn.vue';
 import MamiyogaLoginSelect from '~/components/mamiyoga/MamiyogaLoginSelect.vue';
@@ -707,10 +709,13 @@ export default {
         password: '',
         hint:'請填寫',
         hint_color:'transparent',
+
+        offsetMenu: false,
     }),
     components: {
         MamiyogaHeader,
         MamiyogaHamburgerHeader,
+        MamiyogaDesktopNavHeader,
         MamiyogaIndexHeader,
         MamiyogaBtn,
         MamiyogaLoginSelect,
@@ -867,8 +872,10 @@ export default {
             let v_offset_top = document.getElementById('wrap').offsetTop;
             if(window.pageYOffset > v_offset_top) {
                 document.getElementById('index-fixed-nav').classList.add('sticky')
+                this.offsetMenu = true
             } else if (window.pageYOffset < v_offset_top) {
                 document.getElementById('index-fixed-nav').classList.remove('sticky')
+                this.offsetMenu = false
             }
         },
         getFreeCourse(){
@@ -1140,7 +1147,7 @@ export default {
 }
 .index-label-box {
     width: 100%;
-    height: 85px;
+    height: 40px;
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;
@@ -1148,6 +1155,16 @@ export default {
     justify-content: space-evenly;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
     padding: 5px 0;
+}
+.index-label-pink-btn {
+    width: 110px;
+    height: 30px;
+    color:#F8F7F8;
+    background: #FF9898;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
 }
 .index-label-inside-box {
     display: flex;
@@ -2107,7 +2124,7 @@ export default {
         /* padding-bottom: 120px; */
     }
     .mamiyoga-origin-header {
-        display: none !important;
+        /* display: none !important; */
     }
     .mamiyoga-index-header img {
         width: 60px;
@@ -2169,6 +2186,7 @@ export default {
         font-size: 17px;
     }
     .index-label-box {
+        display: none;
         height:100px;
         flex-wrap: unset;
         padding: 0 10vw;

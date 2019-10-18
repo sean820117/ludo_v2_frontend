@@ -1,6 +1,6 @@
 <template>
     <div class="mamiyoga-header">
-        <router-link :to="check_lang + '/'">
+        <router-link to="/">
         <div class="mamiyoga-header-logo">
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="瑜伽課程">
         </div>
@@ -23,7 +23,7 @@ import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
     data:()=>({
         is_login:false,
-        check_lang: '',
+        // check_lang: '',
     }),
     props: {
         bgColor: String,
@@ -37,13 +37,13 @@ export default {
     async mounted() {
         if (process.client) {
             this.is_login = await this.$checkLogin(this.$store);
-            if(this.$i18n.locale == 'JP') {
-                this.check_lang = '/jp'
-            } else if (this.$i18n.locale == 'zh-CN') {
-                this.check_lang = '/zh-CN';
-            } else {
-                this.check_lang = '';
-            }
+            // if(this.$i18n.locale == 'JP') {
+            //     this.check_lang = '/jp'
+            // } else if (this.$i18n.locale == 'zh-CN') {
+            //     this.check_lang = '/zh-CN';
+            // } else {
+            //     this.check_lang = '';
+            // }
         }
     },
     methods:{

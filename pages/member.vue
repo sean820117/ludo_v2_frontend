@@ -3,13 +3,13 @@
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <p class="member-title">{{$t('member_title')}}</p>
         
-        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(check_lang + '/activation-code')">{{$t('member_text_btn_1')}}</div>
-        <div class="member-big-btn" @click="$router.push(check_lang + '/pay')">{{$t('member_text_btn_2')}}</div>
+        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push('/activation-code')">{{$t('member_text_btn_1')}}</div>
+        <div class="member-big-btn" @click="$router.push('/pay')">{{$t('member_text_btn_2')}}</div>
         <!-- <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div> -->
         <hr class="member-line">
-        <div class="member-big-btn" @click="$router.push(check_lang + '/writing')">{{$t('member_text_btn_4')}}</div>
-        <!-- <div class="member-big-btn" @click="$router.push(check_lang + '/setting')">{{$t('member_text_btn_5')}}</div> -->
-        <div class="member-big-btn" @click="$router.push(check_lang + '/contactus')">{{$t('member_text_btn_6')}}</div>
+        <div class="member-big-btn" @click="$router.push('/writing')">{{$t('member_text_btn_4')}}</div>
+        <!-- <div class="member-big-btn" @click="$router.push('/setting')">{{$t('member_text_btn_5')}}</div> -->
+        <div class="member-big-btn" @click="$router.push('/contactus')">{{$t('member_text_btn_6')}}</div>
 
         <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/menu')">{{$t('member_text_btn_7')}}</div>
     </div>
@@ -27,20 +27,12 @@ export default {
     },
     mounted(){
         if(process.client) {
-            if(this.$i18n.locale == 'jp') {
-                this.check_lang = '/jp'
-            } else if (this.$i18n.locale == 'zh-CN') {
-                this.check_lang = '/zh-CN'
-            } else {
-                this.check_lang = ''
-            }
+            
         }
     },
     async beforeCreate() {
         if (process.client) {
-            // this.ui_config = await require('~/config/mommiyoga-config')
-            // this.is_ui_config_loaded = true;
-
+            
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 window.alert("尚未登入帳號，請先前往登入～");

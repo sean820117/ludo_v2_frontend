@@ -1,0 +1,183 @@
+<template>
+    <div class="mamiyoga-desktop-nav-header" :style="{backgroundColor: bgColor}">
+        <div class="mamiyoga-desktop-nav">
+            <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
+            <li @click="$router.push('/')">服務介紹</li>
+            <li @click="$router.push('/menu')">課程影片</li>
+            <li @click="$router.push('/syllabus')">孕動日記</li>
+            <li @click="$router.push('/information')">媽咪知識</li>
+            <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
+            <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
+        </div>
+        <div class="mamiyoga-desktop-header-btn">
+            <div class="desktop-header-gift-btn">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
+                贈禮
+            </div>
+            <div v-if="!login_or_not" class="desktop-header-go-mami" @click="$router.push('/free-trial')">免費7天體驗</div>
+            <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
+            <div class="desktop-header-user-menu">
+                <div class="desktop-header-user-menu-block">
+                    <li>帳號管理</li>
+                    <hr class="desktop-header-user-menu-line">
+                    <li>填寫月齡</li>
+                    <hr class="desktop-header-user-menu-line">
+                    <li @click="logout">登出</li>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import { mapMutations, mapGetters } from 'vuex';
+
+export default {
+    data:()=>({
+        login_or_not: false,
+        show_menu: false,
+    }),
+    props: {
+        bgColor: String,
+    },
+    async mounted(){
+        if(process.client) {
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if(!this.login_or_not) {
+
+            }
+        }
+    },
+    methods:{
+        goOtherPage(page){
+            window.location.href = page;
+        },
+        showUserMenu(){
+            this.show_menu = !this.show_menu
+        },
+        logout() {
+            localStorage.redirect = "/";
+            this.$router.push('/logout');
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    }
+}
+</script>
+
+<style>
+.mamiyoga-desktop-nav-header {
+    width: 100vw;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.mamiyoga-desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65%;
+    max-width: 850px;
+}
+.mamiyoga-desktop-nav img {
+    width: 20%;
+    cursor: pointer;
+    max-width: 40px;
+}
+.mamiyoga-desktop-nav li {
+    list-style: none;
+    color: #F8F7F8;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.mamiyoga-desktop-header-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.mamiyoga-desktop-header-btn img{ 
+    margin-right: 5px;
+}
+.mamiyoga-desktop-header-btn .desktop-header-gift-btn,
+.mamiyoga-desktop-header-btn .desktop-header-go-mami {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 25px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.mamiyoga-desktop-header-btn .desktop-header-gift-btn{
+    background: #838383;
+}
+.mamiyoga-desktop-header-btn .desktop-header-go-mami{
+    background: #FF9898;
+}
+.desktop-header-user {
+    margin-left: 15px;
+    margin-right: 0 !important;
+}
+.desktop-header-user:hover ~ .desktop-header-user-menu {
+    display: flex;
+}
+.desktop-header-user-menu:hover {
+    display: flex;
+}
+.desktop-header-user-menu {
+    position: absolute;
+    width: 100%;
+    height: 220px;
+    bottom: -165px;
+    margin-left: 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.desktop-header-user-menu-block {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 25px;
+    border-radius: 5px;
+}
+.desktop-header-user-menu-block::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 6px 10px 6px;
+    border-color: transparent transparent #fff transparent;
+    top: 63px;
+    right: 26px;
+}
+.desktop-header-user-menu-block li {
+    list-style: none;
+    margin: 10px 0;
+    cursor: pointer;
+    color: #707070;
+    font-size: 15px;
+    font-weight: 500;
+}
+.desktop-header-user-menu-line {
+    height: 1px;
+    width: 100%;
+}
+
+</style>

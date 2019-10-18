@@ -38,6 +38,14 @@ export default {
     script: [
       { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
     ]
+  },
+  async mounted() {
+    if (process.client) {
+      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
+        localStorage.redirect = this.$route.path;
+        console.log('save:' + localStorage.redirect)
+      }
+    }
   }
 }
 </script>

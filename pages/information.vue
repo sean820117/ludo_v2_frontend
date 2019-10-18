@@ -1,7 +1,23 @@
 <template>
     <div class="info-page">
-        <mamiyoga-teach-header class="privacy-header" id="information-top" v-if="$mq !== 'desktop'"></mamiyoga-teach-header>
+        <!-- <mamiyoga-teach-header class="privacy-header" id="information-top" v-if="$mq !== 'desktop'"></mamiyoga-teach-header> -->
+        <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
         <div class="info-wrap-block-first" v-if="$mq !== 'desktop'">
+            <div style="width:77%;margin: 0 auto;">
+                <h2 class="index-article-title" style="text-align: center;font-size: 35px;">媽咪知識</h2>
+                <div class="info-desktop-red-btn" v-if="!want_recommend" @click="want_recommend = true" style="margin: 20px auto 40px;">根據月齡推薦</div>
+                <div v-if="want_recommend" class="which-mami-flex" style="margin: 20px auto 40px;">
+                    <input type="radio" name="which_mami" id="pregnant">
+                    <input type="radio" name="which_mami" id="mami">
+                    <label for="pregnant" class="info-desktop-red-btn pregnant" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
+                    <label for="mami" class="info-desktop-red-btn mami" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                </div>
+                <div v-if="want_recommend && show_date_input" class="info-get-user-date">
+                    <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                    <input type="text" name="date" id="date" v-model="user_date" placeholder="DD/MM/YYYY" style="width:100%;">
+                    <div class="info-desktop-red-btn" @click="inputDate" style="width: 110px;margin: 35px auto 0;">確認</div>
+                </div>
+            </div>
             <div style="width:77%;margin: 0 auto;">
                 <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
                 <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？<br>妳知道，這可能是一輩子病痛的開始嗎？</h6>
@@ -12,14 +28,24 @@
             </div>
         </div>
         <div v-else>
-            <div class="info-header">
-                <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/info-header-logo.png" alt="">
-            </div>
+            <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div class="info-wrap-block-first">
                 <div class="info-page-first-outside">
                     <div class="info-page-first-block">
                         <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
                         <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？</h6>
+                        <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject">根據月齡推薦</div>
+                        <div v-if="want_recommend" class="which-mami-flex">
+                            <input type="radio" name="which_mami" id="pregnant">
+                            <input type="radio" name="which_mami" id="mami">
+                            <label for="pregnant" class="info-desktop-red-btn pregnant" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
+                            <label for="mami" class="info-desktop-red-btn mami" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                        </div>
+                        <div v-if="want_recommend && show_date_input" class="info-get-user-date">
+                            <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                            <input type="text" name="date" id="date" v-model="user_date" placeholder="DD/MM/YYYY">
+                            <div class="info-desktop-red-btn" @click="inputDate" style="width: 80px;">確認</div>
+                        </div>
                     </div>
                     <div class="info-page-second-block">
                         <p>產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
@@ -80,7 +106,7 @@
                 </a>
             </div>
         </div>
-        <div class="info-footer">
+        <!-- <div class="info-footer">
             <div class="index-label-box" id="index-fixed-nav">
                     
                 <div class="index-label-inside-box">
@@ -93,22 +119,31 @@
                 </div>
                 
             </div>
-            <!-- <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
-            <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div> -->
+            <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
+            <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
 
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
+import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
+import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
 export default {
     data:()=>({
+        is_login: false,
         go_to_where: '/signup',
+        want_recommend: false,
+        show_date_input: false,
+        is_pregnant : false,
+        user_date: '',
     }),
     components: {
         MamiyogaTeachHeader,
+        MamiyogaHamburgerHeader,
+        MamiyogaDesktopNavHeader,
     },
     async mounted(){
         if(process.client) {
@@ -118,7 +153,9 @@ export default {
             if (login_or_not == false) {
                 this.go_to_where = '/signup'
                 this.check_log = '/login'
+                this.is_login = false
             } else {
+                this.is_login = true
                 this.go_to_where = '/pay'
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 if (!payed_or_not) {
@@ -142,13 +179,25 @@ export default {
         },
         goDown(){
             this.$scrollTo('#two-article',"start");
-        }
+        },
+        getProject(){
+            if(this.is_login){
+                this.want_recommend = true
+            } else {
+                this.$router.push('/signup')
+            }
+        },
+        inputDate(){
+            if(this.user_date !== '') {
+                this.$router.push('/free-trial')
+            }
+        },
     }
 }
 </script>
 <style>
 .info-page {
-    background: #F8F7F8;
+    background: #EDEDED;
     padding-bottom: 95px;
 }
 .privacy-header button {
@@ -157,7 +206,7 @@ export default {
 .info-wrap-block-first {
     width: 100%;
     min-height: 610px;
-    background-color: #F7F7F7;
+    background-color: #EDEDED;
     padding: 0 0 20px;
     /* border-radius: 0 0 40px 40px; */
 }
@@ -296,6 +345,66 @@ export default {
     padding: 5px 15px;
     letter-spacing: 0;
 }
+.info-wrap-block-first .info-desktop-red-btn{
+    color: #F8F7F8;
+    font-size: 16px;
+    font-weight: bold;
+    background: #C74F4F;
+    border: 3px solid #C74F4F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+.which-mami-flex {
+    display: flex;
+}
+.which-mami-flex input {
+    display: none;
+}
+.info-desktop-red-btn.pregnant {
+    margin-right: 5px;
+    background:#FF9898;
+    border-color:#FF9898;
+}
+.info-desktop-red-btn.mami {
+    background:#FFF;
+    color:#C74F4F;
+}
+#pregnant:checked ~ .info-desktop-red-btn.mami {
+    border-color: #D1D1D1;
+    color: #D1D1D1;
+}
+#mami:checked ~ .info-desktop-red-btn.pregnant {
+    background: #d1d1d1;
+    border-color: #d1d1d1;
+}
+.info-get-user-date {
+    width: 60%;
+    margin: 4vh auto 40px;
+}
+.info-get-user-date p {
+    font-size: 12px;
+    color: #707070;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+.info-get-user-date input {
+    background: transparent;
+    border-style: none;
+    border-bottom: 1px #707070 solid;
+    height: 30px;
+    font-size: 14px;
+}
+.info-get-user-date input::placeholder {
+    color: #D1D1D1;
+}
 @media(min-width: 769px) {
     .info-header {
         background: #F8F7F8;
@@ -307,7 +416,7 @@ export default {
     }
     .info-page {
         background: #fff;
-        padding-bottom: 110px;
+        padding-bottom: 160px;
     }
     .info-page .intro-wrap-block-five {
         height: auto;
@@ -329,6 +438,7 @@ export default {
     .info-page .index-article-little-title {
         font-size: 25px;
         width: 35vw;
+        margin: 15px 0 0;
     }
     .info-page-first-block {
         width: 100%;
@@ -430,7 +540,10 @@ export default {
         align-items: center;
         justify-content: space-evenly;
     }
-
+    .info-get-user-date {
+        margin: 4vh 0 0;
+        width: 100%;
+    }
 }
 @media (min-width: 769px) and (max-width: 860px) {
     .info-page .info-wrap-block-first {

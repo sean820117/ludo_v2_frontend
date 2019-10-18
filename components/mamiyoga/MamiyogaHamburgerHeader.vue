@@ -17,13 +17,17 @@
         <div class="mamiyoga-hamburger-menu" :class="open_menu ? 'open':''">
             <nav class="mamiyoga-hamburger-nav">
                 <li @click="$router.push('/')">服務介紹</li>
-                <li>課程影片</li>
-                <li>訓練課表</li>
-                <li>媽咪知識</li>
+                <li @click="$router.push('menu')">課程影片</li>
+                <li @click="$router.push('/syllabus')">孕動日記</li>
+                <li @click="$router.push('/information')">媽咪知識</li>
                 <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
                 <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
             </nav>
             <div class="mamiyoga-hamburger-btn">免費7天體驗</div>
+            <div class="mamiyoga-hamburger-btn" style="background: #838383;">
+                <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
+                贈禮
+            </div>
         </div>
     </div>
 </template>
@@ -50,6 +54,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    z-index: 9;
 }
 .mamiyoga-header.hamburger.open {
     z-index: 1001;
@@ -130,7 +135,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    height: 70%;
 }
 .mamiyoga-hamburger-nav li {
     color: #F8F7F8;
@@ -143,11 +148,11 @@ export default {
     margin-bottom: 0px;
 }
 .mamiyoga-hamburger-btn {
-    width: 60%;
+    width: 50%;
     height: 50px;
     background: #FF9898;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 0 auto 2vh;
     color: #F8F7F8;
     display: flex;
     align-items: center;

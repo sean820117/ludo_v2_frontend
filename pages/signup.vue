@@ -59,6 +59,7 @@
                     <div class="mamiyoga-header-cancel-btn" @click="$router.go(-1)"></div>
                 </div>
             </div> -->
+            <img @click="$router.go(-1)" style="width: 30px;position: absolute;top: 3vh;left: 2vw;opacity: .4;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             <div class="reg-text" style="margin-top:5vh;">註冊</div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">付款前需先註冊成為會員</div>
             <div class="signup-flex-box">
@@ -194,8 +195,9 @@ export default {
               if (response.data.status == '200') {
                   console.log("signup success")
                   let login_result = await this.$checkLogin(this.$store);
-                //   this.$router.push('/login-redirect')
-                  this.$router.push('/login-success')
+                  let url = localStorage.redirect
+                  this.$router.push(url)
+                //   this.$router.push('/login-success')
               } else {
                   this.hint = '註冊失敗 - ' + response.data.message;
                   this.hint_color = "red"
