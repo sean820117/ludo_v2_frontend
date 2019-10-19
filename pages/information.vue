@@ -424,12 +424,15 @@ export default {
     .info-page .info-wrap-block-first {
         min-height: 85vh;
         background: #F8F7F8;
-        padding: 25vh 10vw 5vh;
+        padding: 25vh 0 0;
     }
     .info-page-first-outside {
         display: flex;
         align-items: flex-start;
         justify-content: space-evenly;
+        width: 80%;
+        max-width: 1366px;
+        margin: 0 auto;
     }
     .info-page .index-article-title {
         font-size: 48px;
@@ -477,7 +480,7 @@ export default {
     }
     .info-page .info-wrap-block-first.desktop-two {
         background:#fff;
-        padding: 10vh 10vw 10vh;
+        padding: 10vh 0 0 ;
         min-height: 45vh;
     }
     #index-fixed-nav {

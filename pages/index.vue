@@ -171,7 +171,7 @@
                                                 <p>練習記錄</p>
                                             </div>
                                         </div>
-                                        <button  @click="$router.push('/mirror-mirror')" class="index-article-out-btn mirror-btn">進入課程 </button>
+                                        <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn">立即免費體驗 </button>
                                     </div>
                                 </div>
                             </div>
@@ -2340,8 +2340,8 @@ export default {
     }
     .get-course-block {
         position: absolute;
-        top: 35vh;
-        right: 5%;
+        top: 28vh;
+        right: -10%;
         width: 40%;
     }
     #get-course-link {

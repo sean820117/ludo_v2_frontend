@@ -47,11 +47,125 @@
                     <h5 class="syllabus-desktop-title">個人化孕動日記</h5>
                     <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">開始製作</div>
                 </div>
-                <div v-if="start_build">
-                    
+                <div v-if="start_build && !show_arrangement">
+                    <div v-if="first_question">
+                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">請問您過去有運動習慣嗎？</h5>
+                        <no-ssr>
+                            <carousel :perPage="1" :paginationEnabled="false"
+                            :centerMode="true" :spacePadding="50">
+                                <slide class="select-block">
+                                    <div @click="selectFrequency(1)" class="select-block-content" style="border-color: #FF9898;color: #FF9898;">
+                                    完全沒有
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectFrequency(2)" class="select-block-content">
+                                    一週1~2次
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectFrequency(3)" class="select-block-content">
+                                    一週3次以上
+                                    </div>
+                                </slide>
+                            </carousel>
+                        </no-ssr>
+                    </div>
+                    <div v-if="second_question">
+                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">請問您想安排運動的時段？</h5>
+                        <no-ssr>
+                            <carousel :perPage="1" :paginationEnabled="false"
+                            :centerMode="true" :spacePadding="50">
+                                <slide class="select-block">
+                                    <div @click="selectWant(1)" class="select-block-content">
+                                    平日白天
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectWant(2)" class="select-block-content">
+                                    平日晚上
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectWant(3)" class="select-block-content">
+                                    假日
+                                    </div>
+                                </slide>
+                            </carousel>
+                        </no-ssr>
+                    </div>
+                    <div v-if="!first_question && !second_question">
+                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">請問您最想解決什麼問題呢？</h5>
+                        <no-ssr>
+                            <carousel :perPage="1" :paginationEnabled="false"
+                            :centerMode="true" :spacePadding="50">
+                                <slide class="select-block">
+                                    <div @click="selectQuestion(1)" class="select-block-content">
+                                    矯正疼痛
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectQuestion(2)" class="select-block-content">
+                                    舒壓安眠
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectQuestion(3)" class="select-block-content">
+                                    美體塑身
+                                    </div>
+                                </slide>
+                                <slide class="select-block">
+                                    <div @click="selectQuestion(4)" class="select-block-content">
+                                    調和心靈
+                                    </div>
+                                </slide>
+                            </carousel>
+                        </no-ssr>
+                    </div>
+                    <div class="syllabus-desktop-question-bar">
+                        <span id="span-1"></span>
+                        <span id="span-2"></span>
+                        <span id="span-3"></span>
+                    </div>
+                </div>
+                 <div v-if="start_build && show_arrangement && !is_practice" class="syllabus-mobile-flex-content">
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
+                    <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
+                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
+                    <div>
+                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[0].ai_preview_img" :courseTitle="first_course.poses[0].pose_brief"></mamiyoga-mobile-syllabus-block>
+                        <div class="syllabus-desktop-pink-rest">休息</div>
+                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
+                        <div class="syllabus-desktop-pink-rest">休息</div>
+                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
+                    </div>
+                    <div class="syllabus-mobile-fade-box">
+                        <div class="info-desktop-red-btn" @click="startPractice">開始練習</div>
+                    </div>
+                </div>
+                <div v-if="is_practice && practice_finish" class="syllabus-mobile-flex-content">
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
+                    <div class="syllabus-mobile-result-box">
+                        <div>
+                            <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
+                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
+                        </div>
+                    </div>
+                    <div class="syllabus-mobile-result-box" style="background: #24798f;">
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">練習<br>成果</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">95分</div>
+                    </div>
+                    <div class="syllabus-mobile-result-box" style="background: #C74F4F;margin-bottom: 7vh;">
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">消耗<br>卡路里</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">200卡</div>
+                    </div>
+                    <div>
+                        <div class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">查看建議</div>
+                        <div class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 1vh auto;">更多練習</div>
+                    </div>
                 </div>
             </div>
-
+           
 
         </div>
         <div v-else class="syllabus-desktop">
@@ -64,11 +178,11 @@
                     <div class="info-desktop-red-btn" @click="startBuild">開始製作</div>
                 </div>
             </div>
-            <div v-if="start_build">
+            <div v-if="start_build && !show_arrangement">
                 <div class="syllabus-desktop-question" v-if="first_question">
                     <h5 class="syllabus-desktop-title">請問您過去有運動習慣嗎？</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">完全沒有</div>
+                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select" style="border-color: #FF9898;color: #FF9898;">完全沒有</div>
                         <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">一週1~2次</div>
                         <div @click="selectFrequency(3)" class="syllabus-desktop-question-select">一週3次以上</div>
                     </div>
@@ -96,6 +210,52 @@
                     <span id="span-3"></span>
                 </div>
             </div>
+            <div v-if="start_build && show_arrangement && !is_practice" class="syllabus-desktop-arrangement-outside">
+                <div class="syllabus-desktop-arrangement-block">
+                    <div class="syllabus-desktop-arrangement-content">
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
+                        <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">骨盆矯正</h5>
+                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">練習長度：7分鐘</p>
+                        <div class="syllabus-desktop-arrangement-flex">
+                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[0].ai_preview_img"
+                            :courseTitle="first_course.poses[0].pose_brief"></mamiyoga-desktop-course-block>
+                            <div class="syllabus-desktop-pink-rest">休息</div>
+                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[1].ai_preview_img"
+                            :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-desktop-course-block>
+                            <div class="syllabus-desktop-pink-rest">休息</div>
+                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[2].ai_preview_img"
+                            :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-desktop-course-block>
+                        </div>
+                        <div class="info-desktop-red-btn" style="margin: 5vh auto 0;" @click="startPractice">開始練習</div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
+                <div class="syllabus-desktop-arrangement-block">
+                    <div class="syllabus-desktop-arrangement-content">
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
+                        <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;">
+                            <div class="syllabus-desktop-arrangement-result-box">
+                                <p class="syllabus-desktop-title" style="margin:0;text-align: left;">骨盆矯正</p>
+                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">練習長度：7分鐘</p>
+                                <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;">再次練習</div>
+                            </div>
+                            <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
+                                <p style="font-size: 25px; margin-bottom: 25px;">練習成果</p>
+                                <p style="font-size: 95px;font-weight: 300;">95分</p>
+                            </div>
+                            <div class="syllabus-desktop-arrangement-result-box" style="background:#C74F4F;">
+                                <p style="font-size: 25px; margin-bottom: 25px;">消耗卡路里</p>
+                                <p style="font-size: 95px;font-weight: 300;">200卡</p>
+                            </div>
+                        </div>
+                        <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;justify-content: center;">
+                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 0 1%;">查看建議</div>
+                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 0 1%;">更多練習</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div v-if="is_loading" id="loading">
             <svg id="loading-icon" viewBox="0 0 32 29.6">
@@ -110,12 +270,15 @@
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue';
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
+import MamiyogaDesktopCourseBlock from '~/components/mamiyoga/MamiyogaDesktopCourseBlock.vue';
+import MamiyogaMobileSyllabusBlock from '~/components/mamiyoga/MamiyogaMobileSyllabusBlock.vue';
 import MamiyogaSyllabusContent from '~/components/mamiyoga/MamiyogaSyllabusContent.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
         courses:[],
+        first_course: {},
         not_online: false,
         check_lang: '',
         check_series: 'first',
@@ -129,11 +292,16 @@ export default {
 
         is_loading: false,
         is_login: false,
+        show_arrangement: false,
+        is_practice: false,
+        practice_finish: false,
     }),
     components: {
         MamiyogaHeader,
         MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
+        MamiyogaDesktopCourseBlock,
+        MamiyogaMobileSyllabusBlock,
         MamiyogaSyllabusContent,
         MamiyogaWindowAlertBox,
     },
@@ -149,6 +317,9 @@ export default {
                 this.courses = await require('~/config/mamiyoga-course');
                 this.check_lang = ''
             }
+
+            this.first_course = this.courses[0]
+            console.log(this.first_course)
 
             if(sessionStorage['menu_current_series']) {
                 this.check_series = sessionStorage['menu_current_series']
@@ -210,6 +381,23 @@ export default {
             this.user_question = num
             console.log(this.user_question)
             this.is_loading = true
+            setTimeout(() => {
+                this.is_loading = false
+                this.show_arrangement = true
+            }, 6000);
+        },
+        startPractice(){
+            this.is_practice = true
+            this.practice_finish = true
+        }
+    },
+    computed:{
+        getTodayDate(){
+            const day_list = ['日','ㄧ','二','三','四','五','六']
+            let d = new Date();
+            let n = d.getDay();
+            let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_list[n] +'）' ;
+            return today
         }
     }
 }
@@ -218,10 +406,11 @@ export default {
 <style>
 .syllabus-desktop {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background:linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
     position: relative;
-    overflow: hidden;        
+    /* overflow: hidden;         */
+    padding-bottom: 5vh;
 }
 .syllabus-desktop-img {
     width: 200%;
@@ -250,6 +439,93 @@ export default {
     margin-top: 35px;
     cursor: pointer;
     -webkit-user-select: none;
+}
+.select-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select-block-content {
+    width: 85%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5vh;
+    border: 4px solid #24798f;
+    border-radius: 15px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 500;
+    color:#24798f;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    opacity: .5;
+}
+.VueCarousel-slide.select-block.VueCarousel-slide-active.VueCarousel-slide-center .select-block-content{
+    opacity: 1;
+}
+.syllabus-desktop-question-bar {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5vh auto 0;
+}
+.syllabus-desktop-question-bar span {
+    width: 9px;
+    height: 9px;
+    border-radius: 12px;
+    background: #D1D1D1;
+}
+.syllabus-desktop-question-bar span:first-child {
+    background: #707070;
+}
+.syllabus-mobile-flex-content {
+    width: 85%;
+    margin: 0 auto;
+    position: relative;
+}
+.syllabus-desktop-pink-rest {
+    width: 100%;
+    height: 45px;
+    background: #FF9898;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin: 1vh 0;
+    opacity: 0.7;
+}
+.syllabus-mobile-fade-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg,transparent,#000);
+    z-index: 9;
+}
+.syllabus-mobile-result-box {
+    width: 100%;
+    height: 130px;
+    color: #fff;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.3);
+    margin: 2vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 /* 舊課程 */
 .course-menu {
@@ -370,6 +646,10 @@ export default {
 
 
 @media (min-width: 769px) {
+    .syllabus-desktop {
+        height: 100vh;
+        overflow: hidden;        
+    }
     .syllabus-desktop-img {
         bottom: -5vw;
         right: 50vw;
@@ -435,6 +715,7 @@ export default {
         width: 23%;
     }
     .syllabus-desktop-question-select {
+        box-shadow: 0 5px 10px rgba(0,0,0,.2);
         width: 30%;
         height: 275px;
         background: #fff;
@@ -463,6 +744,43 @@ export default {
     }
     .syllabus-desktop-question-bar span:first-child {
         background: #707070;
+    }
+    .syllabus-desktop-arrangement-outside {
+        padding-top: 200px;
+    }
+    .syllabus-desktop-arrangement-block {
+        width: 90%;
+        max-width: 1700px;
+        height: calc(100vh - 200px);
+        margin: 0 auto;
+        background:linear-gradient(180deg,#fff,transparent);
+        padding-top: 50px;
+    }
+    .syllabus-desktop-arrangement-content {
+        margin: 0 auto;
+        width: 90%;
+    }
+    .syllabus-desktop-arrangement-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .syllabus-desktop-pink-rest {
+        width: 10%;
+        max-width: 150px;
+        height: 270px;
+        margin: 0 1%;
+    }
+    .syllabus-desktop-arrangement-result-box {
+        width: 30%;
+        height: 400px;
+        border-radius: 15px;
+        box-shadow: 0 7px 10px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
     }
 }
 </style>

@@ -3,19 +3,20 @@
         <div v-if="$mq !== 'desktop'">
             <div class="course-menu">
                 <div class="course-information" >
-                    <mamiyoga-header v-if="$mq !== 'desktop'" class="menu-mobile-header" btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
+                    <!-- <mamiyoga-header v-if="$mq !== 'desktop'" class="menu-mobile-header" btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header> -->
+                    <mamiyoga-hamburger-header></mamiyoga-hamburger-header>
                     <div class="course-information-select">
                         <div class="course-information-content">
-                            <router-link :to="check_lang + '/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
+                            <p @click="$router.push('/menu')">課程影片</p>
                         </div>
                         <div class="course-information-content">
-                            <router-link :to="check_lang + '/aiassistant'" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
+                            <p @click="$router.push('/syllabus')">孕動日記</p>
                         </div>
                         <!-- <div class="course-information-content">
                             <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
                         </div> -->
                         <div class="course-information-content">
-                            <router-link :to="check_lang + '/syllabus'" style="text-decoration:none;"><p style="cursor:pointer;">練習課表</p></router-link>
+                            <p style="cursor:pointer;" @click="$router.push('/information')">媽咪知識</p>
                         </div>
                     </div>
                     <!-- <div class="course-mail-icon" @click="not_online = true">
@@ -56,21 +57,30 @@
                 <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
             </div>
            <div class="menu-desktop-main-block" id="menu-desktop-main">
-               <h4>練習動作</h4>
+               <div class="menu-desktop-every-flex">
+                   <h4>練習動作</h4>
+                   <p @click="show_practice = true">顯示全部</p>
+               </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAiPoses" :key="i" stagger="500"
-                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief"
+                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief" 
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
-               <h4>矯正疼痛</h4>
+               <div class="menu-desktop-every-flex">
+                    <h4>矯正疼痛</h4>
+                   <p @click="show_rectifys = true">顯示全部</p>
+               </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getRectifys" :key="i" stagger="500"
-                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
+                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
-               <h4>舒壓安眠</h4>
+               <div class="menu-desktop-every-flex">
+                    <h4>舒壓安眠</h4>
+                   <p @click="show_alleviates = true">顯示全部</p>
+               </div>
                <div class="menu-desktop-course-box alleviates" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
@@ -84,14 +94,20 @@
                     </div>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
-               <h4>美體塑身</h4>
+               <div class="menu-desktop-every-flex">
+                    <h4>美體塑身</h4>
+                   <p @click="show_beautys = true">顯示全部</p>
+               </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
-               <h4>調和心靈</h4>
+               <div class="menu-desktop-every-flex">
+                    <h4>調和心靈</h4>
+                   <p @click="show_blends = true">顯示全部</p>
+               </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
@@ -104,6 +120,7 @@
 
 <script>
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
+import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue';
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue';
 import MamiyogaDesktopCourseBlock from '~/components/mamiyoga/MamiyogaDesktopCourseBlock.vue';
 import MamiyogaCourseContent from '~/components/mamiyoga/MamiyogaCourseContent.vue';
@@ -116,9 +133,16 @@ export default {
         not_online: false,
         check_lang: '',
         check_series: 'first',
+
+        show_practice: false,
+        show_rectifys: false,
+        show_alleviates: false,
+        show_beautys: false,
+        show_blends: false,
     }),
     components: {
         MamiyogaHeader,
+        MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
         MamiyogaDesktopCourseBlock,
         MamiyogaCourseContent,
@@ -163,8 +187,11 @@ export default {
                         }
                     }
                 }
-                ai_array = ai_array.slice(0,3)
-                return ai_array;
+                if(this.show_practice) {
+                    return ai_array;
+                } else {
+                    return ai_array.slice(0,3);
+                }
             } else {
                 return [];
             }
@@ -172,8 +199,12 @@ export default {
         getRectifys(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'rectify'));
-                result_array = result_array.slice(0,3)
-                return result_array;
+                // result_array = result_array.slice(0,3)
+                if(this.show_rectifys) {
+                    return result_array;
+                } else {
+                    return result_array.slice(0,3)
+                }
             } else {
                 return [];
             }
@@ -181,8 +212,12 @@ export default {
         getAlleviates(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'alleviate'));
-                result_array = result_array.slice(0,3)
-                return result_array;
+                // result_array = result_array.slice(0,3)
+                if(this.show_alleviates) {
+                    return result_array;
+                } else {
+                    return result_array.slice(0,3)
+                }
             } else {
                 return [];
             }
@@ -190,8 +225,9 @@ export default {
         getBeautys(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'beauty'));
-                result_array = result_array.slice(0,3)
-                return result_array;
+                // result_array = result_array.slice(0,3)
+                // return result_array;
+                return this.show_beautys ? result_array : result_array.slice(0,3)
             } else {
                 return [];
             }
@@ -199,8 +235,9 @@ export default {
         getBlends(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'blend'));
-                result_array = result_array.slice(0,3)
-                return result_array;
+                // result_array = result_array.slice(0,3)
+                // return result_array;
+                return this.show_blends ? result_array : result_array.slice(0,3)
             } else {
                 return [];
             }
@@ -228,7 +265,7 @@ export default {
     methods:{
         goDown(){
             this.$scrollTo('#menu-desktop-main',"start");
-        }
+        },
     }
 }
 </script>
@@ -368,6 +405,7 @@ export default {
         border-radius: 5px;
         margin-top: 60px;
         margin-bottom: 150px;
+        cursor: pointer;
     }
     .menu-desktop-course-box {
         display: flex;
@@ -376,6 +414,10 @@ export default {
         width: 90%;
         margin: 0 auto;
         max-width: 1366px;
+        flex-wrap: wrap;
+    }
+    .menu-desktop-course-box .mamiyoga-desktop-course-outside-block {
+        margin-bottom: 30px;
     }
     .menu-desktop-course-box.alleviates {
         justify-content: space-between;
@@ -385,13 +427,24 @@ export default {
         width: 100%;
         padding: 50px 0;
     }
+    .menu-desktop-every-flex {
+        width: 90%;
+        max-width: 1366px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 50px auto;
+    }
     .menu-desktop-main-block h4 {
         color: #24798F;
         font-size: 27px;
         font-weight: bold;
-        width: 90%;
-        max-width: 1366px;
-        margin: 50px auto;
+    }
+    .menu-desktop-every-flex p{
+        color: #24798F;
+        font-size: 18px;
+        font-weight: 300;
+        cursor: pointer;
     }
     .menu-desktop-alleviates {
         width: 30%;
@@ -431,7 +484,7 @@ export default {
         width: 90%;
         max-width: 1366px;
         height: 3px;
-        margin: 50px auto;
+        margin: 0 auto 50px ;
         opacity: 1;
     }
 
