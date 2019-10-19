@@ -257,6 +257,11 @@
                 </div>
             </div>
         </div>
+        <!-- 練習畫面 -->
+        <div v-if="is_practice && !practice_finish">
+            <mamiyoga-new-practice-video-block @goBack="goBack()"></mamiyoga-new-practice-video-block>
+        </div>
+        <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
             <svg id="loading-icon" viewBox="0 0 32 29.6">
                 <path class="path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
@@ -272,6 +277,7 @@ import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHead
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
 import MamiyogaDesktopCourseBlock from '~/components/mamiyoga/MamiyogaDesktopCourseBlock.vue';
 import MamiyogaMobileSyllabusBlock from '~/components/mamiyoga/MamiyogaMobileSyllabusBlock.vue';
+import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPracticeVideoBlock.vue'
 import MamiyogaSyllabusContent from '~/components/mamiyoga/MamiyogaSyllabusContent.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
@@ -295,6 +301,8 @@ export default {
         show_arrangement: false,
         is_practice: false,
         practice_finish: false,
+
+        have_trial: false,
     }),
     components: {
         MamiyogaHeader,
@@ -302,6 +310,7 @@ export default {
         MamiyogaDesktopNavHeader,
         MamiyogaDesktopCourseBlock,
         MamiyogaMobileSyllabusBlock,
+        MamiyogaNewPracticeVideoBlock,
         MamiyogaSyllabusContent,
         MamiyogaWindowAlertBox,
     },
@@ -325,6 +334,19 @@ export default {
                 this.check_series = sessionStorage['menu_current_series']
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
+            }
+
+            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                let now = new Date();
+                let now_time = now.getTime();
+                let use_time = (now_time - open_time)/86400000;
+                console.log(use_time)
+                if(use_time > 7){
+                    this.have_trial = false;                                               
+                }else {
+                    this.have_trial = true;
+                }
             }
         }
     },
@@ -357,7 +379,11 @@ export default {
     methods:{
         startBuild(){
             if(this.is_login) {
-                this.start_build = true
+                if(this.have_trial) {
+                    this.start_build = true
+                } else{
+                    this.$router.push('/free-trial')
+                }
             } else {
                 this.$router.push('/signup')
             }  
@@ -380,15 +406,19 @@ export default {
         selectQuestion(num){
             this.user_question = num
             console.log(this.user_question)
+            
             this.is_loading = true
+
             setTimeout(() => {
                 this.is_loading = false
                 this.show_arrangement = true
-            }, 6000);
+            }, 3000);
         },
         startPractice(){
             this.is_practice = true
-            this.practice_finish = true
+        },
+        goBack(){
+            this.is_practice = false
         }
     },
     computed:{
@@ -753,7 +783,7 @@ export default {
         max-width: 1700px;
         height: calc(100vh - 200px);
         margin: 0 auto;
-        background:linear-gradient(180deg,#fff,transparent);
+        background:linear-gradient(180deg,#fff,#fff,#fff,transparent);
         padding-top: 50px;
     }
     .syllabus-desktop-arrangement-content {

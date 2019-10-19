@@ -1,12 +1,12 @@
 <template>
     <div class="mamiyoga-desktop-course-outside-block">
         <div class="mamiyoga-desktop-course-block" :style="{backgroundImage: `url('${courseBg}')`,padding: open_video ? '0': ''}" @click="show_pose = true">
-            <div v-if="!open_video" class="mamiyoga-desktop-course-flex-block">
+            <div class="mamiyoga-desktop-course-flex-block">
                 <p>{{courseTitle}}</p>
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
             </div>
-            <div v-if="!open_video" class="mamiyoga-desktop-course-block-gradual"></div>
-            <div v-if="!open_video" class="mamiyoga-desktop-course-block-hover">
+            <div class="mamiyoga-desktop-course-block-gradual"></div>
+            <div class="mamiyoga-desktop-course-block-hover">
                 <img @click="openCourseVideo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-video-play.png" alt="">
             </div>
             <div v-if="open_video" class="mamiyoga-desktop-course-video">
@@ -49,7 +49,7 @@ export default {
     methods: {
         openCourseVideo(){
             this.open_video = true
-
+            document.querySelector('button.fullscreen').click();
         }
     }
 }

@@ -83,7 +83,7 @@
                </div>
                <div class="menu-desktop-course-box alleviates" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500"
-                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
+                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                     <div class="menu-desktop-alleviates">
                         <div class="menu-desktop-alleviates-1"></div>
@@ -100,7 +100,7 @@
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500"
-                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
+                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
@@ -110,7 +110,7 @@
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500"
-                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses"
+                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
            </div>
@@ -167,6 +167,8 @@ export default {
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
             }
+
+            
         }
     },
     computed:{

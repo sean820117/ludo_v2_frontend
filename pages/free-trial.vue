@@ -39,9 +39,12 @@ export default {
                 this.hint_color = 'red'
             } else {
                 this.$sendData('/apis/subscribe-mamiyoga',{email:this.email,name: '體驗用戶'})
-               this.hint = '已收到您的電子信箱！敬請期待～'
-               this.hint_color = 'red'
+                this.hint = '已收到您的電子信箱！敬請期待～'
+                this.hint_color = 'red'
 
+                let d = new Date(); 
+                let start_time = d.getTime();
+                localStorage['when_is_free_trial_start'] = start_time
             }
         }
     }
