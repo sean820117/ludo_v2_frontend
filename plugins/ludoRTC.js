@@ -6,6 +6,12 @@ var pose_axios = axios.create({
     timeout: 2000000,
 });
 
+var api_axios = axios.create({
+    baseURL: 'https://api.ludonow.com',
+    withCredentials: 'true',
+    timeout: 2000000,
+});
+
 function newLudoRTC (options = {}) {
     if (process.client) {
         return new LudoRTC(options);
@@ -22,6 +28,7 @@ class LudoRTC {
         this.openCamera = this.openCamera.bind(this);
         this.startRecording = this.startRecording.bind(this);
         this.stopRecording = this.stopRecording.bind(this);
+        this.getResult = this.getResult.bind(this);
         this.dc = null;
         this.video_list = [];
 
@@ -38,6 +45,7 @@ class LudoRTC {
                     },
                 }
             },
+            video_element_id:'#video',
             post_info : {
                 pose_id: "yoga_27",
                 user_id: "guest",
@@ -53,7 +61,7 @@ class LudoRTC {
         try {
             let stream = await navigator.mediaDevices.getUserMedia(constraints);
             this.stream = stream;
-            let video_element = document.getElementById('video');
+            let video_element = document.querySelector(this.final_config.video_element_id);
             if ('srcObject' in video_element) {
                 video_element.srcObject = stream
             } else {
@@ -62,7 +70,7 @@ class LudoRTC {
             video_element.play();
             return true;
         } catch (error) {
-            alert('Could not acquire media: ' + err);
+            alert('Could not acquire media: ' + error);
             return false;
         }
         
@@ -172,23 +180,17 @@ class LudoRTC {
                 dc.close();
             }
             // close transceivers
-            if (pc.getTransceivers) {
+            if (pc && pc.getTransceivers) {
                 pc.getTransceivers().forEach(function(transceiver) {
                     if (transceiver.stop) {
                         transceiver.stop();
                     }
                 });
+                setTimeout(function() {
+                    pc.close();
+                }, 500);
             }
-        
-            // close local audio / video
-            // pc.getSenders().forEach(function(sender) {
-            //     sender.track.stop();
-            // });
-        
-            // close peer connection
-            setTimeout(function() {
-                pc.close();
-            }, 500);
+            
             return true;
         } catch (error) {
             console.error(error);
@@ -201,6 +203,32 @@ class LudoRTC {
         this.stream.getTracks().forEach(function (track) {
             track.stop()    
         });
+    }
+
+    async getResult() {
+        var total_score = 0;
+        let post_info = this.final_config.post_info;
+        for (let index = 0; index < this.video_list.length; index++) {
+            const video_file_name = this.video_list[index];
+            try {
+                let response = await api_axios.post('/apis/get-pose-result',{user_id:post_info.user_id,pose_id:post_info.pose_id,file_name:video_file_name})
+                if (response.data.result.status == 200) {
+                    total_score += parseInt(response.data.result.score)
+                } else if(response.data.result.status == 102) { 
+                    total_score += 30
+                } else if(response.data.result.status == 204) {
+                    total_score += parseInt(response.data.result.score)
+                } else if(response.data.result.status == 404){
+                    total_score += 30
+                } else {
+                    total_score += 30
+                }
+            } catch (error) {
+                console.error(error)
+                total_score += 30
+            }
+        }
+        return total_score / this.video_list.length;
     }
 }
 
