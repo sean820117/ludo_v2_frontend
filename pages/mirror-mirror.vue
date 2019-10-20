@@ -2,46 +2,49 @@
     <div id="mirror-page">
         <div v-if="upload_pic">
             <mamiyoga-teach-header headerTitle="我的骨架" textFtColor="#fff" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-teach-header>
-            <!-- <canvas id="mirror" width="300" height="450"></canvas> -->
             <div id="show-mirror">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-phone-1.png" alt="">
                 <div id="show-mirror-img" :style="{backgroundImage: 'url('+receipt_img+')'}"></div>
             </div>
             <!-- <a style="text-decoration: none;" :href="receipt_img" target="_blank"> -->
             <!-- <a :href="'https://www.addtoany.com/share#url=https://beta.ludonow.com/mirror/'+receipt_link+'&amp;title='" target="_blank"> -->
-                <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div>
+                <!-- <div @click="shareUrl" class="mirror-long-btn" style="border: 3px solid #F8F7F8;background: #24798F;">儲 存 結 果</div> -->
             <!-- </a> -->
-            <div class="mirror-long-btn" @click="$router.push('/teach')">體 驗 課 程</div>
+            <div class="mirror-long-btn" @click="$router.push('/teach')">開 始 上 課</div>
         </div>
         <div v-if="!upload_pic">
             <mamiyoga-teach-header headerTitle="製作專屬骨架" textFtColor="#fff" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-teach-header>
             <p class="index-article-out-container-text-li">自拍魔鏡使用說明</p>
-            <div class="mirror-phone">
-                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-img-1.png" alt="">
-                <div class="mirror-text">
-                    <div>影像辨識分析人體骨架</div>
-                    <div>定位常用關節點</div>
-                    <div>深度動作學習比對</div>
+            <div class="mirror-flex-block">
+                <div class="mirror-phone">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-img-1.png" alt="">
+                    <div class="mirror-text">
+                        <div>影像辨識分析人體骨架</div>
+                        <div>定位常用關節點</div>
+                        <div>深度動作學習比對</div>
+                    </div>
+                </div>
+                <div class="mirror-flex-inside-block">
+                    <div class="mirror-list">
+                        <div class="mirror-li">
+                            <p class="mirror-num">1</p>
+                            <p>拍攝或選取一張全身照</p>
+                        </div>
+                        <div class="mirror-li">
+                            <p class="mirror-num">2</p>
+                            <p>深呼吸三次稍等一下</p>
+                        </div>
+                        <div class="mirror-li">
+                            <p class="mirror-num">3</p>
+                            <p>專屬骨架製作完成</p>
+                        </div>
+                    </div>
+                    <label class="mirror-long-btn first-show-btn">打 開 魔 鏡
+                        <input type="file" style="display:none;" accept="image/*" multiple="multiple" @change="uploadImg" />
+                    </label>
+                    <div class="mirror-little-text">LUDO遵守個人資料保護法之規範，保障用戶隱私權益，保證不對外公開或移作其他目的使用</div>
                 </div>
             </div>
-            <div style="width:75%;margin: 0 auto;">
-                <div class="mirror-li">
-                    <p class="mirror-num">1</p>
-                    <p>拍攝或選取一張全身照</p>
-                </div>
-                <div class="mirror-li">
-                    <p class="mirror-num">2</p>
-                    <p>深呼吸三次稍等一下</p>
-                </div>
-                <div class="mirror-li">
-                    <p class="mirror-num">3</p>
-                    <p>專屬骨架製作完成</p>
-                </div>
-            </div>
-            <label class="mirror-long-btn" style="margin-top:5vh;">打 開 魔 鏡
-                <input type="file" style="display:none;" accept="image/*" multiple="multiple" @change="uploadImg" />
-            </label>
-            <p class="mirror-little-text">LUDO遵守個人資料保護法之規範，保障用戶隱私權益，保證不對外公開或移作其他目的使用</p>
         </div>
         <div v-if="is_loading" id="loading">
             <svg id="loading-icon" viewBox="0 0 32 29.6">
@@ -67,7 +70,6 @@ import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import axios from '~/config/axios-config';
 export default {
-    layout: 'mamiyoga',
     data:()=>({
         upload_pic: false,
         is_loading: false,
@@ -157,21 +159,6 @@ export default {
                 window.open(`https://www.addtoany.com/share#url=https://mamiyoga.ludonow.com/mirror/${this.receipt_link}&amp;title=`)
             }
         },
-
-        // setCanvas(){
-        //     let m = document.getElementById('put-pic').getContext('2d');
-        //     let img = new Image();
-        //     img.onload = function(){
-        //         m.drawImage(img,0,0);
-        //         m.beginPath();
-        //         m.moveTo(0,0);
-        //         m.lineTo(0,450);
-        //         m.lineTo(103,76);
-        //         m.lineTo(170,15);
-        //         m.stroke();
-        //     };
-        //     img.src = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/training/sport/output/guest/20abnpsnhi-3-1.jpg';
-        // }
     }
 }
 </script>
@@ -243,6 +230,10 @@ export default {
     text-align: center;
     margin: 15px auto;
     display: block;
+    cursor: pointer;
+}
+.mirror-long-btn.first-show-btn {
+    margin-top: 5vh;
 }
 .index-article-out-container-text-li {
     color: #f7f7f7;
@@ -276,6 +267,10 @@ export default {
     border-radius: 10px;
     margin: 5px 0;
     font-size: 16px;
+}
+.mirror-list {
+    width:75%;
+    margin: 0 auto;
 }
 .mirror-li {
     margin: 10px auto;
@@ -334,8 +329,84 @@ export default {
     cursor: pointer;
 }
 @media (min-width: 769px) {
+    #mirror-page {
+        min-height: 100vh;
+    }
     .mirror-text {
-        width: 45%;
+        width: 250px;
+        right: 25%;
+    }
+    .mirror-text div {
+        font-size: 20px;
+    }
+    .mirror-flex-block {
+        display: flex;
+        align-items: center;
+        max-width: 1366px;
+        margin: 7vh auto 0;
+    }
+    .mirror-flex-inside-block {
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+    }
+    .mirror-phone {
+        width: 65%;
+        float: left;
+        min-width: 470px;
+    }
+    .mirror-phone img {
+        width: 80%;
+    }
+    .mirror-list {
+        width: 220px;
+        display: flex;
+        flex-wrap: wrap;
+        margin:  0 0 5vh;
+        float: left;
+    }
+    .mirror-li {
+        margin: 10px 0;
+    }
+    .mirror-li p:last-child {
+        font-size: 18px;
+    }
+    .mirror-long-btn {
+        max-width: 280px;
+    }
+    .mirror-long-btn.first-show-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        float:left;
+        margin: 0 0 2vh;
+        font-size: 21px;
+        height: 50px;
+        min-width: 220px;
+    }
+    .mirror-little-text {
+        float: left;
+        margin: 0;
+        width: 60%;
+        min-width: 220px;
+    }
+    #loading-icon {
+        transform: scale(1.5);
+    }
+    #show-mirror {
+        width: 40%;
+        max-width: 400px;
+    }
+    .mirror-flex-btn-block {
+        display: flex;
+        justify-content: center;
+        margin:  5vh auto 0;
+    }
+    .mirror-flex-btn-block .mirror-long-btn {
+        width: 19%;
+        max-width: 250px;
+        margin: 0 1vw;
     }
 }
 </style>

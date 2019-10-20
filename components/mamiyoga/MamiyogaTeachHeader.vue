@@ -120,5 +120,9 @@ export default {
     .mamiyoga-teach-header{
         width: 100%;
     }
+    .mamiyoga-teach-header-title h3 {
+        font-size: 25px;
+        color: #24798F;
+    }
 }
 </style>

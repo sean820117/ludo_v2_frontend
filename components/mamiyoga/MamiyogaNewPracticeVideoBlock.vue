@@ -2,17 +2,20 @@
     <div>
         <div id="experience-page" v-if="!is_loading && !is_loaded">
             <div id="top-show">
-                <div v-if="!show_nam" id="go-back-btn">
+                <div v-if="!show_nam" id="go-back-btn" @click="goBack">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-header-next.png" alt="">
                 </div>
                 <div v-if="!show_nam" id="start-video" @click="startReady">
                     開始
                 </div>
+                <div v-if="!show_nam && teach_finish" id="start-remind">
+                    開始練習吧！
+                </div>
             </div>
             <div id="input-video-container">
                 <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
                 <div class="preview-img">
-                    <div v-if="show_nam">{{ready_go}}</div>
+                    <!-- <div v-if="show_nam">{{ready_go}}</div> -->
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
             </div>
@@ -24,7 +27,7 @@
                 <div v-if="!show_inhale && show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''">
                     <div class="repeat-bar-text">吐氣</div>
                 </div>
-                <div v-if="!count_over" style="position: absolute;left: 5vw;top: 5vh;">
+                <div v-if="!count_over" class="video-process-bar-block">
                     <div class="video-process-bar">
                         <div id="video-process-bar-inside-1"></div>
                     </div>
@@ -34,6 +37,12 @@
                     <div class="video-process-bar">
                         <div id="video-process-bar-inside-3"></div>
                     </div>
+                    <div class="video-process-bar">
+                        <div id="video-process-bar-inside-4"></div>
+                    </div>
+                    <div class="video-process-bar">
+                        <div id="video-process-bar-inside-5"></div>
+                    </div>
                 </div>
                 <div v-if="count_over" class="count-over">
                     <div class="count-over-all-btn">
@@ -42,9 +51,95 @@
                     </div>
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.wav"></audio>
-                <video playsinline id="course-video-1" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_A.mp4"></video>
-                <video playsinline id="course-video-2" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4"></video>
-                <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4"></video>
+                <div class="course-video-container">
+                    <video playsinline id="course-video-1" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_A.mp4"></video>
+                </div>
+                <div class="course-video-container">
+                    <video playsinline id="course-video-2" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4"></video>
+                </div>
+                <div class="course-video-container">
+                    <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4"></video>
+                </div>
+                <div class="course-video-container rest" id="course-video-rest">
+                    休息時間
+                </div>
+            </div>
+
+            <!-- 教學 -->
+            <div v-if="!teach_finish" class="experience-teach">
+                <div class="preview-img people" id="people">
+                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                </div>
+                <div class="repeat-bar green-bar" id="teach-bar">
+                    <div class="repeat-bar-text">吸氣</div>
+                </div>
+                <div class="count-over-all-btn" id="teach-show-btn">
+                    <div class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
+                    <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
+                </div>
+                <div class="video-process-bar-block" id="teach-process" style="display:none">
+                    <div class="video-process-bar">
+                        <div class="video-process-bar-inside"></div>
+                    </div>
+                    <div class="video-process-bar">
+                        <div class="video-process-bar-inside"></div>
+                    </div>
+                    <div class="video-process-bar">
+                        <div class="video-process-bar-inside"></div>
+                    </div>
+                    <div class="video-process-bar">
+                        <div class="video-process-bar-inside"></div>
+                    </div>
+                    <div class="video-process-bar">
+                        <div class="video-process-bar-inside"></div>
+                    </div>
+                </div>
+                <div v-if="!select_camera" class="experience-select-camera">
+                    <p class="experience-select-camera-title">怕做錯嗎？讓瑜珈助教加入吧！</p>
+                    <div class="info-desktop-red-btn" @click="getCamera">加入瑜珈助教</div>
+                    <p class="experience-select-camera-not" @click="notGetCamera">我先自己試試看</p>
+                    <p class="experience-select-camera-text">加入瑜珈助教將開啟鏡頭錄影，Mamiyoga不會將您的資料洩漏給其他人。</p>
+                </div>
+                <div v-if="select_camera && remind_1" class="experience-teach-remind first">
+                    <div class="experience-teach-remind-title">步驟一</div>
+                    <p>按下開始後，坐到畫面中的框框裡！</p>
+                    <div class="experience-teach-remind-flex-btn">
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind1">我知道了</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                    </div>
+                </div>
+                <div v-if="select_camera && remind_2" class="experience-teach-remind second">
+                    <div class="experience-teach-remind-title">步驟二</div>
+                    <p>將自己對準畫面中的白色人型框框</p>
+                    <div class="experience-teach-remind-flex-btn">
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind2">我知道了</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                    </div>
+                </div>
+                <div v-if="select_camera && remind_3" class="experience-teach-remind third">
+                    <div class="experience-teach-remind-title">步驟三</div>
+                    <p>跟著吸氣與吐氣指引，在練習時調整呼吸</p>
+                    <div class="experience-teach-remind-flex-btn">
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind3">我知道了</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                    </div>
+                </div>
+                <div v-if="select_camera && remind_4" class="experience-teach-remind four">
+                    <div class="experience-teach-remind-title">步驟四</div>
+                    <p>進度條可以知道目前做完多少動作了</p>
+                    <div class="experience-teach-remind-flex-btn">
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind4">我知道了</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                    </div>
+                </div>
+                <div v-if="select_camera && remind_5" class="experience-teach-remind five">
+                    <div class="experience-teach-remind-title">步驟五</div>
+                    <p>按下開始分析，結束練習！</p>
+                    <div class="experience-teach-remind-flex-btn">
+                        <div class="experience-teach-remind-red-btn" @click="skipTeach">結束教學</div>
+                        <!-- <div class="experience-teach-remind-not-red-btn" @click="skipTeach">結束教學</div> -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- 上傳 -->
@@ -164,6 +259,14 @@ export default {
 
         show_nam: false,
         ready_go: 5,
+
+        select_camera: false,
+        remind_1: true,
+        remind_2: false,
+        remind_3: false,
+        remind_4: false,
+        remind_5: false,
+        teach_finish: false,
     }),
     async mounted(){
         if (process.client) {
@@ -178,18 +281,19 @@ export default {
     },
     methods: {
         startReady(){
-            this.show_nam = true
-            let id = setInterval(() => {
-                this.ready_go--
-                if(this.ready_go == 0){
-                    this.startPractice();
-                    clearInterval(id)
-                }
-            }, 1000);
+            if(this.teach_finish){
+                this.show_nam = true
+                let id = setInterval(() => {
+                    this.ready_go--
+                    if(this.ready_go == 0){
+                        this.startPractice();
+                        clearInterval(id)
+                    }
+                }, 1000);
+            }
         },
         startPractice(){
             this.is_studying = true;
-            
             //控制影片播放及進度條
             let bgm = document.querySelector('#course-bgm')
             let co_vid = document.querySelector('#course-video-1')
@@ -211,6 +315,7 @@ export default {
                     nt_vid.style.display = 'block';
                     co_vid.style.display = 'none';
                     this.startPractice1();
+                    // this.practiceRest1();
                     console.log('stop')
                     clearInterval(id)
                 }
@@ -290,6 +395,21 @@ export default {
                     clearInterval(id)
                 }
             }, 100);
+        },
+        practiceRest1(){
+            let rest = document.querySelector('#course-video-rest')
+            rest.style.display = 'flex'
+            let height = 0
+            let id = setInterval(() => {
+                document.getElementById('video-process-bar-inside-2').style.height = height+'%'; 
+                if(height >= 30) {
+                    rest.style.display = 'none';
+                    this.startPractice1()
+                    clearInterval(id)
+                }else {
+                    height++
+                }
+            }, 1000);
         },
         recordVideo(){
             this.video_recorder.startRecording()
@@ -498,26 +618,61 @@ export default {
                 // console.log(x)
             }
         },
+        goBack(){
+            this.$emit('goBack');
+        },
+        getCamera(){
+            this.select_camera = true;
+            document.querySelector('#start-video').style.zIndex = '15';
+            document.querySelector('#top-show').style.zIndex = 'unset';
+        },
+        notGetCamera(){
+            this.select_camera = true;
+            document.querySelector('#start-video').style.zIndex = '15';
+            document.querySelector('#top-show').style.zIndex = 'unset';
+        },
+        skipTeach(){
+            this.teach_finish = true
+            document.querySelector('#top-show').style.zIndex = '15';
+        },
+        nextRemind1(){
+            this.remind_1 = false;
+            this.remind_2 = true;
+            document.querySelector('#start-video').style.zIndex = 'unset';
+            document.querySelector('#people').style.display = 'flex';
+            document.querySelector('#people').style.zIndex = '15';
+        },
+        nextRemind2(){
+            this.remind_2 = false;
+            this.remind_3 = true;
+            document.querySelector('#people').style.display = 'none';
+            document.querySelector('#teach-bar').style.display = 'block';
+        },
+        nextRemind3(){
+            this.remind_3 = false;
+            this.remind_4 = true;
+            document.querySelector('#teach-bar').style.display = 'none';
+            document.querySelector('#teach-process').style.display = 'block';
+        },
+        nextRemind4(){
+            this.remind_4 = false;
+            this.remind_5 = true;
+            document.querySelector('#teach-process').style.display = 'none';
+            document.querySelector('#teach-show-btn').style.display = 'flex';
+        },
     },
 }
 </script>
 
 <style>
 #experience-page {
-    /* transform: rotate(90deg); */
-    /* height: 100vw; */
     height: 100vh;
 }
 #input-video-container {
-    /* transform: scaleX(-1); */
-    /* width: 100vw; */
     height: 100vh;
     overflow: hidden;
 }
 .preview-img {
-    /* width: 100vh;
-    height: 100%; */
-    /* background: rgba(0,0,0,.5); */
     transform: rotate(90deg);
     position: fixed;
     top: 30vh;
@@ -526,6 +681,9 @@ export default {
     align-items: center;
     justify-content: center;
     /* background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_preview.png'); */
+}
+.preview-img.people {
+    display:none;
 }
 .preview-img div {
     color: #fff;
@@ -543,7 +701,7 @@ export default {
 }
 #top-show {
     position: relative;
-    z-index: 99;
+    z-index: 10;
 }
 #go-back-btn {
     position: absolute;
@@ -568,6 +726,27 @@ export default {
     justify-content: center;
     border-radius: 5px;
     font-size: 20px;
+}
+#start-remind {
+    width: fit-content;
+    height: 40px;
+    background: #C74F4F;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+#start-remind::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5.5px 10px 5.5px;
+    border-color: transparent transparent #C74F4F transparent;
+    top: -10px;
 }
 #show-course {
     z-index: 0;
@@ -632,21 +811,30 @@ export default {
     border-top: 2px solid #fff;
     padding-top: 2vh; 
 }
+.video-process-bar-block {
+    position: absolute;
+    left: 5vw;
+    top: 5vh;
+}
 .video-process-bar {
     width: 12px;
-    height: 27vh;
+    height: 16vh;
     background: rgb(255, 255, 255,.5);
     z-index: 101;
     position: relative;
-    margin: 3vh 0;
+    margin: 2vh 0;
     /* left: 5vw; */
     border-radius: 20px;
 }
-#video-process-bar-inside-1,#video-process-bar-inside-2,
-#video-process-bar-inside-3{
+.video-process-bar-inside {
     background: #fff;
     width: 100%;
-    /* height: 10px; */
+    border-radius: 20px;
+}
+#video-process-bar-inside-1,#video-process-bar-inside-2,
+#video-process-bar-inside-3,#video-process-bar-inside-4,#video-process-bar-inside-5{
+    background: #fff;
+    width: 100%;
     border-radius: 20px;
 }
 .count-over {
@@ -674,12 +862,135 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
-
-
-
-
-
+.experience-teach {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#experience-page .info-desktop-red-btn{
+    color: #F8F7F8;
+    font-size: 16px;
+    font-weight: bold;
+    background: #C74F4F;
+    border: 3px solid #C74F4F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    margin: 35px auto 15px;
+}
+.experience-select-camera {
+    width: 50%;
+    max-width: 750px;
+    height: 330px;
+    background: #FFFAF0;
+    border-radius: 15px;
+    padding-top: 50px;
+}
+.experience-select-camera p {
+    width: 90%;
+    text-align: center;
+}
+.experience-select-camera-title {
+    color: #24798F;
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+.experience-select-camera-not {
+    font-size: 15px;
+    cursor:pointer;
+    font-weight: 400;
+    color: #7B7B7B;
+    text-decoration: underline;
+    margin: 0 auto 30px;
+}
+.experience-select-camera-text {
+    font-size: 17px;
+    font-weight: 400;
+    color: #8D8D8D;
+    margin: 0 auto;
+}
+.experience-teach-remind {
+    position: absolute;
+}
+.experience-teach-remind.first {
+    top: 16vh;
+    left: 5vw;
+}
+.experience-teach-remind.second {
+    left: 60vw;
+    z-index: 17;
+}
+.experience-teach-remind.third {
+    left: 13vw;
+}
+.experience-teach-remind.four {
+    bottom: 10vh;
+    right: 19vw;
+}
+.experience-teach-remind.five {
+    bottom: 15vh;
+    right: 11vw;
+}
+.experience-teach-remind-title {
+    background: #707070;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+.experience-teach-remind p {
+    color: #fff;
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 21px;
+}
+.experience-teach-remind-flex-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.experience-teach-remind-red-btn {
+    width: 100px;
+    height: 40px;
+    background: #C74F4F;
+    border-radius: 10px;
+    border: 2px solid #c74f4f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+}
+.experience-teach-remind-not-red-btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor:pointer;
+}
 /* 上傳影片的部分 */
 .cancel-box {
     height: 30px;
@@ -762,5 +1073,121 @@ export default {
     border-style: none;
     font-size: 14px;
     cursor: pointer;
+}
+#teach-bar,#teach-show-btn {
+    display: none;
+}
+
+
+@media (min-width: 769px) {
+    #experience-page {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    #input-video-container {
+        background: #000;
+        display: flex;
+    }
+    #inputVideo {
+        width: 100vw;
+        height: auto;
+    }
+    #start-remind {
+        position: absolute;
+        left: calc(5vw + 40px);
+        top: calc(5vh + 140px);
+    }
+    #start-video {
+        width: 200px;
+        height: 120px;
+        transform: rotate(0deg);
+        right: unset;
+        left: 5vw;
+        cursor: pointer;
+    }
+    #go-back-btn {
+        left: 5vw;
+        transform: rotate(0deg);
+        top: 90vh;
+        cursor: pointer;
+    }
+    #go-back-btn img {
+        width: 60px;
+    }
+    .preview-img {
+        transform: rotate(0deg);
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+    .preview-img img {
+        height: 50vh;
+    }
+    .course-video-container {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+    }
+    .course-video-container.rest{
+        display:none;
+        background: #24798f;
+        color: #fff;
+        font-size: 62px;
+        font-weight: bold;
+    }
+    #show-course-video, #course-video-1, #course-video-2, #course-video-3 {
+        width: 100vw;
+        transform: rotate(0deg);
+    }
+    .repeat-bar {
+        transform: rotate(0deg);
+        height: 70vh;
+        top: 15vh;
+        left: 5vw;
+        padding-top: 60vh;
+    }
+    .green-bar {
+        padding-top: 60vh;
+    }
+    .red-bar {
+        padding-top: 0vh;
+    }
+    .animate-top {
+        padding-top: 0vh; 
+    }
+    .animate-bottom {
+        padding-top: 60vh;
+    }
+    .video-process-bar-block {
+        transform: rotate(-90deg);
+        bottom: -40vh;
+        top: unset;
+        left: unset;
+        z-index: 1000;
+    }
+    .count-over {
+        height: 45%;
+        width: 100%;
+        bottom: 0;
+        background: linear-gradient(0deg,#000,rgba(0, 0, 0, 0));
+    }
+    .count-over-btn {
+        width: 150px;
+        height: 60px;
+    }
+    .count-over-all-btn {
+        width: 360px;
+        transform: rotate(0deg);
+        left: unset;
+        right: 10vw;
+        bottom: 5vh;
+    }
 }
 </style>

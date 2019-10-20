@@ -4,6 +4,9 @@
         <div class="course-bookmark">
             <img :src="unitSrc" alt="">
         </div>
+        <div class="course-close">
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
+        </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
                 <h4 v-html="blockTitle"></h4>
@@ -89,6 +92,11 @@ export default {
     position: absolute;
     top: -5px;
     left: 15px;
+}
+.course-close {
+    position: absolute;
+    right: 15px;
+    bottom: 10vh;
 }
 /* .course-bookmark p {
     position: absolute;
