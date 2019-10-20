@@ -271,12 +271,20 @@ export default {
     async mounted(){
         if (process.client) {
             this.inputVideo = document.querySelector('#inputVideo')
-            this.video_recorder = await this.$videoRecorder();
+            // this.video_recorder = await this.$videoRecorder();
             console.log(this.video_recorder);
-            this.video_recorder.openCamera(this.constraints,this.inputVideo);
+            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo'});
+            // this.video_recorder.openCamera(this.constraints,this.inputVideo);
+            this.video_recorder.openCamera();
 
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
+        }
+    },
+    destroyed() {
+        if (this.video_recorder) {
+            this.video_recorder.stopRecording();
+            this.video_recorder.closeCamera();
         }
     },
     methods: {
@@ -295,6 +303,13 @@ export default {
         startPractice(){
             this.is_studying = true;
             //控制影片播放及進度條
+            if (this.select_camera) {
+                this.video_recorder.startRecording({
+                    pose_id: "yoga_27",
+                    user_id: this.user.user_id,
+                    language: 'zh-tw',
+                });
+            }
             let bgm = document.querySelector('#course-bgm')
             let co_vid = document.querySelector('#course-video-1')
             let nt_vid = document.querySelector('#course-video-2')
@@ -312,6 +327,9 @@ export default {
                 console.log(bar_percentage)
                 document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
                 if (bar_percentage == 1) {
+                    if (this.select_camera) {
+                        this.video_recorder.stopRecording();
+                    }
                     nt_vid.style.display = 'block';
                     co_vid.style.display = 'none';
                     this.startPractice1();
@@ -323,6 +341,14 @@ export default {
         },
         startPractice1(){
             this.show_inhale = true
+            if (this.select_camera) {
+                this.video_recorder.startRecording({
+                    pose_id: "yoga_27",
+                    user_id: this.user.user_id,
+                    language: 'zh-tw',
+                });
+            }
+            
             //控制吸氣吐氣的顯示
             setTimeout(() => {
                 this.is_inhaleing = true
@@ -368,10 +394,14 @@ export default {
                 console.log(bar_percentage)
                 document.getElementById('video-process-bar-inside-2').style.height = (bar_percentage * 100)+'%'; 
                  if (bar_percentage == 1) {
-                    this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
-                    this.video_recorder.stopRecording()
+                    // this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
+                    // this.video_recorder.stopRecording()
+                    if (this.select_camera) {
+                        this.video_recorder.stopRecording();
+                    }
                     nt_vid.style.display = 'block';
                     co_vid.style.display = 'none';
+
                     this.startPractice2();
                     console.log('stop')
                     clearInterval(id)
@@ -379,6 +409,13 @@ export default {
             }, 100);
         },
         startPractice2(){
+            if (this.select_camera) {
+                this.video_recorder.startRecording({
+                    pose_id: "yoga_27",
+                    user_id: this.user.user_id,
+                    language: 'zh-tw',
+                });
+            }
             let co_vid = document.querySelector('#course-video-3')
             let height = 0
             this.video_length = co_vid.duration
@@ -390,6 +427,9 @@ export default {
                 console.log(bar_percentage)
                 document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage*100)+'%'; 
                 if (bar_percentage == 1) {
+                    if (this.select_camera) {
+                        this.video_recorder.stopRecording();
+                    }
                     this.count_over = true
                     console.log('stop')
                     clearInterval(id)

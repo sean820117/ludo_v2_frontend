@@ -42,6 +42,9 @@
             </div>
         </div>
         <div class="menu-desktop" v-else>
+            <div id="current-course-video" @click="closeCourse">
+                <iframe src="https://player.vimeo.com/video/347109517" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div class="menu-desktop-top-block">
                 <div class="menu-desktop-top-block-title">
@@ -51,7 +54,7 @@
                 </div>
                 <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(pose,i) in first_course.poses" :key="i" stagger="500"
-                    :courseBg="first_course.preview_img" :courseTitle="pose.pose_brief"
+                    :courseBg="first_course.preview_img" :courseTitle="pose.pose_brief" :courseVideo="pose.pose_video"
                     ></mamiyoga-desktop-course-block>
                 </div>
                 <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
@@ -63,7 +66,7 @@
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAiPoses" :key="i" stagger="500"
-                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief" 
+                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief" :courseVideo="course.pose_video"
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
@@ -113,7 +116,7 @@
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
-           </div>
+            </div>
         </div>
     </div>
 </template>
@@ -268,6 +271,9 @@ export default {
         goDown(){
             this.$scrollTo('#menu-desktop-main',"start");
         },
+        closeCourse() {
+            document.querySelector('#current-course-video').style.display = 'none';
+        }
     }
 }
 </script>
@@ -363,6 +369,16 @@ export default {
     background: #9BAEB2;
     color: #fff;
     cursor: pointer;
+}
+#current-course-video {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    padding-top: 10vh;
+    padding-left: 10vw;
+    height: 100vh;
+    z-index: 100;
+    background: black;
 }
 @media (min-width: 769px) {
     .menu-mobile-header {

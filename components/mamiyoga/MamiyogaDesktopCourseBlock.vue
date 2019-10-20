@@ -6,18 +6,18 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
             </div>
             <div class="mamiyoga-desktop-course-block-gradual"></div>
-            <div class="mamiyoga-desktop-course-block-hover">
-                <img @click="openCourseVideo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-video-play.png" alt="">
+            <div @click="openCourseVideo" class="mamiyoga-desktop-course-block-hover">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-video-play.png" alt="">
             </div>
             <div v-if="open_video" class="mamiyoga-desktop-course-video">
-                <iframe id="frame" :src="courseVideo" frameborder="0" allowfullscreen></iframe>
+                <!-- <iframe id="frame" :src="courseVideo" frameborder="0" allowfullscreen></iframe> -->
             </div>
         </div>
         <div v-if="show_pose">
             <div class="mamiyoga-desktop-course-block-pose-list" v-for="(pose,index) in poses" :key="index">
                 <div class="mamiyoga-desktop-course-block-pose-list-video" :style="{backgroundImage: `url('${pose.ai_preview_img}')`}">
                     <div class="mamiyoga-desktop-course-block-gradual"></div>
-                    <div class="mamiyoga-desktop-course-block-hover">
+                    <div @click="openCourseVideo(pose.pose_video)" class="mamiyoga-desktop-course-block-hover">
                         <img style="width:25%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-video-play.png" alt="">
                     </div>
                 </div>
@@ -26,9 +26,6 @@
                     <p style="color:#707070;font-size: 16px;">{{pose.pose_brief}}</p>
                 </div>
             </div>
-        </div>
-        <div v-if="open_video" class="mamiyoga-desktop-course-video">
-            
         </div>
     </div>
 </template>
@@ -47,9 +44,23 @@ export default {
         open_video: false,
     }),
     methods: {
-        openCourseVideo(){
-            this.open_video = true
-            document.querySelector('button.fullscreen').click();
+        openCourseVideo(video = null){
+            // this.open_video = true
+            if (this.courseVideo) {
+                let iframe = document.querySelector('#current-course-video');
+                if (iframe) {
+                    iframe.style.display = 'block';
+                    iframe.querySelector('iframe').src = this.courseVideo;
+                }
+            } else if(video) {
+                let iframe = document.querySelector('#current-course-video');
+                if (iframe) {
+                    iframe.style.display = 'block';
+                    iframe.querySelector('iframe').src = video;
+                }
+            } else {
+                console.log(courseTitle + ' no video');
+            }
         }
     }
 }
