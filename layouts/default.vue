@@ -61,6 +61,8 @@ body {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   /* background: #FDFCF7; */
+  margin: 0;
+  padding: 0;
 }
 
 *, *:before, *:after {
