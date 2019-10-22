@@ -467,8 +467,8 @@ export default {
 
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/login');
+                window.alert("尚未登入帳號，請先前往註冊～");
+                this.$router.push('/signup');
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 // if (!payed_or_not) {

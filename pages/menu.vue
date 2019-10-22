@@ -50,11 +50,11 @@
                 <div class="menu-desktop-top-block-title">
                     <h5>單元一、骨盆矯正瑜珈</h5>
                     <p>大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！</p>
-                    <div class="info-desktop-red-btn">開始上課</div>
+                    <div class="info-desktop-red-btn" @click="startDefaultCourse()">開始上課</div>
                 </div>
                 <div class="menu-desktop-course-box" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(pose,i) in first_course.poses" :key="i" stagger="500"
-                    :courseBg="first_course.preview_img" :courseTitle="pose.pose_brief" :courseVideo="pose.pose_video"
+                    <mamiyoga-desktop-course-block v-for="(pose,i) in first_course.poses" :key="i" stagger="500" 
+                    :courseBg="first_course.preview_img" :courseTitle="pose.pose_brief" :courseVideo="pose.pose_video" :is_trial="pose.trial"
                     ></mamiyoga-desktop-course-block>
                 </div>
                 <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
@@ -62,33 +62,33 @@
            <div class="menu-desktop-main-block" id="menu-desktop-main">
                <div class="menu-desktop-every-flex">
                    <h4>練習動作</h4>
-                   <p @click="show_practice = true">顯示全部</p>
+                   <p @click="show_practice = true" v-if="!show_practice">顯示全部</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(course,i) in getAiPoses" :key="i" stagger="500"
-                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief" :courseVideo="course.pose_video"
+                    <mamiyoga-desktop-course-block v-for="(course,i) in getAiPoses" :key="i" stagger="500" :is_trial="course.trial"
+                    :courseBg="course.ai_preview_img" :courseTitle="course.pose_brief" :courseVideo="course.pose_video" 
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>矯正疼痛</h4>
-                   <p @click="show_rectifys = true">顯示全部</p>
+                   <!-- <p @click="show_rectifys = true">顯示全部</p> -->
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(course,i) in getRectifys" :key="i" stagger="500"
-                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
+                    <mamiyoga-desktop-course-block v-for="(course,i) in getRectifys" :key="i" stagger="500" :is_trial="course.trial"
+                    :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url" 
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>舒壓安眠</h4>
-                   <p @click="show_alleviates = true">顯示全部</p>
+                   <!-- <p @click="show_alleviates = true">顯示全部</p> -->
                </div>
                <div class="menu-desktop-course-box alleviates" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500"
+                    <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500" :is_trial="course.trial"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
-                    <div class="menu-desktop-alleviates">
+                    <div class="menu-desktop-alleviates" @click="$router.push('/syllabus')">
                         <div class="menu-desktop-alleviates-1"></div>
                         <div class="menu-desktop-alleviates-2">
                             <p>科學化訓練讓健康事半功倍</p>
@@ -99,22 +99,29 @@
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>美體塑身</h4>
-                   <p @click="show_beautys = true">顯示全部</p>
+                   <p @click="show_beautys = true" v-if="!show_beautys">顯示全部</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500"
+                    <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500" :is_trial="course.trial"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>調和心靈</h4>
-                   <p @click="show_blends = true">顯示全部</p>
+                   <p @click="show_blends = true" v-if="!show_blends">顯示全部</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
-                    <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500"
+                    <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500" :is_trial="course.trial"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
+                    <div class="menu-desktop-alleviates" v-if="show_blends" @click="$router.push('/syllabus')">
+                        <div class="menu-desktop-alleviates-1"></div>
+                        <div class="menu-desktop-alleviates-2">
+                            <p>科學化訓練讓健康事半功倍</p>
+                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img-2.png" alt="">
+                        </div>
+                    </div>
                </div>
             </div>
         </div>
@@ -142,6 +149,9 @@ export default {
         show_alleviates: false,
         show_beautys: false,
         show_blends: false,
+
+        login_or_not: false,
+        have_trial: false,
     }),
     components: {
         MamiyogaHeader,
@@ -171,6 +181,20 @@ export default {
                 sessionStorage['menu_current_series'] = this.check_series
             }
 
+            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                let now = new Date();
+                let now_time = now.getTime();
+                let use_time = (now_time - open_time)/86400000;
+                console.log(use_time)
+                if(use_time > 7){
+                    this.have_trial = false;   
+                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                    this.$router.push('/');
+                }else {
+                    this.have_trial = true;
+                }
+            }
             
         }
     },
@@ -251,8 +275,8 @@ export default {
     async beforeCreate() {
         if (process.client) {
 
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if (this.login_or_not == false) {
                 // window.alert("尚未登入帳號，請先前往登入～");
                 // this.$router.push('/login');
             } else {
@@ -272,7 +296,22 @@ export default {
             this.$scrollTo('#menu-desktop-main',"start");
         },
         closeCourse() {
-            document.querySelector('#current-course-video').style.display = 'none';
+            // document.querySelector('#current-course-video').style.display = 'none';
+            let current_vid = document.querySelector('#current-course-video')
+            current_vid.style.display = 'none';
+            current_vid.querySelector('iframe').src = '';
+        },
+        startDefaultCourse(){
+            if(this.login_or_not && this.have_trial){
+                let iframe = document.querySelector('#current-course-video');
+                if (iframe) {
+                    iframe.style.display = 'block';
+                    iframe.querySelector('iframe').src = 'https://player.vimeo.com/video/349924443';
+                }
+            } else {
+                alert('開啟七天體驗後即可試看課程～')
+                this.$router.push('/free-trial')
+            }
         }
     }
 }

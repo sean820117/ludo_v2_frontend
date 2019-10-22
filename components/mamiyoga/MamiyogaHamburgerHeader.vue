@@ -24,7 +24,7 @@
                 <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
             </nav>
             <div class="mamiyoga-hamburger-btn" @click="$router.push('/free-trial')">免費7天體驗</div>
-            <div class="mamiyoga-hamburger-btn" style="background: #838383;">
+            <div class="mamiyoga-hamburger-btn" style="background: #838383;" @click="$router.push('/gift')">
                 <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 贈禮
             </div>
@@ -59,6 +59,7 @@ export default {
 .mamiyoga-header.hamburger.open {
     z-index: 1001;
     position: fixed;
+    top:0;
 }
 .mamiyoga-header-logo {
     width: 30px;

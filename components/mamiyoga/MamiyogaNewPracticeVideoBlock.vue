@@ -60,8 +60,14 @@
                 <div class="course-video-container">
                     <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4"></video>
                 </div>
-                <div class="course-video-container rest" id="course-video-rest">
-                    休息時間
+                <div class="course-video-container rest" @click="is_stop = !is_stop">
+                    <div class="course-video-container-icon">
+                        <img v-if="is_stop" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-rest-stop.png" alt="">
+                        <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-rest-start.png" alt="">
+                    </div>
+                    <div id="course-video-rest">
+                        休息時間
+                    </div>
                 </div>
             </div>
 
@@ -209,6 +215,7 @@
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import axios from '~/config/axios-config';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
     components:{
@@ -267,16 +274,18 @@ export default {
         remind_4: false,
         remind_5: false,
         teach_finish: false,
+
+        open_camera: Boolean,
+
+        is_stop: false,
     }),
     async mounted(){
         if (process.client) {
             this.inputVideo = document.querySelector('#inputVideo')
             // this.video_recorder = await this.$videoRecorder();
-            console.log(this.video_recorder);
-            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo'});
-            // this.video_recorder.openCamera(this.constraints,this.inputVideo);
-            this.video_recorder.openCamera();
 
+            
+            // this.video_recorder.openCamera(this.constraints,this.inputVideo);
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
         }
@@ -303,7 +312,7 @@ export default {
         startPractice(){
             this.is_studying = true;
             //控制影片播放及進度條
-            if (this.select_camera) {
+            if (this.open_camera) {
                 this.video_recorder.startRecording({
                     pose_id: "yoga_27",
                     user_id: this.user.user_id,
@@ -314,26 +323,27 @@ export default {
             let co_vid = document.querySelector('#course-video-1')
             let nt_vid = document.querySelector('#course-video-2')
             let nt_vid_2 = document.querySelector('#course-video-3')
+            let rest = document.querySelector('#course-video-rest')
             nt_vid.style.display = 'none';
             nt_vid_2.style.display = 'none';
+            rest.style.display = 'none';
             // let height = 0
             this.video_length = co_vid.duration
-            console.log(this.video_length)
             bgm.play();
             co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
                 let bar_percentage = co_vid.currentTime / this.video_length
-                console.log(bar_percentage)
                 document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
                 if (bar_percentage == 1) {
-                    if (this.select_camera) {
+                    if (this.open_camera) {
                         this.video_recorder.stopRecording();
                     }
-                    nt_vid.style.display = 'block';
+                    // nt_vid.style.display = 'block';
+                    rest.style.display = 'flex';
                     co_vid.style.display = 'none';
-                    this.startPractice1();
-                    // this.practiceRest1();
+                    // this.startPractice1();
+                    this.practiceRest1();
                     console.log('stop')
                     clearInterval(id)
                 }
@@ -341,7 +351,7 @@ export default {
         },
         startPractice1(){
             this.show_inhale = true
-            if (this.select_camera) {
+            if (this.open_camera) {
                 this.video_recorder.startRecording({
                     pose_id: "yoga_27",
                     user_id: this.user.user_id,
@@ -384,32 +394,32 @@ export default {
             //控制影片播放及進度條
             let co_vid = document.querySelector('#course-video-2')
             let nt_vid = document.querySelector('#course-video-3')
+            let rest = document.querySelector('#course-video-rest')
             let height = 0
             this.video_length = co_vid.duration
-            this.recordVideo();
+            // this.recordVideo();
             co_vid.play();
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
                 let bar_percentage = co_vid.currentTime / this.video_length
-                console.log(bar_percentage)
-                document.getElementById('video-process-bar-inside-2').style.height = (bar_percentage * 100)+'%'; 
+                document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage * 100)+'%'; 
                  if (bar_percentage == 1) {
                     // this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
                     // this.video_recorder.stopRecording()
-                    if (this.select_camera) {
+                    if (this.open_camera) {
                         this.video_recorder.stopRecording();
                     }
-                    nt_vid.style.display = 'block';
+                    rest.style.display = 'flex';
                     co_vid.style.display = 'none';
-
-                    this.startPractice2();
+                    this.practiceRest2();
+                    // this.startPractice2();
                     console.log('stop')
                     clearInterval(id)
                 }
             }, 100);
         },
         startPractice2(){
-            if (this.select_camera) {
+            if (this.open_camera) {
                 this.video_recorder.startRecording({
                     pose_id: "yoga_27",
                     user_id: this.user.user_id,
@@ -424,10 +434,9 @@ export default {
             let t = (this.video_length+1) / 100
             let id = setInterval(() => {
                 let bar_percentage = co_vid.currentTime / this.video_length
-                console.log(bar_percentage)
-                document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage*100)+'%'; 
+                document.getElementById('video-process-bar-inside-5').style.height = (bar_percentage*100)+'%'; 
                 if (bar_percentage == 1) {
-                    if (this.select_camera) {
+                    if (this.open_camera) {
                         this.video_recorder.stopRecording();
                     }
                     this.count_over = true
@@ -437,33 +446,46 @@ export default {
             }, 100);
         },
         practiceRest1(){
-            let rest = document.querySelector('#course-video-rest')
+            // let rest = document.querySelector('#course-video-rest')
+            let rest = document.querySelector('.course-video-container.rest')
+            let nt_vid = document.querySelector('#course-video-2')
             rest.style.display = 'flex'
             let height = 0
             let id = setInterval(() => {
-                document.getElementById('video-process-bar-inside-2').style.height = height+'%'; 
-                if(height >= 30) {
+                document.getElementById('video-process-bar-inside-2').style.height = (height / 3)+'%'; 
+                if(height >= 300) {
+                    nt_vid.style.display = 'block';
                     rest.style.display = 'none';
                     this.startPractice1()
                     clearInterval(id)
+                } else if (this.is_stop) {
+
+                } else {
+                    height++
+                }
+            }, 100);
+        },
+        practiceRest2(){
+            let rest = document.querySelector('.course-video-container.rest')
+            let nt_vid = document.querySelector('#course-video-3')
+            rest.style.display = 'flex'
+            let height = 0
+            let id = setInterval(() => {
+                document.getElementById('video-process-bar-inside-4').style.height = (height / 3)+'%'; 
+                if(height >= 300) {
+                    nt_vid.style.display = 'block';
+                    rest.style.display = 'none';
+                    this.startPractice2()
+                    clearInterval(id)
+                }else if (this.is_stop) {
+                    
                 }else {
                     height++
                 }
-            }, 1000);
-        },
-        recordVideo(){
-            this.video_recorder.startRecording()
-            console.log('recording')
-        },
-        saveRecord(){
-            let video_recorder = this.video_recorder;
-            console.log(this.recorded_video);
-            this.video_recorder.saveData();
-            console.log('save')
+            }, 100);
         },
         processRecordedVideo(file) {
             this.recorded_video = file; 
-            console.log(this.recorded_video);
         },
         replay(){ 
             let co_vid = document.querySelector('#course-video-1')
@@ -472,173 +494,13 @@ export default {
             this.count_over = false;
             this.startPractice();
         },
-        newVideoUpload(){
-            let e = this.recorded_video
-            console.log(e)
-            this.handleVideoUpload(e);
-        },
-        async handleVideoUpload(e) {
-            this.video_result = {};
-            this.play_assay = false;
-            this.is_loading = true;
-            let send_user_id = '0000'
-            // if(this.user.user_id) {
-            //     send_user_id = this.user.user_id
-            // }
-            var data = await this.$poseUpload(e,send_user_id,'yoga_27','zh-tw')
-            console.log(data.status)
-            if(!data) {
-                alert('網路錯誤')
-                this.is_loading = false;
-            } else if(data.status == 102) {  
-                let timeout_limit = 0;
-                let get_result_interval = setInterval(() => {
-                axios.post('/apis/get-pose-result',{user_id:send_user_id,pose_id:"yoga_27",createdAt:data.createdAt})
-                    .then((response) => {
-                        console.log(response.data.result.status)
-                        if (response.data.result.status == 200) {
-                            console.log(response.data.result);
-                            this.video_result = response.data.result;
-                            // this.use_count++
-                            // localStorage['use_count'] = this.use_count
-                            clearInterval(get_result_interval);
-                        } else if(response.data.result.status == 102) { 
-                            console.log("還沒跑完");
-                        } else if(response.data.result.status == 204) {
-                            if(response.data.result.error_code == -1) {
-                                console.log(response)
-                                this.need_resee = true;
-                                this.errorText = '動作做錯囉！讓我們再複習一次！';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-1.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -5) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '請勿超過一人以上入鏡';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-5.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -6) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '沒有偵測到人';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-6.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -7) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '請將身體從正面轉到側面拍攝';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-7.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -8) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '請將身體從側面轉到正面拍攝';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-8.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -9) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '請將手機從橫式轉成直式拍攝';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-9.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -10) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '請將手機從直式轉成橫式拍攝';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-10.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            } else if(response.data.result.error_code == -11) {
-                                console.log(response)
-                                this.is_error = true;
-                                this.errorText = '無法偵測動作過程<br>注意是否倒影入鏡或穿著過於寬鬆';
-                                this.errorImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/error-11.png';
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            }  else {
-                                console.log("未偵測到動作");
-                                alert('動きを検知できません')
-                                this.is_loading = false;
-                                clearInterval(get_result_interval);
-                                clearInterval(id);
-                            }
-                            
-                        } else if(response.data.result.status == 404){
-                            console.log("網路錯誤");
-                            alert('網路錯誤')
-                            this.is_loading = false;
-                            clearInterval(get_result_interval);
-                            clearInterval(id);
-                        } else {
-                            alert('上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次')
-                            console.log(response);
-                            this.is_loading = false;
-                            clearInterval(get_result_interval);
-                            clearInterval(id);
-                        }
-                    })
-                    .catch((error) => {
-                        console.log("fail");
-                        alert('上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次')
-                        this.is_loading = false;
-                        clearInterval(get_result_interval);
-                        clearInterval(id);
-                    })
-                    timeout_limit += 1;
-                    if (timeout_limit >=100) {
-                        console.log("上傳時遇到網路不穩定\n保持網路穩定，讓我們再練習一次");
-                        clearInterval(get_result_interval);
-                        clearInterval(id);
-                    }
-                }, 3000);
-                console.log('上傳成功');
-                let bar = document.getElementById('bar');
-                let width = 0;
-                let id = setInterval(()=>{
-                    if("reps_wrong_tags" in this.video_result) {
-                        width = 100
-                        document.getElementById('bar').style.width = width+'%';
-                        this.show_value = width + '%'
-                        this.play_assay = true
-                        console.log(this.video_result.reps_wrong_tags)
-                        clearInterval(id)
-
-                        for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
-                            for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                                if(this.video_result.reps_wrong_tags[i][j] == "1") this.video_result.reps_wrong_tags[i][j] = "不要聳肩";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "2") this.video_result.reps_wrong_tags[i][j] = "身體太往前";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "3") this.video_result.reps_wrong_tags[i][j] = "身體太往後";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "4") this.video_result.reps_wrong_tags[i][j] = "用背部出力會更好";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "5") this.video_result.reps_wrong_tags[i][j] = "手臂不彎曲";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "6") this.video_result.reps_wrong_tags[i][j] = "抬手不完全";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "7") this.video_result.reps_wrong_tags[i][j] = "更往上伸展";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "8") this.video_result.reps_wrong_tags[i][j] = "屁股離地了";
-                                else if (this.video_result.reps_wrong_tags[i][j] == "0") this.video_result.reps_wrong_tags[i][j] = "姿勢正確";
-                            }
-                        }
-                    } else {
-                        if(width <=95) width++;
-                        document.getElementById('bar').style.width = width+'%';
-                        this.show_value = width + '%'
-                    }
-                },400)
+        async newVideoUpload(){
+            if(!this.open_camera) {
+                this.$emit('openResult')
             } else {
-                console.log(data.status)
-                alert('Network error')
+               let score = await this.video_recorder.getResult()
+               console.log(score)
+               this.$emit('openResult',score)
             }
         },
         changeArticle(){
@@ -647,7 +509,6 @@ export default {
             if (this.last_article_id == ''){
                 this.last_article_id = x
                 this.post_article = this.articles[x].post_article
-                // console.log(x)
             }
             else{
                 while(this.last_article_id == x){
@@ -655,19 +516,23 @@ export default {
                 }
                 this.last_article_id = x
                 this.post_article = this.articles[x].post_article
-                // console.log(x)
             }
         },
         goBack(){
             this.$emit('goBack');
         },
         getCamera(){
+            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo'});
+            this.video_recorder.openCamera();
             this.select_camera = true;
+            this.open_camera = true;
             document.querySelector('#start-video').style.zIndex = '15';
             document.querySelector('#top-show').style.zIndex = 'unset';
         },
         notGetCamera(){
+            this.teach_finish = true
             this.select_camera = true;
+            this.open_camera = false;
             document.querySelector('#start-video').style.zIndex = '15';
             document.querySelector('#top-show').style.zIndex = 'unset';
         },
@@ -700,6 +565,28 @@ export default {
             document.querySelector('#teach-process').style.display = 'none';
             document.querySelector('#teach-show-btn').style.display = 'flex';
         },
+
+        // restStop(){
+
+        // },
+        // restStart(time = null,bar,height,nt_vid,rest,next){
+        //     let id = setInterval(() => {
+        //         document.getElementById(bar).style.height = (height / 3)+'%'; 
+        //         if(height >= 300) {
+        //             nt_vid.style.display = 'block';
+        //             rest.style.display = 'none';
+        //             this.startPractice1()
+        //             clearInterval(id)
+        //         }else {
+        //             height++
+        //         }
+        //     }, 100);
+        // }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
     },
 }
 </script>
@@ -753,8 +640,10 @@ export default {
     width: 40px;
 }
 #start-video {
-    width: 25vw;
-    height: 7vh;
+    /* width: 25vw;
+    height: 7vh; */
+    width: 90px;
+    height: 50px;
     background: #24798F;
     transform: rotate(90deg);
     position: absolute;
@@ -777,6 +666,11 @@ export default {
     justify-content: center;
     border-radius: 5px;
     padding: 0 10px;
+
+    position: absolute;
+    top: 8vh;
+    right: 15vw;
+    transform: rotate(90deg);
 }
 #start-remind::after {
     position: absolute;
@@ -804,10 +698,36 @@ export default {
     z-index: 100;
     opacity: 1;
 }
-#show-course-video,#course-video-1,
-#course-video-2, #course-video-3 {
+.course-video-container {
+    /* width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center; */
+}
+.course-video-container.rest{
+    display:none;
+    background: #24798f;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.course-video-container-icon {
+    position: absolute;
     transform: rotate(90deg);
-        width: 100vh;
+    top: 5vh;
+    left: 80vw;
+}
+#show-course-video,#course-video-1,
+#course-video-2, #course-video-3,#course-video-rest {
+    transform: rotate(90deg);
+    width: 100vh;
+}
+#course-video-rest {
+    justify-content: center;
 }
 #repeat-nam {
     position: absolute;
@@ -892,7 +812,7 @@ export default {
     justify-content: space-around;
     transform: rotate(90deg);
     position: absolute;
-    bottom: 15vh;
+    bottom: 20vh;
     left: -10vw;
 }
 .count-over-btn {
@@ -934,12 +854,12 @@ export default {
     margin: 35px auto 15px;
 }
 .experience-select-camera {
-    width: 50%;
-    max-width: 750px;
-    height: 330px;
+    width: 100%;
+    height: 85vw;
     background: #FFFAF0;
     border-radius: 15px;
     padding-top: 50px;
+    transform: rotate(90deg);
 }
 .experience-select-camera p {
     width: 90%;
@@ -947,12 +867,12 @@ export default {
 }
 .experience-select-camera-title {
     color: #24798F;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 500;
     margin: 0 auto;
 }
 .experience-select-camera-not {
-    font-size: 15px;
+    font-size: 12px;
     cursor:pointer;
     font-weight: 400;
     color: #7B7B7B;
@@ -960,38 +880,41 @@ export default {
     margin: 0 auto 30px;
 }
 .experience-select-camera-text {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
     color: #8D8D8D;
     margin: 0 auto;
 }
 .experience-teach-remind {
     position: absolute;
+    transform: rotate(90deg);
 }
 .experience-teach-remind.first {
-    top: 16vh;
-    left: 5vw;
+    top: 14vh;
+    right: 5vw;
 }
 .experience-teach-remind.second {
-    left: 60vw;
+    left: 25vw;
+    bottom: 13vh;
     z-index: 17;
 }
 .experience-teach-remind.third {
-    left: 13vw;
+    left: 15vw;
+    top: calc(18vh + 80px)
 }
 .experience-teach-remind.four {
-    bottom: 10vh;
-    right: 19vw;
+    bottom: 17vh;
+    right: 25vw;
 }
 .experience-teach-remind.five {
-    bottom: 15vh;
-    right: 11vw;
+    bottom: 19vh;
+    /* right: 13vw; */
 }
 .experience-teach-remind-title {
     background: #707070;
     width: fit-content;
     padding: 5px 15px;
-    border-radius: 15px;
+    border-radius: 12px;
     color: #fff;
     font-weight: 500;
 }
@@ -999,7 +922,7 @@ export default {
     color: #fff;
     font-weight: 500;
     margin-top: 10px;
-    font-size: 21px;
+    font-size: 15px;
 }
 .experience-teach-remind-flex-btn {
     display: flex;
@@ -1008,7 +931,8 @@ export default {
     margin-top: 10px;
 }
 .experience-teach-remind-red-btn {
-    width: 100px;
+    width: 80px;
+    font-size: 12px;
     height: 40px;
     background: #C74F4F;
     border-radius: 10px;
@@ -1020,7 +944,8 @@ export default {
     cursor:pointer;
 }
 .experience-teach-remind-not-red-btn {
-    width: 100px;
+    width: 80px;
+    font-size: 12px;
     height: 40px;
     border-radius: 10px;
     border: 2px solid #fff;
@@ -1137,6 +1062,7 @@ export default {
         height: auto;
     }
     #start-remind {
+        transform: rotate(0deg);
         position: absolute;
         left: calc(5vw + 40px);
         top: calc(5vh + 140px);
@@ -1182,9 +1108,17 @@ export default {
         font-size: 62px;
         font-weight: bold;
     }
-    #show-course-video, #course-video-1, #course-video-2, #course-video-3 {
+    .course-video-container-icon {
+        transform: rotate(0deg);
+        top: 5vh;
+        left: 5vw;
+    }
+    #show-course-video, #course-video-1, #course-video-2, #course-video-3, #course-video-rest {
         width: 100vw;
         transform: rotate(0deg);
+    }
+    #course-video-rest {
+        justify-content: center;
     }
     .repeat-bar {
         transform: rotate(0deg);
@@ -1228,6 +1162,60 @@ export default {
         left: unset;
         right: 10vw;
         bottom: 5vh;
+    }
+
+    .experience-select-camera {
+        width: 50%;
+        max-width: 750px;
+        height: 330px;
+        background: #FFFAF0;
+        border-radius: 15px;
+        padding-top: 50px;
+        transform: rotate(0deg);
+    }
+    .experience-select-camera-title {
+        font-size: 30px;
+    }
+    .experience-select-camera-not {
+        font-size: 15px;
+    }
+    .experience-select-camera-text {
+        font-size: 17px;
+    }
+    .experience-teach-remind {
+        transform: rotate(0deg);
+    }
+    .experience-teach-remind.first {
+        top: calc(8vh + 120px);
+        left: 5vw;
+        right: unset;
+    }
+    .experience-teach-remind.second {
+        left: 60vw;
+        bottom: unset;
+        z-index: 17;
+    }
+    .experience-teach-remind.third {
+        left: 13vw;
+        top: unset;
+    }
+    .experience-teach-remind.four {
+        bottom: 10vh;
+        right: 19vw;
+    }
+    .experience-teach-remind.five {
+        bottom: 15vh;
+        right: 11vw;
+    }
+    .experience-teach-remind-title {
+        font-size:  15px;
+    }
+    .experience-teach-remind p {
+        font-size: 21px;
+    }
+    .experience-teach-remind-red-btn,.experience-teach-remind-not-red-btn {
+        width: 100px;
+        font-size: unset;
     }
 }
 </style>

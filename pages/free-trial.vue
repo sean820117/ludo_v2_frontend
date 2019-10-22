@@ -23,12 +23,24 @@
 import Vue from 'vue'
 import axios from '~/config/axios-config'
 import { EMAIL_REGEX } from '~/components/regex.js'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
         email: '',
         hint:'請填寫',
         hint_color:'transparent',
     }),
+    async beforeCreate(){
+        if(process.client) {
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) { 
+                alert('請先前往註冊！')
+                this.$router.push('/signup')
+            } else {
+
+            }
+        }
+    },
     methods:{
         sendEmail(){
             if(this.email == '') {
@@ -50,7 +62,12 @@ export default {
                 this.$router.go(-1);
             }
         }
-    }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
 }
 </script>
 

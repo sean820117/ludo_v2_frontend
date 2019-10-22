@@ -10,7 +10,7 @@
             <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
         </div>
         <div class="mamiyoga-desktop-header-btn">
-            <div class="desktop-header-gift-btn">
+            <div class="desktop-header-gift-btn" @click="$router.push('/gift')">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 贈禮
             </div>
@@ -18,9 +18,9 @@
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">
                 <div class="desktop-header-user-menu-block">
-                    <li>帳號管理</li>
+                    <li @click="$router.push('/member')">帳號管理</li>
                     <hr class="desktop-header-user-menu-line">
-                    <li>填寫月齡</li>
+                    <li @click="$router.push('/information')">填寫月齡</li>
                     <hr class="desktop-header-user-menu-line">
                     <li @click="logout">登出</li>
                 </div>

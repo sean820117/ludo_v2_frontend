@@ -40,11 +40,11 @@
                     </div>
                 </mamiyoga-window-alert-box>
             </div> -->
-            <div class="syllabus-desktop">
-                <mamiyoga-hamburger-header></mamiyoga-hamburger-header>
+            <div class="syllabus-desktop" :style="{minHeight: is_practice ? '0':'100vh',paddingBottom: is_practice ? '0':'5vh'}">
+                <mamiyoga-hamburger-header v-if="!is_practice"></mamiyoga-hamburger-header>
                 <div v-if="!start_build">
                     <img class="syllabus-desktop-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png" alt="">
-                    <h5 class="syllabus-desktop-title">個人化孕動日記</h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 65vh;">個人化孕動日記</h5>
                     <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">開始製作</div>
                 </div>
                 <div v-if="start_build && !show_arrangement">
@@ -54,7 +54,7 @@
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectFrequency(1)" class="select-block-content" style="border-color: #FF9898;color: #FF9898;">
+                                    <div @click="selectFrequency(1)" class="select-block-content">
                                     完全沒有
                                     </div>
                                 </slide>
@@ -100,22 +100,22 @@
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(1)" class="select-block-content">
+                                    <div @click="selectQuestion(1)" id="solve_1" class="select-block-content">
                                     矯正疼痛
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(2)" class="select-block-content">
+                                    <div @click="selectQuestion(2)" id="solve_1" class="select-block-content">
                                     舒壓安眠
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(3)" class="select-block-content">
+                                    <div @click="selectQuestion(3)" id="solve_3" class="select-block-content">
                                     美體塑身
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(4)" class="select-block-content">
+                                    <div @click="selectQuestion(4)" id="solve_4" class="select-block-content">
                                     調和心靈
                                     </div>
                                 </slide>
@@ -128,7 +128,7 @@
                         <span id="span-3"></span>
                     </div>
                 </div>
-                 <div v-if="start_build && show_arrangement && !is_practice" class="syllabus-mobile-flex-content">
+                 <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
                     <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
                     <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
@@ -143,7 +143,7 @@
                         <div class="info-desktop-red-btn" @click="startPractice">開始練習</div>
                     </div>
                 </div>
-                <div v-if="is_practice && practice_finish" class="syllabus-mobile-flex-content">
+                <div v-if="!is_practice && practice_finish" class="syllabus-mobile-flex-content">
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
                     <div class="syllabus-mobile-result-box">
                         <div>
@@ -153,20 +153,18 @@
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #24798f;">
                         <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">練習<br>成果</div>
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">95分</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">{{result_score}}分</div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #C74F4F;margin-bottom: 7vh;">
                         <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">消耗<br>卡路里</div>
                         <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">200卡</div>
                     </div>
                     <div>
-                        <div class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">查看建議</div>
-                        <div class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 1vh auto;">更多練習</div>
+                        <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">查看建議</div> -->
+                        <div @click="$router.push('/pay')" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 1vh auto;">更多練習</div>
                     </div>
                 </div>
             </div>
-           
-
         </div>
         <div v-else class="syllabus-desktop">
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
@@ -182,7 +180,7 @@
                 <div class="syllabus-desktop-question" v-if="first_question">
                     <h5 class="syllabus-desktop-title">請問您過去有運動習慣嗎？</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select" style="border-color: #FF9898;color: #FF9898;">完全沒有</div>
+                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">完全沒有</div>
                         <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">一週1~2次</div>
                         <div @click="selectFrequency(3)" class="syllabus-desktop-question-select">一週3次以上</div>
                     </div>
@@ -198,10 +196,10 @@
                 <div class="syllabus-desktop-question" v-if="!first_question && !second_question">
                     <h5 class="syllabus-desktop-title">請問您最想解決什麼問題呢？</h5>
                     <div class="syllabus-desktop-question-select-block solve">
-                        <div class="syllabus-desktop-question-select" @click="selectQuestion(1)">矯正疼痛</div>
-                        <div class="syllabus-desktop-question-select" @click="selectQuestion(2)">舒壓安眠</div>
-                        <div class="syllabus-desktop-question-select" @click="selectQuestion(3)">美體塑身</div>
-                        <div class="syllabus-desktop-question-select" @click="selectQuestion(4)">調和心靈</div>
+                        <div class="syllabus-desktop-question-select" id="solve_1" @click="selectQuestion(1)">矯正疼痛</div>
+                        <div class="syllabus-desktop-question-select" id="solve_2" @click="selectQuestion(2)">舒壓安眠</div>
+                        <div class="syllabus-desktop-question-select" id="solve_3" @click="selectQuestion(3)">美體塑身</div>
+                        <div class="syllabus-desktop-question-select" id="solve_4" @click="selectQuestion(4)">調和心靈</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question-bar">
@@ -210,7 +208,7 @@
                     <span id="span-3"></span>
                 </div>
             </div>
-            <div v-if="start_build && show_arrangement && !is_practice" class="syllabus-desktop-arrangement-outside">
+            <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
@@ -230,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
+            <div v-if="!is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
@@ -238,11 +236,11 @@
                             <div class="syllabus-desktop-arrangement-result-box">
                                 <p class="syllabus-desktop-title" style="margin:0;text-align: left;">骨盆矯正</p>
                                 <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">練習長度：7分鐘</p>
-                                <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;">再次練習</div>
+                                <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">再次練習</div>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
                                 <p style="font-size: 25px; margin-bottom: 25px;">練習成果</p>
-                                <p style="font-size: 95px;font-weight: 300;">95分</p>
+                                <p style="font-size: 95px;font-weight: 300;">{{result_score}}分</p>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#C74F4F;">
                                 <p style="font-size: 25px; margin-bottom: 25px;">消耗卡路里</p>
@@ -250,8 +248,8 @@
                             </div>
                         </div>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;justify-content: center;">
-                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 0 1%;">查看建議</div>
-                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 0 1%;">更多練習</div>
+                            <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 0 1%;">查看建議</div> -->
+                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 0 1%;" @click="$router.push('/pay')">更多練習</div>
                         </div>
                     </div>
                 </div>
@@ -259,7 +257,7 @@
         </div>
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
-            <mamiyoga-new-practice-video-block @goBack="goBack()"></mamiyoga-new-practice-video-block>
+            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult()"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -268,6 +266,8 @@
 	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
             </svg>
         </div>
+        <!-- 顯示建議 -->
+        <!-- <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"></mamiyoga-new-result-block> -->
     </div>
 </template>
 
@@ -279,6 +279,7 @@ import MamiyogaDesktopCourseBlock from '~/components/mamiyoga/MamiyogaDesktopCou
 import MamiyogaMobileSyllabusBlock from '~/components/mamiyoga/MamiyogaMobileSyllabusBlock.vue';
 import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPracticeVideoBlock.vue'
 import MamiyogaSyllabusContent from '~/components/mamiyoga/MamiyogaSyllabusContent.vue';
+import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
@@ -303,6 +304,10 @@ export default {
         practice_finish: false,
 
         have_trial: false,
+        result_score: '67',
+
+        open_camera: false,
+        show_result: true,
     }),
     components: {
         MamiyogaHeader,
@@ -313,6 +318,7 @@ export default {
         MamiyogaNewPracticeVideoBlock,
         MamiyogaSyllabusContent,
         MamiyogaWindowAlertBox,
+        MamiyogaNewResultBlock,
     },
     async mounted() {
         if (process.client) {
@@ -328,7 +334,7 @@ export default {
             }
 
             this.first_course = this.courses[0]
-            console.log(this.first_course)
+            // console.log(this.first_course)
 
             if(sessionStorage['menu_current_series']) {
                 this.check_series = sessionStorage['menu_current_series']
@@ -380,15 +386,12 @@ export default {
     },
     methods:{
         startBuild(){
-            if(this.is_login) {
-                if(this.have_trial) {
-                    this.start_build = true
-                } else{
-                    this.$router.push('/free-trial')
-                }
-            } else {
-                this.$router.push('/signup')
-            }  
+            if(this.have_trial) {
+                this.start_build = true
+            } else{
+                alert('開通七天體驗後即可開始使用～')
+                this.$router.push('/free-trial')
+            }
         },
         selectFrequency(num){
             this.user_frequency = num
@@ -410,7 +413,9 @@ export default {
             console.log(this.user_question)
             
             this.is_loading = true
-
+            if(this.$mq === 'desktop') {
+                document.querySelector(`#solve_${num}`).classList.add('desktop-select-question')
+            }
             setTimeout(() => {
                 this.is_loading = false
                 this.show_arrangement = true
@@ -419,8 +424,23 @@ export default {
         startPractice(){
             this.is_practice = true
         },
+        rePractice(){
+            this.practice_finish = false
+            this.is_practice = true
+        },
         goBack(){
             this.is_practice = false
+        },
+        openResult(score = null){
+            if(score) {
+                this.result_score = score
+                this.open_camera = true
+            } 
+            this.is_practice = false
+            this.practice_finish = true
+        },
+        closeResult(){
+            this.show_result = false;
         }
     },
     computed:{
@@ -441,7 +461,7 @@ export default {
     min-height: 100vh;
     background:linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
     position: relative;
-    /* overflow: hidden;         */
+    overflow: hidden;
     padding-bottom: 5vh;
 }
 .syllabus-desktop-img {
@@ -454,7 +474,6 @@ export default {
     color: #24798f;
     text-align: center;
     font-size: 30px;
-    margin-top: 65vh;
 }
 .syllabus-desktop .info-desktop-red-btn{
     color: #F8F7F8;
@@ -496,8 +515,11 @@ export default {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     opacity: .5;
 }
-.VueCarousel-slide.select-block.VueCarousel-slide-active.VueCarousel-slide-center .select-block-content{
+.VueCarousel-slide.select-block.VueCarousel-slide-active.VueCarousel-slide-center .select-block-content,
+.desktop-select-question,.syllabus-desktop-question-select:active{
     opacity: 1;
+    border-color: #FF9898;
+    color: #FF9898;
 }
 .syllabus-desktop-question-bar {
     width: 50px;
@@ -676,7 +698,6 @@ export default {
   }
 }
 
-
 @media (min-width: 769px) {
     .syllabus-desktop {
         height: 100vh;
@@ -760,6 +781,10 @@ export default {
         font-size: 22px;
         color: #24798f;
         -webkit-user-select: none;
+    }
+    .syllabus-desktop-question-select:active , .desktop-select-question {
+        border-color: #FF9898;
+        color: #FF9898;
     }
     .syllabus-desktop-question-bar {
         width: 50px;

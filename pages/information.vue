@@ -1,72 +1,99 @@
 <template>
-    <div class="info-page">
+    <div class="info-page" :class="input_date ? 'after-input':''">
         <!-- <mamiyoga-teach-header class="privacy-header" id="information-top" v-if="$mq !== 'desktop'"></mamiyoga-teach-header> -->
-        <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
+        <mamiyoga-hamburger-header v-if="$mq !== 'desktop'" ></mamiyoga-hamburger-header>
         <div class="info-wrap-block-first" v-if="$mq !== 'desktop'">
-            <div style="width:77%;margin: 0 auto;">
-                <h2 class="index-article-title" style="text-align: center;font-size: 35px;">媽咪知識</h2>
-                <div class="info-desktop-red-btn" v-if="!want_recommend" @click="want_recommend = true" style="margin: 20px auto 40px;">根據月齡推薦</div>
-                <div v-if="want_recommend" class="which-mami-flex" style="margin: 20px auto 40px;">
-                    <input type="radio" name="which_mami" id="pregnant">
-                    <input type="radio" name="which_mami" id="mami">
-                    <label for="pregnant" class="info-desktop-red-btn pregnant" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
-                    <label for="mami" class="info-desktop-red-btn mami" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+            <div v-if="!input_date">
+                <div style="width:77%;margin: 0 auto;">
+                    <h2 class="index-article-title" style="text-align: center;font-size: 35px;">媽咪知識</h2>
+                    <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject" style="margin: 20px auto 40px;">根據月齡推薦</div>
+                    <div v-if="want_recommend" class="which-mami-flex" style="margin: 20px auto 40px;">
+                        <input type="radio" name="which_mami" id="pregnant">
+                        <input type="radio" name="which_mami" id="mami">
+                        <label for="pregnant" class="info-desktop-red-btn pregnant" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
+                        <label for="mami" class="info-desktop-red-btn mami" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                    </div>
+                    <div v-if="want_recommend && show_date_input" class="info-get-user-date">
+                        <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                        <input type="date" name="date" id="date" v-model="user_date" placeholder="YYYY-MM-DD" style="width:100%;">
+                        <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
+                        <div class="info-desktop-red-btn" @click="inputDate" style="width: 110px;margin: 35px auto 0;">確認</div>
+                    </div>
                 </div>
-                <div v-if="want_recommend && show_date_input" class="info-get-user-date">
-                    <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
-                    <input type="text" name="date" id="date" v-model="user_date" placeholder="DD/MM/YYYY" style="width:100%;">
-                    <div class="info-desktop-red-btn" @click="inputDate" style="width: 110px;margin: 35px auto 0;">確認</div>
+                <div style="width:77%;margin: 0 auto;">
+                    <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
+                    <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？<br>妳知道，這可能是一輩子病痛的開始嗎？</h6>
+                    <p class="index-article-text">產後隨即進入新生活、工作、家事的無限循環，根本沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡的壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的關鍵期一下子就錯過了。即使在醫院矯正骨盆，如果在生活中沒有長期改善，下半生還是難逃病痛纏身。<br><br>許多媽媽感嘆，出了月子中心半年內身體沒有回到以前的狀態，時間越久反而越難恢復，早知道就該更積極的保養身體了。</p>
+                    <h3 class="index-article-title">日本媽媽<br>快速恢復身材的秘密</h3>
+                    <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">我們深入研究了日本媽媽，發現日本媽媽的產後休息時間平均只有兩週，而臺灣媽媽卻要四週。從孕期體重管理到產後的修復，日本媽媽們貫徹了產後黃金修復的行動；而現在最流行也最有效的就是：『產後瑜珈』。</h6>
+                    <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速重拾對身材的自信、也能帶來身心的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢矯正，解決妳無暇外出上課的問題。</p>
                 </div>
             </div>
-            <div style="width:77%;margin: 0 auto;">
-                <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
-                <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？<br>妳知道，這可能是一輩子病痛的開始嗎？</h6>
-                <p class="index-article-text">產後隨即進入新生活、工作、家事的無限循環，根本沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡的壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的關鍵期一下子就錯過了。即使在醫院矯正骨盆，如果在生活中沒有長期改善，下半生還是難逃病痛纏身。<br><br>許多媽媽感嘆，出了月子中心半年內身體沒有回到以前的狀態，時間越久反而越難恢復，早知道就該更積極的保養身體了。</p>
-                <h3 class="index-article-title">日本媽媽<br>快速恢復身材的秘密</h3>
-                <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">我們深入研究了日本媽媽，發現日本媽媽的產後休息時間平均只有兩週，而臺灣媽媽卻要四週。從孕期體重管理到產後的修復，日本媽媽們貫徹了產後黃金修復的行動；而現在最流行也最有效的就是：『產後瑜珈』。</h6>
-                <p class="index-article-text">產後瑜珈最主要的功能就是幫助媽媽迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速重拾對身材的自信、也能帶來身心的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的產後瑜珈線上課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆等等，詳細動畫解說與姿勢矯正，解決妳無暇外出上課的問題。</p>
+            <div v-else>
+                <div class="info-pink-date">
+                    <h6>{{is_pregnant ? '您的預產期' : '產後時間'}}</h6>
+                    <p>{{user_input_date}}</p>
+                </div>
             </div>
         </div>
         <div v-else>
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
-            <div class="info-wrap-block-first">
-                <div class="info-page-first-outside">
-                    <div class="info-page-first-block">
-                        <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
-                        <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？</h6>
-                        <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject">根據月齡推薦</div>
-                        <div v-if="want_recommend" class="which-mami-flex">
-                            <input type="radio" name="which_mami" id="pregnant">
-                            <input type="radio" name="which_mami" id="mami">
-                            <label for="pregnant" class="info-desktop-red-btn pregnant" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
-                            <label for="mami" class="info-desktop-red-btn mami" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+            <div v-if="!input_date">
+                <div class="info-wrap-block-first">
+                    <div class="info-page-first-outside">
+                        <div class="info-page-first-block">
+                            <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
+                            <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？</h6>
+                            <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject">根據月齡推薦</div>
+                            <div v-if="want_recommend" class="which-mami-flex">
+                                <input type="radio" name="which_mami" id="pregnant">
+                                <input type="radio" name="which_mami" id="mami">
+                                <label for="pregnant" class="info-desktop-red-btn pregnant" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
+                                <label for="mami" class="info-desktop-red-btn mami" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                            </div>
+                            <div v-if="want_recommend && show_date_input" class="info-get-user-date">
+                                <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                                <input type="date" name="date" id="date" v-model="user_date" placeholder="YYYY-MM-DD">
+                                <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
+                                <div class="info-desktop-red-btn" @click="inputDate" style="width: 80px;">確認</div>
+                            </div>
                         </div>
-                        <div v-if="want_recommend && show_date_input" class="info-get-user-date">
-                            <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
-                            <input type="text" name="date" id="date" v-model="user_date" placeholder="DD/MM/YYYY">
-                            <div class="info-desktop-red-btn" @click="inputDate" style="width: 80px;">確認</div>
+                        <div class="info-page-second-block">
+                            <p>產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
                         </div>
                     </div>
-                    <div class="info-page-second-block">
-                        <p>產後即將進入新生活、工作、家事的無限循環，沒有時間上健身房與團體課來讓身體迅速復原。久而久之，脂肪容易囤積在下腹形成『游泳圈』，許多關節由於骨盆歪斜而承受不平衡地壓力，最後導致身體時常出現病痛。<br><br>黃金復原期只有短短的180天，在照顧孩子的同時又需要補充睡眠，半年的時間一下子就不見了。即使在醫院得到骨盆矯正，如果在生活中沒有長期改善，問題依然會發生。<br><br>許多媽媽會感嘆，出了月子中心半年後身體並沒有回到以前的狀態，反而時間越久越難恢復，早知道就要更積極的保養身體了。</p>
+                    <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
+                </div>
+                <div class="info-wrap-block-first desktop-two" id="two-article">
+                    <div class="info-page-first-outside">
+                        <div class="info-page-first-block">
+                            <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
+                            <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
+                        </div>
+                        <div class="info-page-second-block">
+                            <p>產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                        </div>
                     </div>
                 </div>
-                <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">
             </div>
-            <div class="info-wrap-block-first desktop-two" id="two-article">
-                <div class="info-page-first-outside">
-                    <div class="info-page-first-block">
+            <div v-else style="display: flex;">
+                <div class="info-pink-date">
+                    <h6>{{is_pregnant ? '您的預產期' : '產後時間'}}</h6>
+                    <p>{{user_input_date}}</p>
+                </div>
+                <div class="info-white-article">
+                    <div class="info-white-article-block">
+                        <div class="info-white-article-tag">今日選讀</div>
                         <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
-                        <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
-                    </div>
-                    <div class="info-page-second-block">
-                        <p>產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                        <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
+                        <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                        <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" @click="$router.push('/pay')">更多媽咪知識</div>
                     </div>
                 </div>
             </div>
         </div>
-        <hr style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
-        <div class="intro-wrap-block-five" style="padding: 0 40px;">
+        <hr v-if="!input_date" style="color:#E8E8E8;margin: 0 10%;opacity:.5;">
+        <div v-if="!input_date" class="intro-wrap-block-five" style="padding: 0 40px;">
             <h4 class="intro-wrap-block-title" style="margin:0;">獨家文章</h4>
             <p class="intro-wrap-block-text">LUDO身體科學誌</p>
             <div class="article-flex-box">
@@ -123,14 +150,23 @@
             <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
 
         </div> -->
+        <!-- 愛心進度條 -->
+        <div v-if="is_loading" id="loading">
+            <svg id="loading-icon" viewBox="0 0 32 29.6">
+                <path class="path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
+	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
+            </svg>
+        </div>
     </div>
 </template>
 <script>
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
+
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
+
 export default {
     data:()=>({
         is_login: false,
@@ -139,11 +175,19 @@ export default {
         show_date_input: false,
         is_pregnant : false,
         user_date: '',
+        have_trial: false,
+
+        input_date: false,
+        is_loading: false,
+        hint: '',
+        hint_color: '',
+        user_input_date: '',
     }),
     components: {
         MamiyogaTeachHeader,
         MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
+
     },
     async mounted(){
         if(process.client) {
@@ -163,7 +207,36 @@ export default {
                 } else {
                     this.check_log = '/menu'
                 }
-                
+            }
+            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                let now = new Date();
+                let now_time = now.getTime();
+                let use_time = (now_time - open_time)/86400000;
+                console.log(use_time)
+                if(use_time > 7){
+                    this.have_trial = false;   
+                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                    this.$router.push('/');
+                }else {
+                    this.have_trial = true;
+                }
+                if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
+                    this.input_date = true
+                    if(localStorage['is_pregnant'] == 'true'){
+                        this.is_pregnant = true
+                        let d = localStorage['user_date']
+                        this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
+                    } else {
+                        this.is_pregnant = false
+                        let current_date = new Date();
+                        let current_time = current_date.getTime();
+                        let user_time = Date.parse(localStorage['user_date'])
+                        console.log(current_time)
+                        console.log(user_time)
+                        this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
+                    }
+                }
             }
         }
     },
@@ -181,21 +254,44 @@ export default {
             this.$scrollTo('#two-article',"start");
         },
         getProject(){
-            if(this.is_login){
+            if(this.have_trial){
                 this.want_recommend = true
             } else {
-                this.$router.push('/signup')
+                alert('開通七天體驗即可開始使用～')
+                this.$router.push('/free-trial')
             }
         },
         inputDate(){
             if(this.user_date !== '') {
-                this.$router.push('/free-trial')
+                if(!this.have_trial) {
+                    this.$router.push('/free-trial')
+                } else {
+                    let dateFormat = /^(\d{4})-(\d{2})-(\d{2})$/
+                    if(dateFormat.test(this.user_date)) {
+                        localStorage['is_pregnant'] = this.is_pregnant
+                        localStorage['user_date'] = this.user_date
+                        alert('已收到～')
+                        this.is_loading = true
+                        setTimeout(() => {
+                            this.input_date = true
+                            this.is_loading = false
+                        }, 3000);
+                    }else {
+                        this.hint = '請依照格式填寫日期～'
+                        this.hint_color = 'red'
+                    }
+                }
             }
         },
-    }
+    },
 }
 </script>
 <style>
+.reg-text2{
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8F8F8F;
+}
 .info-page {
     background: #EDEDED;
     padding-bottom: 95px;
@@ -345,7 +441,8 @@ export default {
     padding: 5px 15px;
     letter-spacing: 0;
 }
-.info-wrap-block-first .info-desktop-red-btn{
+.info-wrap-block-first .info-desktop-red-btn,
+.info-white-article .info-desktop-red-btn{
     color: #F8F7F8;
     font-size: 16px;
     font-weight: bold;
@@ -405,6 +502,54 @@ export default {
 .info-get-user-date input::placeholder {
     color: #D1D1D1;
 }
+#loading {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 999;
+    background: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#loading-icon {
+    width: 100px;
+}
+.path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: 3s drawing-svg 1s infinite;
+}
+@keyframes drawing-svg {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.info-pink-date{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 140px;
+    padding-top: 16px;
+    background: #FF9898; 
+}
+.info-pink-date h6 {
+    color: #ff9898;
+    font-weight: 500;
+    font-size: 15px;
+    background: #fff;
+    padding: 5px 25px;
+    border-radius: 25px;
+    width: fit-content;
+    margin: 0 auto;
+}
+.info-pink-date p {
+    font-size: 40px;
+    color: #fff;
+    margin-top: 25px;
+}
 @media(min-width: 769px) {
     .info-header {
         background: #F8F7F8;
@@ -417,6 +562,9 @@ export default {
     .info-page {
         background: #fff;
         padding-bottom: 160px;
+    }
+    .info-page.after-input {
+        padding-bottom: 50px;
     }
     .info-page .intro-wrap-block-five {
         height: auto;
@@ -547,6 +695,62 @@ export default {
         margin: 4vh 0 0;
         width: 100%;
     }
+    .info-pink-date {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40%;
+        min-width: 350px;
+        max-width: 550px;
+        height: 100vh;
+        background: #FF9898; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+    }
+    .info-pink-date h6 {
+        font-size: 25px;
+        width: unset;
+        margin: unset;
+    }
+    .info-pink-date p {
+        font-size: 50px;
+        color: #fff;
+        margin-top: 25px;
+    }
+    .info-white-article {
+        width: 100%;
+        display: flex;
+    }
+    .info-white-article::before{
+        content: '';
+        width: 40vw;
+        min-width: 350px;
+        max-width: 550px;
+        height: 100vh;
+        display: inline-block;
+    }
+    .info-white-article-block {
+        width: 40%;
+        margin: 180px auto 0;
+    }
+    .info-white-article-tag {
+        width: 150px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #24798f;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        border-radius: 25px;
+        margin: 0 auto 50px;
+    }
+
+
 }
 @media (min-width: 769px) and (max-width: 860px) {
     .info-page .info-wrap-block-first {

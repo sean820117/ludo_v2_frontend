@@ -419,7 +419,7 @@
                         <h6 class="index-article-little-title new-mami">初為人母一定有非常多驚喜與疑惑吧！</h6>
                         <p class="index-article-text new-mami">媽咪新手村提供從產前到產後全方位知識攻略，<br>陪媽咪們一起解任務！</p>
                         <div class="go-new-mamimura">
-                            <img id="go-to-club" @click="goOtherPage('https://lihi1.cc/UaaJ6')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-btn.png" alt="">
+                            <img id="go-to-club" @click="goOtherPage('https://lihi1.com/mYAUQ')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-btn.png" alt="">
                         </div>
                         <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10% 50px;opacity:.2;">
                     </div>
