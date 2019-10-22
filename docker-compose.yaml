@@ -16,19 +16,3 @@ services:
         # - ./:/var/www/app
         # - node_modules:/var/www/app/node_modules
     command: npm start
-
-services:
-  ludo_f2e_dev:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    ports:
-        - "127.0.0.1:3000:3000"
-        - "127.0.0.1:80:80"
-    environment:
-      - BASE_URL=https://www.ludonow.com
-      - API_URL=https://api.ludonow.com
-    volumes:
-        - ./:/var/www/app
-        - node_modules:/var/www/app/node_modules
-    command: npm run dev --port 3000
