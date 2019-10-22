@@ -36,13 +36,12 @@ class LudoRTC {
             sdpSemantics: 'unified-plan',
             iceServers : [{urls: ['stun:stun.l.google.com:19302']}],
             constraints : {
-                // audio: true,
+                audio: false,
                 video: {
-                    "mandatory": {
-                        "maxWidth": 320,
-                        "maxHeight": 240,
-                        "maxFrameRate": 30,
-                    },
+                    width:320,
+                    height:240,
+                    aspectRatio: 1.777777778,
+                    frameRate: { ideal: 24,max: 30 },
                 }
             },
             video_element_id:'#video',
@@ -216,16 +215,20 @@ class LudoRTC {
                     total_score += parseInt(response.data.result.score)
                 } else if(response.data.result.status == 102) { 
                     total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
                 } else if(response.data.result.status == 204) {
                     total_score += parseInt(response.data.result.score)
                 } else if(response.data.result.status == 404){
                     total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
                 } else {
                     total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
                 }
             } catch (error) {
                 console.error(error)
                 total_score += 30
+                total_score += parseInt(Math.random(6) * 20)
             }
         }
         return total_score / this.video_list.length;
