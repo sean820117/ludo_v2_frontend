@@ -35,7 +35,7 @@
                 </h2> -->
                 <img :src="$t('index_img_title')" alt="瑜珈" class="mamiyoga-intro-title" style="margin:10vh auto 19vh;">
                 <div class="mamiyoga-intro-btn">
-                    <router-link :to="gotoTeach+'/mamiyoga/beta/teach'" style="text-decoration: none;">
+                    <router-link :to="gotoTeach+'/beta/teach'" style="text-decoration: none;">
                         <mamiyoga-btn bgColor="#EEEFEA" ftColor="#707070" :btnText="$t('index_button_free')"></mamiyoga-btn>
                     </router-link>
                 </div>

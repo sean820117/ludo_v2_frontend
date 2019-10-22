@@ -11,9 +11,11 @@
                 <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
                 <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798F':'transparent'"></mamiyoga-desktop-nav-header>
 
-                <h1 id="mamiyoga-index-title">互動式<br>線上瑜珈課程</h1>
-                <h2 id="mamiyoga-index-title-des">更美好的日常，從照顧自己開始</h2>
-                <p id="mamiyoga-index-title-eng">The Daily Life we love, Mami yoga</p>
+                <h1 id="mamiyoga-index-title" v-if="$mq != 'desktop'">互動式<br>線上瑜珈課程</h1>
+                <h1 id="mamiyoga-index-title" v-else>媽咪的口袋健康助手</h1>
+                <h2 id="mamiyoga-index-title-des" v-if="$mq === 'desktop'">互動式線上瑜珈課程</h2>
+                <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">更美好的日常，從照顧自己開始</h2>
+                <p id="mamiyoga-index-title-eng" v-if="$mq != 'desktop'">The Daily Life we love, Mami yoga</p>
                 <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title">
                 <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -113,7 +115,7 @@
                     <div class="course-info-block-1" v-if="$mq == 'desktop'">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title">失眠、焦慮、腰痠背痛？<br>忙碌的媽咪們，辛苦了！</h3>
-                            <h6 class="index-article-little-title">卸貨小寶貝後，媽咪的身心需要重新調整</h6>
+                            <h6 class="index-article-little-title">從成為媽咪這天起，妳需要有個幫手陪妳度過</h6>
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
                             <h6 class="index-article-little-title" style="margin-top: 50px;">一堂不需要出門的輕運動課程</h6>
                              <p class="index-article-text">為了寶貝 24 小時待命，無暇出門運動的妳，<br>每日居家舒緩方案，對抗身體不適和負面情緒！</p>
@@ -137,17 +139,18 @@
                                 </div>
                             </div>
                         </div>
-                        <img style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
+                        <img id="mother-childen-img" style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2">
                         <div class="course-info-content-2">
-                            <h3 class="index-article-title" style="width:85%;margin:0 auto;">妳知道日本媽咪<br>快速恢復身材的秘訣嗎？</h3>
-                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪們準備了一堂不用出門的輕運動課程</p>
+                            <h3 class="index-article-title" style="width:85%;margin:0 auto;">妳知道日本媽媽<br>快速產後復原的秘訣嗎？</h3>
+                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手</p>
                             <img class="about-course-teach-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png" alt="">
-                            <router-link to="/information" style="text-decoration:none;">
+                            <!-- <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
-                            </router-link>
+                            </router-link> -->
+                            <div @click="$router.push('/information')" class="index-article-out-btn mirror-btn" style="width: 250px;display: flex;align-items: center;justify-content: center;margin-left: 7.5%;">閱讀媽咪知識</div>
                         </div>
                         <div class="index-article-use-video">
                             <div class="course-info-block-mirror">
@@ -305,16 +308,17 @@
                     <div class="course-info-block-3" v-else>
                         <div class="course-info-block-3-content">
                             <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
-                            <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">每天十分鐘，讓心情跟身體重新開機！</h6>
-                            
-                            <div class="intro-wrap-block-new-five-curriculum">
-                                <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
+                            <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">每天十分鐘，讓心情跟身體重新開機！</h6>
+                            <div style="display: flex;align-items: flex-end;justify-content: center;width: 90%;margin: 50px auto 100px;">
+                                <div class="intro-wrap-block-new-five-curriculum">
+                                    <!-- <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr> -->
+                                    <img style="width: 95%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png" alt="">
+                                </div>
+                                <div class="get-course-block">
+                                    <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
+                                    <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
+                                </div>
                             </div>
-                            <div class="get-course-block">
-                                <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
-                                <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
-                            </div>
-                            
                             <div id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">取得專屬課表</div>
                         </div>
                     </div>
@@ -2339,10 +2343,10 @@ export default {
         height: auto;
     }
     .get-course-block {
-        position: absolute;
+        /* position: absolute;
         top: 28vh;
-        right: -10%;
-        width: 40%;
+        right: -10%; */
+        width: 50%;
     }
     #get-course-link {
         width: 260px;
@@ -2576,6 +2580,12 @@ export default {
         bottom: 7vh;
         min-width: 230px;
         max-width: 300px;
+    }
+}
+@media (max-width: 1300px) {
+    #mother-childen-img {
+        width: 40% !important;
+        right: 5vw !important;
     }
 }
 @media (min-width: 480px) and (max-width: 600px) {

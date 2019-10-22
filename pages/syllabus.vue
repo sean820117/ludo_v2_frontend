@@ -129,11 +129,11 @@
                     </div>
                 </div>
                  <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
                     <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
                     <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
                     <div>
-                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[0].ai_preview_img" :courseTitle="first_course.poses[0].pose_brief"></mamiyoga-mobile-syllabus-block>
+                        <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                         <div class="syllabus-desktop-pink-rest">休息</div>
                         <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
                         <div class="syllabus-desktop-pink-rest">休息</div>
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div v-if="!is_practice && practice_finish" class="syllabus-mobile-flex-content">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>Shao的孕動日記`"></h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
                     <div class="syllabus-mobile-result-box">
                         <div>
                             <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
@@ -157,7 +157,7 @@
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #C74F4F;margin-bottom: 7vh;">
                         <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">消耗<br>卡路里</div>
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">200卡</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">{{result_cal}}卡</div>
                     </div>
                     <div>
                         <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">查看建議</div> -->
@@ -211,18 +211,15 @@
             <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
-                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
                         <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">骨盆矯正</h5>
                         <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">練習長度：7分鐘</p>
                         <div class="syllabus-desktop-arrangement-flex">
-                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[0].ai_preview_img"
-                            :courseTitle="first_course.poses[0].pose_brief"></mamiyoga-desktop-course-block>
+                            <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div class="syllabus-desktop-pink-rest">休息</div>
-                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[1].ai_preview_img"
-                            :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-desktop-course-block>
+                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div class="syllabus-desktop-pink-rest">休息</div>
-                            <mamiyoga-desktop-course-block :courseBg="first_course.poses[2].ai_preview_img"
-                            :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-desktop-course-block>
+                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                         </div>
                         <div class="info-desktop-red-btn" style="margin: 5vh auto 0;" @click="startPractice">開始練習</div>
                     </div>
@@ -231,7 +228,7 @@
             <div v-if="!is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
-                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '的孕動日記'}}</p>
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;">
                             <div class="syllabus-desktop-arrangement-result-box">
                                 <p class="syllabus-desktop-title" style="margin:0;text-align: left;">骨盆矯正</p>
@@ -244,7 +241,7 @@
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#C74F4F;">
                                 <p style="font-size: 25px; margin-bottom: 25px;">消耗卡路里</p>
-                                <p style="font-size: 95px;font-weight: 300;">200卡</p>
+                                <p style="font-size: 95px;font-weight: 300;">{{result_cal}}卡</p>
                             </div>
                         </div>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;justify-content: center;">
@@ -257,7 +254,7 @@
         </div>
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
-            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult()"></mamiyoga-new-practice-video-block>
+            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -286,6 +283,7 @@ export default {
     data:()=>({
         courses:[],
         first_course: {},
+        experience_course: {},
         not_online: false,
         check_lang: '',
         check_series: 'first',
@@ -304,7 +302,8 @@ export default {
         practice_finish: false,
 
         have_trial: false,
-        result_score: '67',
+        result_score: '43',
+        result_cal: '86',
 
         open_camera: false,
         show_result: true,
@@ -334,6 +333,7 @@ export default {
             }
 
             this.first_course = this.courses[0]
+            this.experience_course = this.courses[12]
             // console.log(this.first_course)
 
             if(sessionStorage['menu_current_series']) {
@@ -433,7 +433,8 @@ export default {
         },
         openResult(score = null){
             if(score) {
-                this.result_score = score
+                this.result_score = Math.floor(score)
+                this.result_cal = (Math.floor(score))*2
                 this.open_camera = true
             } 
             this.is_practice = false
@@ -541,6 +542,7 @@ export default {
     width: 85%;
     margin: 0 auto;
     position: relative;
+    padding-bottom: 10vh;
 }
 .syllabus-desktop-pink-rest {
     width: 100%;

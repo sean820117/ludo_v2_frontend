@@ -16,7 +16,7 @@
                 <mamiyoga-course-block v-for="rectify in getRectifys" :key="rectify.id"
                 :bgImage="rectify.preview_img" blockColor="white" :poseSrc="rectify.info_img"
                 :blockTitle="rectify.title" :unitSrc="rectify.chapter_flag" :selectCourse="rectify.id"
-                :goCourse="rectify.id"
+                :goCourse="rectify.id" :is_trial="rectify.trial"
                 ></mamiyoga-course-block>
                 
             </div>
@@ -25,6 +25,7 @@
                 <mamiyoga-course-block v-for="alleviate in getAlleviates" :key="alleviate.id"
                 :bgImage="alleviate.preview_img" blockColor="white" :poseSrc="alleviate.info_img"
                 :blockTitle="alleviate.title" :unitSrc="alleviate.chapter_flag" :goCourse="alleviate.id"
+                :is_trial="alleviate.trial"
                 ></mamiyoga-course-block>
                 
             </div>
@@ -33,6 +34,7 @@
                 <mamiyoga-course-block v-for="beauty in getBeautys" :key="beauty.id"
                 :bgImage="beauty.preview_img" blockColor="white" :poseSrc="beauty.info_img"
                 :blockTitle="beauty.title" :unitSrc="beauty.chapter_flag" :goCourse="beauty.id"
+                :is_trial="beauty.trial"
                 ></mamiyoga-course-block>
                 
             </div>
@@ -41,6 +43,7 @@
                 <mamiyoga-course-block v-for="blend in getBlends" :key="blend.id"
                 :bgImage="blend.preview_img" blockColor="white" :poseSrc="blend.info_img"
                 :blockTitle="blend.title" :unitSrc="blend.chapter_flag" :goCourse="blend.id"
+                :is_trial="blend.trial"
                 ></mamiyoga-course-block>
                 
             </div>

@@ -23,7 +23,7 @@ import MamiyogaSmallBtn from '~/components/mamiyoga/MamiyogaSmallBtn.vue';
 export default {
     data:()=>({
         is_login:false,
-        // check_lang: '',
+        check_lang: '',
     }),
     props: {
         bgColor: String,

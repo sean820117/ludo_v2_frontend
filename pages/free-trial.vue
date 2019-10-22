@@ -34,8 +34,8 @@ export default {
         if(process.client) {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) { 
-                alert('請先前往註冊！')
-                this.$router.push('/signup')
+                alert('請先前往登入或註冊！')
+                this.$router.push('/login')
             } else {
 
             }

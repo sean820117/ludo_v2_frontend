@@ -54,12 +54,12 @@
                     </div>
                 </div> -->
                 <div  style="margin:2vh 0 1vh;display:flex;align-items:center;">
-                    <router-link :to="goAbout+'/mamiyoga/about'">
+                    <router-link :to="goAbout+'/about'">
                         <h6 style="float:left;">{{$t('about_first_title')}}</h6><p style="color:#97A8AF;float:left;line-height:20px;">&nbsp;>></p>
                     </router-link>
                 </div>
                 <div class="teacher-remind">
-                    <router-link :to="goAbout+'/mamiyoga/about'">
+                    <router-link :to="goAbout+'/about'">
                         <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-teach-about.png" alt="瑜珈">
                     </router-link>
                     <div class="teacher-remind-content">
