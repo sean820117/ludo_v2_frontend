@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 var pose_axios = axios.create({
-    baseURL: 'http://ec2-18-237-249-229.us-west-2.compute.amazonaws.com:8787',
+    baseURL: 'https://pose.ludonow.com:8787',
     withCredentials: 'true',
     timeout: 2000000,
 });
