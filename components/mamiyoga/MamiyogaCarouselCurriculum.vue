@@ -428,10 +428,11 @@
                 </slide>
             </carousel>
         </div>
-        <div  v-if="$mq == 'desktop'">
+        <div id="desktop-curriculum" v-if="$mq == 'desktop'">
             <carousel
             :perPage="1" :centerMode="true"  :autoplay="false" :spacePaddingMaxOffsetFactor="0"
-            :spacePadding="50" :paginationEnabled="false" :scrollPerPage="false">
+            :spacePadding="0" :paginationEnabled="true" :scrollPerPage="true"
+            :paginationSize="10" :paginationPadding="8" :paginationActiveColor="'#707070'">
                 <slide class="intro-wrap-block-new-five-curriculum-block-container">
                     <div class="intro-wrap-block-new-five-curriculum-block">
                         <p>產後1-2個月</p>
@@ -765,5 +766,52 @@ export default {
 }
 .intro-wrap-block-new-five-curriculum-block img {
     width: 100%;
+}
+@media (min-width: 769px) {
+    #desktop-curriculum {
+        width: calc(30vw + 100px);
+        min-width: 380px;
+        max-width: 550px;
+        margin-left: 5%; 
+        margin-top: 5vh;
+    }
+    .intro-wrap-block-new-five-curriculum-block {
+        width: 30vw;
+        height: 56vh;
+        min-width: 330px;
+        max-width: 500px;
+    }
+    .intro-wrap-block-new-five-curriculum-block p {
+        font-size: 22px;
+    }
+    .index-curriculum-block {
+        width: 30vw;
+        height: 48vh;
+        min-width: 330px;
+        max-width: 500px;
+    }
+    .index-curriculum-block-every {
+        cursor: pointer;
+    }
+    .index-curriculum-block-every.day {
+        font-size: 25px;
+        cursor:unset;
+    }
+    .block-back,.block-rest {
+        width: 4vw;
+        min-width: 40px;
+        max-width: 60px;
+        height: 5vh;
+        font-size: 15px;
+    }
+    .index-curriculum-block-title {
+        font-size: 0.9em !important;
+    }
+    .index-curriculum-block-text {
+        font-size: 15px !important;
+    }
+    .intro-wrap-block-new-five-curriculum-block-container {
+
+    }
 }
 </style>

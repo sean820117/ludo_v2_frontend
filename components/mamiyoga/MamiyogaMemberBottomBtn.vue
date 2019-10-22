@@ -47,8 +47,8 @@ export default {
     color: #24798F !important;
 }
 @media (min-width: 769px) {
-    .member-bottom-btn {
-        max-width: 450px;
+    .member-big-btn {
+        max-width: 270px;
     }
 }
 </style>

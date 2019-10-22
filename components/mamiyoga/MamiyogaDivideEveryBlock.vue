@@ -19,10 +19,10 @@
                 <!-- <button class="teach-assay-btn" v-if="ai_teacher">
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">上傳影片</label>  
                 </button> -->
-                <div v-if="ai_teacher" style="display: flex;justify-content: center;">
+                <!-- <div v-if="ai_teacher" style="display: flex;justify-content: center;">
                     <button class="ai-use-btn" v-if="ai_teacher" @click="openRecordBox">{{$t('course_practice_btn')}}</button> 
                     <button class="ai-use-btn" v-if="ai_teacher" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
-                </div>
+                </div> -->
             </div>
         </div>
         <mamiyoga-window-alert-box v-show="show_remind">

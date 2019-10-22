@@ -5,23 +5,47 @@
 </template>
 
 <script>
+import VueMq from 'vue-mq'
+import Vue from 'vue'
+import { mapMutations, mapGetters } from 'vuex';
+
+
+Vue.use(VueMq, {
+  breakpoints: {
+    // small: 400,
+    iphone: 400,
+    mobile: 769,
+    desktop: Infinity,
+  }
+});
 export default {
   head: {
-    title: 'Ludo Now',
+    title: 'MAMI YOGA',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0;' },
-      { hid: 'description', name: 'description', content: '' },
-      { property : 'og:title' , content:""},
-      { property : 'og:type' , content:""},
-      { property : 'og:url' , content:""},
-      { property : 'og:image' , content:""},
-      { property : 'og:description' , content:""},
-      { property : 'og:site_name' , content:""},
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=0,' },
+      { hid: 'description', name: 'description', content: '以教學影片結合動作校正AI，開設的互動式線上課程。與日本人氣瑜珈老師橋本麻美合作，推出14堂課程包含33個動作，針對產後2~6個月黃金修復期的課程。使用者能夠觀看教學影片，並透過手機鏡頭拍攝自己的練習動作，取得分析與修正建議。' },
+      { property : 'og:title' , content:"Mami Yoga 日本人氣瑜珈"},
+      { property : 'og:type' , content:"education tech."},
+      { property : 'og:url' , content:"https://mamiyoga.ludonow.com"},
+      { property : 'og:image' , content:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/facebook-share-preview.jpg"},
+      { property : 'og:description' , content:"以教學影片結合動作校正AI，開設的互動式線上課程。與日本人氣瑜珈老師橋本麻美合作，推出14堂課程包含33個動作，針對產後2~6個月黃金修復期的課程。使用者能夠觀看教學影片，並透過手機鏡頭拍攝自己的練習動作，取得分析與修正建議。"},
+      { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
+    script: [
+      { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
+    ]
+  },
+  async mounted() {
+    if (process.client) {
+      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login")) {
+        localStorage.redirect = this.$route.path;
+        console.log('save:' + localStorage.redirect)
+      }
+    }
   }
 }
 </script>

@@ -1,8 +1,12 @@
 <template>
-<div><router-link :to="check_lang + '/course/' + goCourse" style="color:#000;">
-    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}">
+<div>
+    <!-- <router-link :to="check_lang + '/course/' + goCourse" style="color:#000;"> -->
+    <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}" @click="goCoursePage">
         <div class="course-bookmark">
             <img :src="unitSrc" alt="">
+        </div>
+        <div class="course-close">
+            <img v-if="!is_trial || !have_trial" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -36,13 +40,17 @@
             </div>
         </div>
     </div>
-</router-link></div>
+<!-- </router-link> -->
+</div>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=> ({
         check_lang : '',
+        have_trial: false,
+        login_or_not: false,
     }),
     props: {
         bgImage: String,
@@ -56,8 +64,11 @@ export default {
         aiSrc: String,
         unitSrc: String,
         goCourse: String,
+
+        is_trial: Boolean,
+
     },
-    mounted(){
+    async mounted(){
         if(process.client) {
             if(this.$i18n.locale == 'JP') {
                 this.check_lang = '/jp'
@@ -67,6 +78,39 @@ export default {
                 this.check_lang = ''
             }
             
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                let now = new Date();
+                let now_time = now.getTime();
+                let use_time = (now_time - open_time)/86400000;
+                console.log(use_time)
+                if(use_time > 7){
+                    this.have_trial = false;   
+                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                    this.$router.push('/');
+                }else {
+                    this.have_trial = true;
+                }
+            }
+        }
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
+    },
+    methods:{
+        goCoursePage(){
+            if(this.is_trial&&this.have_trial) {
+                this.$router.push('/course/' + this.goCourse)
+            } else if (!this.have_trial) {
+                alert('開通七天體驗即可開始使用！')
+                this.$router.push('/free-trial')
+            } else {
+                alert('購買後即可觀看所有課程～')
+                this.$router.push('/pay')
+            }
         }
     }
 }
@@ -89,6 +133,11 @@ export default {
     position: absolute;
     top: -5px;
     left: 15px;
+}
+.course-close {
+    position: absolute;
+    right: 15px;
+    bottom: 10vh;
 }
 /* .course-bookmark p {
     position: absolute;

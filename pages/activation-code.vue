@@ -2,31 +2,50 @@
     <div>
         <div class="serialno-page" style="background:#fff;">
             <mamiyoga-pay-header></mamiyoga-pay-header>
-            <div class="serialno-main">
-                <div class="pay-little-title">序號資訊</div>
-                <hr style="margin: 5px 0;opacity: .5;">
-                <div class="serialno-number-block" v-if="serialno_data != ''">
-                    <div class="serialno-number-base-data" v-for="(serialno,i) in serialno_data" :key="i" stagger="150" >
-                        <p class="serialno-number-date">{{setRecordDate(serialno.created_timestamp)}}</p>
-                        <p class="serialno-number-text">寄送手機：{{serialno.phone}}</p>
-                        <p class="serialno-number-text">訂單號碼：{{serialno.order_id}}</p>
-                        <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
-                        <div class="serialno-every-number" v-for="(code, index) in serialno.codes" :key="index">
-                            <div class="serialno-number">
-                                <p style="color:#24798F;font-weight:600;">{{code.code}}</p>
-                                <p style="color:#FF9898;" v-if="!code.available">已啟用</p>
-                                <p style="color:#707070;" v-else>尚未啟用</p>
+            <div class="reg-text" style="margin-top:80px;text-align:center;" v-if="$mq === 'desktop'">兌換序號</div>
+            <div class="serialno-flex-box">
+                <div class="serialno-main">
+                    <div class="pay-little-title">序號資訊</div>
+                    <hr style="margin: 5px 0;opacity: .5;">
+                    <div class="serialno-number-block" v-if="serialno_data != ''">
+                        <div class="serialno-number-base-data" v-for="(serialno,i) in serialno_data" :key="i" stagger="150" >
+                            <p class="serialno-number-date">{{setRecordDate(serialno.created_timestamp)}}</p>
+                            <p class="serialno-number-text">寄送手機：{{serialno.phone}}</p>
+                            <p class="serialno-number-text">訂單號碼：{{serialno.order_id}}</p>
+                            <hr style="margin-top: 15px;opacity: .5;border-style:none;height:1px;background:#24798F;">
+                            <div class="serialno-every-number" v-for="(code, index) in serialno.codes" :key="index">
+                                <div class="serialno-number">
+                                    <p style="color:#24798F;font-weight:600;">{{code.code}}</p>
+                                    <p class="show-this-used this-is-used" v-if="!code.available  && is_not_payed">已兌換</p>
+                                    <p class="show-this-used" v-if="code.available  && is_not_payed" @click="useThisCode(code.code)">立即兌換</p>
+                                    <p style="color: #FF9898" v-if="!code.available && !is_not_payed">已啟用</p>
+                                    <p style="color: #707070"  v-if="code.available && !is_not_payed">尚未啟用</p>
+                                </div>
+                                <p style="font-size: 12px;font-weight:lighter;"></p>
                             </div>
-                            <p style="font-size: 12px;font-weight:lighter;"></p>
                         </div>
                     </div>
+                    <div class="serialno-number-block" v-else>
+                        <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
+                    </div>
+                    <div class="member-bottom-btn" style="margin-top:10vh;position:unset;" v-if="$mq === 'desktop'">
+                        <div class="member-big-btn" style="width:270px;background:#24798F;" @click="$router.push('/pay')">購買課程</div>
+                        <div class="member-big-btn member-big-btn-center" style="width:270px;margin-top:1vh;" @click="$router.push('/member')">學員中心</div>
+                    </div>
                 </div>
-                <div class="serialno-number-block" v-else>
-                    <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
+                <div class="serialno-main" v-if="$mq === 'desktop'">
+                    <div class="pay-little-title">我有課程序號</div>
+                    <hr style="margin: 5px 0;opacity: .5;">
+                    <input id="desktop-exchange-input" name="exchange-input" type="text" placeholder="輸入序號" v-model="input_serialno">
+                    <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
+                    <div class="member-bottom-btn" style="margin-top:3vh;position:unset;" v-if="$mq === 'desktop'">
+                        <div class="member-big-btn" style="background:;" v-if="is_not_payed" :style="{width:'270px',backgroundColor: input_serialno !== '' ? '#24798F':'#D1D1D1'}" @click="input_serialno !== '' ? checkInputSerialno() : ''">兌換課程</div>
+                        <div class="member-big-btn" style="background:;" v-if="!is_not_payed" :style="{width:'270px',backgroundColor: '#D1D1D1'}">兌換課程</div>
+                    </div>
                 </div>
             </div>
             <!-- <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;" :is_serialno="true" @openExchange="open_exchange = true"></mamiyoga-member-bottom-btn> -->
-            <div class="member-bottom-btn" style="margin-top:10vh;position:unset;">
+            <div class="member-bottom-btn" style="margin-top:10vh;position:unset;" v-if="$mq !== 'desktop'">
                 <div class="member-big-btn" style="background:#24798F;" v-if="is_not_payed" @click="open_exchange = true">兌換序號</div>
                 <div class="member-big-btn member-big-btn-center" style="margin-top:1vh;" @click="$router.push('/member')">學員中心</div>
             </div>
@@ -51,7 +70,6 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config';
 export default {
-    layout: 'mommiyoga',
     components: {
         MamiyogaPayHeader,
         MamiyogaMemberBottomBtn,
@@ -71,6 +89,9 @@ export default {
         open_exchange: false,
         input_serialno: '',
         is_not_payed: true,
+
+        hint:'',
+        hint_color:'',
     }),
     async beforeCreate() {
         if (process.client) {
@@ -85,6 +106,8 @@ export default {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 if(payed_or_not){
                     this.is_not_payed = false
+                    this.hint = '已啟用課程'
+                    this.hint_color = 'red'
                 }
 
                 let send_data = {user_id:this.user.user_id,course_id:'mamiyoga'}
@@ -126,13 +149,40 @@ export default {
                 console.log(send_data)
                 try {
                     const serialno_code = await axios.post('/apis/redeem-activation-code',send_data)
-                    alert('輸入成功！已為您開通課程～')
+                    if(this.$mq === 'desktop') {
+                        this.hint = '輸入成功！已為您開通課程～'
+                        this.hint_color = 'red'
+                    } else {
+                        alert('輸入成功！已為您開通課程～')
+                    }
                     this.$router.push('/menu')
                 } catch(error) {
-                    alert('序號錯誤或已開通，請確認是否輸入正確值')
+                    if(this.$mq === 'desktop') {
+                        this.hint = '序號錯誤或已開通，請確認是否輸入正確值'
+                        this.hint_color = 'red'
+                    } else {
+                        alert('序號錯誤或已開通，請確認是否輸入正確值')
+                    } 
                 }    
             } else {
-                alert('請輸入序號！')
+                if(this.$mq === 'desktop') {
+                    this.hint = '請輸入序號！'
+                    this.hint_color = 'red'
+                } else {
+                    alert('請輸入序號！')
+                }
+            }
+        },
+        async useThisCode(code){
+            console.log(code)
+            let send_data = {user_id: this.user.user_id, code_id: code, course_id: 'mamiyoga'}
+            console.log(send_data)
+            try {
+                const serialno_code = await axios.post('/apis/redeem-activation-code',send_data)
+                alert('兌換成功，為您跳轉至課程頁面～')
+                this.$route.push('/menu')
+            } catch(error) {
+                alert('此序號已被使用')
             }
         }
     },
@@ -265,12 +315,48 @@ export default {
     background: #fff !important;
     color: #24798F !important;
 }
+.show-this-used {
+    background: #D1D1D1;
+    width: 70px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+}
+.this-is-used {
+    background:#FF9898;
+}
+
+
 @media (min-width: 769px) {
-    .serialno-page {
-        min-height: 100vh;
+    .serialno-flex-box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 7vw;
     }
-    .member-bottom-btn {
-        max-width: 450px;
+    .serialno-main {
+        width: 270px;
+        margin: 0 50px;
     }
+    .serialno-number-block {
+        margin: 2vh 0 0;
+        width: 100%;
+    }
+    #desktop-exchange-input {
+        width: 100%;
+        font-size: 20px;
+        border-style: none;
+        border-bottom: 1px solid #D4D4D4;
+        height: 40px;
+        margin-top: 50px;
+    }
+    #desktop-exchange-input::placeholder {
+        font-size: 20px;
+        color: #9F9393;
+    }
+    
 }
 </style>

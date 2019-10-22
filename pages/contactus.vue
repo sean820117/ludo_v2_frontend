@@ -27,7 +27,6 @@ import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
-    layout: 'mommiyoga',
     components:{
         MamiyogaPayHeader,
         MamiyogaMemberBottomBtn,
@@ -113,6 +112,9 @@ export default {
     }
     .contactus-big-btn {
         width: 67%;
+    }
+    .contactus-main {
+        max-width: 350px;
     }
 }
 </style>

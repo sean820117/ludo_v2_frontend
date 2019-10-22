@@ -10,6 +10,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/349924443',
         video_url_jp:'https://player.vimeo.com/video/350479253',
         course_introduction:'產時造成的韌帶鬆弛，一般來說需要三到六個月恢復。這時候骨盆處在較鬆弛狀態，同時也是骨盆矯正的絕佳時機，所以在產後一個月，當媽媽們子宮收縮情形開始比較緩和的時候，就可以慢慢開始矯正骨盆囉！<br>除了韌帶回復之外，矯正骨盆的歪斜還有另外一項很棒的效果哦！那就是可以讓腰部周圍較難附著脂肪，加速新陳代謝，達到非常顯著的減肥效果！<br>接下來，讓我們一起好好努力，來把骨盆調整到最佳狀態吧！',
+        trial: true,
         poses:[
             {
                 pose_id: 'first',
@@ -17,9 +18,11 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4',
                 pose_description:['雙腳張開，比腰再寬一點','兩手壓住前後骨盆','讓骨盆前後移動','感受背部打直，不要駝背','記住骨盆移動的感覺','重複動作十次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/1-1.png',
                 input_id:'',
                 remind_text: '',
                 remind_img:'',
+                trial: true,
             },
             {
                 pose_id: 'second',
@@ -27,9 +30,11 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action02.mp4',
                 pose_description:['側躺在瑜珈墊上','手臂支撐頭部','兩隻腳膝蓋彎曲','上面的腳彎曲90度，舉起到身前','下方的腳伸直','吸氣，讓彎曲的膝蓋向天空張開','吐氣，慢慢將膝蓋放回原點','重複十次之後，換另一邊'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/1-2.png',
                 input_id:'',
                 remind_text: '',
                 remind_img:'',
+                trial: true,
             },
             {
                 pose_id: 'third',
@@ -37,9 +42,11 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action03.mp4',
                 pose_description:['首先模仿趴睡的姿勢','兩隻手肘將上半身撐起','調整手肘讓雙臂與肩同寬','抱持手肘位置，右膝蓋往腰部下方靠近','右膝撐地，用大腿的力量將身體撐起','右腿：腰部與大腿是九十度、大腿與小腿也是九十度','左腿：大腿小腿貼在地板上，腳掌朝後與小腿90度','臉部朝前，重複三到五次呼吸','另一邊也做相同的動作','屁股碰到後腳跟，手伸直手掌貼地伸直背部後緩緩坐起'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/1-3.png',
                 input_id:'',
                 remind_text: '',
                 remind_img:'',
+                trial: true,
             },
         ],
     },
@@ -54,6 +61,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350050968',
         video_url_jp:'https://player.vimeo.com/video/350481218',
         course_introduction:'血液若是流動不良會衍生許多疼痛或不適感：例如肩頸酸痛，腰痛，浮腫，手腳冰冷的狀況。而且，媽媽們產後不只要哺乳，也會需要抱小孩、背小孩，這些動作往往會使得母親得持續做出前傾的姿勢，這姿勢容易讓肌肉僵硬。<br>預防重於治療，若我們能在身體在發出疼痛的警訊前，搶先照顧好，就能夠避免這些身體症狀。',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -66,6 +74,7 @@ module.exports = [
                 remind_text: '橫式拍攝、側面入鏡',
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','膝蓋需要伸直','膝蓋需要伸直','抬腿速度太快','抬腿速度太快','身體避免晃動'],
+                trial: false,
             },
             {
                 pose_id: 'second',
@@ -74,8 +83,10 @@ module.exports = [
                 pose_description:['正躺，眼睛看向天花板','大腿小腿彎曲像一座小山，腳掌貼地','抬起雙腳，在空中踩腳踏車','記得要讓上身維持穩定，意識到核心肌肉','重複十次，慢慢將雙腳放下'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/2-2.png',
                 remind_text: '',
                 remind_img:'',
+                trial: false,
             },
             {
                 pose_id: 'third',
@@ -84,8 +95,10 @@ module.exports = [
                 pose_description:['首先進入趴睡的姿勢','趴下的同時，依照脖子的習慣面向左或右邊','接著把雙手慢慢放在身體兩側','呼吸，臉頰貼著瑜珈墊或地板','呼吸，讓腿自然伸直、與腰同寬','呼吸，掌心朝上、手肘彎曲90度','一次進行30秒到一分鐘','結束後慢慢起身'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/2-3.png',
                 remind_text: '',
                 remind_img:'',
+                trial: false,
             },
         ],
     },
@@ -100,6 +113,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350540141',
         video_url_jp:'https://player.vimeo.com/video/350482701',
         course_introduction:'我們常常在一整天的辛苦勞動後，身心因此變得很緊繃。在這樣還沒有辦法把緊崩狀態好好切換回來的情況下，即便上床睡覺，也是沒有辦法獲得有效率的休息。沒有辦法好好睡著，甚至半夜的時候會不斷醒來，這樣下去的話，怎麼睡都沒有辦法讓疲勞感消失。若是沒有辦法獲得良好的睡眠品質，疲勞感隔天也會繼續跟著你。<br>所以，讓身體攝取大量新鮮空氣，讓身心好好放鬆，一起消除整天的疲勞吧！',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -110,6 +124,7 @@ module.exports = [
                 input_id:'8',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/3-1.png',
                 remind_text: '直式拍攝、正面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','身體往後倒','手太後面了','手太前面了','用腹部維持重心','減少手部壓力'],
             },
@@ -120,7 +135,9 @@ module.exports = [
                 pose_description:['捲起棉被或使用抱枕','放在屁股後面，可以碰到腰部的位置','調整到舒適的高度，緩緩躺下來','將腿打開放置在墊子的兩側','手掌面向天花板，放在身體兩側','深呼吸、感受胸部的擴張','起身時感受身體習慣的方向，從該方向慢慢起身'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/3-2.png',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
         ],
@@ -137,6 +154,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350494809',
         video_url_jp:'https://player.vimeo.com/video/350491544',
         course_introduction:'一旦淋巴液堵塞，就沒有辦法將體內不好的物質以及多餘的水分排出。這會連帶免疫力的功能也一起下降，非常嚴重。淋巴堵塞，會造成讓人頭痛、肩膀僵硬、疲勞久久難消，容易患上感冒等等……各種讓身體不舒服的症狀。<br>所以讓淋巴液好好流通是很重要的！這不只能改善身體不好的狀況，還能進一步讓新陳代謝變得夠好，獲得清爽的身體曲線哦！',
+        trial: true,
         poses:[
             {
                 pose_id: 'first',
@@ -145,7 +163,9 @@ module.exports = [
                 pose_description:['坐在墊子上，將腳掌對腳掌','兩手各握住兩邊腳趾','將左腳伸直','右腳彎曲且靠攏恥骨','讓伸展的左腳跟往後扣、腳趾朝自己方向','一邊吸氣、一邊擴胸','一邊吐氣、一邊前傾','一邊吸入空氣、放鬆','最後慢慢將上半身撐起來','換邊，以反方向換腿做一樣的動作'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/4-1.png',
                 remind_text: '',
+                trial: true,
                 remind_img:'',
             },
             {
@@ -155,7 +175,9 @@ module.exports = [
                 pose_description:['張開雙腳，直到你覺得舒服的範圍','雙臂放在身體的兩側','吸氣，讓右手大大的往上伸展','吐氣，讓整個上半身往左傾倒','左手握住左腳的後腳跟，伸展到可以伸展的程度就好','吸氣，邊讓上半身回來','換邊，兩邊動作各重複10次'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/4-2.png',
                 remind_text: '',
+                trial: true,
                 remind_img:'',
             },
         ],
@@ -171,6 +193,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350540867',
         video_url_jp:'https://player.vimeo.com/video/350476133',
         course_introduction:'媽媽們在生產後，因為常常為了照顧嬰兒，一直都沒有充足的睡眠時間。長期下來，就會疲勞堆積，睡眠不足造成的荷爾蒙失衡更會使得媽媽們情緒變得負面。所以，緩解已經僵硬的肌肉，讓體內的血液循環變好，就可以更有效緩解疲勞。不管是早上起床時，常容易感到很累，或者是覺得沒有幹勁時，做這些動作，都可以讓媽媽們重新獲得活力，心情也因此煥然一新，整天可以舒適地面對工作喔！<br>只要花10分鐘，就可以讓媽媽們在起床的時候可以感覺自己的精神回復到極好的狀態，所以請務必跟著我一起試試看吧。',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -181,6 +204,7 @@ module.exports = [
                 input_id:'10',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/5-1.png',
                 remind_text: '直式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','膝蓋微微彎曲','將肚子往大腿根部靠近'],
             },
@@ -193,6 +217,7 @@ module.exports = [
                 input_id:'11',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/5-2.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','臀部穩定的在地面上','用腹部收縮將上半身捲曲','收起下巴讓肩膀放鬆'],
             },
@@ -209,6 +234,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350541736',
         video_url_jp:'https://player.vimeo.com/video/350474009',
         course_introduction:'懷孕時因為抱著一個很大很大的肚子，運動量也會被迫減少很多。所以，往往生產後，肌肉量也會變得很低、基礎代謝率也會變差。<br>不過，我們可以在生產後利用日常時間做瑜珈，讓肌肉量一點一點上升，體力變得愈來愈好，讓我們一起為照顧小孩的辛苦生活做準備吧！',
+        trial: true,
         poses:[
             {
                 pose_id: 'first',
@@ -219,6 +245,7 @@ module.exports = [
                 input_id:'13',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/6-1.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: true,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','背部向下施力','雙腳與肩同寬','下巴微收'],
             },
@@ -231,6 +258,7 @@ module.exports = [
                 input_id:'14',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/6-2.png',
                 remind_text: '直式拍攝、側面入鏡',
+                trial: true,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','腿部打直不彎曲','用腳趾穩定身體','下巴收起穩定重心'],
             },
@@ -247,6 +275,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350543195',
         video_url_jp:'https://player.vimeo.com/video/350471282',
         course_introduction:'媽媽們的骨盆和髖關節就會變廣變鬆弛，然後大腿骨的一部分，就會開始往外側突出去。這會造成產後鬆弛，骨盆周邊容易有脂肪附著。這樣一來，腰部和肚子周邊，還有臀部跟大腿，就很容易有脂肪附著。有些媽媽們產後的下半身肥胖就是這樣產生的。但是，如果媽媽們只是著急地想要緩解下半身的肥胖。卻沒有方向的激烈訓練，很容易就會弄壞身體了。<br>所以，讓我們一邊緩解骨盆周邊的肌肉，ㄧ點一點地刺激肌肉，讓他慢慢地變得緊實吧！',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -257,6 +286,7 @@ module.exports = [
                 input_id:'15',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/7-1.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','腳抬得太低','腳抬得太高','手臂抬太低','手臂抬太高','背部彎曲','動作持續過短'],
             },
@@ -266,8 +296,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L7_action02.mp4',
                 pose_description:['將四肢都趴在地上，調整呼吸','膝蓋呈90度，然後讓大腿跟地墊呈現平行的狀態','把腿往後抬起來','骨盆一旦變成跟墊子平行，就要注意腰部不要太開','要一邊注意一邊這些細節，一邊進行動作','一邊吸氣，一邊把膝蓋放到右邊','保持與腰同高，接著，放下來','我們就這樣連續重複三次','換邊','結束之後，就要把屁股放回後腳跟，把頭放下稍微休息'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/7-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -279,6 +311,7 @@ module.exports = [
                 input_id:'17',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/7-3.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','雙腳距離與肩同寬','雙腳分別穩定的下半身','注意臀部與腹部的肌肉'],
             },
@@ -295,6 +328,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350545331',
         video_url_jp:'https://player.vimeo.com/video/350470076',
         course_introduction:'腹斜肌不是只單單能替媽媽們帶來美麗的曲線，還有一個重要的功能噢！就是能扮演著將內臟維持在正確位置的角色，就像束腹一樣。包覆在我們的肚子周邊。<br>如果持續鍛鍊腹斜肌，就像是有條漂亮的束腹，能維持腰部緊實的狀態。大家都很嚮往有著像模特兒那樣，讓人煞羨的腰部曲線，對吧？',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -303,7 +337,9 @@ module.exports = [
                 pose_description:['四肢趴在地上','讓腳尖從地板浮起來','一邊吐氣一邊慢慢地把腰朝右方扭去','意識集中在腰部','慢慢地回到正面','重複三到五次','另外一邊也要做一樣的動作'],
                 pose_ai:false,
                 input_id:'',
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/8-1.png',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -315,6 +351,7 @@ module.exports = [
                 input_id:'22',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/8-2.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','骨盆穩定地坐在腳跟上','前面的手放在膝蓋上','後面的手放在地面'],
             },
@@ -332,6 +369,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350546192',
         video_url_jp:'https://player.vimeo.com/video/350467858',
         course_introduction:'我們要做的，都不是激烈的運動，而是用瑜珈慢慢地，溫柔地去鍛煉這些核心肌群。一旦鍛煉了核心肌群，鬆弛的肌肉也會跟著被鍛煉。這樣，肚子周邊就會跟著緊實起來。<br>另一方面，只要內臟被刺激，新陳代謝就會活化，所以對於改善水腫，腰痛，甚至讓腸胃功能提高，緩解便秘，也是非常非常有效的喔！',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -339,8 +377,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L9_action01.mp4',
                 pose_description:['先讓膝蓋立著，坐起來','把手放到膝蓋後方','兩隻手掌交叉抓住手肘','一邊吸氣，一邊伸直背部肌肉','地上抬起兩腳','小腿肚跟地板平行之後','維持10-30秒','重複三到五次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/9-1.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -349,8 +389,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L9_action02.mp4',
                 pose_description:['看著天花板躺下，彎曲兩個膝蓋','讓膝蓋往自己胸口的方向靠攏','兩手壓著骨盆，一邊吐氣，一邊把右腳往前伸','不要讓後腳跟與小腿肚碰到地板','一邊吸氣一邊把腳放回去','另外一邊也要重複這樣的動作','重複5-10次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/9-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -362,6 +404,7 @@ module.exports = [
                 input_id:'19',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/9-3.png',
                 remind_text: '橫式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','雙腳距離再更靠近一點','放慢感受腹部核心力量'],
             },
@@ -378,6 +421,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350547825',
         video_url_jp:'https://player.vimeo.com/video/350465960',
         course_introduction:'大腿內側裡面的「內轉肌」在日常生活中，若沒有特別有意識鍛鍊使用，就不會用到的。那是一個容易低溫，容易囤積橘皮組織的地方。<br>只要內轉肌肉一旦衰退，腳閉合的時候力量就會變弱、容易變成O型腿。血液跟淋巴的循環也會變遲鈍，容易水腫。這樣下去的話，腳就會越來越粗！所以在那之前，我們得要好好照顧這個部位！',
+        trial: true,
         poses:[
             {
                 pose_id: 'first',
@@ -388,6 +432,7 @@ module.exports = [
                 input_id:'20',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-1.png',
                 remind_text: '直式拍攝、正面入鏡',
+                trial: true,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','穩定手肘','雙腳距離再遠一點','視線看向側面'],
             },
@@ -397,8 +442,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L10_action02.mp4',
                 pose_description:['正躺看著天花板','讓兩個膝蓋往上抬起','手掌抓著墊子','吸口氣讓腳交叉','吐氣後往反方向交叉','有節奏感的重複各10次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: true,
                 remind_img:'',
             },
         ],
@@ -414,6 +461,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/349015764',
         video_url_jp:'https://player.vimeo.com/video/348991213',
         course_introduction:'忙碌的每一天，如果呼吸變淺的話，就會影響到大腦跟自律神經。隨著壓力越來越大，你總是覺得好像有點焦躁不安，那就代表你的呼吸變淺了。而且，因為氧氣不足時，你的內臟的功能也會跟著變差。<br>不過，瑜珈的深沈呼吸裡，就會有能達到放鬆副交感神經的效果。這會促進讓精神變安定感，感受到幸福感的血清素分泌，讓你擁有平穩的心情。',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -421,8 +469,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L11_action01.mp4',
                 pose_description:['輕鬆的姿勢坐下','輕輕的閉上眼皮','把意識集中在自己的呼吸','平靜下來後就可以開始換到腹式呼吸','從鼻子一邊吸氣一邊膨脹肚子','在從鼻子吐氣讓肚子凹進去','到平靜為止，重複數次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/11-1.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -431,8 +481,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L11_action02.mp4',
                 pose_description:['彎曲右手的食指跟中指用右手的拇指去壓右邊的鼻孔','從左邊的鼻孔呼吸，用右手的第四根手指跟小指去壓左邊的鼻孔','右手的拇指放開，從右邊的鼻孔吐氣','從右邊的鼻孔呼吸，用右邊的拇指去壓住右邊的鼻孔','右邊的第四根手指跟小指放開','從左邊的鼻孔吐氣','重複數次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/11-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
         ],
@@ -448,6 +500,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350438391',
         video_url_jp:'https://player.vimeo.com/video/350040395',
         course_introduction:'24小時制的照顧小孩會讓生活節奏變亂，讓體內的節奏，就是生理時鐘也會變亂走樣，便會產生睡不著的狀況。照顧小孩也因此沒有辦法很順利，家事也做不太起來。連自己都沒有發現累積了很多壓力，最後變成睡不著的狀況。<br>為了要回復疲勞，讓身心變平穩，休息是很重要的。這次要介紹兩種姿勢：睡覺前的十分鐘，不妨試試深呼吸放鬆呢？',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -455,8 +508,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L12_action01.mp4',
                 pose_description:['設置瑜珈磚和瑜珈枕後，把屁股後面墊上瑜珈磚','沒有瑜珈磚和瑜珈枕的人可以用棉被裹起來代替','將背部靠在上面，慢慢地面朝天空地躺下來，讓腳底碰到地板','把手放在肚子上，像是要溫暖他ㄧ般，或是把手掌面向上，放到身體兩側','慢慢地放輕鬆，把身體的力量抽掉','放鬆持續三到五個呼吸','回去的時候把腳閉合，把手放下','讓手肘壓著墊子，起身'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/12-1.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -465,8 +520,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L12_action02.mp4',
                 pose_description:['先仰躺看天花板，讓腳開與墊子同寬','手掌面向天花板，在腋下留一個拳頭的空間','慢慢地閉上眼睛把全身的力量都交給墊子','把頭左右搖一搖、滾一滾','從口中吐哈～這樣的把全身力量放鬆','進行5-10分鐘，不讓身體變冷的程度','身上也可以蓋上棉被保暖','腦中什麼都不用想的放鬆','持續著自然的呼吸','起身的時候，先從末端的手足收緊、放鬆（石頭、布、石頭、布），開著握著重複','讓整個身體起床','再把頭左右搖晃，讓兩個膝蓋立起來。','把身體往旁邊，慢慢地起身'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/12-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
         ],
@@ -482,6 +539,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350549096',
         video_url_jp:'https://player.vimeo.com/video/350465109',
         course_introduction:'讓我們來打開心胸，攝取正面能量，感受到向前走的感覺吧！打開心胸跟喉嚨就可以攝取新鮮空氣，自然心情也會變得清爽。<br>對於不習慣的新生活，照顧小孩，感受到疲勞，焦慮，喘不過氣來時，這時候做這些動作就可以感受到可以煥然一新。因為產後非常忙碌，感覺怎麼樣都追不上時間...所以，必須要更重視自己煥然一新的時間！那麼我們來馬上開始吧！',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -489,8 +547,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L13_action01.mp4',
                 pose_description:['首先先用舒服的姿勢坐下來','用兩手手指輕抓住頭頂，用指尖輕輕按摩頭頂','重複著自然的呼吸就可以了'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-1.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -499,8 +559,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L13_action02.mp4',
                 pose_description:['用舒服的姿勢坐下來','把手掌合起來，一邊吸氣打開心胸','想像慢慢交叉的手臂靠攏的感覺','讓一大口的新鮮的空氣送到自己身體裡','一邊吐氣一邊放鬆','重複5-10次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -512,6 +574,7 @@ module.exports = [
                 input_id:'27',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-3.png',
                 remind_text: '直式拍攝、側面入鏡',
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','不要聳肩','身體太往前','身體太往後','用背部出力會更好','手臂不彎曲','抬手不完全','更往上伸展','屁股離地了'],
             },
@@ -528,6 +591,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/349829709',
         video_url_jp:'https://player.vimeo.com/video/349838572',
         course_introduction:'因為產後生活都是以嬰兒為中心。想要休息的時候也沒有辦法休息，不知不覺就會累積很多疲勞對吧？微量的疲勞如果一直放著不管，就會累積起來，搞壞身體。<br>所以，媽媽們要記得為自己確保一些照顧身體的時間，才有活力可以迎接每一天哦！',
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -535,8 +599,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L14_action01.mp4',
                 pose_description:['先把右手放到肚子上','左手放在胸部附近','慢慢地從鼻子吸氣','把空氣送到胸部，再送到肚子','慢慢地從嘴巴吐一口薄薄的氣','重複30秒到1分鐘'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/14-1.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
             {
@@ -545,8 +611,10 @@ module.exports = [
                 pose_video:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L14_action02.mp4',
                 pose_description:['採取四肢趴在地上的姿勢','四肢趴在地上的姿勢是用到全身的核心肌肉的姿勢','肩膀底下對應到手腕的位置，膝蓋來到腰下的位置','整個背部呈現平穩直線','先吐氣、一邊吸氣，讓屁股抬起來，把背部凹進去','臉往斜上方、一邊吐氣一邊讓背變圓','把臉朝下、這樣重複三到五次'],
                 pose_ai:false,
+                ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/14-2.png',
                 input_id:'',
                 remind_text: '',
+                trial: false,
                 remind_img:'',
             },
         ],

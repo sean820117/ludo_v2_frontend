@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <!-- <titlebar :logo_src="is_ui_config_loaded ? ui_config.logo : ''" :project_name="is_ui_config_loaded ? ui_config.project_name : ''" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">
-        <div v-if="user.user_id != ''" slot="right-component" @click="$router.push('/logout')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登出</div>
-        <div v-else slot="right-component" @click="$router.push('/resume/login')" :style="{ background : is_ui_config_loaded ? ui_config.base_color : '' , color : 'white' }">登入</div>
-    </titlebar> -->
-    <nuxt/>
-    <!-- <resume-footer></resume-footer> -->
-  </div>
-  
+  <div class="mami_layout">
+    <div class="mami_back">
+        <nuxt/>
+    </div>
+</div>
 </template>
 
 <script>
@@ -162,14 +158,21 @@ html, body, #__nuxt, #__layout, #__layout > div{
 }
 
 @media (min-width:769px) {
-    html, body, #__nuxt, #__layout, #__layout > div{
+    /* html, body, #__nuxt, #__layout, #__layout > div{
         height: 100vh;
         width: 450px;
-        /* background: black; */
         margin: 0 auto;
     }
     html {
         background-color: black;
+    } */
+    .mami_layout{
+        min-height: 100vh;
+        background: black ;
+    }
+    .mami_back {
+        width: 450px;
+        margin: 0 auto;
     }
 }
 

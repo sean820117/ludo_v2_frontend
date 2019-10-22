@@ -1,6 +1,6 @@
 export default {
     header_login:'ログイン',
-
+    header_menu: 'Menu',
     index_button_free: '体験版',
     index_button_pay: 'フルコース',
     index_select_login: '他のログインのやりかた',

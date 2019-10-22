@@ -33,7 +33,6 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
 export default {
-    layout: 'mommiyoga',
     data:()=>({
         writing_text: '',
         is_submited: false,
@@ -176,6 +175,9 @@ export default {
     }
     .writing-baby {
         max-width: 150px; 
+    }
+    .writing-main {
+        max-width: 350px;
     }
 }
 </style>
