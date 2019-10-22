@@ -53,15 +53,15 @@
                     <div style="margin:5vh auto 2vh;line-height:35px;" class="course-divide-btn" @click="clickPractice">
                         {{$t('course_pose_btn')}}
                     </div>
-                    <div style="position: relative;">
+                    <!-- <div style="position: relative;">
                         <div style="margin:2vh auto;line-height:35px;color:#EEEFEA;" @click="$router.push('/aiassistant')" class="course-divide-btn">
                             {{$t('menu_nav_text_record')}}
                         </div>
                         <div class="course-teach-question-box" @click="openExplainBox">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
                         </div>
-                    </div>
-                <img @click="clickPractice" class="have-ai-icon" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher">
+                    </div> -->
+                <!-- <img @click="clickPractice" class="have-ai-icon" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher"> -->
             </div>
         </div>
     </div>

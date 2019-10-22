@@ -10,7 +10,7 @@
                         <h4 style="margin-bottom:30px;">{{$t('about_first_content_name_en')}}</h4>
                     </div>
                     <p style="font-weight: bold; margin-bottom: 5px;">{{$t('about_first_content_have')}}</p>
-                    <p style="margin-bottom: 10px;">Yoga Aliance RYT200<br>
+                    <p style="margin-bottom: 10px;">Yoga Alliance RYT200<br>
                         maternity yoga instructor<br>
                         aerial yoga instructor<br>
                         Body Care professional course

@@ -34,6 +34,13 @@
                     <h6>{{is_pregnant ? '您的預產期' : '產後時間'}}</h6>
                     <p>{{user_input_date}}</p>
                 </div>
+                <div class="info-white-article-block">
+                    <div class="info-white-article-tag">今日選讀</div>
+                    <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
+                    <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
+                    <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                    <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" @click="$router.push('/pay')">更多媽咪知識</div>
+                </div>
             </div>
         </div>
         <div v-else>
@@ -223,6 +230,7 @@ export default {
                 }
                 if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
                     this.input_date = true
+                    console.log(localStorage['user_date'])
                     if(localStorage['is_pregnant'] == 'true'){
                         this.is_pregnant = true
                         let d = localStorage['user_date']
@@ -244,7 +252,6 @@ export default {
         ...mapGetters({
             user : 'user/getData',
         }),
-        
     },
     methods: {
         clickToPay(){
@@ -272,6 +279,7 @@ export default {
                         localStorage['user_date'] = this.user_date
                         alert('已收到～')
                         this.is_loading = true
+                        this.getUserTime();
                         setTimeout(() => {
                             this.input_date = true
                             this.is_loading = false
@@ -283,6 +291,23 @@ export default {
                 }
             }
         },
+        getUserTime(){
+            if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
+                if(localStorage['is_pregnant'] == 'true'){
+                    this.is_pregnant = true
+                    let d = localStorage['user_date']
+                    let user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
+                    this.user_input_date = user_input_date
+                } else {
+                    this.is_pregnant = false
+                    let current_date = new Date();
+                    let current_time = current_date.getTime();
+                    let user_time = Date.parse(localStorage['user_date'])
+                    let user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
+                    this.user_input_date = user_input_date
+                }
+            }
+        }
     },
 }
 </script>
@@ -546,9 +571,31 @@ export default {
     margin: 0 auto;
 }
 .info-pink-date p {
-    font-size: 40px;
+    font-size: 35px;
     color: #fff;
     margin-top: 25px;
+    text-align: center;
+}
+.info-page.after-input {
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+.info-white-article-block {
+    width: 85%;
+    margin: 110px auto 0;
+}
+.info-white-article-tag {
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #24798f;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 25px;
+    margin: 0 auto 30px;
 }
 @media(min-width: 769px) {
     .info-header {
@@ -719,6 +766,7 @@ export default {
         font-size: 50px;
         color: #fff;
         margin-top: 25px;
+        text-align: unset;
     }
     .info-white-article {
         width: 100%;
@@ -737,16 +785,6 @@ export default {
         margin: 180px auto 0;
     }
     .info-white-article-tag {
-        width: 150px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #24798f;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 500;
-        border-radius: 25px;
         margin: 0 auto 50px;
     }
 

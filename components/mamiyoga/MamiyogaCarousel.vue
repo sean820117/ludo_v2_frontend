@@ -8,11 +8,11 @@
                     <h4>{{single_plan.slogan}}</h4>
                     <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
                     <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{single_plan.price}}</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <p style="font-size:14px;">等同</p>
+                        <p style="font-size:47px;color: #C74F4F;">&nbsp;132&nbsp;</p>
+                        <p style="font-size:14px;">NTD/月</p>
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+                    <p style="font-size:16px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
@@ -25,12 +25,13 @@
                     <div class="intro-wrap-four-pay">
                     <h4>{{four_person_program.slogan}}</h4>
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{four_person_every}}</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                        <p style="font-size:14px;">每天</p>
+                        <p style="font-size:47px; color:#FF9898;">&nbsp;4&nbsp;</p>
+                        <p style="font-size:14px; color:#FF9898;">元</p>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt="">
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+                    <p style="font-size:16px;text-align: center;">一年NTD{{four_person_every}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
@@ -46,7 +47,7 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:47px;color:#ff9898;">&nbsp;790&nbsp;</p>
                         <p style="font-size:14px;">NTD/人起</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
@@ -69,11 +70,11 @@
                     <h4>{{single_plan.slogan}}</h4>
                     <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
                     <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{single_plan.price}}</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <p style="font-size:14px;">等同</p>
+                        <p style="font-size:47px;color: #C74F4F;">&nbsp;132&nbsp;</p>
+                        <p style="font-size:14px;">NTD/月</p>
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD132/月</p>
+                    <p style="font-size:16px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
@@ -86,12 +87,13 @@
                     <div class="intro-wrap-four-pay">
                     <h4>{{four_person_program.slogan}}</h4>
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">{{four_person_program.price}}</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                        <p style="font-size:14px;">每天</p>
+                        <p style="font-size:47px; color:#FF9898;">&nbsp;4&nbsp;</p>
+                        <p style="font-size:14px; color:#FF9898;">元</p>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt="">
                     </div>
-                    <p style="font-size:16px;text-align: center;">折合NTD107/月</p>
+                    <p style="font-size:16px;text-align: center;">一年NTD{{four_person_program.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
@@ -107,7 +109,7 @@
                     <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:47px;color:#ff9898;">&nbsp;790&nbsp;</p>
                         <p style="font-size:14px;">NTD/人起</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
@@ -129,11 +131,11 @@
                     <h4>{{single_plan.slogan}}</h4>
                     <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
                     <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;">{{single_plan.price}}</p>
-                        <p style="font-size:17px;">NTD/人</p>
+                        <p style="font-size:17px;">等同</p>
+                        <p style="font-size:47px;color: #C74F4F;">&nbsp;132&nbsp;</p>
+                        <p style="font-size:17px;">NTD/月</p>
                     </div>
-                    <p style="font-size:18px;text-align: center;">折合NTD132/月</p>
+                    <p style="font-size:18px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
                         立即購買
                     </div>
@@ -146,12 +148,13 @@
                     <div class="intro-wrap-four-pay">
                     <h4>{{four_person_program.slogan}}</h4>
                     <p style="text-align: center;font-size: 16px;margin-top:5px;">4人以上</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;">{{four_person_every}}</p>
-                        <p style="font-size:17px;">NTD/人</p>
+                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                        <p style="font-size:17px;">每天</p>
+                        <p style="font-size:47px; color:#FF9898;">&nbsp;4&nbsp;</p>
+                        <p style="font-size:17px; color:#FF9898;">元</p>
+                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt="">
                     </div>
-                    <p style="font-size:18px;text-align: center;">折合NTD107/月</p>
+                    <p style="font-size:18px;text-align: center;">一年NTD{{four_person_every}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
                         立即購買
                     </div>
@@ -167,7 +170,7 @@
                     <p style="text-align: center;font-size: 16px;margin-top:5px;">30人以上</p>
                     <div class="intro-wrap-four-pay-price">
                         <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;">790</p>
+                        <p style="font-size:47px;color:#ff9898;">&nbsp;790&nbsp;</p>
                         <p style="font-size:17px;">NTD/人起</p>
                     </div>
                     <p style="font-size:18px;text-align: center;">專人服務</p>

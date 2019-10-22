@@ -54,7 +54,7 @@
                 </div>
                 <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(pose,i) in first_course.poses" :key="i" stagger="500" 
-                    :courseBg="first_course.preview_img" :courseTitle="pose.pose_brief" :courseVideo="pose.pose_video" :is_trial="pose.trial"
+                    :courseBg="pose.ai_preview_img" :courseTitle="pose.pose_brief" :courseVideo="pose.pose_video" :is_trial="pose.trial"
                     ></mamiyoga-desktop-course-block>
                 </div>
                 <img @click="goDown" style="display: block;margin: 8vh auto 0;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-info-down.png" alt="">

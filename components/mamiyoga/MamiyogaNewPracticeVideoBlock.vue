@@ -52,13 +52,13 @@
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.wav"></audio>
                 <div class="course-video-container">
-                    <video playsinline id="course-video-1" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_A.mp4"></video>
+                    <video playsinline id="course-video-1" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4"></video>
                 </div>
                 <div class="course-video-container">
-                    <video playsinline id="course-video-2" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4"></video>
+                    <video playsinline id="course-video-2" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action02_B.mp4"></video>
                 </div>
                 <div class="course-video-container">
-                    <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4"></video>
+                    <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action03_B.mp4"></video>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
                     <div class="course-video-container-icon">
@@ -242,7 +242,7 @@ export default {
         video_recorder:'',
         count_over: false,
         is_studying: false,
-        show_inhale: false,
+        show_inhale: true,
         show_exhale: false,
         is_inhaleing: false,
         is_exhaleing: false,
@@ -319,6 +319,41 @@ export default {
                     language: 'zh-tw',
                 });
             }
+             //控制吸氣吐氣的顯示
+            setTimeout(() => {
+                this.is_inhaleing = true
+            }, 3000);
+            setTimeout(() => {
+                this.show_inhale = false
+                this.show_exhale = true
+            }, 13000);
+            setTimeout(() => {
+                this.is_exhaleing = true
+            }, 16000);
+            //第二次吸氣吐氣
+            setTimeout(() => {
+                this.show_inhale = true
+                this.show_exhale = false
+                this.is_exhaleing = false
+            }, 24000);
+            setTimeout(() => {
+                this.is_inhaleing = true
+            }, 27000);
+            setTimeout(() => {
+                this.show_inhale = false
+                this.show_exhale = true
+            }, 30000);
+            setTimeout(() => {
+                this.is_exhaleing = true
+            }, 31000);
+
+            setTimeout(() => {
+                this.show_exhale = false
+                this.show_inhale = false
+                this.is_exhaleing = false
+                this.is_inhaleing = false
+            }, 40000);
+
             let bgm = document.querySelector('#course-bgm')
             let co_vid = document.querySelector('#course-video-1')
             let nt_vid = document.querySelector('#course-video-2')
@@ -358,39 +393,24 @@ export default {
                     language: 'zh-tw',
                 });
             }
-            
+            this.show_inhale = true
             //控制吸氣吐氣的顯示
             setTimeout(() => {
                 this.is_inhaleing = true
-            }, 3000);
+            }, 20000);
             setTimeout(() => {
                 this.show_inhale = false
                 this.show_exhale = true
-            }, 13000);
-            setTimeout(() => {
-                this.is_exhaleing = true
-            }, 16000);
-            //第二次吸氣吐氣
-            setTimeout(() => {
-                this.show_inhale = true
-                this.show_exhale = false
-                this.is_exhaleing = false
-            }, 24000);
-            setTimeout(() => {
-                this.is_inhaleing = true
-            }, 27000);
-            setTimeout(() => {
-                this.show_inhale = false
-                this.show_exhale = true
-            }, 30000);
-            setTimeout(() => {
-                this.is_exhaleing = true
             }, 31000);
-
+            setTimeout(() => {
+                this.is_exhaleing = true
+            }, 32000);
             setTimeout(() => {
                 this.show_exhale = false
                 this.show_inhale = false
-            }, 40000);
+                this.is_exhaleing = false
+                this.is_inhaleing = false
+            }, 39000);
             //控制影片播放及進度條
             let co_vid = document.querySelector('#course-video-2')
             let nt_vid = document.querySelector('#course-video-3')
@@ -426,6 +446,22 @@ export default {
                     language: 'zh-tw',
                 });
             }
+            this.show_inhale = true
+            //控制吸氣吐氣的顯示
+            setTimeout(() => {
+                this.is_inhaleing = true
+            }, 45000);
+            setTimeout(() => {
+                this.show_inhale = false
+                this.is_inhaleing = false
+                this.is_exhaleing = true
+            }, 52000);
+            setTimeout(() => {
+                this.show_exhale = false
+                this.show_inhale = false
+                this.is_exhaleing = false
+                this.is_inhaleing = false
+            }, 58000);
             let co_vid = document.querySelector('#course-video-3')
             let height = 0
             this.video_length = co_vid.duration

@@ -42,4 +42,11 @@ export default {
     left: 0;
     z-index: 0;
 }
+@media (min-width: 769px) {
+    .mobile-syllabus-block {
+        width: 30%;
+        max-width: 450px;
+        height: 270px;
+    }
+}
 </style>
