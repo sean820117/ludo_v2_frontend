@@ -844,8 +844,9 @@ export default {
         justify-content: center;
         flex-direction: column;
         position: absolute;
-        width: 100%;
         bottom: 15vh;
+        left: calc(50% - 80px);
+        width: 160px;
     }
 
     .agree-checkbox-label {

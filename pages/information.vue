@@ -177,6 +177,7 @@ import axios from '~/config/axios-config'
 export default {
     data:()=>({
         is_login: false,
+        payed_or_not: false,
         go_to_where: '/signup',
         want_recommend: false,
         show_date_input: false,
@@ -208,26 +209,47 @@ export default {
             } else {
                 this.is_login = true
                 this.go_to_where = '/pay'
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!payed_or_not) {
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                this.have_trial = true
+                if (!this.payed_or_not) {
                     this.check_log = '/pay'
                 } else {
                     this.check_log = '/menu'
                 }
             }
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                let now = new Date();
-                let now_time = now.getTime();
-                let use_time = (now_time - open_time)/86400000;
-                console.log(use_time)
-                if(use_time > 7){
-                    this.have_trial = false;   
-                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                    this.$router.push('/');
-                }else {
-                    this.have_trial = true;
+            if(!this.payed_or_not) {
+                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){
+                        this.have_trial = false;   
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/');
+                    }else {
+                        this.have_trial = true;
+                    }
+                    if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
+                        this.input_date = true
+                        console.log(localStorage['user_date'])
+                        if(localStorage['is_pregnant'] == 'true'){
+                            this.is_pregnant = true
+                            let d = localStorage['user_date']
+                            this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
+                        } else {
+                            this.is_pregnant = false
+                            let current_date = new Date();
+                            let current_time = current_date.getTime();
+                            let user_time = Date.parse(localStorage['user_date'])
+                            console.log(current_time)
+                            console.log(user_time)
+                            this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
+                        }
+                    }
                 }
+            } else {
                 if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
                     this.input_date = true
                     console.log(localStorage['user_date'])
@@ -246,6 +268,7 @@ export default {
                     }
                 }
             }
+            
         }
     },
     computed:{
@@ -261,12 +284,17 @@ export default {
             this.$scrollTo('#two-article',"start");
         },
         getProject(){
-            if(this.have_trial){
-                this.want_recommend = true
+            if(!this.payed_or_not) {
+                if(this.have_trial){
+                    this.want_recommend = true
+                } else {
+                    alert('開通七天體驗即可開始使用～')
+                    this.$router.push('/free-trial')
+                }
             } else {
-                alert('開通七天體驗即可開始使用～')
-                this.$router.push('/free-trial')
+                this.want_recommend = true
             }
+            
         },
         inputDate(){
             if(this.user_date !== '') {

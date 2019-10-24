@@ -151,6 +151,7 @@ export default {
         show_blends: false,
 
         login_or_not: false,
+        payed_or_not: false,
         have_trial: false,
     }),
     components: {
@@ -180,22 +181,6 @@ export default {
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
             }
-
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                let now = new Date();
-                let now_time = now.getTime();
-                let use_time = (now_time - open_time)/86400000;
-                console.log(use_time)
-                if(use_time > 7){
-                    this.have_trial = false;   
-                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                    this.$router.push('/');
-                }else {
-                    this.have_trial = true;
-                }
-            }
-            
         }
     },
     computed:{
@@ -228,7 +213,6 @@ export default {
         getRectifys(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'rectify'));
-                // result_array = result_array.slice(0,3)
                 if(this.show_rectifys) {
                     return result_array;
                 } else {
@@ -241,7 +225,6 @@ export default {
         getAlleviates(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'alleviate'));
-                // result_array = result_array.slice(0,3)
                 if(this.show_alleviates) {
                     return result_array;
                 } else {
@@ -254,8 +237,6 @@ export default {
         getBeautys(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'beauty'));
-                // result_array = result_array.slice(0,3)
-                // return result_array;
                 return this.show_beautys ? result_array : result_array.slice(0,3)
             } else {
                 return [];
@@ -264,8 +245,6 @@ export default {
         getBlends(){
             if (this.courses) {
                 let result_array = this.courses.filter(course => course.tags.find(tag => tag == 'blend'));
-                // result_array = result_array.slice(0,3)
-                // return result_array;
                 return this.show_blends ? result_array : result_array.slice(0,3)
             } else {
                 return [];
@@ -280,7 +259,7 @@ export default {
                 // window.alert("尚未登入帳號，請先前往登入～");
                 // this.$router.push('/login');
             } else {
-                // let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 // if (!payed_or_not) {
                 //     console.log("not payed");
                 //     window.alert("尚未開通課程，請先前往購買～");
@@ -302,15 +281,36 @@ export default {
             current_vid.querySelector('iframe').src = '';
         },
         startDefaultCourse(){
-            if(this.login_or_not && this.have_trial){
+            if(!this.payed_or_not) {
+                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){
+                        this.have_trial = false;   
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/');
+                    }else {
+                        this.have_trial = true;
+                        let iframe = document.querySelector('#current-course-video');
+                        if (iframe) {
+                            iframe.style.display = 'block';
+                            iframe.querySelector('iframe').src = 'https://player.vimeo.com/video/349924443';
+                        }
+                    }
+                } else {
+                    alert('開啟七天體驗後即可試看課程～')
+                    this.$router.push('/free-trial')
+                }
+            } else {
+                this.have_trial = true;
                 let iframe = document.querySelector('#current-course-video');
                 if (iframe) {
                     iframe.style.display = 'block';
                     iframe.querySelector('iframe').src = 'https://player.vimeo.com/video/349924443';
                 }
-            } else {
-                alert('開啟七天體驗後即可試看課程～')
-                this.$router.push('/free-trial')
             }
         }
     }
