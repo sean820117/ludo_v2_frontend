@@ -3,10 +3,7 @@ volumes:
   node_modules:
 services:
   ludo_f2e:
-    #build:
-      #context: .
-      #dockerfile: Dockerfile
-    image: ludo_frontend_base_server:1.0
+    image: ludo_frontend_base_server:latest
     ports:
         - "3000:3000"
     environment:
