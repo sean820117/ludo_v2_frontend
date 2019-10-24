@@ -51,6 +51,7 @@ export default {
         check_lang : '',
         have_trial: false,
         login_or_not: false,
+        payed_or_not: false,
     }),
     props: {
         bgImage: String,
@@ -79,7 +80,10 @@ export default {
             }
             
             this.login_or_not = await this.$checkLogin(this.$store);
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+            this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+            if (this.payed_or_not) {
+                this.have_trial = true;
+            } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
                 let open_time = parseInt(localStorage['when_is_free_trial_start'])
                 let now = new Date();
                 let now_time = now.getTime();
@@ -102,7 +106,7 @@ export default {
     },
     methods:{
         goCoursePage(){
-            if(this.is_trial&&this.have_trial) {
+            if(this.is_trial&&this.have_trial || this.payed_or_not) {
                 this.$router.push('/course/' + this.goCourse)
             } else if (!this.have_trial) {
                 alert('開通七天體驗即可開始使用！')
