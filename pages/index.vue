@@ -150,7 +150,7 @@
                             <!-- <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
                             </router-link> -->
-                            <div @click="$router.push('/information')" class="index-article-out-btn mirror-btn" style="width: 250px;display: flex;align-items: center;justify-content: center;margin-left: 7.5%;">閱讀媽咪知識</div>
+                            <div @click="$router.push('/information')" class="index-article-out-btn mirror-btn go-info">閱讀媽咪知識</div>
                         </div>
                         <div class="index-article-use-video">
                             <div class="course-info-block-mirror">
@@ -482,8 +482,8 @@
                             </div>
                         </div>
                         <div style="min-height: 80vh;background: #FCFCFC;padding-top: 13vh;">
-                            <div style="display:flex;justify-content: space-evenly;max-width: 1366px;margin: 0 auto;">
-                                <div style="padding-left: 30px;">
+                            <div style="display:flex;justify-content: space-between;width: 90%;max-width: 1366px;margin: 0 auto;">
+                                <div>
                                     <h5 class="index-article-out-container-text why-to-select-title">為什麼選Mamiyoga？</h5>
                                     <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
                                 </div>
@@ -1458,6 +1458,12 @@ export default {
     font-size: 26px;
     border-radius: 16px;
 }
+.index-article-out-btn.mirror-btn.go-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
 .index-official-certification {
     background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-10.png');
     height: 150px;
@@ -2339,6 +2345,11 @@ export default {
         margin: 10vh 5%;
         cursor: pointer;
     }
+    .index-article-out-btn.mirror-btn.go-info {
+        width: 250px;
+        margin-left: 7.5%;
+        margin-bottom: unset;
+    }
     .intro-wrap-block-new-five-curriculum {
         height: auto;
     }
@@ -2426,6 +2437,7 @@ export default {
         color:#24798F;
         font-weight: bold;
         margin: 0 auto;
+        width: 90%;
         max-width: 1366px;
     }
     .last-pay-title {
@@ -2580,6 +2592,11 @@ export default {
         bottom: 7vh;
         min-width: 230px;
         max-width: 300px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1300px) {
+    .about-course-teach-img{
+        width: 55% !important;
     }
 }
 @media (max-width: 1300px) {
