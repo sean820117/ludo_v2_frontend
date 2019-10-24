@@ -3,7 +3,7 @@
         <div class="mamiyoga-desktop-course-block" :style="{backgroundImage: `url('${courseBg}')`,padding: open_video ? '0': ''}" @click="show_pose = true">
             <div class="mamiyoga-desktop-course-flex-block">
                 <p>{{courseTitle}}</p>
-                <img v-if="!is_trial || !have_trial" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
+                <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
             </div>
             <div class="mamiyoga-desktop-course-block-gradual"></div>
             <div @click="openCourseVideo()" class="mamiyoga-desktop-course-block-hover">
@@ -46,11 +46,19 @@ export default {
         open_video: false,
         have_trial: false,
         login_or_not: false,
+        payed_or_not: false,
     }),
     async mounted(){
         if(process.client) {
             this.login_or_not = await this.$checkLogin(this.$store);
+            if(!this.login_or_not) {
 
+            } else {
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                if(this.payed_or_not) {
+                    this.have_trial = true
+                }
+            }
             if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
                 let open_time = parseInt(localStorage['when_is_free_trial_start'])
                 let now = new Date();
@@ -59,8 +67,6 @@ export default {
                 console.log(use_time)
                 if(use_time > 7){
                     this.have_trial = false;   
-                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                    this.$router.push('/');
                 }else {
                     this.have_trial = true;
                 }
@@ -74,8 +80,45 @@ export default {
     },
     methods: {
         openCourseVideo(video = null){
-            // this.open_video = true
-            if(this.is_trial&&this.have_trial) {
+            if(!this.payed_or_not){
+                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){
+                        this.have_trial = false;   
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/');
+                    }else {
+                        this.have_trial = true;
+                        if(this.is_trial&&this.have_trial) {
+                            if (video) {
+                                let iframe = document.querySelector('#current-course-video');
+                                if (iframe) {
+                                    iframe.style.display = 'block';
+                                    iframe.querySelector('iframe').src = video;
+                                }
+                            } else if(this.courseVideo) {
+                                let iframe = document.querySelector('#current-course-video');
+                                if (iframe) {
+                                    iframe.style.display = 'block';
+                                    iframe.querySelector('iframe').src = this.courseVideo;
+                                }
+                            } else {
+                                console.log(courseTitle + ' no video');
+                            }
+                        } else {
+                            alert('購買後即可觀看所有課程～')
+                            this.$router.push('/pay')
+                        }
+                    }
+                } else {
+                    alert('開通七天體驗即可開始使用！')
+                    this.$router.push('/free-trial')
+                } 
+            } else {
                 if (video) {
                     let iframe = document.querySelector('#current-course-video');
                     if (iframe) {
@@ -91,13 +134,8 @@ export default {
                 } else {
                     console.log(courseTitle + ' no video');
                 }
-            } else if (!this.have_trial) {
-                alert('開通七天體驗即可開始使用！')
-                this.$router.push('/free-trial')
-            } else {
-                alert('購買後即可觀看所有課程～')
-                this.$router.push('/pay')
             }
+            
         }
     }
 }

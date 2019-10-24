@@ -21,27 +21,15 @@
             </div>
             <div id="show-course" :class="is_studying ? 'show':''">
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
-                <div v-if="show_inhale && !show_exhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''">
+                <div v-if="show_inhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''">
                     <div class="repeat-bar-text">吸氣</div>
                 </div>
-                <div v-if="!show_inhale && show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''">
+                <div v-if="show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''">
                     <div class="repeat-bar-text">吐氣</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">
-                    <div class="video-process-bar">
-                        <div id="video-process-bar-inside-1"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div id="video-process-bar-inside-2"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div id="video-process-bar-inside-3"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div id="video-process-bar-inside-4"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div id="video-process-bar-inside-5"></div>
+                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
+                        <div class="video-process-bar-inside" :id="`video-process-bar-inside-${(i+1)}`"></div>
                     </div>
                 </div>
                 <div v-if="count_over" class="count-over">
@@ -52,13 +40,7 @@
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.wav"></audio>
                 <div class="course-video-container">
-                    <video playsinline id="course-video-1" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4"></video>
-                </div>
-                <div class="course-video-container">
-                    <video playsinline id="course-video-2" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action02_B.mp4"></video>
-                </div>
-                <div class="course-video-container">
-                    <video playsinline id="course-video-3" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action03_B.mp4"></video>
+                    <video playsinline id="course-video" :src="pose_video"></video>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
                     <div class="course-video-container-icon">
@@ -84,19 +66,7 @@
                     <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
                 </div>
                 <div class="video-process-bar-block" id="teach-process" style="display:none">
-                    <div class="video-process-bar">
-                        <div class="video-process-bar-inside"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div class="video-process-bar-inside"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div class="video-process-bar-inside"></div>
-                    </div>
-                    <div class="video-process-bar">
-                        <div class="video-process-bar-inside"></div>
-                    </div>
-                    <div class="video-process-bar">
+                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
                         <div class="video-process-bar-inside"></div>
                     </div>
                 </div>
@@ -222,27 +192,16 @@ export default {
         MamiyogaWindowAlertBox,
         MamiyogaAssayVideo,
     },
+    props:{
+        routine: Object,
+    },
     data:()=>({
         inputVideo:'',
         isRecordingIcon:'',
-        constraints : {
-            // audio: true,
-            video: {
-                // width:480,
-                // height:320,
-                // frameRate:12,
-                // facingMode: 'user',
-                "mandatory": {
-                    "maxWidth": 480,
-                    "maxHeight": 320,
-                    "maxFrameRate": 30,
-                },
-            }
-        },
         video_recorder:'',
         count_over: false,
         is_studying: false,
-        show_inhale: true,
+        show_inhale: false,
         show_exhale: false,
         is_inhaleing: false,
         is_exhaleing: false,
@@ -278,16 +237,18 @@ export default {
         open_camera: Boolean,
 
         is_stop: false,
+        pose_video: '',
     }),
     async mounted(){
         if (process.client) {
             this.inputVideo = document.querySelector('#inputVideo')
             // this.video_recorder = await this.$videoRecorder();
 
-            
             // this.video_recorder.openCamera(this.constraints,this.inputVideo);
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
+
+
         }
     },
     destroyed() {
@@ -303,222 +264,321 @@ export default {
                 let id = setInterval(() => {
                     this.ready_go--
                     if(this.ready_go == 0){
-                        this.startPractice();
+                        this.startRoutine();
                         clearInterval(id)
                     }
                 }, 1000);
             }
         },
-        startPractice(){
-            this.is_studying = true;
-            //控制影片播放及進度條
-            if (this.open_camera) {
-                this.video_recorder.startRecording({
-                    pose_id: "yoga_27",
-                    user_id: this.user.user_id,
-                    language: 'zh-tw',
-                });
-            }
-             //控制吸氣吐氣的顯示
-            setTimeout(() => {
-                this.is_inhaleing = true
-            }, 3000);
-            setTimeout(() => {
-                this.show_inhale = false
-                this.show_exhale = true
-            }, 13000);
-            setTimeout(() => {
-                this.is_exhaleing = true
-            }, 16000);
-            //第二次吸氣吐氣
-            setTimeout(() => {
-                this.show_inhale = true
-                this.show_exhale = false
-                this.is_exhaleing = false
-            }, 24000);
-            setTimeout(() => {
-                this.is_inhaleing = true
-            }, 27000);
-            setTimeout(() => {
-                this.show_inhale = false
-                this.show_exhale = true
-            }, 30000);
-            setTimeout(() => {
-                this.is_exhaleing = true
-            }, 31000);
+        // startPractice(){
+        //     this.is_studying = true;
+        //     //控制影片播放及進度條
+        //     if (this.open_camera) {
+        //         this.video_recorder.startRecording({
+        //             pose_id: "yoga_27",
+        //             user_id: this.user.user_id,
+        //             language: 'zh-tw',
+        //         });
+        //     }
+        //      //控制吸氣吐氣的顯示
+        //     setTimeout(() => {
+        //         this.is_inhaleing = true
+        //     }, 3000);
+        //     setTimeout(() => {
+        //         this.show_inhale = false
+        //         this.show_exhale = true
+        //     }, 13000);
+        //     setTimeout(() => {
+        //         this.is_exhaleing = true
+        //     }, 16000);
+        //     //第二次吸氣吐氣
+        //     setTimeout(() => {
+        //         this.show_inhale = true
+        //         this.show_exhale = false
+        //         this.is_exhaleing = false
+        //     }, 24000);
+        //     setTimeout(() => {
+        //         this.is_inhaleing = true
+        //     }, 27000);
+        //     setTimeout(() => {
+        //         this.show_inhale = false
+        //         this.show_exhale = true
+        //     }, 30000);
+        //     setTimeout(() => {
+        //         this.is_exhaleing = true
+        //     }, 31000);
 
-            setTimeout(() => {
-                this.show_exhale = false
-                this.show_inhale = false
-                this.is_exhaleing = false
-                this.is_inhaleing = false
-            }, 40000);
+        //     setTimeout(() => {
+        //         this.show_exhale = false
+        //         this.show_inhale = false
+        //         this.is_exhaleing = false
+        //         this.is_inhaleing = false
+        //     }, 40000);
 
-            let bgm = document.querySelector('#course-bgm')
-            let co_vid = document.querySelector('#course-video-1')
-            let nt_vid = document.querySelector('#course-video-2')
-            let nt_vid_2 = document.querySelector('#course-video-3')
-            let rest = document.querySelector('#course-video-rest')
-            nt_vid.style.display = 'none';
-            nt_vid_2.style.display = 'none';
-            rest.style.display = 'none';
-            // let height = 0
-            this.video_length = co_vid.duration
-            bgm.play();
-            co_vid.play();
-            let t = (this.video_length+1) / 100
-            let id = setInterval(() => {
-                let bar_percentage = co_vid.currentTime / this.video_length
-                document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
-                if (bar_percentage == 1) {
-                    if (this.open_camera) {
-                        this.video_recorder.stopRecording();
-                    }
-                    // nt_vid.style.display = 'block';
-                    rest.style.display = 'flex';
-                    co_vid.style.display = 'none';
-                    // this.startPractice1();
-                    this.practiceRest1();
-                    console.log('stop')
-                    clearInterval(id)
-                }
-            }, 100);
-        },
-        startPractice1(){
-            this.show_inhale = true
-            if (this.open_camera) {
-                this.video_recorder.startRecording({
-                    pose_id: "yoga_27",
-                    user_id: this.user.user_id,
-                    language: 'zh-tw',
-                });
-            }
-            this.show_inhale = true
-            //控制吸氣吐氣的顯示
-            setTimeout(() => {
-                this.is_inhaleing = true
-            }, 20000);
-            setTimeout(() => {
-                this.show_inhale = false
-                this.show_exhale = true
-            }, 31000);
-            setTimeout(() => {
-                this.is_exhaleing = true
-            }, 32000);
-            setTimeout(() => {
-                this.show_exhale = false
-                this.show_inhale = false
-                this.is_exhaleing = false
-                this.is_inhaleing = false
-            }, 39000);
-            //控制影片播放及進度條
-            let co_vid = document.querySelector('#course-video-2')
-            let nt_vid = document.querySelector('#course-video-3')
-            let rest = document.querySelector('#course-video-rest')
-            let height = 0
-            this.video_length = co_vid.duration
-            // this.recordVideo();
-            co_vid.play();
-            let t = (this.video_length+1) / 100
-            let id = setInterval(() => {
-                let bar_percentage = co_vid.currentTime / this.video_length
-                document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage * 100)+'%'; 
-                 if (bar_percentage == 1) {
-                    // this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
-                    // this.video_recorder.stopRecording()
-                    if (this.open_camera) {
-                        this.video_recorder.stopRecording();
-                    }
-                    rest.style.display = 'flex';
-                    co_vid.style.display = 'none';
-                    this.practiceRest2();
-                    // this.startPractice2();
-                    console.log('stop')
-                    clearInterval(id)
-                }
-            }, 100);
-        },
-        startPractice2(){
-            if (this.open_camera) {
-                this.video_recorder.startRecording({
-                    pose_id: "yoga_27",
-                    user_id: this.user.user_id,
-                    language: 'zh-tw',
-                });
-            }
-            this.show_inhale = true
-            //控制吸氣吐氣的顯示
-            setTimeout(() => {
-                this.is_inhaleing = true
-            }, 45000);
-            setTimeout(() => {
-                this.show_inhale = false
-                this.is_inhaleing = false
-                this.is_exhaleing = true
-            }, 52000);
-            setTimeout(() => {
-                this.show_exhale = false
-                this.show_inhale = false
-                this.is_exhaleing = false
-                this.is_inhaleing = false
-            }, 58000);
-            let co_vid = document.querySelector('#course-video-3')
-            let height = 0
-            this.video_length = co_vid.duration
-            // this.recordVideo();
-            co_vid.play();
-            let t = (this.video_length+1) / 100
-            let id = setInterval(() => {
-                let bar_percentage = co_vid.currentTime / this.video_length
-                document.getElementById('video-process-bar-inside-5').style.height = (bar_percentage*100)+'%'; 
-                if (bar_percentage == 1) {
-                    if (this.open_camera) {
-                        this.video_recorder.stopRecording();
-                    }
-                    this.count_over = true
-                    console.log('stop')
-                    clearInterval(id)
-                }
-            }, 100);
-        },
-        practiceRest1(){
-            // let rest = document.querySelector('#course-video-rest')
-            let rest = document.querySelector('.course-video-container.rest')
-            let nt_vid = document.querySelector('#course-video-2')
-            rest.style.display = 'flex'
-            let height = 0
-            let id = setInterval(() => {
-                document.getElementById('video-process-bar-inside-2').style.height = (height / 3)+'%'; 
-                if(height >= 300) {
-                    nt_vid.style.display = 'block';
-                    rest.style.display = 'none';
-                    this.startPractice1()
-                    clearInterval(id)
-                } else if (this.is_stop) {
+        //     let bgm = document.querySelector('#course-bgm')
+        //     let co_vid = document.querySelector('#course-video-1')
+        //     let nt_vid = document.querySelector('#course-video-2')
+        //     let nt_vid_2 = document.querySelector('#course-video-3')
+        //     let rest = document.querySelector('#course-video-rest')
+        //     nt_vid.style.display = 'none';
+        //     nt_vid_2.style.display = 'none';
+        //     rest.style.display = 'none';
+        //     // let height = 0
+        //     this.video_length = co_vid.duration
+        //     bgm.play();
+        //     co_vid.play();
+        //     let t = (this.video_length+1) / 100
+        //     let id = setInterval(() => {
+        //         let bar_percentage = co_vid.currentTime / this.video_length
+        //         document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
+        //         if (bar_percentage == 1) {
+        //             if (this.open_camera) {
+        //                 this.video_recorder.stopRecording();
+        //             }
+        //             // nt_vid.style.display = 'block';
+        //             rest.style.display = 'flex';
+        //             co_vid.style.display = 'none';
+        //             // this.startPractice1();
+        //             this.practiceRest1();
+        //             console.log('stop')
+        //             clearInterval(id)
+        //         }
+        //     }, 100);
+        // },
+        // startPractice1(){
+        //     this.show_inhale = true
+        //     if (this.open_camera) {
+        //         this.video_recorder.startRecording({
+        //             pose_id: "yoga_27",
+        //             user_id: this.user.user_id,
+        //             language: 'zh-tw',
+        //         });
+        //     }
+        //     this.show_inhale = true
+        //     //控制吸氣吐氣的顯示
+        //     setTimeout(() => {
+        //         this.is_inhaleing = true
+        //     }, 20000);
+        //     setTimeout(() => {
+        //         this.show_inhale = false
+        //         this.show_exhale = true
+        //     }, 31000);
+        //     setTimeout(() => {
+        //         this.is_exhaleing = true
+        //     }, 32000);
+        //     setTimeout(() => {
+        //         this.show_exhale = false
+        //         this.show_inhale = false
+        //         this.is_exhaleing = false
+        //         this.is_inhaleing = false
+        //     }, 39000);
+        //     //控制影片播放及進度條
+        //     let co_vid = document.querySelector('#course-video-2')
+        //     let nt_vid = document.querySelector('#course-video-3')
+        //     let rest = document.querySelector('#course-video-rest')
+        //     let height = 0
+        //     this.video_length = co_vid.duration
+        //     // this.recordVideo();
+        //     co_vid.play();
+        //     let t = (this.video_length+1) / 100
+        //     let id = setInterval(() => {
+        //         let bar_percentage = co_vid.currentTime / this.video_length
+        //         document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage * 100)+'%'; 
+        //          if (bar_percentage == 1) {
+        //             // this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
+        //             // this.video_recorder.stopRecording()
+        //             if (this.open_camera) {
+        //                 this.video_recorder.stopRecording();
+        //             }
+        //             rest.style.display = 'flex';
+        //             co_vid.style.display = 'none';
+        //             this.practiceRest2();
+        //             // this.startPractice2();
+        //             console.log('stop')
+        //             clearInterval(id)
+        //         }
+        //     }, 100);
+        // },
+        // startPractice2(){
+        //     if (this.open_camera) {
+        //         this.video_recorder.startRecording({
+        //             pose_id: "yoga_27",
+        //             user_id: this.user.user_id,
+        //             language: 'zh-tw',
+        //         });
+        //     }
+        //     this.show_inhale = true
+        //     //控制吸氣吐氣的顯示
+        //     setTimeout(() => {
+        //         this.is_inhaleing = true
+        //     }, 45000);
+        //     setTimeout(() => {
+        //         this.show_inhale = false
+        //         this.is_inhaleing = false
+        //         this.is_exhaleing = true
+        //     }, 52000);
+        //     setTimeout(() => {
+        //         this.show_exhale = false
+        //         this.show_inhale = false
+        //         this.is_exhaleing = false
+        //         this.is_inhaleing = false
+        //     }, 58000);
+        //     let co_vid = document.querySelector('#course-video-3')
+        //     let height = 0
+        //     this.video_length = co_vid.duration
+        //     // this.recordVideo();
+        //     co_vid.play();
+        //     let t = (this.video_length+1) / 100
+        //     let id = setInterval(() => {
+        //         let bar_percentage = co_vid.currentTime / this.video_length
+        //         document.getElementById('video-process-bar-inside-5').style.height = (bar_percentage*100)+'%'; 
+        //         if (bar_percentage == 1) {
+        //             if (this.open_camera) {
+        //                 this.video_recorder.stopRecording();
+        //             }
+        //             this.count_over = true
+        //             console.log('stop')
+        //             clearInterval(id)
+        //         }
+        //     }, 100);
+        // },
+        // practiceRest1(){
+        //     // let rest = document.querySelector('#course-video-rest')
+        //     let rest = document.querySelector('.course-video-container.rest')
+        //     let nt_vid = document.querySelector('#course-video-2')
+        //     rest.style.display = 'flex'
+        //     let height = 0
+        //     let id = setInterval(() => {
+        //         document.getElementById('video-process-bar-inside-2').style.height = (height / 3)+'%'; 
+        //         if(height >= 300) {
+        //             nt_vid.style.display = 'block';
+        //             rest.style.display = 'none';
+        //             this.startPractice1()
+        //             clearInterval(id)
+        //         } else if (this.is_stop) {
 
-                } else {
-                    height++
-                }
-            }, 100);
-        },
-        practiceRest2(){
-            let rest = document.querySelector('.course-video-container.rest')
-            let nt_vid = document.querySelector('#course-video-3')
-            rest.style.display = 'flex'
-            let height = 0
-            let id = setInterval(() => {
-                document.getElementById('video-process-bar-inside-4').style.height = (height / 3)+'%'; 
-                if(height >= 300) {
-                    nt_vid.style.display = 'block';
-                    rest.style.display = 'none';
-                    this.startPractice2()
-                    clearInterval(id)
-                }else if (this.is_stop) {
+        //         } else {
+        //             height++
+        //         }
+        //     }, 100);
+        // },
+        // practiceRest2(){
+        //     let rest = document.querySelector('.course-video-container.rest')
+        //     let nt_vid = document.querySelector('#course-video-3')
+        //     rest.style.display = 'flex'
+        //     let height = 0
+        //     let id = setInterval(() => {
+        //         document.getElementById('video-process-bar-inside-4').style.height = (height / 3)+'%'; 
+        //         if(height >= 300) {
+        //             nt_vid.style.display = 'block';
+        //             rest.style.display = 'none';
+        //             this.startPractice2()
+        //             clearInterval(id)
+        //         }else if (this.is_stop) {
                     
-                }else {
-                    height++
+        //         }else {
+        //             height++
+        //         }
+        //     }, 100);
+        // },
+        startRoutine(){
+            this.is_studying = true
+            this.playVideo(0);
+        },
+        playVideo(i){
+            let poses = this.routine.default[0].poses;
+            
+            if(poses[i].pose_brief != 'break') {    
+                if (this.pose_video != poses[i].pose_video) {
+                    this.pose_video = poses[i].pose_video
                 }
-            }, 100);
+                if (this.open_camera && pose[i].pose_ai) { 
+                    this.video_recorder.startRecording({
+                        pose_id: "yoga_27",
+                        user_id: this.user.user_id,
+                        language: 'zh-tw',
+                    });
+                }
+                
+                let co_vid = document.querySelector('#course-video')
+                co_vid.style.display = 'block';
+                co_vid.oncanplay = function() { 
+                    this.video_length = co_vid.duration
+                    co_vid.play() 
+                    
+                    let id = setInterval(() => {
+                        let bar_percentage = co_vid.currentTime / this.video_length
+                        console.log(co_vid.currentTime)
+                        // if (co_vid.currentTime >= poses[i].inhale[0][0] && co_vid.currentTime <= poses[i].inhale[0][1]) {
+                        //     // todo playInhale(bar_percentage)
+                        // }
+                        for(let j = 0; j< poses[i].inhale.length;j++){
+                            if(co_vid.currentTime >= poses[i].inhale[j][0] && co_vid.currentTime <= poses[i].inhale[j][2]){
+                                this.show_inhale = true
+                                if(co_vid.currentTime >= poses[i].inhale[j][1]) {
+                                    this.is_inhaleing = true
+                                }
+                                break
+                            } else {
+                                this.show_inhale = false
+                                this.is_inhaleing = false
+                            }
+                            
+                            if(co_vid.currentTime >= poses[i].exhale[j][0] && co_vid.currentTime <= poses[i].exhale[j][2]) {
+                                this.show_exhale = true
+                                if(co_vid.currentTime >= poses[i].exhale[j][1]) {
+                                    this.is_exhaleing = true
+                                }
+                                break
+                            } else {
+                                this.show_exhale = false
+                                this.is_exhaleing = false
+                            }
+                        }
+                        document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (bar_percentage*100)+'%'; 
+                        if (bar_percentage == 1) {
+                            this.show_inhale = false
+                            this.show_exhale = false
+                            this.is_inhaleing = false
+                            this.is_exhaleing = false
+                            if (this.open_camera) {
+                                this.video_recorder.stopRecording();
+                            }
+                            if (poses[i+1]) {
+                                this.pose_video = ''
+                                co_vid.style.display = 'none';
+                                this.playVideo(i+1)
+                            } else {
+                                this.count_over = true
+                            }
+                            console.log('stop')
+                            clearInterval(id)
+                        }
+                    }, 100);
+                    // co_vid.oncanplay = null
+                }.bind(this);
+            } else {
+                let rest = document.querySelector('.course-video-container.rest')
+                rest.style.display = 'flex';
+                let height = 0
+                // this.pose_video = poses[i+1].pose_video
+                let id = setInterval(() => {
+                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height / 3)+'%'; 
+                    if(height >= 300) {
+                        rest.style.display = 'none';
+                        if (poses[i+1]) {
+                            this.playVideo(i+1)
+                        } else {
+                            this.count_over = true
+                        }
+                        clearInterval(id)
+                    } else if (this.is_stop) {
+                        
+                    } else {
+                        height++
+                    }
+                }, 100);
+            }
         },
         processRecordedVideo(file) {
             this.recorded_video = file; 
@@ -757,13 +817,15 @@ export default {
     top: 5vh;
     left: 80vw;
 }
-#show-course-video,#course-video-1,
+#show-course-video,#course-video,#course-video-1,
 #course-video-2, #course-video-3,#course-video-rest {
     transform: rotate(90deg);
     width: 100vh;
 }
 #course-video-rest {
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 #repeat-nam {
     position: absolute;
@@ -782,7 +844,7 @@ export default {
     z-index: 101;
     transform: rotate(90deg);
     padding-top: 50vw; 
-    transition: 6s ease 1s;
+    transition: 5s ease 1s;
 }
 .green-bar {
     background: linear-gradient(0deg,#4CD39A,#4CD39A,#4CD39A,rgba(0,0,0,0));
@@ -827,12 +889,12 @@ export default {
     width: 100%;
     border-radius: 20px;
 }
-#video-process-bar-inside-1,#video-process-bar-inside-2,
+/* #video-process-bar-inside-1,#video-process-bar-inside-2,
 #video-process-bar-inside-3,#video-process-bar-inside-4,#video-process-bar-inside-5{
     background: #fff;
     width: 100%;
     border-radius: 20px;
-}
+} */
 .count-over {
     background: linear-gradient(90deg,#000,rgba(0,0,0,0));
     height: 100vh;
@@ -1149,7 +1211,7 @@ export default {
         top: 5vh;
         left: 5vw;
     }
-    #show-course-video, #course-video-1, #course-video-2, #course-video-3, #course-video-rest {
+    #show-course-video, #course-video, #course-video-1, #course-video-2, #course-video-3, #course-video-rest {
         width: 100vw;
         transform: rotate(0deg);
     }

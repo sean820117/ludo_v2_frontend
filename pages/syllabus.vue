@@ -130,14 +130,19 @@
                 </div>
                  <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
-                    <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
-                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
+                    <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
+                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：{{routine.default[0].duration}}</p>
                     <div>
-                        <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
+                        <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
+                            <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
+                            <div v-else class="syllabus-desktop-pink-rest">休息</div>
+                        </div>
+                        <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                         <div class="syllabus-desktop-pink-rest">休息</div>
                         <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
                         <div class="syllabus-desktop-pink-rest">休息</div>
-                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
+                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block> -->
+
                     </div>
                     <div class="syllabus-mobile-fade-box">
                         <div class="info-desktop-red-btn" @click="startPractice">開始練習</div>
@@ -147,8 +152,8 @@
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
                     <div class="syllabus-mobile-result-box">
                         <div>
-                            <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">骨盆矯正</p>
-                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：7分鐘</p>
+                            <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
+                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：{{routine.default[0].duration}}</p>
                         </div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #24798f;">
@@ -212,14 +217,18 @@
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
-                        <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">骨盆矯正</h5>
-                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">練習長度：7分鐘</p>
+                        <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">{{routine.default[0].title}}</h5>
+                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">練習長度：{{routine.default[0].duration}}</p>
                         <div class="syllabus-desktop-arrangement-flex">
-                            <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
+                            <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
+                                <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
+                                <div v-else class="syllabus-desktop-pink-rest">休息</div>
+                            </div>
+                            <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div class="syllabus-desktop-pink-rest">休息</div>
                             <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div class="syllabus-desktop-pink-rest">休息</div>
-                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
+                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block> -->
                         </div>
                         <div class="info-desktop-red-btn" style="margin: 5vh auto 0;" @click="startPractice">開始練習</div>
                     </div>
@@ -231,8 +240,8 @@
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;">
                             <div class="syllabus-desktop-arrangement-result-box">
-                                <p class="syllabus-desktop-title" style="margin:0;text-align: left;">骨盆矯正</p>
-                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">練習長度：7分鐘</p>
+                                <p class="syllabus-desktop-title" style="margin:0;text-align: left;">{{routine.default[0].title}}</p>
+                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">練習長度：{{routine.default[0].duration}}</p>
                                 <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">再次練習</div>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
@@ -254,7 +263,7 @@
         </div>
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
-            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult"></mamiyoga-new-practice-video-block>
+            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" :routine="routine"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -282,6 +291,7 @@ import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
         courses:[],
+        routine:[],
         first_course: {},
         experience_course: {},
         not_online: false,
@@ -297,6 +307,7 @@ export default {
 
         is_loading: false,
         is_login: false,
+        payed_or_not: false,
         show_arrangement: false,
         is_practice: false,
         practice_finish: false,
@@ -331,7 +342,8 @@ export default {
                 this.courses = await require('~/config/mamiyoga-course');
                 this.check_lang = ''
             }
-
+            this.routine = await require('~/config/routine');
+            console.log(this.routine.default)
             this.first_course = this.courses[0]
             this.experience_course = this.courses[12]
             // console.log(this.first_course)
@@ -340,22 +352,7 @@ export default {
                 this.check_series = sessionStorage['menu_current_series']
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
-            }
-
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                let now = new Date();
-                let now_time = now.getTime();
-                let use_time = (now_time - open_time)/86400000;
-                console.log(use_time)
-                if(use_time > 7){
-                    this.have_trial = false;   
-                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                    this.$router.push('/');
-                }else {
-                    this.have_trial = true;
-                }
-            }
+            }            
         }
     },
     computed:{
@@ -373,7 +370,7 @@ export default {
                 // this.$router.push('/login');
             } else {
                 this.is_login = true
-                // let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 // if (!payed_or_not) {
                 //     console.log("not payed");
                 //     window.alert("尚未開通課程，請先前往購買～");
@@ -386,11 +383,27 @@ export default {
     },
     methods:{
         startBuild(){
-            if(this.have_trial) {
-                this.start_build = true
-            } else{
-                alert('開通七天體驗後即可開始使用～')
-                this.$router.push('/free-trial')
+            if(!this.payed_or_not) {
+                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){
+                        this.have_trial = false;   
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/');
+                    }else {
+                        this.have_trial = true;
+                    }
+                } else{
+                    alert('開通七天體驗後即可開始使用～')
+                    this.$router.push('/free-trial')
+                }
+            } else {
+                this.have_trial = true;
+                this.start_build = true;
             }
         },
         selectFrequency(num){
@@ -445,6 +458,9 @@ export default {
         }
     },
     computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
         getTodayDate(){
             const day_list = ['日','ㄧ','二','三','四','五','六']
             let d = new Date();
@@ -544,6 +560,15 @@ export default {
     position: relative;
     padding-bottom: 10vh;
 }
+.syllabus-desktop-pink-rest-outside{
+    width: 100%;
+    height: 45px;
+    margin: 1vh 0;
+}
+.mobile-syllabus-block-outside {
+    width: 100%;
+    height: 150px;
+}
 .syllabus-desktop-pink-rest {
     width: 100%;
     height: 45px;
@@ -555,7 +580,7 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    margin: 1vh 0;
+    /* margin: 1vh 0; */
     opacity: 0.7;
 }
 .syllabus-mobile-fade-box {
@@ -702,7 +727,7 @@ export default {
 
 @media (min-width: 769px) {
     .syllabus-desktop {
-        height: 100vh;
+        min-height: 100vh;
         overflow: hidden;        
     }
     .syllabus-desktop-img {
@@ -824,11 +849,21 @@ export default {
         align-items: center;
         justify-content: space-between;
     }
-    .syllabus-desktop-pink-rest {
+    .syllabus-desktop-pink-rest-outside {
         width: 10%;
         max-width: 150px;
         height: 270px;
         margin: 0 1%;
+    }
+    .mobile-syllabus-block-outside {
+        width: 30%;
+        max-width: 450px;
+        height: 270px;
+    }
+    .syllabus-desktop-pink-rest {
+        width: 100%;
+        height: 270px;
+        /* margin: 0 1%; */
     }
     .syllabus-desktop-arrangement-result-box {
         width: 30%;

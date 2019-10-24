@@ -44,7 +44,7 @@ export default {
 }
 @media (min-width: 769px) {
     .mobile-syllabus-block {
-        width: 30%;
+        width: 100%;
         max-width: 450px;
         height: 270px;
     }
