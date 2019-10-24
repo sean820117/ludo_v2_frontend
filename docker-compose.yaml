@@ -3,15 +3,18 @@ volumes:
   node_modules:
 services:
   ludo_f2e:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    image: ludo_frontend_base_server:1.0
     ports:
-        - "127.0.0.1:3000:3000"
+        - "3000:3000"
     environment:
       - BASE_URL=https://www.ludonow.com
       - API_URL=https://api.ludonow.com
       - RUNTIME_ENV=production
+    restart: always
+
     # volumes:
         # - ./:/var/www/app
         # - node_modules:/var/www/app/node_modules
