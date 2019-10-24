@@ -38,7 +38,7 @@
                         <div @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
                     </div>
                 </div>
-                <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.wav"></audio>
+                <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
                 <div class="course-video-container">
                     <video playsinline id="course-video" :src="pose_video"></video>
                 </div>
