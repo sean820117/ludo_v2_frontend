@@ -1,19 +1,22 @@
 <template>
     <div>
         <div class="writing-page">
-            <mamiyoga-pay-header></mamiyoga-pay-header>
-            <div class="writing-main">
-                <div class="pay-little-title">文章投稿</div>
-                <hr style="margin: 5px 0;opacity: .5;">
-                <div>
-                    <img class="writing-baby" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-baby.png" alt="">
-                    <div class="writing-title">將妳的心得或是知識分享給大家吧！</div>
-                    <p class="writing-text">LUDO會將妳的文章<br>分享在等待AI助教時，給大家觀看！</p>
-                    <textarea name="share-your-article" id="share-your-article" maxlength="250" cols="30" rows="10" placeholder="請輸入空格以內的字數喔！" v-model="writing_text"></textarea>
-                    <div class="company-input-submit-btn" style="float:right;" @click="submitText">送出</div>
+            <mamiyoga-pay-header v-if="$mq != 'desktop'"></mamiyoga-pay-header>
+            <mamiyoga-desktop-member-nav v-else></mamiyoga-desktop-member-nav>
+            <div class="writing-main-block">
+                <div class="writing-main">
+                    <div class="pay-little-title">文章投稿</div>
+                    <hr style="margin: 5px 0;opacity: .5;">
+                    <div>
+                        <img class="writing-baby" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-baby.png" alt="">
+                        <div class="writing-title">將妳的心得或是知識分享給大家吧！</div>
+                        <p class="writing-text">LUDO會將妳的文章<br>分享在等待AI助教時，給大家觀看！</p>
+                        <textarea name="share-your-article" id="share-your-article" maxlength="250" cols="30" rows="10" placeholder="請輸入空格以內的字數喔！" v-model="writing_text"></textarea>
+                        <div class="company-input-submit-btn" style="float:right;" @click="submitText">送出</div>
+                    </div>
                 </div>
+                <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;"></mamiyoga-member-bottom-btn>
             </div>
-            <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;"></mamiyoga-member-bottom-btn>
         </div>
         <mamiyoga-window-alert-box v-if="is_submited">
             <div class="cancel-box" @click="is_submited = false">
@@ -28,6 +31,7 @@
 
 <script>
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
+import MamiyogaDesktopMemberNav from '~/components/mamiyoga/MamiyogaDesktopMemberNav.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
@@ -39,6 +43,7 @@ export default {
     }),
     components: {
         MamiyogaPayHeader,
+        MamiyogaDesktopMemberNav,
         MamiyogaMemberBottomBtn,
         MamiyogaWindowAlertBox,
     },
@@ -60,6 +65,15 @@ export default {
                 // } else {
                 //     console.log("payed")
                 // }
+            }
+        }
+    },
+    mounted(){
+        if(process.client) {
+            if(this.$mq == 'desktop'){
+                document.getElementById('go_writing').classList.add('active-menu')
+                document.getElementById('go_activation_code').classList.remove('active-menu')
+                document.getElementById('go_contact').classList.remove('active-menu')
             }
         }
     },
@@ -172,12 +186,16 @@ export default {
     .writing-page {
         background: #fff;
         min-height: 100vh;
+        display: flex;
     }
     .writing-baby {
         max-width: 150px; 
     }
     .writing-main {
         max-width: 350px;
+    }
+    .writing-main-block {
+        margin: 0 auto;
     }
 }
 </style>

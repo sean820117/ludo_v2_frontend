@@ -42,6 +42,7 @@ class LudoRTC {
                     height:240,
                     aspectRatio: 1.777777778,
                     frameRate: { ideal: 24,max: 30 },
+                    facingMode: 'user',
                 }
             },
             video_element_id:'#video',

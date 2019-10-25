@@ -175,6 +175,9 @@ export default {
                 this.check_lang = ''
             }
             this.first_course = this.courses[0]
+            if(this.$mq === 'desktop'){
+                document.getElementById('go_menu').classList.add('click-active');
+            }
 
             if(sessionStorage['menu_current_series']) {
                 this.check_series = sessionStorage['menu_current_series']

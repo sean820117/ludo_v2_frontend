@@ -11,6 +11,13 @@ export default {
     props: {
         is_serialno: false
     },
+    mounted(){
+        if(process.client){
+            if(this.$mq == 'desktop'){
+                document.getElementById('go_contact').classList.add('active-menu')
+            }
+        }
+    },
     methods:{
         openExchange(){
             this.$emit('openExchange');
@@ -48,7 +55,7 @@ export default {
 }
 @media (min-width: 769px) {
     .member-big-btn {
-        max-width: 270px;
+        width: 80%;
     }
 }
 </style>

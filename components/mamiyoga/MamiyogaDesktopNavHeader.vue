@@ -2,10 +2,10 @@
     <div class="mamiyoga-desktop-nav-header" :style="{backgroundColor: bgColor}">
         <div class="mamiyoga-desktop-nav">
             <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
-            <li @click="$router.push('/')">服務介紹</li>
-            <li @click="$router.push('/menu')">課程影片</li>
-            <li @click="$router.push('/syllabus')">孕動日記</li>
-            <li @click="$router.push('/information')">媽咪知識</li>
+            <li id="go_index" @click="$router.push('/')">服務介紹</li>
+            <li id="go_menu" @click="$router.push('/menu')">課程影片</li>
+            <li id="go_syllabus" @click="$router.push('/syllabus')">孕動日記</li>
+            <li id="go_info" @click="$router.push('/information')">媽咪知識</li>
             <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
             <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
         </div>
@@ -14,7 +14,7 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 贈禮
             </div>
-            <div v-if="!login_or_not" class="desktop-header-go-mami" @click="$router.push('/free-trial')">免費7天體驗</div>
+            <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">註冊/登入</div>
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">
                 <div class="desktop-header-user-menu-block">
@@ -99,6 +99,7 @@ export default {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    padding-bottom: 2px;
 }
 .mamiyoga-desktop-header-btn {
     display: flex;
@@ -123,7 +124,7 @@ export default {
     cursor: pointer;
 }
 .mamiyoga-desktop-header-btn .desktop-header-gift-btn{
-    background: #838383;
+    border: 2px solid #fff;
 }
 .mamiyoga-desktop-header-btn .desktop-header-go-mami{
     background: #FF9898;
@@ -176,8 +177,11 @@ export default {
     font-weight: 500;
 }
 .desktop-header-user-menu-line {
+    width: 80%;
     height: 1px;
-    width: 100%;
+    background: rgba(0,0,0,.5);
 }
-
+.click-active{
+    border-bottom: 2px #fff solid;
+}
 </style>
