@@ -11,11 +11,11 @@
                 <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
                 <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798f':'transparent'"></mamiyoga-desktop-nav-header>
 
-                <h1 id="mamiyoga-index-title" v-if="$mq != 'desktop'">媽咪的<br>口袋健康助手</h1>
-                <h1 id="mamiyoga-index-title" v-else>媽咪的口袋健康助手</h1>
-                <h2 id="mamiyoga-index-title-des">互動式線上瑜珈課程</h2>
-                <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">更美好的日常，從照顧自己開始</h2>
-                <div class="info-desktop-red-btn index-first">免費7天體驗</div>
+                <h1 id="mamiyoga-index-title" v-if="$mq != 'desktop'" v-html="$t('mobile_index_first_title')"></h1>
+                <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
+                <h2 id="mamiyoga-index-title-des">{{$t('desktop_index_first_des_1')}}</h2>
+                <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">{{$t('desktop_index_first_des_2')}}</h2>
+                <div class="info-desktop-red-btn index-first">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -24,20 +24,20 @@
             </div>
             <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
                 <div class="index-login-block-inside">
-                    <p class="index-login-block-text">使用LUDO帳號登入</p>
+                    <p class="index-login-block-text">{{$t('desktop_login_LUDO')}}</p>
                     <div class="login-column">
-                        <div class="login-column-label">電子信箱</div>
+                        <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
                         <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                     </div>
                     <div class="login-column">
-                        <div class="login-column-label">密碼</div>
+                        <div class="login-column-label">{{$t('desktop_login_password')}}</div>
                         <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
                     </div>
                     <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67%',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
                     <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">登入</button>
+                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">{{$t('desktop_login_btn_1')}}</button>
                         <div style="display:flex;align-items: center;justify-content:flex-end;width:100%;">
-                            <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push('/signup')">快速註冊</div>
+                            <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push('/signup')">{{$t('desktop_login_little')}}</div>
                         </div>
                     </div>
                     <hr style="background: #D1D1D1;height: 2px;width: 67%;margin: 15px 0;opacity: .4;">
@@ -47,7 +47,7 @@
                                 <div style="width: 65px;display: flex;justify-content: center;">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
                                 </div>
-                                <p style="font-weight: 500;">使用Facebook登入</p>
+                                <p style="font-weight: 500;">{{$t('desktop_login_btn_2')}}</p>
                             </div>
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                                 <div style="width: 62px;display: flex;justify-content: center;">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
                                 </div>
-                                <p style="font-weight: 500;padding-left:5px;">使用Google登入</p>
+                                <p style="font-weight: 500;padding-left:5px;">{{$t('desktop_login_btn_3')}}</p>
                             </div>
                         </a>
                     </div>
@@ -66,8 +66,8 @@
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <div class="index-label-box" id="index-fixed-nav">
      
-                    <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
-                    <div class="index-label-pink-btn" @click="$router.push('/free-trial')">免費7天體驗</div>
+                    <p class="index-footer-title">{{$t('index_title')}}</p>
+                    <div class="index-label-pink-btn" @click="$router.push('/free-trial')">{{$t('desktop_header_btn_2')}}</div>
             
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
@@ -82,7 +82,7 @@
                 <div class="about-course-block" id="index-first-video">
                     <div class="course-info-block-1" v-if="$mq !== 'desktop'">
                         <div class="course-info-content-1">
-                            <h3 class="index-article-title">失眠、焦慮、腰痠背痛？<br>忙碌的媽咪們，辛苦了！</h3>
+                            <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
                             <h6 class="index-article-little-title">卸貨小寶貝後，媽咪的身心需要重新調整</h6>
                             <div>
                                 <div style="display:flex;align-items:center;width: 95%;margin: 20px auto 10px;">
@@ -560,7 +560,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="$mq !== 'desktop'" style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">快和朋友分享吧！</p>
+                    <p v-if="$mq !== 'desktop'" style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">{{$t('index_share')}}</p>
                     <div v-if="$mq !== 'desktop'" class="mamiyoga-assay-share-icon-box">
                         <div class="mamiyoga-assay-share-icon">
                             <a href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fmamiyoga.ludonow.com%2F&amp;linkname=" target="_blank">

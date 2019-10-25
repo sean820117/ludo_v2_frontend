@@ -55,7 +55,8 @@ module.exports = {
     { src: '~/plugins/ludoSocket.js', ssr: false },
     { src: '~/plugins/ludoRTC.js', ssr: false },
     { src: '~/plugins/sendData.js', ssr: false },
-    { src: "~/plugins/zendesk.js", ssr: false }   
+    { src: "~/plugins/zendesk.js", ssr: false },
+    { src: "~/plugins/checkLang.js", ssr: false }     
   ],
   modules: [
     [

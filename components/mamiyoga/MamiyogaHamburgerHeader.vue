@@ -16,18 +16,18 @@
         </div>
         <div class="mamiyoga-hamburger-menu" :class="open_menu ? 'open':''">
             <nav class="mamiyoga-hamburger-nav">
-                <li @click="$router.push('/')">服務介紹</li>
-                <li @click="$router.push('menu')">課程影片</li>
-                <li @click="$router.push('/syllabus')">孕動日記</li>
-                <li @click="$router.push('/information')">媽咪知識</li>
-                <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
-                <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
+                <li @click="$router.push('/')">{{$t('desktop_header_menu_1')}}</li>
+                <li @click="$router.push('menu')">{{$t('desktop_header_menu_2')}}</li>
+                <li @click="$router.push('/syllabus')">{{$t('desktop_header_menu_3')}}</li>
+                <li @click="$router.push('/information')">{{$t('desktop_header_menu_4')}}</li>
+                <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
+                <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
             </nav>
             <div v-if="!login_or_not" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push('/login')">註冊/登入</div>
-            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push('/member')">學員中心</div>
+            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push('/member')">{{$t('member_title')}}</div>
             <div class="mamiyoga-hamburger-btn" style="background: transparent; border: 2px solid #fff;" @click="$router.push('/gift')">
                 <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
-                贈禮
+                {{$t('desktop_header_btn_1')}}
             </div>
             <div class="click-to-activation" @click="$router.push('/activation-code')">我有兌換序號</div>
         </div>

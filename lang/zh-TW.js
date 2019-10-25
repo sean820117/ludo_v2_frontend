@@ -244,6 +244,7 @@ export default {
 
   //首頁
   desktop_index_first_title: '媽咪的口袋健康助手',
+  mobile_index_first_title: '媽咪的<br>口袋健康助手',
   desktop_index_first_des_1: '互動式線上瑜珈課程', 
   desktop_index_first_des_2: '更美好的日常，從照顧自己開始',
   

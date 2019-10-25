@@ -2,27 +2,27 @@
     <div class="mamiyoga-desktop-nav-header" :style="{backgroundColor: bgColor}">
         <div class="mamiyoga-desktop-nav">
             <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
-            <li id="go_index" @click="$router.push('/')">服務介紹</li>
-            <li id="go_menu" @click="$router.push('/menu')">課程影片</li>
-            <li id="go_syllabus" @click="$router.push('/syllabus')">孕動日記</li>
-            <li id="go_info" @click="$router.push('/information')">媽咪知識</li>
-            <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
-            <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
+            <li id="go_index" @click="$router.push('/')">{{$t('desktop_header_menu_1')}}</li>
+            <li id="go_menu" @click="$router.push('/menu')">{{$t('desktop_header_menu_2')}}</li>
+            <li id="go_syllabus" @click="$router.push('/syllabus')">{{$t('desktop_header_menu_3')}}</li>
+            <li id="go_info" @click="$router.push('/information')">{{$t('desktop_header_menu_4')}}</li>
+            <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
+            <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
         </div>
         <div class="mamiyoga-desktop-header-btn">
             <div class="desktop-header-gift-btn" @click="$router.push('/gift')">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
-                贈禮
+                {{$t('desktop_header_btn_1')}}
             </div>
             <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">註冊/登入</div>
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">
                 <div class="desktop-header-user-menu-block">
-                    <li @click="$router.push('/member')">帳號管理</li>
+                    <li @click="$router.push('/member')">{{$t('desktop_header_user_1')}}</li>
                     <hr class="desktop-header-user-menu-line">
-                    <li @click="$router.push('/information')">填寫月齡</li>
+                    <li @click="$router.push('/information')">{{$t('desktop_header_user_2')}}</li>
                     <hr class="desktop-header-user-menu-line">
-                    <li @click="logout">登出</li>
+                    <li @click="logout">{{$t('desktop_header_user_3')}}</li>
                 </div>
             </div>
         </div>
