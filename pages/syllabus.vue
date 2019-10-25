@@ -44,7 +44,8 @@
                 <mamiyoga-hamburger-header v-if="!is_practice"></mamiyoga-hamburger-header>
                 <div v-if="!start_build">
                     <img class="syllabus-desktop-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png" alt="">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 65vh;">個人化孕動日記</h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">個人化孕動日記</h5>
+                    <p class="syllabus-intro-text">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
                     <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">開始製作</div>
                 </div>
                 <div v-if="start_build && !show_arrangement">
@@ -178,6 +179,7 @@
                 <div class="syllabus-desktop-title-block">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
                     <h5 class="syllabus-desktop-title">個人化孕動日記</h5>
+                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
                     <div class="info-desktop-red-btn" @click="startBuild">開始製作</div>
                 </div>
             </div>
@@ -342,6 +344,9 @@ export default {
                 this.courses = await require('~/config/mamiyoga-course');
                 this.check_lang = ''
             }
+            if(this.$mq === 'desktop'){
+                document.getElementById('go_syllabus').classList.add('click-active');
+            }
             this.routine = await require('~/config/routine');
             console.log(this.routine.default)
             this.first_course = this.courses[0]
@@ -396,6 +401,7 @@ export default {
                         this.$router.push('/');
                     }else {
                         this.have_trial = true;
+                        this.start_build = true;
                     }
                 } else{
                     alert('開通七天體驗後即可開始使用～')
@@ -608,6 +614,11 @@ export default {
     justify-content: space-between;
     padding: 0 20px;
 }
+.syllabus-intro-text {
+    text-align: center;
+    margin: 20px 0 0;
+    color: #707070;
+}
 /* 舊課程 */
 .course-menu {
     width: 100vw;
@@ -728,7 +739,8 @@ export default {
 @media (min-width: 769px) {
     .syllabus-desktop {
         min-height: 100vh;
-        overflow: hidden;        
+        overflow: hidden;
+        padding-bottom: 80px;        
     }
     .syllabus-desktop-img {
         bottom: -5vw;
@@ -835,7 +847,7 @@ export default {
     .syllabus-desktop-arrangement-block {
         width: 90%;
         max-width: 1700px;
-        height: calc(100vh - 200px);
+        /* height: calc(100vh - 200px); */
         margin: 0 auto;
         background:linear-gradient(180deg,#fff,#fff,#fff,transparent);
         padding-top: 50px;

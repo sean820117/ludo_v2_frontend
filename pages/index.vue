@@ -9,14 +9,14 @@
             </div>
             <div class="mamiyoga-index-intro" style="position: absolute;">
                 <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
-                <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798F':'transparent'"></mamiyoga-desktop-nav-header>
+                <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798f':'transparent'"></mamiyoga-desktop-nav-header>
 
-                <h1 id="mamiyoga-index-title" v-if="$mq != 'desktop'">互動式<br>線上瑜珈課程</h1>
+                <h1 id="mamiyoga-index-title" v-if="$mq != 'desktop'">媽咪的<br>口袋健康助手</h1>
                 <h1 id="mamiyoga-index-title" v-else>媽咪的口袋健康助手</h1>
-                <h2 id="mamiyoga-index-title-des" v-if="$mq === 'desktop'">互動式線上瑜珈課程</h2>
+                <h2 id="mamiyoga-index-title-des">互動式線上瑜珈課程</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">更美好的日常，從照顧自己開始</h2>
-                <p id="mamiyoga-index-title-eng" v-if="$mq != 'desktop'">The Daily Life we love, Mami yoga</p>
-                <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title">
+                <div class="info-desktop-red-btn index-first">免費7天體驗</div>
+                <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
@@ -309,7 +309,7 @@
                         <div class="course-info-block-3-content">
                             <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
                             <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">每天十分鐘，讓心情跟身體重新開機！</h6>
-                            <div style="display: flex;align-items: flex-end;justify-content: center;width: 90%;margin: 50px auto 100px;">
+                            <div style="display: flex;align-items: flex-end;justify-content: center;width: 90%;margin: 70px auto 100px;">
                                 <div class="intro-wrap-block-new-five-curriculum">
                                     <!-- <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr> -->
                                     <img style="width: 95%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png" alt="">
@@ -317,9 +317,9 @@
                                 <div class="get-course-block">
                                     <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
                                     <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
+                                     <div id="get-routine-btn" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')"></div>
                                 </div>
                             </div>
-                            <div id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">取得專屬課表</div>
                         </div>
                     </div>
                     <div class="course-info-content-3" v-if="$mq == 'desktop'">
@@ -486,8 +486,9 @@
                                 <div>
                                     <h5 class="index-article-out-container-text why-to-select-title">為什麼選Mamiyoga？</h5>
                                     <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
+                                    <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn" style="margin: 5vh 0;">立即免費體驗 </button>
                                 </div>
-                                <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast.png" alt="">
+                                <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -598,7 +599,7 @@
             <div class="index-footer" id="index-fixed-footer">
             </div>
          </div>
-        <!-- 電腦版提示 -->
+        <!-- 電腦版提示(已關閉) -->
         <mamiyoga-window-alert-box v-if="$mq == 'desktop' && !is_desktop" class="desktop-window">
             <div class="cancel-box" @click="is_desktop= false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
@@ -635,7 +636,7 @@
             </div>
         </mamiyoga-window-alert-box>
 
-        <!-- 複製連接 -->
+        <!-- 複製連接(已關閉) -->
         <div class="item" style="position:fixed;bottom:-100px;">
             <input type="text" value="https://mamiyoga.ludonow.com" class="copy-area" id="urlCopied"> 
         </div>
@@ -748,8 +749,11 @@ export default {
                 } else {
                     this.check_log = '/menu'
                 }
-                
             }
+            if(this.$mq === 'desktop'){
+                document.getElementById('go_index').classList.add('click-active');
+            }
+
             window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
@@ -1232,6 +1236,19 @@ export default {
     width: 80%;
     display: block;
     margin: 0 auto 20px;
+}
+#get-routine-btn {
+    width: 260px;
+    height: 60px;
+    background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/get-rotine-btn.png');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 50%;
+    cursor: pointer;
 }
 .intro-wrap-block-first {
     width: 100vw;
@@ -2063,8 +2080,25 @@ export default {
     position: absolute;
     bottom: 40px;
 }
-
-
+.info-desktop-red-btn{
+    color: #F8F7F8;
+    font-size: 16px;
+    font-weight: bold;
+    background: #C74F4F;
+    border: 3px solid #C74F4F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+.info-desktop-red-btn.index-first{
+    margin: 30vh auto 0;
+}
 
 /*行銷變更內容*/
 .background-video-contain {
@@ -2129,7 +2163,7 @@ export default {
 }
 
 
-@media (min-width:769px) {
+@media  (min-width:769px) {
     .about-course-block {
         /* padding-bottom: 120px; */
     }
@@ -2228,7 +2262,7 @@ export default {
         position: relative;
         margin: 0 auto;
     }
-    .course-info-block-2,.course-info-content-2,.course-info-block-3,
+    .course-info-block-2,.course-info-content-2,
     .course-info-block-4 {
         min-height: 100vh;
     }
@@ -2357,7 +2391,8 @@ export default {
         /* position: absolute;
         top: 28vh;
         right: -10%; */
-        width: 50%;
+        width: 70%;
+        position: relative;
     }
     #get-course-link {
         width: 260px;
@@ -2439,6 +2474,7 @@ export default {
         margin: 0 auto;
         width: 90%;
         max-width: 1366px;
+        text-align: center;
     }
     .last-pay-title {
         font-size: 48px;
@@ -2593,6 +2629,9 @@ export default {
         min-width: 230px;
         max-width: 300px;
     }
+    .info-desktop-red-btn.index-first{
+        margin: 40px 10vw 0;
+    }
 }
 @media (min-width: 769px) and (max-width: 1300px) {
     .about-course-teach-img{
@@ -2649,9 +2688,6 @@ export default {
     .about-course-data-title {
         font-size:  13px;
     }
-    .about-course-data-circle {
-        top: 0;
-    }
     /* .about-course-series-data-block:nth-child(1) .about-course-data-block:nth-child(3),
     .about-course-series-data-block:nth-child(3) .about-course-data-block:nth-child(2) {
         height: 65px;
@@ -2673,6 +2709,11 @@ export default {
     .intro-wrap-block-new-second .about-course-series-data-block:nth-child(4).open {
         min-height: 260px !important;
         max-height: 550px !important;
+    }
+}
+@media (min-width: 769px) and (max-width: 1500px) {
+    .about-course-data-circle {
+        top: 0 !important;
     }
 }
 @media (max-width: 830px) and  (orientation:landscape) {

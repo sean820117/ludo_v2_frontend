@@ -23,24 +23,42 @@
                 <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">媽咪社群</li>
                 <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">專人服務</li>
             </nav>
-            <div class="mamiyoga-hamburger-btn" @click="$router.push('/free-trial')">免費7天體驗</div>
-            <div class="mamiyoga-hamburger-btn" style="background: #838383;" @click="$router.push('/gift')">
+            <div v-if="!login_or_not" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push('/login')">註冊/登入</div>
+            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push('/member')">學員中心</div>
+            <div class="mamiyoga-hamburger-btn" style="background: transparent; border: 2px solid #fff;" @click="$router.push('/gift')">
                 <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 贈禮
             </div>
+            <div class="click-to-activation" @click="$router.push('/activation-code')">我有兌換序號</div>
         </div>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
         open_menu: false,
+        login_or_not: false,
     }),
+    async mounted(){
+        if(process.client) {
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if(!this.login_or_not) {
+
+            }
+        }
+    },
     methods:{
         goOtherPage(page){
             window.location.href = page;
         },
+    },
+    computed:{
+        ...mapGetters({
+            user : 'user/getData',
+        }),
     }
 }
 </script>
@@ -160,5 +178,11 @@ export default {
     justify-content: center;
     font-size: 19px;
     font-weight: 500;
+}
+.click-to-activation {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    width: fit-content;
+    margin: 15px auto 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="member-page" style="padding-bottom: 5vh;background: #fff;">
+    <div v-if="$mq != 'desktop'" class="member-page" style="padding-bottom: 5vh;background: #fff;">
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <p class="member-title">{{$t('member_title')}}</p>
         
@@ -27,7 +27,9 @@ export default {
     },
     mounted(){
         if(process.client) {
-            
+            if(this.$mq == 'desktop') {
+                this.$router.push('/activation-code')
+            }
         }
     },
     async beforeCreate() {
