@@ -217,6 +217,9 @@ export default {
                     this.check_log = '/menu'
                 }
             }
+            if(this.$mq === 'desktop'){
+                document.getElementById('go_info').classList.add('click-active');
+            }
             if(!this.payed_or_not) {
                 if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
                     let open_time = parseInt(localStorage['when_is_free_trial_start'])
@@ -642,6 +645,7 @@ export default {
         padding-bottom: 50px;
     }
     .info-page .intro-wrap-block-five {
+        width: 100vw;
         height: auto;
     }
     .info-page .info-wrap-block-first {

@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="serialno-page" style="background:#fff;">
-            <mamiyoga-pay-header></mamiyoga-pay-header>
-            <div class="reg-text" style="margin-top:80px;text-align:center;" v-if="$mq === 'desktop'">兌換序號</div>
+            <mamiyoga-pay-header v-if="$mq != 'desktop'"></mamiyoga-pay-header>
+            <mamiyoga-desktop-member-nav v-else></mamiyoga-desktop-member-nav>
+            
             <div class="serialno-flex-box">
                 <div class="serialno-main">
                     <div class="pay-little-title">序號資訊</div>
@@ -65,6 +66,7 @@
 <script>
 import Vue from 'vue'
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
+import MamiyogaDesktopMemberNav from '~/components/mamiyoga/MamiyogaDesktopMemberNav.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
@@ -72,6 +74,7 @@ import axios from '~/config/axios-config';
 export default {
     components: {
         MamiyogaPayHeader,
+        MamiyogaDesktopMemberNav,
         MamiyogaMemberBottomBtn,
         MamiyogaWindowAlertBox,
     },
@@ -133,6 +136,13 @@ export default {
                 } else {
                     alert('unknown error')
                 }
+            }
+        }
+    },
+    mounted(){
+        if(process.client) {
+            if(this.$mq == 'desktop'){
+                document.getElementById('go_activation_code').classList.add('active-menu')
             }
         }
     },
@@ -331,15 +341,21 @@ export default {
 
 
 @media (min-width: 769px) {
+    .serialno-page {
+        display: flex;
+    }
     .serialno-flex-box {
         display: flex;
         align-items: flex-start;
-        justify-content: center;
-        padding: 0 7vw;
+        justify-content: space-between;
+        width: 65%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 100px 0;
     }
     .serialno-main {
         width: 270px;
-        margin: 0 50px;
+        margin: 0;
     }
     .serialno-number-block {
         margin: 2vh 0 0;

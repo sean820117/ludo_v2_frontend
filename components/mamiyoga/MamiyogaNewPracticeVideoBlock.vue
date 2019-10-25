@@ -623,6 +623,7 @@ export default {
             this.select_camera = true;
             this.open_camera = true;
             document.querySelector('#start-video').style.zIndex = '15';
+            document.querySelector('#go-back-btn').style.zIndex = '15';
             document.querySelector('#top-show').style.zIndex = 'unset';
         },
         notGetCamera(){
@@ -630,6 +631,7 @@ export default {
             this.select_camera = true;
             this.open_camera = false;
             document.querySelector('#start-video').style.zIndex = '15';
+            document.querySelector('#go-back-btn').style.zIndex = '15';
             document.querySelector('#top-show').style.zIndex = 'unset';
         },
         skipTeach(){

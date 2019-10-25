@@ -1,34 +1,39 @@
 <template>
     <div class="contactus-page">
-        <mamiyoga-pay-header></mamiyoga-pay-header>
-        <div class="contactus-main">
-            <div class="pay-little-title">聯絡我們</div>
-            <hr style="margin: 5px 0;opacity: .5;">
-            <img class="contactus-logo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-ludo-logo.png" alt="">
-            <a href="https://www.facebook.com/ludonow/" style="text-decoration:none;">
-                <div class="contactus-big-btn">
-                    <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-fb.png')"></div>
-                    LUDO Now如荼生活
-                </div>
-            </a>
-            <a href="mailto:contact@ludonow.com" style="text-decoration:none;">
-                <div class="contactus-big-btn">
-                    <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-mail.png')"></div>
-                    contact@ludonow.com
-                </div>
-            </a>
+        <mamiyoga-pay-header v-if="$mq != 'desktop'"></mamiyoga-pay-header>
+        <mamiyoga-desktop-member-nav v-else></mamiyoga-desktop-member-nav>
+        <div class="contactus-main-block">
+            <div class="contactus-main">
+                <div class="pay-little-title">聯絡我們</div>
+                <hr style="margin: 5px 0;opacity: .5;">
+                <img class="contactus-logo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-ludo-logo.png" alt="">
+                <a href="https://www.facebook.com/ludonow/" style="text-decoration:none;">
+                    <div class="contactus-big-btn">
+                        <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-fb.png')"></div>
+                        LUDO Now如荼生活
+                    </div>
+                </a>
+                <a href="mailto:contact@ludonow.com" style="text-decoration:none;">
+                    <div class="contactus-big-btn">
+                        <div class="contactus-big-btn-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-mail.png')"></div>
+                        contact@ludonow.com
+                    </div>
+                </a>
+            </div>
+            <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;"></mamiyoga-member-bottom-btn>
         </div>
-        <mamiyoga-member-bottom-btn></mamiyoga-member-bottom-btn>
     </div>
 </template>
 
 <script>
 import MamiyogaPayHeader from '~/components/mamiyoga/MamiyogaPayHeader.vue'
+import MamiyogaDesktopMemberNav from '~/components/mamiyoga/MamiyogaDesktopMemberNav.vue'
 import MamiyogaMemberBottomBtn from '~/components/mamiyoga/MamiyogaMemberBottomBtn.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     components:{
         MamiyogaPayHeader,
+        MamiyogaDesktopMemberNav,
         MamiyogaMemberBottomBtn,
     },
     async beforeCreate() {
@@ -106,15 +111,19 @@ export default {
 @media (min-width: 769px) {
     .contactus-page {
         background: #fff;
+        display: flex;
     }
     .contactus-logo {
         max-width: 200px;
     }
     .contactus-big-btn {
-        width: 67%;
+        max-width: 270px;
     }
     .contactus-main {
-        max-width: 350px;
+        width: unset;
+    }
+    .contactus-main-block {
+        margin: 0 auto;
     }
 }
 </style>
