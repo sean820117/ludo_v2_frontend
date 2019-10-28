@@ -7,14 +7,14 @@
                     <div class="mamiyoga-header-cancel-btn" @click="$router.push('/')"></div>
                 </div>
             </div>
-            <div class="reg-text" style="margin-top:5vh;">登入</div>
+            <div class="reg-text" style="margin-top:5vh;">{{$t('desktop_login_btn_1')}}</div>
             <div class="btn-login-and-signup-container" style="margin-top:0;">
                 <a href="/" style="width:100%;text-decoration:none;">
                     <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#ABCCD4;margin-top:40px;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.FB" @click.prevent="handleFBClick">
                         <div style="width: 65px;">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
                         </div>
-                        <p style="font-weight: 500;">使用Facebook登入</p>
+                        <p style="font-weight: 500;">{{$t('desktop_login_btn_2')}}</p>
                     </div>
                 </a>
             </div>
@@ -24,60 +24,60 @@
                         <div style="width: 62px;">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
                         </div>
-                        <p style="font-weight: 500;padding-left:5px;">使用Google登入</p>
+                        <p style="font-weight: 500;padding-left:5px;">{{$t('desktop_login_btn_3')}}</p>
                     </div>
                 </a>
             </div>
-            <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:14px;text-align:left;margin:5vh 0 1vh;">使用LUDO帳號登入</div>
+            <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:14px;text-align:left;margin:5vh 0 1vh;">{{$t('desktop_login_LUDO')}}</div>
             <form class="signup-form">
                 <div class="login-column">
-                    <div class="login-column-label">電子信箱</div>
+                    <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
                     <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                 </div>
                 <div class="login-column">
-                    <div class="login-column-label">密碼</div>
+                    <div class="login-column-label">{{$t('desktop_login_password')}}</div>
                     <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
                 </div>
                 <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
                 <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                    <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">登入</button>
+                    <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">{{$t('desktop_login_btn_1')}}</button>
                     <div style="display:flex;align-items: center;justify-content:flex-end;width:100%;">
-                        <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push('/signup')">快速註冊</div>
+                        <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/signup`)">{{$t('desktop_login_little')}}</div>
                     </div>
                 </div>
             </form>
         </div>
         <div class="signup-page" style="padding-bottom:5vh;" v-else>
             <img @click="$router.go(-1)" style="width: 30px;position: absolute;top: 3vh;left: 2vw;opacity: .4;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
-            <div class="reg-text" style="margin-top:5vh;">登入</div>
+            <div class="reg-text" style="margin-top:5vh;">{{$t('desktop_login_btn_1')}}</div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">&nbsp;</div>
             <div class="signup-flex-box">
                 <form class="signup-form">
                     <div class="login-column">
-                        <div class="login-column-label">電子信箱</div>
+                        <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
                         <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
                     </div>
                     <div class="login-column">
-                        <div class="login-column-label">密碼</div>
+                        <div class="login-column-label">{{$t('desktop_login_password')}}</div>
                         <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
                     </div>
                     <div class="reg-text2" style="height: 18px;" :style="{color: hint_color,width: '67vw',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
                     <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">登入</button>
+                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">{{$t('desktop_login_btn_1')}}</button>
                     </div>
                     <div class="login-column" style="display:flex;align-items: center;justify-content:flex-end;height: 30px;">
-                        <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;margin: 0;" @click="$router.push('/signup')">快速註冊</div>
+                        <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;margin: 0;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/signup`)">{{$t('desktop_login_little')}}</div>
                     </div>
                 </form>
                 <div class="signup-three-flex-box"> 
-                    <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:left;margin:1vh 0 2vh;color:#24798F;">社群帳號登入</div>
+                    <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:left;margin:1vh 0 2vh;color:#24798F;">{{$t('desktop_login_btn_text')}}</div>
                     <div class="btn-login-and-signup-container" style="margin-top:0;">
                         <a href="/" style="width:100%;text-decoration:none;">
                             <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#ABCCD4;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.FB" @click.prevent="handleFBClick">
                                 <div style="width: 65px;display:flex;justify-content:center;">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
                                 </div>
-                                <p>使用Facebook登入</p>
+                                <p>{{$t('desktop_login_btn_2')}}</p>
                             </div>
                         </a>
                     </div>
@@ -87,7 +87,7 @@
                                 <div style="width: 62px;display:flex;justify-content:center;">
                                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
                                 </div>
-                                <p style="padding-left:5px;">使用Google登入</p>
+                                <p style="padding-left:5px;">{{$t('desktop_login_btn_3')}}</p>
                             </div>
                         </a>
                     </div>
@@ -98,10 +98,10 @@
             <div class="cancel-box" @click="closeRemind">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <div class="reg-text" style="text-align: center;color:#707070;margin-top:30px;font-size:20px;">新學員通知</div>
+            <div class="reg-text" style="text-align: center;color:#707070;margin-top:30px;font-size:20px;">{{$t('desktop_login_remind')}}</div>
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-login-img-1.png" alt="" style="margin-top:20px;width:30%;">
-            <div class="reg-text2" style="text-align: center;">體驗或付款前需先註冊成為會員，<br>若持有序號的學員也須先進行註冊！</div>
-            <div class="mamiyoga-login-btn-to-login" style="width: 80%;display: flex;align-items: center;justify-content: center;margin-top:10px;" @click="goSignup">立即註冊</div>
+            <div class="reg-text2" style="text-align: center;" v-html="$t('desktop_login_remind_text')"></div>
+            <div class="mamiyoga-login-btn-to-login" style="width: 80%;display: flex;align-items: center;justify-content: center;margin-top:10px;" @click="goSignup">{{$t('desktop_login_remind_btn')}}</div>
         </mamiyoga-window-alert-box>
     </div>
 </template>
@@ -246,7 +246,7 @@ export default {
         },
         goSignup(){
             this.first_enter = false;
-            this.$router.push('/signup')
+            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/signup`)
         }
     }
 }

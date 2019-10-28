@@ -43,53 +43,53 @@
             <div class="syllabus-desktop" :style="{minHeight: is_practice ? '0':'100vh',paddingBottom: is_practice ? '0':'5vh'}">
                 <mamiyoga-hamburger-header v-if="!is_practice"></mamiyoga-hamburger-header>
                 <div v-if="!start_build">
-                    <img class="syllabus-desktop-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png" alt="">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">個人化孕動日記</h5>
-                    <p class="syllabus-intro-text">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
-                    <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">開始製作</div>
+                    <img class="syllabus-desktop-img" :src="$t('desktop_syllabus_background')" alt="">
+                    <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">{{$t('desktop_syllabus_first_title')}}</h5>
+                    <p class="syllabus-intro-text" v-html="$t('desktop_index_five_text')"></p>
+                    <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
-                <div v-if="start_build && !show_arrangement">
+                <!-- <div v-if="start_build && !show_arrangement">
                     <div v-if="first_question">
-                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">請問您過去有運動習慣嗎？</h5>
+                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">{{$t('desktop_syllabus_question_1')}}</h5>
                         <no-ssr>
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
                                     <div @click="selectFrequency(1)" class="select-block-content">
-                                    完全沒有
+                                    {{$t('desktop_syllabus_opction_1_1')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
                                     <div @click="selectFrequency(2)" class="select-block-content">
-                                    一週1~2次
+                                    {{$t('desktop_syllabus_opction_1_2')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
                                     <div @click="selectFrequency(3)" class="select-block-content">
-                                    一週3次以上
+                                    {{$t('desktop_syllabus_opction_1_3')}}
                                     </div>
                                 </slide>
                             </carousel>
                         </no-ssr>
                     </div>
                     <div v-if="second_question">
-                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">請問您想安排運動的時段？</h5>
+                        <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">{{$t('desktop_syllabus_question_2')}}</h5>
                         <no-ssr>
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
                                     <div @click="selectWant(1)" class="select-block-content">
-                                    平日白天
+                                    {{$t('desktop_syllabus_opction_2_1')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
                                     <div @click="selectWant(2)" class="select-block-content">
-                                    平日晚上
+                                    {{$t('desktop_syllabus_opction_2_2')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
                                     <div @click="selectWant(3)" class="select-block-content">
-                                    假日
+                                    {{$t('desktop_syllabus_opction_2_3')}}
                                     </div>
                                 </slide>
                             </carousel>
@@ -128,15 +128,15 @@
                         <span id="span-2"></span>
                         <span id="span-3"></span>
                     </div>
-                </div>
+                </div> -->
                  <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
                     <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
-                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：{{routine.default[0].duration}}</p>
+                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
                     <div>
                         <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
                             <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
-                            <div v-else class="syllabus-desktop-pink-rest">休息</div>
+                            <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                         </div>
                         <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                         <div class="syllabus-desktop-pink-rest">休息</div>
@@ -146,28 +146,28 @@
 
                     </div>
                     <div class="syllabus-mobile-fade-box">
-                        <div class="info-desktop-red-btn" @click="startPractice">開始練習</div>
+                        <div class="info-desktop-red-btn" style="width: 200px;" @click="startPractice">{{$t('desktop_syllabus_second_btn')}}</div>
                     </div>
                 </div>
                 <div v-if="!is_practice && practice_finish" class="syllabus-mobile-flex-content">
-                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>孕動日記`"></h5>
+                    <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
                     <div class="syllabus-mobile-result-box">
                         <div>
                             <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
-                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">練習長度：{{routine.default[0].duration}}</p>
+                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
                         </div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #24798f;">
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">練習<br>成果</div>
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">{{result_score}}分</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;" v-html="$t('desktop_syllabus_finish_title_1')"></div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 60px;">{{result_score}}{{$t('desktop_syllabus_finish_title_1_result')}}</div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #C74F4F;margin-bottom: 7vh;">
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;">消耗<br>卡路里</div>
-                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 70px;">{{result_cal}}卡</div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 20px;font-weight: 500;text-align: left;" v-html="$t('desktop_syllabus_finish_title_2')"></div>
+                        <div class="syllabus-desktop-title" style="color: #fff;margin: 0;font-size: 60px;">{{result_cal}}{{$t('desktop_syllabus_finish_title_2_result')}}</div>
                     </div>
                     <div>
-                        <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">查看建議</div> -->
-                        <div @click="$router.push('/pay')" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 1vh auto;">更多練習</div>
+                        <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 1vh auto;">{{$t('desktop_syllabus_finish_btn_1')}}</div> -->
+                        <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '': '/'+$i18n.locale}/pay`)" class="info-desktop-red-btn" style="background: #707070;border-color: #707070;width: 70%;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 1vh auto;">{{$t('desktop_syllabus_finish_btn_2')}}</div>
                     </div>
                 </div>
             </div>
@@ -175,29 +175,29 @@
         <div v-else class="syllabus-desktop">
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div v-if="!start_build">
-                <img class="syllabus-desktop-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png" alt="">
+                <img class="syllabus-desktop-img" :src="$t('desktop_syllabus_background')" alt="">
                 <div class="syllabus-desktop-title-block">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
-                    <h5 class="syllabus-desktop-title">個人化孕動日記</h5>
-                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
-                    <div class="info-desktop-red-btn" @click="startBuild">開始製作</div>
+                    <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_first_title')}}</h5>
+                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;" v-html="$t('desktop_index_five_text')"></p>
+                    <div class="info-desktop-red-btn" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
             </div>
-            <div v-if="start_build && !show_arrangement">
+            <!-- <div v-if="start_build && !show_arrangement">
                 <div class="syllabus-desktop-question" v-if="first_question">
-                    <h5 class="syllabus-desktop-title">請問您過去有運動習慣嗎？</h5>
+                    <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_question_1')}}</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">完全沒有</div>
-                        <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">一週1~2次</div>
-                        <div @click="selectFrequency(3)" class="syllabus-desktop-question-select">一週3次以上</div>
+                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_1')}}</div>
+                        <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_2')}}</div>
+                        <div @click="selectFrequency(3)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_3')}}</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question" v-if="second_question">
-                    <h5 class="syllabus-desktop-title">請問您想安排運動的時段？</h5>
+                    <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_question_2')}}</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectWant(1)" class="syllabus-desktop-question-select">平日白天</div>
-                        <div @click="selectWant(2)" class="syllabus-desktop-question-select">平日晚上</div>
-                        <div @click="selectWant(3)" class="syllabus-desktop-question-select">假日</div>
+                        <div @click="selectWant(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_1')}}</div>
+                        <div @click="selectWant(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_2')}}</div>
+                        <div @click="selectWant(3)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_3')}}</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question" v-if="!first_question && !second_question">
@@ -214,17 +214,17 @@
                     <span id="span-2"></span>
                     <span id="span-3"></span>
                 </div>
-            </div>
+            </div> -->
             <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
-                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
                         <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">{{routine.default[0].title}}</h5>
-                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">練習長度：{{routine.default[0].duration}}</p>
+                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
                         <div class="syllabus-desktop-arrangement-flex">
                             <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
                                 <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
-                                <div v-else class="syllabus-desktop-pink-rest">休息</div>
+                                <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                             </div>
                             <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div class="syllabus-desktop-pink-rest">休息</div>
@@ -232,32 +232,32 @@
                             <div class="syllabus-desktop-pink-rest">休息</div>
                             <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block> -->
                         </div>
-                        <div class="info-desktop-red-btn" style="margin: 5vh auto 0;" @click="startPractice">開始練習</div>
+                        <div class="info-desktop-red-btn" style="margin: 5vh auto 0;width: 200px;" @click="startPractice">{{$t('desktop_syllabus_second_btn')}}</div>
                     </div>
                 </div>
             </div>
             <div v-if="!is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
-                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + '孕動日記'}}</p>
+                        <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;">
                             <div class="syllabus-desktop-arrangement-result-box">
                                 <p class="syllabus-desktop-title" style="margin:0;text-align: left;">{{routine.default[0].title}}</p>
-                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">練習長度：{{routine.default[0].duration}}</p>
+                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
                                 <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">再次練習</div>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
-                                <p style="font-size: 25px; margin-bottom: 25px;">練習成果</p>
-                                <p style="font-size: 95px;font-weight: 300;">{{result_score}}分</p>
+                                <p style="font-size: 25px; margin-bottom: 25px;">{{$t('desktop_syllabus_finish_title_01')}}</p>
+                                <p style="font-size: 95px;font-weight: 300;">{{result_score}}{{$t('desktop_syllabus_finish_title_1_result')}}</p>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#C74F4F;">
-                                <p style="font-size: 25px; margin-bottom: 25px;">消耗卡路里</p>
-                                <p style="font-size: 95px;font-weight: 300;">{{result_cal}}卡</p>
+                                <p style="font-size: 25px; margin-bottom: 25px;">{{$t('desktop_syllabus_finish_title_02')}}</p>
+                                <p style="font-size: 95px;font-weight: 300;">{{result_cal}}{{$t('desktop_syllabus_finish_title_2_result')}}</p>
                             </div>
                         </div>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;justify-content: center;">
-                            <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 0 1%;">查看建議</div> -->
-                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 0 1%;" @click="$router.push('/pay')">更多練習</div>
+                            <!-- <div v-if="!open_camera" @click="show_result = true" class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #24798F 3px solid; background: transparent;color:#24798F;margin: 0 1%;">{{$t('')}}</div> -->
+                            <div class="info-desktop-red-btn" style="max-width: 200px;width: 50%;background: #707070;border-color: #707070;height: 50px;border: #C74F4F 3px solid; background: transparent;color:#C74F4F;margin: 0 1%;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '': '/'+$i18n.locale}/pay`)">{{$t('desktop_syllabus_finish_btn_2')}}</div>
                         </div>
                     </div>
                 </div>
@@ -336,18 +336,21 @@ export default {
         if (process.client) {
             if (this.$i18n.locale == 'JP') {
                 this.courses = await require('~/config/mamiyoga-course-jp');
+                this.routine = await require('~/config/routine-jp');
                 this.check_lang = '/jp'
             } else if (this.$i18n.locale == 'zh-CN') {
                 this.courses = await require('~/config/mamiyoga-course-zhcn');
+                this.routine = await require('~/config/routine');
                 this.check_lang = '/zh-CN'
             } else {
                 this.courses = await require('~/config/mamiyoga-course');
+                this.routine = await require('~/config/routine');
                 this.check_lang = ''
             }
             if(this.$mq === 'desktop'){
                 document.getElementById('go_syllabus').classList.add('click-active');
             }
-            this.routine = await require('~/config/routine');
+            
             console.log(this.routine.default)
             this.first_course = this.courses[0]
             this.experience_course = this.courses[12]
@@ -402,6 +405,7 @@ export default {
                     }else {
                         this.have_trial = true;
                         this.start_build = true;
+                        this.show_arrangement = true
                     }
                 } else{
                     alert('開通七天體驗後即可開始使用～')
@@ -410,6 +414,7 @@ export default {
             } else {
                 this.have_trial = true;
                 this.start_build = true;
+                this.show_arrangement = true
             }
         },
         selectFrequency(num){
@@ -469,10 +474,17 @@ export default {
         }),
         getTodayDate(){
             const day_list = ['日','ㄧ','二','三','四','五','六']
+            const day_jp = ['日','月','火','水','木','金','土']
             let d = new Date();
             let n = d.getDay();
-            let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_list[n] +'）' ;
-            return today
+            if(this.$i18n.locale == 'JP') {
+                let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_jp[n] +'）' ;
+                return today
+            } else {
+                let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_list[n] +'）' ;
+                return today
+            }
+            
         }
     }
 }

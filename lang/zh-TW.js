@@ -304,6 +304,7 @@ export default {
   desktop_index_eleven_pay_btn_2: '立即填寫',
 
   //孕動日記
+  desktop_syllabus_background: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png',
   desktop_syllabus_first_title: '個人化孕動日記',
   desktop_syllabus_first_btn: '開始製作',
   desktop_syllabus_question_1: '請問您過去有運動習慣嗎？',
@@ -347,10 +348,10 @@ export default {
 
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
-  desktop_syllabus_finish_title_1: '練習成果',
-  desktop_syllabus_finish_title_1_result: ' ***分',
-  desktop_syllabus_finish_title_2: '消耗卡路里',
-  desktop_syllabus_finish_title_2_result: '***卡',
+  desktop_syllabus_finish_title_1: '練習<br>成果',
+  desktop_syllabus_finish_title_1_result: ' 分',
+  desktop_syllabus_finish_title_2: '消耗<br>卡路里',
+  desktop_syllabus_finish_title_2_result: '卡',
 
   //媽咪知識
   desktop_info_1_title: '骨盆是產後恢復最重要的事',

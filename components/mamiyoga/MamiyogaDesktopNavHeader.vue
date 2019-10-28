@@ -1,11 +1,11 @@
 <template>
     <div class="mamiyoga-desktop-nav-header" :style="{backgroundColor: bgColor}">
         <div class="mamiyoga-desktop-nav">
-            <img @click="$router.push('/')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
-            <li id="go_index" @click="$router.push('/')">{{$t('desktop_header_menu_1')}}</li>
-            <li id="go_menu" @click="$router.push('/menu')">{{$t('desktop_header_menu_2')}}</li>
-            <li id="go_syllabus" @click="$router.push('/syllabus')">{{$t('desktop_header_menu_3')}}</li>
-            <li id="go_info" @click="$router.push('/information')">{{$t('desktop_header_menu_4')}}</li>
+            <img @click="$router.push(`${$i18n.locale == 'zh-TW' ? '/': '/' + $i18n.locale}`)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
+            <li id="go_index" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '/': '/' + $i18n.locale}`)">{{$t('desktop_header_menu_1')}}</li>
+            <li id="go_menu" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</li>
+            <li id="go_syllabus" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</li>
+            <li id="go_info" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
             <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
             <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
         </div>
@@ -18,9 +18,9 @@
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">
                 <div class="desktop-header-user-menu-block">
-                    <li @click="$router.push('/member')">{{$t('desktop_header_user_1')}}</li>
+                    <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('desktop_header_user_1')}}</li>
                     <hr class="desktop-header-user-menu-line">
-                    <li @click="$router.push('/information')">{{$t('desktop_header_user_2')}}</li>
+                    <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_user_2')}}</li>
                     <hr class="desktop-header-user-menu-line">
                     <li @click="logout">{{$t('desktop_header_user_3')}}</li>
                 </div>

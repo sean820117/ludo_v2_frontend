@@ -7,16 +7,16 @@
                     <mamiyoga-hamburger-header></mamiyoga-hamburger-header>
                     <div class="course-information-select">
                         <div class="course-information-content">
-                            <p @click="$router.push('/menu')">課程影片</p>
+                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">課程影片</p>
                         </div>
                         <div class="course-information-content">
-                            <p @click="$router.push('/syllabus')">孕動日記</p>
+                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">孕動日記</p>
                         </div>
                         <!-- <div class="course-information-content">
                             <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
                         </div> -->
                         <div class="course-information-content">
-                            <p style="cursor:pointer;" @click="$router.push('/information')">媽咪知識</p>
+                            <p style="cursor:pointer;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">媽咪知識</p>
                         </div>
                     </div>
                     <!-- <div class="course-mail-icon" @click="not_online = true">
@@ -50,7 +50,7 @@
                 <div class="menu-desktop-top-block-title">
                     <h5>單元一、骨盆矯正瑜珈</h5>
                     <p>大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！</p>
-                    <div class="info-desktop-red-btn" @click="startDefaultCourse()">開始上課</div>
+                    <div class="info-desktop-red-btn" @click="startDefaultCourse()">{{$t('desktop_course_first_btn')}}</div>
                 </div>
                 <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(pose,i) in first_course.poses" :key="i" stagger="500" 
@@ -62,7 +62,7 @@
            <div class="menu-desktop-main-block" id="menu-desktop-main">
                <div class="menu-desktop-every-flex">
                    <h4>練習動作</h4>
-                   <p @click="show_practice = true" v-if="!show_practice">顯示全部</p>
+                   <p @click="show_practice = true" v-if="!show_practice">{{$t('desktop_course_all_course')}}</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAiPoses" :key="i" stagger="500" :is_trial="course.trial"
@@ -99,7 +99,7 @@
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>美體塑身</h4>
-                   <p @click="show_beautys = true" v-if="!show_beautys">顯示全部</p>
+                   <p @click="show_beautys = true" v-if="!show_beautys">{{$t('desktop_course_all_course')}}</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500" :is_trial="course.trial"
@@ -109,7 +109,7 @@
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
                     <h4>調和心靈</h4>
-                   <p @click="show_blends = true" v-if="!show_blends">顯示全部</p>
+                   <p @click="show_blends = true" v-if="!show_blends">{{$t('desktop_course_all_course')}}</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500" :is_trial="course.trial"

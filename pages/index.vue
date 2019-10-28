@@ -15,12 +15,12 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div class="info-desktop-red-btn index-first">{{$t('desktop_header_btn_2')}}</div>
+                <div class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/free-trial`)">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
-                <div class="mamiyoga-godown-btn"  @click="goDown">
+                <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
-                </div>
+                </div> -->
             </div>
             <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
                 <div class="index-login-block-inside">
@@ -67,7 +67,7 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title">{{$t('index_title')}}</p>
-                    <div class="index-label-pink-btn" @click="$router.push('/free-trial')">{{$t('desktop_header_btn_2')}}</div>
+                    <div class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/free-trial`)">{{$t('desktop_header_btn_2')}}</div>
             
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
@@ -83,59 +83,59 @@
                     <div class="course-info-block-1" v-if="$mq !== 'desktop'">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
-                            <h6 class="index-article-little-title">卸貨小寶貝後，媽咪的身心需要重新調整</h6>
+                            <h6 class="index-article-little-title">{{$t('desktop_index_second_title_2')}}</h6>
                             <div>
                                 <div style="display:flex;align-items:center;width: 95%;margin: 20px auto 10px;">
                                     <div style="display:flex;align-items:center;">
                                         <img style="width:15%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                        <p class="index-article-text" style="margin: 0 0 0 10px;">每日壓力歸零</p>
+                                        <p class="index-article-text" style="margin: 0 0 0 10px;">{{$t('desktop_index_second_list_1')}}</p>
                                     </div>
                                     <div style="display:flex;align-items:center;">
                                         <img style="width:15%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                        <p class="index-article-text" style="margin: 0 0 0 10px;">加強身體循環</p>
+                                        <p class="index-article-text" style="margin: 0 0 0 10px;">{{$t('desktop_index_second_list_2')}}</p>
                                     </div>
                                 </div>
                                 <div style="display:flex;align-items:center;width: 95%;margin: 10px auto 20px;">
                                     <div style="display:flex;align-items:center;">
                                         <img style="width:15%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                        <p class="index-article-text" style="margin: 0 0 0 10px;">逐步改善體態</p>
+                                        <p class="index-article-text" style="margin: 0 0 0 10px;">{{$t('desktop_index_second_list_3')}}</p>
                                     </div>
                                     <div style="display:flex;align-items:center;">
                                         <img style="width:15%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                        <p class="index-article-text" style="margin: 0 0 0 10px;">維持身心平衡</p>
+                                        <p class="index-article-text" style="margin: 0 0 0 10px;">{{$t('desktop_index_second_list_4')}}</p>
                                     </div>
                                 </div>
                             </div>
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
-                            <h6 class="index-article-little-title" style="margin-top: 50px;">一堂不需要出門的輕運動課程</h6>
-                             <p class="index-article-text" style="margin-top:15px;margin-bottom: 40px;">為了寶貝 24 小時待命，無暇出門運動的妳，<br>每日居家舒緩方案，對抗身體不適和負面情緒！</p>
+                            <h6 class="index-article-little-title" style="margin-top: 50px;">{{$t('desktop_index_second_text_1')}}</h6>
+                             <p class="index-article-text" style="margin-top:15px;margin-bottom: 40px;" v-html="$t('desktop_index_second_text_2')"></p>
                         </div>
                         <img style="width:90%;margin: 0 auto 45px;display: block;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
                     </div>
                     <div class="course-info-block-1" v-if="$mq == 'desktop'">
                         <div class="course-info-content-1">
-                            <h3 class="index-article-title">失眠、焦慮、腰痠背痛？<br>忙碌的媽咪們，辛苦了！</h3>
-                            <h6 class="index-article-little-title">從成為媽咪這天起，妳需要有個幫手陪妳度過</h6>
+                            <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
+                            <h6 class="index-article-little-title">{{$t('desktop_index_second_title_2')}}</h6>
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
-                            <h6 class="index-article-little-title" style="margin-top: 50px;">一堂不需要出門的輕運動課程</h6>
-                             <p class="index-article-text">為了寶貝 24 小時待命，無暇出門運動的妳，<br>每日居家舒緩方案，對抗身體不適和負面情緒！</p>
+                            <h6 class="index-article-little-title" style="margin-top: 50px;">{{$t('desktop_index_second_text_1')}}</h6>
+                             <p class="index-article-text" v-html="$t('desktop_index_second_text_2')"></p>
                             <div style="position: absolute;top: 15vh; right: 0;">
                                 <div style="display:flex;align-items:center;margin:0 0 4vh;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">每日壓力歸零</p>
+                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_1')}}</p>
                                 </div>
                                 <div style="display:flex;align-items:center;margin:0 0 4vh;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">加強身體循環</p>
+                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_2')}}</p>
                                 </div>
                             
                                 <div style="display:flex;align-items:center;margin:0 0 4vh;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">逐步改善體態</p>
+                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_3')}}</p>
                                 </div>
                                 <div style="display:flex;align-items:center;margin:0 0 4vh;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
-                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">維持身心平衡</p>
+                                    <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_4')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -144,37 +144,37 @@
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2">
                         <div class="course-info-content-2">
-                            <h3 class="index-article-title" style="width:85%;margin:0 auto;">妳知道日本媽媽<br>快速產後復原的秘訣嗎？</h3>
-                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手</p>
+                            <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
+                            <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
                             <img class="about-course-teach-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png" alt="">
                             <!-- <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
                             </router-link> -->
-                            <div @click="$router.push('/information')" class="index-article-out-btn mirror-btn go-info">閱讀媽咪知識</div>
+                            <div @click="$router.push('/information')" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_third_btn')}}</div>
                         </div>
                         <div class="index-article-use-video">
                             <div class="course-info-block-mirror">
                                 <p class="index-article-out-container-text">「自拍魔鏡」</p>
-                                <p class="index-article-out-container-text-li">媽咪們最貼心的練習夥伴</p>
+                                <p class="index-article-out-container-text-li">{{$t('desktop_index_four_little')}}</p>
                                 <div class="course-flex-block-mirror">
                                     <img class="mirror-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png" alt="">
                                     <div class="course-flex-block-mirror-2">
-                                        <p class="index-article-out-text index-mirror-text">用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！</p>
+                                        <p class="index-article-out-text index-mirror-text" v-html="$t('desktop_index_four_text')"></p>
                                         <div class="index-article-out-icon-block">
                                             <div class="index-article-out-icon">
                                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-1.png" alt="">
-                                                <p>隨時練習</p>
+                                                <p>{{$t('desktop_index_four_list_1')}}</p>
                                             </div>
                                             <div class="index-article-out-icon">
                                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-2.png" alt="">
-                                                <p>專業分析</p>
+                                                <p>{{$t('desktop_index_four_list_2')}}</p>
                                             </div>
                                             <div class="index-article-out-icon">
                                                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-3.png" alt="">
-                                                <p>練習記錄</p>
+                                                <p>{{$t('desktop_index_four_list_3')}}</p>
                                             </div>
                                         </div>
-                                        <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn">立即免費體驗 </button>
+                                        <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn">{{$t('desktop_index_four_btn')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -182,8 +182,8 @@
                         </div>
                     </div>
                     <div class="course-info-block-3" v-if="$mq !== 'desktop'">
-                        <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
-                        <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">每天十分鐘，讓心情跟身體重新開機！</h6>
+                        <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">{{$t('desktop_index_five_title')}}</p>
+                        <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">{{$t('desktop_index_five_little')}}</h6>
                         <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，按照主題式課表練習</p>
                         <div class="intro-wrap-block-new-five-curriculum">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="about-course-series-data-block" :class="show_series[0]">
                                     <div class="about-course-data-block"  @click="toggleSeries(0)">
-                                        <div class="about-course-data-title series">矯正疼痛</div>
+                                        <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_1')}}</div>
                                         <div class="about-course-data-circle outside series" :class="show_series[0]">
                                             <span></span>
                                             <span></span>
@@ -429,7 +429,7 @@
                     </div>
                     <div v-if="$mq !== 'desktop'">
                         <div>
-                            <h4 class="intro-wrap-block-title" style="color:#24798F;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
+                            <h4 class="intro-wrap-block-title" style="color:#24798F;" v-html="$t('desktop_index_nine_text')"></h4>
                             <img style="width: 90%;display: block;margin: 20px auto 50px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-9-1.png" alt="">
                         </div>
                         <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
@@ -484,20 +484,20 @@
                         <div style="min-height: 80vh;background: #FCFCFC;padding-top: 13vh;">
                             <div style="display:flex;justify-content: space-between;width: 90%;max-width: 1366px;margin: 0 auto;">
                                 <div>
-                                    <h5 class="index-article-out-container-text why-to-select-title">為什麼選Mamiyoga？</h5>
-                                    <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
-                                    <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn" style="margin: 5vh 0;">立即免費體驗 </button>
+                                    <h5 class="index-article-out-container-text why-to-select-title">{{$t('desktop_index_nine_title')}}</h5>
+                                    <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;" v-html="$t('desktop_index_nine_text')"></h4>
+                                    <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn" style="margin: 5vh 0;">{{$t('desktop_index_four_btn')}} </button>
                                 </div>
                                 <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="course-info-block-5">
-                        <p class="intro-wrap-block-title last-title">使用者回饋</p>
+                        <p class="intro-wrap-block-title last-title">{{$t('desktop_index_ten_title')}}</p>
                         <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
                     </div>
                     <div class="course-info-block-6">
-                        <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;margin-left: 40px;">收費方式</h4>
+                        <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;margin-left: 40px;">{{$t('desktop_index_eleven_title')}}</h4>
                         <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>  
                     <!-- 三段式常見問題 -->
@@ -1059,7 +1059,7 @@ export default {
 #mamiyoga-index-title-des {
     width: 85vw;
     margin: 0 auto 1vh;
-    font-size: 19px;
+    font-size: 15px;
     color: #F7F7F7;
     font-weight: 500;
 }
@@ -1303,7 +1303,7 @@ export default {
 }
 .index-article-title {
     color: #24798F;
-    font-size: 24px;
+    font-size: 19px;
     text-align:left;
 }
 .index-article-little-title {
