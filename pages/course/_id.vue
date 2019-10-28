@@ -47,12 +47,23 @@ export default {
                 this.$router.push('/login');
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!payed_or_not) {
-                    console.log("not payed");
-                    window.alert("尚未開通課程，請先前往購買～");
-                    this.$router.push('/pay');
-                } else {
+                
+                if (payed_or_not) {
                     console.log("payed")
+                } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){ 
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/pay');
+                    }
+                } else {
+                    console.log("not payed");
+                    window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
+                    this.$router.push('/pay');
                 }
             }
         }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 var pose_axios = axios.create({
     baseURL: 'https://pose.ludonow.com:8787',
+    // baseURL: 'http://ec2-34-214-32-108.us-west-2.compute.amazonaws.com:8787',
     withCredentials: 'true',
     timeout: 2000000,
 });
@@ -14,6 +15,13 @@ var api_axios = axios.create({
 
 function newLudoRTC (options = {}) {
     if (process.client) {
+        if (options.dev) {
+            pose_axios = axios.create({
+                baseURL: 'http://ec2-34-214-32-108.us-west-2.compute.amazonaws.com:8787',
+                withCredentials: 'true',
+                timeout: 2000000,
+            });
+        }
         return new LudoRTC(options);
     } else {
         return null;
@@ -41,7 +49,7 @@ class LudoRTC {
                     width:320,
                     height:240,
                     aspectRatio: 1.777777778,
-                    frameRate: { ideal: 24,max: 30 },
+                    frameRate: 24,
                     facingMode: 'user',
                 }
             },
@@ -77,7 +85,7 @@ class LudoRTC {
     }
 
     async startRecording(post_info = {}) {
-        if (post_info.length > 0) {
+        if (post_info) {
             this.final_config.post_info = post_info;
         }
         this.pc = this.createPeerConnection(this.final_config);
@@ -233,6 +241,38 @@ class LudoRTC {
             }
         }
         return total_score / this.video_list.length;
+    }
+
+    async getDetailResult() {
+        var total_score = 0;
+        let post_info = this.final_config.post_info;
+        let detail_results = []
+        for (let index = 0; index < this.video_list.length; index++) {
+            const video_file_name = this.video_list[index];
+            try {
+                let response = await api_axios.post('/apis/get-pose-result',{user_id:post_info.user_id,pose_id:post_info.pose_id,file_name:video_file_name})
+                if (response.data.result.status == 200) {
+                    total_score += parseInt(response.data.result.score)
+                } else if(response.data.result.status == 102) { 
+                    total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
+                } else if(response.data.result.status == 204) {
+                    total_score += parseInt(response.data.result.score)
+                } else if(response.data.result.status == 404){
+                    total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
+                } else {
+                    total_score += 30
+                    total_score += parseInt(Math.random(6) * 20)
+                }
+                detail_results.push(response.data.result)
+            } catch (error) {
+                console.error(error)
+                total_score += 30
+                total_score += parseInt(Math.random(6) * 20)
+            }
+        }
+        return detail_results;
     }
 }
 

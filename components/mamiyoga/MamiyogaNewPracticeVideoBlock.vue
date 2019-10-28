@@ -242,13 +242,8 @@ export default {
     async mounted(){
         if (process.client) {
             this.inputVideo = document.querySelector('#inputVideo')
-            // this.video_recorder = await this.$videoRecorder();
-
-            // this.video_recorder.openCamera(this.constraints,this.inputVideo);
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
-
-
         }
     },
     destroyed() {
@@ -270,217 +265,6 @@ export default {
                 }, 1000);
             }
         },
-        // startPractice(){
-        //     this.is_studying = true;
-        //     //控制影片播放及進度條
-        //     if (this.open_camera) {
-        //         this.video_recorder.startRecording({
-        //             pose_id: "yoga_27",
-        //             user_id: this.user.user_id,
-        //             language: 'zh-tw',
-        //         });
-        //     }
-        //      //控制吸氣吐氣的顯示
-        //     setTimeout(() => {
-        //         this.is_inhaleing = true
-        //     }, 3000);
-        //     setTimeout(() => {
-        //         this.show_inhale = false
-        //         this.show_exhale = true
-        //     }, 13000);
-        //     setTimeout(() => {
-        //         this.is_exhaleing = true
-        //     }, 16000);
-        //     //第二次吸氣吐氣
-        //     setTimeout(() => {
-        //         this.show_inhale = true
-        //         this.show_exhale = false
-        //         this.is_exhaleing = false
-        //     }, 24000);
-        //     setTimeout(() => {
-        //         this.is_inhaleing = true
-        //     }, 27000);
-        //     setTimeout(() => {
-        //         this.show_inhale = false
-        //         this.show_exhale = true
-        //     }, 30000);
-        //     setTimeout(() => {
-        //         this.is_exhaleing = true
-        //     }, 31000);
-
-        //     setTimeout(() => {
-        //         this.show_exhale = false
-        //         this.show_inhale = false
-        //         this.is_exhaleing = false
-        //         this.is_inhaleing = false
-        //     }, 40000);
-
-        //     let bgm = document.querySelector('#course-bgm')
-        //     let co_vid = document.querySelector('#course-video-1')
-        //     let nt_vid = document.querySelector('#course-video-2')
-        //     let nt_vid_2 = document.querySelector('#course-video-3')
-        //     let rest = document.querySelector('#course-video-rest')
-        //     nt_vid.style.display = 'none';
-        //     nt_vid_2.style.display = 'none';
-        //     rest.style.display = 'none';
-        //     // let height = 0
-        //     this.video_length = co_vid.duration
-        //     bgm.play();
-        //     co_vid.play();
-        //     let t = (this.video_length+1) / 100
-        //     let id = setInterval(() => {
-        //         let bar_percentage = co_vid.currentTime / this.video_length
-        //         document.getElementById('video-process-bar-inside-1').style.height = (bar_percentage * 100)+'%'; 
-        //         if (bar_percentage == 1) {
-        //             if (this.open_camera) {
-        //                 this.video_recorder.stopRecording();
-        //             }
-        //             // nt_vid.style.display = 'block';
-        //             rest.style.display = 'flex';
-        //             co_vid.style.display = 'none';
-        //             // this.startPractice1();
-        //             this.practiceRest1();
-        //             console.log('stop')
-        //             clearInterval(id)
-        //         }
-        //     }, 100);
-        // },
-        // startPractice1(){
-        //     this.show_inhale = true
-        //     if (this.open_camera) {
-        //         this.video_recorder.startRecording({
-        //             pose_id: "yoga_27",
-        //             user_id: this.user.user_id,
-        //             language: 'zh-tw',
-        //         });
-        //     }
-        //     this.show_inhale = true
-        //     //控制吸氣吐氣的顯示
-        //     setTimeout(() => {
-        //         this.is_inhaleing = true
-        //     }, 20000);
-        //     setTimeout(() => {
-        //         this.show_inhale = false
-        //         this.show_exhale = true
-        //     }, 31000);
-        //     setTimeout(() => {
-        //         this.is_exhaleing = true
-        //     }, 32000);
-        //     setTimeout(() => {
-        //         this.show_exhale = false
-        //         this.show_inhale = false
-        //         this.is_exhaleing = false
-        //         this.is_inhaleing = false
-        //     }, 39000);
-        //     //控制影片播放及進度條
-        //     let co_vid = document.querySelector('#course-video-2')
-        //     let nt_vid = document.querySelector('#course-video-3')
-        //     let rest = document.querySelector('#course-video-rest')
-        //     let height = 0
-        //     this.video_length = co_vid.duration
-        //     // this.recordVideo();
-        //     co_vid.play();
-        //     let t = (this.video_length+1) / 100
-        //     let id = setInterval(() => {
-        //         let bar_percentage = co_vid.currentTime / this.video_length
-        //         document.getElementById('video-process-bar-inside-3').style.height = (bar_percentage * 100)+'%'; 
-        //          if (bar_percentage == 1) {
-        //             // this.video_recorder.setOnRecordingFinish(this.processRecordedVideo);
-        //             // this.video_recorder.stopRecording()
-        //             if (this.open_camera) {
-        //                 this.video_recorder.stopRecording();
-        //             }
-        //             rest.style.display = 'flex';
-        //             co_vid.style.display = 'none';
-        //             this.practiceRest2();
-        //             // this.startPractice2();
-        //             console.log('stop')
-        //             clearInterval(id)
-        //         }
-        //     }, 100);
-        // },
-        // startPractice2(){
-        //     if (this.open_camera) {
-        //         this.video_recorder.startRecording({
-        //             pose_id: "yoga_27",
-        //             user_id: this.user.user_id,
-        //             language: 'zh-tw',
-        //         });
-        //     }
-        //     this.show_inhale = true
-        //     //控制吸氣吐氣的顯示
-        //     setTimeout(() => {
-        //         this.is_inhaleing = true
-        //     }, 45000);
-        //     setTimeout(() => {
-        //         this.show_inhale = false
-        //         this.is_inhaleing = false
-        //         this.is_exhaleing = true
-        //     }, 52000);
-        //     setTimeout(() => {
-        //         this.show_exhale = false
-        //         this.show_inhale = false
-        //         this.is_exhaleing = false
-        //         this.is_inhaleing = false
-        //     }, 58000);
-        //     let co_vid = document.querySelector('#course-video-3')
-        //     let height = 0
-        //     this.video_length = co_vid.duration
-        //     // this.recordVideo();
-        //     co_vid.play();
-        //     let t = (this.video_length+1) / 100
-        //     let id = setInterval(() => {
-        //         let bar_percentage = co_vid.currentTime / this.video_length
-        //         document.getElementById('video-process-bar-inside-5').style.height = (bar_percentage*100)+'%'; 
-        //         if (bar_percentage == 1) {
-        //             if (this.open_camera) {
-        //                 this.video_recorder.stopRecording();
-        //             }
-        //             this.count_over = true
-        //             console.log('stop')
-        //             clearInterval(id)
-        //         }
-        //     }, 100);
-        // },
-        // practiceRest1(){
-        //     // let rest = document.querySelector('#course-video-rest')
-        //     let rest = document.querySelector('.course-video-container.rest')
-        //     let nt_vid = document.querySelector('#course-video-2')
-        //     rest.style.display = 'flex'
-        //     let height = 0
-        //     let id = setInterval(() => {
-        //         document.getElementById('video-process-bar-inside-2').style.height = (height / 3)+'%'; 
-        //         if(height >= 300) {
-        //             nt_vid.style.display = 'block';
-        //             rest.style.display = 'none';
-        //             this.startPractice1()
-        //             clearInterval(id)
-        //         } else if (this.is_stop) {
-
-        //         } else {
-        //             height++
-        //         }
-        //     }, 100);
-        // },
-        // practiceRest2(){
-        //     let rest = document.querySelector('.course-video-container.rest')
-        //     let nt_vid = document.querySelector('#course-video-3')
-        //     rest.style.display = 'flex'
-        //     let height = 0
-        //     let id = setInterval(() => {
-        //         document.getElementById('video-process-bar-inside-4').style.height = (height / 3)+'%'; 
-        //         if(height >= 300) {
-        //             nt_vid.style.display = 'block';
-        //             rest.style.display = 'none';
-        //             this.startPractice2()
-        //             clearInterval(id)
-        //         }else if (this.is_stop) {
-                    
-        //         }else {
-        //             height++
-        //         }
-        //     }, 100);
-        // },
         startRoutine(){
             this.is_studying = true
             this.playVideo(0);
@@ -492,7 +276,7 @@ export default {
                 if (this.pose_video != poses[i].pose_video) {
                     this.pose_video = poses[i].pose_video
                 }
-                if (this.open_camera && pose[i].pose_ai) { 
+                if (this.open_camera && poses[i].pose_ai) { 
                     this.video_recorder.startRecording({
                         pose_id: "yoga_27",
                         user_id: this.user.user_id,
@@ -508,7 +292,7 @@ export default {
                     
                     let id = setInterval(() => {
                         let bar_percentage = co_vid.currentTime / this.video_length
-                        console.log(co_vid.currentTime)
+                        // console.log(co_vid.currentTime)
                         // if (co_vid.currentTime >= poses[i].inhale[0][0] && co_vid.currentTime <= poses[i].inhale[0][1]) {
                         //     // todo playInhale(bar_percentage)
                         // }
