@@ -81,43 +81,48 @@ export default {
     methods: {
         openCourseVideo(video = null){
             if(!this.payed_or_not){
-                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
-                    if(use_time > 7){
-                        this.have_trial = false;   
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/');
-                    }else {
-                        this.have_trial = true;
-                        if(this.is_trial&&this.have_trial) {
-                            if (video) {
-                                let iframe = document.querySelector('#current-course-video');
-                                if (iframe) {
-                                    iframe.style.display = 'block';
-                                    iframe.querySelector('iframe').src = video;
-                                }
-                            } else if(this.courseVideo) {
-                                let iframe = document.querySelector('#current-course-video');
-                                if (iframe) {
-                                    iframe.style.display = 'block';
-                                    iframe.querySelector('iframe').src = this.courseVideo;
+                if(this.login_or_not){
+                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                        let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                        let now = new Date();
+                        let now_time = now.getTime();
+                        let use_time = (now_time - open_time)/86400000;
+                        console.log(use_time)
+                        if(use_time > 7){
+                            this.have_trial = false;   
+                            alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                            this.$router.push('/');
+                        }else {
+                            this.have_trial = true;
+                            if(this.is_trial&&this.have_trial) {
+                                if (video) {
+                                    let iframe = document.querySelector('#current-course-video');
+                                    if (iframe) {
+                                        iframe.style.display = 'block';
+                                        iframe.querySelector('iframe').src = video;
+                                    }
+                                } else if(this.courseVideo) {
+                                    let iframe = document.querySelector('#current-course-video');
+                                    if (iframe) {
+                                        iframe.style.display = 'block';
+                                        iframe.querySelector('iframe').src = this.courseVideo;
+                                    }
+                                } else {
+                                    console.log(courseTitle + ' no video');
                                 }
                             } else {
-                                console.log(courseTitle + ' no video');
+                                alert('購買後即可觀看所有課程～')
+                                this.$router.push('/pay')
                             }
-                        } else {
-                            alert('購買後即可觀看所有課程～')
-                            this.$router.push('/pay')
                         }
-                    }
+                    } else {
+                        alert('開通七天體驗即可開始使用！')
+                        this.$router.push('/free-trial')
+                    } 
                 } else {
-                    alert('開通七天體驗即可開始使用！')
-                    this.$router.push('/free-trial')
-                } 
+                    alert('請先前往登入或註冊！')
+                    this.$router.push('/login')
+                }
             } else {
                 if (video) {
                     let iframe = document.querySelector('#current-course-video');

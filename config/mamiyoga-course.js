@@ -467,7 +467,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350547825',
         video_url_jp:'https://player.vimeo.com/video/350465960',
         course_introduction:'大腿內側裡面的「內轉肌」在日常生活中，若沒有特別有意識鍛鍊使用，就不會用到的。那是一個容易低溫，容易囤積橘皮組織的地方。<br>只要內轉肌肉一旦衰退，腳閉合的時候力量就會變弱、容易變成O型腿。血液跟淋巴的循環也會變遲鈍，容易水腫。這樣下去的話，腳就會越來越粗！所以在那之前，我們得要好好照顧這個部位！',
-        trial: true,
+        trial: false,
         poses:[
             {
                 pose_id: 'first',
@@ -478,7 +478,7 @@ module.exports = [
                 input_id:'20',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-1.png',
                 remind_text: '直式拍攝、正面入鏡',
-                trial: true,
+                trial: false,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','穩定手肘','雙腳距離再遠一點','視線看向側面'],
                 inhale: [[10,20]],
@@ -493,7 +493,7 @@ module.exports = [
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-2.png',
                 input_id:'',
                 remind_text: '',
-                trial: true,
+                trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
                 exhale: [[20,30]]
@@ -597,7 +597,7 @@ module.exports = [
         video_url:'https://player.vimeo.com/video/350549096',
         video_url_jp:'https://player.vimeo.com/video/350465109',
         course_introduction:'讓我們來打開心胸，攝取正面能量，感受到向前走的感覺吧！打開心胸跟喉嚨就可以攝取新鮮空氣，自然心情也會變得清爽。<br>對於不習慣的新生活，照顧小孩，感受到疲勞，焦慮，喘不過氣來時，這時候做這些動作就可以感受到可以煥然一新。因為產後非常忙碌，感覺怎麼樣都追不上時間...所以，必須要更重視自己煥然一新的時間！那麼我們來馬上開始吧！',
-        trial: false,
+        trial: true,
         poses:[
             {
                 pose_id: 'first',
@@ -608,7 +608,7 @@ module.exports = [
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-1.png',
                 input_id:'',
                 remind_text: '',
-                trial: false,
+                trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
                 exhale: [[20,30]]
@@ -622,7 +622,7 @@ module.exports = [
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-2.png',
                 input_id:'',
                 remind_text: '',
-                trial: false,
+                trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
                 exhale: [[20,30]]
@@ -636,7 +636,7 @@ module.exports = [
                 input_id:'27',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-3.png',
                 remind_text: '直式拍攝、側面入鏡',
-                trial: false,
+                trial: true,
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','不要聳肩','身體太往前','身體太往後','用背部出力會更好','手臂不彎曲','抬手不完全','更往上伸展','屁股離地了'],
                 inhale: [[1,4,10],[22,23,29]],
