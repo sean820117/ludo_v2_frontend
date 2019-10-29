@@ -1,17 +1,16 @@
 <template>
     <div class="container">
-        <video @timeupdate="checkTime" id="demo-video" alt="在這裡錄影" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L10_action01.mp4" muted>Video stream not available.</video>
         <div id="input-video-container">
-            <video id="video" alt="在這裡錄影" muted>Video stream not available.</video>
+            <video id="video" alt="課程影片" muted>Video stream not available.</video>
         </div>
+        <video @timeupdate="checkTime" id="demo-video" alt="在這裡錄影" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L10_action01.mp4" muted>Video stream not available.</video>
         <div class="btn-style">
             <button @click="playAudio" v-if="!show_recording && !is_stop" id="startBtn" class="btn btn-sm btn-outline-primary"></button>
             <button @click="pauseAudio" v-if="show_recording && !is_stop" id="stopBtn" class="btn btn-sm btn-outline-danger"></button>
             <button v-if="is_stop" @click="reloadPage" id="resetBtn" class="btn btn-sm btn-outline-info"></button>
+            <p class="upload-btn" v-if="!is_finish">{{current_time}}</p>
+            <p class="upload-btn" v-if="is_finish" @click="saveRecord" >取得結果</p>
         </div>
-        <p class="upload-btn" v-if="!is_finish">{{current_time}}</p>
-        <p class="upload-btn" v-if="is_finish" @click="saveRecord" >取得結果</p>
-        <audio controls id="music" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/Ludo_BGM_1.wav"></audio>
     </div>
 </template>
 <script>
@@ -26,10 +25,15 @@ export default {
         is_finish: false,
         current_time: 0,
         show_recording: false,
+        pose_id:'yoga_20',
+        language: 'zh-tw',
     }),
     async mounted() {
         if (process.client) {
-            this.video_recorder = await this.$newLudoRTC({dev:true});
+            this.pose_id = this.$route.query.pose_id ? this.$route.query.pose_id : this.pose_id;
+            this.language = this.$route.query.language ? this.$route.query.language : this.language;
+            let dev = this.$route.query.dev == 'true' ? true : false;
+            this.video_recorder = await this.$newLudoRTC({dev:dev});
             console.log(this.video_recorder);
             this.video_recorder.openCamera();
         }
@@ -51,9 +55,9 @@ export default {
         },
         recordVideo(){
             this.video_recorder.startRecording({
-                pose_id: "yoga_20",
-                user_id: "guest",
-                language: 'jp',
+                pose_id: this.pose_id,
+                user_id: "tester",
+                language: this.language,
             })
             console.log('recording')
         },
@@ -89,11 +93,21 @@ export default {
 <style>
 .container {
     background: #000;
-    min-height: 100vh;
+    /* height: 100%; */
+    min-height: -webkit-fill-available;
+    width: 100vw;
     overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 #input-video-container {
     transform: scaleX(-1);
+    background:transparent;
+    align-self: flex-end;
+    position: fixed;
+    top: 0;
 }
 #video {
     height:15vh;
@@ -101,25 +115,23 @@ export default {
     border: 1px solid red;
 }
 #demo-video {
-    height: 90vh;
+    height: 100%;
     width: 200vw;
-    margin-left: -50vw;
-    position:absolute;
-}
-#course-video-container {
-    margin-top: 8vh;
-    transform: rotate(90deg);
-}
-.index-wrap-video {
-    height: 100vw;
+    flex: 10;
+    /* margin-left: -50vw; */
+    /* position:absolute; */
 }
 .btn-style{
-    position: fixed;
+    flex: 1;
+    /* position: absolute; */
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: 5vh;
-    left: calc(50% - 40px);
+    bottom: 0px;
+    /* left: calc(50% - 40px); */
+    width: 100vw;
+    height: 100px;
+    background: #000;
 }
 .btn-style .btn {
     width: 80px;
@@ -128,6 +140,7 @@ export default {
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
+    /* padding-bottom: 5vh; */
 }
 #startBtn {
     background: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/camera-record-btn.svg');
@@ -145,9 +158,10 @@ export default {
     line-height: 30px;
     text-align: center;
     border: 1px solid #fff;
-    position: fixed;
-    bottom: 9vh;
+    position: absolute;
+    margin-top: 5px;
     right: 6vw;
+    align-self: baseline;
 }
 #music {
     opacity: 0;
