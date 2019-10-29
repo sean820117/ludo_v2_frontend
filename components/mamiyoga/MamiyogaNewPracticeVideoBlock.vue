@@ -286,7 +286,8 @@ export default {
                 
                 let co_vid = document.querySelector('#course-video')
                 co_vid.style.display = 'block';
-                co_vid.oncanplay = function() { 
+                co_vid.onloadedmetadata = function() {
+                // co_vid.addEventListener('loadedmetadata', function (e) {
                     this.video_length = co_vid.duration
                     co_vid.play() 
                     
@@ -340,7 +341,7 @@ export default {
                         }
                     }, 100);
                     // co_vid.oncanplay = null
-                }.bind(this);
+                }.bind(this)
             } else {
                 let rest = document.querySelector('.course-video-container.rest')
                 rest.style.display = 'flex';
@@ -480,6 +481,7 @@ export default {
 #input-video-container {
     height: 100vh;
     overflow: hidden;
+    background: #000;
 }
 .preview-img {
     transform: rotate(90deg);
@@ -579,6 +581,7 @@ export default {
 #show-course.show {
     z-index: 100;
     opacity: 1;
+    background: #000;
 }
 .course-video-container {
     /* width: 100%;
