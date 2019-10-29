@@ -45,7 +45,7 @@
                 <div v-if="!start_build">
                     <img class="syllabus-desktop-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-syllabus.png" alt="">
                     <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">個人化孕動日記</h5>
-                    <p class="syllabus-intro-text">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
+                    <p class="syllabus-intro-text">針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！</p>
                     <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">開始製作</div>
                 </div>
                 <div v-if="start_build && !show_arrangement">
@@ -179,7 +179,7 @@
                 <div class="syllabus-desktop-title-block">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
                     <h5 class="syllabus-desktop-title">個人化孕動日記</h5>
-                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;">針對媽咪設計的專屬功能，<br>按照主題式課表練習。</p>
+                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;">針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！</p>
                     <div class="info-desktop-red-btn" @click="startBuild">開始製作</div>
                 </div>
             </div>

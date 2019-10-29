@@ -145,7 +145,7 @@
                     <div class="course-info-block-2">
                         <div class="course-info-content-2">
                             <h3 class="index-article-title" style="width:85%;margin:0 auto;">妳知道日本媽媽<br>快速產後復原的秘訣嗎？</h3>
-                            <p class="index-article-text about-course-teach">我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手</p>
+                            <p class="index-article-text about-course-teach">日本線上人氣No.1 Kokorokarada Anshin Lab 老師橋本麻美，<br>將為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手，<br>打造一堂不需要出門的輕運動課程。</p>
                             <img class="about-course-teach-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png" alt="">
                             <!-- <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
@@ -184,7 +184,7 @@
                     <div class="course-info-block-3" v-if="$mq !== 'desktop'">
                         <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;">每天十分鐘，讓心情跟身體重新開機！</h6>
-                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，按照主題式課表練習</p>
+                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！</p>
                         <div class="intro-wrap-block-new-five-curriculum">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
@@ -315,7 +315,7 @@
                                     <img style="width: 95%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png" alt="">
                                 </div>
                                 <div class="get-course-block">
-                                    <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對媽咪設計的專屬功能，<br>按照主題式課表練習</div>
+                                    <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！</div>
                                     <img class="get-course-link-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contact-img.png" alt="">
                                      <div id="get-routine-btn" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')"></div>
                                 </div>
@@ -488,7 +488,10 @@
                                     <h4 class="intro-wrap-block-title why-to-select-text" style="color:#000;margin:2vh 0;">Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？</h4>
                                     <button  @click="$router.push('/syllabus')" class="index-article-out-btn mirror-btn" style="margin: 5vh 0;">立即免費體驗 </button>
                                 </div>
-                                <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png" alt="">
+                                <div style="display: flex;flex-direction: column;align-items: flex-end;">
+                                    <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png" alt="">
+                                    <p class="index-article-text about-course-teach" style="font-size: 1em;width: fit-content;margin-right: 30px;">*Mamiyoga動態捕捉科技，精準判斷0死角</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -594,9 +597,14 @@
                         <p class="mamiyoga-intro-agree">contact@ludonow.com</p>
                     </div>
                 </div>
-                
             </div>
-            <div class="index-footer" id="index-fixed-footer">
+            <div class="index-new-footer" id="index-fixed-footer" :style="{backgroundImage: $mq != 'desktop' ? `url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png')`:''}">
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png" alt="">
+                <div class="index-new-footer-btn-block">
+                    <p class="index-new-footer-btn-text" v-if="$mq != 'desktop'">想了解更多<br>課程內容？</p>
+                    <p class="index-new-footer-btn-text" v-else>想了解更多課程內容？</p>
+                    <p class="index-new-footer-btn" @click="goOtherPage('https://m.me/1557980337838066?ref=p2FkZKT7rKP')">呼叫專業顧問</p>
+                </div>
             </div>
          </div>
         <!-- 電腦版提示(已關閉) -->
@@ -1194,7 +1202,7 @@ export default {
     user-select: none;
 }
 .about-course-block,.love-feedback-block  {
-    padding-bottom: 45px;
+    /* padding-bottom: 45px; */
 }
 #about-course:checked ~ .index-label-box .about-course-btn,
 #love-feedback:checked ~ .index-label-box .love-feedback-btn {
@@ -1891,21 +1899,39 @@ export default {
     top: 50%;
     height: 15px;
 }
-.index-footer {
-    height: 60px;
+.index-new-footer {
+    height: 250px;
     width: 100%;
-    background: #F7F7F7;
-    color: #EEEFEA;
+    background-color: #24798f;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: -20px 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    letter-spacing: 5px;
-    font-size: 20px;
-    visibility: hidden;
-    cursor: pointer;
+    overflow: hidden;
+}
+.index-new-footer img {
+    opacity: 0;
+    width: 60%;
+}
+.index-new-footer-btn-block {
     display: flex;
-    flex-wrap: wrap;
-    box-shadow: 0 -5px 10px rgba(0,0,0,.1);
+    flex-direction: column;
+    align-items: flex-start;
+}
+.index-new-footer-btn-text {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+.index-new-footer-btn {
+    background: #fff;
+    color: #24798f;
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 .index-footer-content {
     width: 90%;
@@ -2161,7 +2187,6 @@ export default {
     width: 350px;
     height: 500px;
 }
-
 
 @media  (min-width:769px) {
     .about-course-block {
@@ -2519,12 +2544,10 @@ export default {
     .about-course-data-wrap.qa.long-style:first-child .about-course-data-block.qa.open:nth-child(3) img {
         max-height: 120px;
         min-height: 95px;
-        /* width: auto !important; */
     }
     .about-course-data-wrap.qa.long-style:last-child .about-course-data-block.qa.open:first-child img {
         max-height: 430px;
         min-height: 430px;
-        /* width: auto !important; */
     }
     /* 登入面板 */
     .login-column{
@@ -2582,6 +2605,34 @@ export default {
     .third-party-login img {
         height: 25px;
     }
+    /* 底部面板 */
+    .mamiyoga-intro-wrap {
+        padding-bottom: 200px;
+    }
+    .index-new-footer {
+        overflow: unset;
+        position: relative;
+    }
+    .index-new-footer img {
+        opacity: 1;
+        width: 430px;
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+    }
+    .index-new-footer-btn-block {
+        margin-left: 50%;
+        align-items: center;
+    }
+    .index-new-footer-btn-text {
+        font-size: 40px;
+    }
+    .index-new-footer-btn {
+        font-size: 30px;
+        padding: 15px 20px;
+        border-radius: 50px;
+    }
+
 
 
     .intro-wrap-block-first,

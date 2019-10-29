@@ -126,6 +126,10 @@ export default {
 .mamiyoga-desktop-header-btn .desktop-header-gift-btn{
     border: 2px solid #fff;
 }
+.mamiyoga-desktop-header-btn .desktop-header-gift-btn:hover{
+    border: 2px solid #FF9898;
+    background:#FF9898;
+}
 .mamiyoga-desktop-header-btn .desktop-header-go-mami{
     background: #FF9898;
 }

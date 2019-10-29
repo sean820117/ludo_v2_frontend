@@ -16,6 +16,8 @@
             </div>
             <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
+        <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#FF9898"
+        alertBtn="開始上課" @enterBox="$router.push('/menu')" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -24,12 +26,18 @@ import Vue from 'vue'
 import axios from '~/config/axios-config'
 import { EMAIL_REGEX } from '~/components/regex.js'
 import { mapMutations, mapGetters } from 'vuex';
+
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 export default {
     data:()=>({
         email: '',
         hint:'請填寫',
         hint_color:'transparent',
+        show_alert: false,
     }),
+    components:{
+        MamiyogaNewWindowAlertBox
+    },
     async beforeCreate(){
         if(process.client) {
             let login_or_not = await this.$checkLogin(this.$store);
@@ -51,15 +59,17 @@ export default {
                 this.hint_color = 'red'
             } else {
                 this.$sendData('/apis/subscribe-mamiyoga',{email:this.email,name: '體驗用戶'})
+                this.show_alert = true
+
                 // this.hint = '已收到您的電子信箱！敬請期待～'
-                alert('已收到您的電子信箱！現在開始試用！')
+                // alert('已收到您的電子信箱！現在開始試用！')
                 // this.hint_color = 'red'
 
                 let d = new Date(); 
                 let start_time = d.getTime();
                 localStorage['when_is_free_trial_start'] = start_time;
                 // this.$router.push();
-                this.$router.go(-1);
+                // this.$router.go(-1);
             }
         }
     },
