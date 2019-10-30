@@ -190,6 +190,8 @@ export default {
         hint: '',
         hint_color: '',
         user_input_date: '',
+
+        login_or_not:false,
     }),
     components: {
         MamiyogaTeachHeader,
@@ -201,8 +203,8 @@ export default {
         if(process.client) {
             location.href = '#';
 
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
+            this.login_or_not = await this.$checkLogin(this.$store);
+            if (this.login_or_not == false) {
                 this.go_to_where = '/signup'
                 this.check_log = '/login'
                 this.is_login = false
@@ -287,15 +289,22 @@ export default {
             this.$scrollTo('#two-article',"start");
         },
         getProject(){
-            if(!this.payed_or_not) {
-                if(this.have_trial){
-                    this.want_recommend = true
+            if(this.login_or_not){
+                if(!this.payed_or_not) {
+                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
+                        this.want_recommend = true
+                    } else {
+                        localStorage.redirect = '/information'
+                        alert('開通七天體驗即可開始使用～')
+                        this.$router.push('/free-trial')
+                    }
                 } else {
-                    alert('開通七天體驗即可開始使用～')
-                    this.$router.push('/free-trial')
+                    this.want_recommend = true
                 }
-            } else {
-                this.want_recommend = true
+            } else{
+                localStorage.redirect = '/information'
+                alert('請先前往註冊或登入！')
+                this.$router.push('/login')
             }
             
         },

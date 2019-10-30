@@ -391,30 +391,37 @@ export default {
     },
     methods:{
         startBuild(){
-            if(!this.payed_or_not) {
-                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
-                    if(use_time > 7){
-                        this.have_trial = false;   
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/');
-                    }else {
-                        this.have_trial = true;
-                        this.start_build = true;
-                        this.show_arrangement = true
-                    }
-                } else{
-                    alert('開通七天體驗後即可開始使用～')
-                    this.$router.push('/free-trial')
-                }
+            if (!this.is_login) {
+                localStorage.redirect = '/syllabus'
+                alert('請先前往登入或註冊')
+                this.$router.push('/login')            
             } else {
-                this.have_trial = true;
-                this.start_build = true;
-                this.show_arrangement = true
+                if(!this.payed_or_not) {
+                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                        let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                        let now = new Date();
+                        let now_time = now.getTime();
+                        let use_time = (now_time - open_time)/86400000;
+                        console.log(use_time)
+                        if(use_time > 7){
+                            this.have_trial = false;   
+                            alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                            this.$router.push('/');
+                        }else {
+                            this.have_trial = true;
+                            this.start_build = true;
+                            this.show_arrangement = true
+                        }
+                    } else{
+                        localStorage.redirect = '/syllabus'
+                        alert('開通七天體驗後即可開始使用～')
+                        this.$router.push('/free-trial')
+                    }
+                } else {
+                    this.have_trial = true;
+                    this.start_build = true;
+                    this.show_arrangement = true
+                }
             }
         },
         selectFrequency(num){

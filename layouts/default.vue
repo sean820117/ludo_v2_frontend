@@ -45,7 +45,7 @@ export default {
   },
   async mounted() {
     if (process.client) {
-      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login")) {
+      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") && !this.$route.path.includes("/login-success") && !this.$route.path.includes("/free-trial")) {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }

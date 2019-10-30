@@ -284,26 +284,16 @@ export default {
             current_vid.querySelector('iframe').src = '';
         },
         startDefaultCourse(){
-            if(!this.payed_or_not) {
-                if(this.login_or_not) {
-                    this.have_trial = true;
-                    let iframe = document.querySelector('#current-course-video');
-                    if (iframe) {
-                        iframe.style.display = 'block';
-                        iframe.querySelector('iframe').src = 'https://player.vimeo.com/video/349924443';
-                    }
-                    
-                } else {
-                    alert('註冊後即可觀看該課程～')
-                    this.$router.push('/login')
-                }
-            } else {
-                this.have_trial = true;
+            if(this.login_or_not) {
+                // this.have_trial = true;
                 let iframe = document.querySelector('#current-course-video');
                 if (iframe) {
                     iframe.style.display = 'block';
-                    iframe.querySelector('iframe').src = 'https://player.vimeo.com/video/349924443';
+                    iframe.querySelector('iframe').src = `${this.$i18n.locale == 'zh-TW' ? 'https://player.vimeo.com/video/349924443': 'https://player.vimeo.com/video/350479253'}`;
                 }
+            } else {
+                alert('註冊後即可觀看該課程～')
+                this.$router.push('/login')
             }
         }
     }

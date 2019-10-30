@@ -266,9 +266,16 @@ export default {
                         this.$router.push('/pay');
                     }
                 } else {
-                    console.log("not payed");
-                    window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
-                    this.$router.push('/pay');
+                    if(this.course_id == '1'){
+                        localStorage.redirect = '/menu'
+                        console.log("not payed");
+                        window.alert("開啟七天體驗即可解鎖本課程動作詳解～");
+                        this.$router.push('/free-trial');
+                    } else {
+                        console.log("not payed");
+                        window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
+                        this.$router.push('/pay');
+                    }
                 }
             }
         }

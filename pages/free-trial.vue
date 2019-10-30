@@ -4,7 +4,7 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
         </div>
         <div class="trial-content">
-            <img @click="$router.go(-1)" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            <img @click="backPage" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             <h4>立即開始免費7天體驗</h4>
             <div class="login-column">
                 <div class="login-column-label">電子信箱</div>
@@ -17,7 +17,7 @@
             <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
         <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#24798f" alertImg="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-free-trial-success.png"
-        alertBtn="開始上課" @enterBox="$router.push('/menu')" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
+        alertBtn="開始上課" @enterBox="backPage" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -71,7 +71,11 @@ export default {
                 // this.$router.push();
                 // this.$router.go(-1);
             }
-        }
+        },
+        backPage(){
+            this.$router.push(localStorage.redirect)
+            console.log(localStorage.redirect)
+        },
     },
     computed:{
         ...mapGetters({

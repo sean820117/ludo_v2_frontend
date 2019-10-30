@@ -12,8 +12,9 @@
             <div class="reg-text2 login-success-welcome">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
         
             <div class="btn-login-and-signup-container"> 
-                <div class="mamiyoga-login-btn-to-signin" @click="goPay()">購買課程</div>
-                <div class="mamiyoga-login-btn-to-signin" style="margin-top:10px;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="$router.push('/activation-code')">我有序號</div>  
+                <div class="mamiyoga-login-btn-to-signin" style="background:#FF9898;" @click="goTrial()">開始免費7天體驗</div>
+                <!-- <div class="mamiyoga-login-btn-to-signin" @click="goPay()">購買課程</div>
+                <div class="mamiyoga-login-btn-to-signin" style="margin-top:10px;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="$router.push('/activation-code')">我有序號</div>   -->
             </div>
         </div>
         <mamiyoga-window-alert-box v-if="exchange">
@@ -50,14 +51,13 @@ export default {
     },
     methods:{
         goIndex(){
-            if(localStorage.redirect == '/teach') {
-                this.$router.push(localStorage.redirect)
-            } else {
-                this.$router.push('/menu')
-            }
+            this.$router.push(localStorage.redirect)
         },
         goPay(){
             this.$router.push('/pay')
+        },
+        goTrial(){
+            this.$router.push('/free-trial')
         },
         async checkInputSerialno(){
             if(this.input_serialno != '') {
