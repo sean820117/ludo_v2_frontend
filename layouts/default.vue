@@ -18,7 +18,11 @@ Vue.use(VueMq, {
     desktop: Infinity,
   }
 });
+
 export default {
+  data:()=>({
+    check_lang: '',
+  }),
   head: {
     title: 'MAMI YOGA',
     meta: [

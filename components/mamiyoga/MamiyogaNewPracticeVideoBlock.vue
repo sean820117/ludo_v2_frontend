@@ -6,10 +6,10 @@
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/about-header-next.png" alt="">
                 </div>
                 <div v-if="!show_nam" id="start-video" @click="startReady">
-                    開始
+                    {{$t('dedesktop_syllabus_experience_icon_1')}}
                 </div>
                 <div v-if="!show_nam && teach_finish" id="start-remind">
-                    開始練習吧！
+                    {{$t('dedesktop_syllabus_experience_icon_6')}}
                 </div>
             </div>
             <div id="input-video-container">
@@ -22,10 +22,10 @@
             <div id="show-course" :class="is_studying ? 'show':''">
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
                 <div v-if="show_inhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''">
-                    <div class="repeat-bar-text">吸氣</div>
+                    <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
                 </div>
                 <div v-if="show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''">
-                    <div class="repeat-bar-text">吐氣</div>
+                    <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_3')}}</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">
                     <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
@@ -34,8 +34,8 @@
                 </div>
                 <div v-if="count_over" class="count-over">
                     <div class="count-over-all-btn">
-                        <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
-                        <div @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
+                        <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
+                        <div @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
@@ -48,7 +48,7 @@
                         <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-rest-start.png" alt="">
                     </div>
                     <div id="course-video-rest">
-                        休息時間
+                        {{$t('dedesktop_syllabus_experience_icon_7')}}
                     </div>
                 </div>
             </div>
@@ -59,11 +59,11 @@
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
                 <div class="repeat-bar green-bar" id="teach-bar">
-                    <div class="repeat-bar-text">吸氣</div>
+                    <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
                 </div>
                 <div class="count-over-all-btn" id="teach-show-btn">
-                    <div class="count-over-btn" style="border: 2px solid #fff;">再次練習</div>
-                    <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">開始分析</div>
+                    <div class="count-over-btn" style="border: 2px solid #fff;">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
+                    <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                 </div>
                 <div class="video-process-bar-block" id="teach-process" style="display:none">
                     <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
@@ -71,48 +71,48 @@
                     </div>
                 </div>
                 <div v-if="!select_camera" class="experience-select-camera">
-                    <p class="experience-select-camera-title">怕做錯嗎？讓瑜珈助教加入吧！</p>
-                    <div class="info-desktop-red-btn" @click="getCamera">加入瑜珈助教</div>
-                    <p class="experience-select-camera-not" @click="notGetCamera">我先自己試試看</p>
-                    <p class="experience-select-camera-text">加入瑜珈助教將開啟鏡頭錄影，Mamiyoga不會將您的資料洩漏給其他人。</p>
+                    <p class="experience-select-camera-title" v-html="$t('desktop_syllabus_experience_remind_title')"></p>
+                    <div class="info-desktop-red-btn" style="width: 250px;" @click="getCamera">{{$t('desktop_syllabus_experience_remind_btn')}}</div>
+                    <p class="experience-select-camera-not" @click="notGetCamera">{{$t('desktop_syllabus_experience_remind_little')}}</p>
+                    <p class="experience-select-camera-text">{{$t('desktop_syllabus_experience_remind_text')}}</p>
                 </div>
                 <div v-if="select_camera && remind_1" class="experience-teach-remind first">
-                    <div class="experience-teach-remind-title">步驟一</div>
-                    <p>按下開始後，坐到畫面中的框框裡！</p>
+                    <div class="experience-teach-remind-title">{{$t('desktop_syllabus_experience_remind_tip_1')}}</div>
+                    <p>{{$t('desktop_syllabus_experience_remind_tip_1_content')}}</p>
                     <div class="experience-teach-remind-flex-btn">
-                        <div class="experience-teach-remind-red-btn" @click="nextRemind1">我知道了</div>
-                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind1">{{$t('desktop_syllabus_experience_remind_tip_btn_1')}}</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">{{$t('desktop_syllabus_experience_remind_tip_btn_2')}}</div>
                     </div>
                 </div>
                 <div v-if="select_camera && remind_2" class="experience-teach-remind second">
-                    <div class="experience-teach-remind-title">步驟二</div>
-                    <p>將自己對準畫面中的白色人型框框</p>
+                    <div class="experience-teach-remind-title">{{$t('desktop_syllabus_experience_remind_tip_2')}}</div>
+                    <p>{{$t('desktop_syllabus_experience_remind_tip_2_content')}}</p>
                     <div class="experience-teach-remind-flex-btn">
-                        <div class="experience-teach-remind-red-btn" @click="nextRemind2">我知道了</div>
-                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind2">{{$t('desktop_syllabus_experience_remind_tip_btn_1')}}</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">{{$t('desktop_syllabus_experience_remind_tip_btn_2')}}</div>
                     </div>
                 </div>
                 <div v-if="select_camera && remind_3" class="experience-teach-remind third">
-                    <div class="experience-teach-remind-title">步驟三</div>
-                    <p>跟著吸氣與吐氣指引，在練習時調整呼吸</p>
+                    <div class="experience-teach-remind-title">{{$t('desktop_syllabus_experience_remind_tip_3')}}</div>
+                    <p>{{$t('desktop_syllabus_experience_remind_tip_3_content')}}</p>
                     <div class="experience-teach-remind-flex-btn">
-                        <div class="experience-teach-remind-red-btn" @click="nextRemind3">我知道了</div>
-                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind3">{{$t('desktop_syllabus_experience_remind_tip_btn_1')}}</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">{{$t('desktop_syllabus_experience_remind_tip_btn_2')}}</div>
                     </div>
                 </div>
                 <div v-if="select_camera && remind_4" class="experience-teach-remind four">
-                    <div class="experience-teach-remind-title">步驟四</div>
-                    <p>進度條可以知道目前做完多少動作了</p>
+                    <div class="experience-teach-remind-title">{{$t('desktop_syllabus_experience_remind_tip_4')}}</div>
+                    <p>{{$t('desktop_syllabus_experience_remind_tip_4_content')}}</p>
                     <div class="experience-teach-remind-flex-btn">
-                        <div class="experience-teach-remind-red-btn" @click="nextRemind4">我知道了</div>
-                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">跳過</div>
+                        <div class="experience-teach-remind-red-btn" @click="nextRemind4">{{$t('desktop_syllabus_experience_remind_tip_btn_1')}}</div>
+                        <div class="experience-teach-remind-not-red-btn" @click="skipTeach">{{$t('desktop_syllabus_experience_remind_tip_btn_2')}}</div>
                     </div>
                 </div>
                 <div v-if="select_camera && remind_5" class="experience-teach-remind five">
-                    <div class="experience-teach-remind-title">步驟五</div>
-                    <p>按下開始分析，結束練習！</p>
+                    <div class="experience-teach-remind-title">{{$t('desktop_syllabus_experience_remind_tip_5')}}</div>
+                    <p>{{$t('desktop_syllabus_experience_remind_tip_5_content')}}</p>
                     <div class="experience-teach-remind-flex-btn">
-                        <div class="experience-teach-remind-red-btn" @click="skipTeach">結束教學</div>
+                        <div class="experience-teach-remind-red-btn" @click="skipTeach">{{$t('desktop_syllabus_experience_remind_tip_btn_1')}}</div>
                         <!-- <div class="experience-teach-remind-not-red-btn" @click="skipTeach">結束教學</div> -->
                     </div>
                 </div>
@@ -703,7 +703,7 @@ export default {
     left: -10vw;
 }
 .count-over-btn {
-    width: 80px;
+    width: 90px;
     height: 30px;
     color: #fff;
     display: flex;
@@ -745,7 +745,7 @@ export default {
     height: 85vw;
     background: #FFFAF0;
     border-radius: 15px;
-    padding-top: 50px;
+    padding-top: 40px;
     transform: rotate(90deg);
 }
 .experience-select-camera p {
@@ -1057,7 +1057,7 @@ export default {
         height: 330px;
         background: #FFFAF0;
         border-radius: 15px;
-        padding-top: 50px;
+        padding-top: 30px;
         transform: rotate(0deg);
     }
     .experience-select-camera-title {

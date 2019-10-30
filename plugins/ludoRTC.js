@@ -17,7 +17,7 @@ function newLudoRTC (options = {}) {
     if (process.client) {
         if (options.dev) {
             pose_axios = axios.create({
-                baseURL: 'http://ec2-34-214-32-108.us-west-2.compute.amazonaws.com:8787',
+                baseURL: 'http://52.41.223.89:8787',
                 withCredentials: 'true',
                 timeout: 2000000,
             });

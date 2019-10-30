@@ -28,7 +28,7 @@ export default {
     mounted(){
         if(process.client) {
             if(this.$mq == 'desktop') {
-                this.$router.push('/activation-code')
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+ this.$i18n.locale}/activation-code`)
             }
         }
     },
