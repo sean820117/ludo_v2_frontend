@@ -16,7 +16,7 @@
             </div>
             <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
-        <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#FF9898"
+        <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#24798f" alertImg="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-free-trial-success.png"
         alertBtn="開始上課" @enterBox="$router.push('/menu')" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
     </div>
 </template>

@@ -5,7 +5,7 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="" >
             </div>
             <p>{{alertTitle}}</p>
-            <img :src="alertImg" alt="" style="margin-top: 20px;width:40%;">
+            <img :src="alertImg" alt="" style="margin-top: 20px;width:35%;">
             <p class="new-window-text" v-html="alertText"></p>
             <div class="star-line-box">
                 <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="enterBox"

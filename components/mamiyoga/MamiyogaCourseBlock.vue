@@ -6,7 +6,7 @@
             <img :src="unitSrc" alt="">
         </div>
         <div class="course-close">
-            <img v-if="!is_trial || !have_trial" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
+            <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -106,14 +106,23 @@ export default {
     },
     methods:{
         goCoursePage(){
-            if(this.is_trial&&this.have_trial || this.payed_or_not) {
-                this.$router.push('/course/' + this.goCourse)
-            } else if (!this.have_trial) {
-                alert('開通七天體驗即可開始使用！')
-                this.$router.push('/free-trial')
-            } else {
-                alert('購買後即可觀看所有課程～')
-                this.$router.push('/pay')
+            if(this.goCourse == '1'){
+                if(this.login_or_not){
+                    this.$router.push('/course/' + this.goCourse)
+                } else {
+                    alert('請先前往登入或註冊！')
+                    this.$router.push('/login')
+                }
+            } else{
+                if(this.is_trial&&this.have_trial || this.payed_or_not) {
+                    this.$router.push('/course/' + this.goCourse)
+                } else if (!this.have_trial) {
+                    alert('開通七天體驗即可開始使用！')
+                    this.$router.push('/free-trial')
+                } else {
+                    alert('購買後即可觀看所有課程～')
+                    this.$router.push('/pay')
+                }
             }
         }
     }

@@ -15,7 +15,7 @@
                 <h1 id="mamiyoga-index-title" v-else>媽咪的口袋健康助手</h1>
                 <h2 id="mamiyoga-index-title-des">互動式線上瑜珈課程</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">更美好的日常，從照顧自己開始</h2>
-                <div class="info-desktop-red-btn index-first">免費7天體驗</div>
+                <div class="info-desktop-red-btn index-first" @click="$router.push('/free-trial')">免費7天體驗</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
