@@ -37,6 +37,7 @@
     "nuxt-i18n": "^5.12.7",
     "nuxt-storage": "^1.0.9",
     "papaparse": "^4.6.2",
+    "rss-to-json": "^1.0.5",
     "shortid": "^2.2.14",
     "tiny-slider": "^2.9.2",
     "twzipcode-data": "^1.6.0",

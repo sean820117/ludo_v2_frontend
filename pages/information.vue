@@ -201,6 +201,11 @@ export default {
         if(process.client) {
             location.href = '#';
 
+            var Feed = require('rss-to-json');
+            Feed.load('https://medium.com/feed/@ludonow', function(err, rss){
+                console.log(rss);
+            });
+
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 this.go_to_where = '/signup'
