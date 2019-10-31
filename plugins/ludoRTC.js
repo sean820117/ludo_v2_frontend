@@ -251,20 +251,6 @@ class LudoRTC {
             const video_file_name = this.video_list[index];
             try {
                 let response = await api_axios.post('/apis/get-pose-result',{user_id:post_info.user_id,pose_id:post_info.pose_id,file_name:video_file_name})
-                if (response.data.result.status == 200) {
-                    total_score += parseInt(response.data.result.score)
-                } else if(response.data.result.status == 102) { 
-                    total_score += 30
-                    total_score += parseInt(Math.random(6) * 20)
-                } else if(response.data.result.status == 204) {
-                    total_score += parseInt(response.data.result.score)
-                } else if(response.data.result.status == 404){
-                    total_score += 30
-                    total_score += parseInt(Math.random(6) * 20)
-                } else {
-                    total_score += 30
-                    total_score += parseInt(Math.random(6) * 20)
-                }
                 detail_results.push(response.data.result)
             } catch (error) {
                 console.error(error)
@@ -272,7 +258,7 @@ class LudoRTC {
                 total_score += parseInt(Math.random(6) * 20)
             }
         }
-        return detail_results;
+        return detail_results[0];
     }
 }
 
