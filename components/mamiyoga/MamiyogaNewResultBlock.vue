@@ -1,83 +1,60 @@
 <template>
     <div>
         <div v-if="$mq != 'desktop'" class="new-result">
-            <mamiyoga-hamburger-header></mamiyoga-hamburger-header>
-            <h5 class="syllabus-desktop-title">助教回饋</h5>
-            <video :src="result_video" controls class="new-result-video"></video>
+            <img @click="closeResult" class="new-result-close-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            <!-- <mamiyoga-hamburger-header></mamiyoga-hamburger-header> -->
+            <h5 class="syllabus-desktop-title" style="margin-top: 50px;">助教回饋</h5>
+            <video :src="video_result.video_url" controls class="new-result-video"></video>
             <div class="new-result-score-block">
-                <p class="new-result-score">95</p>
+                <p class="new-result-score">{{video_result.score}}</p>
                 <p class="new-result-score-text">分</p>
             </div>
             <div class="new-result-li-block">
                 <div>
-                    <no-ssr class="new-result-li-outside">
+                    <no-ssr class="new-result-li-outside" v-for="(tags,i) in video_result.reps_wrong_tags"
+                    :key="i">
                         <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
                         :paginationEnabled="false">
-                            <slide class="new-result-li">做得好</slide>
-                            <slide class="new-result-li">繼續保持</slide>
-                            <slide class="new-result-li">加油！</slide>
-                        </carousel>   
-                    </no-ssr>
-                    <no-ssr class="new-result-li-outside">
-                        <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
-                        :paginationEnabled="false">
-                            <slide class="new-result-li">做得好</slide>
-                            <slide class="new-result-li">繼續保持</slide>
-                            <slide class="new-result-li">加油！</slide>
-                        </carousel>   
-                    </no-ssr>
-                    <no-ssr class="new-result-li-outside">
-                        <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
-                        :paginationEnabled="false">
-                            <slide class="new-result-li">做得好</slide>
-                            <slide class="new-result-li">繼續保持</slide>
-                            <slide class="new-result-li">加油！</slide>
+                            <slide class="new-result-li" v-for="(tag,index) in tags" :key="index" v-html="`第${i+1}回 ｜ ${tag}`"></slide>
+                            <!-- <slide class="new-result-li">繼續保持</slide>
+                            <slide class="new-result-li">加油！</slide> -->
                         </carousel>   
                     </no-ssr>
                 </div>
             </div>
-            <div class="new-result-link-course-btn">觀看課程</div>
+            <div class="new-result-link-course-btn" @click="closeResult" style="background:transparent;color:#ff9898;margin: 10px auto;">關閉分析</div>
+            <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">觀看課程</div>
         </div>
         <div v-else class="desktop-new-result-back">
             <div class="desktop-new-result-block">
                 <img @click="closeResult" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                 <h5 class="syllabus-desktop-title" style="font-size:35px;margin-top: 25px;font-weight:bold;">助教回饋</h5>
                 <div class="desktop-new-result-flex">
-                    <video :src="result_video" class="new-result-video"></video>
+                    <video :src="video_result.video_url" class="new-result-video"></video>
                     <div>
                         <div class="new-result-score-block">
-                            <p class="new-result-score">95</p>
+                            <p class="new-result-score">{{video_result.score}}</p>
                             <p class="new-result-score-text">分</p>
                         </div>
                         <div class="new-result-li-block">
-                        <div>
-                            <no-ssr class="new-result-li-outside">
-                                <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
-                                :paginationEnabled="false">
-                                    <slide class="new-result-li">做得好</slide>
-                                    <slide class="new-result-li">繼續保持</slide>
-                                    <slide class="new-result-li">加油！</slide>
-                                </carousel>   
-                            </no-ssr>
-                            <no-ssr class="new-result-li-outside">
-                                <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
-                                :paginationEnabled="false">
-                                    <slide class="new-result-li">做得好</slide>
-                                    <slide class="new-result-li">繼續保持</slide>
-                                    <slide class="new-result-li">加油！</slide>
-                                </carousel>   
-                            </no-ssr>
-                            <no-ssr class="new-result-li-outside">
-                                <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
-                                :paginationEnabled="false">
-                                    <slide class="new-result-li">做得好</slide>
-                                    <slide class="new-result-li">繼續保持</slide>
-                                    <slide class="new-result-li">加油！</slide>
-                                </carousel>   
-                            </no-ssr>
+                            <div>
+                                <no-ssr class="new-result-li-outside" v-for="(tags,i) in video_result.reps_wrong_tags"
+                                :key="i">
+                                    <carousel class="new-result-li-box" :perPage="1" :navigationEnabled="true"
+                                    :paginationEnabled="false">
+                                        <slide class="new-result-li" v-for="(tag,index) in tags" :key="index" v-html="`第${i+1}回 ｜ ${tag}`"></slide>
+                                        <!-- <slide class="new-result-li">繼續保持</slide>
+                                        <slide class="new-result-li">加油！</slide> -->
+                                    </carousel>   
+                                </no-ssr>
+                                
+                            </div>
                         </div>
                     </div>
-                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;">
+                    <div class="new-result-link-course-btn" @click="closeResult" style="margin: 0 10px;background:#fff;color:#ff9898;">關閉分析</div>
+                    <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)" style="margin: 0 10px;">觀看課程</div>
                 </div>
             </div>
         </div>
@@ -88,7 +65,9 @@
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
 export default {
     props: {
+        video_result: Object,
         result_video: String,
+        result_score: String,
     },
     components: {
         MamiyogaHamburgerHeader,
@@ -104,6 +83,16 @@ export default {
 <style>
 .new-result {
     padding-bottom: 5vh;
+    position: absolute;
+    top: 0;
+    z-index: 1005;
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
+}
+.new-result-close-img {
+    width: 20px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
 }
 .syllabus-desktop-title {
     color: #24798f;
@@ -213,7 +202,7 @@ export default {
     .syllabus-desktop-title {
         font-size: 50px;
         font-weight: 300;
-        margin: 0 0 2vh;
+        margin: 0;
     }
     .desktop-new-result-flex {
         display: flex;

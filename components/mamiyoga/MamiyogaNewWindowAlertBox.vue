@@ -98,7 +98,7 @@ export default {
 }
 .new-window-text {
     font-size:13px;
-    margin:15px 0px;
+    margin:15px 0px 10px !important;
 }
 @media (min-width:769px) {
     .mamiyoga-assay-contact-back {
