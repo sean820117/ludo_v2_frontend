@@ -6,7 +6,7 @@
             <img :src="unitSrc" alt="">
         </div>
         <div class="course-close">
-            <img v-if="!is_trial || !have_trial" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
+            <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
         </div>
         <div class="course-block-contain" :style="{backgroundColor:blockColor}">
             <div class="course-block-title">
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import axios from '~/config/axios-config'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=> ({
@@ -80,23 +81,25 @@ export default {
             }
             
             this.login_or_not = await this.$checkLogin(this.$store);
-            this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-            if (this.payed_or_not) {
-                this.have_trial = true;
-            } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                let now = new Date();
-                let now_time = now.getTime();
-                let use_time = (now_time - open_time)/86400000;
-                console.log(use_time)
-                if(use_time > 7){
-                    this.have_trial = false;   
-                    alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                    this.$router.push('/');
-                }else {
+            if(this.login_or_not){
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                if (this.payed_or_not) {
                     this.have_trial = true;
+                } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
+                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    console.log(use_time)
+                    if(use_time > 7){
+                        this.have_trial = false;   
+                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        this.$router.push('/');
+                    }else {
+                        this.have_trial = true;
+                    }
                 }
-            }
+            } 
         }
     },
     computed:{
@@ -106,14 +109,30 @@ export default {
     },
     methods:{
         goCoursePage(){
-            if(this.is_trial&&this.have_trial || this.payed_or_not) {
-                this.$router.push('/course/' + this.goCourse)
-            } else if (!this.have_trial) {
-                alert('開通七天體驗即可開始使用！')
-                this.$router.push('/free-trial')
-            } else {
-                alert('購買後即可觀看所有課程～')
-                this.$router.push('/pay')
+            if(this.goCourse == '1'){
+                if(this.login_or_not){
+                    this.$router.push('/course/' + this.goCourse)
+                } else {
+                    alert('登入後即可解鎖本課程！')
+                    this.$router.push('/login')
+                }
+            } else{
+                if(this.is_trial&&this.have_trial || this.payed_or_not) {
+                    this.$router.push('/course/' + this.goCourse)
+                } else if (!this.have_trial) {
+                    if(!this.login_or_not){
+                        localStorage.redirect = '/menu'
+                        alert('請先前往登入或註冊！')
+                        this.$router.push('/login')
+                    } else {
+                        localStorage.redirect = '/menu'
+                        alert('開通七天體驗即可開始使用！')
+                        this.$router.push('/free-trial')
+                    }
+                } else {
+                    alert('購買後即可觀看所有課程～')
+                    this.$router.push('/pay')
+                }
             }
         }
     }

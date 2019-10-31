@@ -60,6 +60,8 @@ export default {
                         alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
                         this.$router.push('/pay');
                     }
+                } else if(this.course_id == '1') {
+                    
                 } else {
                     console.log("not payed");
                     window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");

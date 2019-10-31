@@ -2,7 +2,7 @@
     <div class="mamiyoga-desktop-course-outside-block">
         <div class="mamiyoga-desktop-course-block" :style="{backgroundImage: `url('${courseBg}')`,padding: open_video ? '0': ''}" @click="show_pose = true">
             <div class="mamiyoga-desktop-course-flex-block">
-                <p>{{courseTitle}}</p>
+                <p v-html="courseTitle"></p>
                 <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
             </div>
             <div class="mamiyoga-desktop-course-block-gradual"></div>
@@ -80,8 +80,8 @@ export default {
     },
     methods: {
         openCourseVideo(video = null){
-            if(!this.payed_or_not){
-                if(this.login_or_not){
+            if(this.login_or_not){
+                if(!this.payed_or_not) {
                     if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
                         let open_time = parseInt(localStorage['when_is_free_trial_start'])
                         let now = new Date();
@@ -108,7 +108,7 @@ export default {
                                         iframe.querySelector('iframe').src = this.courseVideo;
                                     }
                                 } else {
-                                    console.log(courseTitle + ' no video');
+                                    console.log(this.courseTitle + ' no video');
                                 }
                             } else {
                                 alert('購買後即可觀看所有課程～')
@@ -116,31 +116,32 @@ export default {
                             }
                         }
                     } else {
+                        localStorage.redirect = '/menu'
                         alert('開通七天體驗即可開始使用！')
                         this.$router.push('/free-trial')
                     } 
-                } else {
-                    alert('請先前往登入或註冊！')
-                    this.$router.push('/login')
+                } else{
+                    if (video) {
+                        let iframe = document.querySelector('#current-course-video');
+                        if (iframe) {
+                            iframe.style.display = 'block';
+                            iframe.querySelector('iframe').src = video;
+                        }
+                    } else if(this.courseVideo) {
+                        let iframe = document.querySelector('#current-course-video');
+                        if (iframe) {
+                            iframe.style.display = 'block';
+                            iframe.querySelector('iframe').src = this.courseVideo;
+                        }
+                    } else {
+                        console.log(this.courseTitle + ' no video');
+                    }
                 }
             } else {
-                if (video) {
-                    let iframe = document.querySelector('#current-course-video');
-                    if (iframe) {
-                        iframe.style.display = 'block';
-                        iframe.querySelector('iframe').src = video;
-                    }
-                } else if(this.courseVideo) {
-                    let iframe = document.querySelector('#current-course-video');
-                    if (iframe) {
-                        iframe.style.display = 'block';
-                        iframe.querySelector('iframe').src = this.courseVideo;
-                    }
-                } else {
-                    console.log(courseTitle + ' no video');
-                }
-            }
-            
+                localStorage.redirect = '/menu'
+                alert('請先前往登入或註冊！')
+                this.$router.push('/login')
+            }  
         }
     }
 }

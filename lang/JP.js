@@ -292,4 +292,12 @@ export default {
   desktop_syllabus_finish_title_02: '消費カロリー',
   desktop_syllabus_finish_title_2_result: 'kcal',
   
+  // 課程頁面
+  desktop_course_first_title: '單元一、骨盆矯正瑜珈',
+  desktop_course_first_text: '大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！',
+  desktop_course_first_btn: '授業を始まる',
+  desktop_course_all_course: '全部表示する',
+  desktop_course_ad: '科學化訓練讓健康事半功倍',
+  desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
+  desktop_course_buy: '購買後即可觀看所有課程～',
 }

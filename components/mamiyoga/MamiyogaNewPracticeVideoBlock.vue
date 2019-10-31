@@ -8,6 +8,9 @@
                 <div v-if="!show_nam" id="start-video" @click="startReady">
                     {{$t('dedesktop_syllabus_experience_icon_1')}}
                 </div>
+                <div v-if="show_nam" id="start-video" style="font-size:30px;">
+                    {{ready_go}}
+                </div>
                 <div v-if="!show_nam && teach_finish" id="start-remind">
                     {{$t('dedesktop_syllabus_experience_icon_6')}}
                 </div>
@@ -178,6 +181,14 @@
                 </button>
             </div>
         </mamiyoga-window-alert-box>
+
+        <!-- 愛心進度條 -->
+        <div v-if="heart_loading" id="heart-loading">
+            <svg id="loading-icon" viewBox="0 0 32 29.6">
+                <path class="path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
+	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
+            </svg>
+        </div>
     </div>
 </template>
 
@@ -238,6 +249,8 @@ export default {
 
         is_stop: false,
         pose_video: '',
+
+        heart_loading: false,
     }),
     async mounted(){
         if (process.client) {
@@ -273,6 +286,7 @@ export default {
             let poses = this.routine.default[0].poses;
             
             if(poses[i].pose_brief != 'break') {    
+                this.heart_loading = true
                 if (this.pose_video != poses[i].pose_video) {
                     this.pose_video = poses[i].pose_video
                 }
@@ -288,6 +302,7 @@ export default {
                 co_vid.style.display = 'block';
                 co_vid.onloadedmetadata = function() {
                 // co_vid.addEventListener('loadedmetadata', function (e) {
+                    this.heart_loading = false
                     this.video_length = co_vid.duration
                     co_vid.play() 
                     
@@ -929,7 +944,32 @@ export default {
 #teach-bar,#teach-show-btn {
     display: none;
 }
-
+#heart-loading {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1000;
+    background: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#loading-icon {
+    width: 100px;
+    transform: rotate(90deg);
+}
+.path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: 3s drawing-svg 1s infinite;
+}
+@keyframes drawing-svg {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
 
 @media (min-width: 769px) {
     #experience-page {
@@ -1103,6 +1143,10 @@ export default {
     .experience-teach-remind-red-btn,.experience-teach-remind-not-red-btn {
         width: 100px;
         font-size: unset;
+    }
+    #loading-icon {
+        width: 100px;
+        transform: rotate(0deg);
     }
 }
 </style>

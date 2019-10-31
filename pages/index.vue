@@ -15,7 +15,7 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/free-trial`)">{{$t('desktop_header_btn_2')}}</div>
+                <div class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -67,7 +67,7 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title">{{$t('index_title')}}</p>
-                    <div class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/free-trial`)">{{$t('desktop_header_btn_2')}}</div>
+                    <div class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
             
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
@@ -676,6 +676,7 @@ export default {
 
     data:()=>({
         login_or_not: false,
+        payed_or_not: false,
 
         is_open: false,
         slideIndex: 0,
@@ -751,8 +752,8 @@ export default {
                 this.check_log = '/login'
             } else {
                 this.go_to_where = '/pay'
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!payed_or_not) {
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                if (!this.payed_or_not) {
                     this.check_log = '/pay'
                 } else {
                     this.check_log = '/menu'
@@ -997,6 +998,24 @@ export default {
                 this.hint_color = "red"
             }
         },
+        goTrial(){
+            if(!this.login_or_not){
+                localStorage.redirect = '/'
+                alert('請先前往登入或註冊')
+                this.$router.push('/login')
+            } else {
+                if(!this.payed_or_not){
+                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
+                        alert('已開通體驗，快跟著麻美老師一起動起來～')
+                    } else {
+                        localStorage.redirect = '/'
+                        this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)
+                    }
+                } else {
+                    alert('已購買過課程，快跟著麻美老師一起動起來～')
+                }
+            }
+        }
     },
     computed:{
         ...mapGetters({

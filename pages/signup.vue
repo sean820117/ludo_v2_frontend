@@ -147,7 +147,7 @@ export default {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
                 window.alert('你已經登入了')
-                this.$router.push('/menu')
+                this.$router.push(localStorage.redirect)
             }
         }
     },
@@ -195,9 +195,9 @@ export default {
               if (response.data.status == '200') {
                   console.log("signup success")
                   let login_result = await this.$checkLogin(this.$store);
-                  let url = localStorage.redirect
-                  this.$router.push(url)
-                //   this.$router.push('/login-success')
+                //   let url = localStorage.redirect
+                //   this.$router.push(url)
+                  this.$router.push('/login-success')
               } else {
                   this.hint = '註冊失敗 - ' + response.data.message;
                   this.hint_color = "red"

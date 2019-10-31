@@ -4,7 +4,7 @@
             <div class="mamiyoga-header">
                 <div class="mamiyoga-header-logo"></div>
                 <div class="mamiyoga-header-login">
-                    <div class="mamiyoga-header-cancel-btn" @click="$router.push('/')"></div>
+                    <div class="mamiyoga-header-cancel-btn" @click="goBack"></div>
                 </div>
             </div>
             <div class="reg-text" style="margin-top:5vh;">{{$t('desktop_login_btn_1')}}</div>
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="signup-page" style="padding-bottom:5vh;" v-else>
-            <img @click="$router.go(-1)" style="width: 30px;position: absolute;top: 3vh;left: 2vw;opacity: .4;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+            <img @click="goBack" style="width: 30px;position: absolute;top: 3vh;left: 2vw;opacity: .4;cursor: pointer;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             <div class="reg-text" style="margin-top:5vh;">{{$t('desktop_login_btn_1')}}</div>
             <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:center;margin:1vh 0 2vh;">&nbsp;</div>
             <div class="signup-flex-box">
@@ -125,6 +125,7 @@ export default {
             is_ui_config_loaded:false,
             login_or_signup:'login',
             first_enter: true,
+            payed_or_not: false,
         }
     },
     props: {
@@ -138,9 +139,10 @@ export default {
             // localStorage.redirect = '/menu';
             
             let login_or_not = await this.$checkLogin(this.$store);
+            
             if (login_or_not) {
                 window.alert('你已經登入了')
-                this.$router.push('/menu')
+                this.$router.push(localStorage.redirect)
             }
             if(localStorage['is_not_first']) {
                 this.first_enter = false
@@ -209,12 +211,12 @@ export default {
                     console.log("login success")
                     console.log(response)
                     let login_result = await this.$checkLogin(this.$store);
-                    // this.$router.push('/login-redirect')
-                    if(localStorage.redirect == '/teach') {
-                        this.$router.push(localStorage.redirect)
-                    } else {
-                        this.$router.push('/menu')
-                    }
+                    this.$router.push('/login-redirect')
+                    // if(localStorage.redirect == '/teach') {
+                    //     this.$router.push(localStorage.redirect)
+                    // } else {
+                    //     this.$router.push('/menu')
+                    // }
                 } else {
                     console.log(response)
                     this.hint = response.data.message;
@@ -247,6 +249,9 @@ export default {
         goSignup(){
             this.first_enter = false;
             this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/signup`)
+        },
+        goBack(){
+            this.$router.push(localStorage.redirect)
         }
     }
 }
