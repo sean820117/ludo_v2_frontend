@@ -17,8 +17,20 @@ import axios from 'axios';
 
 export default {
     data:()=>({
-        all_posts: [],
-        first_actirle: {},
+        all_posts: [
+            {
+                post_title: '',
+                post_content: '',
+                post_category: []
+            }
+        ],
+        first_actirle: [
+            {
+                post_title: '',
+                post_content: '',
+                post_category: []
+            }
+        ],
     }),
     async mounted(){
         if(process.client) {
