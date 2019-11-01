@@ -410,6 +410,7 @@ export default {
                 this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
+                
                 // localStorage.redirect = '/syllabus'
                 // alert('請先前往登入或註冊')
                 // this.$router.push('/login')            
