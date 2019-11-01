@@ -6,7 +6,7 @@
         <input type="radio" class="labels four-series" id="four" name="series" v-model="check_series" value="four" >
         <div class="mamiyoga-course-select" style="padding-bottom:3vh;">
             <div class="label-box">
-                <label for="first" class="first-label">{{$t('menu_tag_text_first')}}</label>
+                <label for="first" class="first-label">{{$t('desktop_index_six_list_title_1')}}</label>
                 <label for="second" class="second-label">{{$t('menu_tag_text_second')}}</label>
                 <label for="third" class="third-label">{{$t('menu_tag_text_third')}}</label>
                 <label for="four" class="four-label">{{$t('menu_tag_text_four')}}</label>

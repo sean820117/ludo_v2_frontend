@@ -224,6 +224,8 @@ export default {
   desktop_login_remind_text: '體驗或付款前需先註冊成為會員，<br>若持有序號的學員也須先進行註冊！',
   desktop_login_remind_btn: '立即註冊',
 
+  desktop_signup_n_login: '註冊/登入',
+
   desktop_signup_little: '付款前需先註冊成為會員',
   desktop_signup_password: '確認密碼',
   desktop_signup_btn_text: '社群帳號註冊',
@@ -274,6 +276,7 @@ export default {
   desktop_index_five_little: '每天十分鐘，讓心情跟身體重新開機！',
   desktop_index_five_text: '針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！',
   desktop_index_five_btn: '取得專屬課表',
+  desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png',
 
   desktop_index_six_title: '主題式單元',
   desktop_index_six_list_title_1: '矯正疼痛',
@@ -299,6 +302,7 @@ export default {
 
   desktop_index_nine_title: '為什麼選Mamiyoga？',
   desktop_index_nine_text: 'Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？',
+  desktop_index_nine_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png',
   desktop_index_ten_title: '使用者回饋',
   desktop_index_eleven_title: '收費方式',
   desktop_index_eleven_pay_btn_1: '立即購買',
@@ -462,8 +466,8 @@ export default {
   member_activation_title: '兌換序號',
   member_activation_tag_1: '序號資訊',
   member_activation_tag_2: '我有課程序號',
-  member_activation_tag_1_phone: '寄送手機',
-  member_activation_tag_1_order: '訂單號碼',
+  member_activation_tag_1_phone: '寄送手機：',
+  member_activation_tag_1_order: '訂單號碼：',
   member_activation_tag_1_open: '已啟用',
   member_activation_tag_1_close: '尚未啟用',
   member_activation_tag_2_input: '輸入序號',

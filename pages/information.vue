@@ -1,23 +1,22 @@
 <template>
     <div class="info-page" :class="input_date ? 'after-input':''">
-        <!-- <mamiyoga-teach-header class="privacy-header" id="information-top" v-if="$mq !== 'desktop'"></mamiyoga-teach-header> -->
         <mamiyoga-hamburger-header v-if="$mq !== 'desktop'" ></mamiyoga-hamburger-header>
         <div class="info-wrap-block-first" v-if="$mq !== 'desktop'">
             <div v-if="!input_date">
                 <div style="width:77%;margin: 0 auto;">
-                    <h2 class="index-article-title" style="text-align: center;font-size: 35px;">媽咪知識</h2>
-                    <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject" style="margin: 20px auto 40px;">根據月齡推薦</div>
+                    <h2 class="index-article-title" style="text-align: center;font-size: 35px;">{{$t('desktop_header_menu_4')}}</h2>
+                    <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject" style="margin: 20px auto 40px;">{{$t('desktop_info_btn_1')}}</div>
                     <div v-if="want_recommend" class="which-mami-flex" style="margin: 20px auto 40px;">
                         <input type="radio" name="which_mami" id="pregnant">
                         <input type="radio" name="which_mami" id="mami">
-                        <label for="pregnant" class="info-desktop-red-btn pregnant" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
-                        <label for="mami" class="info-desktop-red-btn mami" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                        <label for="pregnant" class="info-desktop-red-btn pregnant" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = true">{{$t('desktop_info_btn_2')}}</label>
+                        <label for="mami" class="info-desktop-red-btn mami" style="margin-top: 0;" @click="show_date_input = true , is_pregnant = false">{{$t('desktop_info_btn_3')}}</label>
                     </div>
                     <div v-if="want_recommend && show_date_input" class="info-get-user-date">
-                        <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                        <p>{{is_pregnant ? $t('desktop_info_input_1'):$t('desktop_info_input_2')}}</p>
                         <input type="date" name="date" id="date" v-model="user_date" placeholder="YYYY-MM-DD" style="width:100%;">
                         <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
-                        <div class="info-desktop-red-btn" @click="inputDate" style="width: 110px;margin: 35px auto 0;">確認</div>
+                        <div class="info-desktop-red-btn" @click="inputDate" style="width: 110px;margin: 35px auto 0;">{{$t('desktop_info_btn_4')}}</div>
                     </div>
                 </div>
                 <div style="width:77%;margin: 0 auto;">
@@ -31,15 +30,15 @@
             </div>
             <div v-else>
                 <div class="info-pink-date">
-                    <h6>{{is_pregnant ? '您的預產期' : '產後時間'}}</h6>
+                    <h6>{{is_pregnant ? $t('desktop_info_tag_1') : $t('desktop_info_tag_2')}}</h6>
                     <p>{{user_input_date}}</p>
                 </div>
                 <div class="info-white-article-block">
-                    <div class="info-white-article-tag">今日選讀</div>
+                    <div class="info-white-article-tag">{{$t('desktop_info_article')}}</div>
                     <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
                     <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
                     <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
-                    <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" @click="$router.push('/pay')">更多媽咪知識</div>
+                    <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" :style="{fontSize: $i18n.locale == 'JP'? '13px':''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('desktop_info_article_btn')}}</div>
                 </div>
             </div>
         </div>
@@ -51,18 +50,18 @@
                         <div class="info-page-first-block">
                             <h3 class="index-article-title">骨盆是產後恢復最重要的事</h3>
                             <h6 class="index-article-little-title" style="color:#272727;margin-top:10px;">生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？</h6>
-                            <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject">根據月齡推薦</div>
+                            <div class="info-desktop-red-btn" v-if="!want_recommend" @click="getProject">{{$t('desktop_info_btn_1')}}</div>
                             <div v-if="want_recommend" class="which-mami-flex">
                                 <input type="radio" name="which_mami" id="pregnant">
                                 <input type="radio" name="which_mami" id="mami">
-                                <label for="pregnant" class="info-desktop-red-btn pregnant" @click="show_date_input = true , is_pregnant = true">我是孕媽咪</label>
-                                <label for="mami" class="info-desktop-red-btn mami" @click="show_date_input = true , is_pregnant = false">我是產後媽咪</label>
+                                <label for="pregnant" class="info-desktop-red-btn pregnant" @click="show_date_input = true , is_pregnant = true">{{$t('desktop_info_btn_2')}}</label>
+                                <label for="mami" class="info-desktop-red-btn mami" @click="show_date_input = true , is_pregnant = false">{{$t('desktop_info_btn_3')}}</label>
                             </div>
                             <div v-if="want_recommend && show_date_input" class="info-get-user-date">
-                                <p>{{is_pregnant ? '請輸入您的預產期':'請輸入您的寶貝生日'}}</p>
+                                <p>{{is_pregnant ? $t('desktop_info_input_1'):$t('desktop_info_input_2')}}</p>
                                 <input type="date" name="date" id="date" v-model="user_date" placeholder="YYYY-MM-DD">
                                 <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
-                                <div class="info-desktop-red-btn" @click="inputDate" style="width: 80px;">確認</div>
+                                <div class="info-desktop-red-btn" @click="inputDate" style="width: 80px;">{{$t('desktop_info_btn_4')}}</div>
                             </div>
                         </div>
                         <div class="info-page-second-block">
@@ -85,16 +84,16 @@
             </div>
             <div v-else style="display: flex;">
                 <div class="info-pink-date">
-                    <h6>{{is_pregnant ? '您的預產期' : '產後時間'}}</h6>
+                    <h6>{{is_pregnant ? $t('desktop_info_tag_1') : $t('desktop_info_tag_2')}}</h6>
                     <p>{{user_input_date}}</p>
                 </div>
                 <div class="info-white-article">
                     <div class="info-white-article-block">
-                        <div class="info-white-article-tag">今日選讀</div>
+                        <div class="info-white-article-tag">{{$t('desktop_info_article')}}</div>
                         <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
                         <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
                         <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
-                        <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" @click="$router.push('/pay')">更多媽咪知識</div>
+                        <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" :style="{fontSize: $i18n.locale == 'JP'? '13px':''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('desktop_info_article_btn')}}</div>
                     </div>
                 </div>
             </div>
@@ -164,12 +163,17 @@
 	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
             </svg>
         </div>
+        <!-- 新版alert -->
+        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="show_alert = false" :alertBtn="alertBtn"
+        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
+        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 <script>
 import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
@@ -192,11 +196,20 @@ export default {
         user_input_date: '',
 
         login_or_not:false,
+
+        show_alert: false,
+        alertTitle: '',
+        alertImg: '',
+        alertText: '',
+        alertBtn: '好的',
+        alertBtnColor: '#24798F',
+        nextGo: '',
     }),
     components: {
         MamiyogaTeachHeader,
         MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
+        MamiyogaNewWindowAlertBox,
 
     },
     async mounted(){
@@ -250,7 +263,7 @@ export default {
                             let user_time = Date.parse(localStorage['user_date'])
                             console.log(current_time)
                             console.log(user_time)
-                            this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
+                            this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '日'
                         }
                     }
                 }
@@ -294,17 +307,27 @@ export default {
                     if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
                         this.want_recommend = true
                     } else {
-                        localStorage.redirect = '/information'
-                        alert('開通七天體驗即可開始使用～')
-                        this.$router.push('/free-trial')
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/information`
+                        this.show_alert = true
+                        this.alertText = `${this.$t('desktop_get_trial')}`
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
+                        // localStorage.redirect = '/information'
+                        // alert('開通七天體驗即可開始使用～')
+                        // this.$router.push('/free-trial')
                     }
                 } else {
                     this.want_recommend = true
                 }
             } else{
-                localStorage.redirect = '/information'
-                alert('請先前往註冊或登入！')
-                this.$router.push('/login')
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/information`
+                this.show_alert = true
+                this.alertText = `${this.$t('desktop_go_login')}`
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
+                // localStorage.redirect = '/information'
+                // alert('請先前往註冊或登入！')
+                // this.$router.push('/login')
             }
             
         },
@@ -317,7 +340,7 @@ export default {
                     if(dateFormat.test(this.user_date)) {
                         localStorage['is_pregnant'] = this.is_pregnant
                         localStorage['user_date'] = this.user_date
-                        alert('已收到～')
+                        // alert('已收到～')
                         this.is_loading = true
                         this.getUserTime();
                         setTimeout(() => {
@@ -346,6 +369,13 @@ export default {
                     let user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
                     this.user_input_date = user_input_date
                 }
+            }
+        },
+        enterBox(i){
+            if(i == '0'){
+                this.show_alert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
         }
     },
@@ -720,7 +750,7 @@ export default {
         min-height: 45vh;
     }
     #index-fixed-nav {
-        display: flex;
+        display: none;
     }
     .index-label-box {
         width: 100%;

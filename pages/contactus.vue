@@ -4,7 +4,7 @@
         <mamiyoga-desktop-member-nav v-else></mamiyoga-desktop-member-nav>
         <div class="contactus-main-block">
             <div class="contactus-main">
-                <div class="pay-little-title">聯絡我們</div>
+                <div class="pay-little-title">{{$t('member_text_btn_6')}}</div>
                 <hr style="margin: 5px 0;opacity: .5;">
                 <img class="contactus-logo" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-contact-ludo-logo.png" alt="">
                 <a href="https://www.facebook.com/ludonow/" style="text-decoration:none;">
@@ -120,7 +120,8 @@ export default {
         max-width: 270px;
     }
     .contactus-main {
-        width: unset;
+        width: 20vw;
+        max-width: 350px;
     }
     .contactus-main-block {
         margin: 0 auto;

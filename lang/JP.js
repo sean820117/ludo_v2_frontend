@@ -186,6 +186,8 @@ export default {
   desktop_login_remind_text: '体験とお支払い前に会員登録を行ってください',
   desktop_login_remind_btn: '今すぐ会員登録',
 
+  desktop_signup_n_login: '登録/ログイン',
+
   desktop_signup_little: 'お支払い前に会員登録を行ってください',
   desktop_signup_password: 'パスワード確認',
   desktop_signup_btn_text: 'アカウントにログイン',
@@ -232,6 +234,7 @@ export default {
   desktop_index_five_little: '毎日10分だけで、心と体をリフレッシュする！',
   desktop_index_five_text: '針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！',
   desktop_index_five_btn: 'あなただけのクラススケジュールをもらう',
+  desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus-jp.png',
 
   desktop_index_six_title: '主題式單元',
   desktop_index_six_list_title_1: '痛みを改善',
@@ -257,6 +260,7 @@ export default {
 
   desktop_index_nine_title: 'なぜMamiyogaですか',
   desktop_index_nine_text: 'Mami yoga/Youtube/ヨガ 教室<br>の違いは？',
+  desktop_index_nine_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-2-jp.png',
   desktop_index_ten_title: '利用者によるフィードバック',
   desktop_index_eleven_title: '入金方法',
   desktop_index_eleven_pay_btn_1: '今すぐ購入する',
@@ -421,8 +425,8 @@ export default {
   member_activation_title: 'シリアル番号を引き換える',
   member_activation_tag_1: 'シリアル番号の情報',
   member_activation_tag_2: 'コースのシリアル番号がある',
-  member_activation_tag_1_phone: '携帯電話に送る',
-  member_activation_tag_1_order: '注文番号',
+  member_activation_tag_1_phone: '携帯電話に送る：',
+  member_activation_tag_1_order: '注文番号：',
   member_activation_tag_1_open: '已啟用',
   member_activation_tag_1_close: '尚未啟用',
   member_activation_tag_2_input: 'シリアル番号を入力してください',

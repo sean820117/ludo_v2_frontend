@@ -1,20 +1,33 @@
 <template>
     <div class="desktop-member-nav">
-        <div class="desktop-member-nav-title">學員中心</div>
+        <div class="desktop-member-nav-title">{{$t('member_title')}}</div>
         <nav>
-            <li id="go_activation_code" @click="$router.push('/activation-code')">我的序號</li>
-            <li @click="$router.push('/pay')">購買課程</li>
+            <li id="go_activation_code" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/activation-code`)">{{$t('member_text_btn_1')}}</li>
+            <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('member_text_btn_2')}}</li>
             <hr class="member-line">
-            <li id="go_writing" @click="$router.push('/writing')">文章投稿</li>
-            <li id="go_contact" @click="$router.push('/contactus')">聯絡我們</li>
+            <li id="go_writing" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/writing`)">{{$t('member_text_btn_4')}}</li>
+            <li id="go_contact" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/contactus`)">{{$t('member_text_btn_6')}}</li>
         </nav>
-        <div class="member-big-btn" @click="$router.push('/menu')" style="background:#97A8AF;margin-top:10vh;">回 到 課 程</div>
+        <div class="member-big-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)" style="background:#97A8AF;margin-top:10vh;">{{$t('member_text_btn_7')}}</div>
     </div>
 </template>
 
 <script>
 export default {
-
+    mounted(){
+        if(process.client) {
+            if(this.$mq == 'desktop'){
+                if(this.$route.path.includes("/activation-code")){
+                    document.getElementById('go_activation_code').classList.add('active-menu')
+                } else if(this.$route.path.includes("/writing")){
+                    document.getElementById('go_writing').classList.add('active-menu')
+                } else if(this.$route.path.includes("/contactus")){
+                    document.getElementById('go_contact').classList.add('active-menu')
+                }
+                
+            } 
+        }
+    },
 }
 </script>
 
@@ -40,11 +53,13 @@ export default {
     font-size: 20px;
     margin: 40px 0;
     letter-spacing: 3px;
+    text-align: center;
     cursor: pointer;
 }
 .desktop-member-nav li.active-menu {
-    border-bottom: 1px solid #fff;
-    padding-bottom: 2px;
+    /* border-bottom: 1px solid #fff;
+    padding-bottom: 2px; */
+    color: #FF9898;
 }
 .desktop-member-nav .member-line {
     height: 7px;
@@ -55,7 +70,7 @@ export default {
     border-radius: 15px;
 }
 .desktop-member-nav .member-big-btn {
-    width: 60%;
+    width: 60% !important;
     height: 45px;
     color: #F8F7F8;
     margin: 15px auto;

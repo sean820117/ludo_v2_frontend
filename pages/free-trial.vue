@@ -5,14 +5,14 @@
         </div>
         <div class="trial-content">
             <img @click="backPage" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
-            <h4>立即開始免費7天體驗</h4>
+            <h4>{{$t('desktop_trial_title')}}</h4>
             <div class="login-column">
-                <div class="login-column-label">電子信箱</div>
+                <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
                 <input name="email" class="login-column-input" type="email" v-model="email" placeholder=""/>
-                <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
-                <div class="login-column-label after-input">我們將會寄送體驗開通連結至您的信箱</div>
+                <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '100%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
+                <div class="login-column-label after-input">{{$t('desktop_trial_text')}}</div>
                 
-                <div class="trial-content-btn" @click="sendEmail">立即開通</div>
+                <div class="trial-content-btn" @click="sendEmail">{{$t('desktop_trial_btn')}}</div>
             </div>
             <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
@@ -52,10 +52,10 @@ export default {
     methods:{
         sendEmail(){
             if(this.email == '') {
-                this.hint = '請輸入電子信箱'
+                this.hint = this.$t('order_remind_1')
                 this.hint_color = 'red'
             } else if(!EMAIL_REGEX.test(this.email)){
-                this.hint = '電子信箱格式錯誤'
+                his.hint = this.$t('order_remind_2')
                 this.hint_color = 'red'
             } else {
                 this.$sendData('/apis/subscribe-mamiyoga',{email:this.email,name: '體驗用戶'})
@@ -117,6 +117,7 @@ export default {
     font-size: 27px;
     color: #24798F;
     margin: 8vh 0 20vh;
+    text-align: center;
 }
 .trial-content .login-column{
     margin-top: 11px;

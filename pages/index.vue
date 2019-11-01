@@ -191,7 +191,7 @@
                         <img id="get-course-link" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-5-1.png" alt="">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
-                            <h4 class="intro-wrap-block-title" style="color:#24798F;">主題式單元</h4>
+                            <h4 class="intro-wrap-block-title" style="color:#24798F;">{{$t('desktop_index_six_title')}}</h4>
                             <div class="about-course-data-wrap" :class="show_menu"  >
                                 <div class="about-course-data-block" @click="toggleMenu()">
                                     <div class="about-course-data-num" :class="show_menu">探索課程</div>
@@ -307,12 +307,12 @@
                     </div>
                     <div class="course-info-block-3" v-else>
                         <div class="course-info-block-3-content">
-                            <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">「 孕動日記 」</p>
-                            <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">每天十分鐘，讓心情跟身體重新開機！</h6>
+                            <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">{{$t('desktop_index_five_title')}}</p>
+                            <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">{{$t('desktop_index_five_little')}}</h6>
                             <div style="display: flex;align-items: flex-end;justify-content: center;width: 90%;margin: 70px auto 100px;">
                                 <div class="intro-wrap-block-new-five-curriculum">
                                     <!-- <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr> -->
-                                    <img style="width: 95%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png" alt="">
+                                    <img style="width: 95%;" :src="$t('desktop_index_five_img')" alt="">
                                 </div>
                                 <div class="get-course-block">
                                     <div class="index-article-text" style="margin-bottom: 5vh;font-weight: 500;">針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！</div>
@@ -325,7 +325,7 @@
                     <div class="course-info-content-3" v-if="$mq == 'desktop'">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
-                            <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">主題式單元</h4>
+                            <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">{{$t('desktop_index_six_title')}}</h4>
                             <div class="about-course-series-data-outside-block">
                                 <div class="about-course-series-data-block open" >
                                     <div class="about-course-data-block">
@@ -489,7 +489,7 @@
                                     <button  @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)" class="index-article-out-btn mirror-btn go-info" style="margin: 5vh 0;" :style="{fontSize: $i18n.locale == 'JP' && $mq == 'desktop' ? '14px':''}">{{$t('desktop_index_four_btn')}} </button>
                                 </div>
                                 <div style="display: flex;flex-direction: column;align-items: flex-end;">
-                                    <img style="height: 50vh;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png" alt="">
+                                    <img style="height: 50vh;" :src="$t('desktop_index_nine_img')" alt="">
                                     <p class="index-article-text about-course-teach" style="font-size: 1em;width: fit-content;margin-right: 30px;">*Mamiyoga動態捕捉科技，精準判斷0死角</p>
                                 </div>
                             </div>

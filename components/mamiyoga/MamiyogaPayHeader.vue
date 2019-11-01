@@ -1,8 +1,8 @@
 <template>
     <div class="pay-header">
         <div class="pay-flex-header">
-            <div class="pay-header-logo" @click="$router.push(check_lang + '/')"></div>
-            <div class="pay-header-login-btn" @click="logout">登出</div>
+            <div class="pay-header-logo" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/`)"></div>
+            <div class="pay-header-login-btn" @click="logout">{{$t('desktop_header_user_3')}}</div>
         </div>
     </div>
 </template>
@@ -10,17 +10,11 @@
 <script>
 export default {
     data:()=>({
-        check_lang: '',
+
     }),
     mounted(){
         if(process.client) {
-            if(this.$i18n.locale == 'jp') {
-                this.check_lang = '/jp'
-            } else if (this.$i18n.locale == 'zh-CN') {
-                this.check_lang = '/zh-CN'
-            } else {
-                this.check_lang = ''
-            }
+            
         }
     },
     methods: {

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="order-footer">
-            <div class="order-footer-see" @click="open_order = true">訂單明細</div>
-            <div class="order-footer-cost">共計  <b>&nbsp;&nbsp;NTD&nbsp;{{getPrice}}</b></div>
+            <div class="order-footer-see" @click="open_order = true">{{$t('order_mobile_btn')}}</div>
+            <div class="order-footer-cost">{{$t('pay_method_mobile_text')}}<b>&nbsp;&nbsp;NTD&nbsp;{{getPrice}}</b></div>
             <div class="order-footer-btn" v-if="data_ok" :style="{backgroundColor:ftBtn}" @click="triggerPayEvent">{{payFt}}</div>
             <div class="order-footer-btn" v-else style="background-color: #707070;">{{payFt}}</div>
         </div>
@@ -11,15 +11,15 @@
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
             <div style="padding: 0 20px;">
-                <p style="color:#24798F;font-size:14px;font-weight:500;text-align:left;margin-bottom: 3px;">訂單明細</p>
+                <p style="color:#24798F;font-size:14px;font-weight:500;text-align:left;margin-bottom: 3px;">{{$t('order_mobile_btn')}}</p>
                 <hr style="width: 100%;height:2px;background: #24798F;border-style:none;">
                 <p class="order-footer-show">{{selectDescription}}</p>
                 <div class="order-footer-show-pay">
-                    <p>課程售價</p>
+                    <p>{{$t('order_mobile_pay')}}</p>
                     <p>NTD&nbsp;{{selectPrice}}</p>
                 </div>
                 <div class="order-footer-show-pay order-pink">
-                    <p>優惠折扣</p>
+                    <p>{{$t('order_mobile_cost')}}</p>
                     <p>－NTD&nbsp;{{discount}}</p>
                 </div>
                  <hr style="border-style:none;height:1px;background:#707070;opacity:.5;margin-top:40px;">

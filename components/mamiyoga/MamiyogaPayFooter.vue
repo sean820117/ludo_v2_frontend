@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="pay-footer" v-if="$mq !== 'desktop'">
-            <div class="pay-footer-tag" style="background:#24798F;cursor:pointer;" v-if="!have_cost" @click="openExchange">折扣碼輸入</div>
+            <div class="pay-footer-tag" style="background:#24798F;cursor:pointer;" v-if="!have_cost" @click="openExchange">{{$t('pay_method_mobile_btn')}}</div>
             <div class="pay-footer-tag" v-else></div>
-            <div class="pay-footer-cost">共計<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
-            <div class="pay-footer-btn" v-if="can_pay" :style="{backgroundColor:ftBtn}" @click="$router.push('/order')">{{payFt}}</div>
+            <div class="pay-footer-cost">{{$t('pay_method_mobile_text')}}<b>&nbsp;&nbsp;NTD&nbsp;{{selectPrice}}</b></div>
+            <div class="pay-footer-btn" v-if="can_pay" :style="{backgroundColor:ftBtn}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/order`)">{{payFt}}</div>
             <div class="pay-footer-btn" v-else style="background-color: #707070">{{payFt}}</div>
         </div>
         <div class="desktop-pay-footer" v-else>
-            <p class="desktop-pay-footer-title">Mami yoga日本人氣瑜珈線上課程</p>
+            <p class="desktop-pay-footer-title">{{$t('order_desktop_footer')}}</p>
             <p class="desktop-pay-footer-title" style="font-weight: 500;">新台幣{{desSelectPrice}}元</p>
             <s class="desktop-pay-footer-little-text">NTD.1990/人</s>
             <p class="desktop-pay-footer-red-text">- NTD&nbsp;{{haveCoupon}}</p>
