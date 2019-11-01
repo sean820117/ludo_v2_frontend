@@ -90,9 +90,10 @@
                 <div class="info-white-article">
                     <div class="info-white-article-block">
                         <div class="info-white-article-tag">{{$t('desktop_info_article')}}</div>
-                        <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
+                        <!-- <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
                         <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
-                        <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                        <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p> -->
+                        <mamiyoga-medium-article :m_data="m_data"></mamiyoga-medium-article>
                         <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" :style="{fontSize: $i18n.locale == 'JP'? '13px':''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('desktop_info_article_btn')}}</div>
                     </div>
                 </div>
@@ -174,9 +175,12 @@ import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
 import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
-
+import MamiyogaMediumArticle from '~/components/mamiyoga/MamiyogaMediumArticle.vue'
 import { mapMutations, mapGetters } from 'vuex';
+// import {default as gg} from  'axios'
 import axios from '~/config/axios-config'
+
+
 
 export default {
     data:()=>({
@@ -210,8 +214,12 @@ export default {
         MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
         MamiyogaNewWindowAlertBox,
-
+        MamiyogaMediumArticle,
     },
+    // async asyncData () {
+    //     const { data } = await gg.get('https://medium.com/feed/@ludonow')
+    //     return { m_data: data }
+    // },
     async mounted(){
         if(process.client) {
             location.href = '#';
