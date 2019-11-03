@@ -27,10 +27,14 @@
                 </div>
             </div>
         </div>
+        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="show_alert = false" :alertBtn="alertBtn"
+        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
+        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
 <script>
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     props: {
@@ -47,7 +51,18 @@ export default {
         have_trial: false,
         login_or_not: false,
         payed_or_not: false,
+
+        show_alert: false,
+        alertTitle: '',
+        alertImg: '',
+        alertText: '',
+        alertBtn: '好的',
+        alertBtnColor: '#24798F',
+        nextGo: '',
     }),
+    components:{
+        MamiyogaNewWindowAlertBox
+    },
     async mounted(){
         if(process.client) {
             this.login_or_not = await this.$checkLogin(this.$store);
@@ -90,8 +105,13 @@ export default {
                         console.log(use_time)
                         if(use_time > 7){
                             this.have_trial = false;   
-                            alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                            this.$router.push('/');
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.show_alert = true
+                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = ''
+                            // alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                            // this.$router.push('/');
                         }else {
                             this.have_trial = true;
                             if(this.is_trial&&this.have_trial) {
@@ -111,14 +131,24 @@ export default {
                                     console.log(this.courseTitle + ' no video');
                                 }
                             } else {
-                                alert('購買後即可觀看所有課程～')
-                                this.$router.push('/pay')
+                                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                                this.show_alert = true
+                                this.alertText = '購買後即可觀看所有課程～'
+                                this.alertBtn = `${this.$t('teach_button_ok')}`
+                                this.nextGo = 'pay'
+                                // alert('購買後即可觀看所有課程～')
+                                // this.$router.push('/pay')
                             }
                         }
                     } else {
-                        localStorage.redirect = '/menu'
-                        alert('開通七天體驗即可開始使用！')
-                        this.$router.push('/free-trial')
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        this.show_alert = true
+                        this.alertText = `${this.$t('desktop_get_trial')}`
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
+                        // localStorage.redirect = '/menu'
+                        // alert('開通七天體驗即可開始使用！')
+                        // this.$router.push('/free-trial')
                     } 
                 } else{
                     if (video) {
@@ -138,10 +168,22 @@ export default {
                     }
                 }
             } else {
-                localStorage.redirect = '/menu'
-                alert('請先前往登入或註冊！')
-                this.$router.push('/login')
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.show_alert = true
+                this.alertText = `${this.$t('desktop_go_login')}`
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
+                // localStorage.redirect = '/menu'
+                // alert('請先前往登入或註冊！')
+                // this.$router.push('/login')
             }  
+        },
+        enterBox(i){
+            if(i == '0'){
+                this.show_alert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
+            }
         }
     }
 }

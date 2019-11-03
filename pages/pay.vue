@@ -84,45 +84,45 @@
                                         </div>
                                     </div>
                                     <hr class="select-pay-content-line">
-                                    <input class="company-input" placeholder="企業名稱" type="text" name="company-name" id="company-name" v-model="company_name">
+                                    <input class="company-input" :placeholder="$t('pay_method_input_1')" type="text" name="company-name" id="company-name" v-model="company_name">
                                     <div class="company-input-box">
-                                        <input class="company-input" placeholder="姓名" type="text" name="contact-name" id="contact-name" v-model="contact_name">
-                                        <input class="company-input" placeholder="工作職稱" type="text" name="contact-position" id="contact-position" v-model="contact_position">
+                                        <input class="company-input" :placeholder="$t('pay_method_input_2')" type="text" name="contact-name" id="contact-name" v-model="contact_name">
+                                        <input class="company-input" :placeholder="$t('pay_method_input_3')" type="text" name="contact-position" id="contact-position" v-model="contact_position">
                                     </div>
                                     <div class="company-input-box">
-                                        <input class="company-input" placeholder="聯絡電話" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
-                                        <input class="company-input" placeholder="工作信箱" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
+                                        <input class="company-input" :placeholder="$t('pay_method_input_4')" type="tel" name="contact-tel" id="contact-tel" v-model="contact_tel">
+                                        <input class="company-input" :placeholder="$t('pay_method_input_5')" type="email" name="contact-mail" id="contact-mail" v-model="contact_mail">
                                     </div>
                                     <div class="company-input-box" style="justify-content: flex-end;">
-                                        <div class="company-input-submit-btn" @click="submitData">送出資料</div>
+                                        <div class="company-input-submit-btn" :style="{width: $i18n.locale == 'JP' ? '130px':''}" @click="submitData">{{$t('pay_method_input_btn')}}</div>
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
                     <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
-                        <div class="pay-little-title">折扣序號</div>
+                        <div class="pay-little-title">{{$t('pay_method_cost_title')}}</div>
                         <hr style="margin: 10px 0;opacity: .5;">
-                        <input id="desktop-exchange-input" name="desktop-exchange-input" type="text" placeholder="請輸入折扣序號" v-model="get_coupon" @change="check_coupon">
+                        <input id="desktop-exchange-input" name="desktop-exchange-input" type="text" :placeholder="$t('pay_method_cost_input')" v-model="get_coupon" @change="check_coupon">
                         <div class="reg-text2" :style="{color: coupon_hint_color, height: '20px'}">{{coupon_hint}}</div>
                         <!-- <div class="pay-little-title">付款方式</div>
                         <hr style="margin: 10px 0;opacity: .5;"> -->
                     </div>
                     <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
-                        <div class="pay-little-title">基本資訊</div>
+                        <div class="pay-little-title">{{$t('order_title')}}</div>
                         <hr style="margin: 10px 0;opacity: .5;">
                         <form class="order-base-info" id="order-form" method="post" :action="form_action">
-                            <label class="order-form-label" for="name" >姓名</label>
-                            <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
-                            <label class="order-form-label" for="tel">聯絡電話</label>
+                            <label class="order-form-label" for="name" >{{$t('pay_method_input_2')}}</label>
+                            <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" :placeholder="$t('order_input_1_placeholder')">
+                            <label class="order-form-label" for="tel">{{$t('pay_method_input_4')}}</label>
                             <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
                             <!-- <div class="order-verify-block">
                                 <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
                                 <div class="order-verify-btn" style="margin:0 5px;">認證</div>
                                 <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
                             </div> -->
-                            <label class="order-form-label" for="tel">電子信箱</label>
-                            <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
+                            <label class="order-form-label" for="tel">{{$t('desktop_login_mail')}}</label>
+                            <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" :placeholder="$t('order_input_2_placeholder')">
                             <input type="hidden" name="item_id" :value="select_plan.item_id">
                             <input type="hidden" name="coupon_id" :value="coupon_id">
                             <input type="hidden" name="payment_type" v-model="order_payment" value="">
@@ -146,7 +146,7 @@
                         <p style="margin-left: 5px;">我同意LUDO<router-link to="/refund" style="color:#000;">退款政策</router-link></p>
                     </div>
                 </label>
-                <div class="go-outside-page-btn" :style="{backgroundColor: check_agree ? '#FF9898':'#C9C9C9'}" @click="goPay">前往付款</div>
+                <div class="go-outside-page-btn" :style="{backgroundColor: check_agree ? '#FF9898':'#C9C9C9'}" @click="goPay">{{$t('order_desktop_btn')}}</div>
             </div>
             <!-- <div class="additional-select">
                 <p class="additional-select-title">獨家加價購</p>
@@ -174,7 +174,7 @@
                 </div>
                 <hr style="opacity:.5;">
             </div> -->
-            <mamiyoga-pay-footer ftBtn="#FF9898" payFt="下一步" @openExchange="openExchange" 
+            <mamiyoga-pay-footer ftBtn="#FF9898" :payFt="$t('pay_method_mobile_next_btn')" @openExchange="openExchange" 
             :haveCoupon="discount" :desSelectPrice="picked" :discount="countDiscount(picked)"
             :have_cost="check_coupon_ok" :selectPrice="countPrice(picked)" :can_pay="can_pay"></mamiyoga-pay-footer>
         </div>
@@ -191,10 +191,10 @@
             <div class="cancel-box" @click="open_exchange_box = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">兌換序號</div>
-            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">請輸入折扣序號</div>
-            <input id="exchange-input" name="exchange-input" type="text" placeholder="請輸入半形英數字" v-model="get_coupon">
-            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="inputCoupon">兌換</div>
+            <div class="reg-text" style="text-align: center;margin-top:35px;color:#707070;">{{$t('member_activation_title')}}</div>
+            <div class="reg-text2" style="text-align: center;margin-top:20px;color:#8F8F8F;">{{$t('pay_method_cost_input')}}</div>
+            <input id="exchange-input" name="exchange-input" type="text" :placeholder="$t('pay_method_mobile_input')" v-model="get_coupon">
+            <div class="mamiyoga-login-btn-to-signin" style="width: 90%;" @click="inputCoupon">{{$t('pay_method_mobile_input_btn')}}</div>
         </mamiyoga-window-alert-box>
     </div>
 </template>
@@ -397,7 +397,6 @@ export default {
                         this.coupon_id = this.get_coupon
                     } else {
                         sessionStorage['current_coupon'] = null;
-                        // alert('折扣碼錯誤，請確認方案是否選擇正確')
                         this.coupon_hint = '折扣碼錯誤，請確認方案是否選擇正確'
                         this.coupon_hint_color = 'red'
                         this.discount = 0
@@ -405,7 +404,6 @@ export default {
                     }
                 } catch (error) {
                     sessionStorage['current_coupon'] = null;
-                    // alert('折扣碼錯誤')
                     this.coupon_hint = '折扣碼錯誤'
                     this.coupon_hint_color = 'red'
                     this.discount = 0
@@ -420,19 +418,19 @@ export default {
             } else {
             if(this.check_agree) {
                 if (this.order_email.length === 0) {
-                    this.hint = '請填寫電子信箱欄位'
+                    this.hint = `${this.$t('order_remind_1')}`
                     this.hint_color = "red"
                     return
                 } else if (!EMAIL_REGEX.test(this.order_email)) {
-                    this.hint = '電子信箱格式錯誤'
+                    this.hint = `${this.$t('order_remind_2')}`
                     this.hint_color = "red"
                     return
                 } else if (this.order_phone.length != 10) {
-                    this.hint = '行動電話格式錯誤，請輸入十位數字電話號碼'
+                    this.hint = `${this.$t('order_remind_3')}`
                     this.hint_color = "red"
                     return
                 } else if (!this.order_name) {
-                    this.hint = '請填寫姓名'
+                    this.hint = `${this.$t('order_remind_4')}`
                     this.hint_color = "red"
                     return
                 }
@@ -791,7 +789,7 @@ export default {
         max-width: 450px;
     } */
     .pay-main-block {
-        width: 30%;
+        width: 30% !important;
         height: auto;
         margin: 0;
     }

@@ -265,7 +265,8 @@
         </div>
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
-            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" :routine="routine"></mamiyoga-new-practice-video-block>
+            <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" 
+            @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -274,8 +275,10 @@
 	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
             </svg>
         </div>
-        <!-- 顯示建議 -->
-        <!-- <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"></mamiyoga-new-result-block> -->
+         <!-- 新版alert -->
+        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="show_alert = false" :alertBtn="alertBtn"
+        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
+        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -289,6 +292,7 @@ import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPrac
 import MamiyogaSyllabusContent from '~/components/mamiyoga/MamiyogaSyllabusContent.vue';
 import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
@@ -320,6 +324,14 @@ export default {
 
         open_camera: false,
         show_result: true,
+
+        show_alert: false,
+        alertTitle: '',
+        alertImg: '',
+        alertText: '',
+        alertBtn: '好的',
+        alertBtnColor: '#24798F',
+        nextGo: '',
     }),
     components: {
         MamiyogaHeader,
@@ -330,6 +342,7 @@ export default {
         MamiyogaNewPracticeVideoBlock,
         MamiyogaSyllabusContent,
         MamiyogaWindowAlertBox,
+        MamiyogaNewWindowAlertBox,
         MamiyogaNewResultBlock,
     },
     async mounted() {
@@ -392,9 +405,15 @@ export default {
     methods:{
         startBuild(){
             if (!this.is_login) {
-                localStorage.redirect = '/syllabus'
-                alert('請先前往登入或註冊')
-                this.$router.push('/login')            
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
+                this.show_alert = true
+                this.alertText = `${this.$t('desktop_go_login')}`
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
+                
+                // localStorage.redirect = '/syllabus'
+                // alert('請先前往登入或註冊')
+                // this.$router.push('/login')            
             } else {
                 if(!this.payed_or_not) {
                     if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
@@ -405,17 +424,27 @@ export default {
                         console.log(use_time)
                         if(use_time > 7){
                             this.have_trial = false;   
-                            alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                            this.$router.push('/');
+                            // alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                            // this.$router.push('/');
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
+                            this.show_alert = true
+                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = ''
                         }else {
                             this.have_trial = true;
                             this.start_build = true;
                             this.show_arrangement = true
                         }
                     } else{
-                        localStorage.redirect = '/syllabus'
-                        alert('開通七天體驗後即可開始使用～')
-                        this.$router.push('/free-trial')
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
+                        this.show_alert = true
+                        this.alertText = `${this.$t('desktop_get_trial')}`
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
+                        // localStorage.redirect = '/syllabus'
+                        // alert('開通七天體驗後即可開始使用～')
+                        // this.$router.push('/free-trial')
                     }
                 } else {
                     this.have_trial = true;
@@ -471,8 +500,21 @@ export default {
             this.is_practice = false
             this.practice_finish = true
         },
-        closeResult(){
-            this.show_result = false;
+        closeResult(score = null){
+            if(score) {
+                this.result_score = Math.floor(score)
+                this.result_cal = (Math.floor(score))*2
+                this.open_camera = true
+            } 
+            this.is_practice = false
+            this.practice_finish = true
+        },
+        enterBox(i){
+            if(i == '0'){
+                this.show_alert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
+            }
         }
     },
     computed:{

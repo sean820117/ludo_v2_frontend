@@ -1,8 +1,8 @@
 <template>
     <div class="member-bottom-btn">
-        <div class="member-big-btn" style="background:#97A8AF;" v-if="!is_serialno" @click="$router.push('/menu')">回到課程</div>
-        <div class="member-big-btn" style="background:#24798F;" v-else @click="openExchange">兌換序號</div>
-        <div class="member-big-btn member-big-btn-center" style="margin-top:1vh;" @click="$router.push('/member')">學員中心</div>
+        <div class="member-big-btn" style="background:#97A8AF;" v-if="!is_serialno" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('member_text_btn_7')}}</div>
+        <div class="member-big-btn" style="background:#24798F;" v-else @click="openExchange">{{$t('member_activation_title')}}</div>
+        <div class="member-big-btn member-big-btn-center" style="margin-top:1vh;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/member`)">{{$t('member_title')}}</div>
     </div>
 </template>
 
@@ -10,13 +10,6 @@
 export default {
     props: {
         is_serialno: false
-    },
-    mounted(){
-        if(process.client){
-            if(this.$mq == 'desktop'){
-                document.getElementById('go_contact').classList.add('active-menu')
-            }
-        }
     },
     methods:{
         openExchange(){
@@ -55,7 +48,7 @@ export default {
 }
 @media (min-width: 769px) {
     .member-big-btn {
-        width: 80%;
+        width: 80% !important;
     }
 }
 </style>

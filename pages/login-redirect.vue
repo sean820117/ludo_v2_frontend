@@ -21,7 +21,8 @@ export default {
             if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
                 this.$router.push(localStorage.redirect)
             } else {
-                this.$router.push('/free-trial')
+                console.log(this.$i18n.locale)
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/free-trial`)
             }     
         } else {
             this.$router.push(localStorage.redirect)

@@ -10,11 +10,11 @@
             <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
         </div>
         <div class="mamiyoga-desktop-header-btn">
-            <div class="desktop-header-gift-btn" @click="$router.push('/gift')">
+            <div class="desktop-header-gift-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/gift`)">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 {{$t('desktop_header_btn_1')}}
             </div>
-            <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">註冊/登入</div>
+            <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">{{$t('desktop_signup_n_login')}}</div>
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">
                 <div class="desktop-header-user-menu-block">

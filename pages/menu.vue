@@ -7,16 +7,16 @@
                     <mamiyoga-hamburger-header></mamiyoga-hamburger-header>
                     <div class="course-information-select">
                         <div class="course-information-content">
-                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">課程影片</p>
+                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</p>
                         </div>
                         <div class="course-information-content">
-                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">孕動日記</p>
+                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</p>
                         </div>
                         <!-- <div class="course-information-content">
                             <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
                         </div> -->
                         <div class="course-information-content">
-                            <p style="cursor:pointer;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">媽咪知識</p>
+                            <p style="cursor:pointer;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</p>
                         </div>
                     </div>
                     <!-- <div class="course-mail-icon" @click="not_online = true">
@@ -88,7 +88,7 @@
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500" :is_trial="course.trial"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
-                    <div class="menu-desktop-alleviates" @click="$router.push('/syllabus')">
+                    <div class="menu-desktop-alleviates" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
                         <div class="menu-desktop-alleviates-1"></div>
                         <div class="menu-desktop-alleviates-2">
                             <p>科學化訓練讓健康事半功倍</p>
@@ -115,7 +115,7 @@
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500" :is_trial="course.trial"
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
-                    <div class="menu-desktop-alleviates" v-if="show_blends" @click="$router.push('/syllabus')">
+                    <div class="menu-desktop-alleviates" v-if="show_blends" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
                         <div class="menu-desktop-alleviates-1"></div>
                         <div class="menu-desktop-alleviates-2">
                             <p>科學化訓練讓健康事半功倍</p>
@@ -125,6 +125,9 @@
                </div>
             </div>
         </div>
+        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="show_alert = false" :alertBtn="alertBtn"
+        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
+        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -135,6 +138,7 @@ import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHe
 import MamiyogaDesktopCourseBlock from '~/components/mamiyoga/MamiyogaDesktopCourseBlock.vue';
 import MamiyogaCourseContent from '~/components/mamiyoga/MamiyogaCourseContent.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue';
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
@@ -153,6 +157,14 @@ export default {
         login_or_not: false,
         payed_or_not: false,
         have_trial: false,
+
+        show_alert: false,
+        alertTitle: '',
+        alertImg: '',
+        alertText: '',
+        alertBtn: '好的',
+        alertBtnColor: '#24798F',
+        nextGo: '',
     }),
     components: {
         MamiyogaHeader,
@@ -161,6 +173,7 @@ export default {
         MamiyogaDesktopCourseBlock,
         MamiyogaCourseContent,
         MamiyogaWindowAlertBox,
+        MamiyogaNewWindowAlertBox,
     },
     async mounted() {
         if (process.client) {
@@ -292,8 +305,18 @@ export default {
                     iframe.querySelector('iframe').src = `${this.$i18n.locale == 'zh-TW' ? 'https://player.vimeo.com/video/349924443': 'https://player.vimeo.com/video/350479253'}`;
                 }
             } else {
-                alert('註冊後即可觀看該課程～')
-                this.$router.push('/login')
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.show_alert = true
+                this.alertText = '註冊後即可觀看該課程～'
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
+            }
+        },
+        enterBox(i){
+            if(i == '0'){
+                this.show_alert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
         }
     }

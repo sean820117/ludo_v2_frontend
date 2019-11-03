@@ -120,7 +120,6 @@ export default {
   login_btn_login: '登入',
   login_btn_signup: '註冊',
   login_text_remind: '付款前需先註冊成為會員',
-  login_input_email: '電子信箱',
   login_input_password: '密碼',
   login_input_again: '確認密碼',
   login_btn_pay: '立即付款',
@@ -225,6 +224,8 @@ export default {
   desktop_login_remind_text: '體驗或付款前需先註冊成為會員，<br>若持有序號的學員也須先進行註冊！',
   desktop_login_remind_btn: '立即註冊',
 
+  desktop_signup_n_login: '註冊/登入',
+
   desktop_signup_little: '付款前需先註冊成為會員',
   desktop_signup_password: '確認密碼',
   desktop_signup_btn_text: '社群帳號註冊',
@@ -256,10 +257,12 @@ export default {
   desktop_index_second_list_2: '加強身體循環',
   desktop_index_second_list_3: '逐步改善體態',
   desktop_index_second_list_4: '維持身心平衡',
-  
+  desktop_index_second_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png',
+
   desktop_index_third_title: '妳知道日本媽媽<br>快速產後復原的秘訣嗎？',
-  desktop_index_third_text: '我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手',
+  desktop_index_third_text: '我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手，<br>打造一堂不需要出門的輕運動課程。',
   desktop_index_third_btn: '閱讀媽咪知識',
+  desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png',
 
   desktop_index_four_title: '「自拍魔鏡」',
   desktop_index_four_little: '媽咪們最貼心的練習夥伴',
@@ -271,8 +274,9 @@ export default {
 
   desktop_index_five_title: '「 孕動日記 」',
   desktop_index_five_little: '每天十分鐘，讓心情跟身體重新開機！',
-  desktop_index_five_text: '針對媽咪設計的專屬功能，<br>按照主題式課表練習',
+  desktop_index_five_text: '針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！',
   desktop_index_five_btn: '取得專屬課表',
+  desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png',
 
   desktop_index_six_title: '主題式單元',
   desktop_index_six_list_title_1: '矯正疼痛',
@@ -298,6 +302,7 @@ export default {
 
   desktop_index_nine_title: '為什麼選Mamiyoga？',
   desktop_index_nine_text: 'Mami yoga / Youtube / 瑜珈教室<br>有什麼不同？',
+  desktop_index_nine_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-contrast-1.png',
   desktop_index_ten_title: '使用者回饋',
   desktop_index_eleven_title: '收費方式',
   desktop_index_eleven_pay_btn_1: '立即購買',
@@ -349,8 +354,10 @@ export default {
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
   desktop_syllabus_finish_title_1: '練習<br>成果',
+  desktop_syllabus_finish_title_01: '練習成果',
   desktop_syllabus_finish_title_1_result: ' 分',
   desktop_syllabus_finish_title_2: '消耗<br>卡路里',
+  desktop_syllabus_finish_title_02: '消耗卡路里',
   desktop_syllabus_finish_title_2_result: '卡',
 
   //媽咪知識
@@ -419,7 +426,7 @@ export default {
   pay_method_cost_title: '折扣序號',
   pay_method_cost_input: '請輸入折扣序號',
   pay_method_mobile_input: '請輸入半形英數字',
-  pay_method_mobile_text: '共計 ***',
+  pay_method_mobile_text: '共計',
   pay_method_mobile_btn: '折扣碼輸入',
   pay_method_mobile_next_btn: '下一步',
   pay_method_mobile_input_btn: '兌換',
@@ -427,9 +434,7 @@ export default {
   //付款order
   order_title: '基本資訊',
   order_mobile_title: '訂單結帳',
-  order_input_1: '姓名',
   order_input_1_placeholder: '請輸入使用者名稱',
-  order_input_2: '聯絡電話',
   order_input_2_placeholder: '請輸入常用信箱',
   order_envoice: '我們使⽤電⼦發票, 將會於得獎時以簡訊與您聯繫或可按此選擇使⽤載具儲存 / 輸⼊統⼀編號等',
   order_envoice_1: '電子發票',
@@ -443,7 +448,6 @@ export default {
   order_mobile_btn: '訂單明細',
   order_mobile_pay: '課堂售價',
   order_mobile_cost: '優惠折扣',
-  order_mobile_next: '前往付款',
 
   order_remind_1: '請填寫電子信箱欄位',
   order_remind_2: '電子信箱格式錯誤',
@@ -462,8 +466,8 @@ export default {
   member_activation_title: '兌換序號',
   member_activation_tag_1: '序號資訊',
   member_activation_tag_2: '我有課程序號',
-  member_activation_tag_1_phone: '寄送手機',
-  member_activation_tag_1_order: '訂單號碼',
+  member_activation_tag_1_phone: '寄送手機：',
+  member_activation_tag_1_order: '訂單號碼：',
   member_activation_tag_1_open: '已啟用',
   member_activation_tag_1_close: '尚未啟用',
   member_activation_tag_2_input: '輸入序號',
@@ -475,15 +479,12 @@ export default {
   member_activation_remind_4: '兌換成功，為您跳轉至課程頁面～',
   member_activation_remind_5: '此序號已被使用',
   //文章投稿
-  member_article_title: '文章投稿',
   member_article_little: '將妳的心得或是知識分享給大家吧！',
   member_article_text: 'LUDO會將妳的文章<br>分享在等待AI助教時，給大家觀看！',
   member_article_input: '請輸入空格以內的字數喔！',
   member_article_btn: '送出',
   member_article_remind: '收到您的投稿',
   member_article_ok: '好的',
-  //聯絡我們
-  member_contact_title: '聯絡我們',
 
 
 

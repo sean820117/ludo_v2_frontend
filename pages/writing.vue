@@ -5,14 +5,14 @@
             <mamiyoga-desktop-member-nav v-else></mamiyoga-desktop-member-nav>
             <div class="writing-main-block">
                 <div class="writing-main">
-                    <div class="pay-little-title">文章投稿</div>
+                    <div class="pay-little-title">{{$t('member_text_btn_4')}}</div>
                     <hr style="margin: 5px 0;opacity: .5;">
                     <div>
                         <img class="writing-baby" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-baby.png" alt="">
-                        <div class="writing-title">將妳的心得或是知識分享給大家吧！</div>
+                        <div class="writing-title">{{$t('member_article_little')}}</div>
                         <p class="writing-text">LUDO會將妳的文章<br>分享在等待AI助教時，給大家觀看！</p>
-                        <textarea name="share-your-article" id="share-your-article" maxlength="250" cols="30" rows="10" placeholder="請輸入空格以內的字數喔！" v-model="writing_text"></textarea>
-                        <div class="company-input-submit-btn" style="float:right;" @click="submitText">送出</div>
+                        <textarea name="share-your-article" id="share-your-article" maxlength="250" cols="30" rows="10" :placeholder="$t('member_article_input')" v-model="writing_text"></textarea>
+                        <div class="company-input-submit-btn" style="float:right;" @click="submitText">{{$t('member_article_btn')}}</div>
                     </div>
                 </div>
                 <mamiyoga-member-bottom-btn style="margin-top:10vh;position:unset;"></mamiyoga-member-bottom-btn>
@@ -22,9 +22,9 @@
             <div class="cancel-box" @click="is_submited = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-cancel.png" alt="">
             </div>
-            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">收到您的投稿！</div>
+            <div class="reg-text2" style="text-align: center;margin-top:35px;color:#707070;">{{$t('member_article_remind')}}</div>
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-writing-submit.png" alt="" style="margin-top:50px;width:60%;">
-            <div class="company-input-submit-btn" style="margin:80px auto 0;" @click="is_submited = false">好的</div>
+            <div class="company-input-submit-btn" style="margin:80px auto 0;" @click="is_submited = false">{{$t('member_article_ok')}}</div>
         </mamiyoga-window-alert-box>
     </div>
 </template>
@@ -65,15 +65,6 @@ export default {
                 // } else {
                 //     console.log("payed")
                 // }
-            }
-        }
-    },
-    mounted(){
-        if(process.client) {
-            if(this.$mq == 'desktop'){
-                document.getElementById('go_writing').classList.add('active-menu')
-                document.getElementById('go_activation_code').classList.remove('active-menu')
-                document.getElementById('go_contact').classList.remove('active-menu')
             }
         }
     },
@@ -192,6 +183,7 @@ export default {
         max-width: 150px; 
     }
     .writing-main {
+        width: 20vw;
         max-width: 350px;
     }
     .writing-main-block {

@@ -38,7 +38,8 @@
                 <div v-if="count_over" class="count-over">
                     <div class="count-over-all-btn">
                         <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
-                        <div @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
+                        <div v-if="!open_camera" @click="closeResult" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">結束練習</div>
+                        <div v-else @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
@@ -122,7 +123,7 @@
             </div>
         </div>
         <!-- 上傳 -->
-        <div class="loading-bar" v-if="is_loading">
+        <!-- <div class="loading-bar" v-if="is_loading">
             <div style="width: 100%;height: 15vh;display:flex;align-items:center;">
                 <div class="bar-back">
                     <div id="bar-container">
@@ -145,10 +146,10 @@
             <div style="width:100%;height:50px;display:flex;justify-content:center;">
                 <button v-show="play_assay" class="see-assay-btn" @click="is_loading = false, is_loaded = true">{{$t('start_experience_btn_3')}}</button>
             </div>
-        </div>
+        </div> -->
         <!-- 顯示結果 -->
         <!-- <mamiyoga-assay-video @handleRetryEvent="handleRetryEvent" @retryRecordAndroid="retryRecordAndroid" @closeAssayWindow="closeAssayWindow" v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video> -->
-        <mamiyoga-assay-video v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video> 
+        <!-- <mamiyoga-assay-video v-if="is_loaded" :video_result="video_result"></mamiyoga-assay-video>  -->
         <!-- 影片錯誤回饋視窗(重新拍攝) -->
         <mamiyoga-window-alert-box v-if="is_error">
             <div class="cancel-box" @click="is_error = false">
@@ -169,7 +170,7 @@
         </mamiyoga-window-alert-box>
 
         <!-- 動作做錯時回饋視窗(需重新開啟練習畫面) -->
-        <mamiyoga-window-alert-box v-if="need_resee">
+        <!-- <mamiyoga-window-alert-box v-if="need_resee">
             <div class="cancel-box" @click="need_resee = false">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             </div>
@@ -180,7 +181,11 @@
                    再看一次
                 </button>
             </div>
-        </mamiyoga-window-alert-box>
+        </mamiyoga-window-alert-box> -->
+
+         <!-- 顯示建議 -->
+        <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
+        :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
         <!-- 愛心進度條 -->
         <div v-if="heart_loading" id="heart-loading">
@@ -195,6 +200,7 @@
 <script>
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
+import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
 import axios from '~/config/axios-config';
 import { mapMutations, mapGetters } from 'vuex';
 
@@ -202,6 +208,7 @@ export default {
     components:{
         MamiyogaWindowAlertBox,
         MamiyogaAssayVideo,
+        MamiyogaNewResultBlock,
     },
     props:{
         routine: Object,
@@ -251,6 +258,12 @@ export default {
         pose_video: '',
 
         heart_loading: false,
+        show_result: false,
+        video_result: {},
+        result_score: '43',
+        result_cal: '86',
+
+        current_pose_id:'',
     }),
     async mounted(){
         if (process.client) {
@@ -284,15 +297,16 @@ export default {
         },
         playVideo(i){
             let poses = this.routine.default[0].poses;
-            
+
             if(poses[i].pose_brief != 'break') {    
                 this.heart_loading = true
                 if (this.pose_video != poses[i].pose_video) {
                     this.pose_video = poses[i].pose_video
                 }
                 if (this.open_camera && poses[i].pose_ai) { 
+                    this.current_pose_id = poses[i].pose_id
                     this.video_recorder.startRecording({
-                        pose_id: "yoga_27",
+                        pose_id: `yoga_${this.current_pose_id}`,
                         user_id: this.user.user_id,
                         language: 'zh-tw',
                     });
@@ -363,8 +377,8 @@ export default {
                 let height = 0
                 // this.pose_video = poses[i+1].pose_video
                 let id = setInterval(() => {
-                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height / 3)+'%'; 
-                    if(height >= 300) {
+                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height*2)+'%'; 
+                    if(height >= poses[i].duration) {
                         rest.style.display = 'none';
                         if (poses[i+1]) {
                             this.playVideo(i+1)
@@ -390,13 +404,42 @@ export default {
             this.count_over = false;
             this.startPractice();
         },
+        // async newVideoUpload(){
+        //     if(!this.open_camera) {
+        //         this.$emit('openResult')
+        //     } else {
+        //        let score = await this.video_recorder.getResult()
+        //        console.log(score)
+        //        this.$emit('openResult',score)
+        //     }
+        // },
         async newVideoUpload(){
             if(!this.open_camera) {
-                this.$emit('openResult')
+                this.show_result = true
             } else {
-               let score = await this.video_recorder.getResult()
-               console.log(score)
-               this.$emit('openResult',score)
+                // let escor = await this.video_recorder.getDetailResult()
+                // console.log(score)
+                // this.result_score = Math.floor(score)
+                // this.result_cal = (Math.floor(score))*2
+
+                this.video_result = await this.video_recorder.getDetailResult()
+                console.log(this.video_result)
+                if (this.video_result && !this.video_result.error_code) {
+                    let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
+                    for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
+                        for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
+                            this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                        }
+                    } 
+                } else if(this.video_result.error_code){
+                    this.video_result.score = 40         
+                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                } else {
+                    this.video_result = {}
+                    this.video_result.score = 40
+                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                }
+                this.show_result = true
             }
         },
         changeArticle(){
@@ -463,23 +506,14 @@ export default {
             document.querySelector('#teach-process').style.display = 'none';
             document.querySelector('#teach-show-btn').style.display = 'flex';
         },
+        closeResult(){
+            if(!this.open_camera) {
+                this.$emit('closeResult')
+            } else {
+                this.$emit('closeResult',this.result_score)
+            }
+        },
 
-        // restStop(){
-
-        // },
-        // restStart(time = null,bar,height,nt_vid,rest,next){
-        //     let id = setInterval(() => {
-        //         document.getElementById(bar).style.height = (height / 3)+'%'; 
-        //         if(height >= 300) {
-        //             nt_vid.style.display = 'block';
-        //             rest.style.display = 'none';
-        //             this.startPractice1()
-        //             clearInterval(id)
-        //         }else {
-        //             height++
-        //         }
-        //     }, 100);
-        // }
     },
     computed:{
         ...mapGetters({

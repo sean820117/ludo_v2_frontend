@@ -3,22 +3,22 @@
         <div style="background: #fff;">
             <mamiyoga-pay-header></mamiyoga-pay-header>
             <div class="pay-main-block">
-                <div class="pay-order-title">訂單結帳</div>
+                <div class="pay-order-title">{{$t('order_mobile_title')}}</div>
                 <hr style="margin: 10px 0;opacity: .5;">
                 <form class="order-base-info" id="order-form" method="post" :action="form_action">
-                    <div class="order-little-title">基本資訊</div>
+                    <div class="order-little-title">{{$t('order_title')}}</div>
                     
-                    <label class="order-form-label" for="name" >姓名</label>
-                    <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" placeholder="請輸入使用者名稱">
-                    <label class="order-form-label" for="tel">聯絡電話</label>
+                    <label class="order-form-label" for="name" >{{$t('pay_method_input_2')}}</label>
+                    <input class="order-form-input" required type="text" v-model="order_name" name="name" id="name" :placeholder="$t('order_input_1_placeholder')">
+                    <label class="order-form-label" for="tel">{{$t('pay_method_input_4')}}</label>
                     <input class="order-form-input" required type="tel" v-model="order_phone" name="phone" id="phone" placeholder="0912345678">
                     <!-- <div class="order-verify-block">
                         <input type="text" class="order-form-input" style="width:40%;" placeholder="輸入手機驗證碼">
                         <div class="order-verify-btn" style="margin:0 5px;">認證</div>
                         <div class="order-verify-btn" style="border:#24798F 2px solid;color:#24798F;background:#fff;">重送</div>
                     </div> -->
-                    <label class="order-form-label" for="tel">電子信箱</label>
-                    <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" placeholder="建議輸入常用信箱">
+                    <label class="order-form-label" for="tel">{{$t('desktop_login_mail')}}</label>
+                    <input class="order-form-input" required type="email" v-model="order_email" name="email" id="email" :placeholder="$t('order_input_2_placeholder')">
                     <input type="hidden" name="item_id" :value="picked_plan.item_id">
                     <input type="hidden" name="coupon_id" :value="coupon_id">
                     <input type="hidden" name="payment_type" v-model="order_payment" value="">
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <!-- <mamiyoga-pay-footer ftBtn="#24798F" payFt="前往付款"></mamiyoga-pay-footer> -->
-            <mamiyoga-order-footer ftBtn="#24798F" payFt="前往付款"  
+            <mamiyoga-order-footer ftBtn="#24798F" :payFt="$t('order_desktop_btn')"  
             :discount="getDiscount(picked_plan.price)" @goPay="goPay" :data_ok="data_ok"
             :getPrice="checkPrice(picked_plan.price)" :selectPrice="picked_plan.price"
              :selectDescription="picked_plan.description"></mamiyoga-order-footer>

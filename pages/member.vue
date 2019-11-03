@@ -3,15 +3,15 @@
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <p class="member-title">{{$t('member_title')}}</p>
         
-        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push('/activation-code')">{{$t('member_text_btn_1')}}</div>
-        <div class="member-big-btn" @click="$router.push('/pay')">{{$t('member_text_btn_2')}}</div>
+        <div class="member-big-btn" style="margin-top: 5vh;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/activation-code`)">{{$t('member_text_btn_1')}}</div>
+        <div class="member-big-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('member_text_btn_2')}}</div>
         <!-- <div class="member-big-btn" >{{$t('member_text_btn_3')}}</div> -->
         <hr class="member-line">
-        <div class="member-big-btn" @click="$router.push('/writing')">{{$t('member_text_btn_4')}}</div>
+        <div class="member-big-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/writing`)">{{$t('member_text_btn_4')}}</div>
         <!-- <div class="member-big-btn" @click="$router.push('/setting')">{{$t('member_text_btn_5')}}</div> -->
-        <div class="member-big-btn" @click="$router.push('/contactus')">{{$t('member_text_btn_6')}}</div>
+        <div class="member-big-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/contactus`)">{{$t('member_text_btn_6')}}</div>
 
-        <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push('/menu')">{{$t('member_text_btn_7')}}</div>
+        <div class="member-big-btn" style="background:#97A8AF;margin-top:10vh;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('member_text_btn_7')}}</div>
     </div>
 </template>
 

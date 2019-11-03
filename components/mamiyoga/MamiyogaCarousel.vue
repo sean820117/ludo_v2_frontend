@@ -14,7 +14,7 @@
                     </div>
                     <p style="font-size:16px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
@@ -33,7 +33,7 @@
                     </div>
                     <p style="font-size:16px;text-align: center;">一年NTD{{four_person_every}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
@@ -51,11 +51,11 @@
                         <p style="font-size:14px;">NTD/月</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push('/booking')">
-                        立即填寫
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                        {{$t('desktop_index_eleven_pay_btn_2')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push('/booking')"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
@@ -76,7 +76,7 @@
                     </div>
                     <p style="font-size:16px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
@@ -95,7 +95,7 @@
                     </div>
                     <p style="font-size:16px;text-align: center;">一年NTD{{four_person_program.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
@@ -113,11 +113,11 @@
                         <p style="font-size:14px;">NTD/月</p>
                     </div>
                     <p style="font-size:16px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push('/booking')">
-                        立即填寫
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                        {{$t('desktop_index_eleven_pay_btn_2')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push('/booking')"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
@@ -137,7 +137,7 @@
                     </div>
                     <p style="font-size:18px;text-align: center;">一年NTD{{single_plan.price}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="buy-myself-1" @click="goPlan1"></div>
@@ -156,7 +156,7 @@
                     </div>
                     <p style="font-size:18px;text-align: center;">一年NTD{{four_person_every}}/人</p>
                     <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        立即購買
+                        {{$t('desktop_index_eleven_pay_btn_1')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
                         <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
@@ -174,11 +174,11 @@
                         <p style="font-size:17px;">NTD/月</p>
                     </div>
                     <p style="font-size:18px;text-align: center;">專人服務</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push('/booking')">
-                        立即填寫
+                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                        {{$t('desktop_index_eleven_pay_btn_2')}}
                     </div>
                     <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push('/booking')"></div>
+                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
                     </div>
                     <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
@@ -231,11 +231,11 @@ export default {
     methods:{
         goPlan1(){
             sessionStorage['method_picked_plan'] = this.single_plan.price;
-            this.$router.push('/pay')
+            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/pay`)
         },
         goPlan2(){
             sessionStorage['method_picked_plan'] = this.four_person_program.price;
-            this.$router.push('/pay')
+            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/pay`)
         },
         goPlan3(){
             sessionStorage['method_picked_plan'] = 0;
@@ -318,7 +318,7 @@ export default {
     margin: 50px auto 0;
     color: #24798F;
     letter-spacing: 5px;
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
 }
 .intro-wrap-four-pay-bottom {

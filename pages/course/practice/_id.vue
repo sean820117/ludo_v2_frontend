@@ -117,6 +117,10 @@
         </mamiyoga-window-alert-box>
         <!-- androia錄影視窗 -->
         <mamiyoga-camera v-if="open_camera" @uploadVideo="newVideoUpload" @closeCamera="closeCamera"></mamiyoga-camera>
+        <!-- 新跳出視窗 -->
+        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="enterBox(nextGo)" :alertBtn="alertBtn"
+        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
+        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -125,6 +129,7 @@ import MamiyogaMailHeader from '~/components/mamiyoga/MamiyogaMailHeader.vue';
 import MamiyogaDivideVideo from '~/components/mamiyoga/MamiyogaDivideVideo.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 import MamiyogaRecordBlockMiddle from '~/components/mamiyoga/MamiyogaRecordBlockMiddle.vue'
 import MamiyogaRecordBlockSmall from '~/components/mamiyoga/MamiyogaRecordBlockSmall.vue'
 import MamiyogaCamera from '~/components/mamiyoga/MamiyogaCamera.vue';
@@ -169,12 +174,21 @@ export default {
         open_camera: false,
         is_android: false,
         android_input_id: '',
+
+        show_alert: false,
+        alertTitle: '',
+        alertImg: '',
+        alertText: '',
+        alertBtn: '好的',
+        alertBtnColor: '#24798F',
+        nextGo: '',
     }),
     components:{
         MamiyogaMailHeader,
         MamiyogaDivideVideo,
         MamiyogaAssayVideo,
         MamiyogaWindowAlertBox,
+        MamiyogaNewWindowAlertBox,
         Loading,
         MamiyogaRecordBlockMiddle,
         MamiyogaRecordBlockSmall,
@@ -248,8 +262,13 @@ export default {
 
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/login');
+                // window.alert("尚未登入帳號，請先前往登入～");
+                // this.$router.push('/login');
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.show_alert = true
+                this.alertText = `${this.$t('desktop_not_login')}`
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
             } else {
                 let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 
@@ -267,14 +286,24 @@ export default {
                     }
                 } else {
                     if(this.course_id == '1'){
-                        localStorage.redirect = '/menu'
+                        // localStorage.redirect = '/menu'
                         console.log("not payed");
-                        window.alert("開啟七天體驗即可解鎖本課程動作詳解～");
-                        this.$router.push('/free-trial');
+                        // window.alert("開啟七天體驗即可解鎖本課程動作詳解～");
+                        // this.$router.push('/free-trial');
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        this.show_alert = true
+                        this.alertText = '開啟七天體驗即可解鎖本課程動作詳解～'
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
                     } else {
                         console.log("not payed");
-                        window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
-                        this.$router.push('/pay');
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        this.show_alert = true
+                        this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'pay'
+                        // window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
+                        // this.$router.push('/pay');
                     }
                 }
             }
@@ -560,6 +589,13 @@ export default {
             let month = (update.getMonth()+1) < 10 ? '0'+(update.getMonth()+1) : (update.getMonth()+1);
             return update.getFullYear()+'/'+month+'/'+day;
         },
+        enterBox(i){
+            if(i == '0'){
+                this.show_alert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
+            }
+        }
     },
     computed:{
         ...mapGetters({

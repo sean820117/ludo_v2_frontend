@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mamiyoga-header hamburger" :class="open_menu ? 'open':''">
-            <router-link to="/">
+            <router-link :to="`${$i18n.locale == 'zh-TW'? '':'/'+$i18n.locale}/`">
             <div class="mamiyoga-header-logo">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/header-logo.png" alt="瑜伽課程">
             </div>
@@ -16,15 +16,18 @@
         </div>
         <div class="mamiyoga-hamburger-menu" :class="open_menu ? 'open':''">
             <nav class="mamiyoga-hamburger-nav">
-                <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '/':'/' +$i18n.locale}`)">{{$t('desktop_header_menu_1')}}</li>
+                <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/`)">{{$t('desktop_header_menu_1')}}</li>
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</li>
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</li>
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
                 <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
                 <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
             </nav>
-            <div v-if="!login_or_not" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/login`)">註冊/登入</div>
-            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('member_title')}}</div>
+            <div class="i_have_activation" @click="goActivation">
+                {{$t('member_activation_tag_2')}}
+            </div>
+            <div v-if="!login_or_not" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/login`)">{{$t('desktop_signup_n_login')}}</div>
+            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" :style="{fontSize: `${$i18n.locale == 'JP' ? '15px':''}`}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('member_title')}}</div>
             <div class="mamiyoga-hamburger-btn" style="background: transparent; border: 2px solid #fff;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/gift`)">
                 <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 {{$t('desktop_header_btn_1')}}
@@ -54,6 +57,15 @@ export default {
         goOtherPage(page){
             window.location.href = page;
         },
+        goActivation(){
+            if(!this.login_or_not){
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/activation-code`;
+                alert('請先前往登入或註冊～')
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/login`)
+            } else{
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/activation-code`)
+            }
+        }
     },
     computed:{
         ...mapGetters({
@@ -184,5 +196,11 @@ export default {
     border-bottom: 1px solid #fff;
     width: fit-content;
     margin: 0 auto 20px;
+}
+.i_have_activation{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto 10px;
+    width: fit-content;
 }
 </style>
