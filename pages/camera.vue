@@ -49,6 +49,7 @@ export default {
             m.pause();
             this.video_recorder.stopRecording()
             this.is_stop = true;
+            this.is_finish = true;
         },
         reloadPage(){
             location.reload()
@@ -69,7 +70,8 @@ export default {
         },
         async saveRecord(){
             let result = await this.video_recorder.getDetailResult();
-            alert(result);
+            console.log(result);
+            // alert(result);
         },
         checkTime(e){
             this.current_time = parseInt(e.target.currentTime);
