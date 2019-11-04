@@ -916,14 +916,18 @@ export default {
             }
         },
         fixNav(){
-            // let v_offset_top = document.getElementById('wrap').offsetTop;
-            // if(window.pageYOffset > v_offset_top) {
-            //     document.getElementById('index-fixed-nav').classList.add('sticky')
-            //     this.offsetMenu = true
-            // } else if (window.pageYOffset < v_offset_top) {
-            //     document.getElementById('index-fixed-nav').classList.remove('sticky')
-            //     this.offsetMenu = false
-            // }
+            let v_offset_top = document.getElementById('wrap').offsetTop;
+            let d_offset_top = document.getElementById('mamiyoga-index-title').offsetTop
+            if(window.pageYOffset > v_offset_top) {
+                document.getElementById('index-fixed-nav').classList.add('sticky')
+            } else if (window.pageYOffset < v_offset_top) {
+                document.getElementById('index-fixed-nav').classList.remove('sticky')     
+            }
+            if(window.pageYOffset > d_offset_top) {
+                this.offsetMenu = true
+            } else if(window.pageYOffset < d_offset_top) {
+                this.offsetMenu = false
+            }
         },
         getFreeCourse(){
             let course = document.getElementById('love-feedback-label');
