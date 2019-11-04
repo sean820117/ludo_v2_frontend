@@ -10,6 +10,7 @@ export default [
                 ai_preview_img:courses_data[12].poses[2].ai_preview_img,
                 pose_ai: courses_data[12].poses[2].pose_ai,
                 pose_id: courses_data[12].poses[2].input_id,
+                pose_tags: courses_data[12].poses[2].remind_tags,
                 inhale: courses_data[12].poses[2].inhale,
                 exhale: courses_data[12].poses[2].exhale
             },
