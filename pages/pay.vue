@@ -8,66 +8,71 @@
                         <div class="pay-little-title">{{$mq === 'desktop' ? '選擇方案':'付款資訊'}}</div>
                         <hr style="margin: 10px 0;opacity: .5;">
                         <div class="select-method-block">
-                            <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
-                            <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price">
-                            <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" value=0>
-                            <label class="select-pay-label for-one-peop" for="one-peop">
-                                <div class="select-pay-way">
-                                    <span class="select-pay-circle"></span>
-                                    <div class="select-pay-data">
-                                        <p class="select-pay-title"><b>{{single_plan.slogan}}</b></p>
-                                        <p class="select-pay-title"><b>NTD&nbsp;{{single_plan.price}}</b></p>
-                                    </div>
-                                </div>
-                                <div class="select-pay-content">
-                                    <div class="select-pay-content-box">
-                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
-                                        <div>
-                                            <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
-                                            <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+                            <div v-for="(product,i) in products" :key="i">
+                                <input type="radio" name="pay-way" :id="`${i}_prog`" @click="togglePrice(i)"
+                                class="pay-way-input" v-model="picked" :value="product.price" >
+                                <label v-if="product.code_amount == 1" class="select-pay-label for-one-peop" :for="`${i}_prog`" :class="show_detail[i]">
+                                    <div class="select-pay-way">
+                                        <span class="select-pay-circle"></span>
+                                        <div class="select-pay-data">
+                                            <p class="select-pay-title"><b>{{product.slogan}}</b><br><span>{{ getItemAmount(product.item_amount) }}</span></p>
+                                            <p class="select-pay-title"><b>NTD&nbsp;{{product.price}}</b></p>
                                         </div>
                                     </div>
-                                    <hr class="select-pay-content-line">
-                                    <div class="select-pay-content-box">
-                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
-                                        <div>
-                                            <p class="select-pay-content-title">2.送禮及寵妻達人</p>
-                                            <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                    <div class="select-pay-content">
+                                        <div class="select-pay-content-box">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
+                                            <div>
+                                                <p class="select-pay-content-title">1.寵愛自己馬上使用</p>
+                                                <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
+                                            </div>
+                                        </div>
+                                        <hr class="select-pay-content-line">
+                                        <div class="select-pay-content-box">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
+                                            <div>
+                                                <p class="select-pay-content-title">2.送禮及寵妻達人</p>
+                                                <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </label>
-                            <label class="select-pay-label  for-four-peop" for="four-peop">
-                                <div class="select-pay-way">
-                                    <span class="select-pay-circle"></span>
-                                    <div class="select-pay-data">
-                                        <p class="select-pay-title"><b>{{four_person_program.slogan}}（4人以上）</b><br>一人NTD.1290</p>
-                                        <p class="select-pay-title"><b>NTD&nbsp;{{four_person_program.price}}</b></p>
-                                    </div>
-                                </div>
-                                <div class="select-pay-content">
-                                    <div class="select-pay-content-box">
-                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
-                                        <div>
-                                            <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                            <p style="font-weight:300;">另外三組課程序號將寄到妳的信箱，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                </label>
+                                <label v-if="product.code_amount > 1" class="select-pay-label  for-four-peop" :for="`${i}_prog`" :class="show_detail[i]">
+                                    <div class="select-pay-way">
+                                        <span class="select-pay-circle"></span>
+                                        <div class="select-pay-data">
+                                            <p class="select-pay-title"><b>{{product.slogan}}</b><br><span>{{ getItemAmount(product.item_amount) }}</span></p>
+                                            <p class="select-pay-title"><b>NTD&nbsp;{{product.price}}</b></p>
                                         </div>
                                     </div>
-                                    <!-- <hr class="select-pay-content-line">
-                                    <div class="select-pay-content-box">
-                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
-                                        <div>
-                                            <p class="select-pay-content-title">2.加價購兌換方式</p>
-                                            <p style="font-weight:300;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                    <div class="select-pay-content">
+                                        <div class="select-pay-content-box">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
+                                            <div>
+                                                <p class="select-pay-content-title">1.收取課程序號並分享</p>
+                                                <p style="font-weight:300;">另外幾組課程序號將寄到妳的手機，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                            </div>
                                         </div>
-                                    </div> -->
-                                    <hr class="select-pay-content-line">
-                                    <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
-                                    <p style="font-weight:300;margin-left:0;" >姊妹揪起來方案於『索取兌換序號』開始後7天，只要4人皆尚未觀看，即可申請全退費。退費時4人皆須向LUDO提出申請，LUDO也將統一退費給當初姊妹揪起來的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
+                                        <!-- <hr class="select-pay-content-line">
+                                        <div class="select-pay-content-box">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-4.png" alt="">
+                                            <div>
+                                                <p class="select-pay-content-title">2.加價購兌換方式</p>
+                                                <p style="font-weight:300;">我們將根據刷卡付款人提供地址，統一寄送至一處地址。</p>
+                                            </div>
+                                        </div> -->
+                                        <hr class="select-pay-content-line">
+                                        <p class="select-pay-content-title" style="margin-left:0;">我同意以下退費條款：</p>
+                                        <p style="font-weight:300;margin-left:0;" >多人方案於『索取兌換序號』開始後7天，只要所有序號皆尚未兌換過，即可申請全退費。退費時須向LUDO提出申請，LUDO也將統一退費給當初的購買人，將不分別退費。學員之間的課程序號轉讓，均屬會員的私人行為，LUDO均不干涉。</p>
 
-                                </div>
-                            </label>
-                            <label class="select-pay-label for-company-peop" for="company-peop">
+                                    </div>
+                                </label>
+                            </div>
+                            <!-- <input type="radio" name="pay-way" id="one-peop" class="pay-way-input" v-model="picked" :value="single_plan.price">
+                            <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price"> -->
+                            <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" :value="0" @click="togglePrice(100)">
+                            
+                            <label class="select-pay-label for-company-peop" for="company-peop" :class="show_detail[100]">
                                 <div class="select-pay-way">
                                     <span class="select-pay-circle"></span>
                                     <div class="select-pay-data">
@@ -212,15 +217,19 @@ export default {
         company_method: false,
         products: [
             {
+                item_id: 'MY05',
+            },
+            {
                 item_id: 'MY01',
             },
             {
                 item_id: 'MY02',
-            }
+            },
+            
         ],
         single_plan: {},
         four_person_program: {},
-        picked: '',
+        picked: 0,
         can_pay: true,
 
         company_name: '',
@@ -250,7 +259,9 @@ export default {
 
         check_agree: false,
         coupon_hint: '',
-        coupon_hint_color: ''
+        coupon_hint_color: '',
+
+        show_detail:[],
     }),
     components: {
         MamiyogaPayHeader,
@@ -262,7 +273,7 @@ export default {
         if(process.client) {
 
             setTimeout(() => {
-                console.log('hide zE');
+                // console.log('hide zE');
                 this.$hideZendesk();
             }, 10000);
 
@@ -274,11 +285,15 @@ export default {
                     this.products[i].price = response.data.price
                     this.products[i].slogan = response.data.slogan
                     this.products[i].description = response.data.description
+                    this.products[i].code_amount = response.data.code_amount
+                    this.products[i].item_amount = response.data.item_amount
+                    // console.log(response)
                 } catch (error) {
                     alert('無法取得商品資訊')
                 }
                 
             }
+            // console.log(this.products)
             // await this.products.forEach(async (product) => {
             //     let send_data = {item_id: product.item_id};
             //     const response = await axios.post('/apis/get-shop-item',send_data);
@@ -307,6 +322,9 @@ export default {
 
     },
     methods:{
+        getItemAmount(item_amount){
+            return item_amount <= 100 ? `剩餘${item_amount}組`:``
+        },
         async submitData(){
             if(this.company_name && this.contact_name && this.contact_position && this.contact_tel && this.contact_mail) {
                 let send_user_id = '0000'
@@ -335,7 +353,7 @@ export default {
                 try {
                     const coupon_data = await axios.post('/apis/check-coupon',send_data);
                     // const coupon_data = this.$sendData('/apis/check-coupon',send_data)
-                    console.log(coupon_data)
+                    // console.log(coupon_data)
                     if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) { 
                         alert('輸入成功')
                         this.discount = coupon_data.data.discount
@@ -369,7 +387,7 @@ export default {
         },
         countDiscount(price){
             let dis = this.discount
-            console.log(dis)
+            // console.log(dis)
             if(this.picked > 1990) {
                 let pick = this.picked/4
                 return 1990 - pick + dis
@@ -385,7 +403,7 @@ export default {
                 try {
                     const coupon_data = await axios.post('/apis/check-coupon',send_data);
                     // const coupon_data = this.$sendData('/apis/check-coupon',send_data)
-                    console.log(coupon_data)
+                    // console.log(coupon_data)
                     if(coupon_data.status == 200 && coupon_data.data.shop_item_id == picked_plan.item_id) { 
                         // alert('輸入成功')
                         this.discount = coupon_data.data.discount
@@ -443,6 +461,14 @@ export default {
                 }
             }    
         },
+        togglePrice(index){
+            if (this.show_detail[index] === 'open') {
+                this.show_detail = [];
+            } else {
+                this.show_detail = [];
+                this.show_detail[index] = 'open'
+            }
+        }
     },
     watch: {
         picked: function(new_value,old_value) {
@@ -456,7 +482,7 @@ export default {
                 this.select_plan = this.products.find(plan => plan.price == this.picked)
             }
             // debugger
-        }
+        },
     },
     async beforeCreate() {
         if (process.client) {
@@ -496,7 +522,8 @@ export default {
     padding-top: 45px;
     margin: 0 auto;
     width: 90%;
-    height: 100vh; 
+    /* height: 100vh;  */
+    padding-bottom: 90px;
 }
 .pay-main-block.show-desktop {
     display: none;
@@ -515,6 +542,26 @@ export default {
     overflow: hidden;
     height: 60px;
     transition: ease .8s;    
+}
+.open .select-pay-way {
+    border: #24798F solid 2px;
+}
+.open .select-pay-circle:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: #24798F;
+    display: block;
+}
+.for-one-peop.open {
+    height: 300px;
+}
+.for-four-peop.open {
+    height: 350px;
+}
+.for-company-peop.open{
+    height: 400px;
 }
 .for-four-peop, .for-company-peop {
     height: 70px;
@@ -574,6 +621,9 @@ export default {
 }
 .select-pay-title {
     font-size: 12px;
+}
+.select-pay-title span {
+    color : red;
 }
 #one-peop:checked ~ .for-one-peop {
     height: 300px;
