@@ -355,7 +355,7 @@ export default {
                             this.show_exhale = false
                             this.is_inhaleing = false
                             this.is_exhaleing = false
-                            if (this.open_camera) {
+                            if (this.open_camera && poses[i].pose_ai) {
                                 this.video_recorder.stopRecording();
                             }
                             if (poses[i+1]) {
@@ -375,10 +375,11 @@ export default {
                 let rest = document.querySelector('.course-video-container.rest')
                 rest.style.display = 'flex';
                 let height = 0
+                let resting_time = poses[i].duration * 1000;
                 // this.pose_video = poses[i+1].pose_video
                 let id = setInterval(() => {
-                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height*2)+'%'; 
-                    if(height >= poses[i].duration) {
+                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height)+'%'; 
+                    if(height >= 100) {
                         rest.style.display = 'none';
                         if (poses[i+1]) {
                             this.playVideo(i+1)
@@ -389,7 +390,7 @@ export default {
                     } else if (this.is_stop) {
                         
                     } else {
-                        height++
+                        height += (100*100/resting_time);
                     }
                 }, 100);
             }
@@ -431,7 +432,7 @@ export default {
                             this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
                         }
                     } 
-                } else if(this.video_result.error_code){
+                } else if(this.video_result.error_code && this.video_result.error_code == 204 || this.video_result.error_code == 400 || this.video_result.error_code == 500){
                     this.video_result.score = 40         
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
                 } else {

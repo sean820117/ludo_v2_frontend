@@ -16,7 +16,7 @@ export default [
             },
             {
                 pose_brief: 'break',
-                duration: 50, //該數值除10=5秒
+                duration: 5, //該數值除10=5秒
             },
             {
                 pose_brief:courses_data[0].poses[1].pose_brief,
@@ -29,7 +29,7 @@ export default [
             },
             {
                 pose_brief: 'break',
-                duration: 50,
+                duration: 5,
             },
             {
                 pose_brief:courses_data[0].poses[2].pose_brief,

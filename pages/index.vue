@@ -614,7 +614,7 @@
         @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
 
         <!-- 開啟體驗魔境 -->
-        <mamiyoga-new-practice-video-block v-if="is_practice" @goBack="goBack()" @openResult="openResult" 
+        <mamiyoga-new-practice-video-block v-if="is_practice" @goBack="goBack()" 
         @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
 
         <!-- 電腦版提示(已關閉) -->
@@ -796,7 +796,7 @@ export default {
                 this.routine = await require('~/config/routine-jp');
             } else {
                 this.course_data = await require('~/config/mamiyoga-course')
-                this.routine = await require('~/config/routine-jp');
+                this.routine = await require('~/config/routine');
             }
             this.qa_data = await require('~/config/mamiyoga-qa')
             this.ds_qa_data_1 = this.qa_data.slice(0,4)
