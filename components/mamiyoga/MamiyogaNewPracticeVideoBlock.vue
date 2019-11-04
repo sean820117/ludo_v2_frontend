@@ -425,7 +425,7 @@ export default {
 
                 this.video_result = await this.video_recorder.getDetailResult()
                 console.log(this.video_result)
-                if (this.video_result && !this.video_result.error_code) {
+                if (this.video_result && (!this.video_result.error_code || this.video_result.error_code == 0)) {
                     let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
                     for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
                         for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
