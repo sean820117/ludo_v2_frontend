@@ -146,15 +146,18 @@
 
                     </div>
                     <div class="syllabus-mobile-fade-box">
-                        <div class="info-desktop-red-btn" style="width: 200px;" @click="startPractice">{{$t('desktop_syllabus_second_btn')}}</div>
+                        <div class="info-desktop-red-btn" style="width: 200px;" @click="rePractice">{{$t('desktop_syllabus_second_btn')}}</div>
                     </div>
                 </div>
                 <div v-if="!is_practice && practice_finish" class="syllabus-mobile-flex-content">
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
-                    <div class="syllabus-mobile-result-box">
-                        <div>
-                            <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
-                            <p class="syllabus-desktop-title" style="margin-top: 1vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
+                    <div class="syllabus-mobile-result-box" style="    flex-direction: column;align-items: baseline;justify-content: center;">
+                        <div style="display: flex;align-items: baseline;">
+                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
+                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 600;font-size: 15px;">{{routine.default[0].duration}}</p>
+                        </div>
+                        <div class="syllabus-mobile-result-again" @click="rePractice">
+                            再次練習
                         </div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #24798f;">
@@ -674,6 +677,12 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+}
+.syllabus-mobile-result-again {
+    color: #fff;
+    background: #ff9898;
+    padding: 10px 25px;
+    border-radius: 30px
 }
 .syllabus-intro-text {
     text-align: center;
