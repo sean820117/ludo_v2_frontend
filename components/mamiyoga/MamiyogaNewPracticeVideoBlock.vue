@@ -334,7 +334,7 @@ export default {
                     this.heart_loading = false
                     this.video_length = co_vid.duration
                     co_vid.play() 
-                    
+                    let processBar = document.querySelector(`#video-process-bar-inside-${(i+1)}`)
                     this.timeId = setInterval(() => {
                         let bar_percentage = co_vid.currentTime / this.video_length
                         // console.log(co_vid.currentTime)
@@ -364,7 +364,15 @@ export default {
                                 this.is_exhaleing = false
                             }
                         }
-                        document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (bar_percentage*100)+'%'; 
+                        if(this.$mq != 'desktop'){
+                            processBar.style.height = (bar_percentage*100)+'%'; 
+                            processBar.style.width = '100%';
+                        } else {
+                            processBar.style.height = '100%';
+                            processBar.style.width = (bar_percentage*100)+'%'; 
+                        }
+                        
+ 
                         if (bar_percentage == 1) {
                             this.show_inhale = false
                             this.show_exhale = false
@@ -393,8 +401,16 @@ export default {
                 let height = 0
                 let resting_time = poses[i].duration * 1000;
                 // this.pose_video = poses[i+1].pose_video
+                let processBar = document.querySelector(`#video-process-bar-inside-${(i+1)}`)
                 let id = setInterval(() => {
-                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height)+'%'; 
+                    if(this.$mq != 'desktop'){
+                        processBar.style.height = (height)+'%';
+                        processBar.style.width = '100%'; 
+                    } else {
+                        processBar.style.height = '100%';
+                        processBar.style.width = (height)+'%';
+                    }
+                    
                     if(height >= 100) {
                         rest.style.display = 'none';
                         if (poses[i+1]) {
@@ -519,7 +535,7 @@ export default {
             this.remind_3 = false;
             this.remind_4 = true;
             document.querySelector('#teach-bar').style.display = 'none';
-            document.querySelector('#teach-process').style.display = 'block';
+            document.querySelector('#teach-process').style.display = 'flex';
         },
         nextRemind4(){
             this.remind_4 = false;
@@ -550,10 +566,11 @@ export default {
 
 <style>
 #experience-page {
-    height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow: hidden;
 }
 #input-video-container {
-    height: 100vh;
+    min-height: -webkit-fill-available;
     overflow: hidden;
     background: #000;
 }
@@ -582,7 +599,8 @@ export default {
 }
 #inputVideo {
     transform: scaleX(-1);
-    height:100vh;
+    /* height:100vh; */
+    min-height: -webkit-fill-available;
 }
 #top-show {
     position: relative;
@@ -621,7 +639,7 @@ export default {
 #start-video.big-method{
     transition: .3s;
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     top: 0;
     left: 0;
 }
@@ -654,7 +672,7 @@ export default {
 #show-course {
     z-index: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     position: fixed;
     top: 0;
     left: 0;
@@ -679,6 +697,8 @@ export default {
     background: none !important;
 }
 #course-video {
+    transform: rotate(90deg);
+    width: 100vh;
     transition: .5s;
 }
 #course-video.small-method {
@@ -694,15 +714,28 @@ export default {
     color: #fff;
     font-size: 30px;
     font-weight: bold;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    min-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;
     align-items: center;
+    position: fixed;
+}
+.course-video-container.play {
+    /* min-width: 100vh; */
+    min-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: fixed;
+    top: 0;
+    left: 0; */
 }
 .course-video-container-icon {
     position: absolute;
     transform: rotate(90deg);
     top: 5vh;
-    left: 80vw;
+    right: 60vw;
 }
 .exit-practice {
     display: none;
@@ -719,7 +752,7 @@ export default {
     cursor: pointer;
     transform: rotate(90deg);
 }
-#show-course-video,#course-video,#course-video-1,
+#show-course-video,#course-video-1,
 #course-video-2, #course-video-3,#course-video-rest {
     transform: rotate(90deg);
     width: 100vh;
@@ -775,14 +808,18 @@ export default {
     position: absolute;
     left: 5vw;
     top: 5vh;
+    width: 12px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .video-process-bar {
-    width: 12px;
-    height: 16vh;
     background: rgb(255, 255, 255,.5);
     z-index: 101;
     position: relative;
-    margin: 2vh 0;
+    margin: 1vh 0;
+    flex:1;
     /* left: 5vw; */
     border-radius: 20px;
 }
@@ -799,7 +836,7 @@ export default {
 } */
 .count-over {
     background: linear-gradient(90deg,#000,rgba(0,0,0,0));
-    height: 100vh;
+    min-height: -webkit-fill-available;
     width: 45%;
     position: absolute;
     z-index: 101;
@@ -826,7 +863,7 @@ export default {
 }
 .experience-teach {
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     background: rgba(0, 0, 0, .5);
     position: fixed;
     top: 0;
@@ -986,7 +1023,7 @@ export default {
 }
 .loading-bar {
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     background-color: #000;
     position: fixed;
     top: 0;
@@ -1045,7 +1082,7 @@ export default {
 #heart-loading {
     position: fixed;
     width: 100%;
-    min-height: 100vh;
+    min-height: -webkit-fill-available;
     z-index: 1000;
     background: rgba(0,0,0,.5);
     top: 0;
@@ -1072,7 +1109,7 @@ export default {
 @media (min-width: 769px) {
     #experience-page {
         width: 100vw;
-        height: 100vh;
+        min-height: -webkit-fill-available;
         position: fixed;
         top: 0;
         left: 0;
@@ -1112,7 +1149,7 @@ export default {
     .preview-img {
         transform: rotate(0deg);
         width: 100vw;
-        height: 100vh;
+        min-height: -webkit-fill-available;
         top: 0;
         left: 0;
     }
@@ -1178,11 +1215,19 @@ export default {
         padding-top: 55vh;
     }
     .video-process-bar-block {
-        transform: rotate(-90deg);
+        /* transform: rotate(-90deg);
         bottom: -40vh;
         top: unset;
         left: unset;
-        z-index: 1000;
+        z-index: 1000; */
+        height: 12px;
+        width: 90%;
+        flex-direction: unset;
+        top: unset;
+        bottom: 10vh;
+    }
+    .video-process-bar {
+        margin: 0 1vh;
     }
     .count-over {
         height: 45%;
@@ -1260,8 +1305,8 @@ export default {
         transform: rotate(0deg);
     }
     #course-video {
-        position: absolute;
-        top: 10vh;
+        /* position: absolute;
+        top: 10vh; */
     }
     .course-video-container.rest{
         background: #24798f;
