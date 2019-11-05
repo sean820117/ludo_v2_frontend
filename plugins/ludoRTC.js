@@ -42,7 +42,7 @@ class LudoRTC {
 
         let default_config = {
             sdpSemantics: 'unified-plan',
-            iceServers : [{urls: ['stun:stun.l.google.com:19302']}],
+            iceServers : [{urls: ['stun:stun01.sipphone.com']}],
             constraints : {
                 audio: false,
                 video: {
@@ -88,6 +88,7 @@ class LudoRTC {
         if (post_info) {
             this.final_config.post_info = post_info;
         }
+        console.log(this.final_config);
         this.pc = this.createPeerConnection(this.final_config);
         let pc = this.pc;
         // data channel        
@@ -256,6 +257,7 @@ class LudoRTC {
                 console.error(error)
                 total_score += 30
                 total_score += parseInt(Math.random(6) * 20)
+                detail_results.push({error_code: 500});
             }
         }
         return detail_results[0];

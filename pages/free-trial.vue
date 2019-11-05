@@ -4,17 +4,19 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
         </div>
         <div class="trial-content">
-            <img @click="backPage" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
-            <h4>{{$t('desktop_trial_title')}}</h4>
-            <div class="login-column">
-                <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
-                <input name="email" class="login-column-input" type="email" v-model="email" placeholder=""/>
-                <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '100%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
-                <div class="login-column-label after-input">{{$t('desktop_trial_text')}}</div>
-                
-                <div class="trial-content-btn" @click="sendEmail">{{$t('desktop_trial_btn')}}</div>
+            <div class="trial-content-flex">
+                <img @click="backPage" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+                <h4>{{$t('desktop_trial_title')}}</h4>
+                <div class="login-column">
+                    <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
+                    <input name="email" class="login-column-input" type="email" v-model="email" placeholder=""/>
+                    <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '100%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
+                    <div class="login-column-label after-input">{{$t('desktop_trial_text')}}</div>
+                    
+                    <div class="trial-content-btn" @click="sendEmail">{{$t('desktop_trial_btn')}}</div>
+                </div>
+                <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
             </div>
-            <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
         <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#24798f" alertImg="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-free-trial-success.png"
         alertBtn="開始上課" @enterBox="backPage" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
@@ -99,6 +101,10 @@ export default {
     align-items: center;
     justify-content: center;
     background: #FF9898;
+
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .trial-img img {
     width: 50%;
@@ -106,12 +112,25 @@ export default {
     max-width: 500px;
 }
 .trial-content {
-    width: 50%;
+    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     position: relative;
+}
+.trial-content::before {
+    content: '';
+    width: 50vw;
+    height: 100vh;
+    display: inline-block;
+}
+.trial-content-flex {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
 }
 .trial-content h4 {
     font-size: 27px;
@@ -144,8 +163,7 @@ export default {
     margin: 25px 0 0;
 }
 .trial-content .login-column-label.agreement-text {
-    position: absolute;
-    bottom: 2vh;
+    margin-top: 25vh;
 }
 .trial-content-btn {
     background: #FF9898;

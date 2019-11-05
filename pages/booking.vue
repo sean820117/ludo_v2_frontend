@@ -4,21 +4,23 @@
             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png" alt="">
         </div>
         <div class="trial-content">
-            <img @click="$router.go(-1)" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
-            <h4>預約專人客服</h4>
-            <div class="login-column">
-                <div class="login-column-label">如何稱呼您？</div>
-                <input name="name" class="login-column-input booking" type="text" v-model="user_name" placeholder=""/>
-                <div class="login-column-label">您的聯絡電話：</div>
-                <input name="tel" class="login-column-input booking" type="tel" v-model="user_tel" placeholder=""/>
-                <div class="login-column-label">希望聯絡您的時段：</div>
-                <input name="time" class="login-column-input booking" type="text" v-model="contact_time" placeholder="例：星期三下午兩點"/>
-                <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
-                <div class="login-column-label after-input">請放心，Mamiyoga不會將您的資訊透露給其他人。</div>
-                
-                <div class="trial-content-btn" @click="sendBooking">立即預約</div>
+            <div class="trial-content-flex">
+                <img @click="$router.go(-1)" class="trial-content-cancel" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
+                <h4>預約專人客服</h4>
+                <div class="login-column">
+                    <div class="login-column-label">如何稱呼您？</div>
+                    <input name="name" class="login-column-input booking" type="text" v-model="user_name" placeholder=""/>
+                    <div class="login-column-label">您的聯絡電話：</div>
+                    <input name="tel" class="login-column-input booking" type="tel" v-model="user_tel" placeholder=""/>
+                    <div class="login-column-label">希望聯絡您的時段：</div>
+                    <input name="time" class="login-column-input booking" type="text" v-model="contact_time" placeholder="例：星期三下午兩點"/>
+                    <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67%',textAlign: 'left',maxWidth: '320px',}"> {{ hint }}</div>
+                    <div class="login-column-label after-input">請放心，Mamiyoga不會將您的資訊透露給其他人。</div>
+                    
+                    <div class="trial-content-btn" @click="sendBooking">立即預約</div>
+                </div>
+                <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
             </div>
-            <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
         </div>
     </div>
 </template>
@@ -68,6 +70,10 @@ export default {
     align-items: center;
     justify-content: center;
     background: #FF9898;
+
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .trial-img.booking img {
     width: 70%;
@@ -75,12 +81,25 @@ export default {
     max-width: 600px;
 }
 .trial-content {
-    width: 50%;
+    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     position: relative;
+}
+.trial-content::before {
+    content: '';
+    width: 50vw;
+    height: 100vh;
+    display: inline-block;
+}
+.trial-content-flex {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
 }
 .trial-content h4 {
     font-size: 27px;
@@ -115,8 +134,7 @@ export default {
     margin: 25px 0 0;
 }
 .trial-content .login-column-label.agreement-text {
-    position: absolute;
-    bottom: 2vh;
+    margin-top: 25vh;
 }
 .trial-content-btn {
     background: #FF9898;
@@ -148,6 +166,12 @@ export default {
     color: #707070;
 }
 @media (max-width: 768px) {
+    .trial-content::before {
+        display: none;
+    }
+    .trial-content-flex {
+        width: 100%;
+    }
     .trial-content h4 {
         margin: 8vh 0 10vh;
     }
