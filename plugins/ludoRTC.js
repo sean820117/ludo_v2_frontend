@@ -42,7 +42,7 @@ class LudoRTC {
 
         let default_config = {
             sdpSemantics: 'unified-plan',
-            iceServers : [{urls: ['stun:stun01.sipphone.com']}],
+            iceServers : [{urls: ['stun:stun.l.google.com:19302']}],
             constraints : {
                 audio: false,
                 video: {

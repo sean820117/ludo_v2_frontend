@@ -130,7 +130,7 @@ export default {
   course_pose_btn: '動作教學',
 
   course_practice_label: '動作',
-  course_practice_btn: '練習記錄',
+  course_practice_btn: '練習',
   course_practice_remind_title: '建議使用',
 
   //bmi
