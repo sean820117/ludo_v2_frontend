@@ -428,15 +428,19 @@ export default {
                 window.video_result = this.video_result;
                 if (this.video_result && this.video_result.status == 200) {
                     let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
-                    for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
-                        if (typeof this.video_result.reps_wrong_tags[i] == "object") {
-                            for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                                this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                    if (typeof this.video_result.reps_wrong_tags == "object") {
+                        for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
+                            if (typeof this.video_result.reps_wrong_tags[i] == "object") {
+                                for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
+                                    this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                                }
+                            } else {
+                                this.video_result.reps_wrong_tags[i]= [use_ai.pose_tags[this.video_result.reps_wrong_tags[i]]]
                             }
-                        } else {
-                            this.video_result.reps_wrong_tags[i]= [use_ai.pose_tags[this.video_result.reps_wrong_tags[i]]]
-                        }
-                    } 
+                        } 
+                    } else {
+                        this.video_result.reps_wrong_tags = [use_ai.pose_tags[this.video_result.reps_wrong_tags]]
+                    }
                 } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
                     this.video_result.score = 40         
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
