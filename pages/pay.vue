@@ -50,7 +50,7 @@
                                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-3.png" alt="">
                                             <div>
                                                 <p class="select-pay-content-title">1.收取課程序號並分享</p>
-                                                <p style="font-weight:300;">另外幾組課程序號將寄到妳的手機，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
+                                                <p style="font-weight:300;">2組課程序號將寄到妳的手機，別忘了分享給好姊妹兌換課程，一起變美喔！</p>
                                             </div>
                                         </div>
                                         <!-- <hr class="select-pay-content-line">
