@@ -48,7 +48,7 @@ export default {
 }
 @media (min-width: 769px) {
     .member-big-btn {
-        width: 80% !important;
+        width: 100% !important;
     }
 }
 </style>

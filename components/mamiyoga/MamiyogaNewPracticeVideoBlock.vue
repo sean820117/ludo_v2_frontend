@@ -716,7 +716,7 @@ export default {
     position: absolute;
     width: 140px;
     right: 1vw ;
-    top: 10vh;
+    top: 5vh;
 }
 .course-video-container.rest{
     display:none;

@@ -842,12 +842,13 @@ export default {
         width: 30% !important;
         height: auto;
         margin: 0;
+        padding-bottom: 0;
     }
     .pay-main-block.show-desktop {
         display: block;
     }
     .desktop-pay-flex-main-block {
-        padding: 25px 7vw 0;
+        padding: 25px 7vw 200px;
     }
     .desktop-pay-main-block {
         display: flex;
@@ -966,7 +967,7 @@ export default {
         border-bottom: 1px solid #24798F;
     }
 }
-@media (min-width: 769px) and (max-width: 1149px) {
+@media (min-width: 769px) and (max-width: 1200px) {
     #four-peop:checked ~ .for-four-peop{
         height: 390px;
     }

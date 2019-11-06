@@ -185,6 +185,7 @@ export default {
     .writing-main {
         width: 20vw;
         max-width: 350px;
+        min-width: 260px;
     }
     .writing-main-block {
         margin: 0 auto;
