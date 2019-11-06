@@ -182,7 +182,7 @@
                 <div class="syllabus-desktop-title-block">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
                     <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_first_title')}}</h5>
-                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;" v-html="$t('desktop_index_five_text')"></p>
+                    <p class="syllabus-intro-text" style="font-size: 19px;font-weight: 400;" v-html="$t('desktop_index_five_text')"></p>
                     <div class="info-desktop-red-btn" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
             </div>
@@ -831,6 +831,7 @@ export default {
     .syllabus-desktop-title-block img {
         width: 50%;
         max-width: 350px;
+        min-width: 300px;
         margin-bottom: 2vh;
     }
     .syllabus-desktop-title {

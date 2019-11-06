@@ -154,7 +154,7 @@ export default {
     position: fixed;
     background: #24798F;
     width: 100%;
-    height: 100vh;
+    height: -webkit-fill-available;
     top: 0;
 }
 .mamiyoga-hamburger-menu.open {

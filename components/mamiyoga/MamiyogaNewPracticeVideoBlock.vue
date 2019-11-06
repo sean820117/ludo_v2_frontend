@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
-                <div class="course-video-container play" @click="switchVideo" :class="switchMethod ? 'small-method':''">
-                    <video playsinline id="course-video" :src="pose_video"  :class="switchMethod ? 'small-method':''"></video>
+                <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
+                    <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
                     <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
@@ -653,7 +653,7 @@ export default {
     left: 0;
 }
 #start-remind {
-    width: fit-content;
+    /* width: fit-content; */
     height: 40px;
     background: #C74F4F;
     color: #fff;
@@ -676,7 +676,8 @@ export default {
     border-style: solid;
     border-width: 0 5.5px 10px 5.5px;
     border-color: transparent transparent #C74F4F transparent;
-    top: -10px;
+    top: -8px;
+    left: calc(50% - 5px);
 }
 #show-course {
     z-index: 0;
@@ -1133,6 +1134,7 @@ export default {
         height: auto;
     }
     #start-remind {
+        width: fit-content;
         transform: rotate(0deg);
         position: absolute;
         left: calc(5vw + 40px);

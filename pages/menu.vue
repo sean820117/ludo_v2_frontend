@@ -436,7 +436,7 @@ export default {
         width: 100%;
         background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-menu-img.png');
         background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: 130%;
         background-color: #DCD8CF;
         padding-top: 175px;
     }

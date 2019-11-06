@@ -30,8 +30,8 @@
                 <img @click="closeResult" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                 <h5 class="syllabus-desktop-title" style="font-size:35px;margin-top: 25px;font-weight:bold;">助教回饋</h5>
                 <div class="desktop-new-result-flex">
-                    <video :src="video_result.video_url" class="new-result-video"></video>
-                    <div>
+                    <video :src="video_result.video_url" controls class="new-result-video"></video>
+                    <div class="new-result-score-outside-block">
                         <div class="new-result-score-block">
                             <p class="new-result-score">{{video_result.score}}</p>
                             <p class="new-result-score-text">分</p>
@@ -185,7 +185,7 @@ export default {
     .desktop-new-result-block {
         width: 85%;
         max-width: 1366px;
-        height: 60%;
+        height: 80%;
         min-height: 400px;
         max-height: 600px;
         background: #FAFAFA;
@@ -206,11 +206,14 @@ export default {
     }
     .desktop-new-result-flex {
         display: flex;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: center;
+        height: 60%;
+        margin: 2% 0 0;
     }
     .new-result-video {
-        width: 65%;
+        width: unset;
+        height: 90%;
         margin: 0;
     }
     .new-result-score-block{
@@ -222,7 +225,10 @@ export default {
     .new-result-li-block {
         width: 350px;
         height: 50vh;
-        max-height: 300px;
+        max-height: calc(100% - 115px);
+    }
+    .new-result-score-outside-block {
+        height: 90%;
     }
 }
 </style>

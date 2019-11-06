@@ -221,22 +221,23 @@ export default {
     }
     .intro-wrap-block-second-slide-block {
         display: unset;
-        height: 70vh;
+        /* height: 70vh; */
     }
     .intro-wrap-block-second-content {
         width: auto;
-        height: 65vh;
+        height: unset;
     }
     .intro-wrap-block-second-content img {
-        height: 95%;
+        width: 90%;
+        /* height: 700px; */
         
     }
 }
 @media (min-width: 769px) and (max-width: 1080px) {
-    .intro-wrap-block-second-content img {
+    /* .intro-wrap-block-second-content img {
         height: auto;
         width: 95%;
-    }
+    } */
     .intro-wrap-block-second-content,.intro-wrap-block-second-slide-block {
         height: auto;
     }

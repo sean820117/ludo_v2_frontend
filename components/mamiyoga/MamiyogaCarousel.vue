@@ -125,7 +125,7 @@
             </carousel>
         </div>
         <div v-if="$mq == 'desktop'">
-            <div style="display: flex; align-items: center; justify-content: center;margin-top: 10vh;">
+            <div style="display: flex; align-items: center; justify-content: center;margin-top: 100px;">
                 <div class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
                     <h4>{{single_plan.slogan}}</h4>

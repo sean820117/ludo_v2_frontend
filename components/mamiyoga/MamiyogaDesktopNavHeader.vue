@@ -119,9 +119,10 @@ export default {
     color: #FFFFFF;
     font-size: 16px;
     font-weight: bold;
-    padding: 10px 25px;
+    padding: 0 15px;
     margin-left: 10px;
     cursor: pointer;
+    height: 60px;
 }
 .mamiyoga-desktop-header-btn .desktop-header-gift-btn{
     border: 2px solid #fff;

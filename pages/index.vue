@@ -2,7 +2,7 @@
     <div>
         <div class="index-contain" v-if="!is_practice" style="min-height:100vh;overflow:visible;">
              <div class="background-video-contain" >
-                <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;"></div>
+                <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;" :style="{minHeight: $mq == 'desktop' ? '1000px':''}"></div>
                 <video muted loop autoplay playsinline class="background-video">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-new-title-4.mp4" type="video/mp4">      
                 </video>
@@ -22,7 +22,7 @@
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div> -->
             </div>
-            <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
+            <!-- <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
                 <div class="index-login-block-inside">
                     <p class="index-login-block-text">{{$t('desktop_login_LUDO')}}</p>
                     <div class="login-column">
@@ -62,7 +62,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <div class="index-label-box" id="index-fixed-nav">
      
@@ -115,25 +115,25 @@
                     <div class="course-info-block-1" v-if="$mq == 'desktop'">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
-                            <h6 class="index-article-little-title" v-html="$t('desktop_index_second_title_2')"></h6>
+                            <h6 class="index-article-little-title" v-html="$t('desktop_index_second_title_2')" :style="{fontSize: '22px'}"></h6>
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
                             <h6 class="index-article-little-title" style="margin-top: 50px;">{{$t('desktop_index_second_text_1')}}</h6>
                              <p class="index-article-text" v-html="$t('desktop_index_second_text_2')"></p>
                             <div style="position: absolute;top: 15vh; right: 0;">
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_1')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_2')}}</p>
                                 </div>
                             
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_3')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_4')}}</p>
                                 </div>
@@ -143,14 +143,20 @@
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2">
-                        <div class="course-info-content-2">
+                        <div class="course-info-content-2" :style="{minHeight:'650px'}">
                             <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
                             <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
-                            <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
                             <!-- <router-link to="/information" style="text-decoration:none;">
                                 <p class="index-article-text have-finger">了解更多&nbsp;</p>
                             </router-link> -->
-                            <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                            <div v-if="$mq != 'desktop'">
+                                <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                                <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                            </div>
+                            <div v-else>
+                                <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                            </div>
                         </div>
                         <div class="index-article-use-video">
                             <div class="course-info-block-mirror">
@@ -184,7 +190,7 @@
                     <div class="course-info-block-3" v-if="$mq !== 'desktop'">
                         <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;" :style="{fontSize: $i18n.locale == 'JP'?'30px':''}">{{$t('desktop_index_five_title')}}</p>
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;" :style="{fontSize: $i18n.locale == 'JP'?'13px':''}">{{$t('desktop_index_five_little')}}</h6>
-                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，按照主題式課表練習</p>
+                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，<br>按照主題式課表練習讓你達成目標更容易！</p>
                         <div class="intro-wrap-block-new-five-curriculum">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
@@ -429,8 +435,8 @@
                     </div>
                     <div v-if="$mq !== 'desktop'">
                         <div>
-                            <h4 class="intro-wrap-block-title" style="color:#24798F;" v-html="$t('desktop_index_nine_text')"></h4>
-                            <img style="width: 90%;display: block;margin: 20px auto 50px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-9-1.png" alt="">
+                            <h4 class="intro-wrap-block-title" style="color:#24798F;margin: 0 auto;width: fit-content;" v-html="$t('desktop_index_nine_text')"></h4>
+                            <img style="width: 90%;display: block;margin: 20px auto 50px;" :src="$t('desktop_index_nine_img')" alt="">
                         </div>
                         <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
                         <div style="margin-top: 20px;">
@@ -481,7 +487,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="min-height: 80vh;background: #FCFCFC;padding-top: 13vh;">
+                        <div style="background: #FCFCFC;padding-top: 150px;padding-bottom: 100px;">
                             <div style="display:flex;justify-content: space-between;width: 90%;max-width: 1366px;margin: 0 auto;">
                                 <div>
                                     <h5 class="index-article-out-container-text why-to-select-title">{{$t('desktop_index_nine_title')}}</h5>
@@ -489,14 +495,14 @@
                                     <button  @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)" class="index-article-out-btn mirror-btn go-info" style="margin: 5vh 0;" :style="{fontSize: $i18n.locale == 'JP' && $mq == 'desktop' ? '14px':''}">{{$t('desktop_index_four_btn')}} </button>
                                 </div>
                                 <div style="display: flex;flex-direction: column;align-items: flex-end;">
-                                    <img style="height: 50vh;" :src="$t('desktop_index_nine_img')" alt="">
+                                    <img style="width: 100%;" :src="$t('desktop_index_nine_img')" alt="">
                                     <p class="index-article-text about-course-teach" style="font-size: 1em;width: fit-content;margin-right: 30px;">*Mamiyoga動態捕捉科技，精準判斷0死角</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="course-info-block-5">
-                        <p class="intro-wrap-block-title last-title">{{$t('desktop_index_ten_title')}}</p>
+                        <h4 class="intro-wrap-block-title last-title" style="color: #24798f;">{{$t('desktop_index_ten_title')}}</h4>
                         <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
                     </div>
                     <div class="course-info-block-6">
@@ -1543,7 +1549,7 @@ export default {
 }
 
 .index-article-out-btn {
-    width: 60%;
+    width: 65%;
     border-style: none;
     margin: 30px auto 0;
     display: block;
@@ -2282,6 +2288,7 @@ export default {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        min-height: 1000px;
     }
     .background-video,.mamiyoga-intro-title,.mamiyoga-godown-btn {
         display: none;
@@ -2296,7 +2303,7 @@ export default {
         background: #fff;
         border-radius: 20px;
         position: absolute;
-        top: 30vh;
+        top: 300px;
         right: 10vw;
     }
     .index-login-block-inside {
@@ -2315,7 +2322,7 @@ export default {
 
     #mamiyoga-index-title{
         width: fit-content;
-        margin: 20vh 10vw 0;
+        margin: 300px 10vw 0;
         font-size: 54px;
         font-weight: bold;
         line-height: 75px;
@@ -2350,12 +2357,12 @@ export default {
         width: 40%;
     }
     .course-info-block-1{
-        min-height: 100vh;
+        min-height: 1000px;
         background: linear-gradient(180deg,#FFFDF7, white);
         position: relative;
     }
     .course-info-content-1,.course-info-content-2,.course-info-block-4,
-    .course-info-block-5,.course-info-block-6,.course-info-block-7 {
+    .course-info-block-5,.course-info-block-7 {
         padding-top: 10vh;
     }
     .course-info-content-1,.course-info-content-2,.course-info-block-mirror,
@@ -2364,8 +2371,7 @@ export default {
         position: relative;
         margin: 0 auto;
     }
-    .course-info-block-2,.course-info-content-2,
-    .course-info-block-4 {
+    .course-info-block-2,.course-info-block-4 {
         min-height: 100vh;
     }
     .course-info-content-3 {
@@ -2378,12 +2384,13 @@ export default {
         position: relative;
     }
     .course-info-block-5 {
-        /* min-height: 110vh; */
+        min-height: 750px;
         padding-bottom: 10vh;
     }
     .course-info-block-6 {
         margin: 0;
-        min-height: 90vh;
+        min-height: 850px;
+        padding-top: 100px;
         background: #FCFCFC;
     }
     .course-flex-block-mirror {
@@ -2417,9 +2424,6 @@ export default {
     }
     .about-course-teach-img {
         width: 80%;
-        position: absolute;
-        right: 3vw;
-        bottom: 5vh;
         max-width: 900px;
     }
     .index-article-text.have-finger {
@@ -2535,12 +2539,12 @@ export default {
     }
     .index-article-out-container-text.new-mami {
         text-align: center;
-        position: unset;
+        z-index: 1;
     }
     .index-article-little-title.new-mami {
         width: fit-content;
         font-size: 25px;
-        margin: 5vh 0 2vh 5vw;
+        margin: 150px 0 2vh 5vw;
     }
     .index-article-text.new-mami {
         font-size: 25px;
@@ -2556,6 +2560,7 @@ export default {
     }
     .go-new-mamimura {
         height: 40vh;
+        min-height: 300px;
         background-position: -30px 10px;
     }
     .index-official-certification {
@@ -2684,7 +2689,7 @@ export default {
     }
     /* 底部面板 */
     .mamiyoga-intro-wrap {
-        padding-bottom: 200px;
+        padding-bottom: 100px;
     }
     .index-new-footer {
         overflow: unset;
@@ -2692,7 +2697,8 @@ export default {
     }
     .index-new-footer img {
         opacity: 1;
-        width: 430px;
+        width: 35%;
+        max-width: 400px;
         position: absolute;
         bottom: 0;
         left: 10%;
@@ -2702,10 +2708,10 @@ export default {
         align-items: center;
     }
     .index-new-footer-btn-text {
-        font-size: 40px;
+        font-size: 35px;
     }
     .index-new-footer-btn {
-        font-size: 30px;
+        font-size: 25px;
         padding: 15px 20px;
         border-radius: 50px;
     }
@@ -2763,13 +2769,14 @@ export default {
 }
 @media (min-width: 769px) and (max-width: 1300px) {
     .about-course-teach-img{
-        width: 55% !important;
+        width: 50% !important;
     }
 }
 @media (max-width: 1300px) {
     #mother-childen-img {
         width: 40% !important;
         right: 5vw !important;
+        min-width: 500px;
     }
 }
 @media (min-width: 480px) and (max-width: 600px) {
@@ -2789,12 +2796,6 @@ export default {
     }
 }
 @media (min-width: 769px) and (max-width: 860px) {
-    #mamiyoga-index-title {
-        width: 45%;
-    }
-    #mamiyoga-index-title-des,#mamiyoga-index-title-eng {
-        width: 37%;
-    }
     .index-footer-title {
         font-size: 1.3em;
         width: 39%;
