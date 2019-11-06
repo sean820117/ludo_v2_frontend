@@ -37,7 +37,9 @@ export default {
       { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
     ],
     script: [
       { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
@@ -49,6 +51,14 @@ export default {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        console.log(e);
+        deferredPrompt.prompt();
+      });
     }
   }
 }
@@ -68,6 +78,19 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
 
 *, *:before, *:after {
   box-sizing: border-box;
