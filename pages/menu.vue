@@ -43,7 +43,7 @@
         </div>
         <div class="menu-desktop" v-else>
             <div id="current-course-video" @click="closeCourse">
-                <iframe src="https://player.vimeo.com/video/347109517" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <!-- <iframe src="" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
             </div>
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div class="menu-desktop-top-block">
@@ -197,6 +197,18 @@ export default {
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
             }
+            // let current_vid = document.querySelector('#current-course-video')
+            // window.addEventListener("popstate", function(e) { 
+            //     if(current_vid.style.display != 'none'){
+            //         console.log('y')
+            //         this.closeCourse();
+            //         console.log(current_vid)
+            //         return
+            //     } else {
+            //         window.history.back();
+            //     }
+            //     // console.log(history.state)
+            // }.bind(this));
         }
     },
     computed:{
@@ -294,7 +306,9 @@ export default {
             // document.querySelector('#current-course-video').style.display = 'none';
             let current_vid = document.querySelector('#current-course-video')
             current_vid.style.display = 'none';
-            current_vid.querySelector('iframe').src = '';
+            current_vid.removeChild(current_vid.firstChild);
+            // current_vid.querySelector('iframe').src = '';
+            // console.log('close')
         },
         startDefaultCourse(){
             if(this.login_or_not) {
@@ -302,7 +316,13 @@ export default {
                 let iframe = document.querySelector('#current-course-video');
                 if (iframe) {
                     iframe.style.display = 'block';
-                    iframe.querySelector('iframe').src = `${this.$i18n.locale == 'zh-TW' ? 'https://player.vimeo.com/video/349924443': 'https://player.vimeo.com/video/350479253'}`;
+                    let vid = document.createElement('div')
+                    vid.style.height = '100%';
+                    vid.style.width = '110%'
+                    vid.innerHTML = `<iframe src="${this.$i18n.locale == 'zh-TW' ? 'https://player.vimeo.com/video/349924443': 'https://player.vimeo.com/video/350479253'}" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                    iframe.appendChild(vid)
+                    // iframe.querySelector('iframe').src = `${this.$i18n.locale == 'zh-TW' ? 'https://player.vimeo.com/video/349924443': 'https://player.vimeo.com/video/350479253'}`;
+                    this.addHistory();
                 }
             } else {
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
@@ -318,8 +338,37 @@ export default {
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
+        },
+        addHistory(){
+            // let current_vid = document.querySelector('#current-course-video')
+            // let vid_show = current_vid.style.display
+            // history.pushState({vid_show: 'none'},'menu','menu')
+            console.log(history.state)
         }
-    }
+    },
+    beforeRouteLeave(to, from, next) { 
+        console.log(window.history.state)
+        if(this.$mq == 'desktop'){
+            let current_vid = document.querySelector('#current-course-video')
+            if(current_vid.hasChildNodes()){
+                next(false)
+                this.closeCourse();
+                return
+            }
+        }
+        // console.log(window.history.state)
+        // history.replaceState({
+        //     ...window.history.state,
+        //     search: this.search,
+        // }, '')
+        next()
+    },
+    beforeMount() {
+        // console.log(window.history.state)
+        if (window.history.state.search) {
+            this.search = window.history.state.search
+        }
+    },
 }
 </script>
 

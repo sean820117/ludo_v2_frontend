@@ -79,7 +79,7 @@ export default {
                 let now = new Date();
                 let now_time = now.getTime();
                 let use_time = (now_time - open_time)/86400000;
-                console.log(use_time)
+                // console.log(use_time)
                 if(use_time > 7){
                     this.have_trial = false;   
                 }else {
@@ -102,7 +102,7 @@ export default {
                         let now = new Date();
                         let now_time = now.getTime();
                         let use_time = (now_time - open_time)/86400000;
-                        console.log(use_time)
+                        // console.log(use_time)
                         if(use_time > 7){
                             this.have_trial = false;   
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
@@ -155,13 +155,25 @@ export default {
                         let iframe = document.querySelector('#current-course-video');
                         if (iframe) {
                             iframe.style.display = 'block';
-                            iframe.querySelector('iframe').src = video;
+                            let vid = document.createElement('div')
+                            vid.style.height = '100%';
+                            vid.style.width = '110%'
+                            vid.innerHTML = `<iframe src="${video}" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                            iframe.appendChild(vid)
+                            // iframe.querySelector('iframe').src = video;
+                            // this.addHistory()
                         }
                     } else if(this.courseVideo) {
                         let iframe = document.querySelector('#current-course-video');
                         if (iframe) {
                             iframe.style.display = 'block';
-                            iframe.querySelector('iframe').src = this.courseVideo;
+                            let vid = document.createElement('div')
+                            vid.style.height = '100%';
+                            vid.style.width = '110%'
+                            vid.innerHTML = `<iframe src="${this.courseVideo}" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                            iframe.appendChild(vid)
+                            // iframe.querySelector('iframe').src = this.courseVideo;
+                            // this.addHistory()
                         }
                     } else {
                         console.log(this.courseTitle + ' no video');
@@ -184,6 +196,14 @@ export default {
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
+        },
+        addHistory(){
+            // let current_vid = document.querySelector('#current-course-video')
+            // let vid_src = current_vid.querySelector('iframe').src
+            // let vid_show = current_vid.style.display
+            // let last_state = {vid_src: '',vid_show: 'none'}
+            // history.pushState(last_state,'menu','menu')
+            // console.log(history.state);
         }
     }
 }
