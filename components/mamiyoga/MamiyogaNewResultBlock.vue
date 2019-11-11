@@ -212,7 +212,7 @@ export default {
         margin: 2% 0 0;
     }
     .new-result-video {
-        width: unset;
+        width: 50%;
         height: 90%;
         margin: 0;
     }
