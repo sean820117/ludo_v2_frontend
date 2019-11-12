@@ -429,7 +429,6 @@ module.exports = [
                 remind_tags: ['綺麗な姿勢です！','肘を安定させましょう','もう少し間を開けましょう','視線は横に向きましょう'],
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action02_B.mp4',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/10-1.png',
-                input_id:'20',
             },
             {
                 pose_id: 'second',
@@ -575,7 +574,6 @@ module.exports = [
                 exhale: [[13,14,19],[32,34,39]],
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/jp-video/L13_action03_B_jp.mp4',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-3.png',
-                input_id:'27',
             },
         ],
     },
