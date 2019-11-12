@@ -574,6 +574,7 @@ module.exports = [
                 inhale: [[1,4,10],[22,23,29]],
                 exhale: [[13,14,19],[32,34,39]],
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/jp-video/L13_action03_B_jp.mp4',
+                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/jp-video/L13_action_C_jp.mp4',
                 ai_preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/13-3.png',
             },
         ],

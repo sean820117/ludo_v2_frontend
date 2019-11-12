@@ -20,7 +20,7 @@
                 <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
                 <div class="preview-img">
                     <!-- <div v-if="show_nam">{{ready_go}}</div> -->
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                    <img style="transform: scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
@@ -63,7 +63,7 @@
             <!-- 教學 -->
             <div v-if="!teach_finish" class="experience-teach">
                 <div class="preview-img people" id="people">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                    <img style="transform:scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
                 <div class="repeat-bar green-bar" id="teach-bar">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
