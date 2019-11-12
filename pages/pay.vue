@@ -217,9 +217,6 @@ export default {
         company_method: false,
         products: [
             {
-                item_id: 'MY05',
-            },
-            {
                 item_id: 'MY01',
             },
             {
