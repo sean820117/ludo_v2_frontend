@@ -529,7 +529,7 @@ export default {
             this.$emit('goBack');
         },
         getCamera(){
-            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo',dev:true});
+            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo'});
             this.video_recorder.openCamera();
             this.select_camera = true;
             this.open_camera = true;
