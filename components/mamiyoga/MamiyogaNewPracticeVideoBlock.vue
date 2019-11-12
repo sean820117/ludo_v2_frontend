@@ -32,7 +32,7 @@
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_3')}}</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">
-                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
+                    <div class="video-process-bar" v-for="(pose,i) in routine.poses" :key="i">
                         <div class="video-process-bar-inside" :id="`video-process-bar-inside-${(i+1)}`"></div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <div v-else @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>
-                <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
+                <audio controls autoplay id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
                 <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
                     <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
                     <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
@@ -73,7 +73,7 @@
                     <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                 </div>
                 <div class="video-process-bar-block" id="teach-process" style="display:none">
-                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
+                    <div class="video-process-bar" v-for="(pose,i) in routine.poses" :key="i">
                         <div class="video-process-bar-inside"></div>
                     </div>
                 </div>
@@ -305,7 +305,7 @@ export default {
             this.playVideo(0);
         },
         playVideo(i){
-            let poses = this.routine.default[0].poses;
+            let poses = this.routine.poses;
 
             if(poses[i].pose_brief != 'break') {    
                 this.heart_loading = true
@@ -460,7 +460,7 @@ export default {
                 console.log(this.video_result)
                 window.video_result = this.video_result;
                 if (this.video_result && this.video_result.status == 200) {
-                    let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
+                    let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
                     if (typeof this.video_result.reps_wrong_tags == "object") {
                         for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
                             if (typeof this.video_result.reps_wrong_tags[i] == "object") {

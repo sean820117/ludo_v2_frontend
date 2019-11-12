@@ -142,20 +142,22 @@
                         <img id="mother-childen-img" style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" :src="$t('desktop_index_second_img')" alt="">
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
-                    <div class="course-info-block-2">
-                        <div class="course-info-content-2" :style="{minHeight:'650px'}">
-                            <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
-                            <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
-                            <!-- <router-link to="/information" style="text-decoration:none;">
-                                <p class="index-article-text have-finger">了解更多&nbsp;</p>
-                            </router-link> -->
-                            <div v-if="$mq != 'desktop'">
-                                <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
-                                <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
-                            </div>
-                            <div v-else>
-                                <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
-                                <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                    <div class="course-info-block-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'100vh'}">
+                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px'}">
+                            <div :style="{display: $i18n.locale == 'JP' ? 'none':''}">
+                                <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
+                                <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
+                                <!-- <router-link to="/information" style="text-decoration:none;">
+                                    <p class="index-article-text have-finger">了解更多&nbsp;</p>
+                                </router-link> -->
+                                <div v-if="$mq != 'desktop'">
+                                    <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                </div>
+                                <div v-else>
+                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                    <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                                </div>
                             </div>
                         </div>
                         <div class="index-article-use-video">
@@ -187,7 +189,7 @@
                             <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
                         </div>
                     </div>
-                    <div class="course-info-block-3" v-if="$mq !== 'desktop'">
+                    <div class="course-info-block-3" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;" :style="{fontSize: $i18n.locale == 'JP'?'30px':''}">{{$t('desktop_index_five_title')}}</p>
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;" :style="{fontSize: $i18n.locale == 'JP'?'13px':''}">{{$t('desktop_index_five_little')}}</h6>
                         <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，<br>按照主題式課表練習讓你達成目標更容易！</p>
@@ -328,7 +330,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-content-3" v-if="$mq == 'desktop'">
+                    <div class="course-info-content-3" v-if="$mq == 'desktop' && $i18n.locale != 'JP'">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">{{$t('desktop_index_six_title')}}</h4>
@@ -510,7 +512,7 @@
                         <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>  
                     <!-- 三段式常見問題 -->
-                    <div class="intro-wrap-block-new-second" v-if="$mq !== 'desktop'">
+                    <div class="intro-wrap-block-new-second" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
                         <div class="about-course-data-wrap qa" :class="show_qa">
                             <div class="about-course-data-block" @click="toggleQA()">
@@ -536,7 +538,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-7" v-else>
+                    <div class="course-info-block-7" v-if="$mq == 'desktop' && $i18n.locale != 'JP'">
                          <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;">常見問題</h4>
                          <div style="display: flex;align-items:baseline;justify-content: space-evenly;max-width: 1366px;margin: 0 auto;">
                             <div class="about-course-data-wrap qa long-style">
@@ -621,7 +623,7 @@
 
         <!-- 開啟體驗魔境 -->
         <mamiyoga-new-practice-video-block v-if="is_practice" @goBack="goBack()" 
-        @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
+        @closeResult="closeResult" :routine="routine.default[1]"></mamiyoga-new-practice-video-block>
 
         <!-- 電腦版提示(已關閉) -->
         <mamiyoga-window-alert-box v-if="$mq == 'desktop' && !is_desktop" class="desktop-window">

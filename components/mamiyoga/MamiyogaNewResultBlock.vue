@@ -3,7 +3,7 @@
         <div v-if="$mq != 'desktop'" class="new-result">
             <img @click="closeResult" class="new-result-close-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
             <!-- <mamiyoga-hamburger-header></mamiyoga-hamburger-header> -->
-            <h5 class="syllabus-desktop-title" style="margin-top: 50px;">助教回饋</h5>
+            <h5 class="syllabus-desktop-title" style="margin-top: 50px;">{{$t('desktop_syllabus_finish_feedback')}}</h5>
             <video :src="video_result.video_url" controls class="new-result-video"></video>
             <div class="new-result-score-block">
                 <p class="new-result-score">{{video_result.score}}</p>
@@ -22,13 +22,13 @@
                     </no-ssr>
                 </div>
             </div>
-            <div class="new-result-link-course-btn" @click="closeResult" style="background:transparent;color:#ff9898;margin: 10px auto;">關閉分析</div>
-            <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">觀看課程</div>
+            <!-- <div class="new-result-link-course-btn" @click="closeResult" style="background:transparent;color:#ff9898;margin: 10px auto;">關閉分析</div> -->
+            <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_syllabus_finish_btn_see_course')}}</div>
         </div>
         <div v-else class="desktop-new-result-back">
             <div class="desktop-new-result-block">
                 <img @click="closeResult" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
-                <h5 class="syllabus-desktop-title" style="font-size:35px;margin-top: 25px;font-weight:bold;">助教回饋</h5>
+                <h5 class="syllabus-desktop-title" style="font-size:35px;margin-top: 25px;font-weight:bold;">{{$t('desktop_syllabus_finish_feedback')}}</h5>
                 <div class="desktop-new-result-flex">
                     <video :src="video_result.video_url" controls class="new-result-video"></video>
                     <div class="new-result-score-outside-block">
@@ -53,8 +53,8 @@
                     </div>
                 </div>
                 <div style="display: flex;justify-content: center;">
-                    <div class="new-result-link-course-btn" @click="closeResult" style="margin: 0 10px;background:#fff;color:#ff9898;">關閉分析</div>
-                    <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)" style="margin: 0 10px;">觀看課程</div>
+                    <!-- <div class="new-result-link-course-btn" @click="closeResult" style="margin: 0 10px;background:#fff;color:#ff9898;">關閉分析</div> -->
+                    <div class="new-result-link-course-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)" style="margin: 0 10px;">{{$t('desktop_syllabus_finish_btn_see_course')}}</div>
                 </div>
             </div>
         </div>

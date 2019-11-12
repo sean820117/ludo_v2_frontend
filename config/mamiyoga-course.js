@@ -482,7 +482,9 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','穩定手肘','雙腳距離再遠一點','視線看向側面'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action01_B.mp4',
+                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action_C.mp4',
             },
             {
                 pose_id: 'second',

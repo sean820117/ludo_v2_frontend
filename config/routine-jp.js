@@ -41,5 +41,31 @@ export default [
                 exhale: courses_data[0].poses[2].exhale
             },
         ],
-    },
+    }, 
+    {
+        title: '產後的下半身減肥瑜珈',
+        duration: '7分鐘',
+        poses:[
+            {
+                pose_brief:courses_data[9].poses[0].pose_brief,
+                pose_video:courses_data[9].poses[0].B,
+                ai_preview_img:courses_data[9].poses[0].ai_preview_img,
+                pose_ai: courses_data[9].poses[0].pose_ai,
+                pose_id: courses_data[9].poses[0].input_id,
+                pose_tags: courses_data[9].poses[0].remind_tags,
+                inhale: [],
+                exhale: [],
+            },
+            {
+                pose_brief:courses_data[9].poses[0].pose_brief,
+                pose_video:courses_data[9].poses[0].C,
+                ai_preview_img:courses_data[9].poses[0].ai_preview_img,
+                pose_ai: false,
+                pose_id: '',
+                pose_tags: courses_data[9].poses[0].remind_tags,
+                inhale: [],
+                exhale: [],
+            }
+        ]
+    }
 ]

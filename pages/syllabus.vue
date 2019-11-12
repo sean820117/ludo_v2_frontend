@@ -269,7 +269,7 @@
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
             <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" 
-            @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
+            @closeResult="closeResult" :routine="routine.default[0]"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
