@@ -476,7 +476,7 @@ export default {
                         this.heart_loading = true;
                         let retryGetResult = this.newVideoUpload;
                         this.retyr_time += 1;
-                        if (this.retyr_time > 10) {
+                        if (this.retyr_time > 20) {
                             this.video_result.score = 0      
                             this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
                             this.heart_loading = false;
