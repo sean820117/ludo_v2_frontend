@@ -458,7 +458,7 @@ export default {
                     window.video_result = this.video_result;
                     if (this.video_result && this.video_result.status == 200) {
                         this.heart_loading = false;
-                        let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
+                        let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
                         if (typeof this.video_result.reps_wrong_tags == "object") {
                             for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
                                 if (typeof this.video_result.reps_wrong_tags[i] == "object") {
