@@ -190,13 +190,7 @@
         <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
         :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
-        <!-- 愛心進度條 -->
-        <div v-if="heart_loading" id="heart-loading">
-            <svg id="loading-icon" viewBox="0 0 32 29.6">
-                <path class="path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
-	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
-            </svg>
-        </div>
+        <mamiyoga-loading :loading="heart_loading"></mamiyoga-loading>
     </div>
 </template>
 
@@ -204,6 +198,7 @@
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
+import MamiyogaLoading from '~/components/mamiyoga/MamiyogaLoading.vue';
 import axios from '~/config/axios-config';
 import { mapMutations, mapGetters } from 'vuex';
 
@@ -212,6 +207,7 @@ export default {
         MamiyogaWindowAlertBox,
         MamiyogaAssayVideo,
         MamiyogaNewResultBlock,
+        MamiyogaLoading,
     },
     props:{
         routine: Object,
@@ -261,6 +257,7 @@ export default {
         pose_video: '',
 
         heart_loading: false,
+        retyr_time:0,
         show_result: false,
         video_result: {},
         result_score: '43',
@@ -455,34 +452,59 @@ export default {
                 // console.log(score)
                 // this.result_score = Math.floor(score)
                 // this.result_cal = (Math.floor(score))*2
-
-                this.video_result = await this.video_recorder.getDetailResult()
-                console.log(this.video_result)
-                window.video_result = this.video_result;
-                if (this.video_result && this.video_result.status == 200) {
-                    let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
-                    if (typeof this.video_result.reps_wrong_tags == "object") {
-                        for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
-                            if (typeof this.video_result.reps_wrong_tags[i] == "object") {
-                                for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                                    this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                try {
+                    this.video_result = await this.video_recorder.getDetailResult()
+                    console.log(this.video_result)
+                    window.video_result = this.video_result;
+                    if (this.video_result && this.video_result.status == 200) {
+                        this.heart_loading = false;
+                        let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
+                        if (typeof this.video_result.reps_wrong_tags == "object") {
+                            for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
+                                if (typeof this.video_result.reps_wrong_tags[i] == "object") {
+                                    for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
+                                        this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                                    }
+                                } else {
+                                    this.video_result.reps_wrong_tags[i]= [use_ai.pose_tags[this.video_result.reps_wrong_tags[i]]]
                                 }
-                            } else {
-                                this.video_result.reps_wrong_tags[i]= [use_ai.pose_tags[this.video_result.reps_wrong_tags[i]]]
-                            }
-                        } 
+                            } 
+                        } else {
+                            this.video_result.reps_wrong_tags = [use_ai.pose_tags[this.video_result.reps_wrong_tags]]
+                        }
+                    } else if(this.video_result.status == 102){
+                        this.heart_loading = true;
+                        let retryGetResult = this.newVideoUpload;
+                        this.retyr_time += 1;
+                        if (this.retyr_time > 10) {
+                            this.video_result.score = 0      
+                            this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
+                            this.heart_loading = false;
+                        } else {
+                            let  t = setTimeout(() => {
+                                retryGetResult();
+                                // clearTimeout(t);
+                            }, 3000); 
+                        }
+                        
+                    } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
+                        this.video_result.score = 0         
+                        this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
+                        this.heart_loading = false;
                     } else {
-                        this.video_result.reps_wrong_tags = [use_ai.pose_tags[this.video_result.reps_wrong_tags]]
+                        this.heart_loading = false;
+                        this.video_result = {}
+                        this.video_result.score = 0
+                        this.video_result.reps_wrong_tags = [['連線失敗，請稍後再試！']]
                     }
-                } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
-                    this.video_result.score = 40         
-                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
-                } else {
+                    this.show_result = true
+                } catch (error) {
+                    console.error('loading result error',error);
+                    this.heart_loading = false;
                     this.video_result = {}
-                    this.video_result.score = 40
+                    this.video_result.score = 0
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
                 }
-                this.show_result = true
             }
         },
         changeArticle(){
@@ -507,7 +529,7 @@ export default {
             this.$emit('goBack');
         },
         getCamera(){
-            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo'});
+            this.video_recorder = this.$newLudoRTC({video_element_id:'#inputVideo',dev:true});
             this.video_recorder.openCamera();
             this.select_camera = true;
             this.open_camera = true;
@@ -1088,18 +1110,6 @@ export default {
 }
 #teach-bar,#teach-show-btn {
     display: none;
-}
-#heart-loading {
-    position: fixed;
-    width: 100%;
-    min-height: -webkit-fill-available;
-    z-index: 1000;
-    background: rgba(0,0,0,.5);
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 #loading-icon {
     width: 100px;

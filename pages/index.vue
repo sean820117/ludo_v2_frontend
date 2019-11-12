@@ -799,10 +799,17 @@ export default {
             window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            if(this.$i18n.locale == 'JP'){
-                this.course_data = await require('~/config/mamiyoga-course-jp')
-                this.routine = await require('~/config/routine-jp');
-            } else {
+
+            try {
+                if(this.$i18n.locale == 'JP'){
+                    this.course_data = await require('~/config/mamiyoga-course-jp')
+                    this.routine = await require('~/config/routine-jp');
+                } else {
+                    this.course_data = await require('~/config/mamiyoga-course')
+                    this.routine = await require('~/config/routine');
+                }
+            } catch (error) {
+                console.error(error)
                 this.course_data = await require('~/config/mamiyoga-course')
                 this.routine = await require('~/config/routine');
             }
@@ -825,6 +832,7 @@ export default {
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
             
+            window.axios = axios;
         }
     },
     beforeDestroy(){
