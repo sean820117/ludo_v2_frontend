@@ -257,7 +257,7 @@ export default {
         pose_video: '',
 
         heart_loading: false,
-        retyr_time:0,
+        retry_time:0,
         show_result: false,
         video_result: {},
         result_score: '43',
@@ -475,8 +475,8 @@ export default {
                     } else if(this.video_result.status == 102){
                         this.heart_loading = true;
                         let retryGetResult = this.newVideoUpload;
-                        this.retyr_time += 1;
-                        if (this.retyr_time > 20) {
+                        this.retry_time += 1;
+                        if (this.retry_time > 20) {
                             this.video_result.score = 0      
                             this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
                             this.heart_loading = false;
