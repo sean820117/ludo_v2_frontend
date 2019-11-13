@@ -231,4 +231,20 @@ export default {
         height: 90%;
     }
 }
+@media (min-width: 769px) and (max-width: 900px) and (orientation:landscape) {
+    .desktop-new-result-block {
+        min-height: unset;
+        padding-bottom: 20px;
+    }
+    .new-result-score {
+        font-size: 40px;
+    }
+    .new-result-score-text {
+        font-size: 20px;
+    }
+    .new-result-li-block {
+        height: 65%;
+        max-height: unset;
+    }
+}
 </style>
