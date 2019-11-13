@@ -500,7 +500,7 @@ export default {
                     }
                     this.show_result = true
                 } catch (error) {
-                    this.$errorLogger(this.$router.path,'newVideoUpload',error);
+                    this.$errorLogger(this.$router.path,'newVideoUpload',error.toString());
                     console.error('loading result error',error);
                     this.heart_loading = false;
                     this.video_result = {}
