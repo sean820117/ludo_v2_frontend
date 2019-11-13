@@ -274,7 +274,6 @@ export default {
             this.inputVideo = document.querySelector('#inputVideo')
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
-            this.$errorLogger(this.$router.path,"mouted",{test:"test"});
         }
     },
     destroyed() {
