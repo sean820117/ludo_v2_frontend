@@ -262,8 +262,11 @@ class LudoRTC {
         }
         return detail_results[0];
     }
-}
 
+    getVideoList() {
+        return this.video_list;
+    }
+}
 export default ({ app }, inject) => {
     inject('newLudoRTC', newLudoRTC);
 }

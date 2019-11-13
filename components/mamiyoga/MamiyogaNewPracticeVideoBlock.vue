@@ -454,8 +454,6 @@ export default {
                 // this.result_cal = (Math.floor(score))*2
                 try {
                     this.video_result = await this.video_recorder.getDetailResult()
-                    console.log(this.video_result)
-                    window.video_result = this.video_result;
                     if (this.video_result && this.video_result.status == 200) {
                         this.heart_loading = false;
                         let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
@@ -500,7 +498,7 @@ export default {
                     }
                     this.show_result = true
                 } catch (error) {
-                    this.$errorLogger(this.$router.path,'newVideoUpload',error.toString()+this.video_result.toString());
+                    this.$errorLogger(this.$router.path,'newVideoUpload',error.toString()+"list = "+this.video_recorder.getVideoList().toString());
                     console.error('loading result error',error);
                     this.heart_loading = false;
                     this.video_result = {}
