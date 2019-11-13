@@ -313,7 +313,7 @@ export default {
                     this.current_pose_id = poses[i].pose_id
                     this.video_recorder.startRecording({
                         pose_id: `yoga_${this.current_pose_id}`,
-                        user_id: this.user.user_id,
+                        user_id: this.user.user_id || "guest",
                         language: 'zh-tw',
                     });
                 }
@@ -484,7 +484,7 @@ export default {
                         this.heart_loading = true;
                         let retryGetResult = this.newVideoUpload;
                         this.retry_time += 1;
-                        if (this.retry_time > 20) {
+                        if (this.retry_time > 30) {
                             this.video_result.score = 0      
                             this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
                             this.heart_loading = false;
