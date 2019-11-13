@@ -274,6 +274,7 @@ export default {
             this.inputVideo = document.querySelector('#inputVideo')
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
+            this.$errorLogger(this.$router.path,"mouted",{test:"test"});
         }
     },
     destroyed() {
@@ -492,6 +493,7 @@ export default {
                         this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
                         this.heart_loading = false;
                     } else {
+                        this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
                         this.heart_loading = false;
                         this.video_result = {}
                         this.video_result.score = 0
@@ -499,6 +501,7 @@ export default {
                     }
                     this.show_result = true
                 } catch (error) {
+                    this.$errorLogger(this.$router.path,'newVideoUpload',error);
                     console.error('loading result error',error);
                     this.heart_loading = false;
                     this.video_result = {}
