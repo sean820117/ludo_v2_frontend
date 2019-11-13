@@ -39,16 +39,12 @@ module.exports = {
   ** Build configuration
   */
   plugins: [
-    // { src: '~/plugins/gtm.js', ssr: false },
-    // { src: '~/plugins/ga-victor.js', ssr: false },
-    // { src: '~/plugins/loadHotjar.js', ssr: false },
     { src: '~/plugins/checkLogin.js', ssr: false },
     { src: '~/plugins/checkPayed.js', ssr: false },
     { src: '~/plugins/modal.js', ssr: false },
     { src: '~/plugins/loading.js', ssr: false },
     { src: '~/plugins/forceLogin.js', ssr: false },
     { src: '~/plugins/scrollTo.js', ssr: false },
-    // { src: '~/plugins/fbq.js', ssr: false },
     { src: '~/plugins/poseUpload.js', ssr: false },
     { src: '~/plugins/carousel.js', ssr: false },
     { src: '~/plugins/videoRecorder.js', ssr: false },
@@ -56,7 +52,8 @@ module.exports = {
     { src: '~/plugins/ludoRTC.js', ssr: false },
     { src: '~/plugins/sendData.js', ssr: false },
     { src: "~/plugins/zendesk.js", ssr: false },
-    { src: "~/plugins/checkLang.js", ssr: false }     
+    { src: "~/plugins/checkLang.js", ssr: false },
+    { src: "~/plugins/errorLogger.js", ssr: false },     
   ],
   modules: [
     [
