@@ -57,8 +57,12 @@ export default {
                     let use_time = (now_time - open_time)/86400000;
                     console.log(use_time)
                     if(use_time > 7){ 
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/pay');
+                        if(this.course_id == '1'){
+
+                        } else {
+                            alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                            this.$router.push('/pay');
+                        }
                     }
                 } else if(this.course_id == '1') {
                     
