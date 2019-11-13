@@ -504,6 +504,7 @@ export default {
                     this.video_result = {}
                     this.video_result.score = 0
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.show_result = true
                 }
             }
         },
