@@ -16,7 +16,7 @@
                     {{$t('dedesktop_syllabus_experience_icon_6')}}
                 </div>
             </div>
-            <div id="input-video-container">
+            <div id="input-video-container" v-show="switchMethod">
                 <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
                 <div class="preview-img">
                     <!-- <div v-if="show_nam">{{ready_go}}</div> -->
@@ -265,7 +265,7 @@ export default {
 
         current_pose_id:'',
 
-        switchMethod: false,
+        switchMethod: true,
         timeId: 0,
         playFirst: false,
     }),
@@ -286,7 +286,7 @@ export default {
         startReady(){
             if(this.teach_finish){
                 this.show_nam = true
-                this.switchMethod = true
+                // this.switchMethod = true
                 let id = setInterval(() => {
                     this.ready_go--
                     if(this.ready_go == 0){
@@ -313,7 +313,7 @@ export default {
                     this.current_pose_id = poses[i].pose_id
                     this.video_recorder.startRecording({
                         pose_id: `yoga_${this.current_pose_id}`,
-                        user_id: this.user.user_id,
+                        user_id: this.user.user_id || "guest",
                         language: 'zh-tw',
                     });
                 }
@@ -362,8 +362,13 @@ export default {
                             }
                         }
                         if(this.$mq != 'desktop'){
-                            processBar.style.height = (bar_percentage*100)+'%'; 
-                            processBar.style.width = '100%';
+                            if(window.innerWidth >  window.innerHeight) {
+                                processBar.style.height = '100%';
+                                processBar.style.width =  (bar_percentage*100)+'%';
+                            } else {
+                                processBar.style.height =  (bar_percentage*100)+'%';
+                                processBar.style.width = '100%'; 
+                            }
                         } else {
                             processBar.style.height = '100%';
                             processBar.style.width = (bar_percentage*100)+'%'; 
@@ -401,8 +406,13 @@ export default {
                 let processBar = document.querySelector(`#video-process-bar-inside-${(i+1)}`)
                 let id = setInterval(() => {
                     if(this.$mq != 'desktop'){
-                        processBar.style.height = (height)+'%';
-                        processBar.style.width = '100%'; 
+                        if(window.innerWidth >  window.innerHeight) {
+                            processBar.style.height = '100%';
+                            processBar.style.width = (height)+'%';
+                        } else {
+                            processBar.style.height = (height)+'%';
+                            processBar.style.width = '100%'; 
+                        }
                     } else {
                         processBar.style.height = '100%';
                         processBar.style.width = (height)+'%';
@@ -454,8 +464,6 @@ export default {
                 // this.result_cal = (Math.floor(score))*2
                 try {
                     this.video_result = await this.video_recorder.getDetailResult()
-                    console.log(this.video_result)
-                    window.video_result = this.video_result;
                     if (this.video_result && this.video_result.status == 200) {
                         this.heart_loading = false;
                         let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
@@ -476,7 +484,7 @@ export default {
                         this.heart_loading = true;
                         let retryGetResult = this.newVideoUpload;
                         this.retry_time += 1;
-                        if (this.retry_time > 20) {
+                        if (this.retry_time > 30) {
                             this.video_result.score = 0      
                             this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
                             this.heart_loading = false;
@@ -492,6 +500,7 @@ export default {
                         this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
                         this.heart_loading = false;
                     } else {
+                        this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
                         this.heart_loading = false;
                         this.video_result = {}
                         this.video_result.score = 0
@@ -499,11 +508,13 @@ export default {
                     }
                     this.show_result = true
                 } catch (error) {
+                    this.$errorLogger(this.$router.path,'newVideoUpload',error.toString()+"list = "+this.video_recorder.getVideoList().toString());
                     console.error('loading result error',error);
                     this.heart_loading = false;
                     this.video_result = {}
                     this.video_result.score = 0
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.show_result = true
                 }
             }
         },
@@ -822,7 +833,7 @@ export default {
     padding-top: 0vw;
 }
 .animate-top {
-    padding-top: 0vw; 
+    padding-top: 0; 
 }
 .animate-bottom {
     padding-top: 50vw;
@@ -1230,7 +1241,7 @@ export default {
         padding-top: 0vh;
     }
     .animate-top {
-        padding-top: 0vh; 
+        padding-top: 0; 
     }
     .animate-bottom {
         padding-top: 55vh;
@@ -1338,6 +1349,257 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+    }
+}
+@media (max-width: 768px) and (orientation:landscape) {
+    #experience-page {
+        width: 100vw;
+        min-height: -webkit-fill-available;
+        /* min-height: 80vh; */
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: #000;
+    }
+    #input-video-container {
+        background: #000;
+        display: flex;
+    }
+    #inputVideo {
+        width: 100vw;
+        height: auto;
+    }
+    #start-remind {
+        width: fit-content;
+        transform: rotate(0deg);
+        position: absolute;
+        left: calc(0vw + 40px);
+        top: calc(-15vh + 140px);
+    }
+    #start-video {
+        width: 90px;
+        height: 50px;
+        transform: rotate(0deg);
+        right: unset;
+        left: 5vw;
+        cursor: pointer;
+    }
+    #go-back-btn {
+        left: 5vw;
+        transform: rotate(0deg);
+        top: 65vh;
+        cursor: pointer;
+    }
+    #go-back-btn img {
+        width: 60px;
+    }
+    .preview-img {
+        transform: rotate(0deg);
+        width: 100vw;
+        min-height: -webkit-fill-available;
+        top: 0;
+        left: 0;
+    }
+    .preview-img img {
+        height: 70vh;
+    }
+    .course-video-container {
+        /* width: 100%;
+        height: 100%; */
+        background: #000;
+        display: flex;
+        align-items: center;
+    }
+    .course-video-container.rest{
+        display:none;
+        background: #24798f;
+        color: #fff;
+        font-size: 62px;
+        font-weight: bold;
+    }
+    .course-video-container-icon {
+        transform: rotate(0deg);
+        top: 5vh;
+        left: 5vw;
+    }
+    #show-course-video, #course-video, #course-video-1, #course-video-2, #course-video-3, #course-video-rest {
+        width: 100vw;
+        transform: rotate(0deg);
+    }
+    #course-video.small-method {
+        border-radius: 5px;
+        position: absolute;
+        left: 5vw;
+        right: unset;
+        width: 200px;
+    }
+    .exit-practice.small-method {
+        top: 5vh;
+        bottom: unset;
+        right: 5vw;
+        transform: rotate(0deg);
+    }
+    #course-video-rest {
+        justify-content: center;
+    }
+    .repeat-bar {
+        transform: rotate(0deg);
+        height: 55vh;
+        top: 5vh;
+        left: 5vw;
+        padding-top: 55vh;
+    }
+    .green-bar {
+        padding-top: 15%;
+    }
+    .red-bar {
+        padding-top: 0vh;
+    }
+    .animate-top {
+        padding-top: 0; 
+    }
+    .animate-bottom {
+        padding-top: 15%;
+    }
+    .video-process-bar-block {
+        /* transform: rotate(-90deg);
+        bottom: -40vh;
+        top: unset;
+        left: unset;
+        z-index: 1000; */
+        height: 12px;
+        width: 90%;
+        flex-direction: unset;
+        top: unset;
+        bottom: 10vh;
+    }
+    .video-process-bar {
+        margin: 0 1vh;
+    }
+    .count-over {
+        height: 45%;
+        width: 100%;
+        bottom: 0;
+        background: linear-gradient(0deg,#000,rgba(0, 0, 0, 0));
+    }
+    .count-over-btn {
+        width: 150px;
+        height: 60px;
+    }
+    .count-over-all-btn {
+        width: 360px;
+        transform: rotate(0deg);
+        left: unset;
+        right: 10vw;
+        bottom: 5vh;
+    }
+    .experience-teach {
+        min-height:100%;
+        /* height: 100vh; */
+    }
+    .experience-select-camera {
+        width: 70%;
+        max-width: 750px;
+        height: auto;
+        background: #FFFAF0;
+        border-radius: 15px;
+        padding-top: 30px;
+        transform: rotate(0deg);
+    }
+    .experience-select-camera-title {
+        font-size: 30px;
+    }
+    .experience-select-camera-not {
+        font-size: 15px;
+    }
+    .experience-teach-remind {
+        transform: rotate(0deg);
+    }
+    .experience-teach-remind.first {
+        top: 25vh;
+        left: 5vw;
+        right: unset;
+    }
+    .experience-teach-remind.second {
+        left: 60vw;
+        bottom: unset;
+        z-index: 17;
+    }
+    .experience-teach-remind.third {
+        left: 17vw;
+        top: unset;
+    }
+    .experience-teach-remind.four {
+        bottom: 20vh;
+        right: 19vw;
+    }
+    .experience-teach-remind.five {
+        bottom: 26vh;
+        right: 11vw;
+    }
+    .experience-teach-remind-title {
+        font-size:  15px;
+    }
+    .experience-teach-remind p {
+        font-size: 21px;
+    }
+    .experience-teach-remind-red-btn,.experience-teach-remind-not-red-btn {
+        width: 100px;
+        font-size: unset;
+    }
+    #loading-icon {
+        width: 100px;
+        transform: rotate(0deg);
+    }
+    #course-video {
+        /* position: absolute;
+        top: 10vh; */
+    }
+    .course-video-container.rest{
+        background: #24798f;
+    }
+    .course-video-container.play {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #experience-page .info-desktop-red-btn {
+        margin-top: 10px;
+    }
+    .experience-select-camera-not,.experience-select-camera-text {
+        margin-bottom: 15px;
+    }
+
+}
+@media (min-width: 769px) and (max-width: 900px) and (orientation:landscape) {
+    .green-bar {
+        padding-top: 15%;
+    }
+    .animate-bottom {
+        padding-top: 15%;
+    }
+    .animate-top{
+        padding-top: 0;
+    }
+    .repeat-bar {
+        height: 55vh;
+        top: 10vh;
+    }
+    #go-back-btn {
+        top: 70vh;
+    }
+    .preview-img img {
+        height: 70vh;
+    }
+    .experience-teach-remind.four {
+        bottom: 20vh;
+    }
+    .experience-teach-remind.five {
+        bottom: 25vh;
     }
 }
 </style>

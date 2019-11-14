@@ -8,7 +8,7 @@
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
-
+import axios from '~/config/axios-config';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -51,14 +51,6 @@ export default {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }
-      let deferredPrompt;
-
-      window.addEventListener('beforeinstallprompt', (e) => {
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
-        console.log(e);
-        deferredPrompt.prompt();
-      });
     }
   }
 }
