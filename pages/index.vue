@@ -336,94 +336,7 @@
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">{{$t('desktop_index_six_title')}}</h4>
-                            <div class="about-course-series-data-outside-block">
-                                <div class="about-course-series-data-block open" >
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_1')}}</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getRectifys" 
-                                    :key="i" @click="toggleClassA(i)" :class="show_listA[i]">
-                                        <div class="about-course-data-num">單元{{i+1}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listA[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">舒壓安眠</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getAlleviates" 
-                                    :key="i" @click="toggleClassB(i)" :class="show_listB[i]">
-                                        <div class="about-course-data-num">單元{{i+4}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listB[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">美體塑身</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBeautys" 
-                                    :key="i" @click="toggleClassD(i)" :class="show_listD[i]">
-                                        <div class="about-course-data-num">單元{{i+6}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listD[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">調和心靈</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBlends" 
-                                    :key="i" @click="toggleClassC(i)" :class="show_listC[i]">
-                                        <div class="about-course-data-num">單元{{i+10}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listC[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                            </div>
+                            <mamiyoga-desktop-course-outline :course_data="course_data"></mamiyoga-desktop-course-outline>
                         </div>
                     </div>
                     <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
@@ -688,6 +601,7 @@ import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCu
 import MamiyogaCourseHelpCarousel from '~/components/mamiyoga/MamiyogaCourseHelpCarousel.vue'
 import MamiyogaCarouselCommentIns from '~/components/mamiyoga/MamiyogaCarouselCommentIns.vue'
 import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPracticeVideoBlock.vue'
+import MamiyogaDesktopCourseOutline from '~/components/mamiyoga/MamiyogaDesktopCourseOutline.vue'
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
@@ -774,7 +688,8 @@ export default {
         MamiyogaCarouselCurriculum,
         MamiyogaCourseHelpCarousel,
         MamiyogaCarouselCommentIns,
-        MamiyogaNewPracticeVideoBlock
+        MamiyogaNewPracticeVideoBlock,
+        MamiyogaDesktopCourseOutline,
     },
     props: {
         title: String,
