@@ -46,7 +46,7 @@
                 <audio controls autoplay id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
                 <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
                     <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
-                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
+                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">{{$t('dedesktop_syllabus_experience_exit_btn')}}</div>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
                     <div class="course-video-container-icon">
@@ -190,7 +190,7 @@
         <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
         :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
-        <mamiyoga-loading :loading="heart_loading"></mamiyoga-loading>
+        <mamiyoga-loading :loading="heart_loading" :extraClass="extraClass"></mamiyoga-loading>
     </div>
 </template>
 
@@ -268,6 +268,8 @@ export default {
         switchMethod: true,
         timeId: 0,
         playFirst: false,
+
+        extraClass: '',
     }),
     async mounted(){
         if (process.client) {
@@ -314,7 +316,7 @@ export default {
                     this.video_recorder.startRecording({
                         pose_id: `yoga_${this.current_pose_id}`,
                         user_id: this.user.user_id || "guest",
-                        language: 'zh-tw',
+                        language: `${this.$i18n.locale == 'zh-TW' ? 'zh-tw':'jp'}`,
                     });
                 }
                 
@@ -482,12 +484,16 @@ export default {
                         }
                     } else if(this.video_result.status == 102){
                         this.heart_loading = true;
+                        if(this.$mq != 'desktop'){
+                            this.extraClass = 'loading-set'
+                        }
                         let retryGetResult = this.newVideoUpload;
                         this.retry_time += 1;
                         if (this.retry_time > 30) {
                             this.video_result.score = 0      
                             this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
                             this.heart_loading = false;
+                            this.extraClass = ''
                         } else {
                             let  t = setTimeout(() => {
                                 retryGetResult();
@@ -1136,7 +1142,9 @@ export default {
     stroke-dashoffset: 0;
   }
 }
-
+.loading-set {
+    transform: rotate(0deg) !important;
+}
 @media (min-width: 769px) {
     #experience-page {
         width: 100vw;

@@ -350,6 +350,7 @@ export default {
   dedesktop_syllabus_experience_icon_5: '開始分析',
   dedesktop_syllabus_experience_icon_6: '開始練習吧！',
   dedesktop_syllabus_experience_icon_7: '休息時間',
+  dedesktop_syllabus_experience_exit_btn: '離開',
 
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
