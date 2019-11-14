@@ -186,11 +186,9 @@ export default {
                 vid.innerHTML = `<iframe id="new" src="${pose.pose_video}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
                 iframe.appendChild(vid)
             }
-            // this.switchPose = true
             this.$emit('update:switchPose',true)
             this.$emit('update:poseTitle',`動作${index+1}、${pose.pose_brief}`)
             this.$emit('update:poseDes',pose.pose_description)
-            // this.poseDes = pose.pose_description
         },
         openNextVideo(n){
             this.$emit('openNextVideo',n)

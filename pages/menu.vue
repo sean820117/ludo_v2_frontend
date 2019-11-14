@@ -349,7 +349,7 @@ export default {
             // current_info.innerHTML = ''
             current_vid.style.display = 'none';
             current_vidbox.style.display = 'none'
-            window.location.href = `#${e[0]}`
+            document.getElementById(e).scrollIntoView();
         },
         startDefaultCourse(){
             if(this.login_or_not) {
@@ -397,8 +397,8 @@ export default {
                     console.log(data)
                     this.openCourseVideo(data)
                 } else {
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                        let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    if(this.user.free_trial_starting_time) {
+                        let open_time = parseInt(this.user.free_trial_starting_time)
                         let now = new Date();
                         let now_time = now.getTime();
                         let use_time = (now_time - open_time)/86400000;
@@ -408,11 +408,10 @@ export default {
                             this.show_alert = true
                             this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
                             this.alertBtn = `${this.$t('teach_button_ok')}`
-                            this.nextGo = ''
+                            this.nextGo = 'pay'
                         } else {
                             this.have_trial = true;
                             let data = {id:'1',poseData:pose}
-                            console.log(data)
                             this.openCourseVideo(data)
                         }
                     } else {
@@ -426,39 +425,146 @@ export default {
             } else {
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                 this.show_alert = true
-                this.alertText = '註冊後即可觀看該課程～'
+                this.alertText = `${this.$t('desktop_not_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
             }
 
         },
         openCourseVideo(e){
-            if(typeof(e) == 'object') {
-                console.log(e)
-                this.currentVideoId = e.id
-                this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
-                this.switchPose = true
-                let poseData = e.poseData
+            if(this.login_or_not){
+                if(this.payed_or_not) {
+                    if(typeof(e) == 'object') {
+                        console.log(e)
+                        this.currentVideoId = e.id
+                        this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                        this.switchPose = true
+                        let poseData = e.poseData
 
-                this.poseTitle = `動作${this.stringToN[poseData.pose_id]}、${poseData.pose_brief}`
-                this.poseDes = poseData.pose_description
-                let vid_box = document.querySelector('#current-course-video-block')
-                let iframe = document.querySelector('#current-course-video');
-                if (iframe) {
-                    vid_box.style.display = 'block';
-                    iframe.style.display = 'block';
-                    let vid = document.createElement('div')
-                    vid.style.height = '100%';
-                    vid.style.weight = '100%';
-                    vid.innerHTML = `<iframe id="new" src="${poseData.pose_video}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
-                    iframe.appendChild(vid)
+                        this.poseTitle = `動作${this.stringToN[poseData.pose_id]}、${poseData.pose_brief}`
+                        this.poseDes = poseData.pose_description
+                        let vid_box = document.querySelector('#current-course-video-block')
+                        let iframe = document.querySelector('#current-course-video');
+                        if (iframe) {
+                            vid_box.style.display = 'block';
+                            iframe.style.display = 'block';
+                            let vid = document.createElement('div')
+                            vid.style.height = '100%';
+                            vid.style.weight = '100%';
+                            vid.innerHTML = `<iframe id="new" src="${poseData.pose_video}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                            iframe.appendChild(vid)
+                        }
+                    } else {
+                        this.currentVideoId = e
+                        this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                        let vid_box = document.querySelector('#current-course-video-block')
+                        let iframe = document.querySelector('#current-course-video');
+                        if (iframe) {
+                            vid_box.style.display = 'block';
+                            iframe.style.display = 'block';
+                            let vid = document.createElement('div')
+                            vid.style.height = '100%';
+                            vid.style.weight = '100%';
+                            vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                            iframe.appendChild(vid)
+                        }
+                    }
+                } else {
+                    if(this.user.free_trial_starting_time) {
+                        let open_time = parseInt(this.user.free_trial_starting_time)
+                        let now = new Date();
+                        let now_time = now.getTime();
+                        let use_time = (now_time - open_time)/86400000;
+                        if(use_time > 7){
+                            this.have_trial = false;   
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.show_alert = true
+                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = 'pay'
+                        } else {
+                            if(typeof(e) == 'object') {
+                                this.currentVideoId = e.id
+                                this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                                if(this.currentCourse.trial) {
+                                    this.switchPose = true
+                                    let poseData = e.poseData
+
+                                    this.poseTitle = `動作${this.stringToN[poseData.pose_id]}、${poseData.pose_brief}`
+                                    this.poseDes = poseData.pose_description
+                                    let vid_box = document.querySelector('#current-course-video-block')
+                                    let iframe = document.querySelector('#current-course-video');
+                                    if (iframe) {
+                                        vid_box.style.display = 'block';
+                                        iframe.style.display = 'block';
+                                        let vid = document.createElement('div')
+                                        vid.style.height = '100%';
+                                        vid.style.weight = '100%';
+                                        vid.innerHTML = `<iframe id="new" src="${poseData.pose_video}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                                        iframe.appendChild(vid)
+                                    }
+                                }else{
+                                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                                    this.show_alert = true
+                                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                                    this.alertBtn = `${this.$t('member_article_ok')}`
+                                    this.nextGo = 'pay'
+                                }
+                            } else {
+                                this.currentVideoId = e
+                                this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                                if(this.currentCourse.trial) {
+                                    let vid_box = document.querySelector('#current-course-video-block')
+                                    let iframe = document.querySelector('#current-course-video');
+                                    if (iframe) {
+                                        vid_box.style.display = 'block';
+                                        iframe.style.display = 'block';
+                                        let vid = document.createElement('div')
+                                        vid.style.height = '100%';
+                                        vid.style.weight = '100%';
+                                        vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                                        iframe.appendChild(vid)
+                                    }
+                                } else{
+                                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                                    this.show_alert = true
+                                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                                    this.alertBtn = `${this.$t('member_article_ok')}`
+                                    this.nextGo = 'pay'
+                                }
+                            }
+                        }
+                    } else {
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
+                        this.show_alert = true
+                        this.alertText = `${this.$t('desktop_get_trial')}`
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
+                    }
                 }
             } else {
-                this.currentVideoId = e
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.show_alert = true
+                this.alertText = `${this.$t('desktop_not_login')}`
+                this.alertBtn = `${this.$t('teach_button_ok')}`
+                this.nextGo = 'login'
+            }
+            
+        },
+        openNextVideo(e){
+            if(this.payed_or_not) {
+                let iframe = document.querySelector('#current-course-video');
+                this.currentVideoId = (parseInt(this.currentVideoId) + e)
+                if(this.currentVideoId < 1){
+                    this.currentVideoId = 14
+                } else if(this.currentVideoId > 14) {
+                    this.currentVideoId = 1
+                }
+                this.currentVideoId = this.currentVideoId.toString()
                 this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
                 let vid_box = document.querySelector('#current-course-video-block')
-                let iframe = document.querySelector('#current-course-video');
                 if (iframe) {
+                    iframe.removeChild(iframe.firstChild);
                     vid_box.style.display = 'block';
                     iframe.style.display = 'block';
                     let vid = document.createElement('div')
@@ -467,47 +573,78 @@ export default {
                     vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
                     iframe.appendChild(vid)
                 }
-            }
-        },
-        openNextVideo(e){
-            let iframe = document.querySelector('#current-course-video');
-            this.currentVideoId = (parseInt(this.currentVideoId) + e)
-            if(this.currentVideoId < 1){
-                this.currentVideoId = 14
-            } else if(this.currentVideoId > 14) {
-                this.currentVideoId = 1
-            }
-            this.currentVideoId = this.currentVideoId.toString()
-            // console.log(this.currentVideoId)
-            this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
-            // console.log(this.currentCourse)
-            let vid_box = document.querySelector('#current-course-video-block')
-            if (iframe) {
-                iframe.removeChild(iframe.firstChild);
-                vid_box.style.display = 'block';
-                iframe.style.display = 'block';
-                let vid = document.createElement('div')
-                vid.style.height = '100%';
-                vid.style.weight = '100%';
-                vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
-                iframe.appendChild(vid)
+            } else {
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.show_alert = true
+                this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                this.alertBtn = `${this.$t('member_article_ok')}`
+                this.nextGo = 'pay'
             }
         },
         openOtherCourseVideo(e){
-            let iframe = document.querySelector('#current-course-video');
-            this.currentVideoId = e
-            this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
-            let vid_box = document.querySelector('#current-course-video-block')
-            if (iframe) {
-                iframe.removeChild(iframe.firstChild);
-                vid_box.style.display = 'block';
-                iframe.style.display = 'block';
-                let vid = document.createElement('div')
-                vid.style.height = '100%';
-                vid.style.weight = '100%';
-                vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
-                iframe.appendChild(vid)
+            if(this.payed_or_not) {
+                let iframe = document.querySelector('#current-course-video');
+                this.currentVideoId = e
+                this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                let vid_box = document.querySelector('#current-course-video-block')
+                if (iframe) {
+                    iframe.removeChild(iframe.firstChild);
+                    vid_box.style.display = 'block';
+                    iframe.style.display = 'block';
+                    let vid = document.createElement('div')
+                    vid.style.height = '100%';
+                    vid.style.weight = '100%';
+                    vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                    iframe.appendChild(vid)
+                }
+            } else {
+                let currentVideoId = e
+                let currentCourse = this.courses.find(course => course.id === currentVideoId)
+                if(currentCourse.trial){
+                    if(this.user.free_trial_starting_time){
+                        let open_time = parseInt(this.user.free_trial_starting_time)
+                        let now = new Date();
+                        let now_time = now.getTime();
+                        let use_time = (now_time - open_time)/86400000;
+                        if(use_time > 7){
+                            this.have_trial = false;   
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.show_alert = true
+                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = 'pay'
+                        } else {
+                            let iframe = document.querySelector('#current-course-video');
+                            this.currentVideoId = e
+                            this.currentCourse = this.courses.find(course => course.id === this.currentVideoId)
+                            let vid_box = document.querySelector('#current-course-video-block')
+                            if (iframe) {
+                                iframe.removeChild(iframe.firstChild);
+                                vid_box.style.display = 'block';
+                                iframe.style.display = 'block';
+                                let vid = document.createElement('div')
+                                vid.style.height = '100%';
+                                vid.style.weight = '100%';
+                                vid.innerHTML = `<iframe id="new" src="${this.currentCourse.video_url}" width="100%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                                iframe.appendChild(vid)
+                            }
+                        }
+                    } else {
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
+                        this.show_alert = true
+                        this.alertText = `${this.$t('desktop_get_trial')}`
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'free-trial'
+                    }
+                } else {
+                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                    this.show_alert = true
+                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertBtn = `${this.$t('member_article_ok')}`
+                    this.nextGo = 'pay'
+                }
             }
+            
         }
     },
     beforeRouteLeave(to, from, next) { 
