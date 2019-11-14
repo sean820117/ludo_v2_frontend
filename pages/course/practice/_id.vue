@@ -257,13 +257,8 @@ export default {
     },
     async beforeCreate() {
         if (process.client) {
-            // this.ui_config = await require('~/config/mommiyoga-config')
-            // this.is_ui_config_loaded = true;
-
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                // window.alert("尚未登入帳號，請先前往登入～");
-                // this.$router.push('/login');
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                 this.show_alert = true
                 this.alertText = `${this.$t('desktop_not_login')}`
@@ -274,22 +269,26 @@ export default {
                 
                 if (payed_or_not) {
                     console.log("payed")
-                } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                } else if (this.user.free_trial_starting_time) {
+                    let open_time = parseInt(this.user.free_trial_starting_time)
                     let now = new Date();
                     let now_time = now.getTime();
                     let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
                     if(use_time > 7){ 
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/pay');
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.course_id}`
+                        this.show_alert = true
+                        this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'pay'
+                    } else if(!this.course_data.trial) {
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        this.show_alert = true
+                        this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                        this.alertBtn = `${this.$t('teach_button_ok')}`
+                        this.nextGo = 'pay'
                     }
                 } else {
                     if(this.course_id == '1'){
-                        // localStorage.redirect = '/menu'
-                        console.log("not payed");
-                        // window.alert("開啟七天體驗即可解鎖本課程動作詳解～");
-                        // this.$router.push('/free-trial');
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                         this.show_alert = true
                         this.alertText = '開啟七天體驗即可解鎖本課程動作詳解～'

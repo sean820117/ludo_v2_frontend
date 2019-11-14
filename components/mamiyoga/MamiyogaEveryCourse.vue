@@ -83,14 +83,15 @@ export default {
     },
     methods:{
         clickPractice(){
-            sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
-            if(this.$i18n.locale == 'JP') {
-                this.$router.push('/jp/course/practice/' + this.course_data.id)
-            } else if(this.$i18n.locale == 'zh-CN') {
-                this.$router.push('/zh-CN/course/practice/' + this.course_data.id)
-            } else {
-                this.$router.push('/course/practice/' + this.course_data.id)
-            }
+            this.$emit('clickPractice')
+            // sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
+            // if(this.$i18n.locale == 'JP') {
+            //     this.$router.push('/jp/course/practice/' + this.course_data.id)
+            // } else if(this.$i18n.locale == 'zh-CN') {
+            //     this.$router.push('/zh-CN/course/practice/' + this.course_data.id)
+            // } else {
+            //     this.$router.push('/course/practice/' + this.course_data.id)
+            // }
         },
         openExplainBox(){
             this.$emit('openExplainBox')

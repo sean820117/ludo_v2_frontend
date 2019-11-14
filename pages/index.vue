@@ -15,7 +15,8 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop' ? '14px':''}">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':'',fontSize: $i18n.locale == 'JP'  && $mq != 'desktop'? '14px':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                <div v-if="have_trial || payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                <div v-else class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -67,8 +68,9 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
-                    <div class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
-            
+                    <div v-if="have_trial || payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                    <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                    
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
                         <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
@@ -731,8 +733,6 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
-        go_to_where: '/signup',
-        check_log: '/login',
 
         is_android: false,
         show_android_box: false,
@@ -756,6 +756,8 @@ export default {
 
         is_practice: false,
         routine:[],
+
+        have_trial: false,
     }),
     components: {
         MamiyogaHeader,
@@ -781,15 +783,11 @@ export default {
         if(process.client) {
             this.login_or_not = await this.$checkLogin(this.$store);
             if (this.login_or_not == false) {
-                this.go_to_where = '/signup'
-                this.check_log = '/login'
+
             } else {
-                this.go_to_where = '/pay'
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!this.payed_or_not) {
-                    this.check_log = '/pay'
-                } else {
-                    this.check_log = '/menu'
+                if(this.user.free_trial_starting_time) {
+                    this.have_trial = true
                 }
             }
             if(this.$mq === 'desktop'){
@@ -833,6 +831,8 @@ export default {
             this.select_plan = this.single_plan.price
             
             window.axios = axios;
+
+            console.log(this.user.free_trial_starting_time)
         }
     },
     beforeDestroy(){
@@ -967,9 +967,6 @@ export default {
             window.alert('已複製連結')
             this.$scrollTo('#wrap','start')
         },
-        clickToPay(){
-            this.$router.push(this.go_to_where)
-        },
         async subscriber(){
             // let send_data = {email:this.android_mail,name: 'Android用戶'}
             if(this.android_mail == '') {
@@ -1055,26 +1052,9 @@ export default {
                 this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
-                // alert('請先前往登入或註冊')
-                // this.$router.push('/login')
             } else {
-                if(!this.payed_or_not){
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
-                        // alert('已開通體驗，快跟著麻美老師一起動起來～')
-                        this.show_alert = true
-                        this.alertText = '已開通體驗，快跟著麻美老師一起動起來～'
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = '0'
-                    } else {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
-                        this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)
-                    }
-                } else {
-                    this.show_alert = true
-                    this.alertText = '已購買課程，快跟著麻美老師一起動起來～'
-                    this.alertBtn = `${this.$t('teach_button_ok')}`
-                    this.nextGo = '0'
-                }
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)  
             }
         },
         enterBox(i){

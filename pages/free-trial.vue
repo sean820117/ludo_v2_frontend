@@ -18,8 +18,8 @@
                 <p class="login-column-label agreement-text">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
             </div>
         </div>
-        <mamiyoga-new-window-alert-box v-if="show_alert" alertText="開通成功" alertBtnColor="#24798f" alertImg="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-free-trial-success.png"
-        alertBtn="開始上課" @enterBox="backPage" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
+        <mamiyoga-new-window-alert-box v-if="show_alert" :alertText="alertText" alertBtnColor="#24798f" :alertImg="alertImg"
+        :alertBtn="alertBtn" @enterBox="backPage" @closeBox="show_alert = false"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
@@ -36,6 +36,11 @@ export default {
         hint:'請填寫',
         hint_color:'transparent',
         show_alert: false,
+
+        alertText: '',
+        alertImg: '',
+        alertBtn: '',
+        alertImg: '',
     }),
     components:{
         MamiyogaNewWindowAlertBox
@@ -47,31 +52,39 @@ export default {
                 alert('請先前往登入或註冊！')
                 this.$router.push('/login')
             } else {
-
+                if(this.user.free_trial_starting_time){
+                    this.show_alert = true
+                    this.alertText = '已開通體驗，讓我們一起動起來！'
+                    this.alertBtn = '返回前頁'
+                }
             }
         }
     },
     methods:{
-        sendEmail(){
+        async sendEmail(){
             if(this.email == '') {
                 this.hint = this.$t('order_remind_1')
                 this.hint_color = 'red'
             } else if(!EMAIL_REGEX.test(this.email)){
-                his.hint = this.$t('order_remind_2')
+                this.hint = this.$t('order_remind_2')
                 this.hint_color = 'red'
             } else {
-                this.$sendData('/apis/subscribe-mamiyoga',{email:this.email,name: '體驗用戶'})
-                this.show_alert = true
+                let send_data = {email: this.email}
+                const res = await axios.get('/apis/mamiyoga-start-free-trial',send_data);
 
-                // this.hint = '已收到您的電子信箱！敬請期待～'
-                // alert('已收到您的電子信箱！現在開始試用！')
-                // this.hint_color = 'red'
+                if (res.data.result == 'SUCCESS') {
+                    let start_time = res.data.free_trial_starting_time
+                    this.$store.commit('user/updateFreeTrial',start_time);
+                    this.show_alert = true
+                    this.alertText = '開通成功'
+                    this.alertBtn = '開始上課'
+                    this.alertImg = 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-free-trial-success.png'
+                    // localStorage['when_is_free_trial_start'] = start_time;
 
-                let d = new Date(); 
-                let start_time = d.getTime();
-                localStorage['when_is_free_trial_start'] = start_time;
-                // this.$router.push();
-                // this.$router.go(-1);
+                } else {
+                    this.hint = '傳送失敗，請重新輸入'
+                    this.hint_color = 'red'
+                }
             }
         },
         backPage(){
@@ -207,6 +220,12 @@ export default {
     .trial-content-cancel {
         width: 20px;
         right: 15px;
+    }
+    .trial-content::before {
+        display: none;
+    }
+    .trial-content-flex {
+        width: 100vw;
     }
 }
 </style>

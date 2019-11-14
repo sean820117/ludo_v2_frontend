@@ -74,8 +74,8 @@ export default {
                     this.have_trial = true
                 }
             }
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                let open_time = parseInt(localStorage['when_is_free_trial_start'])
+            if(this.user.free_trial_starting_time) {
+                let open_time = parseInt(this.user.free_trial_starting_time)
                 let now = new Date();
                 let now_time = now.getTime();
                 let use_time = (now_time - open_time)/86400000;
@@ -97,8 +97,8 @@ export default {
         openCourseVideo(video = null){
             if(this.login_or_not){
                 if(!this.payed_or_not) {
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                        let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    if(this.user.free_trial_starting_time) {
+                        let open_time = parseInt(this.user.free_trial_starting_time)
                         let now = new Date();
                         let now_time = now.getTime();
                         let use_time = (now_time - open_time)/86400000;
