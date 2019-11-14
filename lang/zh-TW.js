@@ -489,6 +489,10 @@ export default {
   member_article_remind: '收到您的投稿',
   member_article_ok: '好的',
 
-
+  //ai分析失敗tag
+  ai_res_wrong_tag_1: '您的動作無法辨識，請洽服務人員',
+  ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
+  ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
+  ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
 
 }

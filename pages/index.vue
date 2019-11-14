@@ -162,7 +162,7 @@
                         </div>
                         <div id="mirror-block" class="index-article-use-video">
                             <div class="course-info-block-mirror">
-                                <p class="index-article-out-container-text">「自拍魔鏡」</p>
+                                <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
                                 <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
                                 <div class="course-flex-block-mirror">
                                     <img class="mirror-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png" alt="">

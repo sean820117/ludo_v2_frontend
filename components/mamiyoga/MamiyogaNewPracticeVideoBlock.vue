@@ -491,7 +491,7 @@ export default {
                         this.retry_time += 1;
                         if (this.retry_time > 30) {
                             this.video_result.score = 0      
-                            this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
+                            this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_1')}`]]
                             this.heart_loading = false;
                             this.extraClass = ''
                         } else {
@@ -503,14 +503,14 @@ export default {
                         
                     } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
                         this.video_result.score = 0         
-                        this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_2')}`]]
                         this.heart_loading = false;
                     } else {
                         this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
                         this.heart_loading = false;
                         this.video_result = {}
                         this.video_result.score = 0
-                        this.video_result.reps_wrong_tags = [['連線失敗，請稍後再試！']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_3')}`]]
                     }
                     this.show_result = true
                 } catch (error) {
@@ -519,7 +519,7 @@ export default {
                     this.heart_loading = false;
                     this.video_result = {}
                     this.video_result.score = 0
-                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_4')}`]]
                     this.show_result = true
                 }
             }

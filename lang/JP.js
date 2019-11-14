@@ -226,7 +226,7 @@ export default {
   desktop_index_third_btn: 'ママ知識を読む',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/new-index-img-3-jp.png',
 
-  desktop_index_four_title: '「自拍魔鏡」',
+  desktop_index_four_title: '「魔法の鏡」',
   desktop_index_four_little: 'ママの一番信頼できる練習パートナー',
   desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れよ！',
   desktop_index_four_list_1: 'いつでも練習',
@@ -452,4 +452,9 @@ export default {
   member_article_remind: '投稿を受け取りました',
   member_article_ok: 'はい',
 
+  //ai分析失敗tag
+  ai_res_wrong_tag_1: '您的動作無法辨識，請洽服務人員',
+  ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
+  ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
+  ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
 }
