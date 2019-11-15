@@ -747,7 +747,7 @@ export default {
             
             window.axios = axios;
 
-            console.log(this.user.free_trial_starting_time)
+            // console.log(this.user.free_trial_starting_time)
         }
     },
     beforeDestroy(){
