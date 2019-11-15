@@ -1351,6 +1351,19 @@ export default {
         left: 0;
     }
 }
+@media (max-width: 768px) and (orientation: portrait) {
+    #input-video-container {
+        min-height: 100vh;
+    }
+    #inputVideo {
+        transform: scaleX(-1) rotate(-90deg);
+        min-height: unset;
+        width: 70vh;
+        position: absolute;
+        top: 24vh;
+        right: -7vh;
+    }
+}
 @media (max-width: 768px) and (orientation:landscape) {
     #experience-page {
         width: 100vw;
@@ -1368,7 +1381,10 @@ export default {
         display: flex;
     }
     #inputVideo {
-        width: 100vw;
+        width: 80vw;
+        height: auto;
+        margin: 0 auto;
+        min-height: unset;
         height: auto;
     }
     #start-remind {
