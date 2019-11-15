@@ -350,6 +350,7 @@ export default {
   dedesktop_syllabus_experience_icon_5: '開始分析',
   dedesktop_syllabus_experience_icon_6: '開始練習吧！',
   dedesktop_syllabus_experience_icon_7: '休息時間',
+  dedesktop_syllabus_experience_exit_btn: '離開',
 
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
@@ -488,6 +489,10 @@ export default {
   member_article_remind: '收到您的投稿',
   member_article_ok: '好的',
 
-
+  //ai res wrong tag
+  ai_res_wrong_tag_1: '您的動作無法辨識，請洽服務人員',
+  ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
+  ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
+  ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
 
 }

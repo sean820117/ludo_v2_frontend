@@ -46,7 +46,7 @@
                 <audio controls autoplay id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
                 <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
                     <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
-                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
+                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">{{$t('dedesktop_syllabus_experience_exit_btn')}}</div>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
                     <div class="course-video-container-icon">
@@ -190,7 +190,7 @@
         <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
         :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
-        <mamiyoga-loading :loading="heart_loading"></mamiyoga-loading>
+        <mamiyoga-loading :loading="heart_loading" :heartDeg="heartDeg"></mamiyoga-loading>
     </div>
 </template>
 
@@ -257,6 +257,7 @@ export default {
         pose_video: '',
 
         heart_loading: false,
+        heartDeg: '',
         retry_time:0,
         show_result: false,
         video_result: {},
@@ -481,13 +482,17 @@ export default {
                             this.video_result.reps_wrong_tags = [use_ai.pose_tags[this.video_result.reps_wrong_tags]]
                         }
                     } else if(this.video_result.status == 102){
+                        if(this.$mq != 'desktop'){
+                            this.heartDeg = 'rotate(0deg)'
+                        }
                         this.heart_loading = true;
                         let retryGetResult = this.newVideoUpload;
                         this.retry_time += 1;
                         if (this.retry_time > 30) {
                             this.video_result.score = 0      
-                            this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
+                            this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_1')}`]]
                             this.heart_loading = false;
+                            this.heartDeg = ''
                         } else {
                             let  t = setTimeout(() => {
                                 retryGetResult();
@@ -497,23 +502,26 @@ export default {
                         
                     } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
                         this.video_result.score = 0         
-                        this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_2')}`]]
                         this.heart_loading = false;
+                        this.heartDeg = ''
                     } else {
                         this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
                         this.heart_loading = false;
+                        this.heartDeg = ''
                         this.video_result = {}
                         this.video_result.score = 0
-                        this.video_result.reps_wrong_tags = [['連線失敗，請稍後再試！']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_3')}`]]
                     }
                     this.show_result = true
                 } catch (error) {
                     this.$errorLogger(this.$router.path,'newVideoUpload',error.toString()+"list = "+this.video_recorder.getVideoList().toString());
                     console.error('loading result error',error);
                     this.heart_loading = false;
+                    this.heartDeg = ''
                     this.video_result = {}
                     this.video_result.score = 0
-                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_4')}`]]
                     this.show_result = true
                 }
             }

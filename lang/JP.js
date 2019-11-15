@@ -226,9 +226,9 @@ export default {
   desktop_index_third_btn: 'ママ知識を読む',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/new-index-img-3-jp.png',
 
-  desktop_index_four_title: '「自拍魔鏡」',
+  desktop_index_four_title: '「魔法の鏡」',
   desktop_index_four_little: 'ママの一番信頼できる練習パートナー',
-  desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れる！',
+  desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れよ！',
   desktop_index_four_list_1: 'いつでも練習',
   desktop_index_four_list_2: '専門的な分析',
   desktop_index_four_list_3: '練習記録',
@@ -289,7 +289,7 @@ export default {
   desktop_syllabus_second_btn: '練習をスタートする',
   desktop_syllabus_experience_remind_title: '正しいかどうかわからない？<br>ヨガヘルパー、参上！',
   desktop_syllabus_experience_remind_btn: 'ヨガヘルパ（AI）ーを投入',
-  desktop_syllabus_experience_remind_little: '自分でやってみる',
+  desktop_syllabus_experience_remind_little: 'AIに頼らず、自分でやってみる！',
   desktop_syllabus_experience_remind_text: 'ヨガ ヘルパー（AI）はカメラを開けて撮影するよ！あなたのデーターは他の人に渡らないので、安心してね',
 
   desktop_syllabus_experience_remind_tip_btn_1: 'わかりました',
@@ -312,6 +312,7 @@ export default {
   dedesktop_syllabus_experience_icon_5: '分析を行う',
   dedesktop_syllabus_experience_icon_6: '練習しましょう！',
   dedesktop_syllabus_experience_icon_7: '休憩時間',
+  dedesktop_syllabus_experience_exit_btn: '閉じる',
 
   desktop_syllabus_finish_btn_1: 'アドバイスを受ける',
   desktop_syllabus_finish_btn_2: '他の練習',
@@ -450,5 +451,10 @@ export default {
   member_article_btn: '発送する',
   member_article_remind: '投稿を受け取りました',
   member_article_ok: 'はい',
+
+  ai_res_wrong_tag_1: '動きが認識できておりません。ネットワーク環境お確かめの上、お問い合わせください',
+  ai_res_wrong_tag_2: '動きが認識できておりません、全身が映るようにデバイスの置き方を再調整の上お試しください',
+  ai_res_wrong_tag_3: '通信状態の良い環境で、もう一度やり直してください',
+  ai_res_wrong_tag_4: 'ネットワーク環境をお確かめの上、お問い合わせください',
 
 }

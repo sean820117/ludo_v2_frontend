@@ -143,7 +143,7 @@
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'100vh'}">
-                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px'}">
+                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'650px',padding: $i18n.locale == 'JP' && $mq != 'desktop' ? '0':'40px'}">
                             <div :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                                 <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
                                 <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
@@ -182,7 +182,7 @@
                                                 <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_3')}}</p>
                                             </div>
                                         </div>
-                                        <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '13px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
+                                        <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-3" v-else>
+                    <div class="course-info-block-3" v-if="$mq == 'desktop'">
                         <div class="course-info-block-3-content">
                             <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">{{$t('desktop_index_five_title')}}</p>
                             <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">{{$t('desktop_index_five_little')}}</h6>

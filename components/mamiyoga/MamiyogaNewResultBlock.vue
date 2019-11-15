@@ -86,7 +86,8 @@ export default {
     position: absolute;
     top: 0;
     z-index: 1005;
-    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA)
+    background: linear-gradient(#DCD8CF,#E4E7E3,#E4E7E3,#EEEFEA,#EEEFEA,#EEEFEA,#EEEFEA);
+    min-height: 100vh;
 }
 .new-result-close-img {
     width: 20px;
