@@ -39,17 +39,25 @@ class LudoRTC {
         this.getResult = this.getResult.bind(this);
         this.dc = null;
         this.video_list = [];
-
+        let default_width = 480;
+        let default_height = 360;
+        // if (window.screen.orientation.angle == 0 && window.screen.orientation.type == 'portrait-primary') {
+        let mal = window.matchMedia('(orientation: portrait)')
+        if(!mal.matches){
+            let temp = default_width;
+            default_width = default_height;
+            default_height = temp;
+        }
         let default_config = {
             sdpSemantics: 'unified-plan',
             iceServers : [{urls: ['stun:stun.l.google.com:19302']}],
             constraints : {
                 audio: false,
                 video: {
-                    width:320,
-                    height:240,
-                    aspectRatio: 1.777777778,
-                    frameRate: 24,
+                    width:default_width,
+                    height:default_height,
+                    // aspectRatio: 1.777777778,
+                    frameRate: 30,
                     facingMode: 'user',
                 }
             },
@@ -78,6 +86,7 @@ class LudoRTC {
             video_element.play();
             return true;
         } catch (error) {
+            this.$errorLogger('ludoRTC','openCamera',error.toString());
             alert('Could not acquire media: ' + error);
             return false;
         }

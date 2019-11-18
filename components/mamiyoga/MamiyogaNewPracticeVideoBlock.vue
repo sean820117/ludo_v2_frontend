@@ -17,7 +17,9 @@
                 </div>
             </div>
             <div id="input-video-container" v-show="switchMethod">
-                <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
+                <!-- <div class="inputVideo-show-block"> -->
+                    <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
+                <!-- </div> -->
                 <div class="preview-img">
                     <!-- <div v-if="show_nam">{{ready_go}}</div> -->
                     <img style="transform: scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
@@ -1359,6 +1361,20 @@ export default {
         left: 0;
     }
 }
+@media (max-width: 768px) and (orientation: portrait) {
+    /* #input-video-container {
+        min-height: 100vh;
+    } */
+    #inputVideo {
+        transform: scaleX(-1);
+        /* min-height: unset; */
+        width: 90vw;
+        margin: 0 5vw 0;
+        /* position: absolute; */
+        /* top: 24vh; */
+        /* right: -7vh; */
+    }
+}
 @media (max-width: 768px) and (orientation:landscape) {
     #experience-page {
         width: 100vw;
@@ -1374,10 +1390,13 @@ export default {
     #input-video-container {
         background: #000;
         display: flex;
+        min-height: 100vh;
     }
     #inputVideo {
-        width: 100vw;
+        width: 80vw;
         height: auto;
+        margin: 0 auto;
+        /* min-height: 100vh; */
     }
     #start-remind {
         width: fit-content;

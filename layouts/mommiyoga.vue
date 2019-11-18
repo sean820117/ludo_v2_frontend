@@ -84,12 +84,12 @@ export default {
 
             // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
                 // localStorage.redirect = this.$route.path;
-            if(this.$route.path == '/teach') {
-                localStorage.redirect = this.$route.path;
-            } else {
-                localStorage.redirect = '/menu'
-            }
-            console.log("save redirect : " + localStorage.redirect);
+            // if(this.$route.path == '/teach') {
+            //     localStorage.redirect = this.$route.path;
+            // } else {
+            //     localStorage.redirect = '/menu'
+            // }
+            // console.log("save redirect : " + localStorage.redirect);
             // }
 
             

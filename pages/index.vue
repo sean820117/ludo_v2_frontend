@@ -19,7 +19,8 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop' ? '14px':''}">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':'',fontSize: $i18n.locale == 'JP'  && $mq != 'desktop'? '14px':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                <div v-if="have_trial || payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                <div v-else class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -71,8 +72,9 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
-                    <div class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
-            
+                    <div v-if="have_trial || payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                    <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                    
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
                         <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
@@ -338,94 +340,7 @@
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">{{$t('desktop_index_six_title')}}</h4>
-                            <div class="about-course-series-data-outside-block">
-                                <div class="about-course-series-data-block open" >
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_1')}}</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getRectifys" 
-                                    :key="i" @click="toggleClassA(i)" :class="show_listA[i]">
-                                        <div class="about-course-data-num">單元{{i+1}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listA[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">舒壓安眠</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getAlleviates" 
-                                    :key="i" @click="toggleClassB(i)" :class="show_listB[i]">
-                                        <div class="about-course-data-num">單元{{i+4}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listB[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">美體塑身</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBeautys" 
-                                    :key="i" @click="toggleClassD(i)" :class="show_listD[i]">
-                                        <div class="about-course-data-num">單元{{i+6}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listD[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">調和心靈</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBlends" 
-                                    :key="i" @click="toggleClassC(i)" :class="show_listC[i]">
-                                        <div class="about-course-data-num">單元{{i+10}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listC[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                            </div>
+                            <mamiyoga-desktop-course-outline :course_data="course_data"></mamiyoga-desktop-course-outline>
                         </div>
                     </div>
                     <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
@@ -690,6 +605,7 @@ import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCu
 import MamiyogaCourseHelpCarousel from '~/components/mamiyoga/MamiyogaCourseHelpCarousel.vue'
 import MamiyogaCarouselCommentIns from '~/components/mamiyoga/MamiyogaCarouselCommentIns.vue'
 import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPracticeVideoBlock.vue'
+import MamiyogaDesktopCourseOutline from '~/components/mamiyoga/MamiyogaDesktopCourseOutline.vue'
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
@@ -735,8 +651,6 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
-        go_to_where: '/signup',
-        check_log: '/login',
 
         is_android: false,
         show_android_box: false,
@@ -760,6 +674,8 @@ export default {
 
         is_practice: false,
         routine:[],
+
+        have_trial: false,
     }),
     components: {
         MamiyogaHeader,
@@ -776,7 +692,8 @@ export default {
         MamiyogaCarouselCurriculum,
         MamiyogaCourseHelpCarousel,
         MamiyogaCarouselCommentIns,
-        MamiyogaNewPracticeVideoBlock
+        MamiyogaNewPracticeVideoBlock,
+        MamiyogaDesktopCourseOutline,
     },
     props: {
         title: String,
@@ -785,15 +702,11 @@ export default {
         if(process.client) {
             this.login_or_not = await this.$checkLogin(this.$store);
             if (this.login_or_not == false) {
-                this.go_to_where = '/signup'
-                this.check_log = '/login'
+
             } else {
-                this.go_to_where = '/pay'
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!this.payed_or_not) {
-                    this.check_log = '/pay'
-                } else {
-                    this.check_log = '/menu'
+                if(this.user.free_trial_starting_time) {
+                    this.have_trial = true
                 }
             }
             if(this.$mq === 'desktop'){
@@ -838,9 +751,10 @@ export default {
             
             window.axios = axios;
 
-            if(this.$i18n.locale == 'JP'){
-                this.$scrollTo('#mirror-block','start')
-            }
+            // if(this.$i18n.locale == 'JP'){
+            //     this.$scrollTo('#mirror-block','start')
+            // }
+            // console.log(this.user.free_trial_starting_time)
         }
     },
     beforeDestroy(){
@@ -975,9 +889,6 @@ export default {
             window.alert('已複製連結')
             this.$scrollTo('#wrap','start')
         },
-        clickToPay(){
-            this.$router.push(this.go_to_where)
-        },
         async subscriber(){
             // let send_data = {email:this.android_mail,name: 'Android用戶'}
             if(this.android_mail == '') {
@@ -1063,26 +974,9 @@ export default {
                 this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
-                // alert('請先前往登入或註冊')
-                // this.$router.push('/login')
             } else {
-                if(!this.payed_or_not){
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
-                        // alert('已開通體驗，快跟著麻美老師一起動起來～')
-                        this.show_alert = true
-                        this.alertText = '已開通體驗，快跟著麻美老師一起動起來～'
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = '0'
-                    } else {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
-                        this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)
-                    }
-                } else {
-                    this.show_alert = true
-                    this.alertText = '已購買課程，快跟著麻美老師一起動起來～'
-                    this.alertBtn = `${this.$t('teach_button_ok')}`
-                    this.nextGo = '0'
-                }
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)  
             }
         },
         enterBox(i){
