@@ -17,11 +17,14 @@ export const state = () => ({
 })
 export const mutations = {
     updateLocalUserData (state, userData) {
-      state.data = userData;
+        state.data = userData;
     },
-    remove (state, { todo }) {
-        state.data = undefined;
+    updateFreeTrial(state, free_trial_starting_time){
+        state.data.free_trial_starting_time = free_trial_starting_time;
     },
+    updataPregnantData(state, pregnant_data){
+        state.data.pregnant_data = pregnant_data;
+    }
 }
 
 export const getters = {

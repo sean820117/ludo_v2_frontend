@@ -142,8 +142,7 @@ export default {
         if (process.client) {
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            // localStorage.redirect = '/menu';
-            
+                     
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not) {
                 window.alert('你已經登入了')
