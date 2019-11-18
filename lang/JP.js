@@ -64,13 +64,13 @@ export default {
     start_experience_btn_1: 'カメラを開ける',
     start_experience_btn_2: '使い方をもう一度',
 
-    menu_nav_text_teacher:'日文-講師介紹',
-    menu_nav_text_record:'日文-AI助教',
-    menu_nav_text_friend:'日文-學習夥伴',
-    menu_tag_text_first:'日文-矯正疼痛',
-    menu_tag_text_second:'日文-舒壓安眠',
-    menu_tag_text_third:'日文-美體塑身',
-    menu_tag_text_four:'日文-調和心靈',
+    menu_nav_text_teacher:'講師について',
+    menu_nav_text_record:'AIアシスタント',
+    menu_nav_text_friend:'学習パートナー',
+    menu_tag_text_first:'痛み矯正',
+    menu_tag_text_second:'安眠効果',
+    menu_tag_text_third:'ボディーメーク',
+    menu_tag_text_four:'心の調和',
 
     menu_content_text_first: '日文-矯正媽媽產後不良姿勢來緩解疼痛',
     menu_content_text_second: '日文-幫助媽媽們提升睡眠品質',
@@ -241,10 +241,10 @@ export default {
   desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus-jp.png',
 
   desktop_index_six_title: '主題式單元',
-  desktop_index_six_list_title_1: '痛みを改善',
-  desktop_index_six_list_title_2: '舒壓安眠',
-  desktop_index_six_list_title_3: '美體塑身',
-  desktop_index_six_list_title_4: '調和心靈',
+  desktop_index_six_list_title_1: '痛み矯正',
+  desktop_index_six_list_title_2: '安眠効果',
+  desktop_index_six_list_title_3: 'ボディーメーク',
+  desktop_index_six_list_title_4: '心の調和',
 
   desktop_index_seven_title: '「 媽咪新手村 」',
   desktop_index_seven_little: '初為人母一定有非常多驚喜與疑惑吧！',
@@ -453,8 +453,8 @@ export default {
   member_article_ok: 'はい',
 
   //ai分析失敗tag
-  ai_res_wrong_tag_1: '您的動作無法辨識，請洽服務人員',
-  ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
-  ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
-  ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
+  ai_res_wrong_tag_1: '動きが認識できておりません。ネットワーク環境お確かめの上、お問い合わせください',
+  ai_res_wrong_tag_2: '動きが認識できておりません、全身が映るようにデバイスの置き方を再調整の上お試しください',
+  ai_res_wrong_tag_3: '通信状態の良い環境で、もう一度やり直してください',
+  ai_res_wrong_tag_4: 'ネットワーク環境をお確かめの上、お問い合わせください',
 }

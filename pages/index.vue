@@ -1,13 +1,17 @@
 <template>
     <div>
-        <div class="index-contain" v-if="!is_practice" style="min-height:100vh;overflow:visible;">
-             <div class="background-video-contain" >
+        <div class="index-contain" v-if="!is_practice" style="min-height:100vh;overflow:visible;" :style="{backgroundColor: '#24798f'}">
+             <div class="background-video-contain" :style="{display: $i18n.locale == 'JP' ? 'none': ''}">
                 <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;" :style="{minHeight: $mq == 'desktop' ? '1000px':''}"></div>
                 <video muted loop autoplay playsinline class="background-video">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-new-title-4.mp4" type="video/mp4">      
                 </video>
             </div>
-            <div class="mamiyoga-index-intro" style="position: absolute;">
+            <mamiyoga-hamburger-header v-if="$mq !== 'desktop' && $i18n.locale == 'JP'"></mamiyoga-hamburger-header>
+            <mamiyoga-desktop-nav-header v-if="$mq == 'desktop' && $i18n.locale == 'JP'" :bgColor="offsetMenu ? '#24798f':'#24798f'" :style="{position: 'unset'}"></mamiyoga-desktop-nav-header>
+            
+            
+            <div class="mamiyoga-index-intro" style="position: absolute;" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                 <mamiyoga-hamburger-header v-if="$mq !== 'desktop'"></mamiyoga-hamburger-header>
                 <mamiyoga-desktop-nav-header v-else :bgColor="offsetMenu ? '#24798f':'transparent'"></mamiyoga-desktop-nav-header>
 
@@ -63,7 +67,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
+            <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap" :style="{paddingBottom: $i18n.locale == 'JP' ? '0':'',minHeight: $i18n.locale == 'JP' ? 'unset':''}">
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
@@ -80,7 +84,7 @@
                     
                 </div>
                 <div class="about-course-block" id="index-first-video">
-                    <div class="course-info-block-1" v-if="$mq !== 'desktop'">
+                    <div class="course-info-block-1" v-if="$mq !== 'desktop'"  :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" :style="{fontSize: $i18n.locale == 'JP'?'17px':''}" v-html="$t('desktop_index_second_title_1')"></h3>
                             <h6 class="index-article-little-title" :style="{fontSize: $i18n.locale == 'JP'?'15px':''}" v-html="$t('desktop_index_second_title_2')"></h6>
@@ -112,7 +116,7 @@
                         </div>
                         <img style="width:90%;margin: 0 auto 45px;display: block;" :src="$t('desktop_index_second_img')" alt="">
                     </div>
-                    <div class="course-info-block-1" v-if="$mq == 'desktop'">
+                    <div class="course-info-block-1" v-if="$mq == 'desktop'"  :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
                             <h6 class="index-article-little-title" v-html="$t('desktop_index_second_title_2')" :style="{fontSize: '22px'}"></h6>
@@ -143,7 +147,7 @@
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
                     <div class="course-info-block-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'100vh'}">
-                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px'}">
+                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px', display: $i18n.locale == 'JP' ? 'none':''}">
                             <div :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                                 <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
                                 <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
@@ -313,7 +317,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-3" v-if="$mq == 'desktop'">
+                    <div class="course-info-block-3" v-if="$mq == 'desktop'" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div class="course-info-block-3-content">
                             <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;">{{$t('desktop_index_five_title')}}</p>
                             <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;font-size: 20px">{{$t('desktop_index_five_little')}}</h6>
@@ -424,8 +428,8 @@
                             </div>
                         </div>
                     </div>
-                    <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
-                    <div class="course-info-block-4">
+                    <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
+                    <div class="course-info-block-4" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <p class="index-article-out-container-text new-mami">「 媽咪新手村 」</p>
                         <img class="mami-mura-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-7-1.png" alt="">
                         <h6 class="index-article-little-title new-mami">初為人母一定有非常多驚喜與疑惑吧！</h6>
@@ -435,7 +439,7 @@
                         </div>
                         <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10% 50px;opacity:.2;">
                     </div>
-                    <div v-if="$mq !== 'desktop'">
+                    <div v-if="$mq !== 'desktop'" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div>
                             <h4 class="intro-wrap-block-title" style="color:#24798F;margin: 0 auto;width: fit-content;" v-html="$t('desktop_index_nine_text')"></h4>
                             <img style="width: 90%;display: block;margin: 20px auto 50px;" :src="$t('desktop_index_nine_img')" alt="">
@@ -464,7 +468,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else>
+                    <div v-else :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div style="padding-top: 15vh;min-height: 60vh;">
                             <p class="index-article-out-container-text" style="color:#24798F;font-weight: bold;text-shadow: none;">官方認證</p>
                             <div style="display: flex; align-items: center;justify-content: space-around;max-width: 1366px;margin: 5vh auto 0;">
@@ -489,7 +493,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="background: #FCFCFC;padding-top: 150px;padding-bottom: 100px;">
+                        <div style="background: #FCFCFC;padding-top: 150px;padding-bottom: 100px;" >
                             <div style="display:flex;justify-content: space-between;width: 90%;max-width: 1366px;margin: 0 auto;">
                                 <div>
                                     <h5 class="index-article-out-container-text why-to-select-title">{{$t('desktop_index_nine_title')}}</h5>
@@ -503,11 +507,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-5">
+                    <div class="course-info-block-5" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <h4 class="intro-wrap-block-title last-title" style="color: #24798f;">{{$t('desktop_index_ten_title')}}</h4>
                         <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
                     </div>
-                    <div class="course-info-block-6">
+                    <div class="course-info-block-6" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;margin-left: 40px;">{{$t('desktop_index_eleven_title')}}</h4>
                         <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>  
@@ -571,8 +575,8 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="$mq !== 'desktop'" style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">{{$t('index_share')}}</p>
-                    <div v-if="$mq !== 'desktop'" class="mamiyoga-assay-share-icon-box">
+                    <p v-if="$mq !== 'desktop'"  :style="{display: $i18n.locale == 'JP' ? 'none':''}" style="margin-top:5vh;margin-bottom:0;color: #707070;font-size: 12px;text-align: center;">{{$t('index_share')}}</p>
+                    <div v-if="$mq !== 'desktop'" class="mamiyoga-assay-share-icon-box"  :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div class="mamiyoga-assay-share-icon">
                             <a href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fmamiyoga.ludonow.com%2F&amp;linkname=" target="_blank">
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/share-icon-facebook.png" alt="">
@@ -599,14 +603,14 @@
                             </a>
                         </div>
                     </div>
-                    <div class="agree-block">
+                    <div class="agree-block" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <p class="mamiyoga-intro-agree">登入及同意&nbsp;LUDO&nbsp;<a href="/agreement">用戶協議</a>&nbsp;和&nbsp;<a href="/privacy">隱私政策</a></p>
                         <p class="mamiyoga-intro-agree">&copy;2019 LUDO All Rights Reserved</p>
                         <p class="mamiyoga-intro-agree">contact@ludonow.com</p>
                     </div>
                 </div>
             </div>
-            <div class="index-new-footer" id="index-fixed-footer" :style="{backgroundImage: $mq != 'desktop' ? `url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png')`:''}">
+            <div class="index-new-footer" id="index-fixed-footer" :style="{backgroundImage: $mq != 'desktop' ? `url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png')`:'', display: $i18n.locale == 'JP' ? 'none':''}">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png" alt="">
                 <div class="index-new-footer-btn-block">
                     <p class="index-new-footer-btn-text" v-if="$mq != 'desktop'">想了解更多<br>課程內容？</p>

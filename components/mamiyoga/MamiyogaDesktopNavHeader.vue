@@ -1,19 +1,20 @@
 <template>
     <div class="mamiyoga-desktop-nav-header" :style="{backgroundColor: bgColor}">
-        <div class="mamiyoga-desktop-nav">
+        <div class="mamiyoga-desktop-nav" :style="{width: $i18n.locale == 'JP' ? '40%':'',minWidth: $i18n.locale == 'JP' ? '450px':''}">
             <img @click="$router.push(`${$i18n.locale == 'zh-TW' ? '/': '/' + $i18n.locale}`)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-logo.png" alt="">
             <li id="go_index" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '/': '/' + $i18n.locale}`)">{{$t('desktop_header_menu_1')}}</li>
             <li id="go_menu" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</li>
             <li id="go_syllabus" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</li>
-            <li id="go_info" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
-            <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
-            <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
+            <li :style="{display: $i18n.locale == 'JP' ? 'none':''}" id="go_info" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
+            <li :style="{display: $i18n.locale == 'JP' ? 'none':''}" @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
+            <li :style="{display: $i18n.locale == 'JP' ? 'none':''}" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
         </div>
         <div class="mamiyoga-desktop-header-btn">
-            <div class="desktop-header-gift-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/gift`)">
+            <div class="desktop-header-gift-btn" v-if="$i18n.locale !== 'JP'" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/gift`)">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 {{$t('desktop_header_btn_1')}}
             </div>
+            <div v-else style="width: 106px;"></div>
             <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">{{$t('desktop_signup_n_login')}}</div>
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
             <div class="desktop-header-user-menu">

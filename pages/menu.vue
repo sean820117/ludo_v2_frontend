@@ -71,7 +71,7 @@
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
-                    <h4>矯正疼痛</h4>
+                    <h4>{{$t('desktop_index_six_list_title_1')}}</h4>
                    <!-- <p @click="show_rectifys = true">顯示全部</p> -->
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
@@ -81,7 +81,7 @@
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
-                    <h4>舒壓安眠</h4>
+                    <h4>{{$t('desktop_index_six_list_title_2')}}</h4>
                    <!-- <p @click="show_alleviates = true">顯示全部</p> -->
                </div>
                <div class="menu-desktop-course-box alleviates" v-if="courses !== ''">
@@ -98,7 +98,7 @@
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
-                    <h4>美體塑身</h4>
+                    <h4>{{$t('desktop_index_six_list_title_3')}}</h4>
                    <p @click="show_beautys = true" v-if="!show_beautys">{{$t('desktop_course_all_course')}}</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
@@ -108,7 +108,7 @@
                </div>
                <hr class="menu-desktop-line" color="#D1D1D1" noshade>
                <div class="menu-desktop-every-flex">
-                    <h4>調和心靈</h4>
+                    <h4>{{$t('desktop_index_six_list_title_4')}}</h4>
                    <p @click="show_blends = true" v-if="!show_blends">{{$t('desktop_course_all_course')}}</p>
                </div>
                <div class="menu-desktop-course-box" v-if="courses !== ''">
