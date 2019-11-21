@@ -97,6 +97,13 @@ class LudoRTC {
         if (post_info) {
             this.final_config.post_info = post_info;
         }
+        let mal = window.matchMedia('(orientation: portrait)')
+        if(!mal.matches){
+            post_info.orientation = 'landscape';
+        } else {
+            post_info.orientation = 'portrait';
+        }
+        // console.log('orientation : ',post_info.orientation)
         console.log(this.final_config);
         this.pc = this.createPeerConnection(this.final_config);
         let pc = this.pc;
@@ -181,6 +188,7 @@ class LudoRTC {
                 pose_id: post_info.pose_id,
                 user_id: post_info.user_id,
                 language: post_info.language,
+                orientation: post_info.orientation,
             }));
             await this.pc.setRemoteDescription(res.data);
             return true;
