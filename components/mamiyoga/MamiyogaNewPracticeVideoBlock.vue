@@ -27,10 +27,10 @@
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
-                <div v-if="show_inhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''"  :style="{display: switchMethod ? 'none':''}">
+                <div v-if="show_inhale && $i18n.locale != 'zh-TW'" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''"  :style="{display: switchMethod ? 'none':'',}">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
                 </div>
-                <div v-if="show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''" :style="{display: switchMethod ? 'none':''}">
+                <div v-if="show_exhale && $i18n.locale != 'zh-TW'" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''" :style="{display: switchMethod ? 'none':''}">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_3')}}</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">

@@ -10,14 +10,15 @@
                             <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</p>
                         </div>
                         <div class="course-information-content">
-                            <p @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</p>
+                            <p :style="{borderRight: $i18n.locale == 'JP' ? '0px':''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</p>
                         </div>
                         <!-- <div class="course-information-content">
                             <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
                         </div> -->
-                        <div class="course-information-content">
+                        <div class="course-information-content" v-if="$i18n.locale != 'JP'">
                             <p style="cursor:pointer;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</p>
                         </div>
+                        <div class="course-information-content" v-if="$i18n.locale == 'JP'"></div>
                     </div>
                     <!-- <div class="course-mail-icon" @click="not_online = true">
                         <img style="width:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
@@ -49,8 +50,10 @@
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div class="menu-desktop-top-block">
                 <div class="menu-desktop-top-block-title">
-                    <h5>單元一、骨盆矯正瑜珈</h5>
-                    <p>大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！</p>
+                    <h5 v-if="$i18n.locale != 'JP'">單元一、骨盆矯正瑜珈</h5>
+                    <h5 v-else>骨盤矯正ヨガ</h5>
+                    <p v-if="$i18n.locale != 'JP'">大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！</p>
+                    <p v-else>骨盤を正しい位置に調整し、ウエストまわりに脂肪をつきにくくしてくれます。気になるおしり周りや太ももを美しく整え、美しいボディラインを手に入れることも。</p>
                     <div class="info-desktop-red-btn" @click="startDefaultCourse()">{{$t('desktop_course_first_btn')}}</div>
                 </div>
                 <div class="menu-desktop-course-box" v-if="courses !== ''">
@@ -80,7 +83,7 @@
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getRectifys" :key="i" stagger="500"
                     :is_trial="course.trial" :courseId="course.id" @openCourseVideo="openCourseVideo" 
-                    :showTag="true" :tagName="'矯正疼痛'" :tagBgColor="'#4FA7C7'" 
+                    :showTag="true" :tagName="$t('desktop_index_six_list_title_1')" :tagBgColor="'#4FA7C7'" 
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url" 
                     ></mamiyoga-desktop-course-block>
                </div>
@@ -92,7 +95,7 @@
                <div class="menu-desktop-course-box alleviates" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getAlleviates" :key="i" stagger="500" 
                     :is_trial="course.trial" :courseId="course.id" @openCourseVideo="openCourseVideo"
-                    :showTag="true" :tagName="'舒壓安眠'" :tagBgColor="'#A44EBE'" 
+                    :showTag="true" :tagName="$t('desktop_index_six_list_title_2')" :tagBgColor="'#A44EBE'" 
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                     <div class="menu-desktop-alleviates" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
@@ -111,7 +114,7 @@
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBeautys" :key="i" stagger="500"
                     :is_trial="course.trial" :courseId="course.id" @openCourseVideo="openCourseVideo"
-                    :showTag="true" :tagName="'美體塑身'" :tagBgColor="'#2C9B79'" 
+                    :showTag="true" :tagName="$t('desktop_index_six_list_title_3')" :tagBgColor="'#2C9B79'" 
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                </div>
@@ -123,7 +126,7 @@
                <div class="menu-desktop-course-box" v-if="courses !== ''">
                     <mamiyoga-desktop-course-block v-for="(course,i) in getBlends" :key="i" stagger="500" 
                     :is_trial="course.trial" :courseId="course.id" @openCourseVideo="openCourseVideo"
-                    :showTag="true" :tagName="'調和心靈'" :tagBgColor="'#24798F'" 
+                    :showTag="true" :tagName="$t('desktop_index_six_list_title_4')" :tagBgColor="'#24798F'" 
                     :courseBg="course.preview_img" :courseTitle="course.title" :poses="course.poses" :courseVideo="course.video_url"
                     ></mamiyoga-desktop-course-block>
                     <div class="menu-desktop-alleviates" v-if="show_blends" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
@@ -372,7 +375,7 @@ export default {
             } else {
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                 this.show_alert = true
-                this.alertText = '註冊後即可觀看該課程～'
+                this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
             }
@@ -432,6 +435,7 @@ export default {
 
         },
         openCourseVideo(e){
+            this.switchPose = false
             if(this.login_or_not){
                 if(this.payed_or_not) {
                     if(typeof(e) == 'object') {
@@ -582,6 +586,7 @@ export default {
             }
         },
         openOtherCourseVideo(e){
+            this.switchPose = false;
             if(this.payed_or_not) {
                 let iframe = document.querySelector('#current-course-video');
                 this.currentVideoId = e

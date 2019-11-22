@@ -154,6 +154,7 @@ export default {
     display: none;
     flex-direction: column;
     justify-content: flex-end;
+    z-index: 999;
 }
 .desktop-header-user-menu-block {
     background: #fff;

@@ -264,6 +264,7 @@ export default {
   desktop_index_third_btn: '閱讀媽咪知識',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png',
 
+  desktop_index_four_only_title: '自拍魔鏡',
   desktop_index_four_title: '「自拍魔鏡」',
   desktop_index_four_little: '媽咪們最貼心的練習夥伴',
   desktop_index_four_text: '用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！',
@@ -404,7 +405,7 @@ export default {
   desktop_course_all_course: '顯示全部',
   desktop_course_ad: '科學化訓練讓健康事半功倍',
   desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
-  desktop_course_buy: '購買後即可觀看所有課程～',
+  desktop_course_buy: '這堂是付費課程，請先前往付款才能觀看此課程喔！',
 
   //付款pay
   pay_method_1_title_1: '1.寵愛自己馬上使用',
@@ -469,6 +470,7 @@ export default {
   member_activation_title: '兌換序號',
   member_activation_tag_1: '序號資訊',
   member_activation_tag_2: '我有課程序號',
+  member_activation_no_code: '尚無序號資料',
   member_activation_tag_1_phone: '寄送手機：',
   member_activation_tag_1_order: '訂單號碼：',
   member_activation_tag_1_open: '已啟用',

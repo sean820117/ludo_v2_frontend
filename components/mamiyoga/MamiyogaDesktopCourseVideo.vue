@@ -3,7 +3,7 @@
         <div class="current-course-video-inside">
             <div class="current-course-video-path" style="justify-content: space-between;position: relative;height: 30px;">
                 <div class="current-course-video-path path">
-                    <div @click="closeVideo"> 課程影片 > </div>
+                    <div @click="closeVideo"> {{$t('desktop_header_menu_2')}} > </div>
                     <div @click="goSeries(currentCourse.tags)">{{`${getSeriesName} >`}}</div>
                     <div @click="openCourseVideo" :style="{fontWeight: switchPose ? 'unset':'bolder'}">{{`單元${currentCourse.id}、${currentCourse.title}`}}</div>
                     <div v-if="switchPose" :style="{fontWeight: switchPose ? 'bolder':''}"> > {{poseTitle}}</div>
@@ -16,7 +16,7 @@
                     <div class="other-course-menu">
                         <div class="other-course-menu-series" :class="show_series[0]">
                             <div @click="toggleSeries(0)">
-                                <div class="other-course-menu-series-title">矯正疼痛</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_1')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[0]">
                                     <span></span>
                                     <span></span>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="other-course-menu-series" :class="show_series[1]">
                             <div @click="toggleSeries(1)">
-                                <div class="other-course-menu-series-title">舒壓安眠</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_2')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[1]">
                                     <span></span>
                                     <span></span>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="other-course-menu-series" :class="show_series[2]">
                             <div @click="toggleSeries(2)">
-                                <div class="other-course-menu-series-title">美體塑身</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_3')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[2]">
                                     <span></span>
                                     <span></span>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="other-course-menu-series" :class="show_series[3]">
                             <div @click="toggleSeries(3)">
-                                <div class="other-course-menu-series-title">調和心靈</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_4')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[3]">
                                     <span></span>
                                     <span></span>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div style="display: flex;align-items: flex-start;justify-content: space-between;">
+            <div style="display: flex;align-items: flex-start;justify-content: space-between;margin-top: 25px;">
                 <div id="current-course-video">
                     <!-- <iframe src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
                 </div>
@@ -101,8 +101,8 @@
                                 <div class="current-little-course-pose-preview" :style="{backgroundImage: `url(${pose.ai_preview_img})`}"></div>
                                 <div class="current-little-course-pose-title">
                                     <div style="display: flex;margin-bottom: 4px;">
-                                        <p>動作{{i+1}}</p>
-                                        <div class="have-ai-tag" v-if="pose.pose_ai">自拍魔鏡</div>
+                                        <p>{{$t('course_practice_label')}}{{i+1}}</p>
+                                        <div class="have-ai-tag" v-if="pose.pose_ai">{{$t('desktop_index_four_only_title')}}</div>
                                     </div>
                                     <p>{{pose.pose_brief}}</p>
                                 </div>
@@ -112,7 +112,7 @@
                                 <div class="current-little-course-pose-title">
                                     <div style="display: flex;margin-bottom: 4px;">
                                         <p>{{getSeriesName}}</p>
-                                        <div class="have-ai-tag" v-if="currentCourse.ai_teacher">自拍魔鏡</div>
+                                        <div class="have-ai-tag" v-if="currentCourse.ai_teacher">{{$t('desktop_index_four_only_title')}}</div>
                                     </div>
                                     <p>單元{{currentCourse.id}}、{{currentCourse.title}}</p>
                                 </div>
@@ -187,7 +187,7 @@ export default {
                 iframe.appendChild(vid)
             }
             this.$emit('update:switchPose',true)
-            this.$emit('update:poseTitle',`動作${index+1}、${pose.pose_brief}`)
+            this.$emit('update:poseTitle',`${this.$t('course_practice_label')}${index+1}、${pose.pose_brief}`)
             this.$emit('update:poseDes',pose.pose_description)
         },
         openNextVideo(n){
@@ -241,13 +241,13 @@ export default {
         getSeriesName(){
             if(this.currentCourse.tags){
                 if(this.currentCourse.tags == 'rectify') {
-                    return '矯正疼痛'
+                    return this.$t('desktop_index_six_list_title_1')
                 } else if(this.currentCourse.tags == 'alleviate') {
-                    return '舒壓安眠'
+                    return this.$t('desktop_index_six_list_title_2')
                 } else if(this.currentCourse.tags == 'beauty') {
-                    return '美體塑身'
+                    return this.$t('desktop_index_six_list_title_3')
                 } else if(this.currentCourse.tags == 'blend') {
-                    return '調和心靈'
+                    return this.$t('desktop_index_six_list_title_4')
                 }
                 
             }
@@ -297,6 +297,8 @@ export default {
     z-index: 100;
     background: black;
     padding-top: 3vh;
+    overflow-y: auto;
+    padding-bottom: 120px;
 }
 #current-course-video {
     /* display: none; */
@@ -319,6 +321,7 @@ export default {
 }
 .current-course-video-path.path div {
     cursor: pointer;
+    font-size: 15px;
 }
 .current-course-video-menu-btn {
     border: 1px solid #fff;
@@ -383,6 +386,7 @@ export default {
 #course-info p {
     color: #FFFFFF;
     font-size: 15px;
+    width: 80%;
 }
 .current-little-course-pose {
     display: flex;

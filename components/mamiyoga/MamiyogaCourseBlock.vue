@@ -148,7 +148,7 @@ export default {
                         } else {
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                             this.show_alert = true
-                            this.alertText = '購買後即可觀看所有課程～'
+                            this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
                             this.alertBtn = `${this.$t('teach_button_ok')}`
                             this.nextGo = 'pay'
                         }

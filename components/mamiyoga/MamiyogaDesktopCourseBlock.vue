@@ -23,10 +23,10 @@
                         <img style="width:25%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-video-play.png" alt="">
                     </div>
                 </div>
-                <div>
+                <div style="width: 100%;">
                     <div style="display: flex;margin-bottom: 4px;">
-                        <p style="color:#707070;font-size: 13px;">動作{{parseInt(index)+1}}</p>
-                        <div class="pose-have-ai-tag" v-if="pose.pose_ai">自拍魔鏡</div>
+                        <p style="color:#707070;font-size: 13px;">{{$t('course_practice_label')}}{{parseInt(index)+1}}</p>
+                        <div class="pose-have-ai-tag" v-if="pose.pose_ai">{{$t('desktop_index_four_only_title')}}</div>
                     </div>
                     <p style="color:#707070;font-size: 16px;">{{pose.pose_brief}}</p>
                 </div>

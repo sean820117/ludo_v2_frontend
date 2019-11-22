@@ -93,7 +93,7 @@ export default {
 
 
 
-
+  course_little_text: '動き',
 
 
       //bmi
@@ -134,7 +134,7 @@ export default {
   course_practice_label: '動き',
   course_practice_btn: 'アップロード',
   course_practice_remind_title: '',
-  course_tips_text:'tips',
+  course_tips_text:'ステップ',
   tdee_index_text_1: '基礎代謝率（BMR）と運動習慣により、計算式から1日のカロリー消費（TDEE）を導き出すことができます。 TDEEは、一日に必要なエネルギー量と運動量を把握するのに役立ちます。',
   tdee_index_text_2: 'TDEEを計算して、無料ヘルシーメニューとおすすめエクササイズをゲットしよう！',
   tdee_index_input_1: '年齢：',
@@ -226,6 +226,7 @@ export default {
   desktop_index_third_btn: 'ママ知識を読む',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/new-index-img-3-jp.png',
 
+  desktop_index_four_only_title: '魔法の鏡',
   desktop_index_four_title: '「魔法の鏡」',
   desktop_index_four_little: 'ママの一番信頼できる練習パートナー',
   desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れよ！',
@@ -366,7 +367,7 @@ export default {
   desktop_course_all_course: '全部表示する',
   desktop_course_ad: '科學化訓練讓健康事半功倍',
   desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
-  desktop_course_buy: '購買後即可觀看所有課程～',
+  desktop_course_buy: '這堂是付費課程，請先前往付款才能觀看此課程喔！',
 
 
   //付款pay
@@ -432,6 +433,7 @@ export default {
   member_activation_title: 'シリアル番号を引き換える',
   member_activation_tag_1: 'シリアル番号の情報',
   member_activation_tag_2: 'コースのシリアル番号がある',
+  member_activation_no_code: 'シリアル番号なし',
   member_activation_tag_1_phone: '携帯電話に送る：',
   member_activation_tag_1_order: '注文番号：',
   member_activation_tag_1_open: '已啟用',

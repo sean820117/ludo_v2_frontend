@@ -20,7 +20,7 @@
             <p>觀看次數&nbsp;110</p>
         </div> -->
         <div class="mamiyoga-course-bottom">
-            <div class="switch-lang">
+            <div class="switch-lang" v-if="$i18n.locale == 'zh-TW'">
                 <input type="radio" name="lang" id="lang-ch" checked>
                 <input type="radio" name="lang" id="lang-jp">
                 <div class="switch-lang-label">
