@@ -13,10 +13,11 @@
 
 <script>
 import Vue from 'vue';
-import axios from 'axios';
+import axios from '~/config/axios-config';
 
 export default {
     data:()=>({
+        m_data: [],
         all_posts: [
             {
                 post_title: '',
@@ -35,16 +36,23 @@ export default {
     async mounted(){
         if(process.client) {
             // console.log(this.m_data)
-            this.toJson(this.m_data)
+            const { data } = await axios.get('/apis/mamiyoga-get-all-medium-articles')
+            this.m_data = data
+            console.log(this.m_data)
+            // this.toJson(this.m_data)
 
-            this.first_actirle = this.all_posts.filter(post => post.post_category.includes("pregnancy"))
-            console.log(this.first_actirle)
+            this.first_actirle = this.m_data.filter(post => post.post_category.includes("pregnancy"))
+            
+
+            // this.first_actirle = this.all_posts.filter(post => post.post_category.includes("pregnancy"))
+            // console.log(this.first_actirle)
         }
     },
-    async asyncData () {
-        const { data } = await axios.get('https://medium.com/feed/@ludonow')
-        return { m_data: data }
-    },
+    // async asyncData () {
+    //     // const { data } = await axios.get('https://medium.com/feed/@ludonow')
+    //     const { data } = await axios.get('/api/mamiyoga-get-all-medium-articles')
+    //     return { m_data: data }
+    // },
     methods:{
         toJson(xml){
             let parser = new DOMParser;

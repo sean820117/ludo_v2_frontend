@@ -104,6 +104,22 @@
             <h4 class="intro-wrap-block-title" style="margin:0;">獨家文章</h4>
             <p class="intro-wrap-block-text">LUDO身體科學誌</p>
             <div class="article-flex-box">
+                <div class="intro-wrap-block-five-every" v-for="(post,i) in up_data" :key="i" @click="goOtherPage(post.post_url)">
+                    <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                    <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                    <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div>
+            <div class="article-flex-box">
+                <div class="intro-wrap-block-five-every" v-for="(post,i) in down_data" :key="i" @click="goOtherPage(post.post_url)">
+                    <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                    <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                    <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div>
+            <!-- <div class="article-flex-box">
                 <a href="https://link.medium.com/X8MbmFeEaZ" style="text-decoration:none;">
                     <div class="intro-wrap-block-five-every">
                         <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-1.png');"></div>
@@ -138,7 +154,7 @@
                         <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="info-footer">
             <div class="index-label-box" id="index-fixed-nav">
@@ -207,6 +223,10 @@ export default {
         alertBtn: '好的',
         alertBtnColor: '#24798F',
         nextGo: '',
+
+        m_data: [],
+        up_data: [],
+        down_data: [],
     }),
     components: {
         MamiyogaTeachHeader,
@@ -245,6 +265,13 @@ export default {
                     }
                 }
             }
+
+            const { data } = await axios.get("/apis/mamiyoga-get-all-medium-articles")
+            this.m_data = data
+            this.getArticleUrl()
+            this.up_data = data.slice(0,2)
+            this.down_data = data.slice(2,4)
+            
 
             if(this.$mq === 'desktop'){
                 document.getElementById('go_info').classList.add('click-active');
@@ -344,6 +371,38 @@ export default {
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
+        },
+        getArticleUrl(){
+            let url_array = []
+            for(let i = 0; i < this.m_data.length; i++) {
+                // console.log(this.m_data[i].post_content)
+                let el = document.createElement('html')
+                el.innerHTML = this.m_data[i].post_content
+                console.log(el)
+                let a_tag = el.getElementsByTagName("a")
+                url_array = Array.from(a_tag)
+                let article_url = url_array.find(tag => tag.innerText == this.m_data[i].post_title)
+                if(article_url) {
+                    let h = article_url.getAttribute("href")
+                    this.m_data[i].post_url = h
+                }
+                let fig_tag = el.getElementsByTagName("img")
+                let fig_array = Array.from(fig_tag)
+                let first_fig = fig_array[0]
+                if(first_fig) {
+                    let img = first_fig.getAttribute("src")
+                    this.m_data[i].post_img = img
+                }
+                let main_content = el.getElementsByTagName("p")
+                let content_array = Array.from(main_content)
+                let first_content = content_array[0]
+                if(first_content){
+                    this.m_data[i].preview_text = first_content
+                }
+            }
+        },
+        goOtherPage(page){
+            window.location.href = page
         }
     },
 }
@@ -406,6 +465,7 @@ export default {
     border-radius: 5px;
     margin-top: 20px;
     position: relative;
+    cursor: pointer;
 }
 .intro-wrap-block-five-every-img {
     width: 90%;
@@ -431,6 +491,7 @@ export default {
     right: -10%;
     top: 50%;
     height: 15px;
+    cursor: pointer;
 }
 .info-footer {
     /* height: 60px; */
@@ -710,6 +771,8 @@ export default {
     }
     .intro-wrap-block-five-every {
         width: 85%;
+        min-width: 340px;
+        max-width: 350px;
     }
     .info-page .info-wrap-block-first.desktop-two {
         background:#fff;
