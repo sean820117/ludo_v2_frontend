@@ -8,7 +8,7 @@
 import VueMq from 'vue-mq'
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex';
-
+import axios from '~/config/axios-config';
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -37,7 +37,9 @@ export default {
       { property : 'og:site_name' , content:"https://mamiyoga.ludonow.com"},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
     ],
     script: [
       { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
@@ -45,7 +47,7 @@ export default {
   },
   async mounted() {
     if (process.client) {
-      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") && !this.$route.path.includes("/login-success") && !this.$route.path.includes("/free-trial")) {
+      if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") && !this.$route.path.includes("/login-success") && !this.$route.path.includes("/free-trial") && !this.$route.path.includes("/pay")) {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }
@@ -68,6 +70,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 
 *, *:before, *:after {
   box-sizing: border-box;

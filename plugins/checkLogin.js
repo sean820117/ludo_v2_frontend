@@ -8,7 +8,9 @@ async function checkLogin (store) {
             try {
                 const { data } = await axios.get('/apis/user')
                 if (data.status == 200) {
-                    console.log("user : " + JSON.stringify(data.user));
+                    const mami_user_data = await axios.get('/apis/mamiyoga-user-data');
+                    Object.assign(data.user,mami_user_data.data);
+                    console.log("user : " , data.user);
                     store.commit('user/updateLocalUserData',data.user);
                     return true;
                 } else {

@@ -191,7 +191,6 @@ export default {
         show_date_input: false,
         is_pregnant : false,
         user_date: '',
-        have_trial: false,
 
         input_date: false,
         is_loading: false,
@@ -223,76 +222,32 @@ export default {
     async mounted(){
         if(process.client) {
             location.href = '#';
-
             this.login_or_not = await this.$checkLogin(this.$store);
             if (this.login_or_not == false) {
-                this.go_to_where = '/signup'
-                this.check_log = '/login'
                 this.is_login = false
             } else {
                 this.is_login = true
-                this.go_to_where = '/pay'
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                this.have_trial = true
-                if (!this.payed_or_not) {
-                    this.check_log = '/pay'
-                } else {
-                    this.check_log = '/menu'
-                }
-            }
-            if(this.$mq === 'desktop'){
-                document.getElementById('go_info').classList.add('click-active');
-            }
-            if(!this.payed_or_not) {
-                if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
-                    if(use_time > 7){
-                        this.have_trial = false;   
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/');
-                    }else {
-                        this.have_trial = true;
-                    }
-                    if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
+                if(this.user.free_trial_starting_time){
+                    if(this.user.pregnant_data){
                         this.input_date = true
-                        console.log(localStorage['user_date'])
-                        if(localStorage['is_pregnant'] == 'true'){
+                        if(this.user.pregnant_data.is_pregnant){
                             this.is_pregnant = true
-                            let d = localStorage['user_date']
+                            let d = this.user.pregnant_data.before_pregnant_date
                             this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
                         } else {
                             this.is_pregnant = false
                             let current_date = new Date();
                             let current_time = current_date.getTime();
-                            let user_time = Date.parse(localStorage['user_date'])
-                            console.log(current_time)
-                            console.log(user_time)
+                            let user_time = Date.parse(this.user.pregnant_data.after_pregnant_date)
                             this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '日'
                         }
                     }
                 }
-            } else {
-                if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
-                    this.input_date = true
-                    console.log(localStorage['user_date'])
-                    if(localStorage['is_pregnant'] == 'true'){
-                        this.is_pregnant = true
-                        let d = localStorage['user_date']
-                        this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
-                    } else {
-                        this.is_pregnant = false
-                        let current_date = new Date();
-                        let current_time = current_date.getTime();
-                        let user_time = Date.parse(localStorage['user_date'])
-                        console.log(current_time)
-                        console.log(user_time)
-                        this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
-                    }
-                }
+            }
+
+            if(this.$mq === 'desktop'){
+                document.getElementById('go_info').classList.add('click-active');
             }
             
         }
@@ -312,7 +267,7 @@ export default {
         getProject(){
             if(this.login_or_not){
                 if(!this.payed_or_not) {
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
+                    if(this.user.free_trial_starting_time){
                         this.want_recommend = true
                     } else {
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/information`
@@ -320,9 +275,6 @@ export default {
                         this.alertText = `${this.$t('desktop_get_trial')}`
                         this.alertBtn = `${this.$t('teach_button_ok')}`
                         this.nextGo = 'free-trial'
-                        // localStorage.redirect = '/information'
-                        // alert('開通七天體驗即可開始使用～')
-                        // this.$router.push('/free-trial')
                     }
                 } else {
                     this.want_recommend = true
@@ -339,15 +291,22 @@ export default {
             }
             
         },
-        inputDate(){
+        async inputDate(){
             if(this.user_date !== '') {
-                if(!this.have_trial) {
+                if(!this.user.free_trial_starting_time) {
                     this.$router.push('/free-trial')
                 } else {
                     let dateFormat = /^(\d{4})-(\d{2})-(\d{2})$/
                     if(dateFormat.test(this.user_date)) {
-                        localStorage['is_pregnant'] = this.is_pregnant
-                        localStorage['user_date'] = this.user_date
+                        let pregnant_data = {
+                            is_pregnant: this.is_pregnant, 
+                            after_pregnant_date: !this.is_pregnant ? this.user_date :'',
+                            before_pregnant_date: this.is_pregnant ? this.user_date:''
+                        }
+                        const res = await axios.post('/apis/mamiyoga-set-pregnant-info',{pregnant_data: pregnant_data});
+                        console.log(res)
+
+                        this.$store.commit('user/updataPregnantData',pregnant_data);
                         // alert('已收到～')
                         this.is_loading = true
                         this.getUserTime();
@@ -363,17 +322,17 @@ export default {
             }
         },
         getUserTime(){
-            if(localStorage['user_date'] != '' && localStorage['user_date'] != undefined){
-                if(localStorage['is_pregnant'] == 'true'){
+            if(this.pregnant_data){
+                if(this.pregnant_data.is_pregnant == true){
                     this.is_pregnant = true
-                    let d = localStorage['user_date']
+                    let d = this.pregnant_data.before_pregnant_date
                     let user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
                     this.user_input_date = user_input_date
                 } else {
                     this.is_pregnant = false
                     let current_date = new Date();
                     let current_time = current_date.getTime();
-                    let user_time = Date.parse(localStorage['user_date'])
+                    let user_time = Date.parse(this.pregnant_data.after_pregnant_date)
                     let user_input_date = Math.floor((current_time - user_time) / 86400000) + '天'
                     this.user_input_date = user_input_date
                 }
@@ -489,7 +448,7 @@ export default {
 }
 .index-label-box {
     width: 100%;
-    height: 85px;
+    /* height: 85px; */
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;

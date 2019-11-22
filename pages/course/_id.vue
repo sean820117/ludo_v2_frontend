@@ -1,14 +1,18 @@
 <template>
     <div>
         <mamiyoga-every-course v-if="!open_explain" @openExplainBox="openExplainBox"
-        :course_data="course_data"></mamiyoga-every-course>
+        :course_data="course_data" @clickPractice="clickPractice"></mamiyoga-every-course>
         <no-ssr><mamiyoga-explain-box v-if="open_explain" @closeExplain="closeExplain"></mamiyoga-explain-box></no-ssr>
+        <mamiyoga-new-window-alert-box v-if="isAlert" :alertText="alertText" :alertBtn="alertBtn" alertBtnColor="#24798f"
+        @enterBox="enterBox(nextGo)" @closeBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
     </div>
 </template>
 
 <script>
 import MamiyogaEveryCourse from '~/components/mamiyoga/MamiyogaEveryCourse.vue'
 import MamiyogaExplainBox from '~/components/mamiyoga/MamiyogaExplainBox.vue'
+import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
+
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     layout: 'mommiyoga',
@@ -17,10 +21,18 @@ export default {
         course_id:'',
         course_data:{},
         open_explain: false,
+
+        payed_or_not: false,
+
+        isAlert: false,
+        alertText: '',
+        alertBtn: '',
+        nextGo: '',
     }),
     components: {
         MamiyogaEveryCourse,
         MamiyogaExplainBox,
+        MamiyogaNewWindowAlertBox,
     },
     async mounted() {
         if (process.client) {
@@ -33,39 +45,56 @@ export default {
             }
             this.course_id = this.$route.params.id;
             this.course_data = this.courses.find(course => this.course_id == course.id);
-            // console.log(this.course_id)
         }
     },
     async beforeCreate() {
         if (process.client) {
-            // this.ui_config = await require('~/config/mommiyoga-config')
-            // this.is_ui_config_loaded = true;
-
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
-                window.alert("尚未登入帳號，請先前往登入～");
-                this.$router.push('/login');
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.isAlert = true
+                this.alertText = `${this.$t('desktop_not_login')}`
+                this.alertBtn = `${this.$t('member_article_ok')}`
+                this.nextGo = 'login'
             } else {
-                let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 
-                if (payed_or_not) {
+                if (this.payed_or_not) {
                     console.log("payed")
-                } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                } else if (this.user.free_trial_starting_time) {
+                    let open_time = parseInt(this.user.free_trial_starting_time)
                     let now = new Date();
                     let now_time = now.getTime();
                     let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
                     if(use_time > 7){ 
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/pay');
+                        if(this.course_id == '1'){
+
+                        } else {
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.isAlert = true
+                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                            this.alertBtn = `${this.$t('member_article_ok')}`
+                            this.nextGo = 'pay'
+                        }
+                    } else {
+                        if(this.course_id == '1' || this.course_data.trial){
+
+                        } else {
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.isAlert = true
+                            this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                            this.alertBtn = `${this.$t('member_article_ok')}`
+                            this.nextGo = 'pay'
+                        }
                     }
                 } else if(this.course_id == '1') {
                     
                 } else {
-                    console.log("not payed");
-                    window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
-                    this.$router.push('/pay');
+                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                    this.isAlert = true
+                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertBtn = `${this.$t('member_article_ok')}`
+                    this.nextGo = 'pay'
                 }
             }
         }
@@ -81,8 +110,58 @@ export default {
         },
         openExplainBox(){
             this.open_explain = true
-
-        }
+        },
+        clickPractice(){
+            if(this.payed_or_not){
+                sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/practice/${this.course_id}`)
+            } else {
+                if(this.user.free_trial_starting_time) {
+                    let open_time = parseInt(this.user.free_trial_starting_time)
+                    let now = new Date();
+                    let now_time = now.getTime();
+                    let use_time = (now_time - open_time)/86400000;
+                    if(use_time > 7){ 
+                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        this.isAlert = true
+                        this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
+                        this.alertBtn = `${this.$t('member_article_ok')}`
+                        this.nextGo = 'pay'
+                    } else {
+                        if(this.course_data.trial){
+                            sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
+                            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/practice/${this.course_id}`)
+                        } else {
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.isAlert = true
+                            this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                            this.alertBtn = `${this.$t('member_article_ok')}`
+                            this.nextGo = 'pay'
+                        }
+                    }
+                } else if(!this.user.free_trial_starting_time && this.course_data.trial) {
+                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                    this.isAlert = true
+                    this.alertText = `${this.$t('desktop_get_trial')}`
+                    this.alertBtn = `${this.$t('member_article_ok')}`
+                    this.nextGo = 'free-trial'
+                } else {
+                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                    this.isAlert = true
+                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertBtn = `${this.$t('member_article_ok')}`
+                    this.nextGo = 'pay'
+                }
+            }
+            
+        },
+        enterBox(i){
+            if(i == '0'){
+                this.isAlert = false
+            }else {
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
+            }
+        },
     }
 }
 </script>

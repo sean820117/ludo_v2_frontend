@@ -98,16 +98,16 @@ export default {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
                 if (this.payed_or_not) {
                     this.have_trial = true;
-                } else if (localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                    let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                } else if (this.user.free_trial_starting_time) {
+                    let open_time = parseInt(this.user.free_trial_starting_time)
                     let now = new Date();
                     let now_time = now.getTime();
                     let use_time = (now_time - open_time)/86400000;
-                    console.log(use_time)
+                    // console.log(use_time)
                     if(use_time > 7){
                         this.have_trial = false;   
-                        alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                        this.$router.push('/');
+                        // alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
+                        // this.$router.push('/');
                     }else {
                         this.have_trial = true;
                     }
@@ -125,47 +125,40 @@ export default {
             if(this.goCourse == '1'){
                 if(this.login_or_not){
                     this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
-                    // this.$router.push('/course/' + this.goCourse)
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.show_alert = true
                     this.alertText = '登入後即可解鎖本課程！'
                     this.alertBtn = `${this.$t('teach_button_ok')}`
                     this.nextGo = 'login'
-                    // alert('登入後即可解鎖本課程！')
-                    // this.$router.push('/login')
                 }
             } else{
-                if(this.is_trial&&this.have_trial || this.payed_or_not) {
-                    this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
-                } else if (!this.have_trial) {
-                    if(!this.login_or_not){
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                        this.show_alert = true
-                        this.alertText = `${this.$t('desktop_go_login')}`
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'login'
-                        // localStorage.redirect = '/menu'
-                        // alert('請先前往登入或註冊！')
-                        // this.$router.push('/login')
-                    } else {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                        this.show_alert = true
-                        this.alertText = `${this.$t('desktop_get_trial')}`
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'free-trial'
-                        // localStorage.redirect = '/menu'
-                        // alert('開通七天體驗即可開始使用！')
-                        // this.$router.push('/free-trial')
+                if(this.login_or_not){
+                    if(this.payed_or_not) {
+                        this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
+                    } else{
+                        if(this.is_trial && this.have_trial){
+                            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
+                        } else if(!this.have_trial && this.is_trial){
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.show_alert = true
+                            this.alertText = `${this.$t('desktop_get_trial')}`
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = 'free-trial'
+                        } else {
+                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                            this.show_alert = true
+                            this.alertText = '購買後即可觀看所有課程～'
+                            this.alertBtn = `${this.$t('teach_button_ok')}`
+                            this.nextGo = 'pay'
+                        }
                     }
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.show_alert = true
-                    this.alertText = '購買後即可觀看所有課程～'
+                    this.alertText = `${this.$t('desktop_go_login')}`
                     this.alertBtn = `${this.$t('teach_button_ok')}`
-                    this.nextGo = 'pay'
-                    // alert('購買後即可觀看所有課程～')
-                    // this.$router.push('/pay')
+                    this.nextGo = 'login'
                 }
             }
         },

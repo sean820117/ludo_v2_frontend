@@ -117,11 +117,13 @@ export default {
         max-width: 200px;
     }
     .contactus-big-btn {
-        max-width: 270px;
+        width: 100%;
+        /* max-width: 270px; */
     }
     .contactus-main {
         width: 20vw;
         max-width: 350px;
+        min-width: 260px;
     }
     .contactus-main-block {
         margin: 0 auto;

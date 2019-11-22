@@ -182,7 +182,7 @@
                 <div class="syllabus-desktop-title-block">
                     <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img.png" alt="">
                     <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_first_title')}}</h5>
-                    <p class="syllabus-intro-text" style="font-size: 25px;font-weight: 400;" v-html="$t('desktop_index_five_text')"></p>
+                    <p class="syllabus-intro-text" style="font-size: 19px;font-weight: 400;" v-html="$t('desktop_index_five_text')"></p>
                     <div class="info-desktop-red-btn" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
             </div>
@@ -269,7 +269,7 @@
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
             <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" 
-            @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
+            @closeResult="closeResult" :routine="routine.default[0]"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -367,7 +367,7 @@ export default {
                 document.getElementById('go_syllabus').classList.add('click-active');
             }
             
-            console.log(this.routine.default)
+            // console.log(this.routine.default)
             this.first_course = this.courses[0]
             this.experience_course = this.courses[12]
             // console.log(this.first_course)
@@ -390,18 +390,9 @@ export default {
             let login_or_not = await this.$checkLogin(this.$store);
             if (login_or_not == false) {
                 this.is_login = false
-                // window.alert("尚未登入帳號，請先前往登入～");
-                // this.$router.push('/login');
             } else {
                 this.is_login = true
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                // if (!payed_or_not) {
-                //     console.log("not payed");
-                //     window.alert("尚未開通課程，請先前往購買～");
-                //     this.$router.push('/pay');
-                // } else {
-                //     console.log("payed")
-                // }
             }
         }
     },
@@ -412,28 +403,21 @@ export default {
                 this.show_alert = true
                 this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
-                this.nextGo = 'login'
-                
-                // localStorage.redirect = '/syllabus'
-                // alert('請先前往登入或註冊')
-                // this.$router.push('/login')            
+                this.nextGo = 'login'       
             } else {
                 if(!this.payed_or_not) {
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined) {
-                        let open_time = parseInt(localStorage['when_is_free_trial_start'])
+                    if(this.user.free_trial_starting_time) {
+                        let open_time = parseInt(this.user.free_trial_starting_time)
                         let now = new Date();
                         let now_time = now.getTime();
                         let use_time = (now_time - open_time)/86400000;
-                        console.log(use_time)
                         if(use_time > 7){
                             this.have_trial = false;   
-                            // alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-                            // this.$router.push('/');
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
                             this.show_alert = true
                             this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
                             this.alertBtn = `${this.$t('teach_button_ok')}`
-                            this.nextGo = ''
+                            this.nextGo = 'pay'
                         }else {
                             this.have_trial = true;
                             this.start_build = true;
@@ -445,9 +429,6 @@ export default {
                         this.alertText = `${this.$t('desktop_get_trial')}`
                         this.alertBtn = `${this.$t('teach_button_ok')}`
                         this.nextGo = 'free-trial'
-                        // localStorage.redirect = '/syllabus'
-                        // alert('開通七天體驗後即可開始使用～')
-                        // this.$router.push('/free-trial')
                     }
                 } else {
                     this.have_trial = true;
@@ -458,7 +439,7 @@ export default {
         },
         selectFrequency(num){
             this.user_frequency = num
-            console.log(this.user_frequency)
+            // console.log(this.user_frequency)
             this.first_question = false
             this.second_question = true
             document.querySelector('#span-1').style.background = '#d1d1d1'
@@ -466,14 +447,14 @@ export default {
         },
         selectWant(num){
             this.user_want = num
-            console.log(this.user_want)
+            // console.log(this.user_want)
             this.second_question = false
             document.querySelector('#span-2').style.background = '#d1d1d1'
             document.querySelector('#span-3').style.background = '#707070'
         },
         selectQuestion(num){
             this.user_question = num
-            console.log(this.user_question)
+            // console.log(this.user_question)
             
             this.is_loading = true
             if(this.$mq === 'desktop') {
@@ -831,6 +812,7 @@ export default {
     .syllabus-desktop-title-block img {
         width: 50%;
         max-width: 350px;
+        min-width: 300px;
         margin-bottom: 2vh;
     }
     .syllabus-desktop-title {

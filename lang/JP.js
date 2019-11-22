@@ -131,6 +131,10 @@ export default {
   bmi_result_text_2: 'あなた専用のダイエットメニューはこちら！<br>TDEE計算機を試してみてね',
   bmi_result_btn: '基礎熱量計算機',
 
+  course_practice_label: '動き',
+  course_practice_btn: 'アップロード',
+  course_practice_remind_title: '',
+  course_tips_text:'tips',
   tdee_index_text_1: '基礎代謝率（BMR）と運動習慣により、計算式から1日のカロリー消費（TDEE）を導き出すことができます。 TDEEは、一日に必要なエネルギー量と運動量を把握するのに役立ちます。',
   tdee_index_text_2: 'TDEEを計算して、無料ヘルシーメニューとおすすめエクササイズをゲットしよう！',
   tdee_index_input_1: '年齢：',
@@ -232,7 +236,7 @@ export default {
 
   desktop_index_five_title: '「 エクササイズ日記 」',
   desktop_index_five_little: '毎日10分だけで、心と体をリフレッシュする！',
-  desktop_index_five_text: '針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！',
+  desktop_index_five_text: '',
   desktop_index_five_btn: 'あなただけのクラススケジュールをもらう',
   desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus-jp.png',
 
@@ -318,6 +322,8 @@ export default {
   desktop_syllabus_finish_title_02: '消費カロリー',
   desktop_syllabus_finish_title_2_result: 'kcal',
   
+  desktop_syllabus_finish_feedback: '結果発表',
+  desktop_syllabus_finish_btn_see_course: 'コースを見る',
   //媽咪知識
   desktop_info_1_title: '骨盆是產後恢復最重要的事',
   desktop_info_1_little: '生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？',

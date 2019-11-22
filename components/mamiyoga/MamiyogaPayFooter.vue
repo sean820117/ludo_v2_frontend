@@ -92,7 +92,7 @@ export default {
         width: 100vw;
         height: 100px;
         background: #FAFAFA;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         display: inline-flex;
         align-items: center;

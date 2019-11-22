@@ -57,9 +57,9 @@ export default {
     cursor: pointer;
 }
 .desktop-member-nav li.active-menu {
-    /* border-bottom: 1px solid #fff;
-    padding-bottom: 2px; */
-    color: #FF9898;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 2px;
+    /* color: #FF9898; */
 }
 .desktop-member-nav .member-line {
     height: 7px;

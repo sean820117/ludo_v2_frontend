@@ -16,11 +16,13 @@
                     {{$t('dedesktop_syllabus_experience_icon_6')}}
                 </div>
             </div>
-            <div id="input-video-container">
-                <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
+            <div id="input-video-container" v-show="switchMethod">
+                <!-- <div class="inputVideo-show-block"> -->
+                    <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
+                <!-- </div> -->
                 <div class="preview-img">
                     <!-- <div v-if="show_nam">{{ready_go}}</div> -->
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                    <img style="transform: scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
@@ -32,7 +34,7 @@
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_3')}}</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">
-                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
+                    <div class="video-process-bar" v-for="(pose,i) in routine.poses" :key="i">
                         <div class="video-process-bar-inside" :id="`video-process-bar-inside-${(i+1)}`"></div>
                     </div>
                 </div>
@@ -43,9 +45,9 @@
                         <div v-else @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>
-                <audio controls id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
-                <div class="course-video-container play" @click="switchVideo" :class="switchMethod ? 'small-method':''">
-                    <video playsinline id="course-video" :src="pose_video"  :class="switchMethod ? 'small-method':''"></video>
+                <audio controls autoplay id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
+                <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
+                    <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
                     <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
@@ -63,7 +65,7 @@
             <!-- 教學 -->
             <div v-if="!teach_finish" class="experience-teach">
                 <div class="preview-img people" id="people">
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
+                    <img style="transform:scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
                 <div class="repeat-bar green-bar" id="teach-bar">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
@@ -73,7 +75,7 @@
                     <div class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                 </div>
                 <div class="video-process-bar-block" id="teach-process" style="display:none">
-                    <div class="video-process-bar" v-for="(pose,i) in routine.default[0].poses" :key="i">
+                    <div class="video-process-bar" v-for="(pose,i) in routine.poses" :key="i">
                         <div class="video-process-bar-inside"></div>
                     </div>
                 </div>
@@ -190,13 +192,7 @@
         <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
         :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
-        <!-- 愛心進度條 -->
-        <div v-if="heart_loading" id="heart-loading">
-            <svg id="loading-icon" viewBox="0 0 32 29.6">
-                <path class="path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
-	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
-            </svg>
-        </div>
+        <mamiyoga-loading :loading="heart_loading"></mamiyoga-loading>
     </div>
 </template>
 
@@ -204,6 +200,7 @@
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue';
 import MamiyogaAssayVideo from '~/components/mamiyoga/MamiyogaAssayVideo.vue';
 import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
+import MamiyogaLoading from '~/components/mamiyoga/MamiyogaLoading.vue';
 import axios from '~/config/axios-config';
 import { mapMutations, mapGetters } from 'vuex';
 
@@ -212,6 +209,7 @@ export default {
         MamiyogaWindowAlertBox,
         MamiyogaAssayVideo,
         MamiyogaNewResultBlock,
+        MamiyogaLoading,
     },
     props:{
         routine: Object,
@@ -261,6 +259,7 @@ export default {
         pose_video: '',
 
         heart_loading: false,
+        retry_time:0,
         show_result: false,
         video_result: {},
         result_score: '43',
@@ -268,7 +267,7 @@ export default {
 
         current_pose_id:'',
 
-        switchMethod: false,
+        switchMethod: true,
         timeId: 0,
         playFirst: false,
     }),
@@ -289,7 +288,7 @@ export default {
         startReady(){
             if(this.teach_finish){
                 this.show_nam = true
-                this.switchMethod = true
+                // this.switchMethod = true
                 let id = setInterval(() => {
                     this.ready_go--
                     if(this.ready_go == 0){
@@ -305,7 +304,7 @@ export default {
             this.playVideo(0);
         },
         playVideo(i){
-            let poses = this.routine.default[0].poses;
+            let poses = this.routine.poses;
 
             if(poses[i].pose_brief != 'break') {    
                 this.heart_loading = true
@@ -316,7 +315,7 @@ export default {
                     this.current_pose_id = poses[i].pose_id
                     this.video_recorder.startRecording({
                         pose_id: `yoga_${this.current_pose_id}`,
-                        user_id: this.user.user_id,
+                        user_id: this.user.user_id || "guest",
                         language: 'zh-tw',
                     });
                 }
@@ -334,7 +333,7 @@ export default {
                     this.heart_loading = false
                     this.video_length = co_vid.duration
                     co_vid.play() 
-                    
+                    let processBar = document.querySelector(`#video-process-bar-inside-${(i+1)}`)
                     this.timeId = setInterval(() => {
                         let bar_percentage = co_vid.currentTime / this.video_length
                         // console.log(co_vid.currentTime)
@@ -364,7 +363,20 @@ export default {
                                 this.is_exhaleing = false
                             }
                         }
-                        document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (bar_percentage*100)+'%'; 
+                        if(this.$mq != 'desktop'){
+                            if(window.innerWidth >  window.innerHeight) {
+                                processBar.style.height = '100%';
+                                processBar.style.width =  (bar_percentage*100)+'%';
+                            } else {
+                                processBar.style.height =  (bar_percentage*100)+'%';
+                                processBar.style.width = '100%'; 
+                            }
+                        } else {
+                            processBar.style.height = '100%';
+                            processBar.style.width = (bar_percentage*100)+'%'; 
+                        }
+                        
+ 
                         if (bar_percentage == 1) {
                             this.show_inhale = false
                             this.show_exhale = false
@@ -393,8 +405,21 @@ export default {
                 let height = 0
                 let resting_time = poses[i].duration * 1000;
                 // this.pose_video = poses[i+1].pose_video
+                let processBar = document.querySelector(`#video-process-bar-inside-${(i+1)}`)
                 let id = setInterval(() => {
-                    document.querySelector(`#video-process-bar-inside-${(i+1)}`).style.height = (height)+'%'; 
+                    if(this.$mq != 'desktop'){
+                        if(window.innerWidth >  window.innerHeight) {
+                            processBar.style.height = '100%';
+                            processBar.style.width = (height)+'%';
+                        } else {
+                            processBar.style.height = (height)+'%';
+                            processBar.style.width = '100%'; 
+                        }
+                    } else {
+                        processBar.style.height = '100%';
+                        processBar.style.width = (height)+'%';
+                    }
+                    
                     if(height >= 100) {
                         rest.style.display = 'none';
                         if (poses[i+1]) {
@@ -439,25 +464,60 @@ export default {
                 // console.log(score)
                 // this.result_score = Math.floor(score)
                 // this.result_cal = (Math.floor(score))*2
-
-                this.video_result = await this.video_recorder.getDetailResult()
-                console.log(this.video_result)
-                if (this.video_result && !this.video_result.error_code) {
-                    let use_ai = this.routine.default[0].poses.find(pose => pose.pose_id == this.current_pose_id)
-                    for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
-                        for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
-                            this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                try {
+                    this.video_result = await this.video_recorder.getDetailResult()
+                    if (this.video_result && this.video_result.status == 200) {
+                        this.heart_loading = false;
+                        let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
+                        if (typeof this.video_result.reps_wrong_tags == "object") {
+                            for(var i =0; i< this.video_result.reps_wrong_tags.length; i++){
+                                if (typeof this.video_result.reps_wrong_tags[i] == "object") {
+                                    for(var j = 0; j<this.video_result.reps_wrong_tags[i].length; j++){
+                                        this.video_result.reps_wrong_tags[i][j] = use_ai.pose_tags[this.video_result.reps_wrong_tags[i][j]]
+                                    }
+                                } else {
+                                    this.video_result.reps_wrong_tags[i]= [use_ai.pose_tags[this.video_result.reps_wrong_tags[i]]]
+                                }
+                            } 
+                        } else {
+                            this.video_result.reps_wrong_tags = [use_ai.pose_tags[this.video_result.reps_wrong_tags]]
                         }
-                    } 
-                } else if(this.video_result.error_code && this.video_result.error_code == 204 || this.video_result.error_code == 400 || this.video_result.error_code == 500){
-                    this.video_result.score = 40         
-                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
-                } else {
+                    } else if(this.video_result.status == 102){
+                        this.heart_loading = true;
+                        let retryGetResult = this.newVideoUpload;
+                        this.retry_time += 1;
+                        if (this.retry_time > 30) {
+                            this.video_result.score = 0      
+                            this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
+                            this.heart_loading = false;
+                        } else {
+                            let  t = setTimeout(() => {
+                                retryGetResult();
+                                // clearTimeout(t);
+                            }, 3000); 
+                        }
+                        
+                    } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
+                        this.video_result.score = 0         
+                        this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
+                        this.heart_loading = false;
+                    } else {
+                        this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
+                        this.heart_loading = false;
+                        this.video_result = {}
+                        this.video_result.score = 0
+                        this.video_result.reps_wrong_tags = [['連線失敗，請稍後再試！']]
+                    }
+                    this.show_result = true
+                } catch (error) {
+                    this.$errorLogger(this.$router.path,'newVideoUpload',error.toString()+"list = "+this.video_recorder.getVideoList().toString());
+                    console.error('loading result error',error);
+                    this.heart_loading = false;
                     this.video_result = {}
-                    this.video_result.score = 40
+                    this.video_result.score = 0
                     this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.show_result = true
                 }
-                this.show_result = true
             }
         },
         changeArticle(){
@@ -519,7 +579,7 @@ export default {
             this.remind_3 = false;
             this.remind_4 = true;
             document.querySelector('#teach-bar').style.display = 'none';
-            document.querySelector('#teach-process').style.display = 'block';
+            document.querySelector('#teach-process').style.display = 'flex';
         },
         nextRemind4(){
             this.remind_4 = false;
@@ -550,10 +610,11 @@ export default {
 
 <style>
 #experience-page {
-    height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow: hidden;
 }
 #input-video-container {
-    height: 100vh;
+    min-height: -webkit-fill-available;
     overflow: hidden;
     background: #000;
 }
@@ -582,7 +643,8 @@ export default {
 }
 #inputVideo {
     transform: scaleX(-1);
-    height:100vh;
+    /* height:100vh; */
+    min-height: -webkit-fill-available;
 }
 #top-show {
     position: relative;
@@ -621,12 +683,12 @@ export default {
 #start-video.big-method{
     transition: .3s;
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     top: 0;
     left: 0;
 }
 #start-remind {
-    width: fit-content;
+    /* width: fit-content; */
     height: 40px;
     background: #C74F4F;
     color: #fff;
@@ -649,12 +711,13 @@ export default {
     border-style: solid;
     border-width: 0 5.5px 10px 5.5px;
     border-color: transparent transparent #C74F4F transparent;
-    top: -10px;
+    top: -8px;
+    left: calc(50% - 5px);
 }
 #show-course {
     z-index: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     position: fixed;
     top: 0;
     left: 0;
@@ -679,6 +742,8 @@ export default {
     background: none !important;
 }
 #course-video {
+    transform: rotate(90deg);
+    width: 100vh;
     transition: .5s;
 }
 #course-video.small-method {
@@ -686,7 +751,7 @@ export default {
     position: absolute;
     width: 140px;
     right: 1vw ;
-    top: 10vh;
+    top: 5vh;
 }
 .course-video-container.rest{
     display:none;
@@ -694,15 +759,28 @@ export default {
     color: #fff;
     font-size: 30px;
     font-weight: bold;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    min-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;
     align-items: center;
+    position: fixed;
+}
+.course-video-container.play {
+    /* min-width: 100vh; */
+    min-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: fixed;
+    top: 0;
+    left: 0; */
 }
 .course-video-container-icon {
     position: absolute;
     transform: rotate(90deg);
     top: 5vh;
-    left: 80vw;
+    right: 60vw;
 }
 .exit-practice {
     display: none;
@@ -719,7 +797,7 @@ export default {
     cursor: pointer;
     transform: rotate(90deg);
 }
-#show-course-video,#course-video,#course-video-1,
+#show-course-video,#course-video-1,
 #course-video-2, #course-video-3,#course-video-rest {
     transform: rotate(90deg);
     width: 100vh;
@@ -757,7 +835,7 @@ export default {
     padding-top: 0vw;
 }
 .animate-top {
-    padding-top: 0vw; 
+    padding-top: 0; 
 }
 .animate-bottom {
     padding-top: 50vw;
@@ -775,14 +853,18 @@ export default {
     position: absolute;
     left: 5vw;
     top: 5vh;
+    width: 12px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .video-process-bar {
-    width: 12px;
-    height: 16vh;
     background: rgb(255, 255, 255,.5);
     z-index: 101;
     position: relative;
-    margin: 2vh 0;
+    margin: 1vh 0;
+    flex:1;
     /* left: 5vw; */
     border-radius: 20px;
 }
@@ -799,7 +881,7 @@ export default {
 } */
 .count-over {
     background: linear-gradient(90deg,#000,rgba(0,0,0,0));
-    height: 100vh;
+    min-height: -webkit-fill-available;
     width: 45%;
     position: absolute;
     z-index: 101;
@@ -826,7 +908,7 @@ export default {
 }
 .experience-teach {
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     background: rgba(0, 0, 0, .5);
     position: fixed;
     top: 0;
@@ -986,7 +1068,7 @@ export default {
 }
 .loading-bar {
     width: 100vw;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     background-color: #000;
     position: fixed;
     top: 0;
@@ -1042,18 +1124,6 @@ export default {
 #teach-bar,#teach-show-btn {
     display: none;
 }
-#heart-loading {
-    position: fixed;
-    width: 100%;
-    min-height: 100vh;
-    z-index: 1000;
-    background: rgba(0,0,0,.5);
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 #loading-icon {
     width: 100px;
     transform: rotate(90deg);
@@ -1072,7 +1142,7 @@ export default {
 @media (min-width: 769px) {
     #experience-page {
         width: 100vw;
-        height: 100vh;
+        min-height: -webkit-fill-available;
         position: fixed;
         top: 0;
         left: 0;
@@ -1087,6 +1157,7 @@ export default {
         height: auto;
     }
     #start-remind {
+        width: fit-content;
         transform: rotate(0deg);
         position: absolute;
         left: calc(5vw + 40px);
@@ -1112,7 +1183,7 @@ export default {
     .preview-img {
         transform: rotate(0deg);
         width: 100vw;
-        height: 100vh;
+        min-height: -webkit-fill-available;
         top: 0;
         left: 0;
     }
@@ -1172,17 +1243,25 @@ export default {
         padding-top: 0vh;
     }
     .animate-top {
-        padding-top: 0vh; 
+        padding-top: 0; 
     }
     .animate-bottom {
         padding-top: 55vh;
     }
     .video-process-bar-block {
-        transform: rotate(-90deg);
+        /* transform: rotate(-90deg);
         bottom: -40vh;
         top: unset;
         left: unset;
-        z-index: 1000;
+        z-index: 1000; */
+        height: 12px;
+        width: 90%;
+        flex-direction: unset;
+        top: unset;
+        bottom: 10vh;
+    }
+    .video-process-bar {
+        margin: 0 1vh;
     }
     .count-over {
         height: 45%;
@@ -1260,8 +1339,8 @@ export default {
         transform: rotate(0deg);
     }
     #course-video {
-        position: absolute;
-        top: 10vh;
+        /* position: absolute;
+        top: 10vh; */
     }
     .course-video-container.rest{
         background: #24798f;
@@ -1272,6 +1351,274 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+    }
+}
+@media (max-width: 768px) and (orientation: portrait) {
+    /* #input-video-container {
+        min-height: 100vh;
+    } */
+    #inputVideo {
+        transform: scaleX(-1);
+        /* min-height: unset; */
+        width: 90vw;
+        margin: 0 5vw 0;
+        /* position: absolute; */
+        /* top: 24vh; */
+        /* right: -7vh; */
+    }
+}
+@media (max-width: 768px) and (orientation:landscape) {
+    #experience-page {
+        width: 100vw;
+        min-height: -webkit-fill-available;
+        /* min-height: 80vh; */
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: #000;
+    }
+    #input-video-container {
+        background: #000;
+        display: flex;
+        min-height: 100vh;
+    }
+    #inputVideo {
+        width: 80vw;
+        height: auto;
+        margin: 0 auto;
+        /* min-height: 100vh; */
+    }
+    #start-remind {
+        width: fit-content;
+        transform: rotate(0deg);
+        position: absolute;
+        left: calc(0vw + 40px);
+        top: calc(-15vh + 140px);
+    }
+    #start-video {
+        width: 90px;
+        height: 50px;
+        transform: rotate(0deg);
+        right: unset;
+        left: 5vw;
+        cursor: pointer;
+    }
+    #go-back-btn {
+        left: 5vw;
+        transform: rotate(0deg);
+        top: 65vh;
+        cursor: pointer;
+    }
+    #go-back-btn img {
+        width: 60px;
+    }
+    .preview-img {
+        transform: rotate(0deg);
+        width: 100vw;
+        min-height: -webkit-fill-available;
+        top: 0;
+        left: 0;
+    }
+    .preview-img img {
+        height: 70vh;
+    }
+    .course-video-container {
+        /* width: 100%;
+        height: 100%; */
+        background: #000;
+        display: flex;
+        align-items: center;
+    }
+    .course-video-container.rest{
+        display:none;
+        background: #24798f;
+        color: #fff;
+        font-size: 62px;
+        font-weight: bold;
+    }
+    .course-video-container-icon {
+        transform: rotate(0deg);
+        top: 5vh;
+        left: 5vw;
+    }
+    #show-course-video, #course-video, #course-video-1, #course-video-2, #course-video-3, #course-video-rest {
+        width: 100vw;
+        transform: rotate(0deg);
+    }
+    #course-video.small-method {
+        border-radius: 5px;
+        position: absolute;
+        left: 5vw;
+        right: unset;
+        width: 200px;
+    }
+    .exit-practice.small-method {
+        top: 5vh;
+        bottom: unset;
+        right: 5vw;
+        transform: rotate(0deg);
+    }
+    #course-video-rest {
+        justify-content: center;
+    }
+    .repeat-bar {
+        transform: rotate(0deg);
+        height: 55vh;
+        top: 5vh;
+        left: 5vw;
+        padding-top: 55vh;
+    }
+    .green-bar {
+        padding-top: 15%;
+    }
+    .red-bar {
+        padding-top: 0vh;
+    }
+    .animate-top {
+        padding-top: 0; 
+    }
+    .animate-bottom {
+        padding-top: 15%;
+    }
+    .video-process-bar-block {
+        /* transform: rotate(-90deg);
+        bottom: -40vh;
+        top: unset;
+        left: unset;
+        z-index: 1000; */
+        height: 12px;
+        width: 90%;
+        flex-direction: unset;
+        top: unset;
+        bottom: 10vh;
+    }
+    .video-process-bar {
+        margin: 0 1vh;
+    }
+    .count-over {
+        height: 45%;
+        width: 100%;
+        bottom: 0;
+        background: linear-gradient(0deg,#000,rgba(0, 0, 0, 0));
+    }
+    .count-over-btn {
+        width: 150px;
+        height: 60px;
+    }
+    .count-over-all-btn {
+        width: 360px;
+        transform: rotate(0deg);
+        left: unset;
+        right: 10vw;
+        bottom: 5vh;
+    }
+    .experience-teach {
+        min-height:100%;
+        /* height: 100vh; */
+    }
+    .experience-select-camera {
+        width: 70%;
+        max-width: 750px;
+        height: auto;
+        background: #FFFAF0;
+        border-radius: 15px;
+        padding-top: 30px;
+        transform: rotate(0deg);
+    }
+    .experience-select-camera-title {
+        font-size: 30px;
+    }
+    .experience-select-camera-not {
+        font-size: 15px;
+    }
+    .experience-teach-remind {
+        transform: rotate(0deg);
+    }
+    .experience-teach-remind.first {
+        top: 25vh;
+        left: 5vw;
+        right: unset;
+    }
+    .experience-teach-remind.second {
+        left: 60vw;
+        bottom: unset;
+        z-index: 17;
+    }
+    .experience-teach-remind.third {
+        left: 17vw;
+        top: unset;
+    }
+    .experience-teach-remind.four {
+        bottom: 20vh;
+        right: 19vw;
+    }
+    .experience-teach-remind.five {
+        bottom: 26vh;
+        right: 11vw;
+    }
+    .experience-teach-remind-title {
+        font-size:  15px;
+    }
+    .experience-teach-remind p {
+        font-size: 21px;
+    }
+    .experience-teach-remind-red-btn,.experience-teach-remind-not-red-btn {
+        width: 100px;
+        font-size: unset;
+    }
+    #loading-icon {
+        width: 100px;
+        transform: rotate(0deg);
+    }
+    #course-video {
+        /* position: absolute;
+        top: 10vh; */
+    }
+    .course-video-container.rest{
+        background: #24798f;
+    }
+    .course-video-container.play {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #experience-page .info-desktop-red-btn {
+        margin-top: 10px;
+    }
+    .experience-select-camera-not,.experience-select-camera-text {
+        margin-bottom: 15px;
+    }
+
+}
+@media (min-width: 769px) and (max-width: 900px) and (orientation:landscape) {
+    .green-bar {
+        padding-top: 15%;
+    }
+    .animate-bottom {
+        padding-top: 15%;
+    }
+    .animate-top{
+        padding-top: 0;
+    }
+    .repeat-bar {
+        height: 55vh;
+        top: 10vh;
+    }
+    #go-back-btn {
+        top: 70vh;
+    }
+    .preview-img img {
+        height: 70vh;
+    }
+    .experience-teach-remind.four {
+        bottom: 20vh;
+    }
+    .experience-teach-remind.five {
+        bottom: 25vh;
     }
 }
 </style>

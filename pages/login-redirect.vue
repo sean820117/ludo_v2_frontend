@@ -18,10 +18,9 @@ export default {
         let payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
         console.log(localStorage.redirect + 'is_login:' + payed_or_not)
         if(!payed_or_not) {
-            if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
+            if(this.user.free_trial_starting_time){
                 this.$router.push(localStorage.redirect)
             } else {
-                console.log(this.$i18n.locale)
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/free-trial`)
             }     
         } else {

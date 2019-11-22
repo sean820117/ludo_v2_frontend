@@ -2,7 +2,7 @@
     <div>
         <div class="index-contain" v-if="!is_practice" style="min-height:100vh;overflow:visible;">
              <div class="background-video-contain" >
-                <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;"></div>
+                <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;" :style="{minHeight: $mq == 'desktop' ? '1000px':''}"></div>
                 <video muted loop autoplay playsinline class="background-video">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-new-title-4.mp4" type="video/mp4">      
                 </video>
@@ -15,14 +15,15 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop' ? '14px':''}">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':'',fontSize: $i18n.locale == 'JP'  && $mq != 'desktop'? '14px':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                <div v-if="have_trial || payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                <div v-else class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
                     <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
                 </div> -->
             </div>
-            <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
+            <!-- <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
                 <div class="index-login-block-inside">
                     <p class="index-login-block-text">{{$t('desktop_login_LUDO')}}</p>
                     <div class="login-column">
@@ -62,13 +63,14 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap">
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
-                    <div class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
-            
+                    <div v-if="have_trial || payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                    <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                    
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
                         <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
@@ -115,25 +117,25 @@
                     <div class="course-info-block-1" v-if="$mq == 'desktop'">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" v-html="$t('desktop_index_second_title_1')"></h3>
-                            <h6 class="index-article-little-title" v-html="$t('desktop_index_second_title_2')"></h6>
+                            <h6 class="index-article-little-title" v-html="$t('desktop_index_second_title_2')" :style="{fontSize: '22px'}"></h6>
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
                             <h6 class="index-article-little-title" style="margin-top: 50px;">{{$t('desktop_index_second_text_1')}}</h6>
                              <p class="index-article-text" v-html="$t('desktop_index_second_text_2')"></p>
                             <div style="position: absolute;top: 15vh; right: 0;">
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_1')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_2')}}</p>
                                 </div>
                             
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_3')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 4vh;">
+                                <div style="display:flex;align-items:center;margin:0 0 40px;">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_4')}}</p>
                                 </div>
@@ -142,15 +144,23 @@
                         <img id="mother-childen-img" style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" :src="$t('desktop_index_second_img')" alt="">
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
-                    <div class="course-info-block-2">
-                        <div class="course-info-content-2">
-                            <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
-                            <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
-                            <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
-                            <!-- <router-link to="/information" style="text-decoration:none;">
-                                <p class="index-article-text have-finger">了解更多&nbsp;</p>
-                            </router-link> -->
-                            <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                    <div class="course-info-block-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'100vh'}">
+                        <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px'}">
+                            <div :style="{display: $i18n.locale == 'JP' ? 'none':''}">
+                                <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
+                                <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
+                                <!-- <router-link to="/information" style="text-decoration:none;">
+                                    <p class="index-article-text have-finger">了解更多&nbsp;</p>
+                                </router-link> -->
+                                <div v-if="$mq != 'desktop'">
+                                    <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                </div>
+                                <div v-else>
+                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                    <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
+                                </div>
+                            </div>
                         </div>
                         <div class="index-article-use-video">
                             <div class="course-info-block-mirror">
@@ -181,10 +191,10 @@
                             <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
                         </div>
                     </div>
-                    <div class="course-info-block-3" v-if="$mq !== 'desktop'">
+                    <div class="course-info-block-3" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;" :style="{fontSize: $i18n.locale == 'JP'?'30px':''}">{{$t('desktop_index_five_title')}}</p>
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;" :style="{fontSize: $i18n.locale == 'JP'?'13px':''}">{{$t('desktop_index_five_little')}}</h6>
-                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，按照主題式課表練習</p>
+                        <p class="index-article-text" style="margin-bottom: 10px;text-align:center;">針對媽咪設計的專屬功能，<br>按照主題式課表練習讓你達成目標更容易！</p>
                         <div class="intro-wrap-block-new-five-curriculum">
                             <no-ssr><mamiyoga-carousel-curriculum></mamiyoga-carousel-curriculum></no-ssr>
                         </div>
@@ -322,98 +332,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-content-3" v-if="$mq == 'desktop'">
+                    <div class="course-info-content-3" v-if="$mq == 'desktop' && $i18n.locale != 'JP'">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
                             <h4 class="index-article-out-container-text" style="color:#24798F;text-shadow: none;">{{$t('desktop_index_six_title')}}</h4>
-                            <div class="about-course-series-data-outside-block">
-                                <div class="about-course-series-data-block open" >
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_1')}}</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getRectifys" 
-                                    :key="i" @click="toggleClassA(i)" :class="show_listA[i]">
-                                        <div class="about-course-data-num">單元{{i+1}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listA[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">舒壓安眠</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getAlleviates" 
-                                    :key="i" @click="toggleClassB(i)" :class="show_listB[i]">
-                                        <div class="about-course-data-num">單元{{i+4}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listB[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">美體塑身</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBeautys" 
-                                    :key="i" @click="toggleClassD(i)" :class="show_listD[i]">
-                                        <div class="about-course-data-num">單元{{i+6}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listD[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                                <div class="about-course-series-data-block open">
-                                    <div class="about-course-data-block">
-                                        <div class="about-course-data-title series">調和心靈</div>
-                                        <hr class="about-course-data-line" >
-                                    </div>
-                                    <div class="about-course-data-block" v-for="(course,i) in getBlends" 
-                                    :key="i" @click="toggleClassC(i)" :class="show_listC[i]">
-                                        <div class="about-course-data-num">單元{{i+10}}</div>
-                                        <div class="about-course-data-title" v-html="course.title"></div>
-                                        <div class="about-course-data-circle" :class="show_listC[i]">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                        <div class="about-course-data-content">
-                                            <li  v-for="(pose,j) in course.poses" :key="j"
-                                            >{{(i+1)+'-'+(j+1)+'.&nbsp;'+pose.pose_brief}}</li>
-                                        </div>
-                                        <hr class="about-course-data-line">
-                                    </div>
-                                </div>
-                            </div>
+                            <mamiyoga-desktop-course-outline :course_data="course_data"></mamiyoga-desktop-course-outline>
                         </div>
                     </div>
                     <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
@@ -429,8 +352,8 @@
                     </div>
                     <div v-if="$mq !== 'desktop'">
                         <div>
-                            <h4 class="intro-wrap-block-title" style="color:#24798F;" v-html="$t('desktop_index_nine_text')"></h4>
-                            <img style="width: 90%;display: block;margin: 20px auto 50px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-9-1.png" alt="">
+                            <h4 class="intro-wrap-block-title" style="color:#24798F;margin: 0 auto;width: fit-content;" v-html="$t('desktop_index_nine_text')"></h4>
+                            <img style="width: 90%;display: block;margin: 20px auto 50px;" :src="$t('desktop_index_nine_img')" alt="">
                         </div>
                         <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;">
                         <div style="margin-top: 20px;">
@@ -481,7 +404,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="min-height: 80vh;background: #FCFCFC;padding-top: 13vh;">
+                        <div style="background: #FCFCFC;padding-top: 150px;padding-bottom: 100px;">
                             <div style="display:flex;justify-content: space-between;width: 90%;max-width: 1366px;margin: 0 auto;">
                                 <div>
                                     <h5 class="index-article-out-container-text why-to-select-title">{{$t('desktop_index_nine_title')}}</h5>
@@ -489,14 +412,14 @@
                                     <button  @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)" class="index-article-out-btn mirror-btn go-info" style="margin: 5vh 0;" :style="{fontSize: $i18n.locale == 'JP' && $mq == 'desktop' ? '14px':''}">{{$t('desktop_index_four_btn')}} </button>
                                 </div>
                                 <div style="display: flex;flex-direction: column;align-items: flex-end;">
-                                    <img style="height: 50vh;" :src="$t('desktop_index_nine_img')" alt="">
+                                    <img style="width: 100%;" :src="$t('desktop_index_nine_img')" alt="">
                                     <p class="index-article-text about-course-teach" style="font-size: 1em;width: fit-content;margin-right: 30px;">*Mamiyoga動態捕捉科技，精準判斷0死角</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="course-info-block-5">
-                        <p class="intro-wrap-block-title last-title">{{$t('desktop_index_ten_title')}}</p>
+                        <h4 class="intro-wrap-block-title last-title" style="color: #24798f;">{{$t('desktop_index_ten_title')}}</h4>
                         <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
                     </div>
                     <div class="course-info-block-6">
@@ -504,7 +427,7 @@
                         <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
                     </div>  
                     <!-- 三段式常見問題 -->
-                    <div class="intro-wrap-block-new-second" v-if="$mq !== 'desktop'">
+                    <div class="intro-wrap-block-new-second" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
                         <div class="about-course-data-wrap qa" :class="show_qa">
                             <div class="about-course-data-block" @click="toggleQA()">
@@ -530,7 +453,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-7" v-else>
+                    <div class="course-info-block-7" v-if="$mq == 'desktop' && $i18n.locale != 'JP'">
                          <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;">常見問題</h4>
                          <div style="display: flex;align-items:baseline;justify-content: space-evenly;max-width: 1366px;margin: 0 auto;">
                             <div class="about-course-data-wrap qa long-style">
@@ -615,7 +538,7 @@
 
         <!-- 開啟體驗魔境 -->
         <mamiyoga-new-practice-video-block v-if="is_practice" @goBack="goBack()" 
-        @closeResult="closeResult" :routine="routine"></mamiyoga-new-practice-video-block>
+        @closeResult="closeResult" :routine="routine.default[1]"></mamiyoga-new-practice-video-block>
 
         <!-- 電腦版提示(已關閉) -->
         <mamiyoga-window-alert-box v-if="$mq == 'desktop' && !is_desktop" class="desktop-window">
@@ -678,6 +601,7 @@ import MamiyogaCarouselCurriculum from '~/components/mamiyoga/MamiyogaCarouselCu
 import MamiyogaCourseHelpCarousel from '~/components/mamiyoga/MamiyogaCourseHelpCarousel.vue'
 import MamiyogaCarouselCommentIns from '~/components/mamiyoga/MamiyogaCarouselCommentIns.vue'
 import MamiyogaNewPracticeVideoBlock from '~/components/mamiyoga/MamiyogaNewPracticeVideoBlock.vue'
+import MamiyogaDesktopCourseOutline from '~/components/mamiyoga/MamiyogaDesktopCourseOutline.vue'
 import Vue2TouchEvents from 'vue2-touch-events'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config'
@@ -723,8 +647,6 @@ export default {
         ],
         single_plan: {},
         four_person_program: {},
-        go_to_where: '/signup',
-        check_log: '/login',
 
         is_android: false,
         show_android_box: false,
@@ -748,6 +670,8 @@ export default {
 
         is_practice: false,
         routine:[],
+
+        have_trial: false,
     }),
     components: {
         MamiyogaHeader,
@@ -764,7 +688,8 @@ export default {
         MamiyogaCarouselCurriculum,
         MamiyogaCourseHelpCarousel,
         MamiyogaCarouselCommentIns,
-        MamiyogaNewPracticeVideoBlock
+        MamiyogaNewPracticeVideoBlock,
+        MamiyogaDesktopCourseOutline,
     },
     props: {
         title: String,
@@ -773,15 +698,11 @@ export default {
         if(process.client) {
             this.login_or_not = await this.$checkLogin(this.$store);
             if (this.login_or_not == false) {
-                this.go_to_where = '/signup'
-                this.check_log = '/login'
+
             } else {
-                this.go_to_where = '/pay'
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if (!this.payed_or_not) {
-                    this.check_log = '/pay'
-                } else {
-                    this.check_log = '/menu'
+                if(this.user.free_trial_starting_time) {
+                    this.have_trial = true
                 }
             }
             if(this.$mq === 'desktop'){
@@ -791,10 +712,17 @@ export default {
             window.onscroll = this.fixNav;
             this.ui_config = await require('~/config/mamiyoga-config')
             this.is_ui_config_loaded = true;
-            if(this.$i18n.locale == 'JP'){
-                this.course_data = await require('~/config/mamiyoga-course-jp')
-                this.routine = await require('~/config/routine-jp');
-            } else {
+
+            try {
+                if(this.$i18n.locale == 'JP'){
+                    this.course_data = await require('~/config/mamiyoga-course-jp')
+                    this.routine = await require('~/config/routine-jp');
+                } else {
+                    this.course_data = await require('~/config/mamiyoga-course')
+                    this.routine = await require('~/config/routine');
+                }
+            } catch (error) {
+                console.error(error)
                 this.course_data = await require('~/config/mamiyoga-course')
                 this.routine = await require('~/config/routine');
             }
@@ -817,6 +745,9 @@ export default {
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
             
+            window.axios = axios;
+
+            // console.log(this.user.free_trial_starting_time)
         }
     },
     beforeDestroy(){
@@ -951,9 +882,6 @@ export default {
             window.alert('已複製連結')
             this.$scrollTo('#wrap','start')
         },
-        clickToPay(){
-            this.$router.push(this.go_to_where)
-        },
         async subscriber(){
             // let send_data = {email:this.android_mail,name: 'Android用戶'}
             if(this.android_mail == '') {
@@ -1039,26 +967,9 @@ export default {
                 this.alertText = `${this.$t('desktop_go_login')}`
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'
-                // alert('請先前往登入或註冊')
-                // this.$router.push('/login')
             } else {
-                if(!this.payed_or_not){
-                    if(localStorage['when_is_free_trial_start'] != '' && localStorage['when_is_free_trial_start'] != undefined){
-                        // alert('已開通體驗，快跟著麻美老師一起動起來～')
-                        this.show_alert = true
-                        this.alertText = '已開通體驗，快跟著麻美老師一起動起來～'
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = '0'
-                    } else {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
-                        this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)
-                    }
-                } else {
-                    this.show_alert = true
-                    this.alertText = '已購買課程，快跟著麻美老師一起動起來～'
-                    this.alertBtn = `${this.$t('teach_button_ok')}`
-                    this.nextGo = '0'
-                }
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/`
+                this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/' +this.$i18n.locale}/free-trial`)  
             }
         },
         enterBox(i){
@@ -1543,7 +1454,7 @@ export default {
 }
 
 .index-article-out-btn {
-    width: 60%;
+    width: 65%;
     border-style: none;
     margin: 30px auto 0;
     display: block;
@@ -2282,6 +2193,7 @@ export default {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        min-height: 1000px;
     }
     .background-video,.mamiyoga-intro-title,.mamiyoga-godown-btn {
         display: none;
@@ -2296,7 +2208,7 @@ export default {
         background: #fff;
         border-radius: 20px;
         position: absolute;
-        top: 30vh;
+        top: 300px;
         right: 10vw;
     }
     .index-login-block-inside {
@@ -2315,7 +2227,7 @@ export default {
 
     #mamiyoga-index-title{
         width: fit-content;
-        margin: 20vh 10vw 0;
+        margin: 300px 10vw 0;
         font-size: 54px;
         font-weight: bold;
         line-height: 75px;
@@ -2350,12 +2262,12 @@ export default {
         width: 40%;
     }
     .course-info-block-1{
-        min-height: 100vh;
+        min-height: 1000px;
         background: linear-gradient(180deg,#FFFDF7, white);
         position: relative;
     }
     .course-info-content-1,.course-info-content-2,.course-info-block-4,
-    .course-info-block-5,.course-info-block-6,.course-info-block-7 {
+    .course-info-block-5,.course-info-block-7 {
         padding-top: 10vh;
     }
     .course-info-content-1,.course-info-content-2,.course-info-block-mirror,
@@ -2364,8 +2276,7 @@ export default {
         position: relative;
         margin: 0 auto;
     }
-    .course-info-block-2,.course-info-content-2,
-    .course-info-block-4 {
+    .course-info-block-2,.course-info-block-4 {
         min-height: 100vh;
     }
     .course-info-content-3 {
@@ -2378,12 +2289,13 @@ export default {
         position: relative;
     }
     .course-info-block-5 {
-        /* min-height: 110vh; */
+        min-height: 750px;
         padding-bottom: 10vh;
     }
     .course-info-block-6 {
         margin: 0;
-        min-height: 90vh;
+        min-height: 850px;
+        padding-top: 100px;
         background: #FCFCFC;
     }
     .course-flex-block-mirror {
@@ -2417,9 +2329,6 @@ export default {
     }
     .about-course-teach-img {
         width: 80%;
-        position: absolute;
-        right: 3vw;
-        bottom: 5vh;
         max-width: 900px;
     }
     .index-article-text.have-finger {
@@ -2535,12 +2444,12 @@ export default {
     }
     .index-article-out-container-text.new-mami {
         text-align: center;
-        position: unset;
+        z-index: 1;
     }
     .index-article-little-title.new-mami {
         width: fit-content;
         font-size: 25px;
-        margin: 5vh 0 2vh 5vw;
+        margin: 150px 0 2vh 5vw;
     }
     .index-article-text.new-mami {
         font-size: 25px;
@@ -2556,6 +2465,7 @@ export default {
     }
     .go-new-mamimura {
         height: 40vh;
+        min-height: 300px;
         background-position: -30px 10px;
     }
     .index-official-certification {
@@ -2684,7 +2594,7 @@ export default {
     }
     /* 底部面板 */
     .mamiyoga-intro-wrap {
-        padding-bottom: 200px;
+        padding-bottom: 100px;
     }
     .index-new-footer {
         overflow: unset;
@@ -2692,7 +2602,8 @@ export default {
     }
     .index-new-footer img {
         opacity: 1;
-        width: 430px;
+        width: 35%;
+        max-width: 400px;
         position: absolute;
         bottom: 0;
         left: 10%;
@@ -2702,10 +2613,10 @@ export default {
         align-items: center;
     }
     .index-new-footer-btn-text {
-        font-size: 40px;
+        font-size: 35px;
     }
     .index-new-footer-btn {
-        font-size: 30px;
+        font-size: 25px;
         padding: 15px 20px;
         border-radius: 50px;
     }
@@ -2763,13 +2674,14 @@ export default {
 }
 @media (min-width: 769px) and (max-width: 1300px) {
     .about-course-teach-img{
-        width: 55% !important;
+        width: 50% !important;
     }
 }
 @media (max-width: 1300px) {
     #mother-childen-img {
         width: 40% !important;
         right: 5vw !important;
+        min-width: 500px;
     }
 }
 @media (min-width: 480px) and (max-width: 600px) {
@@ -2789,12 +2701,6 @@ export default {
     }
 }
 @media (min-width: 769px) and (max-width: 860px) {
-    #mamiyoga-index-title {
-        width: 45%;
-    }
-    #mamiyoga-index-title-des,#mamiyoga-index-title-eng {
-        width: 37%;
-    }
     .index-footer-title {
         font-size: 1.3em;
         width: 39%;

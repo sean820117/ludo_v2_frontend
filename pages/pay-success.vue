@@ -3,8 +3,8 @@
         <mamiyoga-pay-header></mamiyoga-pay-header>
         <div class="pay-success-content">
             <p>已將付款交易通知寄至您的信箱！<br>付款成功後將寄送序號至您的手機！</p>
-            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-order-success.png" alt="">
-            <div class="member-big-btn" style="margin-top:7vh;background:#FF9898;" @click="$router.push('/activation-code')">兌換序號</div>
+            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-success-img.png" alt="">
+            <div class="member-big-btn" style="margin-top:7vh;background:#FF9898;max-width: 270px;" @click="$router.push('/activation-code')">兌換序號</div>
         </div>
         
     </div>

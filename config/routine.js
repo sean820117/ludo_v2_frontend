@@ -42,4 +42,30 @@ export default [
             },
         ],
     },
+    {
+        title: '骨盆矯正',
+        duration: '7分鐘',
+        poses:[
+            {
+                pose_brief:courses_data[12].poses[2].pose_brief,
+                pose_video:courses_data[12].poses[2].B,
+                ai_preview_img:courses_data[12].poses[2].ai_preview_img,
+                pose_ai: courses_data[12].poses[2].pose_ai,
+                pose_id: courses_data[12].poses[2].input_id,
+                pose_tags: courses_data[12].poses[2].remind_tags,
+                inhale: courses_data[12].poses[2].inhale,
+                exhale: courses_data[12].poses[2].exhale
+            },
+            {
+                pose_brief:courses_data[12].poses[2].pose_brief,
+                pose_video:courses_data[12].poses[2].C,
+                ai_preview_img:courses_data[12].poses[2].ai_preview_img,
+                pose_ai: false,
+                pose_id: '',
+                pose_tags: courses_data[12].poses[2].remind_tags,
+                inhale: [],
+                exhale: [],
+            }
+        ]
+    }
 ]

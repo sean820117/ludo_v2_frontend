@@ -130,7 +130,7 @@ export default {
   course_pose_btn: '動作教學',
 
   course_practice_label: '動作',
-  course_practice_btn: '練習記錄',
+  course_practice_btn: '練習',
   course_practice_remind_title: '建議使用',
 
   //bmi
@@ -360,6 +360,8 @@ export default {
   desktop_syllabus_finish_title_02: '消耗卡路里',
   desktop_syllabus_finish_title_2_result: '卡',
 
+  desktop_syllabus_finish_feedback: '助教回饋',
+  desktop_syllabus_finish_btn_see_course: '觀看課程',
   //媽咪知識
   desktop_info_1_title: '骨盆是產後恢復最重要的事',
   desktop_info_1_little: '生完小孩後感到身體不斷發熱嗎？<br>產後一週還是覺得骨盆依然鬆弛嗎？',

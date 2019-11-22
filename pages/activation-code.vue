@@ -30,8 +30,8 @@
                         <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
                     </div>
                     <div class="member-bottom-btn" style="margin-top:10vh;position:unset;" v-if="$mq === 'desktop'">
-                        <div class="member-big-btn" style="width:270px;background:#24798F;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('member_text_btn_2')}}</div>
-                        <div class="member-big-btn member-big-btn-center" style="width:270px;margin-top:1vh;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/member`)">{{$t('member_title')}}</div>
+                        <div class="member-big-btn" style="width:100%;background:#24798F;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('member_text_btn_2')}}</div>
+                        <div class="member-big-btn member-big-btn-center" style="width:100%;margin-top:1vh;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/member`)">{{$t('member_title')}}</div>
                     </div>
                 </div>
                 <div class="serialno-main" v-if="$mq === 'desktop'">
@@ -40,8 +40,8 @@
                     <input id="desktop-exchange-input" name="exchange-input" type="text" :placeholder="$t('member_activation_tag_2_input')" v-model="input_serialno">
                     <div class="reg-text2" :style="{color: hint_color, textAlign: 'left', height: '20px'}">{{hint}}</div>
                     <div class="member-bottom-btn" style="margin-top:3vh;position:unset;" v-if="$mq === 'desktop'">
-                        <div class="member-big-btn" style="background:;" v-if="is_not_payed" :style="{width:'270px',backgroundColor: input_serialno !== '' ? '#24798F':'#D1D1D1'}" @click="input_serialno !== '' ? checkInputSerialno() : ''">{{$t('member_activation_tag_2_btn')}}</div>
-                        <div class="member-big-btn" style="background:;" v-if="!is_not_payed" :style="{width:'270px',backgroundColor: '#D1D1D1'}">{{$t('member_activation_tag_2_btn')}}</div>
+                        <div class="member-big-btn" style="background:;" v-if="is_not_payed" :style="{width:'100%',backgroundColor: input_serialno !== '' ? '#24798F':'#D1D1D1'}" @click="input_serialno !== '' ? checkInputSerialno() : ''">{{$t('member_activation_tag_2_btn')}}</div>
+                        <div class="member-big-btn" style="background:;" v-if="!is_not_payed" :style="{width:'100%',backgroundColor: '#D1D1D1'}">{{$t('member_activation_tag_2_btn')}}</div>
                     </div>
                 </div>
             </div>
@@ -383,13 +383,14 @@ export default {
         align-items: flex-start;
         justify-content: space-between;
         width: 65%;
-        max-width: 700px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 100px 0;
     }
     .serialno-main {
-        width: 270px;
+        width: 45%;
         margin: 0;
+        min-width: 240px;
     }
     .serialno-number-block {
         margin: 2vh 0 0;
