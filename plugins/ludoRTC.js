@@ -39,11 +39,11 @@ class LudoRTC {
         this.getResult = this.getResult.bind(this);
         this.dc = null;
         this.video_list = [];
-        let default_width = 480;
-        let default_height = 360;
+        let default_width = 640;
+        let default_height = 480;
         // if (window.screen.orientation.angle == 0 && window.screen.orientation.type == 'portrait-primary') {
         let mal = window.matchMedia('(orientation: portrait)')
-        if(!mal.matches){
+        if(mal.matches){
             let temp = default_width;
             default_width = default_height;
             default_height = temp;
