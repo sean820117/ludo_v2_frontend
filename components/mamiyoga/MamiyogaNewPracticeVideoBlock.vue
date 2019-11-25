@@ -1155,6 +1155,7 @@ export default {
     #inputVideo {
         width: 100vw;
         height: auto;
+        max-height: 100vh;
     }
     #start-remind {
         width: fit-content;
