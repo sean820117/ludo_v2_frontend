@@ -696,6 +696,7 @@ export default {
     },
     async mounted(){
         if(process.client) {
+
             this.login_or_not = await this.$checkLogin(this.$store);
             if (this.login_or_not == false) {
 
@@ -744,10 +745,6 @@ export default {
             this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
             this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             this.select_plan = this.single_plan.price
-            
-            window.axios = axios;
-
-            // console.log(this.user.free_trial_starting_time)
         }
     },
     beforeDestroy(){
