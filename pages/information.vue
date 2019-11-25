@@ -104,6 +104,16 @@
             <h4 class="intro-wrap-block-title" style="margin:0;">獨家文章</h4>
             <p class="intro-wrap-block-text">LUDO身體科學誌</p>
             <div class="article-flex-box">
+                <div class="medium-article-block-outside" v-for="(post,i) in m_data" :key="i" >
+                    <div class="intro-wrap-block-five-every" @click="goOtherPage(post.post_url)">
+                        <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                        <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                        <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    </div>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div>
+            <!-- <div class="article-flex-box">
                 <div class="intro-wrap-block-five-every" v-for="(post,i) in up_data" :key="i" @click="goOtherPage(post.post_url)">
                     <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
                     <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
@@ -118,7 +128,7 @@
                     <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
                     <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="article-flex-box">
                 <a href="https://link.medium.com/X8MbmFeEaZ" style="text-decoration:none;">
                     <div class="intro-wrap-block-five-every">
@@ -268,6 +278,7 @@ export default {
 
             const { data } = await axios.get("/apis/mamiyoga-get-all-medium-articles")
             this.m_data = data
+            console.log(this.m_data)
             this.getArticleUrl()
             this.up_data = data.slice(0,2)
             this.down_data = data.slice(2,4)
@@ -378,7 +389,7 @@ export default {
                 // console.log(this.m_data[i].post_content)
                 let el = document.createElement('html')
                 el.innerHTML = this.m_data[i].post_content
-                console.log(el)
+                // console.log(el)
                 let a_tag = el.getElementsByTagName("a")
                 url_array = Array.from(a_tag)
                 let article_url = url_array.find(tag => tag.innerText == this.m_data[i].post_title)
@@ -454,9 +465,9 @@ export default {
 }
 .intro-wrap-block-five {
     width: 100%;
-    height: 750px;
+    /* height: 750px; */
     padding: 20px 0;
-    height: 1050px;
+    /* height: 1050px; */
 }
 .intro-wrap-block-five-every {
     width: 95%;
@@ -487,9 +498,10 @@ export default {
     font-weight: 300;
 }
 .intro-wrap-block-five-every-next {
-    position: absolute;
+    /* position: absolute;
     right: -10%;
-    top: 50%;
+    top: 50%; */
+    margin-left: 20px;
     height: 15px;
     cursor: pointer;
 }
@@ -695,6 +707,12 @@ export default {
     border-radius: 25px;
     margin: 0 auto 30px;
 }
+.medium-article-block-outside {
+    /* width: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 @media(min-width: 769px) {
     .info-header {
         background: #F8F7F8;
@@ -761,6 +779,7 @@ export default {
     }
     .info-page .article-flex-box {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-evenly;
         max-width: 1366px;
@@ -771,7 +790,7 @@ export default {
     }
     .intro-wrap-block-five-every {
         width: 85%;
-        min-width: 340px;
+        min-width: 270px;
         max-width: 350px;
     }
     .info-page .info-wrap-block-first.desktop-two {
@@ -888,7 +907,10 @@ export default {
     .info-white-article-tag {
         margin: 0 auto 50px;
     }
-
+    .medium-article-block-outside {
+        width: 45%;
+        justify-content: center;
+    }
 
 }
 @media (min-width: 769px) and (max-width: 860px) {
