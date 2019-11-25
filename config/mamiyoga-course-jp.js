@@ -2,7 +2,7 @@ module.exports = [
     {
         id: '1',
         title: '骨盤矯正ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit01.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit01jp.png',
         tags: ['rectify'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-1.jpg',
@@ -54,7 +54,7 @@ module.exports = [
     {
         id: '2',
         title: '寝ながらできる<br>疲れた体のケアヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit02.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit02jp.png',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-2.jpg',
@@ -106,7 +106,7 @@ module.exports = [
     {
         id: '3',
         title: '呼吸を深めるヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03jp.png',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-3.jpg',
@@ -146,7 +146,7 @@ module.exports = [
     {
         id: '4',
         title: 'リンパの流れを<br>よくするストレッチ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit04.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit04jp.png',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-4.jpg',
@@ -185,7 +185,7 @@ module.exports = [
     {
         id: '5',
         title: 'リフレッシュヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit05.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit05jp.png',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-5.jpg',
@@ -224,7 +224,7 @@ module.exports = [
     {
         id: '6',
         title: '産後の体を内側から<br>ケアするヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit06.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit06jp.png',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-6.jpg',
@@ -263,7 +263,7 @@ module.exports = [
     {
         id: '7',
         title: '産後太り解消ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit07.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit07jp.png',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-7.jpg',
@@ -315,7 +315,7 @@ module.exports = [
     {
         id: '8',
         title: 'くびれづくりヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit08.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit08jp.png',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-8.jpg',
@@ -355,7 +355,7 @@ module.exports = [
     {
         id: '9',
         title: '産後の腹筋ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit09.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit09jp.png',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-9.jpg',
@@ -407,7 +407,7 @@ module.exports = [
     {
         id: '10',
         title: '産後の下半身ダイエットヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit10.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit10jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-10.jpg',
@@ -449,7 +449,7 @@ module.exports = [
     {
         id: '11',
         title: '癒やしの呼吸法',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit11.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit11jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-11.jpg',
@@ -488,7 +488,7 @@ module.exports = [
     {
         id: '12',
         title: '快眠ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit12.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit12jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-12.jpg',
@@ -527,7 +527,7 @@ module.exports = [
     {
         id: '13',
         title: 'ストレス解消ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit13.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit13jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-13.jpg',
@@ -582,7 +582,7 @@ module.exports = [
     {
         id: '14',
         title: '自律神経を整えるヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit14.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit14jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-14.jpg',

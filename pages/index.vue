@@ -171,7 +171,7 @@
                                 <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
                                 <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
                                 <div class="course-flex-block-mirror">
-                                    <img class="mirror-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png" alt="">
+                                    <img class="mirror-img" :src="$t('desktop_index_four_img')" alt="">
                                     <div class="course-flex-block-mirror-2">
                                         <p class="index-article-out-text index-mirror-text" v-html="$t('desktop_index_four_text')" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px !important':''}"></p>
                                         <div class="index-article-out-icon-block">

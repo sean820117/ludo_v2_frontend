@@ -82,7 +82,7 @@ export default {
                         } else {
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                             this.isAlert = true
-                            this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                            this.alertText = `${this.$t('desktop_course_buy')}`
                             this.alertBtn = `${this.$t('member_article_ok')}`
                             this.nextGo = 'pay'
                         }
@@ -92,7 +92,7 @@ export default {
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.isAlert = true
-                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertText = `${this.$t('desktop_course_buy')}`
                     this.alertBtn = `${this.$t('member_article_ok')}`
                     this.nextGo = 'pay'
                 }
@@ -134,7 +134,7 @@ export default {
                         } else {
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                             this.isAlert = true
-                            this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                            this.alertText = `${this.$t('desktop_course_buy')}`
                             this.alertBtn = `${this.$t('member_article_ok')}`
                             this.nextGo = 'pay'
                         }
@@ -148,7 +148,7 @@ export default {
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.isAlert = true
-                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertText = `${this.$t('desktop_course_buy')}`
                     this.alertBtn = `${this.$t('member_article_ok')}`
                     this.nextGo = 'pay'
                 }

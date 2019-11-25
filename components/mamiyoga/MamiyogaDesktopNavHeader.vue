@@ -15,14 +15,19 @@
                 {{$t('desktop_header_btn_1')}}
             </div>
             <div v-else style="width: 106px;"></div>
-            <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push('/login')">{{$t('desktop_signup_n_login')}}</div>
+            <div v-if="!login_or_not" :style="{background: bgColor === '#24798f' ? '#fff':'#24798F',color: bgColor === '#24798f' ? '#24798f':'#fff', border: bgColor ==='#24798f' ? '2px #fff solid':'2px #24798f solid'}" class="desktop-header-go-mami" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/login`)">{{$t('desktop_signup_n_login')}}</div>
             <img v-else class="desktop-header-user" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-header-user.png" alt="">
-            <div class="desktop-header-user-menu">
-                <div class="desktop-header-user-menu-block">
+            <div  v-if="$i18n.locale == 'zh-TW'" class="desktop-header-user-menu">
+                <div  class="desktop-header-user-menu-block">
                     <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('desktop_header_user_1')}}</li>
                     <hr class="desktop-header-user-menu-line">
                     <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_user_2')}}</li>
                     <hr class="desktop-header-user-menu-line">
+                    <li @click="logout">{{$t('desktop_header_user_3')}}</li>
+                </div>
+            </div>
+            <div v-else  class="desktop-header-user-menu" style="bottom: -80px;">
+                <div  class="desktop-header-user-menu-block-jp">
                     <li @click="logout">{{$t('desktop_header_user_3')}}</li>
                 </div>
             </div>
@@ -156,7 +161,7 @@ export default {
     justify-content: flex-end;
     z-index: 999;
 }
-.desktop-header-user-menu-block {
+.desktop-header-user-menu-block,.desktop-header-user-menu-block-jp {
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -175,7 +180,18 @@ export default {
     top: 63px;
     right: 26px;
 }
-.desktop-header-user-menu-block li {
+.desktop-header-user-menu-block-jp::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 6px 10px 6px;
+    border-color: transparent transparent #fff transparent;
+    top:150px;
+    right: 26px;
+}
+.desktop-header-user-menu-block li,.desktop-header-user-menu-block-jp li {
     list-style: none;
     margin: 10px 0;
     cursor: pointer;

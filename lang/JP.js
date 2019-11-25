@@ -92,9 +92,17 @@ export default {
     about_four_content: 'もっと広い女性向け：<br><br>日々の生活の中で、自分でも気づかないうちに溜まった疲れや、ストレスを、このプログラムを通してリフレッシュしてほしいと思います。ヨガは心と体を繋げ、自分に自信を与えてくれます。<br>より自分らしく、幸せに生きていけるためのスパイスだとも言えます。<br>自分のライフスタイルの中にこのヨガを取り入れて、心の安定や、自信のつくボディメイク、それぞれの自分に合ったヨガライフを見つけてほしいと思います。',
 
 
+    course_little_title_1: 'このコースについて',
+    course_little_title_2: 'このポーズについて',
+    course_little_text: '動き',
+    course_pose_btn: 'ポーズのやり方',
+    course_every_pose: 'このコースに含まれているポーズ',
 
-  course_little_text: '動き',
-
+    new_course_block_ad: '自分に合った専属スケジュールを作ってみよう！',
+    new_course_title: 'コース',
+    new_course_block_menu: 'メニュー',
+    new_course_block_next: '次のコース',
+    new_course_block_last: '前のコース',
 
       //bmi
   bmi_header_label_1: 'BMI計算機',
@@ -234,6 +242,7 @@ export default {
   desktop_index_four_list_2: '専門的な分析',
   desktop_index_four_list_3: '練習記録',
   desktop_index_four_btn: '今すぐ無料体験レッスン',
+  desktop_index_four_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1-jp.png',
 
   desktop_index_five_title: '「 エクササイズ日記 」',
   desktop_index_five_little: '毎日10分だけで、心と体をリフレッシュする！',
@@ -314,6 +323,7 @@ export default {
   dedesktop_syllabus_experience_icon_6: '練習しましょう！',
   dedesktop_syllabus_experience_icon_7: '休憩時間',
   dedesktop_syllabus_experience_exit_btn: '閉じる',
+  dedesktop_syllabus_close_btn: '練習終了',
 
   desktop_syllabus_finish_btn_1: 'アドバイスを受ける',
   desktop_syllabus_finish_btn_2: '他の練習',
@@ -367,7 +377,7 @@ export default {
   desktop_course_all_course: '全部表示する',
   desktop_course_ad: '科學化訓練讓健康事半功倍',
   desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
-  desktop_course_buy: '這堂是付費課程，請先前往付款才能觀看此課程喔！',
+  desktop_course_buy: 'ここまでのトライヤルアカウント、どうでしたか？アップグレードしたらこのコースがみれますよ★',
 
 
   //付款pay

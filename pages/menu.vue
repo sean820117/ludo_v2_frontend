@@ -51,7 +51,7 @@
             <div class="menu-desktop-top-block">
                 <div class="menu-desktop-top-block-title">
                     <h5 v-if="$i18n.locale != 'JP'">單元一、骨盆矯正瑜珈</h5>
-                    <h5 v-else>骨盤矯正ヨガ</h5>
+                    <h5 v-else>コース1、骨盤矯正ヨガ</h5>
                     <p v-if="$i18n.locale != 'JP'">大概是產後一個月，就可以慢慢開始矯正骨盆。可以消除腰部周圍附著脂肪、讓新陳代謝提升，這些都有非常顯著的減肥效果喔！</p>
                     <p v-else>骨盤を正しい位置に調整し、ウエストまわりに脂肪をつきにくくしてくれます。気になるおしり周りや太ももを美しく整え、美しいボディラインを手に入れることも。</p>
                     <div class="info-desktop-red-btn" @click="startDefaultCourse()">{{$t('desktop_course_first_btn')}}</div>
@@ -101,7 +101,7 @@
                     <div class="menu-desktop-alleviates" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
                         <div class="menu-desktop-alleviates-1"></div>
                         <div class="menu-desktop-alleviates-2">
-                            <p>科學化訓練讓健康事半功倍</p>
+                            <p :style="{fontSize: $i18n.locale == 'JP' ? '13px':'17px'}">{{$t('new_course_block_ad')}}</p>
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img-2.png" alt="">
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                     <div class="menu-desktop-alleviates" v-if="show_blends" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/syllabus`)">
                         <div class="menu-desktop-alleviates-1"></div>
                         <div class="menu-desktop-alleviates-2">
-                            <p>科學化訓練讓健康事半功倍</p>
+                            <p :style="{fontSize: $i18n.locale == 'JP' ? '13px':'17px'}">{{$t('new_course_block_ad')}}</p>
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-alleviates-img-2.png" alt="">
                         </div>
                     </div>
@@ -510,7 +510,7 @@ export default {
                                 }else{
                                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                                     this.show_alert = true
-                                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                                    this.alertText = `${this.$t('desktop_course_buy')}`
                                     this.alertBtn = `${this.$t('member_article_ok')}`
                                     this.nextGo = 'pay'
                                 }
@@ -532,7 +532,7 @@ export default {
                                 } else{
                                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                                     this.show_alert = true
-                                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                                    this.alertText = `${this.$t('desktop_course_buy')}`
                                     this.alertBtn = `${this.$t('member_article_ok')}`
                                     this.nextGo = 'pay'
                                 }
@@ -580,7 +580,7 @@ export default {
             } else {
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                 this.show_alert = true
-                this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                this.alertText = `${this.$t('desktop_course_buy')}`
                 this.alertBtn = `${this.$t('member_article_ok')}`
                 this.nextGo = 'pay'
             }
@@ -644,7 +644,7 @@ export default {
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.show_alert = true
-                    this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                    this.alertText = `${this.$t('desktop_course_buy')}`
                     this.alertBtn = `${this.$t('member_article_ok')}`
                     this.nextGo = 'pay'
                 }

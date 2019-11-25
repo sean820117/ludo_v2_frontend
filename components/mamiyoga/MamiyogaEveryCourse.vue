@@ -13,7 +13,7 @@
                 <iframe v-if="is_switched" :src="getJpVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
             <div class="course-bookmark">
-                <img :src="getChapterFlag" alt="">
+                <img style="width: 30px;" :src="getChapterFlag" alt="">
             </div>
         </div>
         <!-- <div class="mamiyoga-course-middle">

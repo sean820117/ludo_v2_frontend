@@ -41,7 +41,7 @@
                 <div v-if="count_over" class="count-over">
                     <div class="count-over-all-btn">
                         <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
-                        <div v-if="!open_camera" @click="closeResult" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">結束練習</div>
+                        <div v-if="!open_camera" @click="closeResult" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_close_btn')}}</div>
                         <div v-else @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>

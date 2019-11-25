@@ -128,10 +128,17 @@ export default {
   course_little_title_2: '動作簡介',
   course_little_text: '個動作',
   course_pose_btn: '動作教學',
+  course_every_pose: '動作片段',
 
   course_practice_label: '動作',
   course_practice_btn: '練習',
   course_practice_remind_title: '建議使用',
+
+  new_course_block_ad: '科學化訓練讓健康事半功倍',
+  new_course_title: '單元',
+  new_course_block_menu: '單元目錄',
+  new_course_block_next: '下一單元',
+  new_course_block_last: '上一單元',
 
   //bmi
   bmi_header_label_1: 'BMI值計算機',
@@ -272,6 +279,7 @@ export default {
   desktop_index_four_list_2: '專業分析',
   desktop_index_four_list_3: '練習記錄',
   desktop_index_four_btn: '立即免費體驗',
+  desktop_index_four_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png',
 
   desktop_index_five_title: '「 孕動日記 」',
   desktop_index_five_little: '每天十分鐘，讓心情跟身體重新開機！',
@@ -352,6 +360,7 @@ export default {
   dedesktop_syllabus_experience_icon_6: '開始練習吧！',
   dedesktop_syllabus_experience_icon_7: '休息時間',
   dedesktop_syllabus_experience_exit_btn: '離開',
+  dedesktop_syllabus_close_btn: '結束練習',
 
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
@@ -496,5 +505,7 @@ export default {
   ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
   ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
   ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
+
+
 
 }
