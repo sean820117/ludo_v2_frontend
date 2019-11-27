@@ -157,7 +157,7 @@
                             <p class="syllabus-desktop-title" style="text-align: left;font-weight: 600;font-size: 15px;">{{routine.default[0].duration}}</p>
                         </div>
                         <div class="syllabus-mobile-result-again" @click="rePractice">
-                            再次練習
+                            {{$t('dedesktop_syllabus_experience_icon_4')}}
                         </div>
                     </div>
                     <div class="syllabus-mobile-result-box" style="background: #24798f;">
@@ -247,7 +247,7 @@
                             <div class="syllabus-desktop-arrangement-result-box">
                                 <p class="syllabus-desktop-title" style="margin:0;text-align: left;">{{routine.default[0].title}}</p>
                                 <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
-                                <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">再次練習</div>
+                                <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
                                 <p style="font-size: 25px; margin-bottom: 25px;">{{$t('desktop_syllabus_finish_title_01')}}</p>

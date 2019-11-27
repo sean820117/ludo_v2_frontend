@@ -283,7 +283,7 @@ export default {
                     } else if(!this.course_data.trial) {
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                         this.show_alert = true
-                        this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                        this.alertText = `${this.$t('desktop_course_buy')}`
                         this.alertBtn = `${this.$t('teach_button_ok')}`
                         this.nextGo = 'pay'
                     }
@@ -298,7 +298,7 @@ export default {
                         console.log("not payed");
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                         this.show_alert = true
-                        this.alertText = '這堂是付費課程，請先前往付款才能觀看此課程喔！'
+                        this.alertText = `${this.$t('desktop_course_buy')}`
                         this.alertBtn = `${this.$t('teach_button_ok')}`
                         this.nextGo = 'pay'
                         // window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");

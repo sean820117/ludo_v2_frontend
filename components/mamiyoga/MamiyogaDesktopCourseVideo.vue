@@ -3,20 +3,20 @@
         <div class="current-course-video-inside">
             <div class="current-course-video-path" style="justify-content: space-between;position: relative;height: 30px;">
                 <div class="current-course-video-path path">
-                    <div @click="closeVideo"> 課程影片 > </div>
+                    <div @click="closeVideo"> {{$t('desktop_header_menu_2')}} > </div>
                     <div @click="goSeries(currentCourse.tags)">{{`${getSeriesName} >`}}</div>
-                    <div @click="openCourseVideo" :style="{fontWeight: switchPose ? 'unset':'bolder'}">{{`單元${currentCourse.id}、${currentCourse.title}`}}</div>
+                    <div @click="openCourseVideo" :style="{fontWeight: switchPose ? 'unset':'bolder'}">{{`${$t('new_course_title')}${currentCourse.id}、${currentCourse.title}`}}</div>
                     <div v-if="switchPose" :style="{fontWeight: switchPose ? 'bolder':''}"> > {{poseTitle}}</div>
                 </div>
                 <div v-if="!showMenu" class="current-course-video-menu-btn" @click="showMenu = true">
-                    單元目錄
+                    {{$t('new_course_block_menu')}}
                 </div>
                 <div class="current-course-video-menu" v-else>
                     <img @click="showMenu = false" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="">
                     <div class="other-course-menu">
                         <div class="other-course-menu-series" :class="show_series[0]">
                             <div @click="toggleSeries(0)">
-                                <div class="other-course-menu-series-title">矯正疼痛</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_1')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[0]">
                                     <span></span>
                                     <span></span>
@@ -25,13 +25,13 @@
                             </div>
                             <div>
                                 <div class="all-course-data" v-for="course in getRectifys" :key="course.id" @click="openOtherCourseVideo(course.id)">
-                                    <div class="other-course-title">單元{{course.id}}、{{course.title}}</div> 
+                                    <div class="other-course-title">{{$t('new_course_title')}}{{course.id}}、{{course.title}}</div> 
                                 </div>
                             </div>
                         </div>
                         <div class="other-course-menu-series" :class="show_series[1]">
                             <div @click="toggleSeries(1)">
-                                <div class="other-course-menu-series-title">舒壓安眠</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_2')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[1]">
                                     <span></span>
                                     <span></span>
@@ -40,13 +40,13 @@
                             </div>
                             <div>
                                 <div class="all-course-data" v-for="course in getAlleviates" :key="course.id" @click="openOtherCourseVideo(course.id)">
-                                    <div class="other-course-title">單元{{course.id}}、{{course.title}}</div> 
+                                    <div class="other-course-title">{{$t('new_course_title')}}{{course.id}}、{{course.title}}</div> 
                                 </div>
                             </div>
                         </div>
                         <div class="other-course-menu-series" :class="show_series[2]">
                             <div @click="toggleSeries(2)">
-                                <div class="other-course-menu-series-title">美體塑身</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_3')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[2]">
                                     <span></span>
                                     <span></span>
@@ -55,13 +55,13 @@
                             </div>
                             <div>
                                 <div class="all-course-data" v-for="course in getBeautys" :key="course.id" @click="openOtherCourseVideo(course.id)">
-                                    <div class="other-course-title">單元{{course.id}}、{{course.title}}</div> 
+                                    <div class="other-course-title">{{$t('new_course_title')}}{{course.id}}、{{course.title}}</div> 
                                 </div>
                             </div>
                         </div>
                         <div class="other-course-menu-series" :class="show_series[3]">
                             <div @click="toggleSeries(3)">
-                                <div class="other-course-menu-series-title">調和心靈</div>
+                                <div class="other-course-menu-series-title">{{$t('desktop_index_six_list_title_4')}}</div>
                                 <div class="other-course-data-circle series" :class="show_series[3]">
                                     <span></span>
                                     <span></span>
@@ -70,20 +70,20 @@
                             </div>
                             <div>
                                 <div class="all-course-data" v-for="course in getBlends" :key="course.id" @click="openOtherCourseVideo(course.id)">
-                                    <div class="other-course-title">單元{{course.id}}、{{course.title}}</div> 
+                                    <div class="other-course-title">{{$t('new_course_title')}}{{course.id}}、{{course.title}}</div> 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="display: flex;align-items: flex-start;justify-content: space-between;">
+            <div style="display: flex;align-items: flex-start;justify-content: space-between;margin-top: 25px;">
                 <div id="current-course-video">
                     <!-- <iframe src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
                 </div>
                 <div style="width: 25%;">
                     <div class="current-course-data">
-                        <h6>{{switchPose ? '步驟說明':'課程簡介'}}</h6>
+                        <h6>{{switchPose ? $t('course_tips_text'):$t('course_little_title_1')}}</h6>
                         <div id="course-info">
                             <p v-if="!switchPose" v-html="`${currentCourse.course_introduction}`"></p>
                             <div v-else style="display: unset;">
@@ -95,14 +95,14 @@
                         <!-- <p>大概是產後一個月，就可以慢慢開始矯正骨盆。除此之外，矯正骨盆的歪斜還有另外一項很棒的效果哦！那就是可以讓腰部周圍較難附著脂肪，讓新陳代謝向上，這些都有非常顯著的減肥效果喔！我們一起好好努力，來把骨盆矯正到最佳狀況吧！</p> -->
                     </div>
                     <div class="current-course-data" style="margin-top: 25px;">
-                        <h6>動作片段</h6>
+                        <h6>{{$t('course_every_pose')}}</h6>
                         <div>
                             <div class="current-little-course-pose" v-for="(pose,i) in currentCourse.poses" :key="i" @click="openPoseVideo(pose,i)">
                                 <div class="current-little-course-pose-preview" :style="{backgroundImage: `url(${pose.ai_preview_img})`}"></div>
                                 <div class="current-little-course-pose-title">
                                     <div style="display: flex;margin-bottom: 4px;">
-                                        <p>動作{{i+1}}</p>
-                                        <div class="have-ai-tag" v-if="pose.pose_ai">自拍魔鏡</div>
+                                        <p>{{$t('course_practice_label')}}{{i+1}}</p>
+                                        <div class="have-ai-tag" v-if="pose.pose_ai">{{$t('desktop_index_four_only_title')}}</div>
                                     </div>
                                     <p>{{pose.pose_brief}}</p>
                                 </div>
@@ -112,16 +112,16 @@
                                 <div class="current-little-course-pose-title">
                                     <div style="display: flex;margin-bottom: 4px;">
                                         <p>{{getSeriesName}}</p>
-                                        <div class="have-ai-tag" v-if="currentCourse.ai_teacher">自拍魔鏡</div>
+                                        <div class="have-ai-tag" v-if="currentCourse.ai_teacher">{{$t('desktop_index_four_only_title')}}</div>
                                     </div>
-                                    <p>單元{{currentCourse.id}}、{{currentCourse.title}}</p>
+                                    <p>{{$t('new_course_title')}}{{currentCourse.id}}、{{currentCourse.title}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div v-if="!switchPose" class="current-course-data next-n-last">
-                        <div @click="openNextVideo(-1)">上一單元</div>
-                        <div @click="openNextVideo(1)">下一單元</div>
+                        <div @click="openNextVideo(-1)">{{$t('new_course_block_last')}}</div>
+                        <div @click="openNextVideo(1)">{{$t('new_course_block_next')}}</div>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@ export default {
                 iframe.appendChild(vid)
             }
             this.$emit('update:switchPose',true)
-            this.$emit('update:poseTitle',`動作${index+1}、${pose.pose_brief}`)
+            this.$emit('update:poseTitle',`${this.$t('course_practice_label')}${index+1}、${pose.pose_brief}`)
             this.$emit('update:poseDes',pose.pose_description)
         },
         openNextVideo(n){
@@ -241,13 +241,13 @@ export default {
         getSeriesName(){
             if(this.currentCourse.tags){
                 if(this.currentCourse.tags == 'rectify') {
-                    return '矯正疼痛'
+                    return this.$t('desktop_index_six_list_title_1')
                 } else if(this.currentCourse.tags == 'alleviate') {
-                    return '舒壓安眠'
+                    return this.$t('desktop_index_six_list_title_2')
                 } else if(this.currentCourse.tags == 'beauty') {
-                    return '美體塑身'
+                    return this.$t('desktop_index_six_list_title_3')
                 } else if(this.currentCourse.tags == 'blend') {
-                    return '調和心靈'
+                    return this.$t('desktop_index_six_list_title_4')
                 }
                 
             }
@@ -297,6 +297,8 @@ export default {
     z-index: 100;
     background: black;
     padding-top: 3vh;
+    overflow-y: auto;
+    padding-bottom: 120px;
 }
 #current-course-video {
     /* display: none; */
@@ -319,6 +321,7 @@ export default {
 }
 .current-course-video-path.path div {
     cursor: pointer;
+    font-size: 15px;
 }
 .current-course-video-menu-btn {
     border: 1px solid #fff;
@@ -383,6 +386,7 @@ export default {
 #course-info p {
     color: #FFFFFF;
     font-size: 15px;
+    width: 80%;
 }
 .current-little-course-pose {
     display: flex;

@@ -46,7 +46,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="reg-text2" style="margin-top:30px;">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
+                <div v-if="$i18n.locale == 'zh-TW'" class="reg-text2" style="margin-top:30px;">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
+                <div v-else class="reg-text2" style="margin-top:30px;text-align: center;width: 67%;">{{$t('desktop_signup_bottom')}}</div>
                 <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
                     <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('signup')">{{$t('desktop_signup_btn_1')}}</button>
                 </div>
@@ -82,7 +83,8 @@
                     <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
                         <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('signup')">{{$t('desktop_signup_btn_1')}}</button>
                     </div>
-                     <div class="reg-text2">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
+                    <div v-if="$i18n.locale == 'zh-TW'" class="reg-text2">註冊即同意<a style="color:#8F8F8F" href="/privacy">隱私政策</a>及<a style="color:#8F8F8F" href="/agreement">用戶協議</a></div>
+                    <div v-else style="text-align: center;width: 67%;" class="reg-text2">{{$t('desktop_signup_bottom')}}</div>
                 </form>
                 <div class="signup-three-flex-box"> 
                     <div class="reg-text2" style="width:67vw;max-width: 320px;font-size:13px;text-align:left;margin:1vh 0 2vh;color:#24798F;">{{$t('desktop_signup_btn_text')}}</div>

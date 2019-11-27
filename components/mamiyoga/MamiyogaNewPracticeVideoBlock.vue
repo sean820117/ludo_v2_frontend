@@ -27,10 +27,10 @@
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
-                <div v-if="show_inhale" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''"  :style="{display: switchMethod ? 'none':''}">
+                <div v-if="show_inhale && $i18n.locale != 'zh-TW'" class="repeat-bar green-bar" :class="is_inhaleing ? 'animate-top':''"  :style="{display: switchMethod ? 'none':'',}">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_2')}}</div>
                 </div>
-                <div v-if="show_exhale" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''" :style="{display: switchMethod ? 'none':''}">
+                <div v-if="show_exhale && $i18n.locale != 'zh-TW'" class="repeat-bar red-bar" :class="is_exhaleing ? 'animate-bottom':''" :style="{display: switchMethod ? 'none':''}">
                     <div class="repeat-bar-text">{{$t('dedesktop_syllabus_experience_icon_3')}}</div>
                 </div>
                 <div v-if="!count_over" class="video-process-bar-block">
@@ -41,14 +41,14 @@
                 <div v-if="count_over" class="count-over">
                     <div class="count-over-all-btn">
                         <div @click="replay" class="count-over-btn" style="border: 2px solid #fff;">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
-                        <div v-if="!open_camera" @click="closeResult" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">結束練習</div>
+                        <div v-if="!open_camera" @click="closeResult" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_close_btn')}}</div>
                         <div v-else @click="newVideoUpload" class="count-over-btn" style="border: 2px #24798F solid;background:#24798F;">{{$t('dedesktop_syllabus_experience_icon_5')}}</div>
                     </div>
                 </div>
                 <audio controls autoplay id="course-bgm" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_BGM.mp3"></audio>
                 <div class="course-video-container play" :class="switchMethod ? 'small-method':''">
                     <video playsinline id="course-video" :src="pose_video"  @click="switchVideo"  :class="switchMethod ? 'small-method':''"></video>
-                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">離開</div>
+                    <div class="exit-practice" :class="switchMethod ? 'small-method':''"  @click="goBack">{{$t('dedesktop_syllabus_experience_exit_btn')}}</div>
                 </div>
                 <div class="course-video-container rest" @click="is_stop = !is_stop">
                     <div class="course-video-container-icon">
@@ -192,7 +192,7 @@
         <mamiyoga-new-result-block v-if="show_result" @closeResult="closeResult"
         :result_score="result_score" :video_result="video_result"></mamiyoga-new-result-block>
 
-        <mamiyoga-loading :loading="heart_loading"></mamiyoga-loading>
+        <mamiyoga-loading :loading="heart_loading" :extraClass="extraClass"></mamiyoga-loading>
     </div>
 </template>
 
@@ -270,6 +270,8 @@ export default {
         switchMethod: true,
         timeId: 0,
         playFirst: false,
+
+        extraClass: '',
     }),
     async mounted(){
         if (process.client) {
@@ -316,7 +318,7 @@ export default {
                     this.video_recorder.startRecording({
                         pose_id: `yoga_${this.current_pose_id}`,
                         user_id: this.user.user_id || "guest",
-                        language: 'zh-tw',
+                        language: `${this.$i18n.locale == 'zh-TW' ? 'zh-tw':'jp'}`,
                     });
                 }
                 
@@ -484,12 +486,16 @@ export default {
                         }
                     } else if(this.video_result.status == 102){
                         this.heart_loading = true;
+                        if(this.$mq != 'desktop'){
+                            this.extraClass = 'loading-set'
+                        }
                         let retryGetResult = this.newVideoUpload;
                         this.retry_time += 1;
                         if (this.retry_time > 30) {
                             this.video_result.score = 0      
-                            this.video_result.reps_wrong_tags = [['您的動作無法辨識，請洽服務人員']]
+                            this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_1')}`]]
                             this.heart_loading = false;
+                            this.extraClass = ''
                         } else {
                             let  t = setTimeout(() => {
                                 retryGetResult();
@@ -499,14 +505,14 @@ export default {
                         
                     } else if(this.video_result.error_code && this.video_result.status == 204 || this.video_result.status == 400 || this.video_result.status == 500){
                         this.video_result.score = 0         
-                        this.video_result.reps_wrong_tags = [['您的動作無法辨識，請調整裝置位置再嘗試']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_2')}`]]
                         this.heart_loading = false;
                     } else {
                         this.$errorLogger(this.$router.path,'newVideoUpload',this.video_result);
                         this.heart_loading = false;
                         this.video_result = {}
                         this.video_result.score = 0
-                        this.video_result.reps_wrong_tags = [['連線失敗，請稍後再試！']]
+                        this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_3')}`]]
                     }
                     this.show_result = true
                 } catch (error) {
@@ -515,7 +521,7 @@ export default {
                     this.heart_loading = false;
                     this.video_result = {}
                     this.video_result.score = 0
-                    this.video_result.reps_wrong_tags = [['網路不穩，請稍後再試！']]
+                    this.video_result.reps_wrong_tags = [[`${this.$t('ai_res_wrong_tag_4')}`]]
                     this.show_result = true
                 }
             }
@@ -1138,7 +1144,9 @@ export default {
     stroke-dashoffset: 0;
   }
 }
-
+.loading-set {
+    transform: rotate(0deg) !important;
+}
 @media (min-width: 769px) {
     #experience-page {
         width: 100vw;

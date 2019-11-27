@@ -64,13 +64,13 @@ export default {
     start_experience_btn_1: 'カメラを開ける',
     start_experience_btn_2: '使い方をもう一度',
 
-    menu_nav_text_teacher:'日文-講師介紹',
-    menu_nav_text_record:'日文-AI助教',
-    menu_nav_text_friend:'日文-學習夥伴',
-    menu_tag_text_first:'日文-矯正疼痛',
-    menu_tag_text_second:'日文-舒壓安眠',
-    menu_tag_text_third:'日文-美體塑身',
-    menu_tag_text_four:'日文-調和心靈',
+    menu_nav_text_teacher:'講師について',
+    menu_nav_text_record:'AIアシスタント',
+    menu_nav_text_friend:'学習パートナー',
+    menu_tag_text_first:'痛み矯正',
+    menu_tag_text_second:'安眠効果',
+    menu_tag_text_third:'ボディーメーク',
+    menu_tag_text_four:'心の調和',
 
     menu_content_text_first: '日文-矯正媽媽產後不良姿勢來緩解疼痛',
     menu_content_text_second: '日文-幫助媽媽們提升睡眠品質',
@@ -92,9 +92,17 @@ export default {
     about_four_content: 'もっと広い女性向け：<br><br>日々の生活の中で、自分でも気づかないうちに溜まった疲れや、ストレスを、このプログラムを通してリフレッシュしてほしいと思います。ヨガは心と体を繋げ、自分に自信を与えてくれます。<br>より自分らしく、幸せに生きていけるためのスパイスだとも言えます。<br>自分のライフスタイルの中にこのヨガを取り入れて、心の安定や、自信のつくボディメイク、それぞれの自分に合ったヨガライフを見つけてほしいと思います。',
 
 
+    course_little_title_1: 'このコースについて',
+    course_little_title_2: 'このポーズについて',
+    course_little_text: '動き',
+    course_pose_btn: 'ポーズのやり方',
+    course_every_pose: 'このコースに含まれているポーズ',
 
-
-
+    new_course_block_ad: '自分に合った専属スケジュールを作ってみよう！',
+    new_course_title: 'コース',
+    new_course_block_menu: 'メニュー',
+    new_course_block_next: '次のコース',
+    new_course_block_last: '前のコース',
 
       //bmi
   bmi_header_label_1: 'BMI計算機',
@@ -134,7 +142,7 @@ export default {
   course_practice_label: '動き',
   course_practice_btn: 'アップロード',
   course_practice_remind_title: '',
-  course_tips_text:'tips',
+  course_tips_text:'ステップ',
   tdee_index_text_1: '基礎代謝率（BMR）と運動習慣により、計算式から1日のカロリー消費（TDEE）を導き出すことができます。 TDEEは、一日に必要なエネルギー量と運動量を把握するのに役立ちます。',
   tdee_index_text_2: 'TDEEを計算して、無料ヘルシーメニューとおすすめエクササイズをゲットしよう！',
   tdee_index_input_1: '年齢：',
@@ -226,13 +234,15 @@ export default {
   desktop_index_third_btn: 'ママ知識を読む',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/new-index-img-3-jp.png',
 
-  desktop_index_four_title: '「自拍魔鏡」',
+  desktop_index_four_only_title: '魔法の鏡',
+  desktop_index_four_title: '「魔法の鏡」',
   desktop_index_four_little: 'ママの一番信頼できる練習パートナー',
-  desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れる！',
+  desktop_index_four_text: 'スマホで体の動きを撮ることだけで、<br>専門家によるアドバイスを手に入れよ！',
   desktop_index_four_list_1: 'いつでも練習',
   desktop_index_four_list_2: '専門的な分析',
   desktop_index_four_list_3: '練習記録',
   desktop_index_four_btn: '今すぐ無料体験レッスン',
+  desktop_index_four_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1-jp.png',
 
   desktop_index_five_title: '「 エクササイズ日記 」',
   desktop_index_five_little: '毎日10分だけで、心と体をリフレッシュする！',
@@ -241,10 +251,10 @@ export default {
   desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus-jp.png',
 
   desktop_index_six_title: '主題式單元',
-  desktop_index_six_list_title_1: '痛みを改善',
-  desktop_index_six_list_title_2: '舒壓安眠',
-  desktop_index_six_list_title_3: '美體塑身',
-  desktop_index_six_list_title_4: '調和心靈',
+  desktop_index_six_list_title_1: '痛み矯正',
+  desktop_index_six_list_title_2: '安眠効果',
+  desktop_index_six_list_title_3: 'ボディーメーク',
+  desktop_index_six_list_title_4: '心の調和',
 
   desktop_index_seven_title: '「 媽咪新手村 」',
   desktop_index_seven_little: '初為人母一定有非常多驚喜與疑惑吧！',
@@ -289,7 +299,7 @@ export default {
   desktop_syllabus_second_btn: '練習をスタートする',
   desktop_syllabus_experience_remind_title: '正しいかどうかわからない？<br>ヨガヘルパー、参上！',
   desktop_syllabus_experience_remind_btn: 'ヨガヘルパ（AI）ーを投入',
-  desktop_syllabus_experience_remind_little: '自分でやってみる',
+  desktop_syllabus_experience_remind_little: 'AIに頼らず、自分でやってみる',
   desktop_syllabus_experience_remind_text: 'ヨガ ヘルパー（AI）はカメラを開けて撮影するよ！あなたのデーターは他の人に渡らないので、安心してね',
 
   desktop_syllabus_experience_remind_tip_btn_1: 'わかりました',
@@ -312,6 +322,8 @@ export default {
   dedesktop_syllabus_experience_icon_5: '分析を行う',
   dedesktop_syllabus_experience_icon_6: '練習しましょう！',
   dedesktop_syllabus_experience_icon_7: '休憩時間',
+  dedesktop_syllabus_experience_exit_btn: '閉じる',
+  dedesktop_syllabus_close_btn: '練習終了',
 
   desktop_syllabus_finish_btn_1: 'アドバイスを受ける',
   desktop_syllabus_finish_btn_2: '他の練習',
@@ -365,7 +377,7 @@ export default {
   desktop_course_all_course: '全部表示する',
   desktop_course_ad: '科學化訓練讓健康事半功倍',
   desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
-  desktop_course_buy: '購買後即可觀看所有課程～',
+  desktop_course_buy: 'ここまでのトライヤルアカウント、どうでしたか？アップグレードしたらこのコースがみれますよ★',
 
 
   //付款pay
@@ -431,6 +443,7 @@ export default {
   member_activation_title: 'シリアル番号を引き換える',
   member_activation_tag_1: 'シリアル番号の情報',
   member_activation_tag_2: 'コースのシリアル番号がある',
+  member_activation_no_code: 'シリアル番号なし',
   member_activation_tag_1_phone: '携帯電話に送る：',
   member_activation_tag_1_order: '注文番号：',
   member_activation_tag_1_open: '已啟用',
@@ -451,4 +464,9 @@ export default {
   member_article_remind: '投稿を受け取りました',
   member_article_ok: 'はい',
 
+  //ai分析失敗tag
+  ai_res_wrong_tag_1: '動きが認識できておりません。ネットワーク環境お確かめの上、お問い合わせください',
+  ai_res_wrong_tag_2: '動きが認識できておりません、全身が映るようにデバイスの置き方を再調整の上お試しください',
+  ai_res_wrong_tag_3: '通信状態の良い環境で、もう一度やり直してください',
+  ai_res_wrong_tag_4: 'ネットワーク環境をお確かめの上、お問い合わせください',
 }
