@@ -39,24 +39,20 @@ class LudoRTC {
         this.getResult = this.getResult.bind(this);
         this.dc = null;
         this.video_list = [];
-        let default_width = 480;
-        let default_height = 360;
-        // if (window.screen.orientation.angle == 0 && window.screen.orientation.type == 'portrait-primary') {
-        let mal = window.matchMedia('(orientation: portrait)')
-        if(!mal.matches){
-            let temp = default_width;
-            default_width = default_height;
-            default_height = temp;
-        }
+        this.default_width = 640;
+        this.aspectRatio = 1.778;
+        this.orientation = 'landscape';
+        // let default_height = 480;
+        
         let default_config = {
             sdpSemantics: 'unified-plan',
             iceServers : [{urls: ['stun:stun.l.google.com:19302']}],
             constraints : {
                 audio: false,
                 video: {
-                    width:default_width,
-                    height:default_height,
-                    // aspectRatio: 1.777777778,
+                    width:this.default_width,
+                    // height:default_height,
+                    aspectRatio: this.aspectRatio,
                     frameRate: 30,
                     facingMode: 'user',
                 }
@@ -97,6 +93,13 @@ class LudoRTC {
         if (post_info) {
             this.final_config.post_info = post_info;
         }
+        let mal = window.matchMedia('(orientation: portrait)')
+        if(!mal.matches){
+            this.orientation = 'landscape';
+        } else {
+            this.orientation = 'portrait';
+        }
+        // console.log('orientation : ',post_info.orientation)
         console.log(this.final_config);
         this.pc = this.createPeerConnection(this.final_config);
         let pc = this.pc;
@@ -181,6 +184,9 @@ class LudoRTC {
                 pose_id: post_info.pose_id,
                 user_id: post_info.user_id,
                 language: post_info.language,
+                width:this.default_width,
+                aspectRatio: this.aspectRatio,
+                orientation: this.orientation,
             }));
             await this.pc.setRemoteDescription(res.data);
             return true;
