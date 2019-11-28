@@ -1,7 +1,11 @@
 <template>
   <div>
     <nuxt/>
+    <div class="fb-customerchat" page_id="1557980337838066" minimized="true"
+    logged_out_greeting="您需要什麼幫助嗎？" logged_in_greeting="您需要什麼幫助嗎？"
+    theme_color="#24798F"></div>
   </div>
+  
 </template>
 
 <script>
@@ -41,9 +45,9 @@ export default {
       { rel: 'manifest', href: '/manifest.json' },
       { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
     ],
-    script: [
-      { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
-    ]
+    // script: [
+    //   { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
+    // ]
   },
   async mounted() {
     if (process.client) {
@@ -51,6 +55,25 @@ export default {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '1075325352502513',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v5.0'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+
     }
   }
 }
