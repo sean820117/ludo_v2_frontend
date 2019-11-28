@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <mamiyoga-video-player :vidResult="vidResult"
-        :imgArray="imgArray"></mamiyoga-video-player>
+    <div class="canvas-test">
+        <!-- <mamiyoga-video-player :vidResult="vidResult"
+        :imgArray="imgArray" :src="''" :width="''" :height="''" ></mamiyoga-video-player> -->
+        <mamiyoga-video-player :vidResult="vidResult" :vidW="'300px'" :vidH="'300px'"
+        :imgArray="imgArray" :teacherPic="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png'"></mamiyoga-video-player>
     </div>
 </template>
 
 <script>
 import MamiyogaVideoPlayer from '~/components/mamiyoga/MamiyogaVideoPlayer.vue';
 export default {
+    layout: '',
     data:()=>({
         vidResult: '',
         imgArray: [],
@@ -24,5 +27,7 @@ export default {
 </script>
 
 <style>
-
+/* html,body {
+    object-fit: fill;
+} */
 </style>
