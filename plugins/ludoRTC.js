@@ -17,7 +17,7 @@ function newLudoRTC (options = {}) {
     if (process.client) {
         if (options.dev) {
             pose_axios = axios.create({
-                baseURL: 'http://52.41.223.89:8787',
+                baseURL: 'https://pose-dev.ludonow.com:8787',
                 withCredentials: 'true',
                 timeout: 2000000,
             });
@@ -54,7 +54,7 @@ class LudoRTC {
                     // height:default_height,
                     aspectRatio: this.aspectRatio,
                     frameRate: 30,
-                    facingMode: 'user',
+                    // facingMode: { exact: "user" },
                 }
             },
             video_element_id:'#video',
