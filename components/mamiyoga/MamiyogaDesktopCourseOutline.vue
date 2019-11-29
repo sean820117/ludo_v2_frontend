@@ -27,7 +27,7 @@
 
             <div class="about-course-series-data-block open">
                 <div class="about-course-data-block">
-                    <div class="about-course-data-title series">舒壓安眠</div>
+                    <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_2')}}</div>
                     <hr class="about-course-data-line" >
                 </div>
                 <div class="about-course-data-block" v-for="(course,i) in getAlleviates" 
@@ -51,7 +51,7 @@
 
             <div class="about-course-series-data-block open">
                 <div class="about-course-data-block">
-                    <div class="about-course-data-title series">美體塑身</div>
+                    <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_3')}}</div>
                     <hr class="about-course-data-line" >
                 </div>
                 <div class="about-course-data-block" v-for="(course,i) in getBeautys" 
@@ -74,7 +74,7 @@
             </div>
             <div class="about-course-series-data-block open">
                 <div class="about-course-data-block">
-                    <div class="about-course-data-title series">調和心靈</div>
+                    <div class="about-course-data-title series">{{$t('desktop_index_six_list_title_4')}}</div>
                     <hr class="about-course-data-line" >
                 </div>
                 <div class="about-course-data-block" v-for="(course,i) in getBlends" 

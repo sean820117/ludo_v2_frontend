@@ -2,13 +2,13 @@ module.exports = [
     {
         id: '1',
         title: '骨盤矯正ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit01.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit01jp.png',
         tags: ['rectify'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-1.jpg',
         video_url:'https://player.vimeo.com/video/350479253',
         trial: true,
-        course_introduction:'產時造成的韌帶變鬆，一般要回復，通常最快得要需要三到四個月，最慢也得要耗上六個月。而這時候，骨盆是處在較鬆弛狀態，也同時是做骨盆矯正的絕佳時候，所以，當媽媽們子宮收縮情形開始比較緩和的時候，大概是產後一個月，就可以慢慢開始矯正骨盆。<br>除此之外，矯正骨盆的歪斜還有另外一項很棒的效果哦！那就是可以讓腰部周圍較難附著脂肪，讓新陳代謝向上，這些都有非常顯著的減肥效果喔！所以，這麼棒的機會，我們一起好好努力，來把骨盆矯正到最佳狀況吧！',
+        course_introduction:'このコースでは、骨盤矯正のための３つのポーズを紹介します。骨盤を正しい位置に調整し、ウエストまわりに脂肪をつきにくくしてくれます。気になるおしり周りや太ももを美しく整え、美しいボディラインを手に入れることも。骨盤がゆるんでいる産後は、正しい位置に矯正がしやすい絶好のタイミングですよ！',
         poses:[
             {
                 pose_id: 'first',
@@ -54,13 +54,13 @@ module.exports = [
     {
         id: '2',
         title: '寝ながらできる<br>疲れた体のケアヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit02.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit02jp.png',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-2.jpg',
         video_url:'https://player.vimeo.com/video/350481218',
         trial: false,
-        course_introduction:'血液若是流動不良會衍生許多疼痛或不適感：例如肩頸酸痛，腰痛，浮腫，手腳冰冷的狀況。而且，媽媽們產後不只要哺乳，也會需要抱小孩、背小孩，這些動作往往會使得母親得持續做出前傾的姿勢，這姿勢容易讓肌肉僵硬。<br>預防重於治療，若我們能在身體在發出疼痛的警訊前，搶先照顧好，就能夠避免這些身體症狀。',
+        course_introduction:'このコースでは、寝ながら出来る体をほぐす３つのポーズを紹介します。凝り固まった筋肉をほぐし血行をよくすることで、腰痛やむくみを解消していきます。抱っこや授乳で疲れた体を、ゆっくりとケアしていきましょう。心も体も楽になり、より前向きな気持ちで一日を過ごせるはずです！',
         poses:[
             {
                 pose_id: 'first',
@@ -106,13 +106,13 @@ module.exports = [
     {
         id: '3',
         title: '呼吸を深めるヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit03jp.png',
         tags: ['rectify'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-3.jpg',
         video_url:'https://player.vimeo.com/video/350482701',
         trial: false,
-        course_introduction:'我們常常在一整天的辛苦勞動後，身心因此變得很緊繃。在這樣還沒有辦法把緊崩狀態好好切換回來的情況下，即便上床睡覺，也是沒有辦法獲得有效率的休息。沒有辦法好好睡著，甚至半夜的時候會不斷醒來，這樣下去的話，怎麼睡都沒有辦法讓疲勞感消失。若是沒有辦法獲得良好的睡眠品質，疲勞感隔天也會繼續跟著你。<br>所以，讓身體攝取大量新鮮空氣，讓身心好好放鬆，一起消除整天的疲勞吧！',
+        course_introduction:'このコースでは、呼吸を深める２つのポーズを紹介します。たくさんの空気をとりこむことで、体中の緊張がほぐれていきます。スーッと気持ちが落ち着き、イライラの解消にも◎　寝る前に行うと、睡眠も深くなり、短い睡眠でもしっかりと疲れがとれますよ！',
         poses:[
             {
                 pose_id: 'first',
@@ -146,13 +146,13 @@ module.exports = [
     {
         id: '4',
         title: 'リンパの流れを<br>よくするストレッチ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit04.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit04jp.png',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-4.jpg',
         video_url:'https://player.vimeo.com/video/350491544',
         trial: true,
-        course_introduction:'一旦淋巴液堵塞，就沒有辦法將體內不好的物質以及多餘的水分排出。這會連帶免疫力的功能也一起下降，非常嚴重。淋巴堵塞，會造成讓人頭痛、肩膀僵硬、疲勞久久難消，容易患上感冒等等……各種讓身體不舒服的症狀。<br>所以讓淋巴液好好流通是很重要的！這不只能改善身體不好的狀況，還能進一步讓新陳代謝變得夠好，獲得清爽的身體曲線哦！',
+        course_introduction:'このコースでは、リンパの流れをよくする３つのポーズを紹介します。全身のリンパの流れをよくすることができるので、頭痛や肩こり、むくみを解消するだけでなく、代謝がよくなります。痩せやすい体をつくり、スッキリしたボディラインを手に入れることができますよ！',
         poses:[
             {
                 pose_id: 'first',
@@ -185,13 +185,13 @@ module.exports = [
     {
         id: '5',
         title: 'リフレッシュヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit05.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit05jp.png',
         tags: ['alleviate'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-5.jpg',
         video_url:'https://player.vimeo.com/video/350476133',
         trial: false,
-        course_introduction:'媽媽們在生產後，因為常常為了照顧嬰兒，一直都沒有充足的睡眠時間。長期下來，就會疲勞堆積，睡眠不足造成的荷爾蒙失衡更會使得媽媽們情緒變得負面。所以，緩解已經僵硬的肌肉，讓體內的血液循環變好，就可以更有效緩解疲勞。不管是早上起床時，常容易感到很累，或者是覺得沒有幹勁時，做這些動作，都可以讓媽媽們重新獲得活力，心情也因此煥然一新，整天可以舒適地面對工作喔！<br>只要花10分鐘，就可以讓媽媽們在起床的時候可以感覺自己的精神回復到極好的狀態，所以請務必跟著我一起試試看吧。',
+        course_introduction:'このコースでは、体を目覚めさせる２つのポーズを紹介します。血液の流れがよくなり、凝り固まった筋肉がほぐれていきます。だるさや疲れがとれ、全身がリフレッシュ！落ち込みがちな気分が晴れ、一日を快適に気持ちよく過ごすことができますよ。',
         poses:[
             {
                 pose_id: 'first',
@@ -224,13 +224,13 @@ module.exports = [
     {
         id: '6',
         title: '産後の体を内側から<br>ケアするヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit06.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit06jp.png',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-6.jpg',
         video_url:'https://player.vimeo.com/video/350474009',
         trial: true,
-        course_introduction:'懷孕時因為抱著一個很大很大的肚子，運動量也會被迫減少很多。所以，往往生產後，肌肉量也會變得很低、基礎代謝率也會變差。<br>不過，我們可以在生產後利用日常時間做瑜珈，讓肌肉量一點一點上升，體力變得愈來愈好，讓我們一起為照顧小孩的辛苦生活做準備吧！',
+        course_introduction:'このコースでは、産後の体を内側からケアする２つのポーズを紹介します。妊娠中に落ちた筋肉量や体力、基礎代謝をアップさせることができます。ゆっくりと大きく体を動かすことでインナーマッスルを鍛えます。キレイなボディラインと育児に大切な元気な体を手に入れることができますよ！',
         poses:[
             {
                 pose_id: 'first',
@@ -263,13 +263,13 @@ module.exports = [
     {
         id: '7',
         title: '産後太り解消ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit07.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit07jp.png',
         tags: ['beauty'],
         ai_teacher: true,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-7.jpg',
         video_url:'https://player.vimeo.com/video/350471282',
         trial: false,
-        course_introduction:'媽媽們的骨盆和髖關節就會變廣變鬆弛，然後大腿骨的一部分，就會開始往外側突出去。這會造成產後鬆弛，骨盆周邊容易有脂肪附著。這樣一來，腰部和肚子周邊，還有臀部跟大腿，就很容易有脂肪附著。有些媽媽們產後的下半身肥胖就是這樣產生的。但是，如果媽媽們只是著急地想要緩解下半身的肥胖。卻沒有方向的激烈訓練，很容易就會弄壞身體了。<br>所以，讓我們一邊緩解骨盆周邊的肌肉，ㄧ點一點地刺激肌肉，讓他慢慢地變得緊實吧！',
+        course_introduction:'このコースでは、産後の下半身太りを解消する３つのポーズを紹介します。骨盤まわりの筋肉をほぐしながら、少しずつ筋肉に刺激を与えて引き締めていきます。骨盤のゆがみも改善しますので、産後のダイエットにも効果抜群。体のクセや歪みを治す最大のチャンスなので、産前よりもキレイなボディラインを手に入れましょう！',
         poses:[
             {
                 pose_id: 'first',
@@ -315,13 +315,13 @@ module.exports = [
     {
         id: '8',
         title: 'くびれづくりヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit08.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit08jp.png',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-8.jpg',
         video_url:'https://player.vimeo.com/video/350470076',
         trial: false,
-        course_introduction:'腹斜肌不是只單單能替媽媽們帶來美麗的曲線，還有一個重要的功能噢！就是能扮演著將內臟維持在正確位置的角色，就像束腹一樣。包覆在我們的肚子周邊。<br>如果持續鍛鍊腹斜肌，就像是有條漂亮的束腹，能維持腰部緊實的狀態。大家都很嚮往有著像模特兒那樣，讓人煞羨的腰部曲線，對吧？',
+        course_introduction:'このコースでは、くびれをつくる２つのポーズを紹介します。お腹周りのなかなか落ちにくい脇腹、そして腰回りをスッキリさせるエクササイズです。くびれをつくり、内臓を正しい位置に保つことも。座りながらできる簡単なポーズなので、テレビを見ながらや赤ちゃんと遊びながら、キュッとくびれたウエストを手に入れましょう！',
         poses:[
             {
                 pose_id: 'first',
@@ -355,13 +355,13 @@ module.exports = [
     {
         id: '9',
         title: '産後の腹筋ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit09.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit09jp.png',
         tags: ['beauty'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-9.jpg',
         video_url:'https://player.vimeo.com/video/350467858',
         trial: false,
-        course_introduction:'我們要做的，都不是激烈的運動，而是用瑜珈慢慢地，溫柔地去鍛煉這些核心肌群。一旦鍛煉了核心肌群，鬆弛的肌肉也會跟著被鍛煉。這樣，肚子周邊就會跟著緊實起來。<br>另一方面，只要內臟被刺激，新陳代謝就會活化，所以對於改善水腫，腰痛，甚至讓腸胃功能提高，緩解便秘，也是非常非常有效的喔！',
+        course_introduction:'このコースでは、産後の腹筋を鍛える３つのポーズを紹介します。妊娠中に大きくなり筋肉がなくたるんだお腹を、じっくりと丁寧に引き締めていきます。負荷の少ない腹筋でインナーマッスルを鍛えていきます。内臓が刺激されることで、代謝が活性化されむくみの解消や腰痛の改善にも。腸の働きが高まることで便秘の改善にも効果的です！',
         poses:[
             {
                 pose_id: 'first',
@@ -407,13 +407,13 @@ module.exports = [
     {
         id: '10',
         title: '産後の下半身ダイエットヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit10.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit10jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-10.jpg',
         video_url:'https://player.vimeo.com/video/350465960',
         trial: false,
-        course_introduction:'大腿內側裡面的「內轉肌」在日常生活中，若沒有特別有意識鍛鍊使用，就不會用到的。那是一個容易低溫，容易囤積橘皮組織的地方。<br>只要內轉肌肉一旦衰退，腳閉合的時候力量就會變弱、容易變成O型腿。血液跟淋巴的循環也會變遲鈍，容易水腫。這樣下去的話，腳就會越來越粗！所以在那之前，我們得要好好照顧這個部位！',
+        course_introduction:'このコースでは、産後の下半身ダイエットのための２つのポーズを紹介します。女性が特に気になる、太ももやお腹周りを中心に引き締めていきます。妊娠中や産後に弱くなりやすい筋肉である「内転筋」を鍛えていくので、O脚も予防。足に隙間ができ、キレイな足のラインを手に入れることができますよ！',
         poses:[
             {
                 pose_id: 'first',
@@ -449,13 +449,13 @@ module.exports = [
     {
         id: '11',
         title: '癒やしの呼吸法',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit11.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit11jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-11.jpg',
         video_url:'https://player.vimeo.com/video/348991213',
         trial: false,
-        course_introduction:'忙碌的每一天，如果呼吸變淺的話，就會影響到大腦跟自律神經。隨著壓力越來越大，你總是覺得好像有點焦躁不安，那就代表你的呼吸變淺了。而且，因為氧氣不足時，你的內臟的功能也會跟著變差。<br>不過，瑜珈的深沈呼吸裡，就會有能達到放鬆副交感神經的效果。這會促進讓精神變安定感，感受到幸福感的血清素分泌，讓你擁有平穩的心情。',
+        course_introduction:'このコースでは、心も体も癒やしてくれる呼吸法を２つ紹介します。浅くなりがちな呼吸を深くし、リラックスをもたらす副交感神経を優位にすることができます。忙しい産後は毎日必ず取り入れてもらいたい呼吸法です。心が落ち着きリラックス効果も抜群。自律神経のバランスも整えてくれるので、産後うつなども予防することができます！',
         poses:[
             {
                 pose_id: 'first',
@@ -488,13 +488,13 @@ module.exports = [
     {
         id: '12',
         title: '快眠ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit12.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit12jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-12.jpg',
         video_url:'https://player.vimeo.com/video/350040395',
         trial: false,
-        course_introduction:'24小時制的照顧小孩會讓生活節奏變亂，讓體內的節奏，就是生理時鐘也會變亂走樣，便會產生睡不著的狀況。照顧小孩也因此沒有辦法很順利，家事也做不太起來。連自己都沒有發現累積了很多壓力，最後變成睡不著的狀況。<br>為了要回復疲勞，讓身心變平穩，休息是很重要的。這次要介紹兩種姿勢：睡覺前的十分鐘，不妨試試深呼吸放鬆呢？',
+        course_introduction:'このコースでは、快眠につながる２つのポーズを紹介します。呼吸を深め、眠りの質をぐんと上げてくれます。60分の睡眠をとったと同じくらい疲れがとれる回復のポーズとも言われていますので、疲れがたまった時こそ取り入れてみてください。全身の力がぬけ、自然と深い眠りに導いてくれます。毎日がんばっている自分をほめてあげましょう',
         poses:[
             {
                 pose_id: 'first',
@@ -527,13 +527,13 @@ module.exports = [
     {
         id: '13',
         title: 'ストレス解消ヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit13.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit13jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-13.jpg',
         video_url:'https://player.vimeo.com/video/350465109',
         trial: true,
-        course_introduction:'讓我們來打開心胸，攝取正面能量，感受到向前走的感覺吧！打開心胸跟喉嚨就可以攝取新鮮空氣，自然心情也會變得清爽。<br>對於不習慣的新生活，照顧小孩，感受到疲勞，焦慮，喘不過氣來時，這時候做這些動作就可以感受到可以煥然一新。因為產後非常忙碌，感覺怎麼樣都追不上時間...所以，必須要更重視自己煥然一新的時間！那麼我們來馬上開始吧！',
+        course_introduction:'このコースでは、ストレス解消のための３つのポーズを紹介します。心をオープンにしてプラスのエネルギーを取り入れ、前向きな気持ちになれるポーズです。胸を開くことで、産後なりがちな猫背も解消。凝りやすい肩や背中もほぐれていきますよ！たまったストレスを解消し、リフレッシュする時間、大切にしましょう。',
         poses:[
             {
                 pose_id: 'first',
@@ -582,13 +582,13 @@ module.exports = [
     {
         id: '14',
         title: '自律神経を整えるヨガ',
-        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit14.svg',
+        chapter_flag: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/unit14jp.png',
         tags: ['blend'],
         ai_teacher: false,
         preview_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/course-preview-14.jpg',
         video_url:'https://player.vimeo.com/video/349838572',
         trial: false,
-        course_introduction:'因為產後生活都是以嬰兒為中心。想要休息的時候也沒有辦法休息，不知不覺就會累積很多疲勞對吧？微量的疲勞如果一直放著不管，就會累積起來，搞壞身體。<br>所以，媽媽們要記得為自己確保一些照顧身體的時間，才有活力可以迎接每一天哦！',
+        course_introduction:'このコースでは、自律神経を整える２つのポーズを紹介します。神経が通っている場所をゆっくりとストレッチしてほぐすことで、つまりを解消。自律神経である交感神経と副交感神経のバランスが整い、こころもからだもリラックスできます。呼吸も深まり、イライラや不眠も解消できますよ！',
         poses:[
             {
                 pose_id: 'first',

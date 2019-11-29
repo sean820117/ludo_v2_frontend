@@ -19,16 +19,17 @@
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/`)">{{$t('desktop_header_menu_1')}}</li>
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/menu`)">{{$t('desktop_header_menu_2')}}</li>
                 <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/syllabus`)">{{$t('desktop_header_menu_3')}}</li>
-                <li @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
-                <li @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
-                <li @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
+                <li :style="{display: $i18n.locale == 'JP' ? 'none': ''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/information`)">{{$t('desktop_header_menu_4')}}</li>
+                <li :style="{display: $i18n.locale == 'JP' ? 'none': ''}" @click="goOtherPage('https://lihi1.cc/UaaJ6')">{{$t('desktop_header_menu_5')}}</li>
+                <li :style="{display: $i18n.locale == 'JP' ? 'none': ''}" @click="goOtherPage('https://m.me/1557980337838066?ref=B9FG09FD9JA')">{{$t('desktop_header_menu_6')}}</li>
             </nav>
-            <div class="i_have_activation" @click="goActivation">
+            <div v-if="$i18n.locale == 'zh-TW'" class="i_have_activation" @click="goActivation">
                 {{$t('member_activation_tag_2')}}
             </div>
             <div v-if="!login_or_not" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/login`)">{{$t('desktop_signup_n_login')}}</div>
-            <div v-else class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" :style="{fontSize: `${$i18n.locale == 'JP' ? '15px':''}`}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('member_title')}}</div>
-            <div class="mamiyoga-hamburger-btn" style="background: transparent; border: 2px solid #fff;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/gift`)">
+            <div v-if="login_or_not && $i18n.locale == 'zh-TW'" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;" :style="{fontSize: `${$i18n.locale == 'JP' ? '15px':''}`}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/member`)">{{$t('member_title')}}</div>
+            <div v-if="login_or_not && $i18n.locale == 'JP'" class="mamiyoga-hamburger-btn" style="background: #fff;color:#24798f; border: 2px solid #24798;"  :style="{fontSize: `${$i18n.locale == 'JP' ? '15px':''}`}" @click="logout">{{$t('desktop_header_user_3')}}</div>
+            <div :style="{display: $i18n.locale == 'JP' ? 'none': ''}" class="mamiyoga-hamburger-btn" style="background: transparent; border: 2px solid #fff;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/' +$i18n.locale}/gift`)">
                 <img style="margin-right:5px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-gift.png" alt="">
                 {{$t('desktop_header_btn_1')}}
             </div>
@@ -65,6 +66,10 @@ export default {
             } else{
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/activation-code`)
             }
+        },
+        logout() {
+            localStorage.redirect = "/";
+            this.$router.push('/logout');
         }
     },
     computed:{

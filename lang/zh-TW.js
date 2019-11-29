@@ -128,10 +128,17 @@ export default {
   course_little_title_2: '動作簡介',
   course_little_text: '個動作',
   course_pose_btn: '動作教學',
+  course_every_pose: '動作片段',
 
   course_practice_label: '動作',
   course_practice_btn: '練習',
   course_practice_remind_title: '建議使用',
+
+  new_course_block_ad: '科學化訓練讓健康事半功倍',
+  new_course_title: '單元',
+  new_course_block_menu: '單元目錄',
+  new_course_block_next: '下一單元',
+  new_course_block_last: '上一單元',
 
   //bmi
   bmi_header_label_1: 'BMI值計算機',
@@ -264,6 +271,7 @@ export default {
   desktop_index_third_btn: '閱讀媽咪知識',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png',
 
+  desktop_index_four_only_title: '自拍魔鏡',
   desktop_index_four_title: '「自拍魔鏡」',
   desktop_index_four_little: '媽咪們最貼心的練習夥伴',
   desktop_index_four_text: '用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！',
@@ -271,6 +279,7 @@ export default {
   desktop_index_four_list_2: '專業分析',
   desktop_index_four_list_3: '練習記錄',
   desktop_index_four_btn: '立即免費體驗',
+  desktop_index_four_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png',
 
   desktop_index_five_title: '「 孕動日記 」',
   desktop_index_five_little: '每天十分鐘，讓心情跟身體重新開機！',
@@ -350,6 +359,8 @@ export default {
   dedesktop_syllabus_experience_icon_5: '開始分析',
   dedesktop_syllabus_experience_icon_6: '開始練習吧！',
   dedesktop_syllabus_experience_icon_7: '休息時間',
+  dedesktop_syllabus_experience_exit_btn: '離開',
+  dedesktop_syllabus_close_btn: '結束練習',
 
   desktop_syllabus_finish_btn_1: '查看建議',
   desktop_syllabus_finish_btn_2: '更多練習',
@@ -403,7 +414,7 @@ export default {
   desktop_course_all_course: '顯示全部',
   desktop_course_ad: '科學化訓練讓健康事半功倍',
   desktop_course_not_trial: '開啟七天體驗後即可試看課程～',
-  desktop_course_buy: '購買後即可觀看所有課程～',
+  desktop_course_buy: '這堂是付費課程，請先前往付款才能觀看此課程喔！',
 
   //付款pay
   pay_method_1_title_1: '1.寵愛自己馬上使用',
@@ -468,6 +479,7 @@ export default {
   member_activation_title: '兌換序號',
   member_activation_tag_1: '序號資訊',
   member_activation_tag_2: '我有課程序號',
+  member_activation_no_code: '尚無序號資料',
   member_activation_tag_1_phone: '寄送手機：',
   member_activation_tag_1_order: '訂單號碼：',
   member_activation_tag_1_open: '已啟用',
@@ -487,6 +499,12 @@ export default {
   member_article_btn: '送出',
   member_article_remind: '收到您的投稿',
   member_article_ok: '好的',
+
+  //ai分析失敗tag
+  ai_res_wrong_tag_1: '您的動作無法辨識，請洽服務人員',
+  ai_res_wrong_tag_2: '您的動作無法辨識，請調整裝置位置再嘗試',
+  ai_res_wrong_tag_3: '連線失敗，請稍後再試！',
+  ai_res_wrong_tag_4: '網路不穩，請稍後再試！',
 
 
 

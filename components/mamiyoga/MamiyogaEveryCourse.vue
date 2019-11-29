@@ -13,14 +13,14 @@
                 <iframe v-if="is_switched" :src="getJpVideoUrl" style="width: 100%;height:100%;position:absolute;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
             <div class="course-bookmark">
-                <img :src="getChapterFlag" alt="">
+                <img style="width: 30px;" :src="getChapterFlag" alt="">
             </div>
         </div>
         <!-- <div class="mamiyoga-course-middle">
             <p>觀看次數&nbsp;110</p>
         </div> -->
         <div class="mamiyoga-course-bottom">
-            <div class="switch-lang">
+            <div class="switch-lang" v-if="$i18n.locale == 'zh-TW'">
                 <input type="radio" name="lang" id="lang-ch" checked>
                 <input type="radio" name="lang" id="lang-jp">
                 <div class="switch-lang-label">

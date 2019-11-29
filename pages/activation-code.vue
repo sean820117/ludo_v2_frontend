@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="serialno-number-block" v-else>
-                        <p class="serialno-number-text" style="font-size: 15px;text-align: center;">尚無序號資料</p>
+                        <p class="serialno-number-text" style="font-size: 15px;text-align: center;">{{$t('member_activation_no_code')}}</p>
                     </div>
                     <div class="member-bottom-btn" style="margin-top:10vh;position:unset;" v-if="$mq === 'desktop'">
                         <div class="member-big-btn" style="width:100%;background:#24798F;" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('member_text_btn_2')}}</div>

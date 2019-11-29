@@ -2,7 +2,7 @@
     <div>
         <div class="course-block" :style="{backgroundImage:'url('+bgImage+')',backgroundSize:'cover'}" @click="goCoursePage">
             <div class="course-bookmark">
-                <img :src="unitSrc" alt="">
+                <img style="width: 30px;" :src="unitSrc" alt="">
             </div>
             <div class="course-close">
                 <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
@@ -128,7 +128,7 @@ export default {
                 } else {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.show_alert = true
-                    this.alertText = '登入後即可解鎖本課程！'
+                    this.alertText = `${this.$t('desktop_go_login')}`
                     this.alertBtn = `${this.$t('teach_button_ok')}`
                     this.nextGo = 'login'
                 }
@@ -148,7 +148,7 @@ export default {
                         } else {
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                             this.show_alert = true
-                            this.alertText = '購買後即可觀看所有課程～'
+                            this.alertText = `${this.$t('desktop_course_buy')}`
                             this.alertBtn = `${this.$t('teach_button_ok')}`
                             this.nextGo = 'pay'
                         }

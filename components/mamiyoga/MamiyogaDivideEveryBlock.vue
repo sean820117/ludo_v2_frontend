@@ -16,7 +16,7 @@
                     <!-- <p v-for="pose in getPoseExplain" :key="pose.pose_id" >{{pose.pose_description}}</p> -->
                     <slot name="divide-text"></slot>
                 </div>
-                <button class="teach-assay-btn" v-if="ai_teacher">
+                <button class="teach-assay-btn" v-if="ai_teacher" style="display: none;">
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('course_practice_btn')}}</label>  
                 </button>
                 <!-- <div v-if="ai_teacher" style="display: flex;justify-content: center;">

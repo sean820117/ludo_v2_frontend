@@ -643,7 +643,7 @@ module.exports = [
                 remind_tags: ['姿勢正確','不要聳肩','身體太往前','身體太往後','用背部出力會更好','手臂不彎曲','抬手不完全','更往上伸展','屁股離地了'],
                 inhale: [[1,4,10],[22,23,29]],
                 exhale: [[13,14,19],[32,34,39]],
-                B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_B.mp4',
+                B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_3_B.mp4',
                 C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4',
             },
         ],
