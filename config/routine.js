@@ -2,6 +2,7 @@ import courses_data from './mamiyoga-course.js'
 export default [
     {
         title: '骨盆矯正',
+        id:'combination_1_pelvis_strech',
         duration: '7分鐘',
         poses: [
             {
@@ -44,6 +45,7 @@ export default [
     },
     {
         title: '骨盆矯正',
+        id:"yoga_27",
         duration: '7分鐘',
         poses:[
             {
@@ -63,6 +65,30 @@ export default [
                 pose_ai: false,
                 pose_id: '',
                 pose_tags: courses_data[12].poses[2].remind_tags,
+                inhale: [],
+                exhale: [],
+            }
+        ]
+    },
+    {
+        title: 'Nathon_stretch_1',
+        id:'nathon_stretch_1',
+        duration: '5分鐘',
+        poses:[
+            {
+                pose_brief:"無",
+                pose_video:"https://",
+                pose_ai: true,
+                pose_id: "nathon_stretch_1",
+                pose_tags: ['做得很好'],
+                inhale: [],
+                exhale: [],
+            },
+            {
+                pose_brief:"無",
+                pose_video:"https://",
+                pose_ai: false,
+                pose_id: '',
                 inhale: [],
                 exhale: [],
             }

@@ -728,6 +728,7 @@ export default {
                 }
             } catch (error) {
                 console.error(error)
+                this.$errorLogger('/',"loadRoutine",error);
                 this.course_data = await require('~/config/mamiyoga-course')
                 this.routine = await require('~/config/routine');
             }
