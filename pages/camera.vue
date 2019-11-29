@@ -3,7 +3,7 @@
         <div id="input-video-container">
             <video id="video" alt="課程影片" muted>Video stream not available.</video>
         </div>
-        <video @timeupdate="checkTime" id="demo-video" alt="在這裡錄影" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L10_action01.mp4" muted>Video stream not available.</video>
+        <video @timeupdate="checkTime" id="demo-video" alt="在這裡錄影" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L10_action01.mp4" muted playsinline>Video stream not available.</video>
         <div class="btn-style">
             <button @click="playAudio" v-if="!show_recording && !is_stop" id="startBtn" class="btn btn-sm btn-outline-primary"></button>
             <button @click="pauseAudio" v-if="show_recording && !is_stop" id="stopBtn" class="btn btn-sm btn-outline-danger"></button>
@@ -36,6 +36,18 @@ export default {
             this.video_recorder = await this.$newLudoRTC({dev:dev});
             console.log(this.video_recorder);
             this.video_recorder.openCamera();
+            let video = document.querySelector("#demo-video");
+            // alert(video.webkitSupportsFullscreen)
+            let result_arr = await navigator.mediaDevices.enumerateDevices();
+            let result_word = ""
+            result_arr.forEach(element => {
+                for (const key in element) {
+                    if (key == "deviceId" || key == "kind" || key == "label" || key == "deviceId") {
+                        result_word = result_word + key + ":" + element[key].toString() + "\n"    
+                    }
+                }
+            });
+            alert(result_word);
         }
     },
     methods:{
