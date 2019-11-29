@@ -90,9 +90,10 @@
                 <div class="info-white-article">
                     <div class="info-white-article-block">
                         <div class="info-white-article-tag">{{$t('desktop_info_article')}}</div>
-                        <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
+                        <!-- <h3 class="index-article-title">妳知道日本媽媽<br>快速恢復身材的秘訣嗎？</h3>
                         <h6 class="index-article-little-title" style="color:#272727;margin:25px 0 30px;width: unset;font-size: 20px;">日本媽媽的產後休息時間平均只有兩週，我們深入研究了日本媽媽在孕期體重管理到產後的修復，發現日本媽媽們貫徹了產後黃金修復要做的事情，而現在最流行也最有效的就是『產後瑜珈』。</h6>
-                        <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p>
+                        <p style="color:#707070;">產後瑜珈最主要的功能就是幫助媽媽在半年期間迅速恢復腹部肌肉、S曲線、以及縮小骨盆，讓媽媽們在產後迅速恢復身材上的自信、也能帶來更好的健康生活！<br><br>在家就能做的『產後瑜珈』<br>這是一堂專門為『沒有時間』的產後媽媽們設計的線上產後瑜珈課程。<br><br>課程分為14個單元，共33種動作，分門別類幫妳從骨盆、腰部、小腿、水腫、骨頭密度、心情放鬆......等等，詳細的解說與動畫標示解決外出上課的問題。</p> -->
+                        <mamiyoga-medium-article :m_data="m_data"></mamiyoga-medium-article>
                         <div class="info-desktop-red-btn" style="margin: 20vh auto 0;" :style="{fontSize: $i18n.locale == 'JP'? '13px':''}" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/pay`)">{{$t('desktop_info_article_btn')}}</div>
                     </div>
                 </div>
@@ -103,6 +104,32 @@
             <h4 class="intro-wrap-block-title" style="margin:0;">獨家文章</h4>
             <p class="intro-wrap-block-text">LUDO身體科學誌</p>
             <div class="article-flex-box">
+                <div class="medium-article-block-outside" v-for="(post,i) in m_data" :key="i" >
+                    <div class="intro-wrap-block-five-every" @click="goOtherPage(post.post_url)">
+                        <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                        <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                        <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    </div>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div>
+            <!-- <div class="article-flex-box">
+                <div class="intro-wrap-block-five-every" v-for="(post,i) in up_data" :key="i" @click="goOtherPage(post.post_url)">
+                    <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                    <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                    <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div>
+            <div class="article-flex-box">
+                <div class="intro-wrap-block-five-every" v-for="(post,i) in down_data" :key="i" @click="goOtherPage(post.post_url)">
+                    <div class="intro-wrap-block-five-every-img" :style="{backgroundImage: 'url('+ post.post_img+ ')'}"></div>
+                    <h2 class="intro-wrap-block-five-every-title">{{post.post_title}}</h2>
+                    <p class="intro-wrap-block-five-every-text" v-html="post.preview_text.innerHTML.substr(0,50) + '...'"></p>
+                    <img class="intro-wrap-block-five-every-next" @click="goOtherPage(post.post_url)" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
+                </div>
+            </div> -->
+            <!-- <div class="article-flex-box">
                 <a href="https://link.medium.com/X8MbmFeEaZ" style="text-decoration:none;">
                     <div class="intro-wrap-block-five-every">
                         <div class="intro-wrap-block-five-every-img" style="background-image:url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-five-1.png');"></div>
@@ -137,7 +164,7 @@
                         <img class="intro-wrap-block-five-every-next" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/arrow-point-to-right.png" alt="">
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="info-footer">
             <div class="index-label-box" id="index-fixed-nav">
@@ -174,9 +201,12 @@ import MamiyogaTeachHeader from '~/components/mamiyoga/MamiyogaTeachHeader.vue'
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue'
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
 import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
-
+import MamiyogaMediumArticle from '~/components/mamiyoga/MamiyogaMediumArticle.vue'
 import { mapMutations, mapGetters } from 'vuex';
+// import {default as gg} from  'axios'
 import axios from '~/config/axios-config'
+
+
 
 export default {
     data:()=>({
@@ -203,14 +233,22 @@ export default {
         alertBtn: '好的',
         alertBtnColor: '#24798F',
         nextGo: '',
+
+        m_data: [],
+        up_data: [],
+        down_data: [],
     }),
     components: {
         MamiyogaTeachHeader,
         MamiyogaHamburgerHeader,
         MamiyogaDesktopNavHeader,
         MamiyogaNewWindowAlertBox,
-
+        MamiyogaMediumArticle,
     },
+    // async asyncData () {
+    //     const { data } = await gg.get('https://medium.com/feed/@ludonow')
+    //     return { m_data: data }
+    // },
     async mounted(){
         if(process.client) {
             location.href = '#';
@@ -237,6 +275,14 @@ export default {
                     }
                 }
             }
+
+            const { data } = await axios.get("/apis/mamiyoga-get-all-medium-articles")
+            this.m_data = data
+            console.log(this.m_data)
+            this.getArticleUrl()
+            this.up_data = data.slice(0,2)
+            this.down_data = data.slice(2,4)
+            
 
             if(this.$mq === 'desktop'){
                 document.getElementById('go_info').classList.add('click-active');
@@ -336,6 +382,38 @@ export default {
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
+        },
+        getArticleUrl(){
+            let url_array = []
+            for(let i = 0; i < this.m_data.length; i++) {
+                // console.log(this.m_data[i].post_content)
+                let el = document.createElement('html')
+                el.innerHTML = this.m_data[i].post_content
+                // console.log(el)
+                let a_tag = el.getElementsByTagName("a")
+                url_array = Array.from(a_tag)
+                let article_url = url_array.find(tag => tag.innerText == this.m_data[i].post_title)
+                if(article_url) {
+                    let h = article_url.getAttribute("href")
+                    this.m_data[i].post_url = h
+                }
+                let fig_tag = el.getElementsByTagName("img")
+                let fig_array = Array.from(fig_tag)
+                let first_fig = fig_array[0]
+                if(first_fig) {
+                    let img = first_fig.getAttribute("src")
+                    this.m_data[i].post_img = img
+                }
+                let main_content = el.getElementsByTagName("p")
+                let content_array = Array.from(main_content)
+                let first_content = content_array[0]
+                if(first_content){
+                    this.m_data[i].preview_text = first_content
+                }
+            }
+        },
+        goOtherPage(page){
+            window.location.href = page
         }
     },
 }
@@ -387,9 +465,9 @@ export default {
 }
 .intro-wrap-block-five {
     width: 100%;
-    height: 750px;
+    /* height: 750px; */
     padding: 20px 0;
-    height: 1050px;
+    /* height: 1050px; */
 }
 .intro-wrap-block-five-every {
     width: 95%;
@@ -398,6 +476,7 @@ export default {
     border-radius: 5px;
     margin-top: 20px;
     position: relative;
+    cursor: pointer;
 }
 .intro-wrap-block-five-every-img {
     width: 90%;
@@ -419,10 +498,12 @@ export default {
     font-weight: 300;
 }
 .intro-wrap-block-five-every-next {
-    position: absolute;
+    /* position: absolute;
     right: -10%;
-    top: 50%;
+    top: 50%; */
+    margin-left: 20px;
     height: 15px;
+    cursor: pointer;
 }
 .info-footer {
     /* height: 60px; */
@@ -626,6 +707,12 @@ export default {
     border-radius: 25px;
     margin: 0 auto 30px;
 }
+.medium-article-block-outside {
+    /* width: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 @media(min-width: 769px) {
     .info-header {
         background: #F8F7F8;
@@ -692,6 +779,7 @@ export default {
     }
     .info-page .article-flex-box {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-evenly;
         max-width: 1366px;
@@ -702,6 +790,8 @@ export default {
     }
     .intro-wrap-block-five-every {
         width: 85%;
+        min-width: 270px;
+        max-width: 350px;
     }
     .info-page .info-wrap-block-first.desktop-two {
         background:#fff;
@@ -817,7 +907,10 @@ export default {
     .info-white-article-tag {
         margin: 0 auto 50px;
     }
-
+    .medium-article-block-outside {
+        width: 45%;
+        justify-content: center;
+    }
 
 }
 @media (min-width: 769px) and (max-width: 860px) {
