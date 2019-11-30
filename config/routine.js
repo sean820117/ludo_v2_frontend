@@ -88,7 +88,7 @@ export default [
                 pose_brief:"無",
                 pose_video:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/nathon_stretch_1_B.mp4",
                 pose_ai: true,
-                pose_id: "nathon_stretch_1",
+                pose_id: "99",
                 pose_tags: ['雙腳距離太寬','坐下時太快'],
                 inhale: [],
                 exhale: [],
