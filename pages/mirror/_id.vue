@@ -40,7 +40,7 @@ export default {
     },
     methods:{
         goBack() {
-
+            this.$router.go(0);
         },
         closeResult(score = null){
             this.is_practice = false

@@ -595,8 +595,10 @@ export default {
         },
         closeResult(){
             if(!this.open_camera) {
+                this.show_result = false
                 this.$emit('closeResult')
             } else {
+                this.show_result = false
                 this.$emit('closeResult',this.result_score)
             }
         },
