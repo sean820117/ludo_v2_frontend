@@ -46,7 +46,7 @@
             <mamiyoga-desktop-course-video @openCourseVideo="openCourseVideo" @openNextVideo="openNextVideo"
             @openOtherCourseVideo="openOtherCourseVideo" @closeVideo="closeCourse" :currentCourse="currentCourse" 
             @goSeries="goSeries" :poseDes.sync="poseDes" :switchPose.sync="switchPose" :poseTitle.sync="poseTitle" 
-            :allCourses="courses"></mamiyoga-desktop-course-video>
+            :current_input_id.sync="current_input_id" :allCourses="courses" @goPoseMirror="goPoseMirror"></mamiyoga-desktop-course-video>
             <mamiyoga-desktop-nav-header bgColor="#24798f"></mamiyoga-desktop-nav-header>
             <div class="menu-desktop-top-block">
                 <div class="menu-desktop-top-block-title">
@@ -187,11 +187,13 @@ export default {
         switchPose: false,
         poseTitle: '',
         poseDes: [],
+        current_input_id: '',
         stringToN: {
             first: 1,
             second: 2,
             third: 3,
-        }
+        },
+        go_other_page: false,
     }),
     components: {
         MamiyogaHeader,
@@ -447,6 +449,7 @@ export default {
 
                         this.poseTitle = `動作${this.stringToN[poseData.pose_id]}、${poseData.pose_brief}`
                         this.poseDes = poseData.pose_description
+                        this.current_input_id = poseData.input_id
                         let vid_box = document.querySelector('#current-course-video-block')
                         let iframe = document.querySelector('#current-course-video');
                         if (iframe) {
@@ -496,6 +499,7 @@ export default {
 
                                     this.poseTitle = `動作${this.stringToN[poseData.pose_id]}、${poseData.pose_brief}`
                                     this.poseDes = poseData.pose_description
+                                    this.current_input_id = poseData.input_id
                                     let vid_box = document.querySelector('#current-course-video-block')
                                     let iframe = document.querySelector('#current-course-video');
                                     if (iframe) {
@@ -650,12 +654,23 @@ export default {
                 }
             }
             
+        },
+        goPoseMirror(e){
+            this.go_other_page = true
+            this.$router.push(`/mirror/yoga_${e}`)
         }
     },
     beforeRouteLeave(to, from, next) { 
         console.log(window.history.state)
         if(this.$mq == 'desktop'){
             let current_vid = document.querySelector('#current-course-video')
+            if(this.go_other_page){
+                if(current_vid.hasChildNodes()){
+                    next(false)
+                    this.closeCourse();
+                    this.go_other_page = false
+                }
+            }
             if(current_vid.hasChildNodes()){
                 next(false)
                 this.closeCourse();

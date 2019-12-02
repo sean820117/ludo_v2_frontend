@@ -24,7 +24,10 @@ module.exports = [
                 remind_img:'',
                 trial: true,
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -39,7 +42,9 @@ module.exports = [
                 trial: true,
                 inhale: [[20,22,28]],
                 exhale: [[30,31,37]],
+                A: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action02_A.mp4',
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action02_B.mp4',
+                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action_C.mp4',
             },
             {
                 pose_id: 'third',
@@ -54,7 +59,9 @@ module.exports = [
                 trial: true,
                 inhale: [[44,46,52]],
                 exhale: [[53,54,59]],
+                A: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action03_A.mp4',
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action03_B.mp4',
+                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L1_action_C.mp4',
             },
         ],
     },
@@ -84,7 +91,10 @@ module.exports = [
                 remind_tags: ['姿勢正確','膝蓋需要伸直','膝蓋需要伸直','抬腿速度太快','抬腿速度太快','身體避免晃動'],
                 trial: false,
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -98,7 +108,10 @@ module.exports = [
                 remind_img:'',
                 trial: false,
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action02_C.mp4',
             },
             {
                 pose_id: 'third',
@@ -112,7 +125,10 @@ module.exports = [
                 remind_img:'',
                 trial: false,
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action03_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action03_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L2_action_C.mp4',
             },
         ],
     },
@@ -142,7 +158,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-front-1.png',
                 remind_tags: ['姿勢正確','身體往後倒','手太後面了','手太前面了','用腹部維持重心','減少手部壓力'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -156,7 +175,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L3_action_C.mp4',
             },
         ],
     
@@ -186,7 +208,10 @@ module.exports = [
                 trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -200,7 +225,10 @@ module.exports = [
                 trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L4_action_C.mp4',
             },
         ],
     },
@@ -230,7 +258,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','膝蓋微微彎曲','將肚子往大腿根部靠近'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -245,7 +276,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','臀部穩定的在地面上','用腹部收縮將上半身捲曲','收起下巴讓肩膀放鬆'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L5_action_C.mp4',
             },
         ],
     },
@@ -275,7 +309,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','背部向下施力','雙腳與肩同寬','下巴微收'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -290,7 +327,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/straight-side-1.png',
                 remind_tags: ['姿勢正確','腿部打直不彎曲','用腳趾穩定身體','下巴收起穩定重心'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L6_action_C.mp4',
             },
         ],
     },
@@ -320,7 +360,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','腳抬得太低','腳抬得太高','手臂抬太低','手臂抬太高','背部彎曲','動作持續過短'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -334,7 +377,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action_C.mp4',
             },
             {
                 pose_id: 'third',
@@ -349,7 +395,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','雙腳距離與肩同寬','雙腳分別穩定的下半身','注意臀部與腹部的肌肉'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action03_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action03_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L7_action_C.mp4',
             },
         ],
     },
@@ -378,7 +427,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -393,7 +445,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','骨盆穩定地坐在腳跟上','前面的手放在膝蓋上','後面的手放在地面'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L8_action_C.mp4',
             },
 
         ],
@@ -423,7 +478,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -437,7 +495,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action_C.mp4',
             },
             {
                 pose_id: 'third',
@@ -452,7 +513,10 @@ module.exports = [
                 remind_img:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/horizontal-side-1.png',
                 remind_tags: ['姿勢正確','雙腳距離再更靠近一點','放慢感受腹部核心力量'],
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action03_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action03_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L9_action_C.mp4',
             },
         ],
     },
@@ -483,6 +547,7 @@ module.exports = [
                 remind_tags: ['姿勢正確','穩定手肘','雙腳距離再遠一點','視線看向側面'],
                 inhale: [[10,20]],
                 exhale: [[20,30]],
+                A: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action01_A.mp4',
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action01_B.mp4',
                 C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action_C.mp4',
             },
@@ -498,7 +563,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L10_action_C.mp4',
             },
         ],
     },
@@ -527,7 +595,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -541,7 +612,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L11_action_C.mp4',
             },
         ],
     },
@@ -570,7 +644,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action_Cmp4',
             },
             {
                 pose_id: 'second',
@@ -584,7 +661,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L12_action_C.mp4',
             },
         ],
     },
@@ -613,7 +693,10 @@ module.exports = [
                 trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -627,7 +710,10 @@ module.exports = [
                 trial: true,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_C.mp4',
             },
             {
                 pose_id: 'third',
@@ -643,8 +729,9 @@ module.exports = [
                 remind_tags: ['姿勢正確','不要聳肩','身體太往前','身體太往後','用背部出力會更好','手臂不彎曲','抬手不完全','更往上伸展','屁股離地了'],
                 inhale: [[1,4,10],[22,23,29]],
                 exhale: [[13,14,19],[32,34,39]],
+                A: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_A.mp4',
                 B: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_3_B.mp4',
-                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action03_C.mp4',
+                C: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L13_action_C.mp4',
             },
         ],
     },
@@ -673,7 +760,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action01_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action01_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action_C.mp4',
             },
             {
                 pose_id: 'second',
@@ -687,7 +777,10 @@ module.exports = [
                 trial: false,
                 remind_img:'',
                 inhale: [[10,20]],
-                exhale: [[20,30]]
+                exhale: [[20,30]],
+                A:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action02_A.mp4',
+                B:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action02_B.mp4',
+                C:'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/practice-video/L14_action_C.mp4',
             },
         ],
     },

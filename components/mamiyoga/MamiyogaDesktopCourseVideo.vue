@@ -5,8 +5,9 @@
                 <div class="current-course-video-path path">
                     <div @click="closeVideo"> {{$t('desktop_header_menu_2')}} > </div>
                     <div @click="goSeries(currentCourse.tags)">{{`${getSeriesName} >`}}</div>
-                    <div @click="openCourseVideo" :style="{fontWeight: switchPose ? 'unset':'bolder'}">{{`${$t('new_course_title')}${currentCourse.id}、${currentCourse.title}`}}</div>
-                    <div v-if="switchPose" :style="{fontWeight: switchPose ? 'bolder':''}"> > {{poseTitle}}</div>
+                    <div @click="openCourseVideo" :style="{fontWeight: switchPose ? 'unset':'bolder',textDecoration: switchPose ? 'none':'underline'}">{{`${$t('new_course_title')}${currentCourse.id}、${currentCourse.title}`}}</div>
+                    <div v-if="switchPose" > ></div>
+                    <div v-if="switchPose" :style="{fontWeight: switchPose ? 'bolder':'',textDecoration: switchPose ? 'underline':'none'}">{{poseTitle}}</div>
                 </div>
                 <div v-if="!showMenu" class="current-course-video-menu-btn" @click="showMenu = true">
                     {{$t('new_course_block_menu')}}
@@ -78,10 +79,13 @@
                 </div>
             </div>
             <div style="display: flex;align-items: flex-start;justify-content: space-between;margin-top: 25px;">
-                <div id="current-course-video">
-                    <!-- <iframe src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+                <div style="width: 70%; margin-right: 20px;">
+                    <div id="current-course-video">
+                        <!-- <iframe src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-course/L1_action01.mp4" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+                    </div>
+                <div class="go-pose-mirror center-mirror-btn" v-if="switchPose && current_input_id != ''" @click="goPoseMirror(current_input_id)">開始練習</div>
                 </div>
-                <div style="width: 25%;">
+                <div style="width: 25%;min-width: 315px;">
                     <div class="current-course-data">
                         <h6>{{switchPose ? $t('course_tips_text'):$t('course_little_title_1')}}</h6>
                         <div id="course-info">
@@ -97,14 +101,15 @@
                     <div class="current-course-data" style="margin-top: 25px;">
                         <h6>{{$t('course_every_pose')}}</h6>
                         <div>
-                            <div class="current-little-course-pose" v-for="(pose,i) in currentCourse.poses" :key="i" @click="openPoseVideo(pose,i)">
-                                <div class="current-little-course-pose-preview" :style="{backgroundImage: `url(${pose.ai_preview_img})`}"></div>
+                            <div class="current-little-course-pose" v-for="(pose,i) in currentCourse.poses" :key="i">
+                                <div class="current-little-course-pose-preview"  @click="openPoseVideo(pose,i)" :style="{backgroundImage: `url(${pose.ai_preview_img})`}"></div>
                                 <div class="current-little-course-pose-title">
                                     <div style="display: flex;margin-bottom: 4px;">
-                                        <p>{{$t('course_practice_label')}}{{i+1}}</p>
+                                        <p  @click="openPoseVideo(pose,i)">{{$t('course_practice_label')}}{{i+1}}</p>
                                         <div class="have-ai-tag" v-if="pose.pose_ai">{{$t('desktop_index_four_only_title')}}</div>
+                                        <div class="go-pose-mirror" v-if="pose.pose_ai" @click="goPoseMirror(pose.input_id)">開始練習</div>
                                     </div>
-                                    <p>{{pose.pose_brief}}</p>
+                                    <p  @click="openPoseVideo(pose,i)">{{pose.pose_brief}}</p>
                                 </div>
                             </div>
                             <div class="current-little-course-pose" v-if="switchPose" @click="openCourseVideo">
@@ -137,6 +142,7 @@ export default {
         switchPose: Boolean,
         poseTitle: String,
         poseDes: Array,
+        current_input_id: String,
     },
     data:()=>({
         series: '',
@@ -189,6 +195,8 @@ export default {
             this.$emit('update:switchPose',true)
             this.$emit('update:poseTitle',`${this.$t('course_practice_label')}${index+1}、${pose.pose_brief}`)
             this.$emit('update:poseDes',pose.pose_description)
+            this.$emit('update:current_input_id',pose.input_id)
+            // console.log(pose.input_id)
         },
         openNextVideo(n){
             this.$emit('openNextVideo',n)
@@ -236,6 +244,10 @@ export default {
                 this.show_listD[index] = 'open'
             }
         },
+        goPoseMirror(e){
+            console.log(e)
+            this.$emit('goPoseMirror',e)
+        }
     },
     computed:{
         getSeriesName(){
@@ -303,8 +315,8 @@ export default {
 #current-course-video {
     /* display: none; */
     /* position: fixed; */
-    width: 70%;
-    height: 100vh;
+    width: 100%;
+    height: 75vh;
     z-index: 100;
     background: black;
 }
@@ -386,14 +398,13 @@ export default {
 #course-info p {
     color: #FFFFFF;
     font-size: 15px;
-    width: 80%;
+    width: 100%;
 }
 .current-little-course-pose {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
-    cursor:pointer;
 }
 .current-little-course-pose-preview {
     width: 45%;
@@ -402,9 +413,11 @@ export default {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+    cursor:pointer;
 }
 .current-little-course-pose p {
     color: #fff;
+    cursor:pointer;
 }
 .current-little-course-pose-title {
     width: 50%;
@@ -503,5 +516,23 @@ export default {
     font-size: 16px;
     color: #272727;
     text-align: center;
+}
+
+.go-pose-mirror {
+    background: #24798f;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 2px;
+    cursor: pointer;
+}
+.center-mirror-btn {
+     width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 </style>
