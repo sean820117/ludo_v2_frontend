@@ -48,24 +48,24 @@
                     <p class="syllabus-intro-text" v-html="$t('desktop_index_five_text')"></p>
                     <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
-                <!-- <div v-if="start_build && !show_arrangement">
+                <div v-if="start_build && !show_arrangement">
                     <div v-if="first_question">
                         <h5 class="syllabus-desktop-title" style="margin-top: 10vh;font-size: 22px;">{{$t('desktop_syllabus_question_1')}}</h5>
                         <no-ssr>
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectFrequency(1)" class="select-block-content">
+                                    <div @click="selectFrequency(0)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_1_1')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectFrequency(2)" class="select-block-content">
+                                    <div @click="selectFrequency(1)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_1_2')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectFrequency(3)" class="select-block-content">
+                                    <div @click="selectFrequency(2)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_1_3')}}
                                     </div>
                                 </slide>
@@ -78,17 +78,17 @@
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectWant(1)" class="select-block-content">
+                                    <div @click="selectWant(0)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_2_1')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectWant(2)" class="select-block-content">
+                                    <div @click="selectWant(1)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_2_2')}}
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectWant(3)" class="select-block-content">
+                                    <div @click="selectWant(2)" class="select-block-content">
                                     {{$t('desktop_syllabus_opction_2_3')}}
                                     </div>
                                 </slide>
@@ -101,22 +101,22 @@
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(1)" id="solve_1" class="select-block-content">
+                                    <div @click="selectQuestion('rectify')" id="solve_rectify" class="select-block-content">
                                     矯正疼痛
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(2)" id="solve_1" class="select-block-content">
+                                    <div @click="selectQuestion('alleviate')" id="solve_alleviate" class="select-block-content">
                                     舒壓安眠
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(3)" id="solve_3" class="select-block-content">
+                                    <div @click="selectQuestion('beauty')" id="solve_beauty" class="select-block-content">
                                     美體塑身
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion(4)" id="solve_4" class="select-block-content">
+                                    <div @click="selectQuestion('blend')" id="solve_blend" class="select-block-content">
                                     調和心靈
                                     </div>
                                 </slide>
@@ -128,8 +128,12 @@
                         <span id="span-2"></span>
                         <span id="span-3"></span>
                     </div>
-                </div> -->
+                </div>
                  <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
+                    <div class="syllabus-calendar-line">
+                        <div class="syllabus-calendar-li noSelect" v-for="d in get_14_dates" :key="d.date"
+                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                    </div>
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
                     <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
                     <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
@@ -186,30 +190,30 @@
                     <div class="info-desktop-red-btn" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
             </div>
-            <!-- <div v-if="start_build && !show_arrangement">
+            <div v-if="start_build && !show_arrangement">
                 <div class="syllabus-desktop-question" v-if="first_question">
                     <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_question_1')}}</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_1')}}</div>
-                        <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_2')}}</div>
-                        <div @click="selectFrequency(3)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_3')}}</div>
+                        <div @click="selectFrequency(0)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_1')}}</div>
+                        <div @click="selectFrequency(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_2')}}</div>
+                        <div @click="selectFrequency(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_1_3')}}</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question" v-if="second_question">
                     <h5 class="syllabus-desktop-title">{{$t('desktop_syllabus_question_2')}}</h5>
                     <div class="syllabus-desktop-question-select-block">
-                        <div @click="selectWant(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_1')}}</div>
-                        <div @click="selectWant(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_2')}}</div>
-                        <div @click="selectWant(3)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_3')}}</div>
+                        <div @click="selectWant(0)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_1')}}</div>
+                        <div @click="selectWant(1)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_2')}}</div>
+                        <div @click="selectWant(2)" class="syllabus-desktop-question-select">{{$t('desktop_syllabus_opction_2_3')}}</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question" v-if="!first_question && !second_question">
                     <h5 class="syllabus-desktop-title">請問您最想解決什麼問題呢？</h5>
                     <div class="syllabus-desktop-question-select-block solve">
-                        <div class="syllabus-desktop-question-select" id="solve_1" @click="selectQuestion(1)">矯正疼痛</div>
-                        <div class="syllabus-desktop-question-select" id="solve_2" @click="selectQuestion(2)">舒壓安眠</div>
-                        <div class="syllabus-desktop-question-select" id="solve_3" @click="selectQuestion(3)">美體塑身</div>
-                        <div class="syllabus-desktop-question-select" id="solve_4" @click="selectQuestion(4)">調和心靈</div>
+                        <div class="syllabus-desktop-question-select" id="solve_rectify" @click="selectQuestion('rectify')">矯正疼痛</div>
+                        <div class="syllabus-desktop-question-select" id="solve_alleviate" @click="selectQuestion('alleviate')">舒壓安眠</div>
+                        <div class="syllabus-desktop-question-select" id="solve_beauty" @click="selectQuestion('beauty')">美體塑身</div>
+                        <div class="syllabus-desktop-question-select" id="solve_blend" @click="selectQuestion('blend')">調和心靈</div>
                     </div>
                 </div>
                 <div class="syllabus-desktop-question-bar">
@@ -217,8 +221,20 @@
                     <span id="span-2"></span>
                     <span id="span-3"></span>
                 </div>
-            </div> -->
+            </div>
             <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-desktop-arrangement-outside">
+                <carousel class="syllabus-calendar-desktop" :perPage="1" :autoplay="false" 
+                :navigationEnabled="true" :paginationEnabled="false" >
+                    <slide class="syllabus-calendar-line">
+                        <div class="syllabus-calendar-li" v-for="d in get_14_dates.slice(0,7)" :key="d.date"
+                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                        <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/syllabus-desktop-arrow-right.png" alt=""> -->
+                    </slide>
+                    <slide class="syllabus-calendar-line">
+                        <div class="syllabus-calendar-li" v-for="d in get_14_dates.slice(7)" :key="d.date"
+                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                    </slide>
+                </carousel>
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
@@ -240,6 +256,7 @@
                 </div>
             </div>
             <div v-if="!is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
+                
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
@@ -286,6 +303,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 import MamiyogaHeader from '~/components/mamiyoga/MamiyogaHeader.vue';
 import MamiyogaHamburgerHeader from '~/components/mamiyoga/MamiyogaHamburgerHeader.vue';
 import MamiyogaDesktopNavHeader from '~/components/mamiyoga/MamiyogaDesktopNavHeader.vue'
@@ -296,6 +314,7 @@ import MamiyogaSyllabusContent from '~/components/mamiyoga/MamiyogaSyllabusConte
 import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock.vue';
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
+import MamiyogaCalendarTool from '~/components/mamiyoga/MamiyogaCalendarTool.vue'
 import { mapMutations, mapGetters } from 'vuex';
 export default {
     data:()=>({
@@ -335,6 +354,9 @@ export default {
         alertBtn: '好的',
         alertBtnColor: '#24798F',
         nextGo: '',
+
+        day_list: ['日','ㄧ','二','三','四','五','六'],
+        click_today: [],
     }),
     components: {
         MamiyogaHeader,
@@ -347,6 +369,7 @@ export default {
         MamiyogaWindowAlertBox,
         MamiyogaNewWindowAlertBox,
         MamiyogaNewResultBlock,
+        MamiyogaCalendarTool,
     },
     async mounted() {
         if (process.client) {
@@ -367,16 +390,16 @@ export default {
                 document.getElementById('go_syllabus').classList.add('click-active');
             }
             
-            // console.log(this.routine.default)
             this.first_course = this.courses[0]
             this.experience_course = this.courses[12]
-            // console.log(this.first_course)
 
             if(sessionStorage['menu_current_series']) {
                 this.check_series = sessionStorage['menu_current_series']
             } else {
                 sessionStorage['menu_current_series'] = this.check_series
-            }            
+            }       
+
+            this.selectDay(this.get_14_dates[0].date)
         }
     },
     computed:{
@@ -421,7 +444,7 @@ export default {
                         }else {
                             this.have_trial = true;
                             this.start_build = true;
-                            this.show_arrangement = true
+                            // this.show_arrangement = true
                         }
                     } else{
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
@@ -433,7 +456,7 @@ export default {
                 } else {
                     this.have_trial = true;
                     this.start_build = true;
-                    this.show_arrangement = true
+                    // this.show_arrangement = true
                 }
             }
         },
@@ -452,14 +475,14 @@ export default {
             document.querySelector('#span-2').style.background = '#d1d1d1'
             document.querySelector('#span-3').style.background = '#707070'
         },
-        selectQuestion(num){
-            this.user_question = num
-            // console.log(this.user_question)
-            
+        selectQuestion(type){
+            this.user_question = type
             this.is_loading = true
             if(this.$mq === 'desktop') {
-                document.querySelector(`#solve_${num}`).classList.add('desktop-select-question')
+                document.querySelector(`#solve_${type}`).classList.add('desktop-select-question')
             }
+            let obj = {frequency: this.user_frequency, exercise_time: this.user_want, question: this.user_question}
+            console.log(obj)
             setTimeout(() => {
                 this.is_loading = false
                 this.show_arrangement = true
@@ -499,14 +522,27 @@ export default {
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)
             }
-        }
+        },
+        doHandleMonth(m){
+            if(m.toString().length == 1){
+            m = "0" + m;
+            }
+            return m;
+        },
+        selectDay(i){
+            if (this.click_today[i] === 'open') {
+                this.click_today = [];
+            } else {
+                this.click_today = [];
+                this.click_today[i] = 'open'
+            }
+        },
     },
     computed:{
         ...mapGetters({
             user : 'user/getData',
         }),
         getTodayDate(){
-            const day_list = ['日','ㄧ','二','三','四','五','六']
             const day_jp = ['日','月','火','水','木','金','土']
             let d = new Date();
             let n = d.getDay();
@@ -514,10 +550,19 @@ export default {
                 let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_jp[n] +'）' ;
                 return today
             } else {
-                let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_list[n] +'）' ;
+                let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + this.day_list[n] +'）' ;
                 return today
+            }   
+        },
+        get_14_dates(){
+            let now = new Date();
+            let ret = [];
+            let now_date = {year: now.getFullYear(), month: now.getMonth(), date: now.getDate(), day: now.getDay()};
+            for(let i = 0; i < 14; i++){
+                let t_day = new Date(now_date.year, now_date.month, now_date.date + i);
+                ret.push({year: t_day.getFullYear(), month: this.doHandleMonth(t_day.getMonth()+1), date: this.doHandleMonth(t_day.getDate()), day: t_day.getDay()});
             }
-            
+            return ret;
         }
     }
 }
@@ -786,6 +831,43 @@ export default {
     stroke-dashoffset: 0;
   }
 }
+.syllabus-calendar-line {
+    display: -webkit-box;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;         
+}
+.syllabus-calendar-line::-webkit-scrollbar { 
+    width: 0 !important;
+    height: 0 !important;
+}
+.syllabus-calendar-line img {
+    cursor: pointer;
+}
+.syllabus-calendar-li {
+    color: #fff;
+    background-color: #d1d1d1;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+::-moz-focus-inner {border-color: transparent;}
+.syllabus-calendar-li.open {
+    background: #FF9898;
+}
 
 @media (min-width: 769px) {
     .syllabus-desktop {
@@ -816,7 +898,7 @@ export default {
         margin-bottom: 2vh;
     }
     .syllabus-desktop-title {
-        font-size: 50px;
+        font-size: 40px;
         font-weight: 300;
         margin: 0 0 2vh;
     }
@@ -894,7 +976,7 @@ export default {
         background: #707070;
     }
     .syllabus-desktop-arrangement-outside {
-        padding-top: 200px;
+        padding-top: 110px;
     }
     .syllabus-desktop-arrangement-block {
         width: 90%;
@@ -939,6 +1021,32 @@ export default {
         align-items: center;
         justify-content: center;
         color: #fff;
+    }
+    .syllabus-calendar-desktop {
+        /* display: flex; */
+        /* display: -webkit-box; */
+        width: 70%;
+        min-width: 730px;
+        max-width: 850px;
+        /* overflow: hidden; */
+        margin: 0 auto 15px;
+    }
+    .syllabus-calendar-line{
+        /* width: 100%;
+        margin: 0 auto; */
+        display: flex;
+        justify-content: space-between;
+        overflow: unset;
+    }
+    .syllabus-calendar-li {
+        margin-right: unset;
+        margin-bottom: unset;
+    }
+    .syllabus-calendar-line::-webkit-scrollbar{
+        width: unset !important;
+    }
+    .VueCarousel-navigation--disabled[data-v-453ad8cd] {
+        opacity: 0;
     }
 }
 </style>
