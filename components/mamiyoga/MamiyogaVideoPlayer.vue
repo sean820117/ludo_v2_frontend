@@ -8,7 +8,7 @@
                     <div id="pose-amount" :style="{borderColor: textBorder, backgroundColor: textBg, color: textColor }">{{`第${poseAmount}組`}}</div>
                 </div>
             </div>
-            <video id="myVideo" playsinline :src="vidResult" @timeupdate="videoProcess();" @loadedmetadata="showResultTag()"></video>
+            <video id="myVideo" playsinline :src="src" @timeupdate="videoProcess();" @loadedmetadata="showResultTag()"></video>
             <div id="player-controls">
                 <div class="controls-line" :style="{zoom: $mq == 'desktop' ? '.18':'.13'}">
                     <div class="play-vid-btn" @click="playVideo" :class="playing_video ? '':'paused'"></div>
@@ -96,7 +96,7 @@ export default {
         now_frame: 0,
     }),
     props:{
-        vidResult: src,
+        src: String,
         teacherPic: String,
         width: String,
         height: String,
@@ -307,7 +307,7 @@ export default {
             let advice = document.getElementById("teacher-advice");
             let pic = document.getElementById("teacher-pic");
             if(this.window_full){
-                if(/Windows/i.test(userAgent)){
+                if(/Windows/i.test(userAgent) || userAgent.match(/Macintosh/i)){
                     this.v_W = window.innerWidth
                     this.v_H = window.innerHeight
                     this.real_W = this.v_W
@@ -327,15 +327,6 @@ export default {
                         this.real_W = (this.real_H / 9 * 16)
                         container.classList.add('fullscreen-android')
                     }
-
-                    // this.vW = window.innerWidth
-                    // this.vH = window.innerHeight
-
-                    // this.realH = this.vH
-                    // this.realW = this.vW
-                    // if(this.vW > this.vH){
-                    //     container.classList.add('fullscreen-android')
-                    // }
                 }
             } else {
                 

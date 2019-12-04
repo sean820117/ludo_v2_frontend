@@ -1,6 +1,6 @@
 <template>
     <div class="canvas-test">
-        <mamiyoga-video-player :vidResult="vidResult" :width="'700px'" :height="'300px'"
+        <mamiyoga-video-player :src="vidResult" :width="'700px'" :height="'300px'"
         :teacherPic="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/teach-teacher-remind-new.png'"></mamiyoga-video-player>
     </div>
 </template>
