@@ -3,7 +3,7 @@ mamiyoga開發日誌，紀錄每次產品更新
 此檔僅供內部參考
 
 [版本號規範](https://semver.org/)
-[書寫格式參考]](https://keepachangelog.com/en/1.0.0/)
+[書寫格式參考](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
@@ -13,7 +13,7 @@ mamiyoga開發日誌，紀錄每次產品更新
 ### Removed
 - 移除七天體驗
 ### Fixed
-- 手機版沒有AI練習按鈕問題
+- 手機版沒有動作練習沒有”開始練習“按鈕問題
 - 手機版課程頁面zendesk沒有被移除的問題
 
 ## [1.0.0] - 2019-12-01
