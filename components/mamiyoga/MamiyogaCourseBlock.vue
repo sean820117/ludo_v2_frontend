@@ -126,14 +126,8 @@ export default {
                     if(this.payed_or_not) {
                         this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
                     } else{
-                        if(this.is_trial && this.have_trial){
+                        if(this.is_trial){
                             this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.goCourse}`)
-                        } else if(!this.have_trial && this.is_trial){
-                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                            this.show_alert = true
-                            this.alertText = `${this.$t('desktop_get_trial')}`
-                            this.alertBtn = `${this.$t('teach_button_ok')}`
-                            this.nextGo = 'free-trial'
                         } else {
                             localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                             this.show_alert = true

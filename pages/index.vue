@@ -72,8 +72,8 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
-                    <div v-if="have_trial || payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
-                    <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                    <div v-if="payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                    <!-- <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div> -->
                     
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
