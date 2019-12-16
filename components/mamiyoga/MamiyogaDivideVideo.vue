@@ -8,7 +8,7 @@
                 <!-- <label :for="pose.pose_id" :class="`${pose.pose_id}-label ${pose.pose_ai ? 'label-with-ai':''}`" 
                 v-for="(pose,i) in getPoses" :key="i" > -->
                  <label :for="pose.pose_id" :class="`${pose.pose_id}-label`" v-for="(pose,i) in getPoses" :key="i" >
-                <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" >  -->
+                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" v-show="pose.pose_ai" > 
                 {{$t('course_practice_label')+(i+1)}}
                 </label>
             </div>
