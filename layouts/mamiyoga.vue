@@ -55,51 +55,35 @@ export default {
                 { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
             ],
             script: [
-                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
         }
     },
     async mounted() {
         if (process.client) {
-            this.$setZendesk({
-                webWidget: {
-                    offset: {
-                        mobile: {
-                            // horizontal: '0px',
-                            // vertical: '100px'
-                        }
-                    }
-                }
-            });
-            // this.$showZendesk();
-            // setTimeout(() => {
-            //     console.log('hide zE');
-            //     this.$hideZendesk();
-            // }, 10000);
             this.is_login = await this.$checkLogin(this.$store);
 
-            // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
-            //     localStorage.redirect = this.$route.path;
-            //     console.log("save redirect : " + localStorage.redirect);
-            // }
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId            : '1075325352502513',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v5.0'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
             if(this.$route.path == '/teach') {
                 localStorage.redirect = this.$route.path;
             } else {
                 localStorage.redirect = '/menu'
             }
 
-            
-
-            // if (this.$route.path !== '/teach') {
-            //     let script = document.createElement('script')
-            //     script.id = 'ze-snippet'
-            //     script.type = 'text/javascript'
-            //     script.src = 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc'
-            //     document.getElementsByTagName('head')[0].appendChild(script)
-            //     console.log(script)
-            // } else {
-                
-            // }
         }
     },
 }

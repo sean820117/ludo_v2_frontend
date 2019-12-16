@@ -61,7 +61,7 @@
                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/quest-icon.png" alt="唐幼馨">
                         </div>
                     </div> -->
-                <!-- <img @click="clickPractice" class="have-ai-icon" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher"> -->
+                <img @click="clickPractice" class="have-ai-icon" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/ai-badge.png" alt="" v-if="getAiTeacher">
             </div>
         </div>
     </div>

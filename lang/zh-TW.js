@@ -249,6 +249,7 @@ export default {
   desktop_not_login: '尚未登入帳號，請先前往登入～',
   desktop_trial_over: '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～',
   desktop_go_login: '請先前往登入或註冊！',
+  desktop_go_pay: '購買後才能使用此功能呦！',
 
   //首頁
   desktop_index_first_title: '媽咪的口袋健康助手',

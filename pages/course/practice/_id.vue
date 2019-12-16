@@ -269,31 +269,13 @@ export default {
                 
                 if (payed_or_not) {
                     console.log("payed")
-                } else if (this.user.free_trial_starting_time) {
-                    let open_time = parseInt(this.user.free_trial_starting_time)
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    if(use_time > 7){ 
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/${this.course_id}`
-                        this.show_alert = true
-                        this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'pay'
-                    } else if(!this.course_data.trial) {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                        this.show_alert = true
-                        this.alertText = `${this.$t('desktop_course_buy')}`
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'pay'
-                    }
                 } else {
                     if(this.course_id == '1'){
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                        this.show_alert = true
-                        this.alertText = '開啟七天體驗即可解鎖本課程動作詳解～'
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'free-trial'
+                        // localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                        // this.show_alert = true
+                        // this.alertText = '開啟七天體驗即可解鎖本課程動作詳解～'
+                        // this.alertBtn = `${this.$t('teach_button_ok')}`
+                        // this.nextGo = 'free-trial'
                     } else {
                         console.log("not payed");
                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
@@ -301,8 +283,6 @@ export default {
                         this.alertText = `${this.$t('desktop_course_buy')}`
                         this.alertBtn = `${this.$t('teach_button_ok')}`
                         this.nextGo = 'pay'
-                        // window.alert("這堂是付費課程，請先前往付款才能觀看此課程喔！");
-                        // this.$router.push('/pay');
                     }
                 }
             }

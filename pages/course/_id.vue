@@ -58,38 +58,7 @@ export default {
                 this.nextGo = 'login'
             } else {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                
-                if (this.payed_or_not) {
-                    console.log("payed")
-                } else if (this.user.free_trial_starting_time) {
-                    let open_time = parseInt(this.user.free_trial_starting_time)
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    if(use_time > 7){ 
-                        if(this.course_id == '1'){
-
-                        } else {
-                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                            this.isAlert = true
-                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
-                            this.alertBtn = `${this.$t('member_article_ok')}`
-                            this.nextGo = 'pay'
-                        }
-                    } else {
-                        if(this.course_id == '1' || this.course_data.trial){
-
-                        } else {
-                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                            this.isAlert = true
-                            this.alertText = `${this.$t('desktop_course_buy')}`
-                            this.alertBtn = `${this.$t('member_article_ok')}`
-                            this.nextGo = 'pay'
-                        }
-                    }
-                } else if(this.course_id == '1') {
-                    
-                } else {
+                if (!this.payed_or_not) {
                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                     this.isAlert = true
                     this.alertText = `${this.$t('desktop_course_buy')}`
@@ -116,44 +85,12 @@ export default {
                 sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/practice/${this.course_id}`)
             } else {
-                if(this.user.free_trial_starting_time) {
-                    let open_time = parseInt(this.user.free_trial_starting_time)
-                    let now = new Date();
-                    let now_time = now.getTime();
-                    let use_time = (now_time - open_time)/86400000;
-                    if(use_time > 7){ 
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                        this.isAlert = true
-                        this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
-                        this.alertBtn = `${this.$t('member_article_ok')}`
-                        this.nextGo = 'pay'
-                    } else {
-                        if(this.course_data.trial){
-                            sessionStorage["course_" + this.course_data.id + "_current_pose_id"] = 'first'
-                            this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/course/practice/${this.course_id}`)
-                        } else {
-                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                            this.isAlert = true
-                            this.alertText = `${this.$t('desktop_course_buy')}`
-                            this.alertBtn = `${this.$t('member_article_ok')}`
-                            this.nextGo = 'pay'
-                        }
-                    }
-                } else if(!this.user.free_trial_starting_time && this.course_data.trial) {
-                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                    this.isAlert = true
-                    this.alertText = `${this.$t('desktop_get_trial')}`
-                    this.alertBtn = `${this.$t('member_article_ok')}`
-                    this.nextGo = 'free-trial'
-                } else {
-                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-                    this.isAlert = true
-                    this.alertText = `${this.$t('desktop_course_buy')}`
-                    this.alertBtn = `${this.$t('member_article_ok')}`
-                    this.nextGo = 'pay'
-                }
+                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
+                this.isAlert = true
+                this.alertText = `${this.$t('desktop_course_buy')}`
+                this.alertBtn = `${this.$t('member_article_ok')}`
+                this.nextGo = 'pay'
             }
-            
         },
         enterBox(i){
             if(i == '0'){

@@ -212,7 +212,7 @@ export default {
   desktop_not_login: 'まだログインされていません。ログインしてください。',
   desktop_trial_over: '試用期限が終了したため、商品の購入或いはカスタマーサポートまでお問い合わせください。',
   desktop_go_login: 'ログインまたは登録お願いします！',
-
+  desktop_go_pay: '商品の購入或いはカスタマーサポートまでお問い合わせください。',
   //首頁
   desktop_index_first_title: 'ママの健康ポケットコーチ',
   mobile_index_first_title: 'ママの健康<br>ポケットコーチ',

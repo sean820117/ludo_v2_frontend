@@ -258,22 +258,22 @@ export default {
             } else {
                 this.is_login = true
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if(this.user.free_trial_starting_time){
-                    if(this.user.pregnant_data){
-                        this.input_date = true
-                        if(this.user.pregnant_data.is_pregnant){
-                            this.is_pregnant = true
-                            let d = this.user.pregnant_data.before_pregnant_date
-                            this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
-                        } else {
-                            this.is_pregnant = false
-                            let current_date = new Date();
-                            let current_time = current_date.getTime();
-                            let user_time = Date.parse(this.user.pregnant_data.after_pregnant_date)
-                            this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '日'
-                        }
+                // if(this.user.free_trial_starting_time){
+                if(this.user.pregnant_data){
+                    this.input_date = true
+                    if(this.user.pregnant_data.is_pregnant){
+                        this.is_pregnant = true
+                        let d = this.user.pregnant_data.before_pregnant_date
+                        this.user_input_date = (d.slice(0,4)) + '年' + (d.slice(5,7)) + '月' + (d.slice(8,10)) + '日'
+                    } else {
+                        this.is_pregnant = false
+                        let current_date = new Date();
+                        let current_time = current_date.getTime();
+                        let user_time = Date.parse(this.user.pregnant_data.after_pregnant_date)
+                        this.user_input_date = Math.floor((current_time - user_time) / 86400000) + '日'
                     }
                 }
+                // }
             }
 
             const { data } = await axios.get("/apis/mamiyoga-get-all-medium-articles")
@@ -305,15 +305,11 @@ export default {
         getProject(){
             if(this.login_or_not){
                 if(!this.payed_or_not) {
-                    if(this.user.free_trial_starting_time){
-                        this.want_recommend = true
-                    } else {
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/information`
-                        this.show_alert = true
-                        this.alertText = `${this.$t('desktop_get_trial')}`
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'free-trial'
-                    }
+                    localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/information`
+                    this.show_alert = true
+                    this.alertText = `${this.$t('desktop_go_pay')}`
+                    this.alertBtn = `${this.$t('teach_button_ok')}`
+                    this.nextGo = 'pay'
                 } else {
                     this.want_recommend = true
                 }
@@ -331,31 +327,27 @@ export default {
         },
         async inputDate(){
             if(this.user_date !== '') {
-                if(!this.user.free_trial_starting_time) {
-                    this.$router.push('/free-trial')
-                } else {
-                    let dateFormat = /^(\d{4})-(\d{2})-(\d{2})$/
-                    if(dateFormat.test(this.user_date)) {
-                        let pregnant_data = {
-                            is_pregnant: this.is_pregnant, 
-                            after_pregnant_date: !this.is_pregnant ? this.user_date :'',
-                            before_pregnant_date: this.is_pregnant ? this.user_date:''
-                        }
-                        const res = await axios.post('/apis/mamiyoga-set-pregnant-info',{pregnant_data: pregnant_data});
-                        console.log(res)
-
-                        this.$store.commit('user/updataPregnantData',pregnant_data);
-                        // alert('已收到～')
-                        this.is_loading = true
-                        this.getUserTime();
-                        setTimeout(() => {
-                            this.input_date = true
-                            this.is_loading = false
-                        }, 3000);
-                    }else {
-                        this.hint = '請依照格式填寫日期～'
-                        this.hint_color = 'red'
+                let dateFormat = /^(\d{4})-(\d{2})-(\d{2})$/
+                if(dateFormat.test(this.user_date)) {
+                    let pregnant_data = {
+                        is_pregnant: this.is_pregnant, 
+                        after_pregnant_date: !this.is_pregnant ? this.user_date :'',
+                        before_pregnant_date: this.is_pregnant ? this.user_date:''
                     }
+                    const res = await axios.post('/apis/mamiyoga-set-pregnant-info',{pregnant_data: pregnant_data});
+                    console.log(res)
+
+                    this.$store.commit('user/updataPregnantData',pregnant_data);
+                    // alert('已收到～')
+                    this.is_loading = true
+                    this.getUserTime();
+                    setTimeout(() => {
+                        this.input_date = true
+                        this.is_loading = false
+                    }, 3000);
+                }else {
+                    this.hint = '請依照格式填寫日期～'
+                    this.hint_color = 'red'
                 }
             }
         },
