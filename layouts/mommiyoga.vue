@@ -54,7 +54,6 @@ export default {
                 { rel: 'apple-touch-icon', href: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/apple-icon.png' }
             ],
             script: [
-                { id:"ze-snippet" ,src: 'https://static.zdassets.com/ekr/snippet.js?key=a844136e-f47b-428d-bd65-0af9ed880cbc' },
             ],
             
         }
@@ -70,29 +69,23 @@ export default {
     // },
     async mounted() {
         if (process.client) {
-            this.$setZendesk({
-                webWidget: {
-                    offset: {
-                        mobile: {
-                            // horizontal: '0px',
-                            // vertical: '100px'
-                        }
-                    }
-                }
-            });
             this.is_login = await this.$checkLogin(this.$store);
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId            : '1075325352502513',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v5.0'
+                });
+            };
 
-            // if (!this.$route.path.includes("/signup") && !this.$route.path.includes("/login") ) {
-                // localStorage.redirect = this.$route.path;
-            // if(this.$route.path == '/teach') {
-            //     localStorage.redirect = this.$route.path;
-            // } else {
-            //     localStorage.redirect = '/menu'
-            // }
-            // console.log("save redirect : " + localStorage.redirect);
-            // }
-
-            
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         }
     },
 }

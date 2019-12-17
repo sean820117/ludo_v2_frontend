@@ -19,8 +19,8 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop' ? '14px':''}">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':'',fontSize: $i18n.locale == 'JP'  && $mq != 'desktop'? '14px':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div v-if="have_trial || payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
-                <div v-else class="info-desktop-red-btn index-first" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                <div v-if="payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                
                 <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
                 <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
                     <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
@@ -72,8 +72,8 @@
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
-                    <div v-if="have_trial || payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
-                    <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div>
+                    <div v-if="payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
+                    <!-- <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div> -->
                     
                     <!-- <div class="index-label-inside-box">
                         <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
@@ -702,13 +702,8 @@ export default {
         if(process.client) {
 
             this.login_or_not = await this.$checkLogin(this.$store);
-            if (this.login_or_not == false) {
-
-            } else {
+            if (this.login_or_not) {
                 this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-                if(this.user.free_trial_starting_time) {
-                    this.have_trial = true
-                }
             }
             if(this.$mq === 'desktop'){
                 document.getElementById('go_index').classList.add('click-active');

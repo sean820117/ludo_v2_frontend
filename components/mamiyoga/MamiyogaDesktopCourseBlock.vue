@@ -4,7 +4,7 @@
             <div class="mamiyoga-desktop-course-flex-block">
                 <div class="course-series-tag" v-if="showTag" :style="{backgroundColor: tagBgColor}">{{tagName}}</div>
                 <p v-html="courseTitle"></p>
-                <img v-if="(!is_trial || !have_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
+                <img v-if="(!is_trial) && !payed_or_not" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-close.png" alt="">
             </div>
             <div class="mamiyoga-desktop-course-block-gradual"></div>
             <div class="mamiyoga-desktop-course-block-hover">
@@ -85,18 +85,6 @@ export default {
                     this.have_trial = true
                 }
             }
-            if(this.user.free_trial_starting_time) {
-                let open_time = parseInt(this.user.free_trial_starting_time)
-                let now = new Date();
-                let now_time = now.getTime();
-                let use_time = (now_time - open_time)/86400000;
-                // console.log(use_time)
-                if(use_time > 7){
-                    this.have_trial = false;   
-                }else {
-                    this.have_trial = true;
-                }
-            }
         }
     },
     computed:{
@@ -105,93 +93,6 @@ export default {
         }),
     },
     methods: {
-        // openCourseVideo(video = null){
-        //     if(this.login_or_not){
-        //         if(!this.payed_or_not) {
-        //             if(this.user.free_trial_starting_time) {
-        //                 let open_time = parseInt(this.user.free_trial_starting_time)
-        //                 let now = new Date();
-        //                 let now_time = now.getTime();
-        //                 let use_time = (now_time - open_time)/86400000;
-        //                 // console.log(use_time)
-        //                 if(use_time > 7){
-        //                     this.have_trial = false;   
-        //                     localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-        //                     this.show_alert = true
-        //                     this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
-        //                     this.alertBtn = `${this.$t('teach_button_ok')}`
-        //                     this.nextGo = ''
-        //                     // alert('已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～')
-        //                     // this.$router.push('/');
-        //                 }else {
-        //                     this.have_trial = true;
-        //                     if(this.is_trial&&this.have_trial) {
-        //                         if (video) {
-        //                             let iframe = document.querySelector('#current-course-video');
-        //                             if (iframe) {
-        //                                 iframe.style.display = 'block';
-        //                                 iframe.querySelector('iframe').src = video;
-        //                             }
-        //                         } else if(this.courseVideo) {
-        //                             let iframe = document.querySelector('#current-course-video');
-        //                             if (iframe) {
-        //                                 iframe.style.display = 'block';
-        //                                 iframe.querySelector('iframe').src = this.courseVideo;
-        //                             }
-        //                         } else {
-        //                             console.log(this.courseTitle + ' no video');
-        //                         }
-        //                     } else {
-        //                         localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-        //                         this.show_alert = true
-        //                         this.alertText = '購買後即可觀看所有課程～'
-        //                         this.alertBtn = `${this.$t('teach_button_ok')}`
-        //                         this.nextGo = 'pay'
-        //                         // alert('購買後即可觀看所有課程～')
-        //                         // this.$router.push('/pay')
-        //                     }
-        //                 }
-        //             } else {
-        //                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
-        //                 this.show_alert = true
-        //                 this.alertText = `${this.$t('desktop_get_trial')}`
-        //                 this.alertBtn = `${this.$t('teach_button_ok')}`
-        //                 this.nextGo = 'free-trial'
-        //                 // localStorage.redirect = '/menu'
-        //                 // alert('開通七天體驗即可開始使用！')
-        //                 // this.$router.push('/free-trial')
-        //             } 
-        //         } else{
-        //             if (video) {
-        //                 let iframe = document.querySelector('#current-course-video');
-        //                 if (iframe) {
-        //                     iframe.style.display = 'block';
-        //                     let vid = document.createElement('div')
-        //                     vid.style.height = '100%';
-        //                     vid.style.width = '110%'
-        //                     vid.innerHTML = `<iframe src="${video}" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
-        //                     iframe.appendChild(vid)
-        //                     // iframe.querySelector('iframe').src = video;
-        //                     // this.addHistory()
-        //                 }
-        //             } else if(this.courseVideo) {
-        //                 let iframe = document.querySelector('#current-course-video');
-        //                 if (iframe) {
-        //                     iframe.style.display = 'block';
-        //                     let vid = document.createElement('div')
-        //                     vid.style.height = '100%';
-        //                     vid.style.width = '110%'
-        //                     vid.innerHTML = `<iframe src="${this.courseVideo}" width="80%" height="80%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
-        //                     iframe.appendChild(vid)
-        //                     // iframe.querySelector('iframe').src = this.courseVideo;
-        //                     // this.addHistory()
-        //                 }
-        //             } else {
-        //                 console.log(this.courseTitle + ' no video');
-        //             }
-        //         }
-        //     }
-        // },
         openCourseVideo(pose = null){
             if(pose){
                 // console.log(pose)

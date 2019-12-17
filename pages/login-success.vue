@@ -12,7 +12,7 @@
             <div class="reg-text2 login-success-welcome">歡迎成為『Mami yoga』的學員，讓我們<br>跟著麻美老師一起變美吧！</div>
         
             <div class="btn-login-and-signup-container"> 
-                <div class="mamiyoga-login-btn-to-signin" style="background:#FF9898;" @click="goTrial()">開始免費7天體驗</div>
+                <div class="mamiyoga-login-btn-to-signin" style="background:#FF9898;" @click="goTrial()">回到首頁</div>
                 <!-- <div class="mamiyoga-login-btn-to-signin" @click="goPay()">購買課程</div>
                 <div class="mamiyoga-login-btn-to-signin" style="margin-top:10px;background:#fff;color: #24798F;border:#24798f 2px solid;" @click="$router.push('/activation-code')">我有序號</div>   -->
             </div>
@@ -57,7 +57,7 @@ export default {
             this.$router.push('/pay')
         },
         goTrial(){
-            this.$router.push('/free-trial')
+            this.$router.push('/')
         },
         async checkInputSerialno(){
             if(this.input_serialno != '') {

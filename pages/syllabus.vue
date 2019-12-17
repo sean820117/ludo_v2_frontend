@@ -1,45 +1,6 @@
 <template>
     <div>
         <div v-if="$mq !== 'desktop'">
-            <!-- <div class="course-menu">
-                <div class="course-information" >
-                    <mamiyoga-header btnText="登出" bgColor="#9BAEB2" ftColor="#FFF"></mamiyoga-header>
-                    <div class="course-information-select">
-                        <div class="course-information-content">
-                            <router-link :to="check_lang + '/about'" style="text-decoration:none;"><p>{{$t('menu_nav_text_teacher')}}</p></router-link>
-                        </div>
-                        <div class="course-information-content">
-                            <router-link :to="check_lang + '/aiassistant'" style="text-decoration:none;"><p>{{$t('menu_nav_text_record')}}</p></router-link>
-                        </div>
-                        <div class="course-information-content">
-                            <p @click="not_online = true" style="cursor:pointer;">{{$t('menu_nav_text_friend')}}</p>
-                        </div>
-                        <div class="course-information-content">
-                            <router-link :to="check_lang +'/menu'" style="text-decoration:none;"><p>{{$t('menu_nav_text_course')}}</p></router-link>
-                        </div>
-                    </div>
-                    <div class="course-mail-icon" @click="not_online = true">
-                        <img style="width:25px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/menu-envelope.png" alt="">
-                    </div>
-                </div>
-                <div class="course-menu-box">
-                <mamiyoga-syllabus-content></mamiyoga-syllabus-content>
-                </div>
-            </div> -->
-            <!-- 信箱功能尚未開啟視窗 -->
-            <!-- <div class="not_online_box" :class="not_online ? 'open':''">
-                <mamiyoga-window-alert-box>
-                    <div class="cancel-box" @click="not_online = false">
-                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/cancel.svg" alt="" >
-                    </div>
-                    <p>{{$t('teach_assay_chat_text')}}</p>
-                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/comment-box-human.png" alt="" style="margin-top: 20px;width:40%;">
-                    <p style="font-size:13px;margin:15px 0px;" v-html="$t('teach_assay_chat_content')"></p>
-                    <div class="star-line-box">
-                        <button class="mamiyoga-assay-contact-btn" style="width:90px;letter-space:0;margin-top:20px" @click="not_online = false">{{$t('teach_assay_button_development')}}</button>
-                    </div>
-                </mamiyoga-window-alert-box>
-            </div> -->
             <div class="syllabus-desktop" :style="{minHeight: is_practice ? '0':'100vh',paddingBottom: is_practice ? '0':'5vh'}">
                 <mamiyoga-hamburger-header v-if="!is_practice"></mamiyoga-hamburger-header>
                 <div v-if="!start_build">
@@ -142,12 +103,6 @@
                             <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                         </div>
-                        <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
-                        <div class="syllabus-desktop-pink-rest">休息</div>
-                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
-                        <div class="syllabus-desktop-pink-rest">休息</div>
-                        <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block> -->
-
                     </div>
                     <div class="syllabus-mobile-fade-box">
                         <div class="info-desktop-red-btn" style="width: 200px;" @click="rePractice">{{$t('desktop_syllabus_second_btn')}}</div>
@@ -245,11 +200,6 @@
                                 <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
                                 <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                             </div>
-                            <!-- <mamiyoga-mobile-syllabus-block :bgImg="experience_course.poses[2].ai_preview_img" :courseTitle="experience_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block>
-                            <div class="syllabus-desktop-pink-rest">休息</div>
-                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[1].ai_preview_img" :courseTitle="first_course.poses[1].pose_brief"></mamiyoga-mobile-syllabus-block>
-                            <div class="syllabus-desktop-pink-rest">休息</div>
-                            <mamiyoga-mobile-syllabus-block :bgImg="first_course.poses[2].ai_preview_img" :courseTitle="first_course.poses[2].pose_brief"></mamiyoga-mobile-syllabus-block> -->
                         </div>
                         <div class="info-desktop-red-btn" style="margin: 5vh auto 0;width: 200px;" @click="startPractice">{{$t('desktop_syllabus_second_btn')}}</div>
                     </div>
@@ -428,36 +378,9 @@ export default {
                 this.alertBtn = `${this.$t('teach_button_ok')}`
                 this.nextGo = 'login'       
             } else {
-                if(!this.payed_or_not) {
-                    if(this.user.free_trial_starting_time) {
-                        let open_time = parseInt(this.user.free_trial_starting_time)
-                        let now = new Date();
-                        let now_time = now.getTime();
-                        let use_time = (now_time - open_time)/86400000;
-                        if(use_time > 7){
-                            this.have_trial = false;   
-                            localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
-                            this.show_alert = true
-                            this.alertText = '已超過試用期限，請前往購買或聯繫客服由我們為您專人服務呦～'
-                            this.alertBtn = `${this.$t('teach_button_ok')}`
-                            this.nextGo = 'pay'
-                        }else {
-                            this.have_trial = true;
-                            this.start_build = true;
-                            // this.show_arrangement = true
-                        }
-                    } else{
-                        localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
-                        this.show_alert = true
-                        this.alertText = `${this.$t('desktop_get_trial')}`
-                        this.alertBtn = `${this.$t('teach_button_ok')}`
-                        this.nextGo = 'free-trial'
-                    }
-                } else {
-                    this.have_trial = true;
-                    this.start_build = true;
-                    // this.show_arrangement = true
-                }
+                this.have_trial = true;
+                this.start_build = true;
+                this.show_arrangement = true
             }
         },
         selectFrequency(num){
@@ -517,7 +440,7 @@ export default {
             this.practice_finish = true
         },
         enterBox(i){
-            if(i == '0'){
+            if(i == '0' || !i){
                 this.show_alert = false
             }else {
                 this.$router.push(`${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/${i}`)

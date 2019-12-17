@@ -19,10 +19,9 @@
                 <button class="teach-assay-btn" v-if="ai_teacher" style="display: none;">
                     <label><input type="file" style="display:none;" accept="video/*" capture="camcorder" @change="clickCourseVideoUpload">{{$t('course_practice_btn')}}</label>  
                 </button>
-                <!-- <div v-if="ai_teacher" style="display: flex;justify-content: center;">
-                    <button class="ai-use-btn" v-if="ai_teacher" @click="openRecordBox">{{$t('course_practice_btn')}}</button> 
-                    <button class="ai-use-btn" v-if="ai_teacher" @click="show_remind = true">{{$t('teach_button_upload')}}</button>
-                </div> -->
+                <div v-if="ai_teacher" style="display: flex;justify-content: center;">
+                    <button class="ai-use-btn" v-if="ai_teacher" @click="goMirror">{{$t('teach_button_upload')}}</button>
+                </div>
             </div>
         </div>
         <mamiyoga-window-alert-box v-show="show_remind">
@@ -92,10 +91,12 @@ export default {
         },
         openRecordBox(){
             this.$emit('openRecordBox')
+        },
+        goMirror() {
+            let select_data = this.course_data.poses.find(pose => sessionStorage["course_" + this.course_data.id + "_current_pose_id"] == pose.pose_id) 
+            let pose_id = 'yoga_' + select_data.input_id;
+            this.$router.push('/mirror/' + pose_id);
         }
-        // showRemind(){
-        //     this.$emit('showRemind')
-        // }
     },
     computed:{
         getRemind(){
@@ -113,16 +114,7 @@ export default {
             } else {
                 return ''
             }
-        }
-        // getPoseExplain(){
-        //     if (this.course_data.poses) {
-        //         console.log(this.course_data.poses)
-        //         return this.course_data.poses;
-        //     } else {
-        //         return [];
-        //     }
-        // }
-        
+        },
     }
 
 }
