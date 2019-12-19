@@ -3,7 +3,10 @@ volumes:
   node_modules:
 services:
   ludo_f2e:
-    image: ludo_frontend_base_server:latest
+    # image: ludo_frontend_base_server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
         - "3000:3000"
     environment:
@@ -14,4 +17,5 @@ services:
     # volumes:
         # - ./:/var/www/app
         # - node_modules:/var/www/app/node_modules
+    # command: npm run dev
     command: npm start
