@@ -268,22 +268,22 @@ export default {
   desktop_index_second_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-2-1.png',
 
   desktop_index_third_title: '妳知道日本媽媽<br>快速產後復原的秘訣嗎？',
-  desktop_index_third_text: '我們與 Kokorokarada Anshin Lab 人氣老師橋本麻美合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手，<br>打造一堂不需要出門的輕運動課程。',
+  desktop_index_third_text: '我們與 Kokorokarada Anshin Lab 人氣老師<b>橋本麻美</b>合作，<br>為臺灣媽咪量身打造適合每位媽咪的口袋健康小助手，<br><b>共有4大主題式單元、33個練習動作</b>，一堂<b>在家就可以學習的輕運動課程。</b>',
   desktop_index_third_btn: '閱讀媽咪知識',
   desktop_index_third_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-3.png',
 
   desktop_index_four_only_title: '自拍魔鏡',
   desktop_index_four_title: '「自拍魔鏡」',
-  desktop_index_four_little: '媽咪們最貼心的練習夥伴',
-  desktop_index_four_text: '用手機拍下自己的練習動作<br>即可獲得專業的動作調整建議！',
+  desktop_index_four_little: '媽咪最貼心的私人助教',
+  desktop_index_four_text: '練習時同步記錄妳的動作姿勢透過 AI 分析，<br>告訴妳每個動作的專業調整建議！<br>讓妳在家也能享受一對一教練的課程效果!',
   desktop_index_four_list_1: '隨時練習',
   desktop_index_four_list_2: '專業分析',
   desktop_index_four_list_3: '練習記錄',
   desktop_index_four_btn: '立即免費體驗',
   desktop_index_four_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-4-1.png',
 
-  desktop_index_five_title: '「 孕動日記 」',
-  desktop_index_five_little: '每天十分鐘，讓心情跟身體重新開機！',
+  desktop_index_five_title: '客製化孕動日記',
+  desktop_index_five_little: '依照妳的運動需求與頻率，客製專屬孕動菜單，不再漫無目的運動',
   desktop_index_five_text: '針對每位媽咪設計的專屬妳的個人課表<br>按照主題式課表練習讓你達成目標更容易！',
   desktop_index_five_btn: '取得專屬課表',
   desktop_index_five_img: 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/desktop-index-syllabus.png',
@@ -294,8 +294,8 @@ export default {
   desktop_index_six_list_title_3: '美體塑身',
   desktop_index_six_list_title_4: '調和心靈',
 
-  desktop_index_seven_title: '「 媽咪新手村 」',
-  desktop_index_seven_little: '初為人母一定有非常多驚喜與疑惑吧！',
+  desktop_index_seven_title: '獨家媽咪社群 『媽咪新手村』',
+  desktop_index_seven_little: '妳的問題也是大家的問題，孕產知識一把罩',
   desktop_index_seven_text: '媽咪新手村提供從產前到產後全方位知識攻略，<br>陪媽咪們一起解任務',
 
   desktop_index_eight_title: '官方認證',

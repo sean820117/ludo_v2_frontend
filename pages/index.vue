@@ -19,73 +19,16 @@
                 <h1 id="mamiyoga-index-title" v-else>{{$t('desktop_index_first_title')}}</h1>
                 <h2 id="mamiyoga-index-title-des" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop' ? '14px':''}">{{$t('desktop_index_first_des_1')}}</h2>
                 <h2 id="mamiyoga-index-title-des" :style="{margin: $mq === 'desktop' ? '0vh 10vw 1vh':'',fontSize: $i18n.locale == 'JP'  && $mq != 'desktop'? '14px':''}">{{$t('desktop_index_first_des_2')}}</h2>
-                <div v-if="payed_or_not" class="info-desktop-red-btn index-first" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
-                
-                <!-- <img :src="$t('index_img_title')" alt="" class="mamiyoga-intro-title"> -->
-                <!-- <div class="mamiyoga-godown-btn"  @click="goDown">
-                    <p class="mamiyoga-intro-agree" style="padding:0;cursor:pointer;user-select:none;" @click="goDownWrap">了解更多</p>
-                    <img style="width:30px;margin:1vh 0 0;cursor:pointer;" @click="goDownWrap" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-wrap-goto.png" alt="">
-                </div> -->
             </div>
-            <!-- <div v-if="$mq == 'desktop' && !login_or_not" class="index-login-block">
-                <div class="index-login-block-inside">
-                    <p class="index-login-block-text">{{$t('desktop_login_LUDO')}}</p>
-                    <div class="login-column">
-                        <div class="login-column-label">{{$t('desktop_login_mail')}}</div>
-                        <input name="email" class="login-column-input" type="text" v-model="email" placeholder=""/>
-                    </div>
-                    <div class="login-column">
-                        <div class="login-column-label">{{$t('desktop_login_password')}}</div>
-                        <input name="password" class="login-column-input" type="password" v-model="password" placeholder=""/>
-                    </div>
-                    <div class="reg-text2" style="height:18px;" :style="{color: hint_color,width: '67%',textAlign: 'right',maxWidth: '320px',}"> {{ hint }}</div>
-                    <div class="btn-login-and-signup-container" style="flex-wrap: wrap;"> 
-                        <button class="mamiyoga-login-btn-to-login" type="submit" @click.prevent="onSubmit('login')">{{$t('desktop_login_btn_1')}}</button>
-                        <div style="display:flex;align-items: center;justify-content:flex-end;width:100%;">
-                            <div class="reg-text2" style="color: #FF9898;box-shadow:0 1px 0 #ff9898;cursor:pointer;" @click="$router.push('/signup')">{{$t('desktop_login_little')}}</div>
-                        </div>
-                    </div>
-                    <hr style="background: #D1D1D1;height: 2px;width: 67%;margin: 15px 0;opacity: .4;">
-                    <div class="btn-login-and-signup-container" style="margin-top:0px;">
-                        <a href="/" style="width:100%;text-decoration:none;">
-                            <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#ABCCD4;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.FB" @click.prevent="handleFBClick">
-                                <div style="width: 65px;display: flex;justify-content: center;">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-facebook.png" alt="">
-                                </div>
-                                <p style="font-weight: 500;">{{$t('desktop_login_btn_2')}}</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="btn-login-and-signup-container" style="margin-top:0;">
-                        <a href="/" style="width:100%;text-decoration:none;">
-                            <div class="mamiyoga-login-btn-to-login third-party-login" style="background:#FFF;border:#ABCCD4 solid 3px;margin-top:10px;" v-if="is_ui_config_loaded && ui_config.view.signup_page.login_method.google" @click.prevent="handleGoogleClick">
-                                <div style="width: 62px;display: flex;justify-content: center;">
-                                    <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-from-google.png" alt="">
-                                </div>
-                                <p style="font-weight: 500;padding-left:5px;">{{$t('desktop_login_btn_3')}}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
             <div class="mamiyoga-intro-wrap" style="background:white;" id="wrap" :style="{paddingBottom: $i18n.locale == 'JP' ? '0':'',minHeight: $i18n.locale == 'JP' ? 'unset':''}">
                 <div class="index-label-box" id="index-fixed-nav">
      
                     <p class="index-footer-title" :style="{fontSize: $i18n.locale == 'JP'? '14px':''}">{{$t('index_title')}}</p>
                     <div v-if="payed_or_not" class="index-label-pink-btn" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/menu`)">{{$t('desktop_course_first_btn')}}</div>
-                    <!-- <div v-else class="index-label-pink-btn" @click="goTrial">{{$t('desktop_header_btn_2')}}</div> -->
-                    
-                    <!-- <div class="index-label-inside-box">
-                        <p class="index-footer-title">Mami yoga日本人氣瑜珈</p>
-                        <p class="index-footer-title delect-text">NTD.1590<s class="index-footer-title" style="font-size: 12px;margin-left:10px;">NTD.1990</s></p>
-                    </div>
-                    <div class="index-footer-content">
-                        <div class="index-footer-btn" style="color:#EEEFEA;background: #24798F;" @click="clickToPay">我 要 購 買</div>
-                        <div class="index-footer-btn" style="color:#24798F;" @click="$router.push('/mirror-mirror')">體 驗 魔 鏡</div>
-                    </div> -->
                     
                 </div>
                 <div class="about-course-block" id="index-first-video">
+                    <!-- 失眠焦慮 -->
                     <div class="course-info-block-1" v-if="$mq !== 'desktop'"  :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div class="course-info-content-1">
                             <h3 class="index-article-title" :style="{fontSize: $i18n.locale == 'JP'?'17px':''}" v-html="$t('desktop_index_second_title_1')"></h3>
@@ -125,21 +68,21 @@
                             <img class="before-after-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-1.png" alt="">
                             <h6 class="index-article-little-title" style="margin-top: 50px;">{{$t('desktop_index_second_text_1')}}</h6>
                              <p class="index-article-text" v-html="$t('desktop_index_second_text_2')"></p>
-                            <div style="position: absolute;top: 15vh; right: 0;">
-                                <div style="display:flex;align-items:center;margin:0 0 40px;">
+                            <div style="position: absolute;top: 15vh; right: 0;display:flex; width:600px;flex-wrap: wrap;justify-content: flex-end;">
+                                <div class="block-1-benefit">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_1')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 40px;">
+                                <div class="block-1-benefit">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_2')}}</p>
                                 </div>
                             
-                                <div style="display:flex;align-items:center;margin:0 0 40px;">
+                                <div class="block-1-benefit">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_3')}}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;margin:0 0 40px;">
+                                <div class="block-1-benefit">
                                     <img style="width:40px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-v.png" alt="">
                                     <p class="index-article-text" style="margin: 0 0 0 10px;font-weight: 500;">{{$t('desktop_index_second_list_4')}}</p>
                                 </div>
@@ -148,53 +91,61 @@
                         <img id="mother-childen-img" style="width:55%;position:absolute;bottom: -9vh;right: 10vw;max-width: 700px;" :src="$t('desktop_index_second_img')" alt="">
                     </div>
                     <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10%;opacity:.2;">
+                    <!-- 產後復元秘訣 -->
                     <div class="course-info-block-2" :style="{minHeight: $i18n.locale == 'JP' ? '0':'100vh'}">
                         <div class="course-info-content-2" :style="{minHeight: $i18n.locale == 'JP' ? '300px':'650px', display: $i18n.locale == 'JP' ? 'none':''}">
                             <div :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                                 <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
                                 <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
-                                <!-- <router-link to="/information" style="text-decoration:none;">
-                                    <p class="index-article-text have-finger">了解更多&nbsp;</p>
-                                </router-link> -->
+                                <div class="block-2-course-brief" style="width:85%;margin:20px auto;">
+                                    <img style="max-width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/block-2-course-brief.png">
+                                </div>
+                                <div class="index-article-text" style="width:85%;margin:0 auto;">從裡到外感受自己的身體，舒展延伸每一根筋骨<br>均勻的呼吸法幫助妳平靜產後心靈的壓力</div>
                                 <div v-if="$mq != 'desktop'">
                                     <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
-                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
                                 </div>
                                 <div v-else>
-                                    <div @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/information`)" class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':''}">{{$t('desktop_index_third_btn')}}</div>
+                                    <div class="index-article-out-btn mirror-btn go-info" :style="{fontSize: $i18n.locale == 'JP'?'20px':'',opacity:0}">{{$t('desktop_index_third_btn')}}</div>
                                     <img class="about-course-teach-img" :src="$t('desktop_index_third_img')" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div id="mirror-block" class="index-article-use-video">
-                            <div class="course-info-block-mirror">
-                                <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
-                                <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
-                                <div class="course-flex-block-mirror">
-                                    <img class="mirror-img" :src="$t('desktop_index_four_img')" alt="">
-                                    <div class="course-flex-block-mirror-2">
-                                        <p class="index-article-out-text index-mirror-text" v-html="$t('desktop_index_four_text')" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px !important':''}"></p>
-                                        <div class="index-article-out-icon-block">
-                                            <div class="index-article-out-icon">
-                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-1.png" alt="">
-                                                <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_1')}}</p>
-                                            </div>
-                                            <div class="index-article-out-icon">
-                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-2.png" alt="">
-                                                <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_2')}}</p>
-                                            </div>
-                                            <div class="index-article-out-icon">
-                                                <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-3.png" alt="">
-                                                <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_3')}}</p>
-                                            </div>
+                    </div>
+                    <!-- 自拍魔境 -->
+                    <div id="mirror-block" class="index-article-use-video">
+                        <div class="course-info-block-mirror">
+                            <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
+                            <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
+                            <div class="course-flex-block-mirror">
+                                <img class="mirror-img" :src="$t('desktop_index_four_img')" alt="">
+                                <div class="course-flex-block-mirror-2">
+                                    <p class="index-article-out-text index-mirror-text" v-html="$t('desktop_index_four_text')" :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px !important':''}"></p>
+                                    <div class="index-article-out-icon-block">
+                                        <div class="index-article-out-icon">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-1.png" alt="">
+                                            <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_1')}}</p>
                                         </div>
-                                        <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
+                                        <div class="index-article-out-icon">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-2.png" alt="">
+                                            <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_2')}}</p>
+                                        </div>
+                                        <div class="index-article-out-icon">
+                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-icon-3.png" alt="">
+                                            <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_3')}}</p>
+                                        </div>
                                     </div>
+                                    <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
                                 </div>
                             </div>
-                            <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
                         </div>
+                        <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
                     </div>
+                    <!-- 介面示意 -->
+                    <div class="block-mirror-demo">
+                        <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-demo.jpg"/>
+                        <img v-else src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-demo-mobile.jpg"/>
+                    </div>
+                    <!-- 客製化運動日記 -->
                     <div class="course-info-block-3" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <p class="index-article-out-container-text" style="color:#24798F;text-shadow:none;" :style="{fontSize: $i18n.locale == 'JP'?'30px':''}">{{$t('desktop_index_five_title')}}</p>
                         <h6 class="index-article-little-title" style="margin-bottom: 5px;text-align:center;" :style="{fontSize: $i18n.locale == 'JP'?'13px':''}">{{$t('desktop_index_five_little')}}</h6>
@@ -336,6 +287,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 主題式單元 -->
                     <div class="course-info-content-3" v-if="$mq == 'desktop' && $i18n.locale != 'JP'">
                         <!-- 四段式課程大綱 -->
                         <div class="intro-wrap-block-new-second">
@@ -344,6 +297,17 @@
                         </div>
                     </div>
                     <hr style="color:#E8E8E8;margin: 30px 10% 0;opacity:.2;" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
+                    <!-- 收費方式 -->
+                    <div class="course-info-block-6" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
+                        <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;margin-left: 40px;">{{$t('desktop_index_eleven_title')}}</h4>
+                        <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
+                    </div>  
+                    <!-- 使用者回饋 -->
+                    <div class="course-info-block-5" :style="{display: $i18n.locale == 'JP' ? 'none':'',marginBottom:'20px',}">
+                        <h4 class="intro-wrap-block-title last-title" style="color: #24798f;">{{$t('desktop_index_ten_title')}}</h4>
+                        <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
+                    </div>
+                    <!-- 媽咪新手村 -->
                     <div class="course-info-block-4" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <p class="index-article-out-container-text new-mami">「 媽咪新手村 」</p>
                         <img class="mami-mura-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/new-index-img-7-1.png" alt="">
@@ -354,6 +318,7 @@
                         </div>
                         <hr v-if="$mq !== 'desktop'" style="color:#E8E8E8;margin: 0 10% 50px;opacity:.2;">
                     </div>
+                    <!-- 官方認證 desktop -->
                     <div v-if="$mq !== 'desktop'" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div>
                             <h4 class="intro-wrap-block-title" style="color:#24798F;margin: 0 auto;width: fit-content;" v-html="$t('desktop_index_nine_text')"></h4>
@@ -383,6 +348,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 官方認證 mobile -->
                     <div v-else :style="{display: $i18n.locale == 'JP' ? 'none':''}">
                         <div style="padding-top: 15vh;min-height: 60vh;">
                             <p class="index-article-out-container-text" style="color:#24798F;font-weight: bold;text-shadow: none;">官方認證</p>
@@ -422,14 +388,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="course-info-block-5" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
-                        <h4 class="intro-wrap-block-title last-title" style="color: #24798f;">{{$t('desktop_index_ten_title')}}</h4>
-                        <no-ssr><mamiyoga-carousel-comment-ins></mamiyoga-carousel-comment-ins></no-ssr>
-                    </div>
-                    <div class="course-info-block-6" :style="{display: $i18n.locale == 'JP' ? 'none':''}">
-                        <h4 class="intro-wrap-block-title last-pay-title" style="color:#24798F;margin-left: 40px;">{{$t('desktop_index_eleven_title')}}</h4>
-                        <no-ssr><mamiyoga-carousel></mamiyoga-carousel></no-ssr>
-                    </div>  
                     <!-- 三段式常見問題 -->
                     <div class="intro-wrap-block-new-second" v-if="$mq != 'desktop' && $i18n.locale != 'JP'">
                         <h4 class="intro-wrap-block-title" style="color:#24798F;">常見問題</h4>
@@ -1031,6 +989,11 @@ export default {
     font-family: 'ShueiGoGinStd';
     src: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/A-OTF-GothicMB101Pro-Ultra.otf');
 }
+.block-1-benefit {
+    display:flex;
+    align-items:center;
+    margin: 0 20px 40px;
+}
 .index-contain {    
     overflow: hidden;
     min-height: 300vh;
@@ -1342,12 +1305,11 @@ export default {
     float: right;
 }
 .index-article-use-video {
-    border-radius: 40px 40px 0 0;
+    /* border-radius: 40px 40px 0 0; */
     position: relative;
     padding-top: 40px;
-    background: #24798F;
-    /* background: #33838f; */
     padding-bottom: 50px;
+    background-image: linear-gradient(black, #24798F, #24798F,#24798F);
 }
 .mirror-img {
     margin:35px 0;
@@ -1367,6 +1329,12 @@ export default {
     top: 82px;
     width: 80%;
     left: 10%;
+}
+.block-mirror-demo {
+    width: 100vw;
+}
+.block-mirror-demo img{
+    width: 100%;
 }
 .index-article-out-container {
     width: 70%;
