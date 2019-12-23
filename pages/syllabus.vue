@@ -276,7 +276,7 @@ export default {
         check_lang: '',
         check_series: 'first',
 
-        start_build: false,
+        start_build: true,
         user_frequency: '',
         user_want: '',
         user_question: '',
