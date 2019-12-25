@@ -40,6 +40,7 @@ class LudoRTC {
         this.dc = null;
         this.video_list = [];
         this.default_width = 640;
+        this.width = this.default_width;
         this.aspectRatio = 1.778;
         this.orientation = 'landscape';
         // let default_height = 480;
@@ -63,6 +64,7 @@ class LudoRTC {
                 user_id: "guest",
                 language: 'zh-tw',
             },
+            should_be_rotated: true,
         };
         this.final_config = Object.assign(default_config,config);
     }
@@ -82,7 +84,7 @@ class LudoRTC {
             video_element.play();
             return true;
         } catch (error) {
-            this.$errorLogger('ludoRTC','openCamera',error.toString());
+            // this.$errorLogger('ludoRTC','openCamera',error.toString());
             alert('Could not acquire media: ' + error);
             return false;
         }
@@ -97,7 +99,13 @@ class LudoRTC {
         if(!mal.matches){
             this.orientation = 'landscape';
         } else {
-            this.orientation = 'portrait';
+            if (this.final_config.should_be_rotated == true) {
+                this.orientation = 'portrait';
+            } else {
+                this.orientation = 'landscape';
+                this.width = parseInt(this.width/this.aspectRatio)+1;
+                this.aspectRatio = 1 / this.aspectRatio;
+            }
         }
         // console.log('orientation : ',post_info.orientation)
         console.log(this.final_config);
@@ -184,7 +192,7 @@ class LudoRTC {
                 pose_id: post_info.pose_id,
                 user_id: post_info.user_id,
                 language: post_info.language,
-                width:this.default_width,
+                width:this.width,
                 aspectRatio: this.aspectRatio,
                 orientation: this.orientation,
             }));
