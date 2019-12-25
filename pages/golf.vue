@@ -20,7 +20,9 @@ export default {
         stage:0,
         user_id:"tester",
         video_recorder:{},
-        analyse_result:{},
+        analyse_result:{
+            video_url:"https://ludo-beta.s3-ap-southeast-1.amazonaws.com/training/sport/output/golf_standard_1_ViMczM4CFeZDorQrosQquL",
+        },
     }),
     components: {
         GolfDemoIntro,
@@ -49,8 +51,8 @@ export default {
 <style>
 .golf-demo-container {
     width: 100vw;
-    min-height: -webkit-fill-available;
-    height: 100%;
+    /* min-height: -webkit-fill-available; */
+    height: 100vh;
     background-color:black;
     display:flex;
 }
