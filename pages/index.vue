@@ -98,7 +98,7 @@
                                 <h3 class="index-article-title" style="width:85%;margin:0 auto;" v-html="$t('desktop_index_third_title')"></h3>
                                 <p class="index-article-text about-course-teach" v-html="$t('desktop_index_third_text')"></p>
                                 <div class="block-2-course-brief" style="width:85%;margin:20px auto;">
-                                    <img style="max-width:100%;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/block-2-course-brief.png">
+                                    <img style="max-width:100%;width:435px;" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/block-2-course-brief.png">
                                 </div>
                                 <div class="index-article-text" style="width:85%;margin:0 auto;">從裡到外感受自己的身體，舒展延伸每一根筋骨<br>均勻的呼吸法幫助妳平靜產後心靈的壓力</div>
                                 <div v-if="$mq != 'desktop'">
@@ -483,13 +483,27 @@
                     </div>
                 </div>
             </div>
-            <div class="index-new-footer" id="index-fixed-footer" :style="{backgroundImage: $mq != 'desktop' ? `url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png')`:'', display: $i18n.locale == 'JP' ? 'none':''}">
+            <!-- deprecated -->
+            <!-- <div class="index-new-footer" id="index-fixed-footer" :style="{backgroundImage: $mq != 'desktop' ? `url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png')`:'', display: $i18n.locale == 'JP' ? 'none':''}">
                 <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/index-new-footer-img.png" alt="">
                 <div class="index-new-footer-btn-block">
                     <p class="index-new-footer-btn-text" v-if="$mq != 'desktop'">想了解更多<br>課程內容？</p>
                     <p class="index-new-footer-btn-text" v-else>想了解更多課程內容？</p>
                     <p class="index-new-footer-btn" @click="goOtherPage('https://m.me/1557980337838066?ref=p2FkZKT7rKP')">呼叫專業顧問</p>
                 </div>
+            </div> -->
+            <div v-if="$mq == 'desktop'" class="index-fixed-footer">
+                <div class="index-fixed-footer-left-block">
+                    <p class="index-fixed-footer-title">Mami yoga日本人氣瑜珈</p>
+                    <p class="index-fixed-footer-price">NTD.1990</p>
+                </div>
+                <div class="index-fixed-footer-right-block">
+                    <button class="index-fixed-footer-button index-fixed-footer-button-buy">我要購買</button>
+                    <button class="index-fixed-footer-button index-fixed-footer-button-exp">體驗魔鏡</button>
+                </div>
+            </div>
+            <div v-else class="index-fixed-footer-mobile">
+                <p>我&nbsp;&nbsp;&nbsp;&nbsp;要&nbsp;&nbsp;&nbsp;&nbsp;購&nbsp;&nbsp;&nbsp;&nbsp;買</p>
             </div>
          </div>
 
@@ -2141,6 +2155,59 @@ export default {
     height: 500px;
 }
 
+.index-fixed-footer {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    position:fixed;
+    bottom:0;
+    background: #24798F;
+    height: 74px;
+    width:100vw;
+}
+.index-fixed-footer-left-block {
+    display:flex;
+    flex-direction:column;
+    align-items: flex-start;
+    margin-left: 7vw;
+}
+.index-fixed-footer-title {
+    font-size: 24px;
+    color:white;
+    font-weight: bold;
+}
+.index-fixed-footer-price {
+    color:#FF9898;
+    font-size: 19px;
+}
+.index-fixed-footer-button {
+    margin-right: 5vw;
+    width:195px;
+    height: 40px;
+    border:none;
+    border-radius: 6px;
+}
+.index-fixed-footer-button-buy {
+    color:#24798F;
+    background:#F2EEEC;
+}
+.index-fixed-footer-button-exp {
+    color:#F2EEEC;
+    background:#24798F;
+    border: 2px solid #F2EEEC;
+}
+.index-fixed-footer-mobile {
+    width:100vw;
+    height:50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.index-fixed-footer-mobile p {
+    font-size: 20px;
+    color:white;
+}
 @media  (min-width:769px) {
     .about-course-block {
         /* padding-bottom: 120px; */

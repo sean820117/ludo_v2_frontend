@@ -5,73 +5,76 @@
             :spacePadding="35" :paginationEnabled="false" :scrollPerPage="false">
                 <slide class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>{{single_plan.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
-                        <p style="font-size:14px;">NTD/人</p>
-                    </div>
-                    <p style="font-size:16px;text-align: center;">一年<s>NTD1990</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
-                    </div>
-                </div>
-                </slide>
-                <slide class="intro-wrap-four-pay-block">
-                    <div class="intro-wrap-four-pay">
-                    <h5>{{four_person_program.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-                    <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p> -->
-                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px; color: #FF9898;">&nbsp;{{four_person_every}}&nbsp;</p>
-                        <p style="font-size:14px; ">NTD/人</p>
-                        <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
-                    </div>
-                    <p style="font-size:16px;text-align: center;">四人共NTD{{ four_person_every * 4 }}</p>
-                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-single.png" alt="">
+                        <h5>{{single_plan.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:14px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
+                            <p style="font-size:14px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:16px;text-align: center; opacity:0;">一年<s>NTD1990</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
+                        </div>
                     </div>
                 </slide>
                 <slide class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>搭配工作坊</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
-                    <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p> -->
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;{{2590}}&nbsp;</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-four.png" alt="">
+                        <h5>{{four_person_program.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                        <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p> -->
+                        <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                            <p style="font-size:14px;">一年</p>
+                            <p style="font-size:47px; color: #FF9898;">&nbsp;{{four_person_every}}&nbsp;</p>
+                            <p style="font-size:14px; ">NTD/人</p>
+                            <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
+                        </div>
+                        <p style="font-size:16px;text-align: center;">四人共NTD{{ four_person_every * 4 }}</p>
+                        <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
-                    <p style="font-size:16px;text-align: center;">一年<s>NTD{{4090}}</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
-                        {{$t('desktop_index_eleven_pay_btn_2')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-workshop.png" alt="">
+                        <h5>搭配工作坊</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
+                        <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p> -->
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:14px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;{{2590}}&nbsp;</p>
+                            <p style="font-size:14px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:16px;text-align: center;">一年<s>NTD{{4090}}</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                            {{$t('desktop_index_eleven_pay_btn_2')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
                 </slide>
             </carousel>
@@ -81,72 +84,75 @@
             :spacePadding="40" :paginationEnabled="false" :scrollPerPage="false">
                 <slide class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>{{single_plan.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年NTD</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
-                        <p style="font-size:14px;">NTD/人</p>
-                    </div>
-                    <p style="font-size:16px;text-align: center;">一年<s>NTD{{single_plan.price}}</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
-                    </div>
-                </div>
-                </slide>
-                <slide class="intro-wrap-four-pay-block">
-                    <div class="intro-wrap-four-pay">
-                    <h5>{{four_person_program.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p> -->
-                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px; color: #FF9898;">&nbsp;{{four_person_program.price}}&nbsp;</p>
-                        <p style="font-size:14px; ">NTD/人</p>
-                        <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
-                    </div>
-                    <p style="font-size:16px;text-align: center;">四人共NTD5160</p>
-                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-single.png" alt="">
+                        <h5>{{single_plan.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="text-align: center;font-size: 17px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:14px;">一年NTD</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
+                            <p style="font-size:14px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:16px;text-align: center; opacity:0;">一年<s>NTD{{single_plan.price}}</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="buy-myself-1"  @click="goPlan1"></div>
+                        </div>
                     </div>
                 </slide>
                 <slide class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>搭配工作坊</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
-                    <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p> -->
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:14px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;2590&nbsp;</p>
-                        <p style="font-size:14px;">NTD/人</p>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-four.png" alt="">
+                        <h5>{{four_person_program.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">4人以上</p> -->
+                        <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                            <p style="font-size:14px;">一年</p>
+                            <p style="font-size:47px; color: #FF9898;">&nbsp;{{four_person_program.price}}&nbsp;</p>
+                            <p style="font-size:14px; ">NTD/人</p>
+                            <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
+                        </div>
+                        <p style="font-size:16px;text-align: center;">四人共NTD5160</p>
+                        <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
-                    <p style="font-size:16px;text-align: center;">一年<s>NTD4090</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
-                        {{$t('desktop_index_eleven_pay_btn_2')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                </slide>
+                <slide class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-workshop.png" alt="">
+                        <h5>搭配工作坊</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
+                        <!-- <p style="text-align: center;font-size: 14px;margin-top:5px;">30人以上</p> -->
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:14px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;2590&nbsp;</p>
+                            <p style="font-size:14px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:16px;text-align: center;">一年<s>NTD4090</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                            {{$t('desktop_index_eleven_pay_btn_2')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
                 </slide>
             </carousel>
@@ -155,73 +161,76 @@
             <div style="display: flex; align-items: center; justify-content: center;margin-top: 100px;">
                 <div class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>{{single_plan.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
-                        <p style="font-size:17px;">NTD/人</p>
-                    </div>
-                    <p style="font-size:18px;text-align: center;">一年<s>NTD1990</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="buy-myself-1" @click="goPlan1"></div>
-                    </div>
-                </div>
-                </div>
-                <div class="intro-wrap-four-pay-block">
-                    <div class="intro-wrap-four-pay">
-                    <h5>{{four_person_program.slogan}}</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
-                    <!-- <p style="text-align: center;font-size: 16px;margin-top:5px;">4人以上</p> -->
-                    <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
-                        <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;{{four_person_every}}&nbsp;</p>
-                        <p style="font-size:17px; ">NTD/人</p>
-                        <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
-                    </div>
-                    <p style="font-size:18px;text-align: center;">四人共NTD5160</p>
-                    <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
-                        {{$t('desktop_index_eleven_pay_btn_1')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-single.png" alt="">
+                        <h5>{{single_plan.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:17px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;{{single_plan.price}}&nbsp;</p>
+                            <p style="font-size:17px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:18px;text-align: center; opacity:0;">一年<s>NTD1990</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="buy-myself" @click="goPlan1">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="buy-myself-1" @click="goPlan1"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="intro-wrap-four-pay-block">
                     <div class="intro-wrap-four-pay">
-                    <h5>搭配工作坊</h5>
-                    <hr class="title-bottom-hr">
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
-                    <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
-                    <!-- <p style="text-align: center;font-size: 16px;margin-top:5px;">30人以上</p> -->
-                    <div class="intro-wrap-four-pay-price">
-                        <p style="font-size:17px;">一年</p>
-                        <p style="font-size:47px;color: #FF9898;">&nbsp;2590&nbsp;</p>
-                        <p style="font-size:17px;">NTD/人</p>
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-four.png" alt="">
+                        <h5>{{four_person_program.slogan}}</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="text-align: center;font-size: 18px;margin-top:5px;">&nbsp;&nbsp;&nbsp;</p>
+                        <!-- <p style="text-align: center;font-size: 16px;margin-top:5px;">4人以上</p> -->
+                        <div class="intro-wrap-four-pay-price" style="align-items: baseline;">
+                            <p style="font-size:17px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;{{four_person_every}}&nbsp;</p>
+                            <p style="font-size:17px; ">NTD/人</p>
+                            <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/price-arrow.png" alt=""> -->
+                        </div>
+                        <p style="font-size:18px;text-align: center;">四人共NTD5160</p>
+                        <div class="intro-wrap-four-pay-btn" id="go-go-sister" @click="goPlan2">
+                            {{$t('desktop_index_eleven_pay_btn_1')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="go-go-sister-1" @click="goPlan2"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-1.png');"></div>
                     </div>
-                    <p style="font-size:18px;text-align: center;">一年<s>NTD4090</s>/人</p>
-                    <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
-                        {{$t('desktop_index_eleven_pay_btn_2')}}
-                    </div>
-                    <div class="intro-wrap-four-pay-bottom">
-                        <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
-                    </div>
-                    <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
+                </div>
+                <div class="intro-wrap-four-pay-block">
+                    <div class="intro-wrap-four-pay">
+                        <img class="pay-block-img" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/pay-block-workshop.png" alt="">
+                        <h5>搭配工作坊</h5>
+                        <hr class="title-bottom-hr">
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:20px;">&#x2714; 影片觀看永久</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 自拍魔鏡一年</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 線上免費諮詢</p>
+                        <p style="color: #185D9D; text-align: center;font-size: 12px;font-weight:bold;margin-top:5px;">&#x2714; 一堂2小時實體教練課</p>
+                        <!-- <p style="text-align: center;font-size: 16px;margin-top:5px;">30人以上</p> -->
+                        <div class="intro-wrap-four-pay-price">
+                            <p style="font-size:17px;">一年</p>
+                            <p style="font-size:47px;color: #FF9898;">&nbsp;2590&nbsp;</p>
+                            <p style="font-size:17px;">NTD/人</p>
+                        </div>
+                        <p style="font-size:18px;text-align: center;">一年<s>NTD4090</s>/人</p>
+                        <div class="intro-wrap-four-pay-btn" id="fill-in-now" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)">
+                            {{$t('desktop_index_eleven_pay_btn_2')}}
+                        </div>
+                        <div class="intro-wrap-four-pay-bottom">
+                            <div class="intro-wrap-four-pay-circle" id="fill-in-now-1" @click="$router.push(`${$i18n.locale == 'zh-TW' ? '':'/'+$i18n.locale}/booking`)"></div>
+                        </div>
+                        <div class="intro-wrap-four-pay-cost" style="background-image: url('https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/intro-wrap-four-pay-cost-2.png');"></div>
                     </div>
                 </div>
             </div>
@@ -305,6 +314,11 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.pay-block-img {
+    width: 200px;
+    margin: 33px auto 0 auto;
+    display: flex;
+}
 .intro-wrap-four-pay {
     background: #F7F7F7;
     width: 90%;
@@ -339,7 +353,7 @@ export default {
 .intro-wrap-four-pay h5 {
     color: #24798F;
     text-align: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 
 }
 .intro-wrap-four-pay-price {
