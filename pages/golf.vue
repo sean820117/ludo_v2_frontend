@@ -31,6 +31,10 @@ export default {
         GolfDemoAnalyseAndLoading,
         GolfDemoAnalyseResult,
     },
+    mounted() {
+        if (process.client) {
+        }
+    },
     methods: {
         nextStage() {
             this.stage++;
