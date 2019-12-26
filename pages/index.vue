@@ -134,7 +134,8 @@
                                             <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_3')}}</p>
                                         </div>
                                     </div>
-                                    <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
+                                    <!-- <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button> -->
+                                    <button  @click="$router.push(exp_pose_url)" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
                                 </div>
                             </div>
                         </div>
@@ -498,12 +499,12 @@
                     <p class="index-fixed-footer-price">NTD.1990</p>
                 </div>
                 <div class="index-fixed-footer-right-block">
-                    <button class="index-fixed-footer-button index-fixed-footer-button-buy">我要購買</button>
-                    <button class="index-fixed-footer-button index-fixed-footer-button-exp">體驗魔鏡</button>
+                    <button @click="$router.push('/pay')" class="index-fixed-footer-button index-fixed-footer-button-buy">我要購買</button>
+                    <button @click="$router.push(exp_pose_url)" class="index-fixed-footer-button index-fixed-footer-button-exp">體驗魔鏡</button>
                 </div>
             </div>
             <div v-else class="index-fixed-footer-mobile">
-                <p>我&nbsp;&nbsp;&nbsp;&nbsp;要&nbsp;&nbsp;&nbsp;&nbsp;購&nbsp;&nbsp;&nbsp;&nbsp;買</p>
+                <a href="/pay">我&nbsp;&nbsp;&nbsp;&nbsp;要&nbsp;&nbsp;&nbsp;&nbsp;購&nbsp;&nbsp;&nbsp;&nbsp;買</a>
             </div>
          </div>
 
@@ -587,6 +588,7 @@ Vue.use(Vue2TouchEvents)
 export default {
 
     data:()=>({
+        exp_pose_url:'/mirror/yoga_20',
         login_or_not: false,
         payed_or_not: false,
 
@@ -2187,6 +2189,7 @@ export default {
     height: 40px;
     border:none;
     border-radius: 6px;
+    cursor:pointer;
 }
 .index-fixed-footer-button-buy {
     color:#24798F;
@@ -2207,6 +2210,7 @@ export default {
 .index-fixed-footer-mobile p {
     font-size: 20px;
     color:white;
+    cursor:pointer;
 }
 @media  (min-width:769px) {
     .about-course-block {
