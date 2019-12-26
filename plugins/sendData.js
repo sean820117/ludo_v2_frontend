@@ -5,7 +5,7 @@ async function sendData (port,send_data) {
         try {
             const res = await axios.post(port,send_data)
             console.log(res)
-            return true 
+            return res 
         } catch(error) {
             return false;
         }
