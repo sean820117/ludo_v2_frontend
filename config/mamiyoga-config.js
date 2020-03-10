@@ -5,7 +5,7 @@ module.exports = {
     view:{
         signup_page:{
             login_method: {
-                FB: true,
+                FB: false,
                 google: true,
                 line: false,
                 local: true,

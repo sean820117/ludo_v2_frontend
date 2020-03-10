@@ -209,7 +209,7 @@ export default {
   //Mamiyoga Desktop
   desktop_header_menu_1: '服務介紹',
   desktop_header_menu_2: '課程影片',
-  desktop_header_menu_3: '孕動日記',
+  desktop_header_menu_3: '運動日記',
   desktop_header_menu_4: '媽咪知識',
   desktop_header_menu_5: '媽咪社群',
   desktop_header_menu_6: '專人服務',

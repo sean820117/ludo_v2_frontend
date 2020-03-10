@@ -7,8 +7,22 @@ mamiyoga開發日誌，紀錄每次產品更新
 
 ## [Unreleased]
 ### Added
-- 運動日記生成功能
+### Modify
+### Fixed
+- ios無法播放影片bug
+### Removed
 
+## [1.2.1] - 2020-03-09
+### Added
+- 運動日記生成功能
+- 孕婦瑜伽介紹頁
+### Removed
+- 暫時拿掉FB登入
+
+## [1.1.2] - 2020-01-31
+### Modify
+- LP footer css 錯誤
+- 新增功能輪播
 
 ## [1.1.1] - 2019-12-26
 ### Modify

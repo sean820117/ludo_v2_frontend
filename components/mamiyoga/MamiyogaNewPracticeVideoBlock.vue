@@ -63,7 +63,7 @@
             </div>
 
             <!-- 教學 -->
-            <div v-if="!teach_finish" class="experience-teach">
+            <div v-if="!teach_finish && ai_assistant" class="experience-teach">
                 <div class="preview-img people" id="people">
                     <img style="transform:scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
@@ -79,7 +79,7 @@
                         <div class="video-process-bar-inside"></div>
                     </div>
                 </div>
-                <div v-if="!select_camera" class="experience-select-camera">
+                <div v-if="!select_camera && ai_assistant" class="experience-select-camera">
                     <p class="experience-select-camera-title" v-html="$t('desktop_syllabus_experience_remind_title')"></p>
                     <div class="info-desktop-red-btn" style="width: 250px;" @click="getCamera">{{$t('desktop_syllabus_experience_remind_btn')}}</div>
                     <p class="experience-select-camera-not" @click="notGetCamera">{{$t('desktop_syllabus_experience_remind_little')}}</p>
@@ -213,6 +213,7 @@ export default {
     },
     props:{
         routine: Object,
+        ai_assistant: Boolean,
     },
     data:()=>({
         inputVideo:'',
@@ -278,6 +279,9 @@ export default {
             this.inputVideo = document.querySelector('#inputVideo')
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
+            if (!this.ai_assistant) {
+                this.notGetCamera();
+            }
         }
     },
     destroyed() {
@@ -288,7 +292,7 @@ export default {
     },
     methods: {
         startReady(){
-            if(this.teach_finish){
+            if(this.teach_finish || !this.ai_assistant){
                 this.show_nam = true
                 // this.switchMethod = true
                 let id = setInterval(() => {

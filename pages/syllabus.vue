@@ -7,7 +7,8 @@
                     <img class="syllabus-desktop-img" :src="$t('desktop_syllabus_background')" alt="">
                     <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">{{$t('desktop_syllabus_first_title')}}</h5>
                     <p class="syllabus-intro-text" v-html="$t('desktop_index_five_text')"></p>
-                    <div class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
+                    <div v-if="show_arrangement" class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">繼續練習</div>
+                    <div v-if="!show_arrangement" class="info-desktop-red-btn" style="margin: 35px auto 0;" @click="startBuild">{{$t('desktop_syllabus_first_btn')}}</div>
                 </div>
                 <div v-if="start_build && !show_arrangement">
                     <div v-if="first_question">
@@ -62,25 +63,25 @@
                             <carousel :perPage="1" :paginationEnabled="false"
                             :centerMode="true" :spacePadding="50">
                                 <slide class="select-block">
-                                    <div @click="selectQuestion('rectify')" id="solve_rectify" class="select-block-content">
-                                    矯正疼痛
+                                    <div @click="selectQuestion(0)" id="solve_rectify" class="select-block-content">
+                                    肩頸痠痛
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion('alleviate')" id="solve_alleviate" class="select-block-content">
-                                    舒壓安眠
+                                    <div @click="selectQuestion(1)" id="solve_alleviate" class="select-block-content">
+                                    骨盆歪斜
                                     </div>
                                 </slide>
                                 <slide class="select-block">
-                                    <div @click="selectQuestion('beauty')" id="solve_beauty" class="select-block-content">
-                                    美體塑身
+                                    <div @click="selectQuestion(2)" id="solve_beauty" class="select-block-content">
+                                    腿部浮腫
                                     </div>
                                 </slide>
-                                <slide class="select-block">
+                                <!-- <slide class="select-block">
                                     <div @click="selectQuestion('blend')" id="solve_blend" class="select-block-content">
                                     調和心靈
                                     </div>
-                                </slide>
+                                </slide> -->
                             </carousel>
                         </no-ssr>
                     </div>
@@ -93,13 +94,13 @@
                  <div v-if="start_build && show_arrangement && !is_practice && !practice_finish" class="syllabus-mobile-flex-content">
                     <div class="syllabus-calendar-line">
                         <div class="syllabus-calendar-li noSelect" v-for="d in get_14_dates" :key="d.date"
-                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                        @click="selectDay(d.date,d.label)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
                     </div>
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
-                    <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
-                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
+                    <p class="syllabus-desktop-title" style="margin-top: 20px;text-align: left;font-weight: 400;">{{routine.title}}</p>
+                    <p class="syllabus-desktop-title" style="margin: 1vh 0 2vh;text-align: left;font-weight: 600;font-size: 18px;">{{$t('desktop_syllabus_second_time')}}{{routine.duration}}</p>
                     <div>
-                        <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
+                        <div v-for="(pose,i) in routine.poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
                             <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
                             <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                         </div>
@@ -112,8 +113,8 @@
                     <h5 class="syllabus-desktop-title" style="margin-top: 0;text-align: left;font-weight:400;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 15px;" v-html="`${getTodayDate}<br>${$t('desktop_header_menu_3')}`"></h5>
                     <div class="syllabus-mobile-result-box" style="    flex-direction: column;align-items: baseline;justify-content: center;">
                         <div style="display: flex;align-items: baseline;">
-                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 400;">{{routine.default[0].title}}</p>
-                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 600;font-size: 15px;">{{routine.default[0].duration}}</p>
+                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 400;">{{routine.title}}</p>
+                            <p class="syllabus-desktop-title" style="text-align: left;font-weight: 600;font-size: 15px;">{{routine.duration}}</p>
                         </div>
                         <div class="syllabus-mobile-result-again" @click="rePractice">
                             {{$t('dedesktop_syllabus_experience_icon_4')}}
@@ -163,12 +164,12 @@
                     </div>
                 </div>
                 <div class="syllabus-desktop-question" v-if="!first_question && !second_question">
-                    <h5 class="syllabus-desktop-title">請問您最想解決什麼問題呢？</h5>
+                    <h5 class="syllabus-desktop-title">請問您身體最不適的部位？</h5>
                     <div class="syllabus-desktop-question-select-block solve">
-                        <div class="syllabus-desktop-question-select" id="solve_rectify" @click="selectQuestion('rectify')">矯正疼痛</div>
-                        <div class="syllabus-desktop-question-select" id="solve_alleviate" @click="selectQuestion('alleviate')">舒壓安眠</div>
-                        <div class="syllabus-desktop-question-select" id="solve_beauty" @click="selectQuestion('beauty')">美體塑身</div>
-                        <div class="syllabus-desktop-question-select" id="solve_blend" @click="selectQuestion('blend')">調和心靈</div>
+                        <div class="syllabus-desktop-question-select" id="solve_rectify" @click="selectQuestion(0)">肩頸痠痛</div>
+                        <div class="syllabus-desktop-question-select" id="solve_alleviate" @click="selectQuestion(1)">骨盆歪斜</div>
+                        <div class="syllabus-desktop-question-select" id="solve_beauty" @click="selectQuestion(2)">腿部浮腫</div>
+                        <!-- <div class="syllabus-desktop-question-select" id="solve_blend" @click="selectQuestion('blend')">調和心靈</div> -->
                     </div>
                 </div>
                 <div class="syllabus-desktop-question-bar">
@@ -182,26 +183,30 @@
                 :navigationEnabled="true" :paginationEnabled="false" >
                     <slide class="syllabus-calendar-line">
                         <div class="syllabus-calendar-li" v-for="d in get_14_dates.slice(0,7)" :key="d.date"
-                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                        @click="selectDay(d.date,d.label)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
                         <!-- <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/desktop/syllabus-desktop-arrow-right.png" alt=""> -->
                     </slide>
                     <slide class="syllabus-calendar-line">
                         <div class="syllabus-calendar-li" v-for="d in get_14_dates.slice(7)" :key="d.date"
-                        @click="selectDay(d.date)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
+                        @click="selectDay(d.date,d.label)" :class="click_today[d.date]">{{`${d.month}月${d.date}日(${day_list[d.day]})`}}</div>
                     </slide>
                 </carousel>
+                <!-- 當日課表 -->
                 <div class="syllabus-desktop-arrangement-block">
-                    <div class="syllabus-desktop-arrangement-content">
+                    <div v-if="routine"  class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
-                        <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">{{routine.default[0].title}}</h5>
-                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
+                        <h5 class="syllabus-desktop-title" style="margin: 2vh 0;text-align: left;">{{routine.title}}</h5>
+                        <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0;">{{$t('desktop_syllabus_second_time')}}{{routine.duration}}</p>
                         <div class="syllabus-desktop-arrangement-flex">
-                            <div v-for="(pose,i) in routine.default[0].poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
+                            <div v-for="(pose,i) in routine.poses" :key="i" :class="pose.pose_brief != 'break' ? 'mobile-syllabus-block-outside':'syllabus-desktop-pink-rest-outside'">
                                 <mamiyoga-mobile-syllabus-block v-if="pose.pose_brief != 'break'" :bgImg="pose.ai_preview_img" :courseTitle="pose.pose_brief"></mamiyoga-mobile-syllabus-block>
                                 <div v-else class="syllabus-desktop-pink-rest">{{$t('desktop_syllabus_second_rest')}}</div>
                             </div>
                         </div>
                         <div class="info-desktop-red-btn" style="margin: 5vh auto 0;width: 200px;" @click="startPractice">{{$t('desktop_syllabus_second_btn')}}</div>
+                    </div>
+                    <div v-else class="syllabus-desktop-arrangement-content">
+                        <div class="info-desktop-red-btn" style="margin: 5vh auto 0;width: 200px;" @click="start_build">{{$t('desktop_syllabus_first_btn')}}</div>
                     </div>
                 </div>
             </div>
@@ -212,8 +217,8 @@
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
                         <div class="syllabus-desktop-arrangement-flex" style="max-width: 1100px;margin: 5vh auto 0;">
                             <div class="syllabus-desktop-arrangement-result-box">
-                                <p class="syllabus-desktop-title" style="margin:0;text-align: left;">{{routine.default[0].title}}</p>
-                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">{{$t('desktop_syllabus_second_time')}}{{routine.default[0].duration}}</p>
+                                <p class="syllabus-desktop-title" style="margin:0;text-align: left;">{{routine.title}}</p>
+                                <p class="syllabus-desktop-title" style="font-size: 20px;font-weight: 500;text-align: left;margin: 2vh 0 3vh;">{{$t('desktop_syllabus_second_time')}}{{routine.duration}}</p>
                                 <div class="info-desktop-red-btn" style="width: 50%;background: #707070;border-color: #707070;height: 50px;" @click="rePractice">{{$t('dedesktop_syllabus_experience_icon_4')}}</div>
                             </div>
                             <div class="syllabus-desktop-arrangement-result-box" style="background:#24798F;">
@@ -236,7 +241,7 @@
         <!-- 練習畫面 -->
         <div v-if="is_practice && !practice_finish">
             <mamiyoga-new-practice-video-block @goBack="goBack()" @openResult="openResult" 
-            @closeResult="closeResult" :routine="routine.default[0]"></mamiyoga-new-practice-video-block>
+            @closeResult="closeResult" :routine="routine" :ai_assistant="false"></mamiyoga-new-practice-video-block>
         </div>
         <!-- 愛心進度條 -->
         <div v-if="is_loading" id="loading">
@@ -266,6 +271,8 @@ import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox
 import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 import MamiyogaCalendarTool from '~/components/mamiyoga/MamiyogaCalendarTool.vue'
 import { mapMutations, mapGetters } from 'vuex';
+import axios from '~/config/axios-config';
+
 export default {
     data:()=>({
         courses:[],
@@ -276,7 +283,7 @@ export default {
         check_lang: '',
         check_series: 'first',
 
-        start_build: true,
+        start_build: false,
         user_frequency: '',
         user_want: '',
         user_question: '',
@@ -307,6 +314,7 @@ export default {
 
         day_list: ['日','ㄧ','二','三','四','五','六'],
         click_today: [],
+        selected_day:new Date("2020/2/20"),
     }),
     components: {
         MamiyogaHeader,
@@ -323,33 +331,58 @@ export default {
     },
     async mounted() {
         if (process.client) {
-            if (this.$i18n.locale == 'JP') {
-                this.courses = await require('~/config/mamiyoga-course-jp');
-                this.routine = await require('~/config/routine-jp');
-                this.check_lang = '/jp'
-            } else if (this.$i18n.locale == 'zh-CN') {
-                this.courses = await require('~/config/mamiyoga-course-zhcn');
-                this.routine = await require('~/config/routine');
-                this.check_lang = '/zh-CN'
+            this.is_loading = true;
+            let login_or_not = await this.$checkLogin(this.$store);
+            if (login_or_not == false) {
+                this.is_login = false
+                this.is_loading = false;
             } else {
-                this.courses = await require('~/config/mamiyoga-course');
-                this.routine = await require('~/config/routine');
-                this.check_lang = ''
-            }
-            if(this.$mq === 'desktop'){
-                document.getElementById('go_syllabus').classList.add('click-active');
-            }
+                this.is_login = true
+                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
             
-            this.first_course = this.courses[0]
-            this.experience_course = this.courses[12]
+                if (this.$i18n.locale == 'JP') {
+                    this.courses = await require('~/config/mamiyoga-course-jp');
+                    // this.routine = await require('~/config/routine-jp');
+                    this.check_lang = '/jp'
+                } else if (this.$i18n.locale == 'zh-CN') {
+                    this.courses = await require('~/config/mamiyoga-course-zhcn');
+                    // this.routine = await require('~/config/routine');
+                    this.check_lang = '/zh-CN'
+                } else {
+                    this.courses = await require('~/config/mamiyoga-course');
+                    // this.routine = await require('~/config/routine');
+                    this.check_lang = ''
+                }
+                if(this.$mq === 'desktop'){
+                    document.getElementById('go_syllabus').classList.add('click-active');
+                }
+                
+                this.first_course = this.courses[0]
+                this.experience_course = this.courses[12]
 
-            if(sessionStorage['menu_current_series']) {
-                this.check_series = sessionStorage['menu_current_series']
-            } else {
-                sessionStorage['menu_current_series'] = this.check_series
-            }       
-
-            this.selectDay(this.get_14_dates[0].date)
+                if(sessionStorage['menu_current_series']) {
+                    this.check_series = sessionStorage['menu_current_series']
+                } else {
+                    sessionStorage['menu_current_series'] = this.check_series
+                }     
+                
+                let now = new Date();
+                let ret = [];
+                let now_date = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
+                let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user.user_id,date:now_date});
+                this.routine = response.data.result;
+                console.log(this.routine);
+                if (this.routine && this.routine != false) {
+                    this.routine = this.setRoutineDetail(this.routine);
+                    this.show_arrangement = true;
+                    this.start_build = true;
+                    this.selectDay(this.get_14_dates[0].date,this.get_14_dates[0].label)
+                } else {
+                    this.show_arrangement = false;
+                    this.start_build = false;
+                }
+                this.is_loading = false
+            }
         }
     },
     computed:{
@@ -357,19 +390,21 @@ export default {
             user : 'user/getData',
         }),
     },
-    async beforeCreate() {
-        if (process.client) {
-
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
-                this.is_login = false
-            } else {
-                this.is_login = true
-                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
-            }
-        }
-    },
     methods:{
+        setRoutineDetail(routine) {
+            try {
+                for (let index = 0; index < routine.poses.length; index++) {
+                    let temp_pose = routine.poses[index];
+                    // console.log('pose' ,temp_pose);
+                    if (temp_pose.pose_brief != 'break') {
+                        routine.poses[index] = this.courses[temp_pose.course-1]['poses'][temp_pose.pose-1];    
+                    }
+                }    
+            } catch (error) {
+                console.log(error)
+            }
+            return routine;
+        },
         startBuild(){
             if (!this.is_login) {
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
@@ -380,7 +415,7 @@ export default {
             } else {
                 this.have_trial = true;
                 this.start_build = true;
-                this.show_arrangement = true
+                // this.show_arrangement = false;
             }
         },
         selectFrequency(num){
@@ -398,18 +433,27 @@ export default {
             document.querySelector('#span-2').style.background = '#d1d1d1'
             document.querySelector('#span-3').style.background = '#707070'
         },
-        selectQuestion(type){
+        async selectQuestion(type){
             this.user_question = type
             this.is_loading = true
-            if(this.$mq === 'desktop') {
-                document.querySelector(`#solve_${type}`).classList.add('desktop-select-question')
+            // if(this.$mq === 'desktop') {
+            //     document.querySelector(`#solve_${type}`).classList.add('desktop-select-question')
+            // }
+            let obj = {
+                routine_options : {    
+                    frequency: this.user_frequency, 
+                    exercise_time: this.user_want, 
+                    question: this.user_question,
+                },
+                user_id:this.user.user_id,
             }
-            let obj = {frequency: this.user_frequency, exercise_time: this.user_want, question: this.user_question}
             console.log(obj)
-            setTimeout(() => {
-                this.is_loading = false
-                this.show_arrangement = true
-            }, 3000);
+            let response = await axios.post('/apis/mamiyoga-set-routine-options',obj);
+            console.log(response)
+            response = await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:new Date()});
+            await this.selectDay(this.get_14_dates[0].date,this.get_14_dates[0].label)
+            this.is_loading = false
+            this.show_arrangement = true
         },
         startPractice(){
             this.is_practice = true
@@ -448,17 +492,26 @@ export default {
         },
         doHandleMonth(m){
             if(m.toString().length == 1){
-            m = "0" + m;
+                m = "0" + m;
             }
             return m;
         },
-        selectDay(i){
-            if (this.click_today[i] === 'open') {
-                this.click_today = [];
+        async selectDay(i,label){
+            console.log(i)
+            this.is_loading = true;
+            let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user.user_id,date:label});
+            this.routine = response.data.result;
+            if(this.routine) {
+                this.routine = this.setRoutineDetail(this.routine);
             } else {
-                this.click_today = [];
-                this.click_today[i] = 'open'
+                await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:label});
+                await this.selectDay(i,label);
+                return;
             }
+            this.click_today = [];
+            this.click_today[i] = 'open'
+            this.selected_day = new Date(label);
+            this.is_loading = false;
         },
     },
     computed:{
@@ -467,7 +520,8 @@ export default {
         }),
         getTodayDate(){
             const day_jp = ['日','月','火','水','木','金','土']
-            let d = new Date();
+            // let d = new Date();
+            let d = this.selected_day;
             let n = d.getDay();
             if(this.$i18n.locale == 'JP') {
                 let today = (d.getMonth()+1) + '月' + d.getDate()+ '日' + '（' + day_jp[n] +'）' ;
@@ -483,8 +537,15 @@ export default {
             let now_date = {year: now.getFullYear(), month: now.getMonth(), date: now.getDate(), day: now.getDay()};
             for(let i = 0; i < 14; i++){
                 let t_day = new Date(now_date.year, now_date.month, now_date.date + i);
-                ret.push({year: t_day.getFullYear(), month: this.doHandleMonth(t_day.getMonth()+1), date: this.doHandleMonth(t_day.getDate()), day: t_day.getDay()});
+                ret.push({
+                    year: t_day.getFullYear(), 
+                    month: this.doHandleMonth(t_day.getMonth()+1), 
+                    date: this.doHandleMonth(t_day.getDate()), 
+                    day: t_day.getDay(),
+                    label: t_day.getFullYear() + '/' + (t_day.getMonth()+1) + '/' + t_day.getDate()
+                });
             }
+            console.log(ret);
             return ret;
         }
     }
@@ -791,6 +852,7 @@ export default {
 .syllabus-calendar-li.open {
     background: #FF9898;
 }
+
 
 @media (min-width: 769px) {
     .syllabus-desktop {

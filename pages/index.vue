@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="index-contain" v-if="!is_practice" style="min-height:100vh;overflow:visible;" :style="{backgroundColor: '#24798f'}">
-             <div class="background-video-contain" :style="{display: $i18n.locale == 'JP' ? 'none': ''}">
+            <div class="background-video-contain" :style="{display: $i18n.locale == 'JP' ? 'none': ''}">
                 <div style="width:100%;height:100vh;background: rgba(0, 0, 0,0.2);position: absolute;" :style="{minHeight: $mq == 'desktop' ? '1000px':''}"></div>
                 <video muted loop autoplay playsinline class="background-video">
                     <source src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-new-title-4.mp4" type="video/mp4">      
@@ -110,6 +110,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="course-info-block-service-slide">
+
                     </div>
                     <!-- 自拍魔境 -->
                     <div id="mirror-block" class="index-article-use-video">
@@ -504,7 +507,7 @@
                 </div>
             </div>
             <div v-else class="index-fixed-footer-mobile">
-                <a href="/pay">我&nbsp;&nbsp;&nbsp;&nbsp;要&nbsp;&nbsp;&nbsp;&nbsp;購&nbsp;&nbsp;&nbsp;&nbsp;買</a>
+                <router-link class="no-underline white" to="/pay">我&nbsp;&nbsp;&nbsp;&nbsp;要&nbsp;&nbsp;&nbsp;&nbsp;購&nbsp;&nbsp;&nbsp;&nbsp;買</router-link>
             </div>
          </div>
 
@@ -2190,6 +2193,7 @@ export default {
     border:none;
     border-radius: 6px;
     cursor:pointer;
+    font-size: 17px;
 }
 .index-fixed-footer-button-buy {
     color:#24798F;

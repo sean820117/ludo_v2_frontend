@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <nuxt/>
-    <div class="fb-customerchat" page_id="1557980337838066" minimized="true"
-    logged_out_greeting="您需要什麼幫助嗎？" logged_in_greeting="您需要什麼幫助嗎？"
-    theme_color="#24798F"></div>
-  </div>
+    <div>
+        <nuxt/>
+        <div class="fb-customerchat" page_id="1557980337838066" minimized="true"
+        logged_out_greeting="您需要什麼幫助嗎？" logged_in_greeting="您需要什麼幫助嗎？"
+        theme_color="#24798F"></div>
+    </div>
   
 </template>
 
@@ -80,57 +80,41 @@ export default {
 </script>
 
 <style>
+@media (min-width: 1920px) {
+  html,
+  body {
+    font-size: 18px;
+  }
+}
+
+html,
 body {
-  font-family: arial, "Microsoft JhengHei", "微軟正黑體" !important;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  /* background: #FDFCF7; */
+  font-size: 12px;
   margin: 0;
-  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
-/* width */
-::-webkit-scrollbar {
-width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-background: #f1f1f1; 
-border: none;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-background: #555; 
-}
-.category_buttom {
-    border-radius: 15px;
-    background-color: #2f4b84; /* default bgcolor */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.no-underline {
-    text-decoration: none;
-}
-.white {
-    color:white;
+@media (max-width: 600px) {
+  html,
+  body {
+    font-size: 8px;
+  }
 }
 </style>
 
