@@ -115,7 +115,7 @@
 
                     </div>
                     <!-- 自拍魔境 -->
-                    <div id="mirror-block" class="index-article-use-video">
+                    <!-- <div id="mirror-block" class="index-article-use-video">
                         <div class="course-info-block-mirror">
                             <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
                             <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
@@ -137,13 +137,11 @@
                                             <p :style="{fontSize: $i18n.locale == 'JP' && $mq != 'desktop'?'13px':''}">{{$t('desktop_index_four_list_3')}}</p>
                                         </div>
                                     </div>
-                                    <!-- <button  @click="is_practice = true" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button> -->
                                     <button  @click="$router.push(exp_pose_url)" :style="{fontSize: $i18n.locale == 'JP' ? '16px':''}" class="index-article-out-btn mirror-btn go-info">{{$t('desktop_index_four_btn')}}</button>
                                 </div>
                             </div>
                         </div>
-                        <!-- <button v-if="$mq !== 'desktop'" @click="$router.push('/mirror-mirror')" style="font-size: 26px;border-radius: 16px;" class="index-article-out-btn">進入課程</button> -->
-                    </div>
+                    </div> -->
                     <!-- 介面示意 -->
                     <div class="block-mirror-demo">
                         <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-demo.jpg"/>
