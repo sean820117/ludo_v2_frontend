@@ -35,7 +35,7 @@ export default {
                 loader: 'dots',
                 width: 64,
                 height: 64,
-                backgroundColor: '#ffffff',
+                backgroundColor: '#000000',
                 opacity: 0.5,
                 zIndex: 999,
             });
