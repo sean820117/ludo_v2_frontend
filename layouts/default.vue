@@ -132,5 +132,63 @@ background: #555;
 .white {
     color:white;
 }
+h3.mamiyoga-h3 {
+  font-size: 19px;
+}
+.color-primary {
+  color:#24798F;
+}
+.color-primary-light {
+  color: #ABCCD4;
+}
+.color-white {
+  color: white;
+}
+.color-red {
+  color: #C74F4F;
+}
+.bg-red {
+  background: #C74F4F;
+}
+.bg-white {
+  background: white;
+}
+.bg-primary-light {
+  background: #ABCCD4;
+}
+.border-primary-light {
+  border-color: #ABCCD4;
+}
+.btn-large {
+  border-radius: 5px;
+  width:246px;
+  height: 35px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 5px 0;
+}
+.btn-small {
+  border-radius: 5px;
+  width:90px;
+  height: 42px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  font-weight: bold;
+}
 </style>
 

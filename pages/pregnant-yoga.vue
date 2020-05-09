@@ -372,7 +372,6 @@ section {
   align-items: center;
   flex-direction: column;
   margin: 30px 30px 30px 0;
-  z-index: 1000;
 }
 
 .grid-title {

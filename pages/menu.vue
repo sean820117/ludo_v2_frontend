@@ -312,9 +312,15 @@ export default {
     },
     async beforeCreate() {
         if (process.client) {
-            this.login_or_not = await this.$checkLogin(this.$store);
-            if (this.login_or_not) {
-                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+            if (parseInt(localStorage['set_contact']) > new Date().getTime()) {
+                this.login_or_not = true;
+                this.payed_or_not = true;
+                console.log('7d trial');
+            } else {
+                this.login_or_not = await this.$checkLogin(this.$store);
+                if (this.login_or_not) {
+                    this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                }
             }
         }
     },

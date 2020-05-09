@@ -2,7 +2,7 @@
     <div v-show="is_loaded" class="smartyoga-LP-container">
         <div :class="`smartyoga-LP-block smartyoga-LP-block${num}`" v-for=" num in max_block_num" :key="num">
             <img v-if="num % 2 == 1" class="main-img" :src="`${img_base_url}/LP1-${num}${color}@2x.jpg`" alt="">
-            <a v-if="num == 5" class="diary-btn" href="/syllabus"></a>
+            <a v-if="num == 5" class="diary-btn" href="/syllabus?status=1"></a>
             <img v-if="num == 5" class="main-img" :src="`${img_base_url}/LP1-${num}.1${color}@2x.jpg`" alt="">
             <div v-else-if="num % 2 == 0" class="smartyoga-LP-block-with-btn" :style="{backgroundImage:`url(${img_base_url}/LP1-buyblock-${color}@2x.jpg)`,backgroundSize: 'cover',}">
                 <!-- <img class="main-img" :src="`${img_base_url}/LP1-buyblock-${color}.jpg`" alt=""> -->

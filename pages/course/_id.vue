@@ -50,7 +50,13 @@ export default {
     async beforeCreate() {
         if (process.client) {
             let login_or_not = await this.$checkLogin(this.$store);
+            if (parseInt(localStorage['set_contact']) > new Date().getTime()) {
+                this.login_or_not = true
+                this.payed_or_not = true
+                return
+            }
             if (login_or_not == false) {
+                
                 localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/menu`
                 this.isAlert = true
                 this.alertText = `${this.$t('desktop_not_login')}`
@@ -66,6 +72,7 @@ export default {
                     this.nextGo = 'pay'
                 }
             }
+            
         }
     },
     computed:{

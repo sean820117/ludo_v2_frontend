@@ -2,7 +2,7 @@
     <div>
         <div v-if="$mq !== 'desktop'">
             <div class="syllabus-desktop" :style="{minHeight: is_practice ? '0':'100vh',paddingBottom: is_practice ? '0':'5vh'}">
-                <mamiyoga-hamburger-header v-if="!is_practice"></mamiyoga-hamburger-header>
+                <mamiyoga-hamburger-header v-if="!is_practice && !start_build && !practice_finish"></mamiyoga-hamburger-header>
                 <div v-if="!start_build">
                     <img class="syllabus-desktop-img" :src="$t('desktop_syllabus_background')" alt="">
                     <h5 class="syllabus-desktop-title" style="margin-top: 60vh;position: relative;">{{$t('desktop_syllabus_first_title')}}</h5>
@@ -210,8 +210,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="!is_practice && practice_finish" class="syllabus-desktop-arrangement-outside">
-                
+            <div v-if="question_finish && practice_finish" class="syllabus-desktop-arrangement-outside">
                 <div class="syllabus-desktop-arrangement-block">
                     <div class="syllabus-desktop-arrangement-content">
                         <p class="syllabus-desktop-title" style="font-size: 46px;font-weight: 500;text-align: left;margin: 0;border-bottom: 1px solid rgba(0,0,0,.3);padding-bottom: 20px;">{{getTodayDate + $t('desktop_header_menu_3')}}</p>
@@ -250,10 +249,8 @@
 	            C30,20.335,16,28.261,16,28.261z" fill="none" stroke-width="1" stroke="#FF9898"></path>
             </svg>
         </div>
-         <!-- 新版alert -->
-        <mamiyoga-new-window-alert-box v-if="show_alert" @closeBox="show_alert = false" :alertBtn="alertBtn"
-        :alertTitle="alertTitle" :alertImg="alertImg" :alertText="alertText" :alertBtnColor="alertBtnColor"
-        @enterBox="enterBox(nextGo)"></mamiyoga-new-window-alert-box>
+        <mamiyoga-login-box v-if="show_login_box" @onlogincancel="handleLoginCancel" :mode="0" />
+        <mamiyoga-complete-question v-if="!is_practice && !question_finish && practice_finish" @pickedchange="updateScore" @endQuestion="openResult"/>
     </div>
 </template>
 
@@ -270,11 +267,16 @@ import MamiyogaNewResultBlock from '~/components/mamiyoga/MamiyogaNewResultBlock
 import MamiyogaWindowAlertBox from '~/components/mamiyoga/MamiyogaWindowAlertBox.vue'
 import MamiyogaNewWindowAlertBox from '~/components/mamiyoga/MamiyogaNewWindowAlertBox.vue'
 import MamiyogaCalendarTool from '~/components/mamiyoga/MamiyogaCalendarTool.vue'
+import MamiyogaLoginBox from '~/components/mamiyoga/MamiyogaLoginBox.vue'
+import MamiyogaCompleteQuestion from '~/components/mamiyoga/MamiyogaCompleteQuestion.vue'
 import { mapMutations, mapGetters } from 'vuex';
 import axios from '~/config/axios-config';
 
 export default {
     data:()=>({
+        user_id:'temp',
+        email:'',
+        errors:'',
         courses:[],
         routine:[],
         first_course: {},
@@ -283,6 +285,7 @@ export default {
         check_lang: '',
         check_series: 'first',
 
+        show_login_box:false,
         start_build: false,
         user_frequency: '',
         user_want: '',
@@ -296,6 +299,7 @@ export default {
         show_arrangement: false,
         is_practice: false,
         practice_finish: false,
+        question_finish: false,
 
         have_trial: false,
         result_score: '43',
@@ -328,17 +332,26 @@ export default {
         MamiyogaNewWindowAlertBox,
         MamiyogaNewResultBlock,
         MamiyogaCalendarTool,
+        MamiyogaLoginBox,
+        MamiyogaCompleteQuestion,
     },
     async mounted() {
         if (process.client) {
-            this.is_loading = true;
-            let login_or_not = await this.$checkLogin(this.$store);
-            if (login_or_not == false) {
-                this.is_login = false
-                this.is_loading = false;
+            if (localStorage['temp_user_id']) {
+                this.user_id = localStorage['temp_user_id'];
             } else {
-                this.is_login = true
-                this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
+                this.user_id = this.generateRandomID();
+                localStorage['temp_user_id'] = this.user_id;
+            }
+            console.log(this.user_id)
+            this.is_loading = true;
+            // let login_or_not = await this.$checkLogin(this.$store);
+            // if (login_or_not == false) {
+            //     this.is_login = false
+            //     this.is_loading = false;
+            // } else {
+                // this.is_login = true
+                // this.payed_or_not = await this.$checkPayed(this.user.user_id,"mamiyoga");
             
                 if (this.$i18n.locale == 'JP') {
                     this.courses = await require('~/config/mamiyoga-course-jp');
@@ -369,7 +382,7 @@ export default {
                 let now = new Date();
                 let ret = [];
                 let now_date = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
-                let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user.user_id,date:now_date});
+                let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user_id,date:now_date});
                 this.routine = response.data.result;
                 console.log(this.routine);
                 if (this.routine && this.routine != false) {
@@ -380,9 +393,12 @@ export default {
                 } else {
                     this.show_arrangement = false;
                     this.start_build = false;
+                    if (this.$route.query.status == "1") {
+                        this.startBuild();
+                    }
                 }
                 this.is_loading = false
-            }
+            // }
         }
     },
     computed:{
@@ -391,11 +407,14 @@ export default {
         }),
     },
     methods:{
+        generateRandomID() {
+            return Math.random().toString(36).substr(2, 10);
+        },
         setRoutineDetail(routine) {
             try {
                 for (let index = 0; index < routine.poses.length; index++) {
                     let temp_pose = routine.poses[index];
-                    // console.log('pose' ,temp_pose);
+                    console.log('pose' ,temp_pose);
                     if (temp_pose.pose_brief != 'break') {
                         routine.poses[index] = this.courses[temp_pose.course-1]['poses'][temp_pose.pose-1];    
                     }
@@ -405,18 +424,23 @@ export default {
             }
             return routine;
         },
-        startBuild(){
-            if (!this.is_login) {
-                localStorage.redirect = `${this.$i18n.locale == 'zh-TW' ? '':'/'+this.$i18n.locale}/syllabus`
-                this.show_alert = true
-                this.alertText = `${this.$t('desktop_go_login')}`
-                this.alertBtn = `${this.$t('teach_button_ok')}`
-                this.nextGo = 'login'       
-            } else {
-                this.have_trial = true;
-                this.start_build = true;
-                // this.show_arrangement = false;
+        async sendSubscribeData() {
+            if (this.email) {
+                let routine_options = {
+                    frequency:localStorage['frequency'],
+                    exercise_time:localStorage['exercise_time'],
+                    question:localStorage['question'],
+                };
+                const res = await axios.post('/apis/subscribe-mamiyoga',{email:this.email,category:'練習提醒',routine_options});
+                localStorage['set_contact'] = 'true'
+                this.show_alert = false
+                return
             }
+            this.errors = "請填寫正確資訊！";
+        },
+        startBuild(){
+            this.have_trial = true;
+            this.start_build = true;
         },
         selectFrequency(num){
             this.user_frequency = num
@@ -445,12 +469,17 @@ export default {
                     exercise_time: this.user_want, 
                     question: this.user_question,
                 },
-                user_id:this.user.user_id,
+                user_id:this.user_id,
             }
             console.log(obj)
-            let response = await axios.post('/apis/mamiyoga-set-routine-options',obj);
-            console.log(response)
-            response = await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:new Date()});
+
+            localStorage['frequency'] = this.user_frequency;
+            localStorage['exercise_time'] = this.user_want;
+            localStorage['question'] =  this.user_question;
+            // let response = await axios.post('/apis/mamiyoga-set-routine-options',obj);
+            // console.log(response)
+            // response = await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:new Date(),routine_options:obj.routine_options});
+            let response = await axios.post('/apis/generate-routine',{user_id:this.user_id,date:new Date(),routine_options:obj.routine_options});
             await this.selectDay(this.get_14_dates[0].date,this.get_14_dates[0].label)
             this.is_loading = false
             this.show_arrangement = true
@@ -469,10 +498,18 @@ export default {
             if(score) {
                 this.result_score = Math.floor(score)
                 this.result_cal = (Math.floor(score))*2
+                this.question_finish = true;
                 this.open_camera = true
             } 
             this.is_practice = false
             this.practice_finish = true
+        },
+        updateScore(score = 60) {
+            if(score) {
+                this.result_score = Math.floor(score)
+                this.result_cal = (Math.floor(score))*2
+                this.open_camera = true
+            } 
         },
         closeResult(score = null){
             if(score) {
@@ -497,14 +534,30 @@ export default {
             return m;
         },
         async selectDay(i,label){
+            if (!localStorage['set_contact'] && new Date(label).getDate() != new Date().getDate()) {
+                this.show_login_box = true;
+                return;
+            } else if(localStorage['set_contact'] && parseInt(localStorage['set_contact']) < new Date().getTime()) {
+                alert("已超過七天試用期");
+                this.$router.push('/pay')
+            }
             console.log(i)
             this.is_loading = true;
-            let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user.user_id,date:label});
+            // let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user.user_id,date:label});
+            let response = await axios.post('/apis/get-routine-by-user',{user_id:this.user_id,date:label});
             this.routine = response.data.result;
             if(this.routine) {
                 this.routine = this.setRoutineDetail(this.routine);
             } else {
-                await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:label});
+                // await axios.post('/apis/generate-routine',{user_id:this.user.user_id,date:label});
+                let routine_options = {
+                    frequency:localStorage['frequency'],
+                    exercise_time:localStorage['exercise_time'],
+                    question:localStorage['question'],
+                };
+                console.log(routine_options);
+                let rrr = await axios.post('/apis/generate-routine',{user_id:this.user_id,date:label,routine_options});
+                console.log(rrr);
                 await this.selectDay(i,label);
                 return;
             }
@@ -512,6 +565,9 @@ export default {
             this.click_today[i] = 'open'
             this.selected_day = new Date(label);
             this.is_loading = false;
+        },
+        handleLoginCancel() {
+            this.show_login_box = false;
         },
     },
     computed:{
@@ -819,7 +875,8 @@ export default {
     display: -webkit-box;
     align-items: center;
     justify-content: center;
-    overflow: auto;         
+    overflow: auto;     
+    margin-top: 50px;    
 }
 .syllabus-calendar-line::-webkit-scrollbar { 
     width: 0 !important;
@@ -1033,5 +1090,17 @@ export default {
     .VueCarousel-navigation--disabled[data-v-453ad8cd] {
         opacity: 0;
     }
+}
+.beta-input-email {
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 7px;
+    border-style: none;
+    border: solid 1px rgba(0,0,0,.3);
+    height: 30px;
+    padding:0;
+    font-size: 14px;
 }
 </style>

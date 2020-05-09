@@ -102,6 +102,10 @@ export default {
                     this.have_trial = false;   
                 }
             } 
+            if (parseInt(localStorage['set_contact']) > new Date().getTime()) {
+                this.login_or_not = true
+                this.payed_or_not = true
+            }
         }
     },
     computed:{

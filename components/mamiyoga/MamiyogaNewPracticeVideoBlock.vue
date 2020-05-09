@@ -20,10 +20,9 @@
                 <!-- <div class="inputVideo-show-block"> -->
                     <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
                 <!-- </div> -->
-                <div class="preview-img">
-                    <!-- <div v-if="show_nam">{{ready_go}}</div> -->
+                <!-- <div class="preview-img">
                     <img style="transform: scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
-                </div>
+                </div> -->
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->

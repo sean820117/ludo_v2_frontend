@@ -85,6 +85,9 @@ export default {
                     this.have_trial = true
                 }
             }
+            if (parseInt(localStorage['set_contact']) > new Date().getTime()) {
+                this.have_trial = true
+            }
         }
     },
     computed:{
