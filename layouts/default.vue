@@ -92,12 +92,17 @@ body {
   /* background: #FDFCF7; */
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
+  white-space: pre-wrap;
+}
+html {
+  white-space: nowrap;
 }
 /* width */
 ::-webkit-scrollbar {
