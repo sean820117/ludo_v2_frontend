@@ -127,10 +127,10 @@ export default {
         current_county: '',
         products: [
             {
-                item_id: 'MY01',
+                item_id: 'MY06',
             },
             {
-                item_id: 'MY02',
+                item_id: 'MY07',
             }
         ],
         single_plan: {},

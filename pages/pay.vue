@@ -311,8 +311,8 @@ export default {
             
             sessionStorage['current_coupon'] = null; // unset coupon
 
-            this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
-            this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
+            // this.single_plan = this.products.find(plan => plan.item_id == 'MY01')
+            // this.four_person_program = this.products.find(plan => plan.item_id == 'MY02')
             if(this.picked == 0) {
                 this.can_pay = false
             } else {
@@ -522,7 +522,8 @@ export default {
 </script>
 
 <style>
-.fb_dialog.fb_dialog_advanced {
+.fb_dialog,
+.fb_dialog_advanced {
     bottom: 40pt !important;
 }
 .pay-way-input {

@@ -55,25 +55,24 @@ export default {
         localStorage.redirect = this.$route.path;
         console.log('save:' + localStorage.redirect)
       }
+      if (!this.$route.path.includes("/pay") && !this.$route.path.includes("/order")) {
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '1075325352502513',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v5.0'
+          });
+        };
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '1075325352502513',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v5.0'
-        });
-      };
-
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      }
     }
   }
 }
