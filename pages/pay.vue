@@ -20,6 +20,15 @@
                                         </div>
                                     </div>
                                     <div class="select-pay-content">
+                                        
+                                        <div class="select-pay-content-box">
+                                            <img :src=" product.item_img ? product.item_img : 'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png'" alt="">
+                                            <div>
+                                                <p class="select-pay-content-title">{{ product.description }}</p>
+                                                <!-- <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p> -->
+                                            </div>
+                                        </div>
+                                        <hr class="select-pay-content-line">
                                         <div class="select-pay-content-box">
                                             <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-2.png" alt="">
                                             <div>
@@ -27,21 +36,14 @@
                                                 <p style="font-weight:300;">付款後手機收到序號，即可使用『序號』直接登入兌換課程！</p>
                                             </div>
                                         </div>
-                                        <hr class="select-pay-content-line">
-                                        <div class="select-pay-content-box">
-                                            <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-1.png" alt="">
-                                            <div>
-                                                <p class="select-pay-content-title">2.送禮及寵妻達人</p>
-                                                <p style="font-weight:300;">課程為序號登入，付款取得序號後即可將序號送給朋友、愛妻使用！另外也可以搭配瑜珈墊更貼心！</p>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </label>
                                 <label v-if="product.code_amount > 1" class="select-pay-label  for-four-peop" :for="`${i}_prog`" :class="show_detail[i]">
                                     <div class="select-pay-way">
                                         <span class="select-pay-circle"></span>
                                         <div class="select-pay-data">
-                                            <p class="select-pay-title"><b>{{product.slogan}}</b><br><span>{{ getItemAmount(product.item_amount) }}</span></p>
+                                            <p class="select-pay-title"><b>{{ product.slogan }}</b><br><span>{{ getItemAmount(product.item_amount) }}</span></p>
                                             <p class="select-pay-title"><b>NTD&nbsp;{{product.price}}</b></p>
                                         </div>
                                     </div>
@@ -82,7 +84,7 @@
                                 </div>
                                 <div class="select-pay-content">
                                     <div class="select-pay-content-box">
-                                        <img src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png" alt="">
+                                        <img :src="'https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mamiyoga-pay-img-5.png'" alt="">
                                         <div>
                                             <p class="select-pay-content-title">愛護職員的好方法</p>
                                             <p style="font-weight:300;">若對企業方案有興趣，請留下您的聯絡方式，我們將於1~3個工作天專人為您務！</p>
@@ -133,7 +135,7 @@
                             <input type="hidden" name="payment_type" v-model="order_payment" value="">
                             <input type="hidden" name="return_url" :value="order_return">
                             <input type="hidden" name="client_back_url" :value="client_back_url">
-                            <input type="hidden" name="user_id" :value="user.user_id">
+                            <input type="hidden" name="user_id" :value="getUserID">
                             <div class="reg-text2" :style="{color: hint_color, textAlign: 'right', height: '20px'}">{{hint}}</div>
                         </form>
                         <mamiyoga-receipt-type :wordDark="true"></mamiyoga-receipt-type>
@@ -217,10 +219,10 @@ export default {
         company_method: false,
         products: [
             {
-                item_id: 'MY01',
+                item_id: 'MY06',
             },
             {
-                item_id: 'MY02',
+                item_id: 'MY07',
             },
             
         ],
@@ -278,12 +280,13 @@ export default {
                 let send_data = {item_id: this.products[i].item_id};
                 try {
                     const response = await axios.post('/apis/get-shop-item',send_data);
-                    this.products[i].item_name = response.data.item_name
+                    this.products[i].slogan = response.data.slogan
                     this.products[i].price = response.data.price
                     this.products[i].slogan = response.data.slogan
                     this.products[i].description = response.data.description
                     this.products[i].code_amount = response.data.code_amount
                     this.products[i].item_amount = response.data.item_amount
+                    this.products[i].item_img = response.data.item_img
                     // console.log(response)
                 } catch (error) {
                     alert('無法取得商品資訊')
@@ -295,7 +298,7 @@ export default {
             //     let send_data = {item_id: product.item_id};
             //     const response = await axios.post('/apis/get-shop-item',send_data);
             //     console.log(response);
-            //     product.item_name = response.data.item_name
+            //     product.slogan = response.data.slogan
             //     product.price = response.data.price
             //     product.slogan = response.data.slogan
             //     product.description = response.data.description
@@ -506,7 +509,14 @@ export default {
         ...mapGetters({
             user : 'user/getData',
         }),
-        
+        getUserID() {
+            if (this.user) {
+                if (this.user.user_id) {
+                    return this.user.user_id
+                }
+            }
+            return this.order_phone;
+        },
     },
 }
 </script>
@@ -943,6 +953,7 @@ export default {
         justify-content: center;
         border-radius: 5px;
         margin-top: 20px;
+        cursor:pointer;
     }
     .un-check-agree {
         opacity: .3;
