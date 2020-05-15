@@ -522,6 +522,9 @@ export default {
 </script>
 
 <style>
+.fb_dialog.fb_dialog_advanced {
+    bottom: 40pt !important;
+}
 .pay-way-input {
     display: none;
 }
