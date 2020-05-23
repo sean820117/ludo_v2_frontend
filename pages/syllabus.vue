@@ -540,6 +540,7 @@ export default {
             } else if(localStorage['set_contact'] && parseInt(localStorage['set_contact']) < new Date().getTime()) {
                 alert("已超過七天試用期");
                 this.$router.push('/pay')
+                return
             }
             console.log(i)
             this.is_loading = true;
