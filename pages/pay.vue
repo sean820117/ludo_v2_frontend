@@ -74,7 +74,7 @@
                             <input type="radio" name="pay-way" id="four-peop" class="pay-way-input" v-model="picked" :value="four_person_program.price"> -->
                             <input type="radio" name="pay-way" id="company-peop" class="pay-way-input" v-model="picked" :value="0" @click="togglePrice(100)">
                             
-                            <label class="select-pay-label for-company-peop" for="company-peop" :class="show_detail[100]">
+                            <!-- <label class="select-pay-label for-company-peop" for="company-peop" :class="show_detail[100]">
                                 <div class="select-pay-way">
                                     <span class="select-pay-circle"></span>
                                     <div class="select-pay-data">
@@ -104,7 +104,7 @@
                                         <div class="company-input-submit-btn" :style="{width: $i18n.locale == 'JP' ? '130px':''}" @click="submitData">{{$t('pay_method_input_btn')}}</div>
                                     </div>
                                 </div>
-                            </label>
+                            </label> -->
                         </div>
                     </div>
                     <div class="pay-main-block show-desktop" :class="picked !== '' ? '':'un-check-agree'">
@@ -218,6 +218,9 @@ export default {
     data:()=>({
         company_method: false,
         products: [
+            {
+                item_id: 'MY08',
+            },
             {
                 item_id: 'MY06',
             },
