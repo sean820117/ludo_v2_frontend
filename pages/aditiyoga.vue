@@ -1,8 +1,8 @@
 <template>
     <div v-show="is_loaded" class="smartyoga-LP-container">
         <div :class="`smartyoga-LP-block smartyoga-LP-block${num}`" v-for=" num in max_block_num" :key="num">
-            <img v-if="num % 2 == 1" class="main-img" :src="`${img_base_url}/${num-1}@2x.jpg`" alt="">
-            <a href="/pay" v-else-if="num - 1 == 3 || num - 1 == 7 || num - 1 == 13 || num - 1 == 19" class="smartyoga-LP-block-with-btn" >
+            <img v-if="num - 1 != 3 || num - 1 != 7 || num - 1 != 13 || num - 1 != 19" class="main-img" :src="`${img_base_url}/${num-1}@2x.jpg`" alt="">
+            <a href="/pay" v-else class="smartyoga-LP-block-with-btn" >
                 <img class="main-img" :src="`${img_base_url}/${num-1}@2x.jpg`" alt="">
                 <!-- <a class="buyblock-btn" href="/pay"></a> -->
             </a>
