@@ -219,6 +219,18 @@ export default {
         company_method: false,
         products: [
             {
+                item_id: 'MY09',
+            },
+            {
+                item_id: 'MY10',
+            },
+            {
+                item_id: 'MY11',
+            },
+            {
+                item_id: 'MY12',
+            },
+            {
                 item_id: 'MY08',
             },
             {

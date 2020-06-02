@@ -12,6 +12,11 @@ mamiyoga開發日誌，紀錄每次產品更新
 ### Fixed
 ### Removed
 
+## [1.2.5] - 2020-06-23
+### Added
+- healthbamco合作行銷頁
+- healthbamco商品加至付款頁面
+
 ## [1.2.5] - 2020-05-23
 ### Added
 - 天愛瑜珈合作行銷頁
