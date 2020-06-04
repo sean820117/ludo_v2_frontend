@@ -115,7 +115,7 @@
 
                     </div>
                     <!-- 自拍魔境 -->
-                    <!-- <div id="mirror-block" class="index-article-use-video">
+                    <div id="mirror-block" class="index-article-use-video">
                         <div class="course-info-block-mirror">
                             <p class="index-article-out-container-text">{{$t('desktop_index_four_title')}}</p>
                             <p class="index-article-out-container-text-li" :style="{fontSize: $i18n.locale  == 'JP'  && $mq != 'desktop'?'16px':''}">{{$t('desktop_index_four_little')}}</p>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- 介面示意 -->
                     <div class="block-mirror-demo">
                         <img v-if="$mq == 'desktop'" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/mirror-demo.jpg"/>
@@ -589,7 +589,7 @@ Vue.use(Vue2TouchEvents)
 export default {
 
     data:()=>({
-        exp_pose_url:'/mirror/yoga_20',
+        exp_pose_url:'/mirror2/yoga_20',
         login_or_not: false,
         payed_or_not: false,
 

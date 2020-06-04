@@ -20,9 +20,10 @@
                 <!-- <div class="inputVideo-show-block"> -->
                     <video playsinline id="inputVideo" alt="在這裡錄影" muted>Video stream not available.</video>
                 <!-- </div> -->
-                <!-- <div class="preview-img">
+                <div class="preview-img">
+                    <!-- <div v-if="show_nam">{{ready_go}}</div> -->
                     <img style="transform: scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
-                </div> -->
+                </div>
             </div>
             <div id="show-course" :class="[is_studying ? 'show':'',switchMethod ? 'small-method':'']" >
                 <!-- <div id="repeat-nam" v-if="!count_over">{{nam}}</div> -->
@@ -62,7 +63,7 @@
             </div>
 
             <!-- 教學 -->
-            <div v-if="!teach_finish && ai_assistant" class="experience-teach">
+            <div v-if="!teach_finish" class="experience-teach">
                 <div class="preview-img people" id="people">
                     <img style="transform:scaleX(-1);" src="https://ludo-beta.s3-ap-southeast-1.amazonaws.com/static/mommiyoga/experience-pose-show.png" alt="">
                 </div>
@@ -78,7 +79,7 @@
                         <div class="video-process-bar-inside"></div>
                     </div>
                 </div>
-                <div v-if="!select_camera && ai_assistant" class="experience-select-camera">
+                <div v-if="!select_camera" class="experience-select-camera">
                     <p class="experience-select-camera-title" v-html="$t('desktop_syllabus_experience_remind_title')"></p>
                     <div class="info-desktop-red-btn" style="width: 250px;" @click="getCamera">{{$t('desktop_syllabus_experience_remind_btn')}}</div>
                     <p class="experience-select-camera-not" @click="notGetCamera">{{$t('desktop_syllabus_experience_remind_little')}}</p>
@@ -212,7 +213,6 @@ export default {
     },
     props:{
         routine: Object,
-        ai_assistant: Boolean,
     },
     data:()=>({
         inputVideo:'',
@@ -278,9 +278,6 @@ export default {
             this.inputVideo = document.querySelector('#inputVideo')
             this.articles = await require('~/config/mamiyoga-post');
             this.post_article = this.articles[0].post_article;
-            if (!this.ai_assistant) {
-                this.notGetCamera();
-            }
         }
     },
     destroyed() {
@@ -291,7 +288,7 @@ export default {
     },
     methods: {
         startReady(){
-            if(this.teach_finish || !this.ai_assistant){
+            if(this.teach_finish){
                 this.show_nam = true
                 // this.switchMethod = true
                 let id = setInterval(() => {
@@ -471,6 +468,7 @@ export default {
                 // this.result_cal = (Math.floor(score))*2
                 try {
                     this.video_result = await this.video_recorder.getDetailResult()
+                    console.log(this.video_result);
                     if (this.video_result && this.video_result.status == 200) {
                         this.heart_loading = false;
                         let use_ai = this.routine.poses.find(pose => pose.pose_id == this.current_pose_id)
@@ -689,7 +687,7 @@ export default {
     justify-content: center;
     border-radius: 5px;
     font-size: 20px;
-    white-space: nowrap;
+
 }
 #start-video.big-method{
     transition: .3s;
@@ -1184,7 +1182,6 @@ export default {
         right: unset;
         left: 5vw;
         cursor: pointer;
-        white-space:nowrap;
     }
     #go-back-btn {
         left: 5vw;
@@ -1313,6 +1310,7 @@ export default {
     }
     .experience-select-camera-text {
         font-size: 17px;
+        white-space: pre-wrap;
     }
     .experience-teach-remind {
         transform: rotate(0deg);
@@ -1419,7 +1417,6 @@ export default {
         right: unset;
         left: 5vw;
         cursor: pointer;
-        white-space:nowrap;
     }
     #go-back-btn {
         left: 5vw;

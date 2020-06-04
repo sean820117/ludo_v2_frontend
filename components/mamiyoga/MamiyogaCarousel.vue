@@ -376,6 +376,7 @@ export default {
     letter-spacing: 5px;
     font-size: 18px;
     cursor: pointer;
+    white-space: nowrap;
 }
 .intro-wrap-four-pay-bottom {
     position: absolute;
@@ -445,6 +446,7 @@ export default {
         color: #F7F7F7;
         width: 75%;
         max-width: 200px;
+        white-space: nowrap;
     }
     .intro-wrap-four-pay-circle {
         background-color: #f7f7f7;

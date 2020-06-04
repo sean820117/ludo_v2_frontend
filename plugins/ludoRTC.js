@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 var pose_axios = axios.create({
-    baseURL: 'https://pose.ludonow.com:8787',
-    // baseURL: 'http://52.156.42.134:8787',
-    withCredentials: 'true',
+    // baseURL: 'https://pose.ludonow.com:8787',
+    baseURL: 'https://pose-dev.ludonow.com:8787',
+    withCredentials: false,
     timeout: 2000000,
 });
 
@@ -18,7 +18,7 @@ function newLudoRTC (options = {}) {
         if (options.dev) {
             pose_axios = axios.create({
                 baseURL: 'https://pose-dev.ludonow.com:8787',
-                withCredentials: 'true',
+                withCredentials: false,
                 timeout: 2000000,
             });
         }

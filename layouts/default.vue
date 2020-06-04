@@ -98,7 +98,7 @@ body {
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
 }
 html {
   white-space: nowrap;

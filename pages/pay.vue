@@ -675,6 +675,7 @@ export default {
     font-size: 12px;
     color: #24798F;
     margin-left: 15px;
+    white-space:pre-wrap;
 }
 .select-pay-content-title {
     font-weight: bold;
