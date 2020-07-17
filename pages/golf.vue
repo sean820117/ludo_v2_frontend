@@ -1,10 +1,10 @@
 <template>
     <div class="golf-demo-container">
-        <golf-demo-intro v-if="stage==0" @nextStage="nextStage"/>
-        <golf-demo-select v-if="stage==1" @nextStage="nextStage"/>
+        <golf-demo-intro v-if="stage==0" @nextStage="nextStage" @setUserId="setUserId"/>
+        <!-- <golf-demo-select v-if="stage==1" @nextStage="nextStage"/> -->
         <golf-demo-recorder v-if="stage==2" @nextStage="nextStage" :user_id="user_id" @setRecorder="setRecorder" />
         <golf-demo-analyse-and-loading v-if="stage==3" @nextStage="nextStage" :video_recorder="video_recorder" @setResult="setResult"/>
-        <golf-demo-analyse-result v-if="stage==4" @nextStage="nextStage" :analyse_result="analyse_result" />
+        <golf-demo-analyse-result v-if="stage==4" @nextStage="nextStage" :analyse_result="analyse_result" @goStage="goStage"/>
     </div>
 </template>
 
@@ -31,22 +31,35 @@ export default {
         GolfDemoAnalyseAndLoading,
         GolfDemoAnalyseResult,
     },
-    mounted() {
+    async mounted() {
         if (process.client) {
         }
     },
     methods: {
         nextStage() {
             this.stage++;
+            // skip stage 1
+            if (this.stage == 1) {
+                this.stage++;
+            }
+            if (this.stage == 4) {
+                this.$router.push('/result?filename=' + this.analyse_result.file_name);
+            }
             if (this.stage > 4) {
                 this.stage = 0;
             }
+        },
+        setUserId(id) {
+            this.user_id = id;
         },
         setRecorder(video_recorder) {
             this.video_recorder = video_recorder;
         },
         setResult(analyse_result) {
             this.analyse_result = analyse_result;
+        },
+        goStage(stage) {
+            this.stage = stage;
         }
     },
 }
@@ -55,8 +68,8 @@ export default {
 <style>
 .golf-demo-container {
     width: 100vw;
-    /* min-height: -webkit-fill-available; */
-    height: 100vh;
+    min-height: -webkit-fill-available;
+    /* height: 100vh; */
     background-color:black;
     display:flex;
 }

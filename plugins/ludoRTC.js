@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 var pose_axios = axios.create({
-    baseURL: 'https://pose.ludonow.com:8787',
-    // baseURL: 'http://52.156.42.134:8787',
+    // baseURL: 'https://pose.ludonow.com:8787',
+    baseURL: 'http://52.156.42.134:8787',
     withCredentials: 'true',
     timeout: 2000000,
 });
@@ -17,7 +17,8 @@ function newLudoRTC (options = {}) {
     if (process.client) {
         if (options.dev) {
             pose_axios = axios.create({
-                baseURL: 'https://pose-dev.ludonow.com:8787',
+                baseURL: 'https://pose-dev2.ludonow.com',
+                // baseURL: 'https://pose-dev.ludonow.com:8787',
                 withCredentials: 'true',
                 timeout: 2000000,
             });
@@ -37,7 +38,9 @@ class LudoRTC {
         this.startRecording = this.startRecording.bind(this);
         this.stopRecording = this.stopRecording.bind(this);
         this.getResult = this.getResult.bind(this);
+        this.getFinalConnectionStatus = this.getFinalConnectionStatus.bind(this);
         this.dc = null;
+        this.pc = null;
         this.video_list = [];
         this.default_width = 640;
         this.width = this.default_width;
@@ -55,7 +58,8 @@ class LudoRTC {
                     // height:default_height,
                     aspectRatio: this.aspectRatio,
                     frameRate: 30,
-                    // facingMode: { exact: "user" },
+                    // facingMode: { exact: "environment" },
+                    facingMode: "environment",
                 }
             },
             video_element_id:'#video',
@@ -69,9 +73,26 @@ class LudoRTC {
         this.final_config = Object.assign(default_config,config);
     }
 
+    async getFinalConnectionStatus() {
+        for (let index = 0; index < 30; index++) {
+            if (this.pc.iceConnectionState != "checking") {
+                break
+            }
+            await this.delay(1000)
+        }
+        console.log("test : " + this.pc.iceConnectionState)
+        return this.pc.iceConnectionState == "connected" || false
+    }
+
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
     async openCamera() {
         let constraints = this.final_config.constraints;
-
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert('無法開啟相機，請使用瀏覽器開啟此頁面！');
+            // console.log(error);
+        }
         try {
             let stream = await navigator.mediaDevices.getUserMedia(constraints);
             this.stream = stream;
@@ -85,7 +106,8 @@ class LudoRTC {
             return true;
         } catch (error) {
             // this.$errorLogger('ludoRTC','openCamera',error.toString());
-            alert('Could not acquire media: ' + error);
+            alert('無法開啟相機，請複製網址後貼上瀏覽器開啟此頁面');
+            console.log(error);
             return false;
         }
         
@@ -136,7 +158,7 @@ class LudoRTC {
 
     createPeerConnection() {
         let pc = new RTCPeerConnection(this.final_config);
-    
+        
         // register some listeners to help debugging
         pc.addEventListener('icegatheringstatechange', function() {
             console.log('pc.iceGatheringState' + pc.iceGatheringState);
@@ -288,6 +310,18 @@ class LudoRTC {
 
     getVideoList() {
         return this.video_list;
+    }
+
+    isAndroid() {
+        return /Android/i.test(navigator.userAgent);
+    }
+      
+    isiOS() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+      
+    isMobile() {
+        return isAndroid() || isiOS();
     }
 }
 export default ({ app }, inject) => {

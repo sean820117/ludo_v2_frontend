@@ -14,8 +14,8 @@ services:
       - API_URL=https://api.ludonow.com
       - RUNTIME_ENV=production
     restart: always
-    # volumes:
-        # - ./:/var/www/app
+    volumes:
+        - ./:/var/www/app
         # - node_modules:/var/www/app/node_modules
-    # command: npm run dev
-    command: npm start
+    command: npm run dev
+    # command: npm start

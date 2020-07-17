@@ -1,23 +1,49 @@
 <template>
     <div class="golf-demo-intro-container">
         <h1 class="golf-demo-intro-title">高爾夫球<br>智慧練習系統</h1>
-        <div class="golf-demo-pre-register-form">
+        <div v-if="!subscriber" class="golf-demo-pre-register-form">
             <p>手機</p>
-            <input type="text"/>
+            <input type="text" v-model="phone" placeholder="例：0912345678"/>
             <p>信箱</p>
-            <input type="text"/>
+            <input type="text" v-model="email" placeholder="例：sample@golf.com"/>
         </div>
-        <button class="golf-demo-start-button golf-demo-button-large" @click="goSelect">開始練習</button>
+        <button :disabled="!checkInfo" :class=" !checkInfo ? 'inactive' : ''" class="golf-demo-start-button golf-demo-button-large" @click="sendSubscribe">開始練習</button>
     </div>
 </template>
 
 <script>
 export default {
+    data:()=>({
+        email:'',
+        phone:'',
+        subscriber:false,
+    }),
     methods: {
         goSelect() {
+            this.$emit('setUserId',this.subscriber);
             this.$emit('nextStage');
         },
+        sendSubscribe() {
+            if (!this.subscriber) {
+                this.subscriber = this.email
+                this.$sendData('/apis/subscribe-golf',{email:this.mail,phone: this.phone})    
+                localStorage['subscriber'] = this.subscriber
+            } 
+            this.goSelect();
+        }
     },
+    mounted() {
+        if (process.client) {
+            if (localStorage['subscriber']) {
+                this.subscriber = localStorage['subscriber'];
+            }
+        }
+    },
+    computed: {
+        checkInfo() {
+            return this.subscriber || (this.email && this.phone);
+        },
+    }
 }
 </script>
 
@@ -52,12 +78,18 @@ export default {
 }
 .golf-demo-pre-register-form p {
     color:white;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
 }
 .golf-demo-pre-register-form input {
     height: 50px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-top: 5px;
+    border:none;
+    padding-left: 15px;
+    font-size: 20px;
+}
+.inactive {
+    background: lightgray;
 }
 </style>

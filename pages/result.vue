@@ -35,22 +35,19 @@ export default {
             "/golf/golf-demo-icon-position08",
         ],
     }),
-    props:{
-        analyse_result:Object,
-    },
     mounted() {
         if (process.client) {
-            console.log(this.analyse_result);
-            if (this.analyse_result.video_url) {
+            let video_url = 'https://s3-ap-southeast-1.amazonaws.com/ludo-beta/training/sport/output/' + this.$route.query.filename.replace(".mp4","-cutted");
+            if (video_url) {
                 let result_imgs = [];
-                result_imgs[0] = this.analyse_result.video_url + "/01Address.png"
-                result_imgs[1] = this.analyse_result.video_url + "/02MBS.png"
-                result_imgs[2] = this.analyse_result.video_url + "/03TS.png"
-                result_imgs[3] = this.analyse_result.video_url + "/04BDS.png"
-                result_imgs[4] = this.analyse_result.video_url + "/05MDS.png"
-                result_imgs[5] = this.analyse_result.video_url + "/06Impact.png"
-                result_imgs[6] = this.analyse_result.video_url + "/07MFT.png"
-                result_imgs[7] = this.analyse_result.video_url + "/08CFT.png"
+                result_imgs[0] = video_url + "/01Address.png"
+                result_imgs[1] = video_url + "/02MBS.png"
+                result_imgs[2] = video_url + "/03TS.png"
+                result_imgs[3] = video_url + "/04BDS.png"
+                result_imgs[4] = video_url + "/05MDS.png"
+                result_imgs[5] = video_url + "/06Impact.png"
+                result_imgs[6] = video_url + "/07MFT.png"
+                result_imgs[7] = video_url + "/08CFT.png"
                 this.result_imgs = result_imgs;
             } else {
                 alert("未偵測到您的揮桿動作，請對準白框再嘗試");
@@ -60,10 +57,10 @@ export default {
     },
     methods: {
         goStage(stage) {
-            this.$emit("goStage",stage);
+            this.$router.push('/golf?stage=2')
         },
         nextStage() {
-            this.$emit("nextStage");
+            this.$router.push('/golf?stage=1')
         },
         downloadResult() {
             // for(var i = 0;i<this.result_imgs.length;i++){

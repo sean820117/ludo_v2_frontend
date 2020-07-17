@@ -39,7 +39,7 @@ export default {
                 } else if(this.video_result && this.video_result.status == 102) {
                     console.log("still loading...")
                 } else {
-                    alert("偵測失敗");
+                    alert("連接伺服器失敗");
                     clearInterval(checkResult);
                 }
             }, 5000);
