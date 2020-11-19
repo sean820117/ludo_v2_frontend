@@ -8,14 +8,28 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-        - "3000:3000"
+      - "3002:3000"
+    networks:
+      - reverse-proxy
+      - back
     environment:
       - BASE_URL=https://www.ludonow.com
       - API_URL=https://api.ludonow.com
       - RUNTIME_ENV=production
+      - VIRTUAL_PORT=3002
+      - VIRTUAL_HOST=golf.ludonow.com
+      - LETSENCRYPT_HOST=golf.ludonow.com
+      - LETSENCRYPT_EMAIL=sean@ludonow.com
     restart: always
     volumes:
         - ./:/var/www/app
         # - node_modules:/var/www/app/node_modules
     command: npm run dev
     # command: npm start
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+  back:
+    driver: bridge

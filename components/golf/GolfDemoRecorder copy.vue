@@ -3,16 +3,15 @@
         <!-- <video playsinline width ='640' height ='360' autoplay id="golf-demo-camera"></video>
         <canvas id ='canvas' width ='360' height ='640'></canvas>
         <canvas id ='canvas-word'></canvas> -->
-        <img id="canvas" src="http://localhost:5000/video_feed">
+        <img id="bg" src="http://localhost:5000/video_feed">
         <!-- <img id="golf-demo-recorder-target-area" :src="!is_recording ? img_target_area_with_text : img_target_area" alt=""/> -->
-        <button v-if="!is_recording" class="golf-demo-button-small golf-demo-recorder-start-button" >開始</button>
+        <button v-if="!is_recording" class="golf-demo-button-small golf-demo-recorder-start-button" @click="startRecording">開始</button>
         <button v-else class="golf-demo-button-small golf-demo-recorder-stop-button" @click="stopRecording">結束</button>
         <!-- <button class="golf-demo-button-small golf-demo-recorder-start-button" @click="startRecording">結束</button> -->
     </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     data:()=>({
         video_recorder:{},
@@ -79,39 +78,20 @@ export default {
             this.ws.onopen = e => {
                 console.log('[Client] Successfully Coneected', e)
             }
-
-            this.timer = setInterval( () => {
-                this.checkProgress();
-            } , 1000);
             // this.video_recorder = await this.$newLudoRTC(options);
             // console.log(this.video_recorder);
             // await this.video_recorder.openCamera();
             // this.loader.hide();
         }
     },
-    async destroyed() {
+    destroyed() {
         // this.video_recorder.closeCamera();
         if(this.timer) {
             clearInterval(this.timer);
-            
-        }
-        if (this.loader) {
             this.loader.hide();
         }
-        await axios.get('http://localhost:5000/stop-estimation')
     },
     methods:{
-        getResult(record_id) {
-            this.$emit("setResult",{file_name:record_id});
-            this.$emit("nextStage");
-        },
-        async checkProgress() {
-            let a = await axios.get('http://localhost:5000/check-estimation-progress')
-            console.log(a.data)
-            if (a.data.progress == 2) {
-                this.getResult(a.data.record_id);
-            }
-        },
         drawWordCanvas(word){
             var canvas = document.getElementById("canvas")
             var cw = document.getElementById("canvas-word");
@@ -277,7 +257,7 @@ export default {
     }
 }
 .golf-demo-recorder-container {
-    /* max-width: 60vh; */
+    max-width: 60vh;
     margin: 0 auto;
     background-color:black;
     display: flex;

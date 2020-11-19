@@ -2,9 +2,9 @@
     <div class="golf-demo-container">
         <golf-demo-intro v-if="stage==0" @nextStage="nextStage" @setUserId="setUserId"/>
         <!-- <golf-demo-select v-if="stage==1" @nextStage="nextStage"/> -->
-        <golf-demo-recorder v-if="stage==2" @nextStage="nextStage" :user_id="user_id" @setRecorder="setRecorder" />
+        <golf-demo-recorder v-if="stage==2" @nextStage="nextStage" :user_id="user_id" @setRecorder="setRecorder" @setResult="setResult"/>
         <golf-demo-analyse-and-loading v-if="stage==3" @nextStage="nextStage" :video_recorder="video_recorder" @setResult="setResult"/>
-        <golf-demo-analyse-result v-if="stage==4" @nextStage="nextStage" :analyse_result="analyse_result" @goStage="goStage"/>
+        <!--  <golf-demo-analyse-result v-if="stage==4" @nextStage="nextStage" :analyse_result="analyse_result" @goStage="goStage"/> -->
     </div>
 </template>
 
@@ -14,6 +14,7 @@ import GolfDemoSelect from '~/components/golf/GolfDemoSelect.vue';
 import GolfDemoRecorder from '~/components/golf/GolfDemoRecorder.vue';
 import GolfDemoAnalyseAndLoading from '~/components/golf/GolfDemoAnalyseAndLoading.vue';
 import GolfDemoAnalyseResult from '~/components/golf/GolfDemoAnalyseResult.vue';
+import axios from 'axios';
 
 export default {
     data:()=>({
@@ -34,6 +35,10 @@ export default {
     async mounted() {
         if (process.client) {
         }
+        await axios.get('http://localhost:5000/stop-estimation')
+    },
+    async destroyed() {
+        await axios.get('http://localhost:5000/stop-estimation')
     },
     methods: {
         nextStage() {

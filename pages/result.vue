@@ -37,7 +37,7 @@ export default {
     }),
     mounted() {
         if (process.client) {
-            let video_url = 'https://s3-ap-southeast-1.amazonaws.com/ludo-beta/training/sport/output/' + this.$route.query.filename.replace(".mp4","-cutted");
+            let video_url = 'http://localhost:5000/output/' + this.$route.query.filename;
             if (video_url) {
                 let result_imgs = [];
                 result_imgs[0] = video_url + "/01Address.png"

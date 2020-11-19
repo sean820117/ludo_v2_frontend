@@ -54,12 +54,12 @@ class LudoRTC {
             constraints : {
                 audio: false,
                 video: {
-                    width:this.default_width,
-                    // height:default_height,
-                    aspectRatio: this.aspectRatio,
+                    width: 1280,
+                    height: 720,
+                    aspectRatio: 0.562,
                     frameRate: 30,
                     // facingMode: { exact: "environment" },
-                    facingMode: "environment",
+                    // facingMode: "environment",
                 }
             },
             video_element_id:'#video',

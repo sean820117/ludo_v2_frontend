@@ -17,36 +17,39 @@ export default {
     },
     async mounted() {
         if (process.client) {
+            this.loader = this.$loading.show({
+                onCancel: this.yourMethodName,
+                color: '#355129',
+                loader: 'dots',
+                width: 64,
+                height: 64,
+                backgroundColor: '#ffffff',
+                opacity: 0.5,
+                zIndex: 999,
+            });
             let t = setTimeout(() => {
                 // this.show_loading = true;
-                this.loader = this.$loading.show({
-                    onCancel: this.yourMethodName,
-                    color: '#355129',
-                    loader: 'dots',
-                    width: 64,
-                    height: 64,
-                    backgroundColor: '#ffffff',
-                    opacity: 0.5,
-                    zIndex: 999,
-                });
+                this.$emit("nextStage");
             }, 5000);
-
-            let checkResult = setInterval(async() => {
-                this.video_result = await this.video_recorder.getDetailResult();
-                if (this.video_result && this.video_result.status == 200) {
-                    this.$emit("setResult",this.video_result);
-                    this.$emit("nextStage");
-                } else if(this.video_result && this.video_result.status == 102) {
-                    console.log("still loading...")
-                } else {
-                    alert("連接伺服器失敗");
-                    clearInterval(checkResult);
-                }
-            }, 5000);
+            
+            // let checkResult = setInterval(async() => {
+            //     this.video_result = await this.video_recorder.getDetailResult();
+            //     if (this.video_result && this.video_result.status == 200) {
+            //         this.$emit("setResult",this.video_result);
+            //         this.$emit("nextStage");
+            //     } else if(this.video_result && this.video_result.status == 102) {
+            //         console.log("still loading...")
+            //     } else {
+            //         alert("連接伺服器失敗");
+            //         clearInterval(checkResult);
+            //     }
+            // }, 5000);
         }
     },
     destroyed() {
-        this.loader.hide();
+        if (this.loader) {
+            this.loader.hide();
+        }
     },
 }
 </script>
