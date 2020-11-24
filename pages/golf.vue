@@ -35,10 +35,19 @@ export default {
     async mounted() {
         if (process.client) {
         }
-        await axios.get('http://localhost:5000/stop-estimation')
+        try {
+            await axios.get('http://localhost:5000/stop-estimation')
+        } catch (e) {
+
+        }
+        
     },
     async destroyed() {
-        await axios.get('http://localhost:5000/stop-estimation')
+        try {
+            await axios.get('http://localhost:5000/stop-estimation')
+        } catch (e) {
+
+        }
     },
     methods: {
         nextStage() {

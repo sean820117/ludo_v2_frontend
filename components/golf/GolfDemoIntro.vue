@@ -52,7 +52,7 @@ export default {
     width: 100vw;
     max-width: 60vh;
     margin: 0 auto;
-    /* height: 100%; */
+    height: 100vh; 
     background: url("/golf/golf-demo-bg.jpg") no-repeat;
     background-position: center;
     background-color:black;
@@ -66,7 +66,7 @@ export default {
 .golf-demo-start-button {
     /* position: absolute; */
     /* bottom: 20px; */
-    margin-top: 50px;
+    margin-top: 200px;
     align-self: center;
 }
 .golf-demo-pre-register-form {

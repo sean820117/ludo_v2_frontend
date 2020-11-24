@@ -98,7 +98,11 @@ export default {
         if (this.loader) {
             this.loader.hide();
         }
-        await axios.get('http://localhost:5000/stop-estimation')
+        try {
+            await axios.get('http://localhost:5000/stop-estimation')
+        } catch (e) {
+
+        }
     },
     methods:{
         getResult(record_id) {

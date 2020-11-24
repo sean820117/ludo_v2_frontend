@@ -4,7 +4,7 @@
         <div class="golf-demo-analyse-result-position-icon-container">
             <img v-for="(img,index) in icon_imgs" :key="index" :src="current_img_index != index ? img + '.png' : img + '-active.png'" alt="">
         </div>
-        <carousel @pageChange="pageChange" :perPage="1" :centerMode="true"  :autoplay="false"
+        <carousel @pageChange="pageChange" :perPage="1" :centerMode="true"  :autoplay="false" :navigationEnabled="true"
             :spacePadding="45" :paginationEnabled="false" :scrollPerPage="false" class="golf-demo-analyse-result-carousel">
             <slide v-for="img in result_imgs" :key="img" class="golf-demo-analyse-result-slide">
                 <img class="golf-demo-analyse-result-slide-img" :src="img" />    
@@ -89,12 +89,13 @@ export default {
 <style>
 .golf-demo-analyse-result-container {
     width: 100vw;
-    max-width: 60vh;
+     /* max-width: 60vh; */
+    height: 100vh;
     margin: 0 auto;
     background:url("/golf/golf-demo-bg-white.jpg");
     background-position: center;
     background-color:white;
-    background-size: auto 100%;
+    background-size: 100% auto;
     display: flex;
     flex-direction: column;
     overflow:hidden;
@@ -107,8 +108,8 @@ export default {
     font-size: 20px;
 }
 .golf-demo-analyse-result-slide-img {
-    width: 270px;
-    height: 480px;
+    /* width: 270px;
+    height: 480px; */
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
 }
@@ -123,8 +124,8 @@ export default {
     /* width: 70%; */
 }
 .VueCarousel-slide-active .golf-demo-analyse-result-slide-img {
-    width: 300px !important;
-    height: 532px !important;
+    /* width: 300px !important;
+    height: 532px !important; */
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
 }
