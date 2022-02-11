@@ -21,7 +21,7 @@
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/google-tag-manager": "^2.2.0",
     "@vimeo/player": "^2.9.1",
-    "ajv": "^6.0.0",
+    "ajv": "^6.12.3",
     "ajv-keywords": "^3.2.0",
     "axios": "^0.18.0",
     "countup.js": "^2.0.4",
